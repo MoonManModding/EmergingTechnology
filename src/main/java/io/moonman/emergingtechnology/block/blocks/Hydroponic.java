@@ -16,7 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -30,14 +29,13 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.block.IGrowable;
 import net.minecraft.block.ITileEntityProvider;
 
 public class Hydroponic extends Block implements ITileEntityProvider {
 
     public static final PropertyBool HAS_WATER = PropertyBool.create("haswater");
-    public static final PropertyInteger MEDIUM = PropertyInteger.create("medium", 0, HydroponicHelper.getValidGrowthMedia().length + 1);
+    public static final PropertyInteger MEDIUM = PropertyInteger.create("medium", 0,
+            HydroponicHelper.getValidGrowthMedia().length + 1);
 
     private final String _name = "hydroponic";
 
@@ -83,13 +81,12 @@ public class Hydroponic extends Block implements ITileEntityProvider {
             tileEntity.fluidHandler.fill(new FluidStack(FluidRegistry.WATER, 1000), true);
         } else if (HydroponicHelper.isPlantItem(itemHeld) && facing == EnumFacing.UP) {
             return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-        }
-         else {
+        } else {
             playerIn.openGui(EmergingTechnology.instance, Reference.GUI_HYDROPONIC, worldIn, pos.getX(), pos.getY(),
                     pos.getZ());
             return true;
         }
-        
+
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 
@@ -97,11 +94,9 @@ public class Hydroponic extends Block implements ITileEntityProvider {
         IBlockState state = worldIn.getBlockState(pos);
         TileEntity tileEntity = worldIn.getTileEntity(pos);
 
-        worldIn.setBlockState(pos, 
-        ModBlocks.hydroponic.getDefaultState()
-        .withProperty(HAS_WATER, hasWater)
-        .withProperty(MEDIUM, medium)
-        , 3);
+        worldIn.setBlockState(pos,
+                ModBlocks.hydroponic.getDefaultState().withProperty(HAS_WATER, hasWater).withProperty(MEDIUM, medium),
+                3);
 
         if (tileEntity != null) {
             tileEntity.validate();
@@ -110,17 +105,14 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state)
-    {
-      HydroponicTileEntity te = (HydroponicTileEntity) world.getTileEntity(pos);
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        HydroponicTileEntity te = (HydroponicTileEntity) world.getTileEntity(pos);
         IItemHandler cap = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-        for (int i = 0; i < cap.getSlots(); ++i)
-        {
+        for (int i = 0; i < cap.getSlots(); ++i) {
             ItemStack itemstack = cap.getStackInSlot(i);
 
-            if (!itemstack.isEmpty())
-            {
+            if (!itemstack.isEmpty()) {
                 InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), itemstack);
             }
         }
