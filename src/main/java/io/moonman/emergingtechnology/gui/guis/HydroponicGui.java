@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class HydroponicGui extends GuiContainer
@@ -42,15 +43,32 @@ public class HydroponicGui extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
 	{
-        boolean isGrowthMediumValid = HydroponicHelper.isItemStackValidGrowthMedia(this.tileEntity.getItemStack());
+		ItemStack contents = this.tileEntity.getItemStack();
+		
+		boolean growthMediumEmpty = HydroponicHelper.isItemStackEmpty(contents);
 
-        String growthMediumName = isGrowthMediumValid ? this.tileEntity.getItemStack().getDisplayName() : "Invalid";
-        int colour = isGrowthMediumValid ? 4766261 : 14567989;
+		String growthMediumName = "Empty";
+		int colour = 8553090;
+		int growthModifier = 0;
+
+		if (!growthMediumEmpty) {
+			boolean growthMediumValid = HydroponicHelper.isItemStackValidGrowthMedia(contents);
+			growthMediumName = growthMediumValid ? contents.getDisplayName() : "Invalid";
+			colour = growthMediumValid ? 4766261 : 14567989;
+			growthModifier = HydroponicHelper.getGrowthProbabilityForMedium(contents);
+		}
+
 
 		this.fontRenderer.drawString(NAME, 6, 8, 4210752);
-		this.fontRenderer.drawString("Medium", 75, 26, 4210752);
-		this.fontRenderer.drawString(growthMediumName, 75, 38, colour);
 		this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 118, this.ySize - 95, 4210752);
+
+		// Medium Name
+		this.fontRenderer.drawString("Medium", 50, 35, 4210752);
+		this.fontRenderer.drawString(growthMediumName, 50, 46, colour);
+
+		// Medium Stats
+		this.fontRenderer.drawString("Multiplier", 100, 35, 4210752);
+		this.fontRenderer.drawString(growthModifier + "%", 100, 46, colour);
 	}
 	
 	@Override

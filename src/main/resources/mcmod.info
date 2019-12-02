@@ -2,7 +2,7 @@
 {
   "modid": "emergingtechnology",
   "name": "Emerging Technology",
-  "description": "A simple tech mod",
+  "description": "A simple tech mod exploring emerging technologies",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

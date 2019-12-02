@@ -9,11 +9,31 @@
     "variants": {
         "normal": [{}],
         "inventory": [{}],
+        "facing": {
+            "north": {},
+            "south": {
+                "y": 180
+            },
+            "west": {
+                "y": 270
+            },
+            "east": {
+                "y": 90
+            },
+            "up": {
+                "x": -90
+            },
+            "down": {
+                "x": 90
+            }
+        },
         "haswater": {
             "false": {
                 "model": "emergingtechnology:hydroponic_empty"
             },
-            "true": {}
+            "true": {
+                "model": "emergingtechnology:hydroponic"
+            }
         },
         "medium": {
             "0": {

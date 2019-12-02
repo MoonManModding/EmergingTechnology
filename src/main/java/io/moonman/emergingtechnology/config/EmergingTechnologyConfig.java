@@ -17,6 +17,11 @@ public class EmergingTechnologyConfig {
 	@Config.Comment("The amount of water used by a grow bed per cycle (~10 ticks).")
 	@RangeInt(min = 1, max = 100) 
 	public static int growBedWaterUsePerCycle = 1;
+	
+	@Name("Grow Bed - Water Transfer Rate")
+	@Config.Comment("The amount of water transferred to other beds by a grow bed per cycle (~10 ticks).")
+	@RangeInt(min = 1, max = 100) 
+	public static int growBedWaterTransferRate = 10;
 
 	@Name("Dirt Growth Modifier %")
 	@Config.Comment("Probability of growth from dirt medium per cycle (~10 ticks).")

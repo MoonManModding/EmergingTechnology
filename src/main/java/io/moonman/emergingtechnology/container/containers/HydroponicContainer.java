@@ -17,7 +17,7 @@ public class HydroponicContainer extends Container {
 		this.tileEntity = tileEntity;
 		IItemHandler handler = tileEntity.itemHandler;
 
-		this.addSlotToContainer(new SlotItemHandler(handler, 0, 44, 31));
+		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
 
 		// Inventory
 		for (int y = 0; y < 3; y++) {

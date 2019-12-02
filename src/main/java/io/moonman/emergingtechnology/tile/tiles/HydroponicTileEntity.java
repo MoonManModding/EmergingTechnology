@@ -17,8 +17,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -42,16 +45,20 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) return true;
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return true;
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+            return true;
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return true;
 
         return false;
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)return (T) this.fluidHandler;
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return (T) this.itemHandler;
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+            return (T) this.fluidHandler;
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return (T) this.itemHandler;
         return super.getCapability(capability, facing);
     }
 
@@ -89,7 +96,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
             tick++;
             return;
         } else {
-            
+
             // Do all the plant growth work and let us know how it went
             boolean growSucceeded = doGrowthMultiplierProcess();
 
@@ -97,7 +104,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
             doWaterUsageProcess(growSucceeded);
 
             Hydroponic.setState(this.hasWater, getGrowthMediaIdFromItemStack(), world, pos);
-            
+
             tick = 0;
         }
 
@@ -109,6 +116,41 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
         // Drain water
         this.fluidHandler.drain(EmergingTechnologyConfig.growBedWaterUsePerCycle * plantWaterUse, true);
+
+        // If enough water to transfer...
+        if (this.fluidHandler.getFluidAmount() >= EmergingTechnologyConfig.growBedWaterTransferRate) {
+
+            // Get the direction this grow bed is facing
+            EnumFacing facing = this.world.getBlockState(this.pos).getValue(Hydroponic.FACING);
+
+            // Grab the vector
+            Vec3i vector = facing.getDirectionVec();
+
+            // Get neighbour based on facing vector
+            TileEntity neighbour = this.world.getTileEntity(this.pos.add(vector));
+
+            // Is neighbour a grow bed?
+            if (neighbour instanceof HydroponicTileEntity) {
+                HydroponicTileEntity targetTileEntity = (HydroponicTileEntity) neighbour;
+
+                // Check if neighbour is facing toward this grow bed to avoid infinite loop
+                EnumFacing neighbourFacing = this.world.getBlockState(targetTileEntity.getPos())
+                        .getValue(Hydroponic.FACING);
+
+                if (facing != neighbourFacing.getOpposite()) {
+
+                    // Fill the neighbour and get amount filled
+                    int filled = targetTileEntity.fluidHandler.fill(
+                            new FluidStack(FluidRegistry.WATER, EmergingTechnologyConfig.growBedWaterTransferRate),
+                            true);
+
+                    if (filled > 0) {
+                        // Drain self from amount
+                        this.fluidHandler.drain(filled, true);
+                    }
+                }
+            }
+        }
 
         // Set has water
         this.hasWater = this.fluidHandler.getFluidAmount() > 0;
@@ -144,14 +186,15 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         // If impossible, skidaddle
         if (growthProbabilityThreshold == 0) {
             return false;
-        } 
+        }
 
         // If it ain't a plant, we ain't interested
         if (!HydroponicHelper.isPlantBlock(aboveBlock)) {
             return false;
         }
 
-        // If the above is one of those BlockCrops fellas or fancy IPlantable, roll the dice
+        // If the above is one of those BlockCrops fellas or fancy IPlantable, roll the
+        // dice
         if (aboveBlock instanceof BlockCrops || aboveBlock instanceof IPlantable) {
             return rollForGrow(aboveBlock, aboveBlockState, growthProbabilityThreshold);
         }

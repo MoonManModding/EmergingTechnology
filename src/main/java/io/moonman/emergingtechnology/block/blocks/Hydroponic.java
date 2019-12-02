@@ -9,9 +9,11 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryHelper;
@@ -20,6 +22,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -33,6 +37,7 @@ import net.minecraft.block.ITileEntityProvider;
 
 public class Hydroponic extends Block implements ITileEntityProvider {
 
+    public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool HAS_WATER = PropertyBool.create("haswater");
     public static final PropertyInteger MEDIUM = PropertyInteger.create("medium", 0,
             HydroponicHelper.getValidGrowthMedia().length + 1);
@@ -47,7 +52,7 @@ public class Hydroponic extends Block implements ITileEntityProvider {
         this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
         this.setSoundType(SoundType.METAL);
 
-        setDefaultState(blockState.getBaseState().withProperty(HAS_WATER, false).withProperty(MEDIUM, 0));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false).withProperty(MEDIUM, 0));
     }
 
     @Override
@@ -64,6 +69,55 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     @Override
     public boolean isFullCube(IBlockState iBlockState) {
         return false;
+    }
+
+    @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+        if (!worldIn.isRemote) {
+            IBlockState north = worldIn.getBlockState(pos.north());
+            IBlockState east = worldIn.getBlockState(pos.east());
+            IBlockState south = worldIn.getBlockState(pos.south());
+            IBlockState west = worldIn.getBlockState(pos.west());
+
+            EnumFacing face = (EnumFacing) state.getValue(FACING);
+
+            if (face == EnumFacing.NORTH && north.isFullBlock() && !south.isFullBlock()) {
+                face = EnumFacing.SOUTH;
+            } else if (face == EnumFacing.SOUTH && south.isFullBlock() && !north.isFullBlock()) {
+                face = EnumFacing.NORTH;
+            } else if (face == EnumFacing.EAST && east.isFullBlock() && !west.isFullBlock()) {
+                face = EnumFacing.WEST;
+            } else if (face == EnumFacing.WEST && west.isFullBlock() && !east.isFullBlock()) {
+                face = EnumFacing.EAST;
+            }
+
+            setState(false, 0, worldIn, pos);
+
+            worldIn.setBlockState(pos, state.withProperty(FACING, face));
+        }
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+            float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
+
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+            ItemStack stack) {
+        worldIn.setBlockState(pos,
+                this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rot) {
+        return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+        return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
     }
 
     @Override
@@ -95,7 +149,7 @@ public class Hydroponic extends Block implements ITileEntityProvider {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
 
         worldIn.setBlockState(pos,
-                ModBlocks.hydroponic.getDefaultState().withProperty(HAS_WATER, hasWater).withProperty(MEDIUM, medium),
+                ModBlocks.hydroponic.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(HAS_WATER, hasWater).withProperty(MEDIUM, medium),
                 3);
 
         if (tileEntity != null) {
@@ -125,19 +179,19 @@ public class Hydroponic extends Block implements ITileEntityProvider {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { HAS_WATER, MEDIUM });
+        return new BlockStateContainer(this, new IProperty[] { FACING, HAS_WATER, MEDIUM });
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        boolean hasWater = meta == 1;
-        return this.getDefaultState().withProperty(HAS_WATER, hasWater);
-
+        return getDefaultState()
+                .withProperty(FACING, EnumFacing.getFront(meta & 7))
+                .withProperty(HAS_WATER, (meta & 8) != 0);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(HAS_WATER) == true ? 1 : 0;
+        return state.getValue(FACING).getIndex() + (state.getValue(HAS_WATER) ? 8 : 0);
     }
 
 }

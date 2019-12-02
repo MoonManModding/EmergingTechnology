@@ -1,17 +1,24 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-      "P P",
-      "PPP",
-      "P P"
-    ],
-    "key": {
-      "P": {
-        "item": "minecraft:reeds"
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS",
+    "III",
+    "III"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone_slab",
+      "data": 7
     },
-    "result": {
-      "item": "emergingtechnology:hydroponic",
-      "count": 1
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "minecraft:stone_button"
     }
+  },
+  "result": {
+    "item": "emergingtechnology:hydroponic",
+    "count": 1
   }
+}
