@@ -23,6 +23,9 @@ You'll need 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button to craft the Gr
 
 The mod was made with Forge version <b>14.23.5.2768</b>
 
+# Download
+Coming soon.
+
 # About 🔬
 
 The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler.
