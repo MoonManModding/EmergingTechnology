@@ -1,11 +1,11 @@
 # Emerging Technology
 By MoonManModding - <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/6KXahpF"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:15px;font-size:28px !important;">Buy me a coffee</span></a>
 
-<b>Requirements</b>
-Minecraft Version 1.12.2
-Forge
-
 # Version 1.0.0 - Hydroponics! 🌱
+
+<b>Requirements</b>
+<p>Minecraft Version 1.12.2</p>
+<p>Forge</p>
 
 This version provides a single block - the Hydroponic Grow Bed. An alternative to soil-based farming, the Grow Bed allows you to grow crops without getting your hands dirty with all that gross farmland.
 
