@@ -1,0 +1,14 @@
+# Items
+item.emergingtechnology.hydroponic.name=Groeibed
+
+#Blocks
+blocks.emergingtechnology.hydroponic.name=Groeibed
+
+#Containers
+
+
+#Tiles
+tile.emergingtechnology.hydroponic.name=Groeibed
+
+#ItemGroup
+itemGroup.technologytab=Innovatieve Technologie

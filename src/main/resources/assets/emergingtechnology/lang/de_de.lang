@@ -1,0 +1,14 @@
+# Items
+item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+
+#Blocks
+blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+
+#Containers
+
+
+#Tiles
+tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+
+#ItemGroup
+itemGroup.technologytab=Neue Technologie
