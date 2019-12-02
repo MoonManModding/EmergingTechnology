@@ -23,6 +23,8 @@ Planned updates include:
 - More growth media types
 - OpenComputers support
 
-I'm a freelance developer with bills to pay, but I will try to keep this mod as updated and bug-free as possible while adding new content.
+This mod is not intended to be the last word on Hydroponics in Minecraft. If you want to make your own hydroponics mod, take this source code and run with it.
+
+I'm a freelance developer with bills to pay, but I will try to keep this mod as updated and bug-free as possible while adding new content. Kind thanks to r/feedthebeast for your support and feedback 😍
 
 
