@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "P P",
+      "PPP",
+      "P P"
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:reeds"
+      }
+    },
+    "result": {
+      "item": "emergingtechnology:hydroponic",
+      "count": 1
+    }
+  }

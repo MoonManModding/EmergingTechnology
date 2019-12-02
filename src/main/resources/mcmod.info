@@ -1,0 +1,16 @@
+[
+{
+  "modid": "emergingtechnology",
+  "name": "Emerging Technology",
+  "description": "A simple tech mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["MoonManModding"],
+  "credits": "The Forge and FML guys",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

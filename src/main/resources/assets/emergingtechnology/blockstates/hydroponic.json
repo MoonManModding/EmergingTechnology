@@ -1,0 +1,61 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:hydroponic",
+        "textures": {
+            "mediumtype": "emergingtechnology:blocks/grey"
+        }
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}],
+        "haswater": {
+            "false": {
+                "model": "emergingtechnology:hydroponic_empty"
+            },
+            "true": {}
+        },
+        "medium": {
+            "0": {
+                "textures": {
+                    "mediumtype": "emergingtechnology:blocks/grey"
+                }
+            },
+            "1": {
+                "textures": {
+                    "mediumtype": "minecraft:blocks/dirt"
+                }
+            },
+            "2": {
+                "textures": {
+                    "mediumtype": "minecraft:blocks/sand"
+                }
+            },
+            "3": {
+                "textures": {
+                    "mediumtype": "minecraft:blocks/gravel"
+                }
+            },
+            "4": {
+                "textures": {
+                    "mediumtype": "minecraft:blocks/clay"
+                }
+            },
+            "5": {
+                "textures": {
+                    "mediumtype": "minecraft:blocks/clay"
+                }
+            },
+            "6": {
+                "textures": {
+                    "mediumtype": "emergingtechnology:blocks/grey"
+                }
+            },
+            "7": {
+                "textures": {
+                    "mediumtype": "emergingtechnology:blocks/grey"
+                }
+            }
+        }
+    }
+}
