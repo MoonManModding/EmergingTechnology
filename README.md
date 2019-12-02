@@ -13,6 +13,8 @@ You can change the water usage and growth modifiers in the mod's Config to make 
 
 # Recipe
 
+You'll need 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button to craft the Grow Bed.
+
 <img src="HydroponicRecipe.png" alt="Recipe">
 
 # About 🔬
