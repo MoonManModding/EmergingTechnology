@@ -18,8 +18,8 @@ You'll need 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button to craft the Gr
 <img src="HydroponicRecipe.png" alt="Recipe">
 
 # Requirements
-<p>Minecraft Version <b>1.12.2</b></p>
-<p>Forge</p>
+- Minecraft Version <b>1.12.2</b>
+- Forge
 
 The mod was made with Forge version <b>14.23.5.2768</b>
 
