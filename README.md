@@ -26,7 +26,7 @@ You'll need 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button to craft the Gr
 The mod was made with Forge version <b>14.23.5.2768</b>
 
 # Download
-<a href="https://drive.google.com/file/d/1zweC6C-i25n4aiY-0jtyqU6qBTGCAQJe/view?usp=sharing">Google Drive download</a> (Temporary!)
+<a href="https://www.curseforge.com/minecraft/mc-mods/emerging-technology-hydroponics">Download at CurseForge</a>
 
 # About 🔬
 
