@@ -3,10 +3,6 @@ By MoonManModding - <link href="https://fonts.googleapis.com/css?family=Cookie" 
 
 # Version 1.0.0 - Hydroponics! 🌱
 
-<b>Requirements</b>
-<p>Minecraft Version 1.12.2</p>
-<p>Forge</p>
-
 This version provides a single block - the Hydroponic Grow Bed. An alternative to soil-based farming, the Grow Bed allows you to grow crops without getting your hands dirty with all that gross farmland.
 
 The Grow Bed requires a steady stream of water to function, provided either through using a bucket of water (lame) or  automation (awesome). Get some water in your Grow Bed, and other Grow Beds adjacent to the outflow pipe will fill up too!
@@ -20,6 +16,12 @@ You can change the water usage and growth modifiers in the mod's Config to make 
 You'll need 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button to craft the Grow Bed.
 
 <img src="HydroponicRecipe.png" alt="Recipe">
+
+# Requirements
+<p>Minecraft Version <b>1.12.2</b></p>
+<p>Forge</p>
+
+The mod was made with Forge version 14.23.5.2768.
 
 # About 🔬
 
