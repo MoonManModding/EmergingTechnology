@@ -11,6 +11,10 @@ Want to speed up your 🌾🌾🌾 growth? Add growth media! Placing a block of 
 
 You can change the water usage and growth modifiers in the mod's Config to make things a bit easier (or more challenging).
 
+# Recipe
+
+<img src="HydroponicRecipe.png" alt="Recipe">
+
 # About 🔬
 
 The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler.
