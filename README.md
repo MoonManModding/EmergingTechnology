@@ -13,7 +13,9 @@ You can change the water usage and growth modifiers in the mod's Config to make 
 
 # About 🔬
 
-This mod is in <b>alpha</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates 😎
+The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler.
+
+This mod is in <b>alpha</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates.
 
 Planned updates include:
 
@@ -21,6 +23,6 @@ Planned updates include:
 - More growth media types
 - OpenComputers support
 
-I'm a freelance developer with bills to pay, but I will try to keep this mod as updated and bug-free as possible.
+I'm a freelance developer with bills to pay, but I will try to keep this mod as updated and bug-free as possible while adding new content.
 
 
