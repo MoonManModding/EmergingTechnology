@@ -7,6 +7,20 @@ This version provides a single block - the Hydroponic Grow Bed. An alternative t
 
 The Grow Bed requires a steady stream of water to function, provided either through using a bucket of water (lame) or  automation (awesome). Get some water in your Grow Bed, and other Grow Beds adjacent to the outflow pipe will fill up too!
 
+Want to speed up your 🌾🌾🌾 growth? Add growth media! Placing a block of Dirt, Sand, Gravel or Clay in the Grow Bed will boost your plant's growing ability.
 
+You can change the water usage and growth modifiers in the mod's Config to make things a bit easier (or more challenging).
+
+# About 🔬
+
+This mod is in <b>alpha</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates 😎
+
+Planned updates include:
+
+- Powered Lighting with variations and upgrades
+- More growth media types
+- OpenComputers support
+
+I'm a freelance developer with bills to pay, but I will try to keep this mod as updated and bug-free as possible.
 
 
