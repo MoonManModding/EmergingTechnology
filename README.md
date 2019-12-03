@@ -28,6 +28,17 @@ The mod was made with Forge version <b>14.23.5.2768</b>
 # Download
 <a href="https://www.curseforge.com/minecraft/mc-mods/emerging-technology-hydroponics">Download at CurseForge</a>
 
+# Compatibility
+Emerging Technology tentatively supports the following mods:
+
+- Pam's HarvestCraft
+- Botania
+- Mystical Agriculture
+- OpenComputers
+- NuclearCraft
+- IndustrialCraft 2
+- AgriCraft (requires some setup)
+
 # About 🔬
 
 The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler.
