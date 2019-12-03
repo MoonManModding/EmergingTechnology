@@ -36,12 +36,18 @@ Emerging Technology tentatively works with the following mods:
 - Mystical Agriculture
 - OpenComputers
 - NuclearCraft
+- XNET
 - IndustrialCraft 2
 - AgriCraft (requires some setup)
 
-# About 🔬
+Untested but likely compatible:
+- Ender IO
+- Mekanism
+- BuildCraft
 
-The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler.
+The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler. Manipulating inventory is available through ItemStackHandler. 
+
+# About 🔬
 
 This mod is in <b>alpha</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates.
 
