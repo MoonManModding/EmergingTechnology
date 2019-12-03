@@ -29,7 +29,7 @@ The mod was made with Forge version <b>14.23.5.2768</b>
 <a href="https://www.curseforge.com/minecraft/mc-mods/emerging-technology-hydroponics">Download at CurseForge</a>
 
 # Compatibility
-Emerging Technology tentatively supports the following mods:
+Emerging Technology tentatively works with the following mods:
 
 - Pam's HarvestCraft
 - Botania
