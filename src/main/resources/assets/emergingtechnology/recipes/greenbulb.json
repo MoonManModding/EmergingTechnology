@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " S ",
+    " I "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stained_glass",
+      "data": 13
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:greenbulb",
+    "count": 1
+  }
+}

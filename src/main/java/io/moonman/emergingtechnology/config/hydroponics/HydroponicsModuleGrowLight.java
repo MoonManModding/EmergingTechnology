@@ -21,8 +21,8 @@ public class HydroponicsModuleGrowLight {
     @RangeInt(min = 0, max = 100)
     public int growthBlueBulbModifier = 4;
 
-    @Name("Purple Bulb Growth Modifier %")
-    @Config.Comment("Probability of growth from a grow lamp containing a purple bulb per cycle (~10 ticks).")
+    @Name("UV Bulb Growth Modifier %")
+    @Config.Comment("Probability of growth from a grow lamp containing a UV bulb per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)
     public int growthPurpleBulbModifier = 8;
     
@@ -46,8 +46,8 @@ public class HydroponicsModuleGrowLight {
     @RangeInt(min = 0, max = 100)
     public int energyBlueBulbModifier = 4;
 
-    @Name("Purple Bulb Energy Modifier")
-    @Config.Comment("Energy Modifier of Purple Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
+    @Name("UV Bulb Energy Modifier")
+    @Config.Comment("Energy Modifier of UV Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
     @RangeInt(min = 0, max = 100)
     public int energyPurpleBulbModifier = 5;
 }

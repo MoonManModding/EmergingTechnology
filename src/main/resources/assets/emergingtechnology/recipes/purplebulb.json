@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    " G ",
+    " B "
+  ],
+  "key": {
+    "R": {
+      "item": "emergingtechnology:redbulb"
+    },
+    "G": {
+      "item": "emergingtechnology:greenbulb"
+    },
+    "B": {
+      "item": "emergingtechnology:bluebulb"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:purplebulb",
+    "count": 1
+  }
+}

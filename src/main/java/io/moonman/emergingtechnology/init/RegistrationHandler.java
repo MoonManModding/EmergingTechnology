@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.init;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.block.blocks.Frame;
 import io.moonman.emergingtechnology.block.blocks.Hydroponic;
 import io.moonman.emergingtechnology.block.blocks.Light;
 import io.moonman.emergingtechnology.item.items.BlueBulb;
@@ -22,7 +23,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {
-        final Block[] blocks = { new Hydroponic(), new Light() };
+        final Block[] blocks = { new Hydroponic(), new Light(), new Frame() };
 
         ResourceLocation hydroponicLocation = new ResourceLocation(EmergingTechnology.MODID + ":hydroponic");
         ResourceLocation lightLocation = new ResourceLocation(EmergingTechnology.MODID + ":light");
@@ -41,8 +42,9 @@ public class RegistrationHandler {
         // Items from Blocks
         Item hydroponic = generateItemBlock(ModBlocks.hydroponic);
         Item light = generateItemBlock(ModBlocks.light);
+        Item frame = generateItemBlock(ModBlocks.frame);
 
-        final Item[] itemBlocks = { hydroponic, light };
+        final Item[] itemBlocks = { hydroponic, light, frame };
 
         // Register
         event.getRegistry().registerAll(items);
@@ -60,6 +62,7 @@ public class RegistrationHandler {
         // Block Models
         registerModel(Item.getItemFromBlock(ModBlocks.hydroponic), 0);
         registerModel(Item.getItemFromBlock(ModBlocks.light), 0);
+        registerModel(Item.getItemFromBlock(ModBlocks.frame), 0);
     }
 
     private static Item generateItemBlock(Block block) {

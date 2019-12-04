@@ -5,11 +5,13 @@ import java.util.Random;
 import io.moonman.emergingtechnology.block.blocks.Light;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.LightHelper;
+import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.tile.handlers.EnergyStorageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -20,6 +22,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class LightTileEntity extends TileEntity implements ITickable {
 
@@ -126,18 +129,54 @@ public class LightTileEntity extends TileEntity implements ITickable {
     }
 
     public void doGrowthMultiplierProcess(int bulbTypeId) {
-        
+        // Get growth probability from bulb type
+        int growthMultiplier = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
+
+        // How many blocks below light?
+        int blocksBelow = 3;
+
+        for(int i = 1; i < blocksBelow + 1; i++) {
+            // Get position
+            BlockPos position = this.pos.add(0, -i, 0);
+
+            // Get block state
+            IBlockState blockStateBelow = this.world.getBlockState(position);
+
+            // Get block
+            Block blockBelow = blockStateBelow.getBlock();
+
+            // If it's not a plant, and it's not air...
+            if (PlantHelper.isPlantBlock(blockBelow)) {
+                rollForGrow(blockBelow, blockStateBelow, position, growthMultiplier);
+                break;
+            } else if (blockBelow == Blocks.AIR) {
+                continue;
+            } else {
+                break;
+            }
+
+            // Let's roll
+            
+        }
+
+        return;
     }
 
     public boolean rollForGrow(Block block, IBlockState blockState, BlockPos pos, int growthProbability) {
         // Grab yourself a fresh new random number from 0 to 100
         int random = new Random().nextInt(101);
 
-        // If the shiny random number is smaller than the growth threshold...
+        // If the shiny random number is smaller than the growth threshold then we roll
         if (random < growthProbability) {
-            // Winner winner chicken dinner
-            block.updateTick(this.world, pos, blockState, new Random());
-            return true;
+            
+            // This is probably not necessary but then neither are male nipples
+            if (block == Blocks.AIR) {
+                return false;
+            } else {
+                // Winner winner chicken dinner
+                block.updateTick(this.world, pos, blockState, new Random());
+                return true;
+            }
         }
 
         // Zone of sadness

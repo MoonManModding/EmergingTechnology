@@ -65,17 +65,4 @@ public class HydroponicHelper {
             return 0;
         }
     }
-
-    public static boolean isPlantItem(Item item) {
-        return item instanceof IPlantable || item instanceof IGrowable || isItemInOverride(item);
-    }
-
-    public static boolean isPlantBlock(Block block) {
-        return block instanceof IPlantable || block instanceof IGrowable;
-    }
-
-    private static boolean isItemInOverride(Item item) {
-        if(item == Items.REEDS) return true;
-        return false;
-    }
 }

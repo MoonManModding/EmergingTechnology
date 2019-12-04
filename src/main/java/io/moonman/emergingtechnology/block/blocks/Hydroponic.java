@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.block.blocks;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.HydroponicHelper;
+import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
@@ -130,11 +131,16 @@ public class Hydroponic extends Block implements ITileEntityProvider {
 
         Item itemHeld = playerIn.getHeldItemMainhand().getItem();
 
+        // If player is holding an item bucket, fill grow bed
         if (itemHeld == Items.WATER_BUCKET) {
             HydroponicTileEntity tileEntity = (HydroponicTileEntity) worldIn.getTileEntity(pos);
             tileEntity.fluidHandler.fill(new FluidStack(FluidRegistry.WATER, 1000), true);
-        } else if (HydroponicHelper.isPlantItem(itemHeld) && facing == EnumFacing.UP) {
+
+            // Otherwise, if player is holding a plant item and they're activating the top then try to place it
+        } else if (PlantHelper.isPlantItem(itemHeld) && facing == EnumFacing.UP) {
             return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+
+            // Otherwise open the gui
         } else {
             playerIn.openGui(EmergingTechnology.instance, Reference.GUI_HYDROPONIC, worldIn, pos.getX(), pos.getY(),
                     pos.getZ());

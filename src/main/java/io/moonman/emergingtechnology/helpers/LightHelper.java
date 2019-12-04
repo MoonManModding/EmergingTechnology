@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.helpers;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.item.items.BlueBulb;
 import io.moonman.emergingtechnology.item.items.BulbItem;
 import io.moonman.emergingtechnology.item.items.GreenBulb;

@@ -5,6 +5,7 @@ import java.util.Random;
 import io.moonman.emergingtechnology.block.blocks.Hydroponic;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.HydroponicHelper;
+import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.tile.handlers.FluidStorageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -189,7 +190,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         }
 
         // If it ain't a plant, we ain't interested
-        if (!HydroponicHelper.isPlantBlock(aboveBlock)) {
+        if (!PlantHelper.isPlantBlock(aboveBlock)) {
             return false;
         }
 
