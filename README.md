@@ -26,11 +26,28 @@ You'll need 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button to craft the Gr
 The mod was made with Forge version <b>14.23.5.2768</b>
 
 # Download
-<a href="https://drive.google.com/file/d/1zweC6C-i25n4aiY-0jtyqU6qBTGCAQJe/view?usp=sharing">Google Drive download</a> (Temporary!)
+<a href="https://www.curseforge.com/minecraft/mc-mods/emerging-technology-hydroponics">Download at CurseForge</a>
+
+# Compatibility
+Emerging Technology tentatively works with the following mods:
+
+- Pam's HarvestCraft
+- Botania
+- Mystical Agriculture
+- OpenComputers
+- NuclearCraft
+- XNET
+- IndustrialCraft 2
+- AgriCraft (requires some setup)
+
+Untested but likely compatible:
+- Ender IO
+- Mekanism
+- BuildCraft
+
+The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler. Manipulating inventory is available through ItemStackHandler. 
 
 # About 🔬
-
-The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler.
 
 This mod is in <b>alpha</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates.
 
