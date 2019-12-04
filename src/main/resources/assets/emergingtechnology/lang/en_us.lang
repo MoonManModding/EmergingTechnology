@@ -1,14 +1,22 @@
 # Items
 item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+item.emergingtechnology.light.name=Hydroponic Grow Light
+
+item.emergingtechnology.redbulb.name=Red Bulb
+item.emergingtechnology.greenbulb.name=Green Bulb
+item.emergingtechnology.bluebulb.name=Blue Bulb
+item.emergingtechnology.purplebulb.name=Purple Bulb
 
 #Blocks
 blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+blocks.emergingtechnology.light.name=Hydroponic Grow Light
 
 #Containers
 
 
 #Tiles
 tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+tile.emergingtechnology.light.name=Hydroponic Grow Light
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology

@@ -23,7 +23,7 @@ public class HydroponicHelper {
         ItemStack[] validGrowthMedia = getValidGrowthMedia();
 
         for (ItemStack growthMedia : validGrowthMedia) {
-            if (compareItemStacks(growthMedia, itemStack)) {
+            if (StackHelper.compareItemStacks(growthMedia, itemStack)) {
                 return true;
             }
         }
@@ -39,7 +39,7 @@ public class HydroponicHelper {
         ItemStack[] validGrowthMedia = getValidGrowthMedia();
 
         for (int i = 0; i < validGrowthMedia.length; i++) {
-            if (compareItemStacks(itemStack, validGrowthMedia[i])) {
+            if (StackHelper.compareItemStacks(itemStack, validGrowthMedia[i])) {
                 return i + 1;
             }
         }
@@ -54,13 +54,13 @@ public class HydroponicHelper {
         case 0:
             return 0;
         case 1:
-            return EmergingTechnologyConfig.growthDirtModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthDirtModifier;
         case 2:
-            return EmergingTechnologyConfig.growthSandModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthSandModifier;
         case 3:
-            return EmergingTechnologyConfig.growthGravelModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthGravelModifier;
         case 4:
-            return EmergingTechnologyConfig.growthClayModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthClayModifier;
         default:
             return 0;
         }
@@ -77,14 +77,5 @@ public class HydroponicHelper {
     private static boolean isItemInOverride(Item item) {
         if(item == Items.REEDS) return true;
         return false;
-    }
-
-    public static boolean isItemStackEmpty(ItemStack stack) {
-        return compareItemStacks(stack, new ItemStack(Items.AIR)) || stack.isEmpty();
-    }
-
-    public static boolean compareItemStacks(ItemStack stack1, ItemStack stack2) {
-        return stack2.getItem() == stack1.getItem()
-                && (stack2.getMetadata() == 32767 || stack2.getMetadata() == stack1.getMetadata());
     }
 }

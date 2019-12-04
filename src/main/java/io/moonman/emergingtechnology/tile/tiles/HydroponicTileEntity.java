@@ -8,8 +8,6 @@ import io.moonman.emergingtechnology.helpers.HydroponicHelper;
 import io.moonman.emergingtechnology.tile.handlers.FluidStorageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.BlockReed;
-import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -115,10 +113,10 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         int plantWaterUse = growSucceeded ? 2 : 1;
 
         // Drain water
-        this.fluidHandler.drain(EmergingTechnologyConfig.growBedWaterUsePerCycle * plantWaterUse, true);
+        this.fluidHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.growBedWaterUsePerCycle * plantWaterUse, true);
 
         // If enough water to transfer...
-        if (this.fluidHandler.getFluidAmount() >= EmergingTechnologyConfig.growBedWaterTransferRate) {
+        if (this.fluidHandler.getFluidAmount() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.growBedWaterTransferRate) {
 
             // Get the direction this grow bed is facing
             EnumFacing facing = this.world.getBlockState(this.pos).getValue(Hydroponic.FACING);
@@ -141,7 +139,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
                     // Fill the neighbour and get amount filled
                     int filled = targetTileEntity.fluidHandler.fill(
-                            new FluidStack(FluidRegistry.WATER, EmergingTechnologyConfig.growBedWaterTransferRate),
+                            new FluidStack(FluidRegistry.WATER, EmergingTechnologyConfig.HYDROPONICS_MODULE.growBedWaterTransferRate),
                             true);
 
                     if (filled > 0) {

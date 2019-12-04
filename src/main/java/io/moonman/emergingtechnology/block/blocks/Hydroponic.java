@@ -37,12 +37,12 @@ import net.minecraft.block.ITileEntityProvider;
 
 public class Hydroponic extends Block implements ITileEntityProvider {
 
+    private final String _name = "hydroponic";
+
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool HAS_WATER = PropertyBool.create("haswater");
     public static final PropertyInteger MEDIUM = PropertyInteger.create("medium", 0,
             HydroponicHelper.getValidGrowthMedia().length + 1);
-
-    private final String _name = "hydroponic";
 
     public Hydroponic() {
         super(Material.ANVIL);
@@ -191,7 +191,8 @@ public class Hydroponic extends Block implements ITileEntityProvider {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex() + (state.getValue(HAS_WATER) ? 8 : 0);
+        int meta = state.getValue(FACING).getIndex() + (state.getValue(HAS_WATER) ? 8 : 0);
+        return meta;
     }
 
 }

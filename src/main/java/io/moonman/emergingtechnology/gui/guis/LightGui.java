@@ -1,28 +1,28 @@
 package io.moonman.emergingtechnology.gui.guis;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.container.containers.HydroponicContainer;
-import io.moonman.emergingtechnology.helpers.HydroponicHelper;
+import io.moonman.emergingtechnology.container.containers.LightContainer;
+import io.moonman.emergingtechnology.helpers.LightHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
+import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class HydroponicGui extends GuiContainer
+public class LightGui extends GuiContainer
 {
-	private static final ResourceLocation TEXTURES = new ResourceLocation(EmergingTechnology.MODID + ":textures/gui/hydroponicgui.png");
+	private static final ResourceLocation TEXTURES = new ResourceLocation(EmergingTechnology.MODID + ":textures/gui/lightgui.png");
 	private final InventoryPlayer player;
-	private final HydroponicTileEntity tileEntity;
+	private final LightTileEntity tileEntity;
 
-	private String NAME = "Grow Bed";
+	private String NAME = "Grow Light";
     
     // Draws textures on gui
-	public HydroponicGui(InventoryPlayer player, HydroponicTileEntity tileEntity) 
+	public LightGui(InventoryPlayer player, LightTileEntity tileEntity) 
 	{
-		super(new HydroponicContainer(player, tileEntity));
+		super(new LightContainer(player, tileEntity));
 		this.player = player;
 		this.tileEntity = tileEntity;
 		this.xSize = 175;
@@ -46,17 +46,17 @@ public class HydroponicGui extends GuiContainer
 	{
 		ItemStack contents = this.tileEntity.getItemStack();
 		
-		boolean growthMediumEmpty = StackHelper.isItemStackEmpty(contents);
+		boolean bulbSlotEmpty = StackHelper.isItemStackEmpty(contents);
 
-		String growthMediumName = "Empty";
+		String bulbName = "Empty";
 		int colour = 8553090;
 		int growthModifier = 0;
 
-		if (!growthMediumEmpty) {
-			boolean growthMediumValid = HydroponicHelper.isItemStackValidGrowthMedia(contents);
-			growthMediumName = growthMediumValid ? contents.getDisplayName() : "Invalid";
-			colour = growthMediumValid ? 4766261 : 14567989;
-			growthModifier = HydroponicHelper.getGrowthProbabilityForMedium(contents);
+		if (!bulbSlotEmpty) {
+			boolean bulbValid = LightHelper.isItemStackValidBulb(contents);
+			bulbName = bulbValid ? contents.getDisplayName().split(" ")[0] : "Invalid";
+			colour = bulbValid ? 4766261 : 14567989;
+			growthModifier = LightHelper.getGrowthProbabilityForBulb(contents);
 		}
 
 
@@ -64,8 +64,8 @@ public class HydroponicGui extends GuiContainer
 		this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 118, this.ySize - 95, 4210752);
 
 		// Medium Name
-		this.fontRenderer.drawString("Medium", 50, 35, 4210752);
-		this.fontRenderer.drawString(growthMediumName, 50, 46, colour);
+		this.fontRenderer.drawString("Bulb", 50, 35, 4210752);
+		this.fontRenderer.drawString(bulbName, 50, 46, colour);
 
 		// Medium Stats
 		this.fontRenderer.drawString("Multiplier", 100, 35, 4210752);

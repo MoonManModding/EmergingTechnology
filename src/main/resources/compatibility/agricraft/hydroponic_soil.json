@@ -1,0 +1,48 @@
+{
+  "path": "resource/soils/hydroponic_soil.json",
+  "enabled": true,
+  "id": "hydroponic_soil",
+  "name": "Hydroponic Grow Bed",
+  "varients": [
+    {
+      "item": "emergingtechnology:hydroponic",
+      "meta": 10,
+      "tags": "",
+      "ignoreMeta": false,
+      "ignoreTags": [
+        "*"
+      ],
+      "useOreDict": true
+    },
+    {
+      "item": "emergingtechnology:hydroponic",
+      "meta": 11,
+      "tags": "",
+      "ignoreMeta": false,
+      "ignoreTags": [
+        "*"
+      ],
+      "useOreDict": true
+    },
+    {
+      "item": "emergingtechnology:hydroponic",
+      "meta": 12,
+      "tags": "",
+      "ignoreMeta": false,
+      "ignoreTags": [
+        "*"
+      ],
+      "useOreDict": true
+    },
+    {
+      "item": "emergingtechnology:hydroponic",
+      "meta": 13,
+      "tags": "",
+      "ignoreMeta": false,
+      "ignoreTags": [
+        "*"
+      ],
+      "useOreDict": true
+    }
+  ]
+}
