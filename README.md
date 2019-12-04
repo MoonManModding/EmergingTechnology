@@ -53,11 +53,14 @@ The mod should be compatible with any mods whose plants implement IGrowable and 
 
 This mod is in <b>beta</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates.
 
-Planned updates include:
-
-- Powered Lighting with variations and upgrades
+Planned updates to the Hydroponics module include:
 - More growth media types
 - OpenComputers support
+
+Future modules:
+- Plant-based plastics/polymers
+- 3D printing
+- Artificial meat
 
 This mod is not intended to be the last word on Hydroponics in Minecraft. If you want to make your own hydroponics mod, take this source code and run with it.
 
