@@ -28,7 +28,7 @@ import net.minecraftforge.items.ItemStackHandler;
 public class HydroponicTileEntity extends TileEntity implements ITickable {
 
     private boolean hasWater;
-    private int waterQuantity = 0;
+    private int water = 0;
 
     private int tick = 0;
 
@@ -66,7 +66,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
         this.hasWater = compound.getBoolean("HasWater");
-        this.waterQuantity = compound.getInteger("WaterQuantity");
+        this.water = compound.getInteger("GuiWater");
 
         this.fluidHandler.readFromNBT(compound);
     }
@@ -76,7 +76,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
         compound.setBoolean("HasWater", hasWater);
-        compound.setInteger("WaterQuantity", this.fluidHandler.getFluidAmount());
+        compound.setInteger("GuiWater", water);
 
         this.fluidHandler.writeToNBT(compound);
 
@@ -89,6 +89,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         if (world.isRemote) {
             return;
         }
+
+        this.water = this.fluidHandler.getFluidAmount();
 
         if (tick < 10) {
             tick++;
@@ -113,10 +115,10 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         int plantWaterUse = growSucceeded ? 2 : 1;
 
         // Drain water
-        this.fluidHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.growBedWaterUsePerCycle * plantWaterUse, true);
+        this.fluidHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle * plantWaterUse, true);
 
         // If enough water to transfer...
-        if (this.fluidHandler.getFluidAmount() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.growBedWaterTransferRate) {
+        if (this.fluidHandler.getFluidAmount() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate) {
 
             // Get the direction this grow bed is facing
             EnumFacing facing = this.world.getBlockState(this.pos).getValue(Hydroponic.FACING);
@@ -139,7 +141,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
                     // Fill the neighbour and get amount filled
                     int filled = targetTileEntity.fluidHandler.fill(
-                            new FluidStack(FluidRegistry.WATER, EmergingTechnologyConfig.HYDROPONICS_MODULE.growBedWaterTransferRate),
+                            new FluidStack(FluidRegistry.WATER, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate),
                             true);
 
                     if (filled > 0) {
@@ -225,19 +227,23 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         return itemHandler.getStackInSlot(0);
     }
 
-    public boolean getField(int id) {
+    public int getWater() {
+        return this.water;
+    }
+
+    public int getField(int id) {
         switch (id) {
         case 0:
-            return this.hasWater;
+            return this.water;
         default:
-            return false;
+            return 0;
         }
     }
 
-    public void setField(int id, boolean value) {
+    public void setField(int id, int value) {
         switch (id) {
         case 0:
-            this.hasWater = value;
+            this.water = value;
             break;
         }
     }

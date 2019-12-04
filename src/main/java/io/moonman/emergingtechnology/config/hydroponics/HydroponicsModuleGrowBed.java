@@ -1,10 +1,10 @@
-package io.moonman.emergingtechnology.config;
+package io.moonman.emergingtechnology.config.hydroponics;
 
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RangeInt;
 
-public class HydroponicsModule {
+public class HydroponicsModuleGrowBed {
 
     @Name("Grow Bed - Water Usage")
     @Config.Comment("The amount of water used by a grow bed per cycle (~10 ticks).")
@@ -35,24 +35,4 @@ public class HydroponicsModule {
     @Config.Comment("Probability of growth from clay medium per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)
     public int growthClayModifier = 8;
-
-    @Name("Red Bulb Growth Modifier %")
-    @Config.Comment("Probability of growth from a grow lamp containing a red bulb per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthRedBulbModifier = 1;
-
-    @Name("Green Bulb Growth Modifier %")
-    @Config.Comment("Probability of growth from a grow lamp containing a green bulb per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthGreenBulbModifier = 2;
-
-    @Name("Blue Bulb Growth Modifier %")
-    @Config.Comment("Probability of growth from a grow lamp containing a blue bulb per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthBlueBulbModifier = 4;
-
-    @Name("Purple Bulb Growth Modifier %")
-    @Config.Comment("Probability of growth from a grow lamp containing a purple bulb per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthPurpleBulbModifier = 8;
 }

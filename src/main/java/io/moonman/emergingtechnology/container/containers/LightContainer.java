@@ -4,6 +4,7 @@ import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
@@ -12,6 +13,8 @@ import net.minecraftforge.items.SlotItemHandler;
 // Handles inventory and slots
 public class LightContainer extends Container {
 	private final LightTileEntity tileEntity;
+
+	private int energy;
 
 	public LightContainer(InventoryPlayer player, LightTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -31,11 +34,25 @@ public class LightContainer extends Container {
 			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
 		}
 	}
+
+	@Override
+	public void updateProgressBar(int id, int data) 
+	{
+		this.tileEntity.setField(id, data);
+	}
 	
 	@Override
 	public void detectAndSendChanges() 
 	{
 		super.detectAndSendChanges();
+		
+		for(int i = 0; i < this.listeners.size(); ++i) 
+		{
+			IContainerListener listener = (IContainerListener)this.listeners.get(i);
+			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
+		}
+		
+		this.energy = this.tileEntity.getField(0);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers;
 
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.item.items.BlueBulb;
 import io.moonman.emergingtechnology.item.items.BulbItem;
@@ -44,22 +45,39 @@ public class LightHelper {
         return 0;
     }
 
-    public static int getGrowthProbabilityForBulb(ItemStack itemStack) {
-        int bulbTypeId = getBulbTypeIdFromStack(itemStack);
+    public static int getGrowthProbabilityForBulbById(int bulbTypeId) {
 
         switch (bulbTypeId) {
         case 0:
             return 0;
         case 1:
-            return 1;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthRedBulbModifier;
         case 2:
-            return 2;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthGreenBulbModifier;
         case 3:
-            return 3;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthBlueBulbModifier;
         case 4:
-            return 4;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthPurpleBulbModifier;
         default:
             return 0;
+        }
+    }
+    
+    public static int getEnergyUsageModifierForBulbById(int bulbTypeId) {
+
+        switch (bulbTypeId) {
+        case 0:
+            return 1;
+        case 1:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyRedBulbModifier;
+        case 2:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyGreenBulbModifier;
+        case 3:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyBlueBulbModifier;
+        case 4:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyPurpleBulbModifier;
+        default:
+            return 1;
         }
     }
 }

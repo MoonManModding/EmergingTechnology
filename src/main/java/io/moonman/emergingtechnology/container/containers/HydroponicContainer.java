@@ -4,6 +4,7 @@ import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
@@ -12,6 +13,8 @@ import net.minecraftforge.items.SlotItemHandler;
 // Handles inventory and slots
 public class HydroponicContainer extends Container {
 	private final HydroponicTileEntity tileEntity;
+
+	private int water;
 
 	public HydroponicContainer(InventoryPlayer player, HydroponicTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -33,9 +36,23 @@ public class HydroponicContainer extends Container {
 	}
 	
 	@Override
+	public void updateProgressBar(int id, int data) 
+	{
+		this.tileEntity.setField(id, data);
+	}
+	
+	@Override
 	public void detectAndSendChanges() 
 	{
 		super.detectAndSendChanges();
+		
+		for(int i = 0; i < this.listeners.size(); ++i) 
+		{
+			IContainerListener listener = (IContainerListener)this.listeners.get(i);
+			if(this.water != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
+		}
+		
+		this.water = this.tileEntity.getField(0);
 	}
 
 	@Override

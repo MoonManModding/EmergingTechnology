@@ -54,13 +54,13 @@ public class HydroponicHelper {
         case 0:
             return 0;
         case 1:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthDirtModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthDirtModifier;
         case 2:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthSandModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthSandModifier;
         case 3:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthGravelModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthGravelModifier;
         case 4:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.growthClayModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthClayModifier;
         default:
             return 0;
         }

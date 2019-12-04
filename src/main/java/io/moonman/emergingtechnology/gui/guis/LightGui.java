@@ -1,9 +1,14 @@
 package io.moonman.emergingtechnology.gui.guis;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.container.containers.LightContainer;
+import io.moonman.emergingtechnology.gui.GuiHelper;
+import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
+import io.moonman.emergingtechnology.gui.GuiHelper.GuiPosition;
 import io.moonman.emergingtechnology.helpers.LightHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,6 +23,16 @@ public class LightGui extends GuiContainer
 	private final LightTileEntity tileEntity;
 
 	private String NAME = "Grow Light";
+
+	private static final int XSIZE = 175;
+	private static final int YSIZE = 165;
+
+	// Standard positions for labels
+	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();
+	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
+	private static final GuiPosition FIRST_FIELD_POS = GuiHelper.getFirstField();
+	private static final GuiPosition SECOND_FIELD_POS = GuiHelper.getSecondField();
+	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
     
     // Draws textures on gui
 	public LightGui(InventoryPlayer player, LightTileEntity tileEntity) 
@@ -25,8 +40,8 @@ public class LightGui extends GuiContainer
 		super(new LightContainer(player, tileEntity));
 		this.player = player;
 		this.tileEntity = tileEntity;
-		this.xSize = 175;
-		this.ySize = 165;
+		this.xSize = XSIZE;
+		this.ySize = YSIZE;
 	}
 
 	@Override
@@ -49,27 +64,48 @@ public class LightGui extends GuiContainer
 		boolean bulbSlotEmpty = StackHelper.isItemStackEmpty(contents);
 
 		String bulbName = "Empty";
-		int colour = 8553090;
+		int colour = GuiHelper.EMPTY_COLOUR;
 		int growthModifier = 0;
+		int energyUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage;
 
 		if (!bulbSlotEmpty) {
-			boolean bulbValid = LightHelper.isItemStackValidBulb(contents);
+			// Get bulb type Id
+			int bulbTypeId = LightHelper.getBulbTypeIdFromStack(contents);
+
+			// Check is valid
+			boolean bulbValid = bulbTypeId != 0;
+
+			// Get name and colour
 			bulbName = bulbValid ? contents.getDisplayName().split(" ")[0] : "Invalid";
-			colour = bulbValid ? 4766261 : 14567989;
-			growthModifier = LightHelper.getGrowthProbabilityForBulb(contents);
+			colour = bulbValid ? GuiHelper.DARK_COLOUR : GuiHelper.INVALID_COLOUR;
+
+			// Get bulb growth modifier
+			growthModifier = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
+
+			// Calculate bulb energy usage from modifier
+			energyUsage = energyUsage * LightHelper.getEnergyUsageModifierForBulbById(bulbTypeId);
 		}
 
 
-		this.fontRenderer.drawString(NAME, 6, 8, 4210752);
-		this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 118, this.ySize - 95, 4210752);
+		// Machine & Inventory labels
+
+		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
 
 		// Medium Name
-		this.fontRenderer.drawString("Bulb", 50, 35, 4210752);
-		this.fontRenderer.drawString(bulbName, 50, 46, colour);
+		this.fontRenderer.drawString("Bulb", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString(bulbName, FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 11, colour);
 
 		// Medium Stats
-		this.fontRenderer.drawString("Multiplier", 100, 35, 4210752);
-		this.fontRenderer.drawString(growthModifier + "%", 100, 46, colour);
+		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString("+" + growthModifier + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 11, colour);
+
+		// Power Stats
+		int energy = this.tileEntity.getEnergy();
+
+		GuiIndicator indicator = new GuiIndicator(energy, Reference.LIGHT_ENERGY_CAPACITY);
+
+		this.fontRenderer.drawString(indicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, indicator.getPercentageColour());
 	}
 	
 	@Override
