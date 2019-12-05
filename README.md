@@ -62,7 +62,7 @@ Untested but likely compatible:
 - Mekanism
 - BuildCraft
 
-Currently uncompatible:
+Currently incompatible with power/crops:
 - IndustrialCraft 2 (will be added in future)
 
 The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler. Manipulating inventory is available through ItemStackHandler. 
