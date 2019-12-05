@@ -1,0 +1,12 @@
+[
+    {
+        "name": "minecraft:glowstone",
+        "growthModifier": "5",
+        "waterUsage": "1"
+    },
+    {
+        "name": "minecraft:redstone",
+        "growthModifier": "10",
+        "waterUsage": "1"
+    }
+]

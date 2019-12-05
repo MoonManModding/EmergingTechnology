@@ -11,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
-import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -49,7 +48,7 @@ public abstract class CommonProxy {
     }
 
     public void preInit(FMLPreInitializationEvent e) {
-        String customGrowthMediaFilePath = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID + "\\test.json";
+        String customGrowthMediaFilePath = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID + "\\custom-media.json";
         CustomGrowthMediumLoader.loadCustomGrowthMedia(customGrowthMediaFilePath);
     }
 
