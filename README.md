@@ -25,13 +25,17 @@ Grow Light: 1 x Iron Bar, 2 x Quartz Slabs and 3 x Glass
 <br>
 <img src="LightRecipe.png" alt="Recipe">
 
-Grow Light: 3 x Quartz Slabs
+Frame: 3 x Quartz Slabs
 <br>
 <img src="FrameRecipe.png" alt="Recipe">
 
-Grow Light: 1 x Iron Bar, 1 x Stained Glass (Red, Green or Blue)
+Bulb: 1 x Iron Bar, 1 x Stained Glass (Red, Green or Blue)
 <br>
 <img src="BulbRecipe.png" alt="Recipe">
+
+UV Bulb: 1 x Red Bulb, 1 x Green Bulb, 1 x Blue Bulb
+<br>
+<img src="UVBulbRecipe.png" alt="Recipe">
 
 # Requirements
 - Minecraft Version <b>1.12.2</b>
