@@ -15,7 +15,7 @@ The Grow Light is a powered light (requiring RF) that can also accelerate crop g
 
 Not everything needs to be functional, you know. A Hydroponic Frame is a slimline decorative block to cover any ugly block faces and support your lights. Available only in high-tech gloss white.
 
-# Recipe
+# Recipes
 
 Grow Bed: 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button
 <br>
@@ -35,7 +35,7 @@ Bulb: 1 x Iron Bar, 1 x Stained Glass (Red, Green or Blue)
 
 UV Bulb: 1 x Red Bulb, 1 x Green Bulb, 1 x Blue Bulb
 <br>
-<img src="UVBulbRecipe.png" alt="Recipe">
+<img src="UVLightRecipe.png" alt="Recipe">
 
 # Requirements
 - Minecraft Version <b>1.12.2</b>
