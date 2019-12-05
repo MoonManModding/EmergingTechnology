@@ -17,9 +17,17 @@ Not everything needs to be functional, you know. A Hydroponic Frame is a slimlin
 
 # Recipe
 
-You'll need 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button to craft the Grow Bed.
-
+Grow Bed: 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button
 <img src="HydroponicRecipe.png" alt="Recipe">
+
+Grow Light: 1 x Iron Bar, 2 x Quartz Slabs and 3 x Glass
+<img src="LightRecipe.png" alt="Recipe">
+
+Grow Light: 3 x Quartz Slabs
+<img src="FrameRecipe.png" alt="Recipe">
+
+Grow Light: 1 x Iron Bar, 1 x Stained Glass (Red, Green or Blue)
+<img src="BulbRecipe.png" alt="Recipe">
 
 # Requirements
 - Minecraft Version <b>1.12.2</b>
