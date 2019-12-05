@@ -66,7 +66,7 @@ public class RegistrationHandler {
     }
 
     private static Item generateItemBlock(Block block) {
-        System.out.println("EmergingTechnology - Registering " + block.toString());
+        EmergingTechnology.logger.info("EmergingTechnology - Registering " + block.toString());
         return new ItemBlock(block).setRegistryName(block.getRegistryName());
     }
 

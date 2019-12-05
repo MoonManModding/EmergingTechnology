@@ -6,6 +6,9 @@ import io.moonman.emergingtechnology.block.blocks.Hydroponic;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.HydroponicHelper;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
+import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
+import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.tile.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.tile.handlers.FluidStorageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -19,6 +22,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -28,12 +32,10 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class HydroponicTileEntity extends TileEntity implements ITickable {
 
-    private boolean hasWater;
-    private int water = 0;
+    public FluidTank fluidHandler = new FluidStorageHandler(Reference.HYDROPONIC_FLUID_CAPACITY);
 
-    private int tick = 0;
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HYDROPONIC_ENERGY_CAPACITY);
 
-    public FluidTank fluidHandler = new FluidStorageHandler();
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -42,11 +44,18 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         }
     };
 
+    private boolean hasWater;
+    private int water = 0;
+    private int energy = this.energyHandler.getEnergyStored();
+    private int tick = 0;
+
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
             return true;
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return true;
+        if (capability == CapabilityEnergy.ENERGY)
             return true;
 
         return false;
@@ -58,6 +67,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
             return (T) this.fluidHandler;
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) this.itemHandler;
+        if (capability == CapabilityEnergy.ENERGY)
+            return (T) this.energyHandler;
         return super.getCapability(capability, facing);
     }
 
@@ -68,8 +79,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
         this.hasWater = compound.getBoolean("HasWater");
         this.water = compound.getInteger("GuiWater");
+        this.energy = compound.getInteger("GuiEnergy");
 
         this.fluidHandler.readFromNBT(compound);
+
+        this.energyHandler.readFromNBT(compound);
     }
 
     @Override
@@ -78,8 +92,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
         compound.setBoolean("HasWater", hasWater);
         compound.setInteger("GuiWater", water);
+        compound.setInteger("EnergyWater", energy);
 
         this.fluidHandler.writeToNBT(compound);
+
+        this.energyHandler.writeToNBT(compound);
 
         return compound;
     }
@@ -93,6 +110,9 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
         this.water = this.fluidHandler.getFluidAmount();
 
+        this.energy = this.energyHandler.getEnergyStored();
+        
+
         if (tick < 10) {
             tick++;
             return;
@@ -101,14 +121,37 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
             // Do all the plant growth work and let us know how it went
             boolean growSucceeded = doGrowthMultiplierProcess();
 
-            // Use water, based on the growth success
-            doWaterUsageProcess(growSucceeded);
+            // If beds require power to pump
+            if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedsRequireEnergy) {
+                boolean enoughPower = doPowerUsageProcess();
 
-            Hydroponic.setState(this.hasWater, getGrowthMediaIdFromItemStack(), world, pos);
+                // Check power before pumping
+                if (enoughPower) {
+                    doWaterUsageProcess(growSucceeded);
+                }
+                
+            } else {
+                doWaterUsageProcess(growSucceeded);
+            }
+
+            Hydroponic.setState(this.hasWater, getGrowthMediaIdFromItemStackForTexture(), world, pos);
 
             tick = 0;
         }
 
+    }
+
+    public boolean doPowerUsageProcess() {
+
+        // Calculate energy required
+        int energyRequired = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedsEnergyUsePerCycle;
+
+        if (this.energy >= energyRequired) {
+            this.energyHandler.extractEnergy(energyRequired, false);
+            return true;
+        }
+
+        return false;
     }
 
     public void doWaterUsageProcess(boolean growSucceeded) {
@@ -116,10 +159,12 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         int plantWaterUse = growSucceeded ? 2 : 1;
 
         // Drain water
-        this.fluidHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle * plantWaterUse, true);
+        this.fluidHandler.drain(
+                EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle * plantWaterUse, true);
 
         // If enough water to transfer...
-        if (this.fluidHandler.getFluidAmount() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate) {
+        if (this.fluidHandler
+                .getFluidAmount() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate) {
 
             // Get the direction this grow bed is facing
             EnumFacing facing = this.world.getBlockState(this.pos).getValue(Hydroponic.FACING);
@@ -142,7 +187,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
                     // Fill the neighbour and get amount filled
                     int filled = targetTileEntity.fluidHandler.fill(
-                            new FluidStack(FluidRegistry.WATER, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate),
+                            new FluidStack(FluidRegistry.WATER,
+                                    EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate),
                             true);
 
                     if (filled > 0) {
@@ -224,6 +270,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         return id;
     }
 
+    public int getGrowthMediaIdFromItemStackForTexture() {
+        int id = getGrowthMediaIdFromItemStack();
+        return id >= CustomGrowthMediumLoader.STARTING_ID ? 5 : id;
+    }
+
     public ItemStack getItemStack() {
         return itemHandler.getStackInSlot(0);
     }
@@ -232,10 +283,16 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         return this.water;
     }
 
+    public int getEnergy() {
+        return this.energy;
+    }
+
     public int getField(int id) {
         switch (id) {
         case 0:
             return this.water;
+        case 1:
+            return this.energy;
         default:
             return 0;
         }
@@ -245,6 +302,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         switch (id) {
         case 0:
             this.water = value;
+        case 1:
+            this.energy = value;
             break;
         }
     }

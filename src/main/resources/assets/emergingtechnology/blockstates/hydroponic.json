@@ -63,17 +63,7 @@
             },
             "5": {
                 "textures": {
-                    "mediumtype": "minecraft:blocks/clay"
-                }
-            },
-            "6": {
-                "textures": {
-                    "mediumtype": "emergingtechnology:blocks/grey"
-                }
-            },
-            "7": {
-                "textures": {
-                    "mediumtype": "emergingtechnology:blocks/grey"
+                    "mediumtype": "emergingtechnology:blocks/custommedium"
                 }
             }
         }

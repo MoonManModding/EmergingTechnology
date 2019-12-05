@@ -32,6 +32,7 @@ public class EmergingTechnology
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+      logger = event.getModLog();
       proxy.preInit(event);
     }
 

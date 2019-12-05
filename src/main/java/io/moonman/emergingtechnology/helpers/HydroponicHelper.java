@@ -1,13 +1,11 @@
 package io.moonman.emergingtechnology.helpers;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.IGrowable;
+import io.moonman.emergingtechnology.helpers.custom.CustomGrowthMedium;
+import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.IPlantable;
 
 public class HydroponicHelper {
 
@@ -21,11 +19,15 @@ public class HydroponicHelper {
 
     public static boolean isItemStackValidGrowthMedia(ItemStack itemStack) {
         ItemStack[] validGrowthMedia = getValidGrowthMedia();
-
+        
         for (ItemStack growthMedia : validGrowthMedia) {
             if (StackHelper.compareItemStacks(growthMedia, itemStack)) {
                 return true;
             }
+        }
+
+        if (CustomGrowthMediumHelper.isItemStackInCustomGrowthMedia(itemStack)) {
+            return true;
         }
 
         return false;
@@ -44,25 +46,29 @@ public class HydroponicHelper {
             }
         }
 
+        CustomGrowthMedium[] customGrowthMedia = CustomGrowthMediumHelper.getCustomGrowthMedia();
+
+        for (int i = 0; i < customGrowthMedia.length; i++) {
+
+            if (CustomGrowthMediumHelper.isItemStackInCustomGrowthMedia(itemStack)) {
+                if (itemStack.getItem().getRegistryName().toString().equalsIgnoreCase(customGrowthMedia[i].name.toString())) {
+                    return customGrowthMedia[i].id;
+                }
+            }
+        }
+
         return 0;
     }
 
     public static int getGrowthProbabilityForMedium(ItemStack itemStack) {
         int mediumId = getGrowthMediaIdFromStack(itemStack);
 
-        switch (mediumId) {
-        case 0:
-            return 0;
-        case 1:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthDirtModifier;
-        case 2:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthSandModifier;
-        case 3:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthGravelModifier;
-        case 4:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthClayModifier;
-        default:
-            return 0;
-        }
+        if (mediumId == 0) return 0;
+        if (mediumId == 1) return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthDirtModifier;
+        if (mediumId == 2) return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthSandModifier;
+        if (mediumId == 3) return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthGravelModifier;
+        if (mediumId == 4) return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthClayModifier; 
+
+        return CustomGrowthMediumHelper.getGrowthProbabilityForMedium(mediumId);
     }
 }

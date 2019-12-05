@@ -6,8 +6,8 @@ import net.minecraftforge.fluids.FluidTank;
 
 public class FluidStorageHandler extends FluidTank
 {
-    public FluidStorageHandler() {
-        super(1000);
+    public FluidStorageHandler(int capacity) {
+        super(capacity);
     }
 
     @Override

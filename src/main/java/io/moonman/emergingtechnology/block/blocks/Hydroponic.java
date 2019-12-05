@@ -43,7 +43,7 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool HAS_WATER = PropertyBool.create("haswater");
     public static final PropertyInteger MEDIUM = PropertyInteger.create("medium", 0,
-            HydroponicHelper.getValidGrowthMedia().length + 1);
+            HydroponicHelper.getValidGrowthMedia().length);
 
     public Hydroponic() {
         super(Material.ANVIL);
