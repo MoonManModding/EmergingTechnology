@@ -22,7 +22,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class LightTileEntity extends TileEntity implements ITickable {
 
@@ -35,8 +34,6 @@ public class LightTileEntity extends TileEntity implements ITickable {
         }
     };
 
-    private boolean powered;
-    private int bulbtype = 0;
     private int energy = this.energyHandler.getEnergyStored();
 
     private int tick = 0;
@@ -99,7 +96,9 @@ public class LightTileEntity extends TileEntity implements ITickable {
             int bulbTypeId = getBulbTypeIdFromItemStack();
 
             // Use power
-            boolean hasPower = doPowerUsageProcess(bulbTypeId);
+            doPowerUsageProcess(bulbTypeId);
+
+            boolean hasPower = this.energyHandler.getEnergyStored() > 0;
 
             // If lamp has power, try to grow plants below
             if (hasPower) {
@@ -113,7 +112,8 @@ public class LightTileEntity extends TileEntity implements ITickable {
 
     }
 
-    public boolean doPowerUsageProcess(int bulbTypeId) {
+    public void doPowerUsageProcess(int bulbTypeId) {
+
         // Get modifier for current bulb
         int bulbEnergyModifier = LightHelper.getEnergyUsageModifierForBulbById(bulbTypeId);
 
@@ -122,10 +122,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
 
         if (this.energy >= energyRequired) {
             this.energyHandler.extractEnergy(energyRequired, false);
-            return true;
         }
-        
-        return false;
     }
 
     public void doGrowthMultiplierProcess(int bulbTypeId) {
@@ -133,7 +130,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
         int growthMultiplier = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
 
         // How many blocks below light?
-        int blocksBelow = 3;
+        int blocksBelow = 2;
 
         for(int i = 1; i < blocksBelow + 1; i++) {
             // Get position
