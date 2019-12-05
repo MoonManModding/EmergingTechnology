@@ -11,9 +11,5 @@
 !/gradle.properties
 !.gitattributes
 !ASSETS_LICENSE.txt
-!HydroponicRecipe.png
-!BulbRecipe.png
-!LightRecipe.png
-!FrameRecipe.png
-!UVLightRecipe.png
+!/images/
 !custom-media.json
