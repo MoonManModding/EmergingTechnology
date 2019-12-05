@@ -78,11 +78,22 @@ public class HydroponicGui extends GuiContainer
 
 		// Medium Name
 		this.fontRenderer.drawString("Medium", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString(growthMediumName, FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 11, colour);
+
+		// Do this for long names
+		String[] nameSplit = growthMediumName.split(" ");
+		int startYPos = 10;
+
+		for (String word: nameSplit) {
+			this.fontRenderer.drawString(word, FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + startYPos, colour);
+			startYPos += 10;
+
+			// Only display 3 lines.
+			if (startYPos == 40) break;
+		}
 
 		// Medium Stats
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString("+" + growthModifier + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 11, colour);
+		this.fontRenderer.drawString("+" + growthModifier + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, colour);
 
 		// Water Stats
 		int water = this.tileEntity.getWater();

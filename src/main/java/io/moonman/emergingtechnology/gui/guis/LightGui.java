@@ -92,13 +92,13 @@ public class LightGui extends GuiContainer
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
 
-		// Medium Name
+		// Bulb Name
 		this.fontRenderer.drawString("Bulb", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString(bulbName, FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 11, colour);
+		this.fontRenderer.drawString(bulbName, FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, colour);
 
-		// Medium Stats
+		// Bulb Stats
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString("+" + growthModifier + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 11, colour);
+		this.fontRenderer.drawString("+" + growthModifier + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, colour);
 
 		// Power Stats
 		int energy = this.tileEntity.getEnergy();
