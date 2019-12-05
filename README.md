@@ -18,15 +18,19 @@ Not everything needs to be functional, you know. A Hydroponic Frame is a slimlin
 # Recipe
 
 Grow Bed: 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button
+<br>
 <img src="HydroponicRecipe.png" alt="Recipe">
 
 Grow Light: 1 x Iron Bar, 2 x Quartz Slabs and 3 x Glass
+<br>
 <img src="LightRecipe.png" alt="Recipe">
 
 Grow Light: 3 x Quartz Slabs
+<br>
 <img src="FrameRecipe.png" alt="Recipe">
 
 Grow Light: 1 x Iron Bar, 1 x Stained Glass (Red, Green or Blue)
+<br>
 <img src="BulbRecipe.png" alt="Recipe">
 
 # Requirements
