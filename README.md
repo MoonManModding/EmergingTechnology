@@ -5,7 +5,7 @@ By MoonManModding.
 
 If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
 
-# Version 1.1.0 - Hydroponics & Lights! 🌱
+# Version 1.1.2 - Hydroponics & Lights! 🌱
 
 This version provides the Hydroponic Grow Bed and Hydroponic Grow Light.
 
@@ -72,7 +72,7 @@ The mod should be compatible with any mods whose plants implement IGrowable and 
 This mod is in <b>beta</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates.
 
 Planned updates to the Hydroponics module include:
-- More growth media types
+- IndustrialCraft 2 support
 - OpenComputers support
 
 Future modules:
