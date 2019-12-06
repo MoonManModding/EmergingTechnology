@@ -2,6 +2,8 @@ package io.moonman.emergingtechnology.tile.tiles;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import io.moonman.emergingtechnology.block.blocks.Hydroponic;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.HydroponicHelper;
@@ -16,6 +18,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -34,7 +38,6 @@ import net.minecraftforge.items.ItemStackHandler;
 // import li.cil.oc.api.machine.Context;
 // import li.cil.oc.api.network.SimpleComponent;
 
-
 // @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class HydroponicTileEntity extends TileEntity implements ITickable {
 
@@ -50,10 +53,15 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         }
     };
 
-    // private boolean hasWater;
+    private int tick = 0;
+
     private int water = 0;
     private int energy = this.energyHandler.getEnergyStored();
-    private int tick = 0;
+    private int mediumId = 0;
+
+    private boolean waterChanged = false;
+    private boolean energyChanged = false;
+    private boolean mediumChanged = false;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -107,6 +115,24 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
     }
 
     @Override
+    @Nullable
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, 3, this.getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        super.onDataPacket(net, pkt);
+        handleUpdateTag(pkt.getNbtCompound());
+        this.sendUpdates(true);
+    }
+
+    @Override
     public void update() {
 
         if (world.isRemote) {
@@ -118,11 +144,10 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
             return;
         } else {
 
-            int previousWater = this.water;
-            int previousEnergy = this.energy;
-
-            this.water = this.fluidHandler.getFluidAmount();
-            this.energy = this.energyHandler.getEnergyStored();
+            // Set water, energy and medium from handlers
+            this.setWater(this.fluidHandler.getFluidAmount());
+            this.setEnergy(this.energyHandler.getEnergyStored());
+            this.setGrowthMediumId(this.getGrowthMediumIdFromItemStack());
 
             // Do all the plant growth work and let us know how it went
             boolean growSucceeded = doGrowthMultiplierProcess();
@@ -140,13 +165,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
                 doWaterUsageProcess(growSucceeded);
             }
 
-            Hydroponic.setState(this.water > 0, getGrowthMediaIdFromItemStackForTexture(), world, pos);
+            Hydroponic.setState(this.water > 0, getGrowthMediumIdForTexture(), world, pos);
+
+            this.sendUpdates(false);
 
             tick = 0;
-
-            if (previousWater != this.water || previousEnergy != this.energy) {
-                this.markDirty();
-            }
         }
 
     }
@@ -158,7 +181,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
         if (this.energy >= energyRequired) {
             this.energyHandler.extractEnergy(energyRequired, false);
-            this.energy = this.energyHandler.getEnergyStored();
+            this.setEnergy(this.energyHandler.getEnergyStored());
             return true;
         }
 
@@ -204,7 +227,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
                     if (filled > 0) {
                         // Drain self from amount
                         this.fluidHandler.drain(filled, true);
-                        this.water = this.fluidHandler.getFluidAmount();
+                        this.setWater(this.fluidHandler.getFluidAmount());
                     }
                 }
             }
@@ -275,27 +298,47 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         return false;
     }
 
-    public int getGrowthMediaIdFromItemStack() {
-        ItemStack stack = getItemStack();
-        int id = HydroponicHelper.getGrowthMediaIdFromStack(stack);
-        return id;
+    public int getGrowthMediumId() {
+        return this.mediumId;
     }
 
-    public int getGrowthMediaIdFromItemStackForTexture() {
-        int id = getGrowthMediaIdFromItemStack();
-        return id >= CustomGrowthMediumLoader.STARTING_ID ? 5 : id;
+    public int getGrowthMediumIdFromItemStack() {
+        int id = HydroponicHelper.getGrowthMediaIdFromStack(this.getItemStack());
+        return id;
     }
 
     public ItemStack getItemStack() {
         return itemHandler.getStackInSlot(0);
     }
 
+    public int getGrowthMediumIdForTexture() {
+        int id = getGrowthMediumIdFromItemStack();
+        return id >= CustomGrowthMediumLoader.STARTING_ID ? 5 : id;
+    }
+
+    private void setGrowthMediumId(int id) {
+        this.mediumChanged = this.mediumId != id;
+        this.mediumId = id;
+    }
+
     public int getWater() {
         return this.water;
     }
 
+    private void setWater(int quantity) {
+        this.waterChanged = this.water != quantity;
+
+        this.water = quantity;
+    }
+
     public int getEnergy() {
         return this.energy;
+    }
+
+    private void setEnergy(int quantity) {
+        this.energyChanged = this.energy != quantity;
+
+        this.energy = quantity;
     }
 
     public int getField(int id) {
@@ -319,29 +362,42 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         }
     }
 
+    private void sendUpdates(boolean forceUpdates) {
+        if (this.waterChanged || this.energyChanged || this.mediumChanged || forceUpdates) {
+            world.markBlockRangeForRenderUpdate(pos, pos);
+            world.notifyBlockUpdate(pos, getState(), getState(), 3);
+            world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);
+            markDirty();
+        }
+    }
+
+    private IBlockState getState() {
+        return world.getBlockState(pos);
+    }
+
     public boolean isUsableByPlayer(EntityPlayer player) {
         return this.world.getTileEntity(this.pos) != this ? false
                 : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
                         (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
-    //OpenComputers
-	
-	// @Override
-	// @Optional.Method(modid = "opencomputers")
-	// public String getComponentName() {
-	// 	return EmergingTechnology.MODID + "_hydroponic";
-	// }
-	
-	// @Callback
-	// @Optional.Method(modid = "opencomputers")
-	// public Object[] getWaterLevel(Context context, Arguments args) {
-	// 	return new Object[] {getWater()};
+    // OpenComputers
+
+    // @Override
+    // @Optional.Method(modid = "opencomputers")
+    // public String getComponentName() {
+    // return EmergingTechnology.MODID + "_hydroponic";
     // }
-    
+
     // @Callback
-	// @Optional.Method(modid = "opencomputers")
-	// public Object[] getEnergyLevel(Context context, Arguments args) {
-	// 	return new Object[] {getEnergyLevel()};
-	// }
+    // @Optional.Method(modid = "opencomputers")
+    // public Object[] getWaterLevel(Context context, Arguments args) {
+    // return new Object[] {getWater()};
+    // }
+
+    // @Callback
+    // @Optional.Method(modid = "opencomputers")
+    // public Object[] getEnergyLevel(Context context, Arguments args) {
+    // return new Object[] {getEnergyLevel()};
+    // }
 }

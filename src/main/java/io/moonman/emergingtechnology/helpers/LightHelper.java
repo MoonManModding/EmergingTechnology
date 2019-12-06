@@ -6,12 +6,17 @@ import io.moonman.emergingtechnology.item.items.BulbItem;
 import io.moonman.emergingtechnology.item.items.GreenBulb;
 import io.moonman.emergingtechnology.item.items.PurpleBulb;
 import io.moonman.emergingtechnology.item.items.RedBulb;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class LightHelper {
 
     public static final int BULB_COUNT = 4;
+
+    public static boolean isGlowstonePowered(ItemStack itemStack) {
+        return StackHelper.compareItemStacks(itemStack, new ItemStack(Blocks.GLOWSTONE));
+    }
 
     public static boolean isItemStackValidBulb(ItemStack itemStack) {
 

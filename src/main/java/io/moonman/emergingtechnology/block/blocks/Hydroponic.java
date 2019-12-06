@@ -26,8 +26,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk.EnumCreateEntityType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -191,6 +193,23 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] { FACING, HAS_WATER, MEDIUM });
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+
+        int mediumTypeId = 0;
+
+        TileEntity tileEntity = worldIn instanceof ChunkCache ? ((ChunkCache)worldIn).getTileEntity(pos, EnumCreateEntityType.CHECK) : worldIn.getTileEntity(pos);
+
+        if (tileEntity instanceof HydroponicTileEntity)
+        {
+            HydroponicTileEntity hydroponicTileEntity = (HydroponicTileEntity) tileEntity;
+
+            mediumTypeId = hydroponicTileEntity.getGrowthMediumIdForTexture();
+        }
+
+        return state.withProperty(MEDIUM, mediumTypeId);
     }
 
     @Override

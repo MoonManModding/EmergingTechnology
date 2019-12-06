@@ -73,7 +73,7 @@ public class LightGui extends GuiContainer
 			int bulbTypeId = LightHelper.getBulbTypeIdFromStack(contents);
 
 			// Check is valid
-			boolean bulbValid = bulbTypeId != 0;
+			boolean bulbValid = bulbTypeId != 0 || tileEntity.isGlowstonePowered();
 
 			// Get name and colour
 			bulbName = bulbValid ? contents.getDisplayName().split(" ")[0] : "Invalid";

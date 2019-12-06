@@ -2,6 +2,8 @@ package io.moonman.emergingtechnology.tile.tiles;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import io.moonman.emergingtechnology.block.blocks.Light;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.LightHelper;
@@ -14,6 +16,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -35,6 +39,10 @@ public class LightTileEntity extends TileEntity implements ITickable {
     };
 
     private int energy = this.energyHandler.getEnergyStored();
+    private boolean energyChanged = false;
+
+    private int bulbTypeId = 0;
+    private boolean bulbChanged = false;
 
     private int tick = 0;
 
@@ -58,14 +66,33 @@ public class LightTileEntity extends TileEntity implements ITickable {
     }
 
     @Override
+    @Nullable
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, 3, this.getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        super.onDataPacket(net, pkt);
+        handleUpdateTag(pkt.getNbtCompound());
+        this.sendUpdates(true);
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
-        this.energyHandler.readFromNBT(compound);
-        this.energy = compound.getInteger("GuiEnergy");
+        this.setBulbTypeId(compound.getInteger("BulbTypeId"));
 
         this.energyHandler.readFromNBT(compound);
+
+        this.setEnergy(compound.getInteger("GuiEnergy"));
     }
 
     @Override
@@ -73,7 +100,9 @@ public class LightTileEntity extends TileEntity implements ITickable {
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
 
-        compound.setInteger("GuiEnergy", energy);
+        compound.setInteger("BulbTypeId", this.getBulbTypeId());
+
+        compound.setInteger("GuiEnergy", this.getEnergy());
         this.energyHandler.writeToNBT(compound);
 
         return compound;
@@ -91,11 +120,9 @@ public class LightTileEntity extends TileEntity implements ITickable {
             return;
         } else {
 
-            int previousEnergy = this.energy;
-
             this.energy = this.energyHandler.getEnergyStored();
 
-            int bulbTypeId = getBulbTypeIdFromItemStack();
+            this.setBulbTypeId(getBulbTypeIdFromItemStack());
 
             // Use power
             doPowerUsageProcess(bulbTypeId);
@@ -104,16 +131,14 @@ public class LightTileEntity extends TileEntity implements ITickable {
 
             // If lamp has power, try to grow plants below
             if (hasPower) {
-                doGrowthMultiplierProcess(bulbTypeId);
+                doGrowthMultiplierProcess(this.bulbTypeId);
             }
 
-            Light.setState(hasPower, bulbTypeId, world, pos);
+            Light.setState(hasPower || this.isGlowstonePowered(), this.getBulbTypeId(), world, pos);
+
+            this.sendUpdates(false);
 
             tick = 0;
-
-            if (previousEnergy != this.energy) {
-                this.markDirty();
-            }
         }
 
     }
@@ -128,8 +153,14 @@ public class LightTileEntity extends TileEntity implements ITickable {
                 * bulbEnergyModifier;
 
         if (this.energy >= energyRequired) {
+            // If enough energy, extract it
             this.energyHandler.extractEnergy(energyRequired, false);
+        } else {
+            // Otherwise empty all the power from the light.
+            this.energyHandler.extractEnergy(this.energy, false);
         }
+
+        this.setEnergy(this.energyHandler.getEnergyStored());
     }
 
     public void doGrowthMultiplierProcess(int bulbTypeId) {
@@ -187,18 +218,40 @@ public class LightTileEntity extends TileEntity implements ITickable {
         return false;
     }
 
-    public int getBulbTypeIdFromItemStack() {
+    public boolean isGlowstonePowered() {
+        ItemStack stack = getItemStack();
+        return LightHelper.isGlowstonePowered(stack);
+    }
+
+    private int getBulbTypeIdFromItemStack() {
         ItemStack stack = getItemStack();
         int id = LightHelper.getBulbTypeIdFromStack(stack);
         return id;
     }
 
-    public ItemStack getItemStack() {
-        return itemHandler.getStackInSlot(0);
+    private void setBulbTypeId(int id) {
+
+        this.bulbChanged = this.bulbTypeId != id;
+
+        this.bulbTypeId = id;
+    }
+
+    public int getBulbTypeId() {
+        return this.bulbTypeId;
+    }
+
+    private void setEnergy(int energy) {
+        this.energyChanged = this.energy != energy;
+
+        this.energy = energy;
     }
 
     public int getEnergy() {
         return this.energy;
+    }
+
+    public ItemStack getItemStack() {
+        return itemHandler.getStackInSlot(0);
     }
 
     public int getField(int id) {
@@ -215,6 +268,19 @@ public class LightTileEntity extends TileEntity implements ITickable {
         case 0:
             this.energy = value;
         }
+    }
+
+    private void sendUpdates(boolean forceUpdates) {
+        if (this.bulbChanged || this.energyChanged || forceUpdates) {
+            world.markBlockRangeForRenderUpdate(pos, pos);
+            world.notifyBlockUpdate(pos, getState(), getState(), 3);
+            world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);
+            markDirty();
+        }
+    }
+
+    private IBlockState getState() {
+        return world.getBlockState(pos);
     }
 
     public boolean isUsableByPlayer(EntityPlayer player) {

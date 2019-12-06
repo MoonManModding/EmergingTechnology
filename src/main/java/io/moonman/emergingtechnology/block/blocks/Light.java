@@ -22,8 +22,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk.EnumCreateEntityType;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.block.Block;
@@ -132,6 +134,23 @@ public class Light extends Block implements ITileEntityProvider {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] { FACING, POWERED, BULBTYPE });
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+
+        int bulbTypeId = 0;
+
+        TileEntity tileEntity = worldIn instanceof ChunkCache ? ((ChunkCache)worldIn).getTileEntity(pos, EnumCreateEntityType.CHECK) : worldIn.getTileEntity(pos);
+
+        if (tileEntity instanceof LightTileEntity)
+        {
+            LightTileEntity lightTileEntity = (LightTileEntity) tileEntity;
+
+            bulbTypeId = lightTileEntity.getBulbTypeId();
+        }
+
+        return state.withProperty(BULBTYPE, bulbTypeId);
     }
 
     @Override
