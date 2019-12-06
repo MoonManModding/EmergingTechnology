@@ -5,13 +5,13 @@ By MoonManModding.
 
 If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
 
-# Version 1.1.2 - Hydroponics & Lights! 🌱
+# Version 1.1.3 - Hydroponics & Lights! 🌱
 
 This version provides the Hydroponic Grow Bed and Hydroponic Grow Light.
 
 An alternative to soil-based farming, the Grow Bed allows you to grow crops without getting your hands dirty with all that gross farmland. The Grow Bed requires a steady stream of water to function, provided either through using a bucket of water (lame) or automation (awesome). Get some water in your Grow Bed, and other Grow Beds adjacent to the outflow pipe will fill up too. Want to speed up your 🌾🌾🌾 growth? Add growth media! Placing a block of Dirt, Sand, Gravel or Clay in the Grow Bed will boost your plant's growing ability. You can change the water usage and growth modifiers in the mod's Config to make things a bit easier (or more challenging).
 
-The Grow Light is a powered light (requiring RF) that can also accelerate crop growth. Place a Bulb in the light, power it up and let your crops bathe in soothing LED goodness.
+The Grow Light is a powered light (requiring RF) that can also accelerate crop growth. Place a Bulb in the light, power it up and let your crops bathe in soothing LED goodness. If you want to sacrifice the light's growing ability for some free illumination, place a Glowstone block in the Grow Light for a snazzy alternative to a Glowstone lamp 💡
 
 Not everything needs to be functional, you know. A Hydroponic Frame is a slimline decorative block to cover any ugly block faces and support your lights. Available only in high-tech gloss white.
 
