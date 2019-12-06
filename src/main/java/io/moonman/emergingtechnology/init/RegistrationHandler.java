@@ -19,6 +19,8 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RegistrationHandler {
 
@@ -51,6 +53,7 @@ public class RegistrationHandler {
         event.getRegistry().registerAll(itemBlocks);
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
 
         // Item Models

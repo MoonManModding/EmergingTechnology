@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -24,8 +25,8 @@ public class DedicatedServerProxy extends CommonProxy
    * Do your mod setup. Build whatever data structures you care about. Register recipes,
    * send FMLInterModComms messages to other mods.
    */
-  public void init() {
-    super.init();
+  public void init(FMLInitializationEvent e) {
+    super.init(e);
   }
 
   /**

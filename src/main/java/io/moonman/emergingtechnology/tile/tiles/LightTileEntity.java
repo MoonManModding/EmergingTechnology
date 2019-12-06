@@ -86,12 +86,14 @@ public class LightTileEntity extends TileEntity implements ITickable {
             return;
         }
 
-        this.energy = this.energyHandler.getEnergyStored();
-
         if (tick < 10) {
             tick++;
             return;
         } else {
+
+            int previousEnergy = this.energy;
+
+            this.energy = this.energyHandler.getEnergyStored();
 
             int bulbTypeId = getBulbTypeIdFromItemStack();
 
@@ -108,6 +110,10 @@ public class LightTileEntity extends TileEntity implements ITickable {
             Light.setState(hasPower, bulbTypeId, world, pos);
 
             tick = 0;
+
+            if (previousEnergy != this.energy) {
+                this.markDirty();
+            }
         }
 
     }
@@ -118,7 +124,8 @@ public class LightTileEntity extends TileEntity implements ITickable {
         int bulbEnergyModifier = LightHelper.getEnergyUsageModifierForBulbById(bulbTypeId);
 
         // Calculate energy required
-        int energyRequired = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage * bulbEnergyModifier;
+        int energyRequired = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage
+                * bulbEnergyModifier;
 
         if (this.energy >= energyRequired) {
             this.energyHandler.extractEnergy(energyRequired, false);
@@ -132,7 +139,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
         // How many blocks below light?
         int blocksBelow = 2;
 
-        for(int i = 1; i < blocksBelow + 1; i++) {
+        for (int i = 1; i < blocksBelow + 1; i++) {
             // Get position
             BlockPos position = this.pos.add(0, -i, 0);
 
@@ -153,7 +160,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
             }
 
             // Let's roll
-            
+
         }
 
         return;
@@ -165,7 +172,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
 
         // If the shiny random number is smaller than the growth threshold then we roll
         if (random < growthProbability) {
-            
+
             // This is probably not necessary but then neither are male nipples
             if (block == Blocks.AIR) {
                 return false;

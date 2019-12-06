@@ -8,8 +8,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
-import org.apache.logging.log4j.Level;
-
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.custom.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;

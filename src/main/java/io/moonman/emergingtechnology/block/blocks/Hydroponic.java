@@ -63,6 +63,11 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     }
 
     @Override
+    public boolean isFertile(World world, BlockPos pos) {
+        return world.getBlockState(pos).getValue(HAS_WATER);
+    }
+
+    @Override
     public boolean isOpaqueCube(IBlockState iBlockState) {
         return false;
     }
