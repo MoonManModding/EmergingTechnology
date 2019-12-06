@@ -72,7 +72,7 @@ The mod should be compatible with any mods whose plants implement IGrowable and 
 This mod is in <b>beta</b>, and also my first mod, so please be patient if you find bugs. Post any problems in the Issues tab in this repository. Feel free to also add requests for future updates.
 
 Planned updates to the Hydroponics module include:
-- More growth media types
+- IndustrialCraft 2 support
 - OpenComputers support
 
 Future modules:
