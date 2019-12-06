@@ -80,7 +80,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
         handleUpdateTag(pkt.getNbtCompound());
-        this.sendUpdates(true);
+        this.sendUpdates(false);
     }
 
     @Override
@@ -271,7 +271,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
     }
 
     private void sendUpdates(boolean forceUpdates) {
-        if (this.bulbChanged || this.energyChanged || forceUpdates) {
+        if (this.bulbChanged || forceUpdates) {
             world.markBlockRangeForRenderUpdate(pos, pos);
             world.notifyBlockUpdate(pos, getState(), getState(), 3);
             world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);

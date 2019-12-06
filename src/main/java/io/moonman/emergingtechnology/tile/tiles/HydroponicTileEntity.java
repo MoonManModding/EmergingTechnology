@@ -129,7 +129,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
         handleUpdateTag(pkt.getNbtCompound());
-        this.sendUpdates(true);
+        this.sendUpdates(false);
     }
 
     @Override
@@ -363,7 +363,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
     }
 
     private void sendUpdates(boolean forceUpdates) {
-        if (this.waterChanged || this.energyChanged || this.mediumChanged || forceUpdates) {
+        if (this.mediumChanged || forceUpdates) {
             world.markBlockRangeForRenderUpdate(pos, pos);
             world.notifyBlockUpdate(pos, getState(), getState(), 3);
             world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);
