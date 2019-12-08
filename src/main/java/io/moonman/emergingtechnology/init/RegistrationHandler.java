@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.item.items.BlueBulb;
 import io.moonman.emergingtechnology.item.items.GreenBulb;
 import io.moonman.emergingtechnology.item.items.PurpleBulb;
 import io.moonman.emergingtechnology.item.items.RedBulb;
+import io.moonman.emergingtechnology.tile.tiles.HydroponicTESR;
 import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
 import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
 import net.minecraft.block.Block;
@@ -18,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -66,6 +68,10 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.hydroponic), 0);
         registerModel(Item.getItemFromBlock(ModBlocks.light), 0);
         registerModel(Item.getItemFromBlock(ModBlocks.frame), 0);
+
+        // Hydroponic TESR
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0, new ModelResourceLocation(ModBlocks.hydroponic.getRegistryName(), "inventory"));
+        ClientRegistry.bindTileEntitySpecialRenderer(HydroponicTileEntity.class, new HydroponicTESR());
     }
 
     private static Item generateItemBlock(Block block) {

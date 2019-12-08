@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.Light;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.LightHelper;
@@ -26,8 +27,15 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.fml.common.Optional;
 
-public class LightTileEntity extends TileEntity implements ITickable {
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
+
+@Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
+public class LightTileEntity extends TileEntity implements ITickable, SimpleComponent {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.LIGHT_ENERGY_CAPACITY);
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
@@ -53,7 +61,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return true;
 
-        return false;
+        return super.hasCapability(capability, facing);
     }
 
     @Override
@@ -287,5 +295,30 @@ public class LightTileEntity extends TileEntity implements ITickable {
         return this.world.getTileEntity(this.pos) != this ? false
                 : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
                         (double) this.pos.getZ() + 0.5D) <= 64.0D;
+    }
+
+    // OpenComputers
+
+    @Override
+    public String getComponentName() {
+        return "etech_grow_light";
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getEnergyLevel(Context context, Arguments args) {
+        return new Object[] { getEnergy() };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getBulbName(Context context, Arguments args) {
+        return new Object[] { getItemStack().getDisplayName() };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getBulbGrowthMultiplier(Context context, Arguments args) {
+        return new Object[] { LightHelper.getGrowthProbabilityForBulbById(getBulbTypeId()) };
     }
 }

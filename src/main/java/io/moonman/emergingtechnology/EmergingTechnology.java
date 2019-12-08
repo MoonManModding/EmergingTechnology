@@ -28,7 +28,7 @@ public class EmergingTechnology {
   @SidedProxy(clientSide = "io.moonman.emergingtechnology.proxy.ClientOnlyProxy", serverSide = "io.moonman.emergingtechnology.proxy.DedicatedServerProxy")
   public static CommonProxy proxy;
 
-  //static OCInteropProxy ocInteropProxy;
+  //static InteropProxy interopProxy;
 
   @Mod.EventHandler
   public void preInit(FMLPreInitializationEvent event) {
@@ -42,7 +42,7 @@ public class EmergingTechnology {
 
     NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxy());
 
-    //ocInteropProxy = ModLoadedCheck.getOCProxy();
+    //interopProxy = ModLoadedCheck.getProxy();
   }
 
   @Mod.EventHandler

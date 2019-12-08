@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.helpers.HydroponicHelper;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.tile.tiles.HydroponicTESR;
 import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,6 +15,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -30,9 +32,13 @@ import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk.EnumCreateEntityType;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.block.Block;
@@ -61,7 +67,7 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,
             IPlantable plantable) {
-        return state.getValue(HAS_WATER);
+        return getActualState(state, world, pos).getValue(HAS_WATER);
     }
 
     @Override
@@ -98,8 +104,6 @@ public class Hydroponic extends Block implements ITileEntityProvider {
             } else if (face == EnumFacing.WEST && west.isFullBlock() && !east.isFullBlock()) {
                 face = EnumFacing.EAST;
             }
-
-            setState(false, 0, worldIn, pos);
 
             worldIn.setBlockState(pos, state.withProperty(FACING, face));
         }
@@ -157,20 +161,6 @@ public class Hydroponic extends Block implements ITileEntityProvider {
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 
-    public static void setState(boolean hasWater, int medium, World worldIn, BlockPos pos) {
-        IBlockState state = worldIn.getBlockState(pos);
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
-
-        worldIn.setBlockState(pos,
-                ModBlocks.hydroponic.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(HAS_WATER, hasWater).withProperty(MEDIUM, medium),
-                3);
-
-        if (tileEntity != null) {
-            tileEntity.validate();
-            worldIn.setTileEntity(pos, tileEntity);
-        }
-    }
-
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         HydroponicTileEntity te = (HydroponicTileEntity) world.getTileEntity(pos);
@@ -198,18 +188,23 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 
-        int mediumTypeId = 0;
-
-        TileEntity tileEntity = worldIn instanceof ChunkCache ? ((ChunkCache)worldIn).getTileEntity(pos, EnumCreateEntityType.CHECK) : worldIn.getTileEntity(pos);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
 
         if (tileEntity instanceof HydroponicTileEntity)
         {
             HydroponicTileEntity hydroponicTileEntity = (HydroponicTileEntity) tileEntity;
 
-            mediumTypeId = hydroponicTileEntity.getGrowthMediumIdForTexture();
+            int mediumTypeId = hydroponicTileEntity.getGrowthMediumIdForTexture();
+
+            boolean hasWater = hydroponicTileEntity.getWater() > 0;
+
+            // System.out.println("Got tile entity water data: " + hydroponicTileEntity.getWater());
+
+            return state.withProperty(MEDIUM, mediumTypeId).withProperty(HAS_WATER, hasWater);
         }
 
-        return state.withProperty(MEDIUM, mediumTypeId);
+        return state;
+       
     }
 
     @Override

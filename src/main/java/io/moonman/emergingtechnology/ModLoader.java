@@ -1,7 +1,7 @@
 package io.moonman.emergingtechnology;
 
-import io.moonman.emergingtechnology.proxy.interop.InactiveOCInteropProxy;
-import io.moonman.emergingtechnology.proxy.interop.OCInteropProxy;
+import io.moonman.emergingtechnology.proxy.interop.InactiveInteropProxy;
+import io.moonman.emergingtechnology.proxy.interop.InteropProxy;
 import net.minecraftforge.fml.common.Loader;
 
 public class ModLoader {
@@ -28,12 +28,12 @@ public class ModLoader {
 		return OCLoaded;
 	}
 
-	public static OCInteropProxy getOCProxy()
+	public static InteropProxy getProxy()
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		if (ModLoader.isOpenComputersLoaded()) {
-			return Class.forName("io.moonman.emergingtechnology.proxy.ActiveOCInteropProxy").asSubclass(OCInteropProxy.class).newInstance();
+			return Class.forName("io.moonman.emergingtechnology.proxy.ActiveInteropProxy").asSubclass(InteropProxy.class).newInstance();
 		  } else {
-			return new InactiveOCInteropProxy();
+			return new InactiveInteropProxy();
 		  }
 	}
 }

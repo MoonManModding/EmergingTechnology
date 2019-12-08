@@ -1,7 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "emergingtechnology:hydroponic",
+        "model": "emergingtechnology:hydroponic_empty",
         "textures": {
             "mediumtype": "emergingtechnology:blocks/grey"
         }
@@ -29,10 +29,10 @@
         },
         "haswater": {
             "false": {
-                "model": "emergingtechnology:hydroponic_empty"
+                
             },
             "true": {
-                "model": "emergingtechnology:hydroponic"
+                
             }
         },
         "medium": {

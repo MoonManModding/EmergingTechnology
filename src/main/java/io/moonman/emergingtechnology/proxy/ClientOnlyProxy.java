@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.proxy;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
 import net.minecraft.client.Minecraft;
@@ -8,6 +9,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -20,6 +22,8 @@ public class ClientOnlyProxy extends CommonProxy {
         super.preInit(e);
 
         EmergingTechnologyConfig.clientPreInit();
+
+        OBJLoader.INSTANCE.addDomain(EmergingTechnology.MODID);
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.Hydroponic;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.HydroponicHelper;
@@ -23,7 +24,9 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -33,15 +36,24 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-// import li.cil.oc.api.machine.Arguments;
-// import li.cil.oc.api.machine.Callback;
-// import li.cil.oc.api.machine.Context;
-// import li.cil.oc.api.network.SimpleComponent;
+import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
 
-// @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class HydroponicTileEntity extends TileEntity implements ITickable {
+@Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
+public class HydroponicTileEntity extends TileEntity implements ITickable, SimpleComponent {
 
-    public FluidTank fluidHandler = new FluidStorageHandler(Reference.HYDROPONIC_FLUID_CAPACITY);
+    public FluidTank fluidHandler = new FluidStorageHandler(Reference.HYDROPONIC_FLUID_CAPACITY) {
+        @Override
+        protected void onContentsChanged() {
+            super.onContentsChanged();
+            markDirtyClient();
+        }
+    };
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HYDROPONIC_ENERGY_CAPACITY);
 
@@ -53,15 +65,24 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         }
     };
 
+    public void markDirtyClient() {
+        markDirty();
+        if (world != null) {
+            IBlockState state = world.getBlockState(getPos());
+            world.notifyBlockUpdate(getPos(), state, state, 3);
+        }
+    }
+
     private int tick = 0;
 
-    private int water = 0;
+    private int water = this.fluidHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
-    private int mediumId = 0;
+    private int mediumId = this.getGrowthMediumId();
 
-    private boolean waterChanged = false;
-    private boolean energyChanged = false;
-    private boolean mediumChanged = false;
+    @Override
+    public boolean hasFastRenderer() {
+        return true;
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -72,7 +93,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         if (capability == CapabilityEnergy.ENERGY)
             return true;
 
-        return false;
+        return super.hasCapability(capability, facing);
     }
 
     @Override
@@ -91,9 +112,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         super.readFromNBT(compound);
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
-        // this.hasWater = compound.getBoolean("HasWater");
-        this.water = compound.getInteger("GuiWater");
-        this.energy = compound.getInteger("GuiEnergy");
+        this.setWater(compound.getInteger("GuiWater"));
+        this.setEnergy(compound.getInteger("GuiEnergy"));
 
         this.fluidHandler.readFromNBT(compound);
 
@@ -115,9 +135,10 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
     }
 
     @Override
-    @Nullable
     public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(this.pos, 3, this.getUpdateTag());
+        NBTTagCompound nbtTag = new NBTTagCompound();
+        this.writeToNBT(nbtTag);
+        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
     }
 
     @Override
@@ -127,9 +148,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        super.onDataPacket(net, pkt);
-        handleUpdateTag(pkt.getNbtCompound());
-        this.sendUpdates(false);
+        this.readFromNBT(pkt.getNbtCompound());
     }
 
     @Override
@@ -144,7 +163,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
             return;
         } else {
 
-            // Set water, energy and medium from handlers
             this.setWater(this.fluidHandler.getFluidAmount());
             this.setEnergy(this.energyHandler.getEnergyStored());
             this.setGrowthMediumId(this.getGrowthMediumIdFromItemStack());
@@ -165,13 +183,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
                 doWaterUsageProcess(growSucceeded);
             }
 
-            Hydroponic.setState(this.water > 0, getGrowthMediumIdForTexture(), world, pos);
-
-            this.sendUpdates(false);
-
             tick = 0;
         }
-
     }
 
     public boolean doPowerUsageProcess() {
@@ -232,9 +245,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
                 }
             }
         }
-
-        // // Set has water
-        // this.hasWater = this.water > 0;
     }
 
     public boolean doGrowthMultiplierProcess() {
@@ -311,42 +321,39 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
         return itemHandler.getStackInSlot(0);
     }
 
+    // Getters
     public int getGrowthMediumIdForTexture() {
         int id = getGrowthMediumIdFromItemStack();
         return id >= CustomGrowthMediumLoader.STARTING_ID ? 5 : id;
-    }
-
-    private void setGrowthMediumId(int id) {
-        this.mediumChanged = this.mediumId != id;
-        this.mediumId = id;
     }
 
     public int getWater() {
         return this.water;
     }
 
-    private void setWater(int quantity) {
-        this.waterChanged = this.water != quantity;
-
-        this.water = quantity;
-    }
-
     public int getEnergy() {
         return this.energy;
     }
 
-    private void setEnergy(int quantity) {
-        this.energyChanged = this.energy != quantity;
+    // Setters
+    private void setGrowthMediumId(int id) {
+        this.mediumId = id;
+    }
 
+    private void setWater(int quantity) {
+        this.water = quantity;
+    }
+
+    private void setEnergy(int quantity) {
         this.energy = quantity;
     }
 
     public int getField(int id) {
         switch (id) {
         case 0:
-            return this.water;
+            return this.getWater();
         case 1:
-            return this.energy;
+            return this.getGrowthMediumId();
         default:
             return 0;
         }
@@ -355,24 +362,16 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
     public void setField(int id, int value) {
         switch (id) {
         case 0:
-            this.water = value;
+            this.setWater(value);
         case 1:
-            this.energy = value;
+            this.setGrowthMediumId(value);
             break;
         }
     }
 
-    private void sendUpdates(boolean forceUpdates) {
-        if (this.mediumChanged || forceUpdates) {
-            world.markBlockRangeForRenderUpdate(pos, pos);
-            world.notifyBlockUpdate(pos, getState(), getState(), 3);
-            world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);
-            markDirty();
-        }
-    }
-
-    private IBlockState getState() {
-        return world.getBlockState(pos);
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+        return oldState.getBlock() != newState.getBlock();
     }
 
     public boolean isUsableByPlayer(EntityPlayer player) {
@@ -383,21 +382,41 @@ public class HydroponicTileEntity extends TileEntity implements ITickable {
 
     // OpenComputers
 
-    // @Override
-    // @Optional.Method(modid = "opencomputers")
-    // public String getComponentName() {
-    // return EmergingTechnology.MODID + "_hydroponic";
-    // }
+    @Optional.Method(modid = "opencomputers")
+    @Override
+    public String getComponentName() {
+        return "etech_grow_bed";
+    }
 
-    // @Callback
-    // @Optional.Method(modid = "opencomputers")
-    // public Object[] getWaterLevel(Context context, Arguments args) {
-    // return new Object[] {getWater()};
-    // }
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getWaterLevel(Context context, Arguments args) {
+        System.out.println("Request for water level");
+        int level = getWater();
+        return new Object[] { level };
+    }
 
-    // @Callback
-    // @Optional.Method(modid = "opencomputers")
-    // public Object[] getEnergyLevel(Context context, Arguments args) {
-    // return new Object[] {getEnergyLevel()};
-    // }
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getEnergyLevel(Context context, Arguments args) {
+        System.out.println("Request for energy level");
+        int level = getEnergy();
+        return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getMediumName(Context context, Arguments args) {
+        System.out.println("Request for medium name");
+        String name = getItemStack().getDisplayName();
+        return new Object[] { name };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getMediumGrowthMultiplier(Context context, Arguments args) {
+        System.out.println("Request for growth probability");
+        int probability = HydroponicHelper.getGrowthProbabilityForMedium(getItemStack());
+        return new Object[] { probability };
+    }
 }

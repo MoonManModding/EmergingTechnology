@@ -33,6 +33,14 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+repositories {
+    maven {
+		// OpenComputers
+		name = "cil"
+		url = "http://maven.cil.li/"
+	}
+}
+
 dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -50,6 +58,7 @@ dependencies {
     // except that these dependencies get remapped to your current MCP mappings
     //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
     //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+    deobfCompile "li.cil.oc:OpenComputers:${oc_version}"
 
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
@@ -74,4 +83,13 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+task deobfJar(type: Jar) {
+	from sourceSets.main.output
+	classifier = 'deobf'
+}
+
+artifacts {
+	archives deobfJar
 }

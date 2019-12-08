@@ -7,6 +7,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -15,6 +17,7 @@ public class HydroponicContainer extends Container {
 	private final HydroponicTileEntity tileEntity;
 
 	private int water;
+	private int mediumId;
 
 	public HydroponicContainer(InventoryPlayer player, HydroponicTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -35,6 +38,7 @@ public class HydroponicContainer extends Container {
 		}
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void updateProgressBar(int id, int data) 
 	{
@@ -50,9 +54,11 @@ public class HydroponicContainer extends Container {
 		{
 			IContainerListener listener = (IContainerListener)this.listeners.get(i);
 			if(this.water != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
+			if(this.mediumId != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
 		}
 		
 		this.water = this.tileEntity.getField(0);
+		this.mediumId = this.tileEntity.getField(1);
 	}
 
 	@Override
@@ -73,10 +79,14 @@ public class HydroponicContainer extends Container {
 			if (index < 1) {
 				if (!this.mergeItemStack(fromStack, 1, 37, false)) {
 					return ItemStack.EMPTY;
+				} else {
+					fromSlot.onSlotChanged();
 				}
 			} else {
 				if (!this.mergeItemStack(fromStack, 0, 1, false)) {
 					return ItemStack.EMPTY;
+				} else {
+					fromSlot.onSlotChanged();
 				}
 			}
 
