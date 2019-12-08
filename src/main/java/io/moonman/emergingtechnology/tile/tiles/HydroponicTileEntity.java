@@ -26,6 +26,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
@@ -391,7 +392,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] getWaterLevel(Context context, Arguments args) {
-        System.out.println("Request for water level");
         int level = getWater();
         return new Object[] { level };
     }
@@ -399,7 +399,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] getEnergyLevel(Context context, Arguments args) {
-        System.out.println("Request for energy level");
         int level = getEnergy();
         return new Object[] { level };
     }
@@ -407,7 +406,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] getMediumName(Context context, Arguments args) {
-        System.out.println("Request for medium name");
         String name = getItemStack().getDisplayName();
         return new Object[] { name };
     }
@@ -415,8 +413,14 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] getMediumGrowthMultiplier(Context context, Arguments args) {
-        System.out.println("Request for growth probability");
         int probability = HydroponicHelper.getGrowthProbabilityForMedium(getItemStack());
         return new Object[] { probability };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getLightLevel(Context context, Arguments args) {
+        int level = this.world.getLightFromNeighbors(getPos());
+        return new Object[] { level };
     }
 }

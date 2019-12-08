@@ -2,24 +2,24 @@ package io.moonman.emergingtechnology.tile.tiles;
 
 import org.lwjgl.opengl.GL11;
 
-import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.animation.FastTESR;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
+
+    private static final ItemStack DEFAULT_STACK = new ItemStack(Blocks.STONE);
 
     // Many thanks to TheUnlocked from minecraftforge.net for this code - saved my
     // bacon
@@ -83,19 +83,25 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
         GlStateManager.translate(x, y, z);
         GlStateManager.disableRescaleNormal();
 
-        ItemStack stack = tileEntity.getItemStack();
-        if (stack.isEmpty()) {
-            stack = new ItemStack(Blocks.STONE);
-        }
-
-        GL11.glEnable(GL11.GL_LIGHTING);
+       
 
         GlStateManager.pushMatrix();
         // Translate to the center of the block and .9 points higher
         GlStateManager.translate(.5, .85, .5);
         GlStateManager.scale(.3f, .3f, .3f);
 
+        ItemStack stack = tileEntity.getItemStack();
+
+        if (stack.isEmpty()) {
+            stack = DEFAULT_STACK;
+        }
+
+        GL11.glDisable(GL11.GL_LIGHTING);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+
         Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.NONE);
+
+        GL11.glEnable(GL11.GL_LIGHTING);
 
         GlStateManager.popMatrix();
 

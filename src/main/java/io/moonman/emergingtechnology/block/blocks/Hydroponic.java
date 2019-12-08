@@ -198,8 +198,6 @@ public class Hydroponic extends Block implements ITileEntityProvider {
 
             boolean hasWater = hydroponicTileEntity.getWater() > 0;
 
-            // System.out.println("Got tile entity water data: " + hydroponicTileEntity.getWater());
-
             return state.withProperty(MEDIUM, mediumTypeId).withProperty(HAS_WATER, hasWater);
         }
 
