@@ -5,7 +5,7 @@ By MoonManModding.
 
 If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
 
-# Version 1.1.3 - Hydroponics & Lights! 🌱
+# Version 1.1.4 - Hydroponics & Lights! 🌱
 
 This version provides the Hydroponic Grow Bed and Hydroponic Grow Light.
 
@@ -47,12 +47,12 @@ The mod was made with Forge version <b>14.23.5.2768</b>
 <a href="https://www.curseforge.com/minecraft/mc-mods/emerging-technology-hydroponics">Download at CurseForge</a>
 
 # Compatibility
-Emerging Technology tentatively works with the following mods:
+Emerging Technology works with the following mods:
 
 - Pam's HarvestCraft
 - Botania
 - Mystical Agriculture
-- OpenComputers
+- OpenComputers (full support)
 - NuclearCraft
 - XNET
 - AgriCraft (requires some setup)
@@ -73,7 +73,6 @@ This mod is in <b>beta</b>, and also my first mod, so please be patient if you f
 
 Planned updates to the Hydroponics module include:
 - IndustrialCraft 2 support
-- OpenComputers support
 
 Future modules:
 - Plant-based plastics/polymers
