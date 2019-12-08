@@ -1,36 +1,33 @@
 package io.moonman.emergingtechnology.machines.hydroponic;
 
-import org.lwjgl.opengl.GL11;
-
+import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.animation.FastTESR;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
 
-    private static final ItemStack DEFAULT_STACK = new ItemStack(Blocks.STONE);
-
     // Many thanks to TheUnlocked from minecraftforge.net for this code - saved my
     // bacon
     // https://www.minecraftforge.net/forum/topic/57009-1112-how-to-make-variable-water-level-in-a-block/
+
+    private static final String CONTAINER_TEXTURE = "emergingtechnology:blocks/grey";
 
     @SideOnly(Side.CLIENT)
     @Override
     public void renderTileEntityFast(HydroponicTileEntity tileEntity, double x, double y, double z, float partialTicks,
             int destroyStage, float partial, BufferBuilder buffer) {
 
-        this.renderWaterLevel(tileEntity, x, y, z, partialTicks, destroyStage, partial, buffer);
         this.renderGrowthMedium(tileEntity, x, y, z, partialTicks, destroyStage, partial, buffer);
+        this.renderWaterLevel(tileEntity, x, y, z, partialTicks, destroyStage, partial, buffer);
     }
 
     public void renderWaterLevel(HydroponicTileEntity tileEntity, double x, double y, double z, float partialTicks,
@@ -73,38 +70,64 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
     }
 
     public void renderGrowthMedium(HydroponicTileEntity tileEntity, double x, double y, double z, float partialTicks,
-            int destroyStage, float partial, BufferBuilder buffer) {
+             int destroyStage, float partial, BufferBuilder buffer) {
 
-        GlStateManager.pushAttrib();
-        GlStateManager.pushMatrix();
+                // I was hella lazy here, could be improved
 
-        // Translate to the location of our tile entity
-        GlStateManager.translate(x, y, z);
-        GlStateManager.disableRescaleNormal();
+                final float PX = 1f / 16f;
+                final float YOFF = 12 * PX;
+                final float BORDER = 6f * PX;
+                final float MAXHEIGHT = 4 * PX;
+                final float LOW = 12f * PX;
+        
+                float actualHeight = MAXHEIGHT + YOFF;
+                // BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
 
-       
+                TextureAtlasSprite containerTexture =  Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(CONTAINER_TEXTURE);
+                TextureAtlasSprite texture = containerTexture;
+                
+                // int mediumId = tileEntity.getGrowthMediumId();
 
-        GlStateManager.pushMatrix();
-        // Translate to the center of the block and .9 points higher
-        GlStateManager.translate(.5, .85, .5);
-        GlStateManager.scale(.3f, .3f, .3f);
+                // if (mediumId != 0) {
+                //     String blockForRender = HydroponicHelper.getMediumTextureFromId(mediumId).toString();
+                //     texture = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(blockForRender);
+                // }
 
-        ItemStack stack = tileEntity.getItemStack();
-
-        if (stack.isEmpty()) {
-            stack = DEFAULT_STACK;
-        }
-
-        GL11.glDisable(GL11.GL_LIGHTING);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-
-        Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.NONE);
-
-        GL11.glEnable(GL11.GL_LIGHTING);
-
-        GlStateManager.popMatrix();
-
-        GlStateManager.popMatrix();
-        GlStateManager.popAttrib();
+                // Lightmap calculations
+                int upCombined = getWorld().getCombinedLight(tileEntity.getPos().up(), 0);
+                int upLMa = upCombined >> 16 & 65535;
+                int upLMb = upCombined & 65535;
+        
+                buffer.setTranslation(x,y,z);
+        
+                //UP face
+                buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(texture.getMinU(), texture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(texture.getMaxU(), texture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(texture.getMaxU(), texture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(texture.getMinU(), texture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+        
+                //NORTH face
+                buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+        
+                //SOUTH face
+                buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+        
+                //WEST face
+                buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+        
+                //EAST face
+                buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
     }
 }

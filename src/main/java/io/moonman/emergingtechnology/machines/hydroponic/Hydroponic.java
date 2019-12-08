@@ -9,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,8 +39,6 @@ public class Hydroponic extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool HAS_WATER = PropertyBool.create("haswater");
-    public static final PropertyInteger MEDIUM = PropertyInteger.create("medium", 0,
-            HydroponicHelper.getValidGrowthMedia().length);
 
     public Hydroponic() {
         super(Material.ANVIL);
@@ -51,7 +48,7 @@ public class Hydroponic extends Block implements ITileEntityProvider {
         this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
         this.setSoundType(SoundType.METAL);
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false).withProperty(MEDIUM, 0));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false));
     }
 
     @Override
@@ -172,7 +169,7 @@ public class Hydroponic extends Block implements ITileEntityProvider {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { FACING, HAS_WATER, MEDIUM });
+        return new BlockStateContainer(this, new IProperty[] { FACING, HAS_WATER });
     }
 
     @Override
@@ -184,11 +181,9 @@ public class Hydroponic extends Block implements ITileEntityProvider {
         {
             HydroponicTileEntity hydroponicTileEntity = (HydroponicTileEntity) tileEntity;
 
-            int mediumTypeId = hydroponicTileEntity.getGrowthMediumIdForTexture();
-
             boolean hasWater = hydroponicTileEntity.getWater() > 0;
 
-            return state.withProperty(MEDIUM, mediumTypeId).withProperty(HAS_WATER, hasWater);
+            return state.withProperty(HAS_WATER, hasWater);
         }
 
         return state;

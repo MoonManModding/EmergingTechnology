@@ -7,8 +7,14 @@
         }
     },
     "variants": {
-        "normal": [{}],
-        "inventory": [{}],
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {
+                "model": "emergingtechnology:hydroponic"
+            }
+        ],
         "facing": {
             "north": {},
             "south": {
@@ -28,44 +34,8 @@
             }
         },
         "haswater": {
-            "false": {
-                
-            },
-            "true": {
-                
-            }
-        },
-        "medium": {
-            "0": {
-                "textures": {
-                    "mediumtype": "emergingtechnology:blocks/grey"
-                }
-            },
-            "1": {
-                "textures": {
-                    "mediumtype": "minecraft:blocks/dirt"
-                }
-            },
-            "2": {
-                "textures": {
-                    "mediumtype": "minecraft:blocks/sand"
-                }
-            },
-            "3": {
-                "textures": {
-                    "mediumtype": "minecraft:blocks/gravel"
-                }
-            },
-            "4": {
-                "textures": {
-                    "mediumtype": "minecraft:blocks/clay"
-                }
-            },
-            "5": {
-                "textures": {
-                    "mediumtype": "emergingtechnology:blocks/custommedium"
-                }
-            }
+            "false": {"model": "emergingtechnology:hydroponic_empty"},
+            "true": {"model": "emergingtechnology:hydroponic_empty"}
         }
     }
 }

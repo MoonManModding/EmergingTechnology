@@ -412,7 +412,21 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] getLightLevel(Context context, Arguments args) {
-        int level = this.world.getLightFromNeighbors(getPos());
+        int level = PlantHelper.getPlantLightAtPosition(world, pos);
         return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getPlantGrowth(Context context, Arguments args) {
+        int growth = PlantHelper.getPlantGrowthAtPosition(world, pos);
+        return new Object[] { growth };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getPlantName(Context context, Arguments args) {
+        String name = PlantHelper.getPlantNameAtPosition(world, pos);
+        return new Object[] { name };
     }
 }
