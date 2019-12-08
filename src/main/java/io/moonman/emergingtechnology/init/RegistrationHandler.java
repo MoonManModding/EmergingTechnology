@@ -2,15 +2,15 @@ package io.moonman.emergingtechnology.init;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.Frame;
-import io.moonman.emergingtechnology.block.blocks.Hydroponic;
-import io.moonman.emergingtechnology.block.blocks.Light;
 import io.moonman.emergingtechnology.item.items.BlueBulb;
 import io.moonman.emergingtechnology.item.items.GreenBulb;
 import io.moonman.emergingtechnology.item.items.PurpleBulb;
 import io.moonman.emergingtechnology.item.items.RedBulb;
-import io.moonman.emergingtechnology.tile.tiles.HydroponicTESR;
-import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
-import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
+import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
+import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTESR;
+import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
+import io.moonman.emergingtechnology.machines.light.Light;
+import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -24,6 +24,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+Registers blocks, items and models for Emerging Technology
+*/
 public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {

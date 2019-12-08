@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.tile.tiles;
+package io.moonman.emergingtechnology.machines.hydroponic;
 
 import org.lwjgl.opengl.GL11;
 
@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Blocks;

@@ -1,6 +1,7 @@
-package io.moonman.emergingtechnology.helpers;
+package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.item.items.BlueBulb;
 import io.moonman.emergingtechnology.item.items.BulbItem;
 import io.moonman.emergingtechnology.item.items.GreenBulb;
@@ -10,6 +11,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+/**
+Provides useful methods for the Hydroponic Grow Light
+*/
 public class LightHelper {
 
     public static final int BULB_COUNT = 4;

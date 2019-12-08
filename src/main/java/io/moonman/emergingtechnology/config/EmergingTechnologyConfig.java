@@ -11,6 +11,9 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+/**
+The main configuration class for Emerging Technology
+*/
 @Config(modid = EmergingTechnology.MODID)
 @Config.LangKey("emergingtechnology.config.title")
 public class EmergingTechnologyConfig {

@@ -1,22 +1,24 @@
-package io.moonman.emergingtechnology.container.containers;
+package io.moonman.emergingtechnology.machines.hydroponic;
 
-import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 // Handles inventory and slots
-public class LightContainer extends Container {
-	private final LightTileEntity tileEntity;
+public class HydroponicContainer extends Container {
+	private final HydroponicTileEntity tileEntity;
 
-	private int energy;
+	private int water;
+	private int mediumId;
 
-	public LightContainer(InventoryPlayer player, LightTileEntity tileEntity) {
+	public HydroponicContainer(InventoryPlayer player, HydroponicTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
 		IItemHandler handler = tileEntity.itemHandler;
 
@@ -34,7 +36,8 @@ public class LightContainer extends Container {
 			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
 		}
 	}
-
+	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void updateProgressBar(int id, int data) 
 	{
@@ -49,10 +52,12 @@ public class LightContainer extends Container {
 		for(int i = 0; i < this.listeners.size(); ++i) 
 		{
 			IContainerListener listener = (IContainerListener)this.listeners.get(i);
-			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
+			if(this.water != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
+			if(this.mediumId != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
 		}
 		
-		this.energy = this.tileEntity.getField(0);
+		this.water = this.tileEntity.getField(0);
+		this.mediumId = this.tileEntity.getField(1);
 	}
 
 	@Override
@@ -73,10 +78,14 @@ public class LightContainer extends Container {
 			if (index < 1) {
 				if (!this.mergeItemStack(fromStack, 1, 37, false)) {
 					return ItemStack.EMPTY;
+				} else {
+					fromSlot.onSlotChanged();
 				}
 			} else {
 				if (!this.mergeItemStack(fromStack, 0, 1, false)) {
 					return ItemStack.EMPTY;
+				} else {
+					fromSlot.onSlotChanged();
 				}
 			}
 

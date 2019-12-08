@@ -1,8 +1,11 @@
 package io.moonman.emergingtechnology.helpers.custom.helpers;
 
-import io.moonman.emergingtechnology.helpers.custom.CustomGrowthMedium;
+import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import net.minecraft.item.ItemStack;
 
+/**
+Provides useful methods for custom growth media manipulation
+*/
 public class CustomGrowthMediumHelper {
 
     public static CustomGrowthMedium[] customGrowthMedia;

@@ -1,9 +1,12 @@
-package io.moonman.emergingtechnology.tile.handlers;
+package io.moonman.emergingtechnology.handlers;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+A customisable ItemStackHandler used in Emerging Technology
+*/
 public class AutomationItemStackHandler extends ItemStackHandler {
 
 	private final ItemStackHandler mainHandler;

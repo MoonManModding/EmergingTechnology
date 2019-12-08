@@ -1,5 +1,8 @@
-package io.moonman.emergingtechnology.helpers.custom;
+package io.moonman.emergingtechnology.helpers.custom.classes;
 
+/**
+A custom growth medium loaded from a user-defined JSON file
+*/
 public class CustomGrowthMedium {
 
     public int id = 0;

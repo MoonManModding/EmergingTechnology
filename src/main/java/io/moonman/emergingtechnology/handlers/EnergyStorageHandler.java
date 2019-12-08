@@ -1,8 +1,11 @@
-package io.moonman.emergingtechnology.tile.handlers;
+package io.moonman.emergingtechnology.handlers;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.energy.EnergyStorage;
 
+/**
+A customisable EnergyStorage used in Emerging Technology
+*/
 public class EnergyStorageHandler extends EnergyStorage
 {
 	public EnergyStorageHandler(int capacity)

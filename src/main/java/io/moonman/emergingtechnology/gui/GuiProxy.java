@@ -1,11 +1,11 @@
 package io.moonman.emergingtechnology.gui;
 
-import io.moonman.emergingtechnology.container.containers.HydroponicContainer;
-import io.moonman.emergingtechnology.container.containers.LightContainer;
-import io.moonman.emergingtechnology.gui.guis.HydroponicGui;
-import io.moonman.emergingtechnology.gui.guis.LightGui;
-import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
-import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
+import io.moonman.emergingtechnology.machines.hydroponic.HydroponicContainer;
+import io.moonman.emergingtechnology.machines.hydroponic.HydroponicGui;
+import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
+import io.moonman.emergingtechnology.machines.light.LightContainer;
+import io.moonman.emergingtechnology.machines.light.LightGui;
+import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

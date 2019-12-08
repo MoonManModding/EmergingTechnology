@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.init;
 
+/**
+Useful constant values for Emerging Technology
+*/
 public class Reference {
     // GUI
     public static final int GUI_HYDROPONIC = 0;

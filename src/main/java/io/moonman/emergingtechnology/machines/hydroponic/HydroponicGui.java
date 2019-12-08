@@ -1,14 +1,12 @@
-package io.moonman.emergingtechnology.gui.guis;
+package io.moonman.emergingtechnology.machines.hydroponic;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.container.containers.HydroponicContainer;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiPosition;
-import io.moonman.emergingtechnology.helpers.HydroponicHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.tile.tiles.HydroponicTileEntity;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;

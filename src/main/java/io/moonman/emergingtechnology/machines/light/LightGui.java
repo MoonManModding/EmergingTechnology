@@ -1,15 +1,13 @@
-package io.moonman.emergingtechnology.gui.guis;
+package io.moonman.emergingtechnology.machines.light;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.container.containers.LightContainer;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiPosition;
-import io.moonman.emergingtechnology.helpers.LightHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;

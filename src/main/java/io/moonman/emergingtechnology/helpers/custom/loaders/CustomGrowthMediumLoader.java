@@ -9,10 +9,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.custom.CustomGrowthMedium;
+import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomGrowthMediumWrapper;
 
+/**
+Loads and validates the custom growth medium JSON file
+*/
 public class CustomGrowthMediumLoader {
 
     public static final int STARTING_ID = 5;

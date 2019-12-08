@@ -1,10 +1,9 @@
-package io.moonman.emergingtechnology.block.blocks;
+package io.moonman.emergingtechnology.machines.light;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.LightHelper;
+import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.tile.tiles.LightTileEntity;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;

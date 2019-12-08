@@ -2,6 +2,9 @@ package io.moonman.emergingtechnology.gui;
 
 import net.minecraft.entity.player.InventoryPlayer;
 
+/**
+Provides useful methods and values for GUI rendering
+*/
 public class GuiHelper {
 
     // Colours

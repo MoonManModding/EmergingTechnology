@@ -6,6 +6,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.IPlantable;
 
+/**
+Provides useful methods to manipulate and validate plant items and blocks
+*/
 public class PlantHelper {
     
     public static boolean isPlantItem(Item item) {

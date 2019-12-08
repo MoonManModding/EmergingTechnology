@@ -1,16 +1,14 @@
-package io.moonman.emergingtechnology.tile.tiles;
+package io.moonman.emergingtechnology.machines.light;
 
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.block.blocks.Light;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.LightHelper;
+import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
+import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.tile.handlers.EnergyStorageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

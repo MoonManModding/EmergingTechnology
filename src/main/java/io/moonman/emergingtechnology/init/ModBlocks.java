@@ -2,10 +2,13 @@ package io.moonman.emergingtechnology.init;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.Frame;
-import io.moonman.emergingtechnology.block.blocks.Hydroponic;
-import io.moonman.emergingtechnology.block.blocks.Light;
+import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
+import io.moonman.emergingtechnology.machines.light.Light;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
  
+/**
+All blocks from Emerging Technology
+*/
 @ObjectHolder(EmergingTechnology.MODID)
 public class ModBlocks {
 

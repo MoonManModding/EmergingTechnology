@@ -4,6 +4,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+/**
+Provides useful methods to manipulate and validate stacks
+*/
 public class StackHelper {
 
     public static boolean isItemStackEmpty(ItemStack stack) {

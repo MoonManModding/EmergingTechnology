@@ -1,9 +1,12 @@
-package io.moonman.emergingtechnology;
+package io.moonman.emergingtechnology.proxy.interop;
 
 import io.moonman.emergingtechnology.proxy.interop.InactiveInteropProxy;
 import io.moonman.emergingtechnology.proxy.interop.InteropProxy;
 import net.minecraftforge.fml.common.Loader;
 
+/**
+This class provides methods for checking whether other mods are loaded alongside Emerging Technology
+*/
 public class ModLoader {
 	
 	private static boolean initialized = false;

@@ -1,18 +1,13 @@
-package io.moonman.emergingtechnology.tile.tiles;
+package io.moonman.emergingtechnology.machines.hydroponic;
 
 import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.block.blocks.Hydroponic;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.HydroponicHelper;
+import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
+import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.tile.handlers.EnergyStorageHandler;
-import io.moonman.emergingtechnology.tile.handlers.FluidStorageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
@@ -26,7 +21,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
@@ -38,8 +32,6 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;

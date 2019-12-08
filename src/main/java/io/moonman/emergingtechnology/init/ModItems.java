@@ -4,6 +4,9 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
+/**
+All items from Emerging Technology
+*/
 @ObjectHolder(EmergingTechnology.MODID)
 public class ModItems {
 

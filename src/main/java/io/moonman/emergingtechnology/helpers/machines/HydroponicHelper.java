@@ -1,12 +1,16 @@
-package io.moonman.emergingtechnology.helpers;
+package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.custom.CustomGrowthMedium;
+import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+/**
+Provides useful methods for the Hydroponic Grow Bed
+*/
 public class HydroponicHelper {
 
     private static ItemStack[] validGrowthMedia = new ItemStack[] { new ItemStack(Blocks.DIRT),
