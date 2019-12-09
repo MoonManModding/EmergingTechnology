@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.machines.hydroponic;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -81,17 +82,17 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
                 final float LOW = 12f * PX;
         
                 float actualHeight = MAXHEIGHT + YOFF;
-                // BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
 
                 TextureAtlasSprite containerTexture =  Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(CONTAINER_TEXTURE);
                 TextureAtlasSprite texture = containerTexture;
                 
-                // int mediumId = tileEntity.getGrowthMediumId();
+                int mediumId = tileEntity.getGrowthMediumIdFromItemStack();
 
-                // if (mediumId != 0) {
-                //     String blockForRender = HydroponicHelper.getMediumTextureFromId(mediumId).toString();
-                //     texture = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(blockForRender);
-                // }
+                if (mediumId > 0) {
+                    IBlockState growthMediaBlockState = HydroponicHelper.getMediumBlockStateFromId(mediumId);
+                    BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
+                    texture = bm.getTexture(growthMediaBlockState);
+                }
 
                 // Lightmap calculations
                 int upCombined = getWorld().getCombinedLight(tileEntity.getPos().up(), 0);

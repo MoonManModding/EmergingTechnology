@@ -2,8 +2,8 @@ package io.moonman.emergingtechnology.machines.hydroponic;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
-import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.MachineBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,7 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -28,24 +27,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 
-public class Hydroponic extends Block implements ITileEntityProvider {
-
-    private final String _name = "hydroponic";
+public class Hydroponic extends MachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool HAS_WATER = PropertyBool.create("haswater");
 
     public Hydroponic() {
-        super(Material.ANVIL);
+        super(Material.ANVIL, "hydroponic");
         this.setHardness(3.0f);
-        this.setRegistryName(EmergingTechnology.MODID, _name);
-        this.setUnlocalizedName(EmergingTechnology.MODID + "." + _name);
-        this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
         this.setSoundType(SoundType.METAL);
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false));
@@ -60,16 +51,6 @@ public class Hydroponic extends Block implements ITileEntityProvider {
     @Override
     public boolean isFertile(World world, BlockPos pos) {
         return world.getBlockState(pos).getValue(HAS_WATER);
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState iBlockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState iBlockState) {
-        return false;
     }
 
     @Override
@@ -146,20 +127,6 @@ public class Hydroponic extends Block implements ITileEntityProvider {
         }
 
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-    }
-
-    @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        HydroponicTileEntity te = (HydroponicTileEntity) world.getTileEntity(pos);
-        IItemHandler cap = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-        for (int i = 0; i < cap.getSlots(); ++i) {
-            ItemStack itemstack = cap.getStackInSlot(i);
-
-            if (!itemstack.isEmpty()) {
-                InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), itemstack);
-            }
-        }
     }
 
     @Override

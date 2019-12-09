@@ -18,7 +18,7 @@ Loads and validates the custom growth medium JSON file
 */
 public class CustomGrowthMediumLoader {
 
-    public static final int STARTING_ID = 5;
+    public static final int STARTING_ID = 6;
 
     public static void loadCustomGrowthMedia(String customGrowthMediaFilePath) {
         EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom growth media...");

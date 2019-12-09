@@ -5,7 +5,7 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -40,21 +40,6 @@ public class HydroponicHelper {
         return false;
     };
 
-    public static ResourceLocation getMediumTextureFromId(int id) {
-        switch (id) {
-        case 1:
-            return Blocks.DIRT.getRegistryName();
-        case 2:
-            return Blocks.SAND.getRegistryName();
-        case 3:
-            return Blocks.GRAVEL.getRegistryName();
-        case 4:
-            return Blocks.CLAY.getRegistryName();
-        default:
-            return ModBlocks.frame.getRegistryName();
-        }
-    }
-
     public static int getGrowthMediaIdFromStack(ItemStack itemStack) {
         if (!isItemStackValidGrowthMedia(itemStack)) {
             return 0;
@@ -86,17 +71,36 @@ public class HydroponicHelper {
     public static int getGrowthProbabilityForMedium(ItemStack itemStack) {
         int mediumId = getGrowthMediaIdFromStack(itemStack);
 
-        if (mediumId == 0)
-            return 0;
-        if (mediumId == 1)
+        switch (mediumId) {
+        case 1:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthDirtModifier;
-        if (mediumId == 2)
+        case 2:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthSandModifier;
-        if (mediumId == 3)
+        case 3:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthGravelModifier;
-        if (mediumId == 4)
+        case 4:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthClayModifier;
+        case 5:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthClayModifier;
+        default:
+            return CustomGrowthMediumHelper.getGrowthProbabilityForMedium(mediumId);
+        }
+    }
 
-        return CustomGrowthMediumHelper.getGrowthProbabilityForMedium(mediumId);
+    public static IBlockState getMediumBlockStateFromId(int id) {
+        switch (id) {
+        case 1:
+            return Blocks.DIRT.getDefaultState();
+        case 2:
+            return Blocks.SAND.getDefaultState();
+        case 3:
+            return Blocks.GRAVEL.getDefaultState();
+        case 4:
+            return Blocks.CLAY.getDefaultState();
+        case 5:
+            return Blocks.CLAY.getDefaultState();
+        default:
+            return Blocks.HARDENED_CLAY.getDefaultState();
+        }
     }
 }
