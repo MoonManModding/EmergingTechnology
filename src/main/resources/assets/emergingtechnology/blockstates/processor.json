@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:processor"
+    },
+    "variants": {
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {}
+        ],
+        "processing": {
+            "true": {},
+            "false": {}
+        }
+    }
+}

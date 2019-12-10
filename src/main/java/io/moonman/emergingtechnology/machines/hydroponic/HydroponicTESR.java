@@ -2,14 +2,12 @@ package io.moonman.emergingtechnology.machines.hydroponic;
 
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.animation.FastTESR;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -107,28 +105,28 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
                 buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(texture.getMaxU(), texture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
                 buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(texture.getMinU(), texture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
         
-                //NORTH face
-                buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // //NORTH face
+                // buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
         
-                //SOUTH face
-                buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // //SOUTH face
+                // buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
         
-                //WEST face
-                buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // //WEST face
+                // buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
         
-                //EAST face
-                buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // //EAST face
+                // buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
+                // buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
     }
 }

@@ -16,6 +16,7 @@ public class MachineBase extends Block {
 
     public MachineBase(Material material, String name) {
         super(material);
+        this.setHardness(1.0f);
         this.setRegistryName(EmergingTechnology.MODID, name);
         this.setUnlocalizedName(EmergingTechnology.MODID + "." + name);
         this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
@@ -23,7 +24,7 @@ public class MachineBase extends Block {
 
     @Override
     public boolean isOpaqueCube(IBlockState iBlockState) {
-        return false;
+        return true;
     }
 
     @Override

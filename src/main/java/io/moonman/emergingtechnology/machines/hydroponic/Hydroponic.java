@@ -35,8 +35,7 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
     public static final PropertyBool HAS_WATER = PropertyBool.create("haswater");
 
     public Hydroponic() {
-        super(Material.ANVIL, "hydroponic");
-        this.setHardness(3.0f);
+        super(Material.IRON, "hydroponic");
         this.setSoundType(SoundType.METAL);
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false));

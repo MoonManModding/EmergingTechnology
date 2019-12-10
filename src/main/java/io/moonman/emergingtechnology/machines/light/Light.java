@@ -36,7 +36,6 @@ public class Light extends MachineBase implements ITileEntityProvider {
 
     public Light() {
         super(Material.GLASS, "light");
-        this.setHardness(1.0f);
         this.setSoundType(SoundType.GLASS);
         this.setLightLevel(1.0f);
         this.setLightOpacity(0);

@@ -6,6 +6,12 @@ import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
 import io.moonman.emergingtechnology.machines.light.LightContainer;
 import io.moonman.emergingtechnology.machines.light.LightGui;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
+import io.moonman.emergingtechnology.machines.processor.ProcessorContainer;
+import io.moonman.emergingtechnology.machines.processor.ProcessorGui;
+import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
+import io.moonman.emergingtechnology.machines.shredder.ShredderContainer;
+import io.moonman.emergingtechnology.machines.shredder.ShredderGui;
+import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -24,6 +30,12 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof LightTileEntity) {
             return new LightContainer(player.inventory, (LightTileEntity) te);
         }
+        if (te instanceof ProcessorTileEntity) {
+            return new ProcessorContainer(player.inventory, (ProcessorTileEntity) te);
+        }
+        if (te instanceof ShredderTileEntity) {
+            return new ShredderContainer(player.inventory, (ShredderTileEntity) te);
+        }
         return null;
     }
 
@@ -40,6 +52,16 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof LightTileEntity) {
             LightTileEntity containerTileEntity = (LightTileEntity) te;
             return new LightGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof ProcessorTileEntity) {
+            ProcessorTileEntity containerTileEntity = (ProcessorTileEntity) te;
+            return new ProcessorGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof ShredderTileEntity) {
+            ShredderTileEntity containerTileEntity = (ShredderTileEntity) te;
+            return new ShredderGui(player.inventory, containerTileEntity);
         }
 
         return null;

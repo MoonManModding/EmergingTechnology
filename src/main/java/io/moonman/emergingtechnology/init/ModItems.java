@@ -24,4 +24,14 @@ public class ModItems {
 	public static final Item purplebulb = null;
 
 	// endregion
+
+	//region Polymers Items
+
+	// Block Items
+	public static final Item processor = null;
+	public static final Item shredder = null;
+
+	// Items
+
+	// endregion
 }
