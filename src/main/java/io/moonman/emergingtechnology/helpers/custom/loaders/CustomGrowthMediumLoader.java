@@ -12,6 +12,7 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomGrowthMediumWrapper;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
 Loads and validates the custom growth medium JSON file
@@ -19,6 +20,12 @@ Loads and validates the custom growth medium JSON file
 public class CustomGrowthMediumLoader {
 
     public static final int STARTING_ID = 6;
+
+    public static void preInit(FMLPreInitializationEvent e) {
+
+        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID + "\\custom-media.json";
+        loadCustomGrowthMedia(path);
+    }
 
     public static void loadCustomGrowthMedia(String customGrowthMediaFilePath) {
         EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom growth media...");

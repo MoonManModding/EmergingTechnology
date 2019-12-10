@@ -40,6 +40,12 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class HydroponicTileEntity extends TileEntity implements ITickable, SimpleComponent {
 
+    private int tick = 0;
+
+    private int water = this.fluidHandler.getFluidAmount();
+    private int energy = this.energyHandler.getEnergyStored();
+    private int mediumId = this.getGrowthMediumId();
+
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.HYDROPONIC_FLUID_CAPACITY) {
         @Override
         protected void onContentsChanged() {
@@ -48,13 +54,19 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         }
     };
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HYDROPONIC_ENERGY_CAPACITY);
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HYDROPONIC_ENERGY_CAPACITY) {
+        @Override
+        public void onContentsChanged() {
+            super.onContentsChanged();
+            markDirtyClient();
+        }
+    };
 
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
-            markDirty();
             super.onContentsChanged(slot);
+            markDirty();
         }
     };
 
@@ -65,12 +77,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
             world.notifyBlockUpdate(getPos(), state, state, 3);
         }
     }
-
-    private int tick = 0;
-
-    private int water = this.fluidHandler.getFluidAmount();
-    private int energy = this.energyHandler.getEnergyStored();
-    private int mediumId = this.getGrowthMediumId();
 
     @Override
     public boolean hasFastRenderer() {

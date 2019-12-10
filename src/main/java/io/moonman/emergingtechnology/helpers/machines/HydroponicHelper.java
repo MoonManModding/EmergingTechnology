@@ -4,13 +4,10 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
-import io.moonman.emergingtechnology.init.ModBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Provides useful methods for the Hydroponic Grow Bed

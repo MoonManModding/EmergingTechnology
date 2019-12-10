@@ -26,7 +26,17 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class ShredderTileEntity extends TileEntity implements ITickable, SimpleComponent {
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SHREDDER_ENERGY_CAPACITY);
+    private int tick = 0;
+
+    private int energy = this.energyHandler.getEnergyStored();
+
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SHREDDER_ENERGY_CAPACITY) {
+        @Override
+        public void onContentsChanged() {
+            super.onContentsChanged();
+            markDirtyClient();
+        }
+    };
 
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
@@ -43,10 +53,6 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
             world.notifyBlockUpdate(getPos(), state, state, 3);
         }
     }
-
-    private int tick = 0;
-
-    private int energy = this.energyHandler.getEnergyStored();
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {

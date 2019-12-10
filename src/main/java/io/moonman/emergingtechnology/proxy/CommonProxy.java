@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.proxy;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
+import io.moonman.emergingtechnology.helpers.custom.loaders.OreDictionaryLoader;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,8 +44,9 @@ public abstract class CommonProxy {
 
         EmergingTechnologyConfig.preInit();
 
-        String customGrowthMediaFilePath = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID + "\\custom-media.json";
-        CustomGrowthMediumLoader.loadCustomGrowthMedia(customGrowthMediaFilePath);
+        CustomGrowthMediumLoader.preInit(e);
+
+        OreDictionaryLoader.preInit();
     }
 
     public void init(FMLInitializationEvent e) {

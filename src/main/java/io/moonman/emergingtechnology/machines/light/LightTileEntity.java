@@ -35,7 +35,20 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class LightTileEntity extends TileEntity implements ITickable, SimpleComponent {
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.LIGHT_ENERGY_CAPACITY);
+    private int energy = this.energyHandler.getEnergyStored();
+
+    private int bulbTypeId = 0;
+    private boolean bulbChanged = false;
+
+    private int tick = 0;
+
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.LIGHT_ENERGY_CAPACITY) {
+        @Override
+        public void onContentsChanged() {
+            super.onContentsChanged();
+            markDirtyClient();
+        }
+    };
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -44,13 +57,13 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
         }
     };
 
-    private int energy = this.energyHandler.getEnergyStored();
-    private boolean energyChanged = false;
-
-    private int bulbTypeId = 0;
-    private boolean bulbChanged = false;
-
-    private int tick = 0;
+    public void markDirtyClient() {
+        markDirty();
+        if (world != null) {
+            IBlockState state = world.getBlockState(getPos());
+            world.notifyBlockUpdate(getPos(), state, state, 3);
+        }
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -247,8 +260,6 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
     }
 
     private void setEnergy(int energy) {
-        this.energyChanged = this.energy != energy;
-
         this.energy = energy;
     }
 

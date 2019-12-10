@@ -29,6 +29,10 @@ public class GuiHelper {
         return new GuiPosition(xSize - labelLength, 8);
     }
 
+    public static GuiPosition getMiddleRight(int xSize, int labelLength) {
+        return new GuiPosition(xSize - labelLength, 41);
+    }
+
     public static GuiPosition getInventory(int ySize) {
         return new GuiPosition(118, ySize - 95);
     }

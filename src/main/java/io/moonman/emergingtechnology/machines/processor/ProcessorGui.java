@@ -24,6 +24,7 @@ public class ProcessorGui extends GuiContainer
 	// Standard positions for labels
 	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();
 	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
+	private static final GuiPosition MIDDLE_RIGHT_POS = GuiHelper.getMiddleRight(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
     
     // Draws textures on gui
@@ -57,10 +58,13 @@ public class ProcessorGui extends GuiContainer
 
 		// Water Stats
 		int water = this.tileEntity.getWater();
+		int energy = this.tileEntity.getEnergy();
 
-		GuiIndicator indicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
+		GuiIndicator waterIndicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
+		GuiIndicator energyIndicator = new GuiIndicator(energy, Reference.PROCESSOR_ENERGY_CAPACITY);
 
-		this.fontRenderer.drawString(indicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, indicator.getPercentageColour());
+		this.fontRenderer.drawString(waterIndicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, waterIndicator.getPercentageColour());
+		this.fontRenderer.drawString(energyIndicator.getPercentageString(), MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, energyIndicator.getPercentageColour());
 	}
 	
 	@Override

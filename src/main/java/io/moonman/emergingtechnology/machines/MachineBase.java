@@ -24,7 +24,7 @@ public class MachineBase extends Block {
 
     @Override
     public boolean isOpaqueCube(IBlockState iBlockState) {
-        return true;
+        return false;
     }
 
     @Override

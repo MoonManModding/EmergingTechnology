@@ -28,6 +28,11 @@ import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class ProcessorTileEntity extends TileEntity implements ITickable, SimpleComponent {
+    
+    private int tick = 0;
+
+    private int water = this.fluidHandler.getFluidAmount();
+    private int energy = this.energyHandler.getEnergyStored();
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.PROCESSOR_FLUID_CAPACITY) {
         @Override
@@ -37,7 +42,13 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
         }
     };
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.PROCESSOR_ENERGY_CAPACITY);
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.PROCESSOR_ENERGY_CAPACITY) {
+        @Override
+        public void onContentsChanged() {
+            super.onContentsChanged();
+            markDirtyClient();
+        }
+    };
 
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
@@ -54,11 +65,6 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             world.notifyBlockUpdate(getPos(), state, state, 3);
         }
     }
-
-    private int tick = 0;
-
-    private int water = this.fluidHandler.getFluidAmount();
-    private int energy = this.energyHandler.getEnergyStored();
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -137,9 +143,9 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             return;
         } else {
 
-            this.setWater(this.fluidHandler.getFluidAmount());
             this.setEnergy(this.energyHandler.getEnergyStored());
-
+            this.setWater(this.fluidHandler.getFluidAmount());
+            
             doPowerUsageProcess();
             doWaterUsageProcess();
 
@@ -162,11 +168,11 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
     // Getters
 
     public int getWater() {
-        return this.water;
+        return this.fluidHandler.getFluidAmount();
     }
 
     public int getEnergy() {
-        return this.energy;
+        return this.energyHandler.getEnergyStored();
     }
 
     // Setters
