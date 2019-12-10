@@ -1,6 +1,7 @@
 # Thanks to TigrKill for these translations!
 
-# Items
+# Item
+# HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Гидропонная Установка
 item.emergingtechnology.light.name=Фитолампа
 item.emergingtechnology.frame.name=Гидропонная рама
@@ -10,10 +11,19 @@ item.emergingtechnology.greenbulb.name=Зеленый Светодиод
 item.emergingtechnology.bluebulb.name=Синий Светодиод
 item.emergingtechnology.purplebulb.name=Ультрафиолетовый Светодиод
 
+# POLYMERS MODULE
+item.emergingtechnology.processor.name=Процессор
+item.emergingtechnology.shredder.name=Измельчитель
+
 #Blocks
+# HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
 blocks.emergingtechnology.light.name=Фитолампа
 blocks.emergingtechnology.frame.name=Гидропонная рама
+
+# POLYMERS MODULE
+blocks.emergingtechnology.processor.name=Процессор
+blocks.emergingtechnology.shredder.name=Измельчитель
 
 #Containers
 
@@ -22,6 +32,10 @@ blocks.emergingtechnology.frame.name=Гидропонная рама
 tile.emergingtechnology.hydroponic.name=Гидропонная Установка
 tile.emergingtechnology.light.name=Фитолампа
 tile.emergingtechnology.frame.name=Гидропонная рама
+
+# POLYMERS MODULE
+tile.emergingtechnology.processor.name=Процессор
+tile.emergingtechnology.shredder.name=Измельчитель
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology
