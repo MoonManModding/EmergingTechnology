@@ -101,7 +101,7 @@ public class HydroponicHelper {
         case 5:
             return Blocks.CLAY.getDefaultState();
         default:
-            return Blocks.HARDENED_CLAY.getDefaultState();
+            return Blocks.WOOL.getDefaultState();
         }
     }
 }

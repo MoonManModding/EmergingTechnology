@@ -104,29 +104,5 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
                 buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(texture.getMaxU(), texture.getMinV()).lightmap(upLMa,upLMb).endVertex();
                 buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(texture.getMaxU(), texture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
                 buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(texture.getMinU(), texture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-        
-                // //NORTH face
-                // buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-        
-                // //SOUTH face
-                // buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-        
-                // //WEST face
-                // buffer.pos(BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-        
-                // //EAST face
-                // buffer.pos(1 - BORDER, actualHeight, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(1 - BORDER, actualHeight, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMinV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(1 - BORDER, LOW, 1 - BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMaxU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
-                // buffer.pos(1 - BORDER, LOW, BORDER).color(1f,1f,1f,1f).tex(containerTexture.getMinU(), containerTexture.getMaxV()).lightmap(upLMa,upLMb).endVertex();
     }
 }
