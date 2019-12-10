@@ -321,6 +321,12 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
 
     @Callback
     @Optional.Method(modid = "opencomputers")
+    public Object[] getMaxEnergyLevel(Context context, Arguments args) {
+        return new Object[] { Reference.LIGHT_ENERGY_CAPACITY };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
     public Object[] getBulbName(Context context, Arguments args) {
         return new Object[] { getItemStack().getDisplayName() };
     }

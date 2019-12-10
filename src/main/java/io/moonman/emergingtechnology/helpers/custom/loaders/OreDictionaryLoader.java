@@ -44,7 +44,7 @@ public class OreDictionaryLoader {
             EmergingTechnology.logger.info(OreDictionary.getOreName(id));
         }
 
-        return convertIntegers(validOreIds);
+        return convertIntegers(validOreIds); // I miss LINQ ;_;
     }
 
     private static boolean isEntryPlastic(String name) {

@@ -1,5 +1,7 @@
 package io.moonman.emergingtechnology.init;
 
+import java.util.ArrayList;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.Frame;
 import io.moonman.emergingtechnology.item.items.BlueBulb;
@@ -36,15 +38,10 @@ public class RegistrationHandler {
     public static void registerBlocks(Register<Block> event) {
         final Block[] blocks = { new Hydroponic(), new Light(), new Frame(), new Processor(), new Shredder() };
 
-        ResourceLocation hydroponicLocation = new ResourceLocation(EmergingTechnology.MODID + ":hydroponic");
-        ResourceLocation lightLocation = new ResourceLocation(EmergingTechnology.MODID + ":light");
-        ResourceLocation processorLocation = new ResourceLocation(EmergingTechnology.MODID + ":processor");
-        ResourceLocation shredderLocation = new ResourceLocation(EmergingTechnology.MODID + ":shredder");
-
-        GameRegistry.registerTileEntity(HydroponicTileEntity.class, hydroponicLocation);
-        GameRegistry.registerTileEntity(LightTileEntity.class, lightLocation);
-        GameRegistry.registerTileEntity(ProcessorTileEntity.class, processorLocation);
-        GameRegistry.registerTileEntity(ShredderTileEntity.class, shredderLocation);
+        GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
+        GameRegistry.registerTileEntity(LightTileEntity.class, getResourceLocation("light"));
+        GameRegistry.registerTileEntity(ProcessorTileEntity.class, getResourceLocation("processor"));
+        GameRegistry.registerTileEntity(ShredderTileEntity.class, getResourceLocation("shredder"));
 
         event.getRegistry().registerAll(blocks);
     }
@@ -54,14 +51,10 @@ public class RegistrationHandler {
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb() };
 
-        // Items from Blocks
-        Item hydroponic = generateItemBlock(ModBlocks.hydroponic);
-        Item light = generateItemBlock(ModBlocks.light);
-        Item frame = generateItemBlock(ModBlocks.frame);
-        Item processor = generateItemBlock(ModBlocks.processor);
-        Item shredder = generateItemBlock(ModBlocks.shredder);
+        // Blocks
+        Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor, ModBlocks.shredder };
 
-        final Item[] itemBlocks = { hydroponic, light, frame, processor, shredder };
+        final Item[] itemBlocks = generateItemBlocks(blocks);
 
         // Register
         event.getRegistry().registerAll(items);
@@ -72,29 +65,43 @@ public class RegistrationHandler {
     public static void registerModels(ModelRegistryEvent event) {
 
         // Item Models
-        registerModel(ModItems.redbulb, 0);
-        registerModel(ModItems.greenbulb, 0);
-        registerModel(ModItems.bluebulb, 0);
-        registerModel(ModItems.purplebulb, 0);
+        registerModel(ModItems.redbulb);
+        registerModel(ModItems.greenbulb);
+        registerModel(ModItems.bluebulb);
+        registerModel(ModItems.purplebulb);
 
         // Block Models
-        registerModel(Item.getItemFromBlock(ModBlocks.hydroponic), 0);
-        registerModel(Item.getItemFromBlock(ModBlocks.light), 0);
-        registerModel(Item.getItemFromBlock(ModBlocks.frame), 0);
-        registerModel(Item.getItemFromBlock(ModBlocks.processor), 0);
-        registerModel(Item.getItemFromBlock(ModBlocks.shredder), 0);
+        registerModel(Item.getItemFromBlock(ModBlocks.hydroponic));
+        registerModel(Item.getItemFromBlock(ModBlocks.light));
+        registerModel(Item.getItemFromBlock(ModBlocks.frame));
+        registerModel(Item.getItemFromBlock(ModBlocks.processor));
+        registerModel(Item.getItemFromBlock(ModBlocks.shredder));
 
         // Hydroponic TESR
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0, new ModelResourceLocation(ModBlocks.hydroponic.getRegistryName(), "inventory"));
         ClientRegistry.bindTileEntitySpecialRenderer(HydroponicTileEntity.class, new HydroponicTESR());
     }
 
+    private static Item[] generateItemBlocks(Block[] blocks) {
+        ArrayList<Item> itemBlocks = new ArrayList<Item>();
+
+        for (Block block : blocks) {
+            itemBlocks.add(generateItemBlock(block));
+        }
+
+        return itemBlocks.toArray(new Item[0]);
+    }
+
     private static Item generateItemBlock(Block block) {
         return new ItemBlock(block).setRegistryName(block.getRegistryName());
     }
 
-    private static void registerModel(Item item, int meta) {
-        ModelLoader.setCustomModelResourceLocation(item, meta,
+    private static void registerModel(Item item) {
+        ModelLoader.setCustomModelResourceLocation(item, 0,
                 new ModelResourceLocation(item.getRegistryName(), "inventory"));
+    }
+
+    private static ResourceLocation getResourceLocation(String location) {
+        return new ResourceLocation(EmergingTechnology.MODID + ":" + location);
     }
 }

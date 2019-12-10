@@ -397,8 +397,22 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
     @Callback
     @Optional.Method(modid = "opencomputers")
+    public Object[] getMaxWaterLevel(Context context, Arguments args) {
+        int level = Reference.HYDROPONIC_FLUID_CAPACITY;
+        return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
     public Object[] getEnergyLevel(Context context, Arguments args) {
         int level = getEnergy();
+        return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getMaxEnergyLevel(Context context, Arguments args) {
+        int level = Reference.HYDROPONIC_ENERGY_CAPACITY;
         return new Object[] { level };
     }
 
