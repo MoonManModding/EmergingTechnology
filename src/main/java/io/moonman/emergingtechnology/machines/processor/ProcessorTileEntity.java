@@ -28,11 +28,6 @@ import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class ProcessorTileEntity extends TileEntity implements ITickable, SimpleComponent {
-    
-    private int tick = 0;
-
-    private int water = this.fluidHandler.getFluidAmount();
-    private int energy = this.energyHandler.getEnergyStored();
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.PROCESSOR_FLUID_CAPACITY) {
         @Override
@@ -57,6 +52,11 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             super.onContentsChanged(slot);
         }
     };
+
+    private int tick = 0;
+
+    private int water = this.fluidHandler.getFluidAmount();
+    private int energy = this.energyHandler.getEnergyStored();
 
     public void markDirtyClient() {
         markDirty();

@@ -26,10 +26,6 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class ShredderTileEntity extends TileEntity implements ITickable, SimpleComponent {
 
-    private int tick = 0;
-
-    private int energy = this.energyHandler.getEnergyStored();
-
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SHREDDER_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
@@ -45,6 +41,10 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
             super.onContentsChanged(slot);
         }
     };
+
+    private int tick = 0;
+
+    private int energy = this.energyHandler.getEnergyStored();
 
     public void markDirtyClient() {
         markDirty();

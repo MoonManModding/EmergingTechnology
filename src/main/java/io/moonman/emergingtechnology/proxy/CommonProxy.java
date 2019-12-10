@@ -27,6 +27,7 @@ public abstract class CommonProxy {
     @SubscribeEvent
     public static void registerItems(Register<Item> event) {
         RegistrationHandler.registerItems(event);
+        OreDictionaryLoader.registerItems();
     }
 
     @SubscribeEvent
@@ -45,15 +46,14 @@ public abstract class CommonProxy {
         EmergingTechnologyConfig.preInit();
 
         CustomGrowthMediumLoader.preInit(e);
-
-        OreDictionaryLoader.preInit();
     }
 
     public void init(FMLInitializationEvent e) {
-
+        OreDictionaryLoader.init();
     }
 
     public void postInit(FMLPostInitializationEvent e) {
+        
     }
 
     abstract public boolean playerIsInCreativeMode(EntityPlayer player);
