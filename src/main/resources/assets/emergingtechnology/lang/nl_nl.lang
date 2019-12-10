@@ -1,22 +1,37 @@
-# Items
+# Item
+# HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 item.emergingtechnology.light.name=Hydroponic Grow Light
+item.emergingtechnology.frame.name=Hydroponic Frame
 
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
 item.emergingtechnology.bluebulb.name=Blue Bulb
 item.emergingtechnology.purplebulb.name=UV Bulb
 
+# POLYMERS MODULE
+item.emergingtechnology.processor.name=Processor
+
 #Blocks
+# HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
+blocks.emergingtechnology.frame.name=Hydroponic Frame
+
+# POLYMERS MODULE
+blocks.emergingtechnology.processor.name=Processor
 
 #Containers
 
 
 #Tiles
+# HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 tile.emergingtechnology.light.name=Hydroponic Grow Light
+tile.emergingtechnology.frame.name=Hydroponic Frame
+
+# POLYMERS MODULE
+tile.emergingtechnology.processor.name=Processor
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology

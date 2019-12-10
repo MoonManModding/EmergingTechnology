@@ -1,0 +1,27 @@
+# Thanks to TigrKill for these translations!
+
+# Items
+item.emergingtechnology.hydroponic.name=Гидропонная Установка
+item.emergingtechnology.light.name=Фитолампа
+item.emergingtechnology.frame.name=Гидропонная рама
+
+item.emergingtechnology.redbulb.name=Красный Светодиод
+item.emergingtechnology.greenbulb.name=Зеленый Светодиод
+item.emergingtechnology.bluebulb.name=Синий Светодиод
+item.emergingtechnology.purplebulb.name=Ультрафиолетовый Светодиод
+
+#Blocks
+blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
+blocks.emergingtechnology.light.name=Фитолампа
+blocks.emergingtechnology.frame.name=Гидропонная рама
+
+#Containers
+
+
+#Tiles
+tile.emergingtechnology.hydroponic.name=Гидропонная Установка
+tile.emergingtechnology.light.name=Фитолампа
+tile.emergingtechnology.frame.name=Гидропонная рама
+
+#ItemGroup
+itemGroup.technologytab=Emerging Technology
