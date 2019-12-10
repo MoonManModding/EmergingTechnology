@@ -1,0 +1,22 @@
+# Items
+item.emergingtechnology.hydroponic.name=Основа Гидропоники
+item.emergingtechnology.light.name=Искусственное Освещение Гидропоники
+
+item.emergingtechnology.redbulb.name=Красная Лампа
+item.emergingtechnology.greenbulb.name=Зеленая Лампа
+item.emergingtechnology.bluebulb.name=Синяя Лампа
+item.emergingtechnology.purplebulb.name=Ультрафиолетовая  Лампа
+
+#Blocks
+blocks.emergingtechnology.hydroponic.name=Основа Гидропоники
+blocks.emergingtechnology.light.name=Искусственное Освещение Гидропоники
+
+#Containers
+
+
+#Tiles
+tile.emergingtechnology.hydroponic.name=Основа Гидропоники
+tile.emergingtechnology.light.name=Искусственное Освещение Гидропоники
+
+#ItemGroup
+itemGroup.technologytab=Emerging Technology
