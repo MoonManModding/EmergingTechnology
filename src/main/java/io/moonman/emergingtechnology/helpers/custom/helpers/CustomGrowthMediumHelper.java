@@ -46,7 +46,7 @@ public class CustomGrowthMediumHelper {
         }
     }
 
-    private static CustomGrowthMedium getCustomGrowthMediumById(int mediumId) {
+    public static CustomGrowthMedium getCustomGrowthMediumById(int mediumId) {
 
         CustomGrowthMedium[] customGrowthMedia = getCustomGrowthMedia();
 

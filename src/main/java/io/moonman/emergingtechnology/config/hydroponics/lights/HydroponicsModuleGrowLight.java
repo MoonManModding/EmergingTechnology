@@ -1,10 +1,15 @@
-package io.moonman.emergingtechnology.config.hydroponics;
+package io.moonman.emergingtechnology.config.hydroponics.lights;
 
+import io.moonman.emergingtechnology.config.hydroponics.lights.boosts.IdealGrowthBoost;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RangeInt;
 
 public class HydroponicsModuleGrowLight {
+
+    @Name("Crops Boost from Bulb")
+	@Config.Comment("Configure the boost to growth specific crops get when grown under specific bulb")
+    public final IdealGrowthBoost BOOSTS = new IdealGrowthBoost();
 
     @Name("Red Bulb Growth Modifier %")
     @Config.Comment("Probability of growth from a grow lamp containing a red bulb per cycle (~10 ticks).")

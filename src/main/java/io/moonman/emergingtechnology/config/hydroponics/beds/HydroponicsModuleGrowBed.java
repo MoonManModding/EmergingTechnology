@@ -1,10 +1,15 @@
-package io.moonman.emergingtechnology.config.hydroponics;
+package io.moonman.emergingtechnology.config.hydroponics.beds;
 
+import io.moonman.emergingtechnology.config.hydroponics.beds.boosts.IdealGrowthBoost;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RangeInt;
 
 public class HydroponicsModuleGrowBed {
+
+    @Name("Crops Boost from Media")
+	@Config.Comment("Configure the boost to growth specific crops get when grown on specific media")
+    public final IdealGrowthBoost BOOSTS = new IdealGrowthBoost();
 
     @Name("Grow Bed - Energy Required for Transfer")
     @Config.Comment("Do grow beds require energy to transfer water to other beds? (~10 ticks).")

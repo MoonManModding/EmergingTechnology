@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.proxy;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.custom.loaders.CustomBulbLoader;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
 import io.moonman.emergingtechnology.helpers.custom.loaders.OreDictionaryLoader;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
@@ -46,6 +47,7 @@ public abstract class CommonProxy {
         EmergingTechnologyConfig.preInit();
 
         CustomGrowthMediumLoader.preInit(e);
+        CustomBulbLoader.preInit(e);
     }
 
     public void init(FMLInitializationEvent e) {

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.Frame;
-import io.moonman.emergingtechnology.item.items.BlueBulb;
-import io.moonman.emergingtechnology.item.items.GreenBulb;
-import io.moonman.emergingtechnology.item.items.PurpleBulb;
-import io.moonman.emergingtechnology.item.items.RedBulb;
+import io.moonman.emergingtechnology.item.hydroponics.BlueBulb;
+import io.moonman.emergingtechnology.item.hydroponics.GreenBulb;
+import io.moonman.emergingtechnology.item.hydroponics.PurpleBulb;
+import io.moonman.emergingtechnology.item.hydroponics.RedBulb;
+import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
+import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTESR;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
@@ -49,7 +51,7 @@ public class RegistrationHandler {
     public static void registerItems(Register<Item> event) {
 
         // Items
-        final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb() };
+        final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(), new ShreddedPlant() };
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor, ModBlocks.shredder };
@@ -69,6 +71,8 @@ public class RegistrationHandler {
         registerModel(ModItems.greenbulb);
         registerModel(ModItems.bluebulb);
         registerModel(ModItems.purplebulb);
+        registerModel(ModItems.shreddedplastic);
+        registerModel(ModItems.shreddedplant);
 
         // Block Models
         registerModel(Item.getItemFromBlock(ModBlocks.hydroponic));

@@ -60,19 +60,6 @@ public class Light extends MachineBase implements ITileEntityProvider {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
     }
 
-    public static void setState(boolean hasPower, int bulbType, World worldIn, BlockPos pos) {
-        IBlockState state = worldIn.getBlockState(pos);
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
-
-        worldIn.setBlockState(pos, ModBlocks.light.getDefaultState().withProperty(FACING, state.getValue(FACING))
-                .withProperty(POWERED, hasPower).withProperty(BULBTYPE, bulbType), 3);
-
-        if (tileEntity != null) {
-            tileEntity.validate();
-            worldIn.setTileEntity(pos, tileEntity);
-        }
-    }
-
     @Override
     public int getLightValue(IBlockState state) {
         return state.getValue(POWERED) ? 15 : 0;
@@ -105,6 +92,7 @@ public class Light extends MachineBase implements ITileEntityProvider {
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 
         int bulbTypeId = 0;
+        boolean powered = false;
 
         TileEntity tileEntity = worldIn instanceof ChunkCache
                 ? ((ChunkCache) worldIn).getTileEntity(pos, EnumCreateEntityType.CHECK)
@@ -113,10 +101,13 @@ public class Light extends MachineBase implements ITileEntityProvider {
         if (tileEntity instanceof LightTileEntity) {
             LightTileEntity lightTileEntity = (LightTileEntity) tileEntity;
 
-            bulbTypeId = lightTileEntity.getBulbTypeId();
+            int id = lightTileEntity.getBulbTypeId();
+
+            bulbTypeId = LightHelper.getBulbColourFromBulbId(id);
+            powered = lightTileEntity.getEnergy() > 0;
         }
 
-        return state.withProperty(BULBTYPE, bulbTypeId);
+        return state.withProperty(POWERED, powered).withProperty(BULBTYPE, bulbTypeId);
     }
 
     @Override

@@ -32,6 +32,7 @@ public class ModItems {
 	public static final Item shredder = null;
 
 	// Items
-
+	public static final Item shreddedplastic = null;
+	public static final Item shreddedplant = null;
 	// endregion
 }

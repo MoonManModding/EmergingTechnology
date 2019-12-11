@@ -61,7 +61,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
             markDirty();
-            
+
         }
     };
 
@@ -283,6 +283,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         if (!PlantHelper.isPlantBlock(aboveBlock)) {
             return false;
         }
+
+        // If this medium works especially well on this plant, we can give it a little boost
+        int growthProbabilityBoostModifier = HydroponicHelper.getSpecificPlantGrowthBoost(mediumId, aboveBlockState);
+
+        growthProbabilityThreshold += growthProbabilityBoostModifier;
 
         // If the above is one of those BlockCrops fellas or fancy IPlantable, roll the
         // dice

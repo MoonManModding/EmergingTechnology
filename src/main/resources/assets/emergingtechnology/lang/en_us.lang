@@ -1,5 +1,5 @@
-# Item
 # HYDROPONICS MODULE
+# Item
 item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
@@ -12,6 +12,8 @@ item.emergingtechnology.purplebulb.name=UV Bulb
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processor
 item.emergingtechnology.shredder.name=Shredder
+item.emergingtechnology.shreddedplastic.name=Shredded Plastic
+item.emergingtechnology.shreddedplant.name=Shredded Plant
 
 #Blocks
 # HYDROPONICS MODULE

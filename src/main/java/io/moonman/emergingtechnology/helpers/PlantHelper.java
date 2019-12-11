@@ -1,5 +1,10 @@
 package io.moonman.emergingtechnology.helpers;
 
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.config.hydroponics.enums.BulbTypeEnum;
+import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
+import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
+import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockCrops;
@@ -71,8 +76,86 @@ public class PlantHelper {
         return state.getBlock().getLocalizedName();
     }
 
+    public static String getPlantRegistryNameAtPosition(World world, BlockPos position) {
+        IBlockState state = world.getBlockState(position.add(0, 1, 0));
+
+        if (state == null) return "Nothing";
+
+        return state.getBlock().getRegistryName().getResourcePath();
+    }
+
     private static boolean isItemInOverride(Item item) {
         if(item == Items.REEDS) return true;
         return false;
+    }
+
+    public static CropTypeEnum getCropTypeEnumFromRegistryName(String plantName) {
+        if (plantName.equalsIgnoreCase("minecraft:wheat")) {
+            return CropTypeEnum.WHEAT;
+        }
+
+        if (plantName.equalsIgnoreCase("minecraft:carrots")) {
+            return CropTypeEnum.CARROTS;
+        }
+
+        if (plantName.equalsIgnoreCase("minecraft:potatoes")) {
+            return CropTypeEnum.POTATOES;
+        }
+
+        if (plantName.equalsIgnoreCase("minecraft:beetroots")) {
+            return CropTypeEnum.BEETROOT;
+        }
+
+        if (plantName.equalsIgnoreCase("minecraft:reeds")) {
+            return CropTypeEnum.REEDS;
+        }
+
+        if (plantName.equalsIgnoreCase("minecraft:cactus")) {
+            return CropTypeEnum.CACTUS;
+        }
+
+        if (plantName.equalsIgnoreCase("minecraft:pumpkin_stem")) {
+            return CropTypeEnum.PUMPKIN;
+        }
+
+        if (plantName.equalsIgnoreCase("minecraft:melon_stem")) {
+            return CropTypeEnum.MELON;
+        }
+
+        return CropTypeEnum.NONE;
+    }
+
+    public static IIdealBoostsConfiguration getConfigurationForMediumType(MediumTypeEnum mediumType) {
+        switch (mediumType) {
+        case DIRT:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.DIRT;
+        case SAND:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.SAND;
+        case GRAVEL:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.GRAVEL;
+        case CLAY:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.CLAY;
+        default:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.DIRT;
+        }
+    }
+
+    public static IIdealBoostsConfiguration getConfigurationForBulbType(BulbTypeEnum bulbType) {
+        switch (bulbType) {
+        case RED:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.RED;
+        case GREEN:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.GREEN;
+        case BLUE:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.BLUE;
+        case UV:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.UV;
+        default:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.RED;
+        }
+    }
+
+    public static int getBoostFromConfigurationForCropType(IIdealBoostsConfiguration configuration, CropTypeEnum cropType) {
+        return configuration.getBoost(cropType);
     }
 }

@@ -15,15 +15,16 @@ import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomGrowthMediumW
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
-Loads and validates the custom growth medium JSON file
-*/
+ * Loads and validates the custom growth medium JSON file
+ */
 public class CustomGrowthMediumLoader {
 
     public static final int STARTING_ID = 6;
 
     public static void preInit(FMLPreInitializationEvent e) {
 
-        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID + "\\custom-media.json";
+        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID
+                + "\\custom-media.json";
         loadCustomGrowthMedia(path);
     }
 
@@ -31,11 +32,12 @@ public class CustomGrowthMediumLoader {
         EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom growth media...");
         try {
             CustomGrowthMediumHelper.customGrowthMedia = readFromJson(customGrowthMediaFilePath);
-            EmergingTechnology.logger.info("EmergingTechnology - Loaded " + CustomGrowthMediumHelper.customGrowthMedia.length
-                    + " custom growth media.");
+            EmergingTechnology.logger.info("EmergingTechnology - Loaded "
+                    + CustomGrowthMediumHelper.customGrowthMedia.length + " custom growth media.");
 
-            for (CustomGrowthMedium medium :CustomGrowthMediumHelper.customGrowthMedia) {
-                EmergingTechnology.logger.info(medium.name + " - Id:" + medium.id + " g: " + medium.growthModifier + " w: " + medium.waterUsage);
+            for (CustomGrowthMedium medium : CustomGrowthMediumHelper.customGrowthMedia) {
+                EmergingTechnology.logger.info(medium.name + " - Id:" + medium.id + " g: " + medium.growthModifier
+                        + " w: " + medium.waterUsage + " ap: " + medium.allPlants + " p: " + medium.plants.length);
             }
 
         } catch (Exception ex) {
@@ -76,7 +78,15 @@ public class CustomGrowthMediumLoader {
         int growthModifier = checkBounds(wrapper.growthModifier);
         int waterUsage = checkBounds(wrapper.waterUsage);
 
-        return new CustomGrowthMedium(id, name, waterUsage, growthModifier);
+        int boostModifier = wrapper.boostModifier;
+        String[] plants = wrapper.plants;
+
+        boolean allPlants = false;
+
+        if (plants.length == 0)
+            allPlants = true;
+
+        return new CustomGrowthMedium(id, name, waterUsage, growthModifier, allPlants, plants, boostModifier);
     }
 
     private static int checkBounds(int value) {

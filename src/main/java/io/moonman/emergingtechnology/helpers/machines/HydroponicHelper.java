@@ -1,9 +1,14 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
+import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
+import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
+import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
+import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -66,8 +71,8 @@ public class HydroponicHelper {
         return 0;
     }
 
-    public static int getGrowthProbabilityForMedium(ItemStack itemStack) {
-        int mediumId = getGrowthMediaIdFromStack(itemStack);
+    public static int getGrowthProbabilityForMedium(ItemStack medium) {
+        int mediumId = getGrowthMediaIdFromStack(medium);
 
         switch (mediumId) {
         case 1:
@@ -101,4 +106,68 @@ public class HydroponicHelper {
             return Blocks.WOOL.getDefaultState();
         }
     }
+
+    public static MediumTypeEnum getMediumTypeEnumFromId(int id) {
+        switch (id) {
+        case 1:
+            return MediumTypeEnum.DIRT;
+        case 2:
+            return MediumTypeEnum.SAND;
+        case 3:
+            return MediumTypeEnum.GRAVEL;
+        case 4:
+            return MediumTypeEnum.CLAY;
+        case 5:
+            return MediumTypeEnum.CLAY;
+        default:
+            return MediumTypeEnum.INVALID;
+        }
+    }
+
+    public static int getSpecificPlantGrowthBoost(int mediumId, IBlockState plantBlockState) {
+
+        String plantName = plantBlockState.getBlock().getRegistryName().toString();
+
+        if (mediumId < CustomGrowthMediumLoader.STARTING_ID) {
+
+            return getVanillaPlantBoost(mediumId, plantName);
+
+        } else {
+            CustomGrowthMedium medium = CustomGrowthMediumHelper.getCustomGrowthMediumById(mediumId);
+
+            if (medium == null) {
+                return 0;
+            }
+
+            if (medium.allPlants == true) {
+                return 0;
+            }
+
+            for (String plant : medium.plants) {
+                if (plantName.equalsIgnoreCase(plant)) {
+                    return medium.boostModifier;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    public static int getVanillaPlantBoost(int mediumId, String plantName) {
+
+        MediumTypeEnum mediumType = getMediumTypeEnumFromId(mediumId);
+        CropTypeEnum cropType = PlantHelper.getCropTypeEnumFromRegistryName(plantName);
+
+        if (mediumType == MediumTypeEnum.INVALID || cropType == CropTypeEnum.NONE) {
+            return 0;
+        }
+
+        return getBoost(mediumType, cropType);
+    }
+
+    private static int getBoost(MediumTypeEnum mediumType, CropTypeEnum cropType) {
+        IIdealBoostsConfiguration configuration = PlantHelper.getConfigurationForMediumType(mediumType);
+        return PlantHelper.getBoostFromConfigurationForCropType(configuration, cropType);
+    }
+
 }

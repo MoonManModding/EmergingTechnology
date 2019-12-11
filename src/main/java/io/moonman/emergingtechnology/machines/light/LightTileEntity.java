@@ -153,8 +153,6 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
                 doGrowthMultiplierProcess(this.bulbTypeId);
             }
 
-            Light.setState(hasPower || this.isGlowstonePowered(), this.getBulbTypeId(), world, pos);
-
             this.sendUpdates(false);
 
             tick = 0;

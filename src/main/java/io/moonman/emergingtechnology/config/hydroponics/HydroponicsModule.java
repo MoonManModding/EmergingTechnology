@@ -1,5 +1,7 @@
 package io.moonman.emergingtechnology.config.hydroponics;
 
+import io.moonman.emergingtechnology.config.hydroponics.beds.HydroponicsModuleGrowBed;
+import io.moonman.emergingtechnology.config.hydroponics.lights.HydroponicsModuleGrowLight;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.Name;
 

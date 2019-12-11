@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.helpers.custom.loaders.OreDictionaryLoader;
+import io.moonman.emergingtechnology.init.ModItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,6 +34,6 @@ public class ShredderHelper {
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return new ItemStack(Items.SUGAR);
+        return new ItemStack(ModItems.shreddedplastic);
     }
 }
