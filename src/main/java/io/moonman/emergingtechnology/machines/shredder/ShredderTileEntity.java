@@ -1,9 +1,15 @@
 package io.moonman.emergingtechnology.machines.shredder;
 
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.ShredderHelper;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -34,7 +40,15 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
         }
     };
 
-    public ItemStackHandler itemHandler = new ItemStackHandler(1) {
+    public ItemStackHandler itemHandler = new ItemStackHandler(2) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+            super.onContentsChanged(slot);
+        }
+    };
+
+    public ItemStackHandler automationItemHandler = new AutomationItemStackHandler(itemHandler, 0, 1) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -43,6 +57,8 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
     };
 
     private int tick = 0;
+
+    private int operationTick = 0;
 
     private int energy = this.energyHandler.getEnergyStored();
 
@@ -67,7 +83,7 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.itemHandler;
+            return (T) this.automationItemHandler;
         if (capability == CapabilityEnergy.ENERGY)
             return (T) this.energyHandler;
         return super.getCapability(capability, facing);
@@ -123,26 +139,107 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
             return;
         } else {
 
-            this.setEnergy(this.energyHandler.getEnergyStored());
+            this.setEnergy(this.getEnergy());
 
-            doPowerUsageProcess();
+            doShreddingProcess();
+            doOutputProcess();
 
             tick = 0;
         }
     }
 
-    public void doPowerUsageProcess() {
+    public void doShreddingProcess() {
 
+        ItemStack inputStack = getInputStack();
+
+        // Nothing in input stack
+        if (inputStack.getCount() == 0) {
+            operationTick = 0;
+            return;
+        }
+
+        // Can't shred this item
+        if (!ShredderHelper.canShredItem(inputStack)) {
+            operationTick = 0;
+            return;
+        }
+
+        ItemStack outputStack = getOutputStack();
+        ItemStack plannedStack = ShredderHelper.getPlannedStackFromItemStack(inputStack);
+
+        // Output stack is full
+        if (outputStack.getCount() == 64) {
+            return;
+        }
+
+        // Output stack incompatible/non-empty
+        if (!StackHelper.compareItemStacks(outputStack, plannedStack) && !StackHelper.isItemStackEmpty(outputStack)) {
+            return;
+        }
+
+        // Not enough energy
+        if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage) {
+            return;
+        }
+
+        // Not enough operations performed
+        if (operationTick < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken) {
+            operationTick++;
+            return;
+        }
+
+        getInputStack().shrink(1);
+
+        if (outputStack.getCount() > 0) {
+            outputStack.grow(1);
+        } else {
+            itemHandler.insertItem(1, plannedStack, false);
+        }
+
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
+                false);
+
+        operationTick = 0;
     }
 
-    public ItemStack getItemStack() {
+    public void doOutputProcess() {
+
+        if (StackHelper.isItemStackEmpty(getOutputStack())) {
+            return;
+        }
+
+        TileEntity downNeighbour = this.world.getTileEntity(this.pos.add(0, -1, 0));
+
+        if (downNeighbour instanceof ProcessorTileEntity == false) {
+            return;
+        }
+
+        ProcessorTileEntity targetTileEntity = (ProcessorTileEntity) downNeighbour;
+
+        ItemStack itemStack = itemHandler.extractItem(1, 1, false);
+        targetTileEntity.itemHandler.insertItem(0, itemStack, false);
+    }
+
+    public ItemStack getInputStack() {
         return itemHandler.getStackInSlot(0);
+    }
+
+    public ItemStack getOutputStack() {
+        return itemHandler.getStackInSlot(1);
     }
 
     // Getters
 
     public int getEnergy() {
-        return this.energy;
+        return this.energyHandler.getEnergyStored();
+    }
+
+    public int getProgress() {
+        return this.operationTick;
+    }
+
+    public int getMaxProgress() {
+        return EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken;
     }
 
     // Setters

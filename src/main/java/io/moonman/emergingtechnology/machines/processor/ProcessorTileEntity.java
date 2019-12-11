@@ -1,7 +1,11 @@
 package io.moonman.emergingtechnology.machines.processor;
 
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
+import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.ProcessorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +49,15 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
         }
     };
 
-    public ItemStackHandler itemHandler = new ItemStackHandler(1) {
+    public ItemStackHandler itemHandler = new ItemStackHandler(2) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+            super.onContentsChanged(slot);
+        }
+    };
+
+    public ItemStackHandler automationItemHandler = new AutomationItemStackHandler(itemHandler, 0, 1) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -57,6 +69,8 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
 
     private int water = this.fluidHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
+
+    private int operationTick = 0;
 
     public void markDirtyClient() {
         markDirty();
@@ -83,7 +97,7 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
             return (T) this.fluidHandler;
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.itemHandler;
+            return (T) this.automationItemHandler;
         if (capability == CapabilityEnergy.ENERGY)
             return (T) this.energyHandler;
         return super.getCapability(capability, facing);
@@ -146,23 +160,77 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             this.setEnergy(this.energyHandler.getEnergyStored());
             this.setWater(this.fluidHandler.getFluidAmount());
             
-            doPowerUsageProcess();
-            doWaterUsageProcess();
+            doProcessing();
 
             tick = 0;
         }
     }
 
-    public void doPowerUsageProcess() {
+    public void doProcessing() {
 
+        ItemStack inputStack = getInputStack();
+
+        // Nothing in input stack
+        if (inputStack.getCount() == 0) {
+            operationTick = 0;
+            return;
+        }
+
+        // Can't process this item
+        if (!ProcessorHelper.canProcessItem(inputStack)) {
+            operationTick = 0;
+            return;
+        }
+
+        ItemStack outputStack = getOutputStack();
+        ItemStack plannedStack = ProcessorHelper.getPlannedStackFromItemStack(inputStack);
+
+        // Output stack is full
+        if (outputStack.getCount() == 64) {
+            return;
+        }
+
+        // Output stack incompatible/non-empty
+        if (!StackHelper.compareItemStacks(outputStack, plannedStack) && !StackHelper.isItemStackEmpty(outputStack)) {
+            return;
+        }
+
+        // Not enough energy
+        if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage) {
+            return;
+        }
+
+        // Not enough water
+        if (this.getWater() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage) {
+            return;
+        }
+
+        // Not enough operations performed
+        if (operationTick < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken) {
+            operationTick++;
+            return;
+        }
+
+        getInputStack().shrink(1);
+
+        if (outputStack.getCount() > 0) {
+            outputStack.grow(1);
+        } else {
+            itemHandler.insertItem(1, plannedStack, false);
+        }
+
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage,
+                false);
+
+        operationTick = 0;
     }
 
-    public void doWaterUsageProcess() {
-
-    }
-
-    public ItemStack getItemStack() {
+    public ItemStack getInputStack() {
         return itemHandler.getStackInSlot(0);
+    }
+
+    public ItemStack getOutputStack() {
+        return itemHandler.getStackInSlot(1);
     }
 
     // Getters

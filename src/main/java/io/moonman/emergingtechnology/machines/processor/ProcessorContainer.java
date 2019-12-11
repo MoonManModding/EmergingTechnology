@@ -23,6 +23,7 @@ public class ProcessorContainer extends Container {
 		IItemHandler handler = tileEntity.itemHandler;
 
 		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
+		this.addSlotToContainer(new SlotItemHandler(handler, 1, 80, 35));
 
 		// Inventory
 		for (int y = 0; y < 3; y++) {
@@ -75,13 +76,14 @@ public class ProcessorContainer extends Container {
 			ItemStack fromStack = fromSlot.getStack();
 			stack = fromStack.copy();
 
-			if (index < 1) {
-				if (!this.mergeItemStack(fromStack, 1, 37, false)) {
+			// If it's from the processor, put in player's inventory
+			if (index < 2) {
+				if (!this.mergeItemStack(fromStack, 2, 38, false)) {
 					return ItemStack.EMPTY;
 				} else {
 					fromSlot.onSlotChanged();
 				}
-			} else {
+			} else {// Otherwise try to put it in input slot
 				if (!this.mergeItemStack(fromStack, 0, 1, false)) {
 					return ItemStack.EMPTY;
 				} else {

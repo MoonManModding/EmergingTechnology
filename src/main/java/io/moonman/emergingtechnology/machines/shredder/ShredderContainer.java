@@ -15,7 +15,6 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ShredderContainer extends Container {
 	private final ShredderTileEntity tileEntity;
 
-	private int water;
 	private int energy;
 
 	public ShredderContainer(InventoryPlayer player, ShredderTileEntity tileEntity) {
@@ -23,6 +22,7 @@ public class ShredderContainer extends Container {
 		IItemHandler handler = tileEntity.itemHandler;
 
 		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
+		this.addSlotToContainer(new SlotItemHandler(handler, 1, 80, 35));
 
 		// Inventory
 		for (int y = 0; y < 3; y++) {
@@ -53,11 +53,9 @@ public class ShredderContainer extends Container {
 		{
 			IContainerListener listener = (IContainerListener)this.listeners.get(i);
 			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
-			if(this.water != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
 		}
         
 		this.energy = this.tileEntity.getField(0);
-		this.water = this.tileEntity.getField(1);
 	}
 
 	@Override
@@ -75,13 +73,14 @@ public class ShredderContainer extends Container {
 			ItemStack fromStack = fromSlot.getStack();
 			stack = fromStack.copy();
 
-			if (index < 1) {
-				if (!this.mergeItemStack(fromStack, 1, 37, false)) {
+			// If it's from the shredder, put in player's inventory
+			if (index < 2) {
+				if (!this.mergeItemStack(fromStack, 2, 38, false)) {
 					return ItemStack.EMPTY;
 				} else {
 					fromSlot.onSlotChanged();
 				}
-			} else {
+			} else {// Otherwise try to put it in input slot
 				if (!this.mergeItemStack(fromStack, 0, 1, false)) {
 					return ItemStack.EMPTY;
 				} else {

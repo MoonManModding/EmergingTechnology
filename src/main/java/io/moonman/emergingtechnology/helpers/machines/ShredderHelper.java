@@ -27,7 +27,12 @@ public class ShredderHelper {
             }
         }
 
+        if (itemStack.getItem() == Items.REEDS) return true;
+
         return false;
     }
-    
+
+    public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
+        return new ItemStack(Items.SUGAR);
+    }
 }
