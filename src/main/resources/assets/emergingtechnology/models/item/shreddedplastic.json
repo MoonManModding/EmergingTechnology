@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "minecraft:items/sugar"
+        "layer0": "emergingtechnology:items/shreddedplastic"
     },
   "display": {
     "thirdperson_righthand": {

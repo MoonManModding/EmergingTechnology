@@ -22,6 +22,16 @@ Provides useful methods to manipulate and validate plant items and blocks
 */
 public class PlantHelper {
     
+    public static final String WHEAT = "minecraft:wheat";
+    public static final String CARROTS = "minecraft:carrots";
+    public static final String POTATOES = "minecraft:potatoes";
+    public static final String BEETROOT = "minecraft:beetroots";
+    public static final String REEDS = "minecraft:reeds";
+    public static final String CACTUS = "minecraft:cactus";
+    public static final String MELON = "minecraft:melon_stem";
+    public static final String PUMPKIN = "minecraft:pumpkin_stem";
+    public static final String NETHERWART = "minecraft:nether_wart";
+
     public static boolean isPlantItem(Item item) {
         return item instanceof IPlantable || item instanceof IGrowable || isItemInOverride(item);
     }
@@ -85,41 +95,45 @@ public class PlantHelper {
     }
 
     private static boolean isItemInOverride(Item item) {
-        if(item == Items.REEDS) return true;
+        if (item == Items.REEDS) return true;
         return false;
     }
 
     public static CropTypeEnum getCropTypeEnumFromRegistryName(String plantName) {
-        if (plantName.equalsIgnoreCase("minecraft:wheat")) {
+        if (plantName.equalsIgnoreCase(WHEAT)) {
             return CropTypeEnum.WHEAT;
         }
 
-        if (plantName.equalsIgnoreCase("minecraft:carrots")) {
+        if (plantName.equalsIgnoreCase(CARROTS)) {
             return CropTypeEnum.CARROTS;
         }
 
-        if (plantName.equalsIgnoreCase("minecraft:potatoes")) {
+        if (plantName.equalsIgnoreCase(POTATOES)) {
             return CropTypeEnum.POTATOES;
         }
 
-        if (plantName.equalsIgnoreCase("minecraft:beetroots")) {
+        if (plantName.equalsIgnoreCase(BEETROOT)) {
             return CropTypeEnum.BEETROOT;
         }
 
-        if (plantName.equalsIgnoreCase("minecraft:reeds")) {
+        if (plantName.equalsIgnoreCase(REEDS)) {
             return CropTypeEnum.REEDS;
         }
 
-        if (plantName.equalsIgnoreCase("minecraft:cactus")) {
+        if (plantName.equalsIgnoreCase(CACTUS)) {
             return CropTypeEnum.CACTUS;
         }
 
-        if (plantName.equalsIgnoreCase("minecraft:pumpkin_stem")) {
+        if (plantName.equalsIgnoreCase(PUMPKIN)) {
             return CropTypeEnum.PUMPKIN;
         }
 
-        if (plantName.equalsIgnoreCase("minecraft:melon_stem")) {
+        if (plantName.equalsIgnoreCase(MELON)) {
             return CropTypeEnum.MELON;
+        }
+
+        if (plantName.equalsIgnoreCase(NETHERWART)) {
+            return CropTypeEnum.NETHERWART;
         }
 
         return CropTypeEnum.NONE;

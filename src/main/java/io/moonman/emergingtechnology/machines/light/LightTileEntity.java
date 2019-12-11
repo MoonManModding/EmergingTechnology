@@ -182,7 +182,7 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
 
     public void doGrowthMultiplierProcess(int bulbTypeId) {
         // Get growth probability from bulb type
-        int growthMultiplier = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
+        int growthProbabilityThreshold = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
 
         // How many blocks below light?
         int blocksBelow = 2;
@@ -199,7 +199,15 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
 
             // If it's not a plant, and it's not air...
             if (PlantHelper.isPlantBlock(blockBelow)) {
-                rollForGrow(blockBelow, blockStateBelow, position, growthMultiplier);
+
+                // If this medium works especially well on this plant, we can give it a little
+                // boost
+                int growthProbabilityBoostModifier = LightHelper.getSpecificPlantGrowthBoost(bulbTypeId,
+                        blockStateBelow);
+
+                growthProbabilityThreshold += growthProbabilityBoostModifier;
+
+                rollForGrow(blockBelow, blockStateBelow, position, growthProbabilityThreshold);
                 break;
             } else if (blockBelow == Blocks.AIR) {
                 continue;

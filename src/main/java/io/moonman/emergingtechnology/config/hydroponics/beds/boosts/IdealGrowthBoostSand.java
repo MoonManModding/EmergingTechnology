@@ -37,16 +37,21 @@ public class IdealGrowthBoostSand implements IIdealBoostsConfiguration {
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Cacti")
     @RangeInt(min = 0, max = 100)
     public int cactusAddedProbability = 0;
+
+    @Name("Pumpkin")
+    @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Pumpkin")
+    @RangeInt(min = 0, max = 100)
+    public int pumpkinAddedProbability = 0;
     
     @Name("Melon")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Melons")
     @RangeInt(min = 0, max = 100)
     public int melonAddedProbability = 0;
 
-    @Name("Pumpkin")
-    @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Pumpkins")
+    @Name("Nether Wart")
+    @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Nether Wart")
     @RangeInt(min = 0, max = 100)
-    public int pumpkinAddedProbability = 0;
+    public int netherWartAddedProbability = 0;
 
     public int getBoost(CropTypeEnum cropType) {
         switch (cropType) {
@@ -66,6 +71,8 @@ public class IdealGrowthBoostSand implements IIdealBoostsConfiguration {
             return melonAddedProbability;
         case PUMPKIN:
             return pumpkinAddedProbability;
+        case NETHERWART:
+            return netherWartAddedProbability;
         default:
             return 0;
         }

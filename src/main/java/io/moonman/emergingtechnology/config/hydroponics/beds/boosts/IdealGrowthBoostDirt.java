@@ -48,6 +48,11 @@ public class IdealGrowthBoostDirt implements IIdealBoostsConfiguration {
     @RangeInt(min = 0, max = 100)
     public int pumpkinAddedProbability = 0;
 
+    @Name("Nether Wart")
+    @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Nether Wart")
+    @RangeInt(min = 0, max = 100)
+    public int netherWartAddedProbability = 0;
+
     public int getBoost(CropTypeEnum cropType) {
         switch (cropType) {
         case WHEAT:
@@ -66,6 +71,8 @@ public class IdealGrowthBoostDirt implements IIdealBoostsConfiguration {
             return melonAddedProbability;
         case PUMPKIN:
             return pumpkinAddedProbability;
+        case NETHERWART:
+            return netherWartAddedProbability;
         default:
             return 0;
         }

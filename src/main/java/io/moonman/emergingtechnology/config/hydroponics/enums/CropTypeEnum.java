@@ -9,5 +9,6 @@ public enum CropTypeEnum {
     REEDS,
     CACTUS,
     MELON,
-    PUMPKIN
+    PUMPKIN,
+    NETHERWART
 }

@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.custom.loaders.OreDictionaryLoader;
 import io.moonman.emergingtechnology.init.ModItems;
 import net.minecraft.init.Items;
@@ -8,13 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
-Provides useful methods for the Shredder
-*/
+ * Provides useful methods for the Shredder
+ */
 public class ShredderHelper {
 
-    public static Item[] shreddableItems = new Item[] {
-        Items.REEDS
-    };
+    public static Item[] shreddableItems = new Item[] { Items.REEDS };
 
     public static boolean canShredItem(ItemStack itemStack) {
 
@@ -28,12 +27,18 @@ public class ShredderHelper {
             }
         }
 
-        if (itemStack.getItem() == Items.REEDS) return true;
+        if (StackHelper.compareItemStacks(itemStack, new ItemStack(Items.REEDS)))
+            return true;
 
         return false;
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
+
+        if (StackHelper.compareItemStacks(itemStack, new ItemStack(Items.REEDS))) {
+            return new ItemStack(ModItems.shreddedplant);
+        }
+
         return new ItemStack(ModItems.shreddedplastic);
     }
 }
