@@ -35,9 +35,9 @@ public class CustomBulbHelper {
 
     }
 
-    public static int getWaterUsageForMedium(int mediumId) {
+    public static int getEnergyUsageForBulb(int bulbId) {
 
-        CustomBulb bulb = getCustomBulbById(mediumId);
+        CustomBulb bulb = getCustomBulbById(bulbId);
 
         if (bulb != null) {
             return bulb.energyUsage;
@@ -46,12 +46,12 @@ public class CustomBulbHelper {
         }
     }
 
-    public static CustomBulb getCustomBulbById(int mediumId) {
+    public static CustomBulb getCustomBulbById(int bulbId) {
 
         CustomBulb[] customBulbs = getCustomBulbs();
 
         for (int i = 0; i < customBulbs.length; i++) {
-            if (customBulbs[i].id == mediumId) {
+            if (customBulbs[i].id == bulbId) {
                 return customBulbs[i];
             }
         }

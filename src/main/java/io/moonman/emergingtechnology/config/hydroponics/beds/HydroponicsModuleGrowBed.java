@@ -49,4 +49,9 @@ public class HydroponicsModuleGrowBed {
     @Config.Comment("Probability of growth from clay medium per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)
     public int growthClayModifier = 8;
+    
+    @Name("Netherwart on Lava Modifier %")
+    @Config.Comment("Probability of growth for Netherwart when grow bed contains lava per cycle (~10 ticks).")
+    @RangeInt(min = 0, max = 100)
+    public int lavaGrowthBoost = 50;
 }

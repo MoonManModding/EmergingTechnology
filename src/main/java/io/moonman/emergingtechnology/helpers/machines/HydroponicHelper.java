@@ -6,13 +6,17 @@ import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
 import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.custom.classes.CustomFluid;
 import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
+import io.moonman.emergingtechnology.helpers.custom.helpers.CustomFluidHelper;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 /**
  * Provides useful methods for the Hydroponic Grow Bed
@@ -23,17 +27,8 @@ public class HydroponicHelper {
             new ItemStack(Blocks.SAND), new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.CLAY),
             new ItemStack(Items.CLAY_BALL) };
 
-    private static String[] validFluids = new String[] {
-        "water",
-        "lava"
-    };
-
     public static ItemStack[] getValidGrowthMedia() {
         return validGrowthMedia;
-    };
-
-    public static String[] getValidFluids() {
-        return validFluids;
     };
 
     public static boolean isItemStackValidGrowthMedia(ItemStack itemStack) {
@@ -52,16 +47,11 @@ public class HydroponicHelper {
         return false;
     };
 
-    public static boolean isFluidValidByName(String name) {
-        String[] validFluidNames = getValidFluids();
+    public static boolean isFluidValid(Fluid fluid) {
 
-        for (String validFluidName : validFluidNames) {
-            if (name.equalsIgnoreCase(validFluidName)) {
-                return true;
-            }
-        }
+        if (fluid.getName() == "lava" || fluid.getName() == "water") return true;
 
-        return false;
+        return CustomFluidHelper.isFluidInCustomFluids(fluid);
     }
 
     public static int getGrowthMediaIdFromStack(ItemStack itemStack) {
@@ -145,6 +135,50 @@ public class HydroponicHelper {
         }
     }
 
+    public static int getGrowthProbabilityForFluid(Fluid fluid) {
+
+        String fluidName = fluid.getName();
+
+        if (fluidName == "water" || fluidName == "lava") {
+            return 0;
+        }
+
+        CustomFluid customFluid = CustomFluidHelper.getCustomFluid(fluid);
+
+        if (customFluid == null) {
+            return 0;
+        }
+
+        return customFluid.growthModifier;
+    }
+
+    public static int getSpecificPlantGrowthBoostFromFluid(Fluid fluid, IBlockState plantBlockState) {
+        String plantName = plantBlockState.getBlock().getRegistryName().toString();
+
+        if (fluid == FluidRegistry.LAVA && plantName.equalsIgnoreCase(PlantHelper.NETHERWART)) {
+            int boost = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.lavaGrowthBoost;
+            return boost;
+        }
+
+        CustomFluid customFluid = CustomFluidHelper.getCustomFluid(fluid);
+
+        if (customFluid == null) {
+            return 0;
+        }
+
+        if (customFluid.allPlants == true) {
+            return 0;
+        }
+
+        for (String plant : customFluid.plants) {
+            if (plantName.equalsIgnoreCase(plant)) {
+                return customFluid.boostModifier;
+            }
+        }
+
+        return 0;
+    }
+
     public static int getSpecificPlantGrowthBoost(int mediumId, IBlockState plantBlockState) {
 
         String plantName = plantBlockState.getBlock().getRegistryName().toString();
@@ -189,5 +223,4 @@ public class HydroponicHelper {
         IIdealBoostsConfiguration configuration = PlantHelper.getConfigurationForMediumType(mediumType);
         return PlantHelper.getBoostFromConfigurationForCropType(configuration, cropType);
     }
-
 }

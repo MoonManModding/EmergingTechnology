@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -49,7 +50,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
         @Override
         public boolean canFillFluidType(FluidStack fluid) {
-            return true; // HydroponicHelper.isFluidValidByName(fluid.getFluid().getName());
+            return HydroponicHelper.isFluidValid(fluid.getFluid());
         }
     };
 
@@ -268,32 +269,44 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         // Get internal growth medium
         ItemStack growthMedium = this.getItemStack();
 
-        // Get growth medium validity
-        boolean growthMediumIsValid = HydroponicHelper.isItemStackValidGrowthMedia(growthMedium);
-
-        // If growth medium is invalid, get outta there
-        if (!growthMediumIsValid) {
-            return false;
-        }
-
         // Get threshold from medium
         int growthProbabilityThreshold = HydroponicHelper.getGrowthProbabilityForMedium(growthMedium);
-
-        // If impossible, skidaddle
-        if (growthProbabilityThreshold == 0) {
-            return false;
-        }
 
         // If it ain't a plant, we ain't interested
         if (!PlantHelper.isPlantBlock(aboveBlock)) {
             return false;
         }
 
+        // Check if fluids provide boost
+        int totalFluidBoost = 0;
+
+        // If this medium works especially well in this fluid, we can give it a little
+        // boost
+        int growthProbabilityBoostModifierFromFluid = HydroponicHelper.getSpecificPlantGrowthBoostFromFluid(this.getFluid(), aboveBlockState);
+        int growthMultiplierFromFluid = HydroponicHelper.getGrowthProbabilityForFluid(this.getFluid());
+
+        // If no boost, just add regular growth modifier.
+        if (growthProbabilityBoostModifierFromFluid == 0) {
+            totalFluidBoost += growthMultiplierFromFluid;
+        } else {
+            totalFluidBoost += growthProbabilityBoostModifierFromFluid;
+        }
+
+        System.out.println("Boost: " + growthProbabilityBoostModifierFromFluid);
+        System.out.println("General: " + growthMultiplierFromFluid);
+
+        growthProbabilityThreshold += totalFluidBoost;
+
         // If this medium works especially well on this plant, we can give it a little
         // boost
         int growthProbabilityBoostModifier = HydroponicHelper.getSpecificPlantGrowthBoost(mediumId, aboveBlockState);
 
         growthProbabilityThreshold += growthProbabilityBoostModifier;
+
+        // If impossible, skidaddle
+        if (growthProbabilityThreshold == 0) {
+            return false;
+        }
 
         // If the above is one of those BlockCrops fellas or fancy IPlantable, roll the
         // dice
@@ -351,6 +364,10 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
     public int getEnergy() {
         return this.energy;
+    }
+
+    public Fluid getFluid() {
+        return this.fluidHandler.getFluid().getFluid();
     }
 
     // Setters
