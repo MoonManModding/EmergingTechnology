@@ -170,7 +170,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
             this.setWater(this.fluidHandler.getFluidAmount());
             this.setEnergy(this.energyHandler.getEnergyStored());
-            this.setGrowthMediumId(this.getGrowthMediumIdFromItemStack());
+            this.setGrowthMediumId(this.getGrowthMediumId());
 
             // Do all the plant growth work and let us know how it went
             boolean growSucceeded = doGrowthMultiplierProcess();
@@ -325,24 +325,14 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
         // If there is no blockstate above, abandon ship
         if (aboveBlockState == null) {
-            System.out.println("It was null");
             return 0;
         }
-
-        int mediumId = this.getGrowthMediumId();
-
-        System.out.println("TE medium id " + mediumId);
 
         return HydroponicHelper.getSpecificPlantGrowthBoost(this.getGrowthMediumId(), aboveBlockState);
     }
 
     public int getGrowthMediumId() {
-        return this.getGrowthMediumIdFromItemStack();
-    }
-
-    public int getGrowthMediumIdFromItemStack() {
-        int id = HydroponicHelper.getGrowthMediaIdFromStack(this.getItemStack());
-        return id;
+        return HydroponicHelper.getGrowthMediaIdFromStack(this.getItemStack());
     }
 
     public ItemStack getItemStack() {
@@ -351,7 +341,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
     // Getters
     public int getGrowthMediumIdForTexture() {
-        int id = getGrowthMediumIdFromItemStack();
+        int id = getGrowthMediumId();
         return id >= CustomGrowthMediumLoader.STARTING_ID ? 5 : id;
     }
 

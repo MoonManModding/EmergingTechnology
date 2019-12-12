@@ -72,7 +72,6 @@ public class HydroponicGui extends GuiContainer
 			growthModifier = HydroponicHelper.getGrowthProbabilityForMedium(contents);
 
 			boostModifier = this.tileEntity.getCurrentPlantGrowthBoost();
-			System.out.println(boostModifier);
 			colour = boostModifier > 0 ? GuiHelper.VALID_COLOUR : colour;
 		}
 

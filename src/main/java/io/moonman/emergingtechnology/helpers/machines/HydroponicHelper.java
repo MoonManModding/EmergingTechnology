@@ -149,15 +149,10 @@ public class HydroponicHelper {
 
         String plantName = plantBlockState.getBlock().getRegistryName().toString();
 
-        System.out.println(plantName);
-        System.out.println(mediumId);
-
         if (mediumId < CustomGrowthMediumLoader.STARTING_ID) {
-            System.out.println("vanilla");
             return getVanillaPlantBoost(mediumId, plantName);
 
         } else {
-            System.out.println("custom");
             CustomGrowthMedium medium = CustomGrowthMediumHelper.getCustomGrowthMediumById(mediumId);
 
             if (medium == null) {

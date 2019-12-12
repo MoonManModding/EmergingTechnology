@@ -7,11 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.animation.FastTESR;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -50,10 +46,10 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
         }
 
         float actualHeight = (MAXHEIGHT * fluidLevel) + YOFF;
-        
+
         BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
         IBlockState blockState = tileEntity.fluidHandler.getFluid().getFluid().getBlock().getDefaultState();
-        TextureAtlasSprite texture =  bm.getTexture(blockState); //bm.getTexture(Blocks.WATER.getDefaultState());
+        TextureAtlasSprite texture =  bm.getTexture(blockState);
 
         // Lightmap calculations
         int upCombined = getWorld().getCombinedLight(tileEntity.getPos().up(), 0);
@@ -82,14 +78,13 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
                 final float YOFF = 12 * PX;
                 final float BORDER = 6f * PX;
                 final float MAXHEIGHT = 4 * PX;
-                final float LOW = 12f * PX;
         
                 float actualHeight = MAXHEIGHT + YOFF;
 
                 TextureAtlasSprite containerTexture =  Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(CONTAINER_TEXTURE);
                 TextureAtlasSprite texture = containerTexture;
                 
-                int mediumId = tileEntity.getGrowthMediumIdFromItemStack();
+                int mediumId = tileEntity.getGrowthMediumId();
 
                 if (mediumId > 0) {
                     IBlockState growthMediaBlockState = HydroponicHelper.getMediumBlockStateFromId(mediumId);
