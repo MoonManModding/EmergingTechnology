@@ -26,7 +26,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -209,11 +208,16 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
     public void doWaterUsageProcess(boolean growSucceeded) {
 
-        int plantWaterUse = growSucceeded ? 2 : 1;
+        if (this.getFluid() == null)
+            return;
+
+        int waterFluidUse = HydroponicHelper.getFluidUseForMedium(this.getGrowthMediumId());
+
+        int fluidUsage = growSucceeded ? waterFluidUse : 1;
 
         // Drain water
-        this.fluidHandler.drain(
-                EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle * plantWaterUse, true);
+        this.fluidHandler
+                .drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle * fluidUsage, true);
 
         // If enough water to transfer...
         if (this.water >= EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate) {
@@ -282,7 +286,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
         // If this medium works especially well in this fluid, we can give it a little
         // boost
-        int growthProbabilityBoostModifierFromFluid = HydroponicHelper.getSpecificPlantGrowthBoostFromFluid(this.getFluid(), aboveBlockState);
+        int growthProbabilityBoostModifierFromFluid = HydroponicHelper
+                .getSpecificPlantGrowthBoostFromFluid(this.getFluid(), aboveBlockState);
         int growthMultiplierFromFluid = HydroponicHelper.getGrowthProbabilityForFluid(this.getFluid());
 
         // If no boost, just add regular growth modifier.
@@ -367,7 +372,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     }
 
     public Fluid getFluid() {
-        return this.fluidHandler.getFluid().getFluid();
+        if (this.fluidHandler.getFluid() != null) {
+            return this.fluidHandler.getFluid().getFluid();
+        } else {
+            return null;
+        }
     }
 
     // Setters

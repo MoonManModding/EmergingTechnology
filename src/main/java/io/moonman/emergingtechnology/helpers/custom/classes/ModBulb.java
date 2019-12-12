@@ -3,7 +3,7 @@ package io.moonman.emergingtechnology.helpers.custom.classes;
 /**
 A custom bulb loaded from a user-defined JSON file
 */
-public class CustomBulb {
+public class ModBulb {
 
     public int id;
     public String name;
@@ -16,7 +16,7 @@ public class CustomBulb {
     public String[] plants;
 
 
-    public CustomBulb(int id, String name, int color, int energyUsage, int growthModifier, boolean allPlants, String[] plants, int boostModifier) {
+    public ModBulb(int id, String name, int color, int energyUsage, int growthModifier, String[] plants, int boostModifier) {
         this.id = id;
         this.name = name;
         this.color = color;
@@ -24,7 +24,7 @@ public class CustomBulb {
         this.growthModifier = growthModifier;
 
         this.boostModifier = boostModifier;
-        this.allPlants = allPlants;
+        this.allPlants = plants.length == 0;
         this.plants = plants;
     }
 }

@@ -6,9 +6,9 @@ import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.custom.classes.CustomBulb;
-import io.moonman.emergingtechnology.helpers.custom.helpers.CustomBulbHelper;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomBulbLoader;
+import io.moonman.emergingtechnology.helpers.custom.providers.ModBulbProvider;
+import io.moonman.emergingtechnology.helpers.custom.providers.ModMediumProvider;
 import io.moonman.emergingtechnology.item.hydroponics.BlueBulb;
 import io.moonman.emergingtechnology.item.hydroponics.BulbItem;
 import io.moonman.emergingtechnology.item.hydroponics.GreenBulb;
@@ -24,66 +24,21 @@ Provides useful methods for the Hydroponic Grow Light
 */
 public class LightHelper {
 
-    public static final int BULB_COUNT = 4;
-
     public static boolean isGlowstonePowered(ItemStack itemStack) {
-        return StackHelper.compareItemStacks(itemStack, new ItemStack(Blocks.GLOWSTONE));
+        return ModBulbProvider.getBulbIdFromItemStack(itemStack) == 5;
     }
 
     public static boolean isItemStackValidBulb(ItemStack itemStack) {
-
-        if (StackHelper.isItemStackEmpty(itemStack)) {
-            return false;
-        }
-
-        if (itemStack.getItem() instanceof BulbItem) {
-            return true;
-        }
-
-        if (CustomBulbHelper.isItemStackInCustomBulbs(itemStack)) {
-            return true;
-        }
-
-        return false;
+        return ModBulbProvider.bulbExists(itemStack);
     };
 
     public static int getBulbTypeIdFromStack(ItemStack itemStack) {
-
-        if (!isItemStackValidBulb(itemStack)) {
-            return 0;
-        }
-
-
-            Item item = itemStack.getItem();
-
-            if (item instanceof RedBulb) {
-                return 1;
-            } else if (item instanceof GreenBulb) {
-                return 2;
-            } else if (item instanceof BlueBulb) {
-                return 3;
-            } else if (item instanceof PurpleBulb) {
-                return 4;
-            }
-
-            CustomBulb[] customBulbs = CustomBulbHelper.getCustomBulbs();
-
-        for (int i = 0; i < customBulbs.length; i++) {
-
-            if (CustomBulbHelper.isItemStackInCustomBulbs(itemStack)) {
-                if (itemStack.getItem().getRegistryName().toString()
-                        .equalsIgnoreCase(customBulbs[i].name.toString())) {
-                    return customBulbs[i].id;
-                }
-            }
-        }
-        
-        return 0;
+        return ModBulbProvider.getBulbIdFromItemStack(itemStack);
     }
 
-    public static int getGrowthProbabilityForBulbById(int bulbTypeId) {
+    public static int getGrowthProbabilityForBulbById(int id) {
 
-        switch (bulbTypeId) {
+        switch (id) {
         case 0:
             return 0;
         case 1:
@@ -95,7 +50,7 @@ public class LightHelper {
         case 4:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthPurpleBulbModifier;
         default:
-            return CustomBulbHelper.getGrowthProbabilityForBulb(bulbTypeId);
+            return ModBulbProvider.getGrowthProbabilityForBulbById(id);
         }
     }
 

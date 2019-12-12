@@ -9,10 +9,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.custom.classes.CustomBulb;
-import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
-import io.moonman.emergingtechnology.helpers.custom.helpers.CustomBulbHelper;
-import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
+import io.moonman.emergingtechnology.helpers.custom.classes.ModBulb;
+import io.moonman.emergingtechnology.helpers.custom.helpers.ModBulbHelper;
+import io.moonman.emergingtechnology.helpers.custom.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomBulbWrapper;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -21,8 +20,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
  * Loads and validates the custom bulb JSON file
  */
 public class CustomBulbLoader {
-
-    public static final int STARTING_ID = 5;
 
     public static void preInit(FMLPreInitializationEvent e) {
 
@@ -34,11 +31,11 @@ public class CustomBulbLoader {
     public static void loadCustomBulbs(String filePath) {
         EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom bulbs...");
         try {
-            CustomBulbHelper.customBulbs = readFromJson(filePath);
+            ModBulbProvider.customBulbs = readFromJson(filePath);
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
-                    + CustomBulbHelper.customBulbs.length + " custom bulbs.");
+                    + ModBulbProvider.customBulbs.length + " custom bulbs.");
 
-            for (CustomBulb bulb : CustomBulbHelper.customBulbs) {
+            for (ModBulb bulb : ModBulbProvider.customBulbs) {
                 EmergingTechnology.logger.info(bulb.name + " - Id:" + bulb.id + " g: " + bulb.growthModifier
                         + " e: " + bulb.energyUsage + " ap: " + bulb.allPlants + " p: " + bulb.plants.length);
             }
@@ -46,11 +43,11 @@ public class CustomBulbLoader {
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom bulbs:");
             EmergingTechnology.logger.warn(ex);
-            CustomGrowthMediumHelper.customGrowthMedia = new CustomGrowthMedium[] {};
+            ModBulbProvider.customBulbs = new ModBulb[] {};
         }
     }
 
-    private static CustomBulb[] readFromJson(String filePath) throws IOException {
+    private static ModBulb[] readFromJson(String filePath) throws IOException {
 
         Gson gson = new Gson();
 
@@ -60,23 +57,22 @@ public class CustomBulbLoader {
         JsonArray json = je.getAsJsonArray();
         CustomBulbWrapper[] wrappers = gson.fromJson(json, CustomBulbWrapper[].class);
 
-        return generateCustomBulbsFromWrappers(wrappers);
+        return generateModBulbsFromWrappers(wrappers);
     }
 
-    private static CustomBulb[] generateCustomBulbsFromWrappers(CustomBulbWrapper[] wrappers) {
-        CustomBulb[] customBulbs = new CustomBulb[wrappers.length];
+    private static ModBulb[] generateModBulbsFromWrappers(CustomBulbWrapper[] wrappers) {
+        ModBulb[] customBulbs = new ModBulb[wrappers.length];
 
         for (int i = 0; i < wrappers.length; i++) {
-            CustomBulb bulb = validateWrapper(i, wrappers[i]);
+            ModBulb bulb = validateWrapper(wrappers[i]);
             customBulbs[i] = bulb;
         }
 
         return customBulbs;
     }
 
-    private static CustomBulb validateWrapper(int index, CustomBulbWrapper wrapper) {
+    private static ModBulb validateWrapper(CustomBulbWrapper wrapper) {
 
-        int id = STARTING_ID + index;
         String name = wrapper.name;
         int color = wrapper.color <= LightHelper.BULB_COUNT ? wrapper.color : LightHelper.BULB_COUNT;
         int growthModifier = checkBounds(wrapper.growthModifier);
@@ -85,12 +81,7 @@ public class CustomBulbLoader {
         int boostModifier = wrapper.boostModifier;
         String[] plants = wrapper.plants;
 
-        boolean allPlants = false;
-
-        if (plants.length == 0)
-            allPlants = true;
-
-        return new CustomBulb(id, name, color, energyUsage, growthModifier, allPlants, plants, boostModifier);
+        return new ModBulb(0, name, color, energyUsage, growthModifier, plants, boostModifier);
     }
 
     private static int checkBounds(int value) {

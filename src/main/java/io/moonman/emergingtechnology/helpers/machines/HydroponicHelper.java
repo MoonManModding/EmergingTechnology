@@ -6,98 +6,49 @@ import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
 import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.custom.classes.CustomFluid;
-import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
-import io.moonman.emergingtechnology.helpers.custom.helpers.CustomFluidHelper;
-import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
+import io.moonman.emergingtechnology.helpers.custom.providers.ModFluidProvider;
+import io.moonman.emergingtechnology.helpers.custom.providers.ModMediumProvider;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Provides useful methods for the Hydroponic Grow Bed
  */
 public class HydroponicHelper {
 
-    private static ItemStack[] validGrowthMedia = new ItemStack[] { new ItemStack(Blocks.DIRT),
-            new ItemStack(Blocks.SAND), new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.CLAY),
-            new ItemStack(Items.CLAY_BALL) };
-
-    public static ItemStack[] getValidGrowthMedia() {
-        return validGrowthMedia;
-    };
-
     public static boolean isItemStackValidGrowthMedia(ItemStack itemStack) {
-        ItemStack[] validGrowthMedia = getValidGrowthMedia();
-
-        for (ItemStack growthMedia : validGrowthMedia) {
-            if (StackHelper.compareItemStacks(growthMedia, itemStack)) {
-                return true;
-            }
-        }
-
-        if (CustomGrowthMediumHelper.isItemStackInCustomGrowthMedia(itemStack)) {
-            return true;
-        }
-
-        return false;
+        return ModMediumProvider.mediumExists(itemStack);
     };
 
-    public static boolean isFluidValid(Fluid fluid) {
-
-        if (fluid.getName() == "lava" || fluid.getName() == "water") return true;
-
-        return CustomFluidHelper.isFluidInCustomFluids(fluid);
+    public static boolean isFluidValid(FluidStack fluidStack) {
+        return ModFluidProvider.fluidExists(fluidStack);
     }
 
     public static int getGrowthMediaIdFromStack(ItemStack itemStack) {
-        if (!isItemStackValidGrowthMedia(itemStack)) {
-            return 0;
-        }
-
-        ItemStack[] validGrowthMedia = getValidGrowthMedia();
-
-        for (int i = 0; i < validGrowthMedia.length; i++) {
-            if (StackHelper.compareItemStacks(itemStack, validGrowthMedia[i])) {
-                return i + 1;
-            }
-        }
-
-        CustomGrowthMedium[] customGrowthMedia = CustomGrowthMediumHelper.getCustomGrowthMedia();
-
-        for (int i = 0; i < customGrowthMedia.length; i++) {
-
-            if (CustomGrowthMediumHelper.isItemStackInCustomGrowthMedia(itemStack)) {
-                if (itemStack.getItem().getRegistryName().toString()
-                        .equalsIgnoreCase(customGrowthMedia[i].name.toString())) {
-                    return customGrowthMedia[i].id;
-                }
-            }
-        }
-
-        return 0;
+        return ModMediumProvider.getMediumIdFromItemStack(itemStack);
     }
 
     public static int getGrowthProbabilityForMedium(ItemStack medium) {
-        int mediumId = getGrowthMediaIdFromStack(medium);
+        int id = getGrowthMediaIdFromStack(medium);
 
-        switch (mediumId) {
+        switch (id) {
         case 1:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthDirtModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtModifier;
         case 2:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthSandModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandModifier;
         case 3:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthGravelModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelModifier;
         case 4:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthClayModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier;
         case 5:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growthClayModifier;
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier;
         default:
-            return CustomGrowthMediumHelper.getGrowthProbabilityForMedium(mediumId);
+            return ModMediumProvider.getGrowthProbabilityForMediumById(id);
         }
     }
 
@@ -131,28 +82,37 @@ public class HydroponicHelper {
         case 5:
             return MediumTypeEnum.CLAY;
         default:
-            return MediumTypeEnum.INVALID;
+            return MediumTypeEnum.CUSTOM;
         }
     }
 
-    public static int getGrowthProbabilityForFluid(Fluid fluid) {
-
-        String fluidName = fluid.getName();
-
-        if (fluidName == "water" || fluidName == "lava") {
-            return 0;
+    public static int getFluidUseForMedium(int id) {
+        switch (id) {
+        case 1:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtFluidUsage;
+        case 2:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandFluidUsage;
+        case 3:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelFluidUsage;
+        case 4:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage;
+        case 5:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage;
+        default:
+            return ModMediumProvider.getFluidUsageForMediumById(id);
         }
+    }
 
-        CustomFluid customFluid = CustomFluidHelper.getCustomFluid(fluid);
-
-        if (customFluid == null) {
-            return 0;
-        }
-
-        return customFluid.growthModifier;
+    public static int getGrowthProbabilityForFluid(FluidStack fluidStack) {
+      return ModFluidProvider.getGrowthProbabilityForFluidByFluidStack(fluidStack)
     }
 
     public static int getSpecificPlantGrowthBoostFromFluid(Fluid fluid, IBlockState plantBlockState) {
+
+        if (fluid == null) {
+            return 0;
+        }
+
         String plantName = plantBlockState.getBlock().getRegistryName().toString();
 
         if (fluid == FluidRegistry.LAVA && plantName.equalsIgnoreCase(PlantHelper.NETHERWART)) {

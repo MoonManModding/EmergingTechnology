@@ -1,0 +1,143 @@
+package io.moonman.emergingtechnology.helpers.custom.providers;
+
+import java.util.ArrayList;
+
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.custom.classes.ModMedium;
+import io.moonman.emergingtechnology.helpers.custom.loaders.CustomMediumLoader;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+public class ModMediumProvider {
+    private static ModMedium[] allMedia;
+    public static ModMedium[] customMedia;
+
+    public static ModMedium[] getMedia() {
+        return allMedia;
+    }
+
+    public static void preInit(FMLPreInitializationEvent event) {
+
+        readFromFile(event);
+
+        ArrayList<ModMedium> generatedMedia = new ArrayList<ModMedium>();
+
+        generatedMedia.addAll(generateBaseMedia());
+        generatedMedia.addAll(generateCustomMedia());
+
+        allMedia = generatedMedia.toArray(new ModMedium[0]);
+    }
+
+    private static ArrayList<ModMedium> generateBaseMedia() {
+
+        String[] plants = new String[] {};
+
+        ModMedium dirt = new ModMedium(1, "minecraft:dirt", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtModifier, plants, 0);
+        ModMedium sand = new ModMedium(2, "minecraft:sand", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandModifier, plants, 0);
+        ModMedium gravel = new ModMedium(3, "minecraft:gravel", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelModifier, plants, 0);
+        ModMedium clay = new ModMedium(4, "minecraft:clay", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0);
+
+        ArrayList<ModMedium> baseMedia = new ArrayList<ModMedium>();
+
+        baseMedia.add(dirt);
+        baseMedia.add(sand);
+        baseMedia.add(gravel);
+        baseMedia.add(clay);
+
+        return baseMedia;
+    }
+
+    private static ArrayList<ModMedium> generateCustomMedia() {
+        ArrayList<ModMedium> media = new ArrayList<ModMedium>();
+
+        if (customMedia != null) {
+            int idCounter = 5;
+            for (ModMedium medium : customMedia) {
+                medium.id = idCounter;
+                media.add(medium);
+                idCounter++;
+            }
+        }
+
+        return media;
+    }
+
+    private static void readFromFile(FMLPreInitializationEvent event) {
+        CustomMediumLoader.preInit(event);
+    }
+
+    public static boolean mediumExists(ItemStack itemStack) {
+        if (itemStack == null) return false;
+        if (itemStack.getItem() == null) return false;
+
+        String name = itemStack.getItem().getRegistryName().toString();
+
+        ModMedium bulb = getMediumByName(name);
+
+        if (bulb == null) return false;
+
+        return true;
+    }
+
+    public static ModMedium getMediumById(int id) {
+        for (ModMedium medium : allMedia) {
+            if (id == medium.id) {
+                return medium;
+            }
+        }
+
+        return null;
+    }
+
+    public static ModMedium getMediumByName(String name) {
+        for (ModMedium medium : allMedia) {
+            if (name == medium.name) {
+                return medium;
+            }
+        }
+        return null;
+    }
+
+    public static int getMediumIdFromItemStack(ItemStack itemStack) {
+        for (ModMedium medium : allMedia) {
+            if (itemStack.getItem().getRegistryName().toString().equalsIgnoreCase(medium.name)) {
+                return medium.id;
+            }
+        }
+
+        return 0;
+    }
+
+    public static int getGrowthProbabilityForMediumById(int id) {
+        ModMedium medium = getMediumById(id);
+
+        if (medium == null) return 0;
+
+        return medium.growthModifier;
+
+    }
+
+    public static int getFluidUsageForMediumById(int id) {
+        ModMedium medium = getMediumById(id);
+
+        if (medium == null) return 0;
+        
+        return medium.waterUsage;
+    }
+
+    public static String[] getBoostPlantNamesForMediumById(int id) {
+        ModMedium medium = getMediumById(id);
+
+        if (medium == null) return new String[] {};
+
+        return medium.plants;
+    }
+
+    public static int getBoostModifierForMediumById(int id) {
+        ModMedium medium = getMediumById(id);
+
+        if (medium == null) return 0;
+
+        return medium.boostModifier;
+    }
+}

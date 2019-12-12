@@ -1,6 +1,10 @@
 package io.moonman.emergingtechnology.config.hydroponics.beds;
 
 import io.moonman.emergingtechnology.config.hydroponics.beds.boosts.IdealGrowthBoost;
+import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleClay;
+import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleDirt;
+import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleGravel;
+import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleSand;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RangeInt;
@@ -10,6 +14,22 @@ public class HydroponicsModuleGrowBed {
     @Name("Crops Boost from Media")
 	@Config.Comment("Configure the boost to growth specific crops get when grown on specific media")
     public final IdealGrowthBoost BOOSTS = new IdealGrowthBoost();
+
+    @Name("Medium - Dirt")
+	@Config.Comment("Configure the growth multiplier and fluid usage of Dirt in the grow bed")
+    public final HydroponicsModuleDirt DIRT = new HydroponicsModuleDirt();
+
+    @Name("Medium - Sand")
+	@Config.Comment("Configure the growth multiplier and fluid usage of Sand in the grow bed")
+    public final HydroponicsModuleSand SAND = new HydroponicsModuleSand();
+
+    @Name("Medium - Clay")
+	@Config.Comment("Configure the growth multiplier and fluid usage of Clay in the grow bed")
+    public final HydroponicsModuleClay CLAY = new HydroponicsModuleClay();
+
+    @Name("Medium - Gravel")
+	@Config.Comment("Configure the growth multiplier and fluid usage of Gravel in the grow bed")
+    public final HydroponicsModuleGravel GRAVEL = new HydroponicsModuleGravel();
 
     @Name("Grow Bed - Energy Required for Transfer")
     @Config.Comment("Do grow beds require energy to transfer water to other beds? (~10 ticks).")
@@ -29,26 +49,6 @@ public class HydroponicsModuleGrowBed {
     @Config.Comment("The amount of water transferred to other beds by a grow bed per cycle (~10 ticks).")
     @RangeInt(min = 1, max = 100)
     public int growBedWaterTransferRate = 100;
-
-    @Name("Dirt Growth Modifier %")
-    @Config.Comment("Probability of growth from dirt medium per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthDirtModifier = 1;
-
-    @Name("Sand Growth Modifier %")
-    @Config.Comment("Probability of growth from sand medium per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthSandModifier = 4;
-
-    @Name("Gravel Growth Modifier %")
-    @Config.Comment("Probability of growth from gravel medium per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthGravelModifier = 2;
-
-    @Name("Clay Growth Modifier %")
-    @Config.Comment("Probability of growth from clay medium per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int growthClayModifier = 8;
     
     @Name("Netherwart on Lava Modifier %")
     @Config.Comment("Probability of growth for Netherwart when grow bed contains lava per cycle (~10 ticks).")

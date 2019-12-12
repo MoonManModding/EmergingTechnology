@@ -9,17 +9,15 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
-import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
-import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomGrowthMediumWrapper;
+import io.moonman.emergingtechnology.helpers.custom.classes.ModMedium;
+import io.moonman.emergingtechnology.helpers.custom.providers.ModMediumProvider;
+import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomMediumWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * Loads and validates the custom growth medium JSON file
  */
-public class CustomGrowthMediumLoader {
-
-    public static final int STARTING_ID = 6;
+public class CustomMediumLoader {
 
     public static void preInit(FMLPreInitializationEvent e) {
 
@@ -31,11 +29,11 @@ public class CustomGrowthMediumLoader {
     public static void loadCustomGrowthMedia(String customGrowthMediaFilePath) {
         EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom growth media...");
         try {
-            CustomGrowthMediumHelper.customGrowthMedia = readFromJson(customGrowthMediaFilePath);
+            ModMediumProvider.customMedia= readFromJson(customGrowthMediaFilePath);
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
-                    + CustomGrowthMediumHelper.customGrowthMedia.length + " custom growth media.");
+                    + ModMediumProvider.customMedia.length + " custom growth media.");
 
-            for (CustomGrowthMedium medium : CustomGrowthMediumHelper.customGrowthMedia) {
+            for (ModMedium medium : ModMediumProvider.customMedia) {
                 EmergingTechnology.logger.info(medium.name + " - Id:" + medium.id + " g: " + medium.growthModifier
                         + " w: " + medium.waterUsage + " ap: " + medium.allPlants + " p: " + medium.plants.length);
             }
@@ -43,11 +41,11 @@ public class CustomGrowthMediumLoader {
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom growth media:");
             EmergingTechnology.logger.warn(ex);
-            CustomGrowthMediumHelper.customGrowthMedia = new CustomGrowthMedium[] {};
+            ModMediumProvider.customMedia = new ModMedium[] {};
         }
     }
 
-    private static CustomGrowthMedium[] readFromJson(String customGrowthMediaFilePath) throws IOException {
+    private static ModMedium[] readFromJson(String customGrowthMediaFilePath) throws IOException {
 
         Gson gson = new Gson();
 
@@ -55,25 +53,24 @@ public class CustomGrowthMediumLoader {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         JsonElement je = gson.fromJson(bufferedReader, JsonElement.class);
         JsonArray json = je.getAsJsonArray();
-        CustomGrowthMediumWrapper[] wrappers = gson.fromJson(json, CustomGrowthMediumWrapper[].class);
+        CustomMediumWrapper[] wrappers = gson.fromJson(json, CustomMediumWrapper[].class);
 
-        return generateCustomGrowthMediaFromWrappers(wrappers);
+        return generateModMediaFromWrappers(wrappers);
     }
 
-    private static CustomGrowthMedium[] generateCustomGrowthMediaFromWrappers(CustomGrowthMediumWrapper[] wrappers) {
-        CustomGrowthMedium[] customGrowthMedia = new CustomGrowthMedium[wrappers.length];
+    private static ModMedium[] generateModMediaFromWrappers(CustomMediumWrapper[] wrappers) {
+        ModMedium[] customGrowthMedia = new ModMedium[wrappers.length];
 
         for (int i = 0; i < wrappers.length; i++) {
-            CustomGrowthMedium medium = validateWrapper(i, wrappers[i]);
+            ModMedium medium = validateWrapper(wrappers[i]);
             customGrowthMedia[i] = medium;
         }
 
         return customGrowthMedia;
     }
 
-    private static CustomGrowthMedium validateWrapper(int index, CustomGrowthMediumWrapper wrapper) {
+    private static ModMedium validateWrapper(CustomMediumWrapper wrapper) {
 
-        int id = STARTING_ID + index;
         String name = wrapper.name;
         int growthModifier = checkBounds(wrapper.growthModifier);
         int waterUsage = checkBounds(wrapper.waterUsage);
@@ -81,12 +78,7 @@ public class CustomGrowthMediumLoader {
         int boostModifier = wrapper.boostModifier;
         String[] plants = wrapper.plants;
 
-        boolean allPlants = false;
-
-        if (plants.length == 0)
-            allPlants = true;
-
-        return new CustomGrowthMedium(id, name, waterUsage, growthModifier, allPlants, plants, boostModifier);
+        return new ModMedium(0, name, waterUsage, growthModifier, plants, boostModifier);
     }
 
     private static int checkBounds(int value) {

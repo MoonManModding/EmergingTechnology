@@ -1,7 +1,7 @@
 package io.moonman.emergingtechnology.config.hydroponics.enums;
 
 public enum MediumTypeEnum {
-    INVALID,
+    CUSTOM,
     DIRT,
     SAND,
     GRAVEL,

@@ -1,14 +1,13 @@
 package io.moonman.emergingtechnology.helpers.custom.classes;
 
 /**
-A custom fluid loaded from a user-defined JSON file
+A custom growth medium loaded from a user-defined JSON file
 */
-public class CustomFluid {
+public class ModMedium {
 
     public int id;
     public String name;
-    public int color;
-    public int fluidUsage;
+    public int waterUsage;
     public int growthModifier;
 
     public int boostModifier;
@@ -16,14 +15,14 @@ public class CustomFluid {
     public String[] plants;
 
 
-    public CustomFluid(int id, String name, int fluidUsage, int growthModifier, boolean allPlants, String[] plants, int boostModifier) {
+    public ModMedium(int id, String name, int waterUsage, int growthModifier, String[] plants, int boostModifier) {
         this.id = id;
         this.name = name;
-        this.fluidUsage = fluidUsage;
+        this.waterUsage = waterUsage;
         this.growthModifier = growthModifier;
 
         this.boostModifier = boostModifier;
-        this.allPlants = allPlants;
+        this.allPlants = plants.length == 0;
         this.plants = plants;
     }
 }
