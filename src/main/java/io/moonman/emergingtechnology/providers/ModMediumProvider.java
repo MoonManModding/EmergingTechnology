@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.helpers.custom.providers;
+package io.moonman.emergingtechnology.providers;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class ModMediumProvider {
     private static ModMedium[] allMedia;
     public static ModMedium[] customMedia;
+
+    public static final int BASE_MEDIUM_COUNT = 5;
 
     public static ModMedium[] getMedia() {
         return allMedia;
@@ -36,6 +38,7 @@ public class ModMediumProvider {
         ModMedium sand = new ModMedium(2, "minecraft:sand", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandModifier, plants, 0);
         ModMedium gravel = new ModMedium(3, "minecraft:gravel", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelModifier, plants, 0);
         ModMedium clay = new ModMedium(4, "minecraft:clay", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0);
+        ModMedium clayball = new ModMedium(5, "minecraft:clay_ball", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0);
 
         ArrayList<ModMedium> baseMedia = new ArrayList<ModMedium>();
 
@@ -43,6 +46,7 @@ public class ModMediumProvider {
         baseMedia.add(sand);
         baseMedia.add(gravel);
         baseMedia.add(clay);
+        baseMedia.add(clayball);
 
         return baseMedia;
     }
@@ -51,7 +55,7 @@ public class ModMediumProvider {
         ArrayList<ModMedium> media = new ArrayList<ModMedium>();
 
         if (customMedia != null) {
-            int idCounter = 5;
+            int idCounter = BASE_MEDIUM_COUNT + 1;
             for (ModMedium medium : customMedia) {
                 medium.id = idCounter;
                 media.add(medium);
@@ -91,7 +95,7 @@ public class ModMediumProvider {
 
     public static ModMedium getMediumByName(String name) {
         for (ModMedium medium : allMedia) {
-            if (name == medium.name) {
+            if (name.equalsIgnoreCase(medium.name)) {
                 return medium;
             }
         }
@@ -139,5 +143,26 @@ public class ModMediumProvider {
         if (medium == null) return 0;
 
         return medium.boostModifier;
+    }
+
+    public static int getSpecificPlantGrowthBoostForId(int id, String plantName) {
+
+        ModMedium medium = getMediumById(id);
+
+        if (medium == null) {
+            return 0;
+        }
+
+        if (medium.allPlants == true) {
+            return 0;
+        }
+
+        for (String plant : medium.plants) {
+            if (plantName.equalsIgnoreCase(plant)) {
+                return medium.boostModifier;
+            }
+        }
+
+        return 0;
     }
 }

@@ -197,7 +197,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
 
                 // If this medium works especially well on this plant, we can give it a little
                 // boost
-                int growthProbabilityBoostModifier = LightHelper.getSpecificPlantGrowthBoost(bulbTypeId,
+                int growthProbabilityBoostModifier = LightHelper.getSpecificPlantGrowthBoostForId(bulbTypeId,
                         blockStateBelow);
 
                 growthProbabilityThreshold += growthProbabilityBoostModifier;

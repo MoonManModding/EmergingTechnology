@@ -10,10 +10,8 @@ import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.custom.classes.ModBulb;
-import io.moonman.emergingtechnology.helpers.custom.helpers.ModBulbHelper;
-import io.moonman.emergingtechnology.helpers.custom.providers.ModBulbProvider;
+import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomBulbWrapper;
-import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
@@ -74,7 +72,7 @@ public class CustomBulbLoader {
     private static ModBulb validateWrapper(CustomBulbWrapper wrapper) {
 
         String name = wrapper.name;
-        int color = wrapper.color <= LightHelper.BULB_COUNT ? wrapper.color : LightHelper.BULB_COUNT;
+        int color = wrapper.color <= 4 ? wrapper.color : 0;
         int growthModifier = checkBounds(wrapper.growthModifier);
         int energyUsage = checkBounds(wrapper.energyUsage);
 

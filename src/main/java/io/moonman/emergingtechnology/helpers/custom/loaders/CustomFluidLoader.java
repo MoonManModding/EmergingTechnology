@@ -10,8 +10,7 @@ import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.custom.classes.ModFluid;
-import io.moonman.emergingtechnology.helpers.custom.helpers.ModFluidHelper;
-import io.moonman.emergingtechnology.helpers.custom.providers.ModFluidProvider;
+import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomFluidWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

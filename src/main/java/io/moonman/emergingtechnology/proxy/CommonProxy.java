@@ -3,9 +3,9 @@ package io.moonman.emergingtechnology.proxy;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.custom.loaders.OreDictionaryLoader;
-import io.moonman.emergingtechnology.helpers.custom.providers.ModBulbProvider;
-import io.moonman.emergingtechnology.helpers.custom.providers.ModFluidProvider;
-import io.moonman.emergingtechnology.helpers.custom.providers.ModMediumProvider;
+import io.moonman.emergingtechnology.providers.ModBulbProvider;
+import io.moonman.emergingtechnology.providers.ModFluidProvider;
+import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,7 +48,7 @@ public abstract class CommonProxy {
         EmergingTechnologyConfig.preInit();
 
         ModBulbProvider.preInit(e);
-        ModMediumProvider.preInit(e);;
+        ModMediumProvider.preInit(e);
         ModFluidProvider.preInit(e);
     }
 

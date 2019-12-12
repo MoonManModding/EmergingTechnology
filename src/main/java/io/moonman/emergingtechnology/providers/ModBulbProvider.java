@@ -1,16 +1,18 @@
-package io.moonman.emergingtechnology.helpers.custom.providers;
+package io.moonman.emergingtechnology.providers;
 
 import java.util.ArrayList;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.custom.classes.ModBulb;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomBulbLoader;
-import io.moonman.emergingtechnology.init.ModItems;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ModBulbProvider {
+
+    public static final int BASE_BULB_COUNT = 5;
+
     private static ModBulb[] allBulbs;
     public static ModBulb[] customBulbs;
 
@@ -32,13 +34,13 @@ public class ModBulbProvider {
 
     private static ArrayList<ModBulb> generateBaseBulbs() {
 
-        String[] plants = new String[] {};
+        String[] plants = new String[0];
 
-        ModBulb redBulb = new ModBulb(1, ModItems.redbulb.getRegistryName().toString(), 1, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyRedBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthRedBulbModifier, plants, 0);
-        ModBulb greenBulb = new ModBulb(2, ModItems.greenbulb.getRegistryName().toString(), 2, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyGreenBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthGreenBulbModifier, plants, 0);
-        ModBulb blueBulb = new ModBulb(3, ModItems.bluebulb.getRegistryName().toString(), 3, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyBlueBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthBlueBulbModifier, plants, 0);
-        ModBulb purpleBulb = new ModBulb(4, ModItems.purplebulb.getRegistryName().toString(), 4, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyPurpleBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthPurpleBulbModifier, plants, 0);
-        ModBulb glowstone = new ModBulb(5, Blocks.GLOWSTONE.getRegistryName().toString(), 1, 0, 0, plants, 0);
+        ModBulb redBulb = new ModBulb(1, EmergingTechnology.MODID + ":redbulb", 1, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyRedBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthRedBulbModifier, plants, 0);
+        ModBulb greenBulb = new ModBulb(2, EmergingTechnology.MODID + ":greenbulb", 2, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyGreenBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthGreenBulbModifier, plants, 0);
+        ModBulb blueBulb = new ModBulb(3, EmergingTechnology.MODID + ":bluebulb", 3, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyBlueBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthBlueBulbModifier, plants, 0);
+        ModBulb purpleBulb = new ModBulb(4, EmergingTechnology.MODID + ":purplebulb", 4, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyPurpleBulbModifier, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthPurpleBulbModifier, plants, 0);
+        ModBulb glowstone = new ModBulb(5, "minecraft:glowstone", 0, 0, 0, plants, 0);
 
         ArrayList<ModBulb> baseBulbs = new ArrayList<ModBulb>();
 
@@ -55,7 +57,7 @@ public class ModBulbProvider {
         ArrayList<ModBulb> bulbs = new ArrayList<ModBulb>();
 
         if (customBulbs != null) {
-            int idCounter = 6;
+            int idCounter = BASE_BULB_COUNT + 1;
             for (ModBulb bulb : customBulbs) {
                 bulb.id = idCounter;
                 bulbs.add(bulb);
@@ -94,7 +96,7 @@ public class ModBulbProvider {
 
     public static ModBulb getBulbByName(String name) {
         for (ModBulb bulb : allBulbs) {
-            if (name == bulb.name) {
+            if (name.equalsIgnoreCase(bulb.name)) {
                 return bulb;
             }
         }
@@ -109,6 +111,16 @@ public class ModBulbProvider {
         }
 
         return 0;
+    }
+
+    public static int getBulbColourById(int id) {
+        ModBulb bulb = getBulbById(id);
+
+        if (bulb == null) {
+            return 0;
+        } else {
+            return bulb.color;
+        }
     }
 
     public static int getGrowthProbabilityForBulbById(int id) {
@@ -142,5 +154,26 @@ public class ModBulbProvider {
         if (bulb == null) return 0;
 
         return bulb.boostModifier;
+    }
+
+    public static int getSpecificPlantGrowthBoostForId(int id, String plantName) {
+
+        ModBulb bulb = getBulbById(id);
+
+        if (bulb == null) {
+            return 0;
+        }
+
+        if (bulb.allPlants == true) {
+            return 0;
+        }
+
+        for (String plant : bulb.plants) {
+            if (plantName.equalsIgnoreCase(plant)) {
+                return bulb.boostModifier;
+            }
+        }
+
+        return 0;
     }
 }

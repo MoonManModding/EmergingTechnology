@@ -66,7 +66,7 @@ public class HydroponicGui extends GuiContainer
 		int boostModifier = 0;
 
 		if (!growthMediumEmpty) {
-			boolean growthMediumValid = HydroponicHelper.isItemStackValidGrowthMedia(contents);
+			boolean growthMediumValid = HydroponicHelper.isItemStackValid(contents);
 			growthMediumName = growthMediumValid ? contents.getDisplayName() : "Invalid";
 			colour = growthMediumValid ? GuiHelper.DARK_COLOUR : GuiHelper.INVALID_COLOUR;
 			growthModifier = HydroponicHelper.getGrowthProbabilityForMedium(contents);

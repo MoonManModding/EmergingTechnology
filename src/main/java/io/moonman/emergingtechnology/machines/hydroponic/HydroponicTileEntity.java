@@ -5,7 +5,6 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomGrowthMediumLoader;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.block.Block;
@@ -49,7 +48,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
         @Override
         public boolean canFillFluidType(FluidStack fluid) {
-            return HydroponicHelper.isFluidValid(fluid.getFluid());
+            return HydroponicHelper.isFluidValid(fluid);
         }
     };
 
@@ -287,8 +286,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         // If this medium works especially well in this fluid, we can give it a little
         // boost
         int growthProbabilityBoostModifierFromFluid = HydroponicHelper
-                .getSpecificPlantGrowthBoostFromFluid(this.getFluid(), aboveBlockState);
-        int growthMultiplierFromFluid = HydroponicHelper.getGrowthProbabilityForFluid(this.getFluid());
+                .getSpecificPlantGrowthBoostForFluidStack(this.fluidHandler.getFluid(), aboveBlockState);
+        int growthMultiplierFromFluid = HydroponicHelper.getGrowthProbabilityForFluid(this.fluidHandler.getFluid());
 
         // If no boost, just add regular growth modifier.
         if (growthProbabilityBoostModifierFromFluid == 0) {
@@ -297,14 +296,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
             totalFluidBoost += growthProbabilityBoostModifierFromFluid;
         }
 
-        System.out.println("Boost: " + growthProbabilityBoostModifierFromFluid);
-        System.out.println("General: " + growthMultiplierFromFluid);
-
         growthProbabilityThreshold += totalFluidBoost;
 
         // If this medium works especially well on this plant, we can give it a little
         // boost
-        int growthProbabilityBoostModifier = HydroponicHelper.getSpecificPlantGrowthBoost(mediumId, aboveBlockState);
+        int growthProbabilityBoostModifier = HydroponicHelper.getSpecificPlantGrowthBoostForId(mediumId, aboveBlockState);
 
         growthProbabilityThreshold += growthProbabilityBoostModifier;
 
@@ -346,7 +342,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
             return 0;
         }
 
-        return HydroponicHelper.getSpecificPlantGrowthBoost(this.getGrowthMediumId(), aboveBlockState);
+        return HydroponicHelper.getSpecificPlantGrowthBoostForId(this.getGrowthMediumId(), aboveBlockState);
     }
 
     public int getGrowthMediumId() {
@@ -360,7 +356,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     // Getters
     public int getGrowthMediumIdForTexture() {
         int id = getGrowthMediumId();
-        return id >= CustomGrowthMediumLoader.STARTING_ID ? 5 : id;
+        return id >= 6 ? 5 : id;
     }
 
     public int getWater() {

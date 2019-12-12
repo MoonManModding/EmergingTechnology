@@ -10,7 +10,7 @@ import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.custom.classes.ModMedium;
-import io.moonman.emergingtechnology.helpers.custom.providers.ModMediumProvider;
+import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomMediumWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

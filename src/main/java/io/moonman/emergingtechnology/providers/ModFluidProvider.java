@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.helpers.custom.providers;
+package io.moonman.emergingtechnology.providers;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,12 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ModFluidProvider {
+
+    public static final int WATER_ID = 1;
+    public static final int LAVA_ID = 2;
+
+    public static final int BASE_FLUID_COUNT = 2;
+
     private static ModFluid[] allFluids;
     public static ModFluid[] customFluids;
 
@@ -32,8 +38,8 @@ public class ModFluidProvider {
         String[] waterPlants = new String[] {};
         String[] lavaPlants = new String[] {"minecraft:nether_wart"};
 
-        ModFluid water = new ModFluid(1, "water", 0, waterPlants, 0);
-        ModFluid lava = new ModFluid(1, "lava", 0, lavaPlants, 5);
+        ModFluid water = new ModFluid(WATER_ID, "water", 0, waterPlants, 0);
+        ModFluid lava = new ModFluid(LAVA_ID, "lava", 0, lavaPlants, 5);
 
         ArrayList<ModFluid> baseFluids = new ArrayList<ModFluid>();
 
@@ -47,7 +53,7 @@ public class ModFluidProvider {
         ArrayList<ModFluid> fluids = new ArrayList<ModFluid>();
 
         if (customFluids != null) {
-            int idCounter = 3;
+            int idCounter = BASE_FLUID_COUNT + 1;
             for (ModFluid fluid : customFluids) {
                 fluid.id = idCounter;
                 fluids.add(fluid);
@@ -87,7 +93,7 @@ public class ModFluidProvider {
 
     public static ModFluid getFluidByName(String name) {
         for (ModFluid fluid : allFluids) {
-            if (name == fluid.name) {
+            if (name.equalsIgnoreCase( fluid.name)) {
                 return fluid;
             }
         }
@@ -170,5 +176,30 @@ public class ModFluidProvider {
         if (fluid == null) return 0;
 
         return fluid.boostModifier;
+    }
+
+    public static int getSpecificPlantGrowthBoostFromFluidStack(FluidStack fluidStack, String plantName) {
+
+        if (fluidStack == null) return 0;
+
+        if (fluidStack.getFluid() == null) return 0;
+
+        ModFluid fluid = getFluidByFluidStack(fluidStack);
+
+        if (fluid == null) {
+            return 0;
+        }
+
+        if (fluid.allPlants == true) {
+            return 0;
+        }
+
+        for (String plant : fluid.plants) {
+            if (plantName.equalsIgnoreCase(plant)) {
+                return fluid.boostModifier;
+            }
+        }
+
+        return 0;
     }
 }

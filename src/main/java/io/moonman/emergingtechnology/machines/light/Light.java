@@ -30,7 +30,7 @@ public class Light extends MachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool POWERED = PropertyBool.create("powered");
-    public static final PropertyInteger BULBTYPE = PropertyInteger.create("bulbtype", 0, LightHelper.BULB_COUNT);
+    public static final PropertyInteger BULBTYPE = PropertyInteger.create("bulbtype", 0, 4);
 
     protected static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0f, 1.0f, 0.0f, 1.0f, 0.69f, 1.0f);
 
