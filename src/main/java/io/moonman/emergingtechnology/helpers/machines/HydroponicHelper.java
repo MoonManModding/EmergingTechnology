@@ -23,8 +23,17 @@ public class HydroponicHelper {
             new ItemStack(Blocks.SAND), new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.CLAY),
             new ItemStack(Items.CLAY_BALL) };
 
+    private static String[] validFluids = new String[] {
+        "water",
+        "lava"
+    };
+
     public static ItemStack[] getValidGrowthMedia() {
         return validGrowthMedia;
+    };
+
+    public static String[] getValidFluids() {
+        return validFluids;
     };
 
     public static boolean isItemStackValidGrowthMedia(ItemStack itemStack) {
@@ -42,6 +51,18 @@ public class HydroponicHelper {
 
         return false;
     };
+
+    public static boolean isFluidValidByName(String name) {
+        String[] validFluidNames = getValidFluids();
+
+        for (String validFluidName : validFluidNames) {
+            if (name.equalsIgnoreCase(validFluidName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static int getGrowthMediaIdFromStack(ItemStack itemStack) {
         if (!isItemStackValidGrowthMedia(itemStack)) {
@@ -128,11 +149,15 @@ public class HydroponicHelper {
 
         String plantName = plantBlockState.getBlock().getRegistryName().toString();
 
-        if (mediumId < CustomGrowthMediumLoader.STARTING_ID) {
+        System.out.println(plantName);
+        System.out.println(mediumId);
 
+        if (mediumId < CustomGrowthMediumLoader.STARTING_ID) {
+            System.out.println("vanilla");
             return getVanillaPlantBoost(mediumId, plantName);
 
         } else {
+            System.out.println("custom");
             CustomGrowthMedium medium = CustomGrowthMediumHelper.getCustomGrowthMediumById(mediumId);
 
             if (medium == null) {

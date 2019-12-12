@@ -63,12 +63,17 @@ public class HydroponicGui extends GuiContainer
 		String growthMediumName = "Empty";
 		int colour = GuiHelper.EMPTY_COLOUR;
 		int growthModifier = 0;
+		int boostModifier = 0;
 
 		if (!growthMediumEmpty) {
 			boolean growthMediumValid = HydroponicHelper.isItemStackValidGrowthMedia(contents);
 			growthMediumName = growthMediumValid ? contents.getDisplayName() : "Invalid";
 			colour = growthMediumValid ? GuiHelper.DARK_COLOUR : GuiHelper.INVALID_COLOUR;
 			growthModifier = HydroponicHelper.getGrowthProbabilityForMedium(contents);
+
+			boostModifier = this.tileEntity.getCurrentPlantGrowthBoost();
+			System.out.println(boostModifier);
+			colour = boostModifier > 0 ? GuiHelper.VALID_COLOUR : colour;
 		}
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
@@ -91,7 +96,7 @@ public class HydroponicGui extends GuiContainer
 
 		// Medium Stats
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString("+" + growthModifier + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, colour);
+		this.fontRenderer.drawString("+" + (growthModifier + boostModifier) + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, colour);
 
 		// Water Stats
 		int water = this.tileEntity.getWater();

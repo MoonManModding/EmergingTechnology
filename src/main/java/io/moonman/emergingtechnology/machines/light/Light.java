@@ -61,7 +61,7 @@ public class Light extends MachineBase implements ITileEntityProvider {
     }
 
     @Override
-    public int getLightValue(IBlockState state) {
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
         return state.getValue(POWERED) ? 15 : 0;
     }
 
@@ -86,6 +86,19 @@ public class Light extends MachineBase implements ITileEntityProvider {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] { FACING, POWERED, BULBTYPE });
+    }
+
+    public static void setState(boolean hasPower, int bulbType, World worldIn, BlockPos pos) {
+        IBlockState state = worldIn.getBlockState(pos);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+
+        worldIn.setBlockState(pos, ModBlocks.light.getDefaultState().withProperty(FACING, state.getValue(FACING))
+                .withProperty(POWERED, hasPower).withProperty(BULBTYPE, bulbType), 3);
+
+        if (tileEntity != null) {
+            tileEntity.validate();
+            worldIn.setTileEntity(pos, tileEntity);
+        }
     }
 
     @Override

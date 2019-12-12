@@ -25,8 +25,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraft.block.ITileEntityProvider;
 
 public class Hydroponic extends MachineBase implements ITileEntityProvider {
@@ -38,7 +40,8 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
         super(Material.IRON, "hydroponic");
         this.setSoundType(SoundType.METAL);
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false));
+        setDefaultState(
+                blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false));
     }
 
     @Override
@@ -107,14 +110,30 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
             return true;
         }
 
-        Item itemHeld = playerIn.getHeldItemMainhand().getItem();
+        HydroponicTileEntity tileEntity = (HydroponicTileEntity) worldIn.getTileEntity(pos);
+        ItemStack itemStackHeld = playerIn.getHeldItemMainhand();
+        Item itemHeld = itemStackHeld.getItem();
 
-        // If player is holding an item bucket, fill grow bed
-        if (itemHeld == Items.WATER_BUCKET) {
-            HydroponicTileEntity tileEntity = (HydroponicTileEntity) worldIn.getTileEntity(pos);
-            tileEntity.fluidHandler.fill(new FluidStack(FluidRegistry.WATER, 1000), true);
+        if (itemHeld == Items.WATER_BUCKET || itemHeld == Items.LAVA_BUCKET) {
 
-            // Otherwise, if player is holding a plant item and they're activating the top then try to place it
+            Fluid fluid = itemHeld == Items.WATER_BUCKET ? FluidRegistry.WATER : FluidRegistry.LAVA;
+
+            int waterFilled = tileEntity.fluidHandler.fill(new FluidStack(fluid, 1000), true);
+            
+            if (waterFilled > 0) {
+                playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Items.BUCKET));
+            }
+
+        } else if (itemHeld instanceof UniversalBucket) {
+
+            UniversalBucket bucket = (UniversalBucket) itemHeld;
+            FluidStack fluidStack = bucket.getFluid(itemStackHeld);
+
+            if (tileEntity.fluidHandler.canFillFluidType(fluidStack)) {
+                tileEntity.fluidHandler.fill(fluidStack, true);
+                playerIn.setHeldItem(EnumHand.MAIN_HAND, bucket.getEmpty());
+            }
+
         } else if (PlantHelper.isPlantItem(itemHeld) && facing == EnumFacing.UP) {
             return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 
@@ -143,8 +162,7 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
 
         TileEntity tileEntity = worldIn.getTileEntity(pos);
 
-        if (tileEntity instanceof HydroponicTileEntity)
-        {
+        if (tileEntity instanceof HydroponicTileEntity) {
             HydroponicTileEntity hydroponicTileEntity = (HydroponicTileEntity) tileEntity;
 
             boolean hasWater = hydroponicTileEntity.getWater() > 0;
@@ -153,14 +171,13 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
         }
 
         return state;
-       
+
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState()
-                .withProperty(FACING, EnumFacing.getFront(meta & 7))
-                .withProperty(HAS_WATER, (meta & 8) != 0);
+        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(HAS_WATER,
+                (meta & 8) != 0);
     }
 
     @Override
@@ -168,5 +185,4 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
         int meta = state.getValue(FACING).getIndex() + (state.getValue(HAS_WATER) ? 8 : 0);
         return meta;
     }
-
 }

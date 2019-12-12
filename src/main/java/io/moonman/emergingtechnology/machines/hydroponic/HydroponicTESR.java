@@ -8,7 +8,10 @@ import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.animation.FastTESR;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -36,19 +39,21 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
         final float BORDER = 1f * PX;
         final float MAXHEIGHT = 3 * PX;
 
-        float waterLevel = (float) tileEntity.fluidHandler.getFluidAmount() / Reference.HYDROPONIC_FLUID_CAPACITY;
+        float fluidLevel = (float) tileEntity.fluidHandler.getFluidAmount() / Reference.HYDROPONIC_FLUID_CAPACITY;
 
-        if (waterLevel <= 0.01) {
+        if (fluidLevel <= 0.01) {
             return;
         }
 
-        if (waterLevel >= 0.9) {
-            waterLevel = 1;
+        if (fluidLevel >= 0.9) {
+            fluidLevel = 1;
         }
 
-        float actualHeight = (MAXHEIGHT * waterLevel) + YOFF;
+        float actualHeight = (MAXHEIGHT * fluidLevel) + YOFF;
+        
         BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
-        TextureAtlasSprite texture = bm.getTexture(Blocks.WATER.getDefaultState());
+        IBlockState blockState = tileEntity.fluidHandler.getFluid().getFluid().getBlock().getDefaultState();
+        TextureAtlasSprite texture =  bm.getTexture(blockState); //bm.getTexture(Blocks.WATER.getDefaultState());
 
         // Lightmap calculations
         int upCombined = getWorld().getCombinedLight(tileEntity.getPos().up(), 0);

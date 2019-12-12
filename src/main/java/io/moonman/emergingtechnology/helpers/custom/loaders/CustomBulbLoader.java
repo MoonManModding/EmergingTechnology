@@ -14,7 +14,6 @@ import io.moonman.emergingtechnology.helpers.custom.classes.CustomGrowthMedium;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomBulbHelper;
 import io.moonman.emergingtechnology.helpers.custom.helpers.CustomGrowthMediumHelper;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomBulbWrapper;
-import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomGrowthMediumWrapper;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

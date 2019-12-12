@@ -46,6 +46,11 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
             super.onContentsChanged();
             markDirtyClient();
         }
+
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+            return true; // HydroponicHelper.isFluidValidByName(fluid.getFluid().getName());
+        }
     };
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HYDROPONIC_ENERGY_CAPACITY) {
@@ -233,7 +238,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
                     // Fill the neighbour and get amount filled
                     int filled = targetTileEntity.fluidHandler.fill(
-                            new FluidStack(FluidRegistry.WATER,
+                            new FluidStack(this.fluidHandler.getFluid().getFluid(),
                                     EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate),
                             true);
 
@@ -284,7 +289,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
             return false;
         }
 
-        // If this medium works especially well on this plant, we can give it a little boost
+        // If this medium works especially well on this plant, we can give it a little
+        // boost
         int growthProbabilityBoostModifier = HydroponicHelper.getSpecificPlantGrowthBoost(mediumId, aboveBlockState);
 
         growthProbabilityThreshold += growthProbabilityBoostModifier;
@@ -313,8 +319,25 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         return false;
     }
 
+    public int getCurrentPlantGrowthBoost() {
+        // Get blockstate of whatever is on top of block
+        IBlockState aboveBlockState = this.world.getBlockState(this.pos.add(0, 1, 0));
+
+        // If there is no blockstate above, abandon ship
+        if (aboveBlockState == null) {
+            System.out.println("It was null");
+            return 0;
+        }
+
+        int mediumId = this.getGrowthMediumId();
+
+        System.out.println("TE medium id " + mediumId);
+
+        return HydroponicHelper.getSpecificPlantGrowthBoost(this.getGrowthMediumId(), aboveBlockState);
+    }
+
     public int getGrowthMediumId() {
-        return this.mediumId;
+        return this.getGrowthMediumIdFromItemStack();
     }
 
     public int getGrowthMediumIdFromItemStack() {

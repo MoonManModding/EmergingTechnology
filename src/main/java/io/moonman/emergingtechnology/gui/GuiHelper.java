@@ -42,7 +42,7 @@ public class GuiHelper {
     }
 
     public static GuiPosition getSecondField() {
-        return new GuiPosition(100, 35);
+        return new GuiPosition(105, 35);
     }
 
     // String formatting methods

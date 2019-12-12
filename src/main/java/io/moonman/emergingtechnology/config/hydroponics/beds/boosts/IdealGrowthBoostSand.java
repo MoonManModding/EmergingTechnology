@@ -31,7 +31,7 @@ public class IdealGrowthBoostSand implements IIdealBoostsConfiguration {
     @Name("Sugarcane")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Sugarcane")
     @RangeInt(min = 0, max = 100)
-    public int sugarcaneAddedProbability = 0;
+    public int sugarcaneAddedProbability = 5;
 
     @Name("Cactus")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Cacti")

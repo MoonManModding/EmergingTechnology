@@ -25,15 +25,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.fml.common.Optional;
 
-import li.cil.oc.api.machine.Arguments;
-import li.cil.oc.api.machine.Callback;
-import li.cil.oc.api.machine.Context;
-import li.cil.oc.api.network.SimpleComponent;
-
-@Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class LightTileEntity extends TileEntity implements ITickable, SimpleComponent {
+public class LightTileEntity extends TileEntity implements ITickable {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.LIGHT_ENERGY_CAPACITY) {
         @Override
@@ -99,7 +92,7 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
         handleUpdateTag(pkt.getNbtCompound());
-        this.sendUpdates(false);
+        // this.sendUpdates(false);
     }
 
     @Override
@@ -153,7 +146,9 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
                 doGrowthMultiplierProcess(this.bulbTypeId);
             }
 
-            this.sendUpdates(false);
+            Light.setState(hasPower || this.isGlowstonePowered(), LightHelper.getBulbColourFromBulbId(bulbTypeId), world, pos);
+
+            // this.sendUpdates(false);
 
             tick = 0;
         }
@@ -294,17 +289,16 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
     }
 
     private void sendUpdates(boolean forceUpdates) {
-        if (this.bulbChanged || forceUpdates) {
-            world.markBlockRangeForRenderUpdate(pos, pos);
-            world.notifyBlockUpdate(pos, getState(), getState(), 3);
-            world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);
-            markDirty();
-        }
+        // if (this.bulbChanged || forceUpdates) {
+        //     world.markBlockRangeForRenderUpdate(pos.add(10, 10, 10), pos.add(-10, -10, -10));
+        //     world.notifyBlockUpdate(pos, getState(), getState(), 3);
+        //     world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);
+        // }
     }
 
-    private IBlockState getState() {
-        return world.getBlockState(pos);
-    }
+    // private IBlockState getState() {
+    //     return world.getBlockState(pos);
+    // }
 
     public boolean isUsableByPlayer(EntityPlayer player) {
         return this.world.getTileEntity(this.pos) != this ? false
@@ -312,34 +306,34 @@ public class LightTileEntity extends TileEntity implements ITickable, SimpleComp
                         (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
-    // OpenComputers
+    // // OpenComputers - 11/12/19 - Removed as TileEntity is destroyed when updating lighting.
 
-    @Override
-    public String getComponentName() {
-        return "etech_grow_light";
-    }
+    // @Override
+    // public String getComponentName() {
+    //     return "etech_grow_light";
+    // }
 
-    @Callback
-    @Optional.Method(modid = "opencomputers")
-    public Object[] getEnergyLevel(Context context, Arguments args) {
-        return new Object[] { getEnergy() };
-    }
+    // @Callback
+    // @Optional.Method(modid = "opencomputers")
+    // public Object[] getEnergyLevel(Context context, Arguments args) {
+    //     return new Object[] { getEnergy() };
+    // }
 
-    @Callback
-    @Optional.Method(modid = "opencomputers")
-    public Object[] getMaxEnergyLevel(Context context, Arguments args) {
-        return new Object[] { Reference.LIGHT_ENERGY_CAPACITY };
-    }
+    // @Callback
+    // @Optional.Method(modid = "opencomputers")
+    // public Object[] getMaxEnergyLevel(Context context, Arguments args) {
+    //     return new Object[] { Reference.LIGHT_ENERGY_CAPACITY };
+    // }
 
-    @Callback
-    @Optional.Method(modid = "opencomputers")
-    public Object[] getBulbName(Context context, Arguments args) {
-        return new Object[] { getItemStack().getDisplayName() };
-    }
+    // @Callback
+    // @Optional.Method(modid = "opencomputers")
+    // public Object[] getBulbName(Context context, Arguments args) {
+    //     return new Object[] { getItemStack().getDisplayName() };
+    // }
 
-    @Callback
-    @Optional.Method(modid = "opencomputers")
-    public Object[] getBulbGrowthMultiplier(Context context, Arguments args) {
-        return new Object[] { LightHelper.getGrowthProbabilityForBulbById(getBulbTypeId()) };
-    }
+    // @Callback
+    // @Optional.Method(modid = "opencomputers")
+    // public Object[] getBulbGrowthMultiplier(Context context, Arguments args) {
+    //     return new Object[] { LightHelper.getGrowthProbabilityForBulbById(getBulbTypeId()) };
+    // }
 }
