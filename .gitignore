@@ -14,4 +14,5 @@
 !/images/
 !custom-media.json
 !custom-bulbs.json
+!custom-fluids.json
 !open-computers-example.lua
