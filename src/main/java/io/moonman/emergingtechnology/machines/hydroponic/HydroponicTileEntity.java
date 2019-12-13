@@ -64,7 +64,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
-            markDirty();
             markDirtyClient();
         }
 
