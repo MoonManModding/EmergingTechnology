@@ -9,7 +9,6 @@ import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

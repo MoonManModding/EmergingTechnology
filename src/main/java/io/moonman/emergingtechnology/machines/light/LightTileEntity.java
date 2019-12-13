@@ -46,7 +46,6 @@ public class LightTileEntity extends TileEntity implements ITickable {
     private int energy = this.energyHandler.getEnergyStored();
 
     private int bulbTypeId = 0;
-    private boolean bulbChanged = false;
 
     private int tick = 0;
 
@@ -250,9 +249,6 @@ public class LightTileEntity extends TileEntity implements ITickable {
     }
 
     private void setBulbTypeId(int id) {
-
-        this.bulbChanged = this.bulbTypeId != id;
-
         this.bulbTypeId = id;
     }
 
@@ -288,52 +284,9 @@ public class LightTileEntity extends TileEntity implements ITickable {
         }
     }
 
-    private void sendUpdates(boolean forceUpdates) {
-        // if (this.bulbChanged || forceUpdates) {
-        //     world.markBlockRangeForRenderUpdate(pos.add(10, 10, 10), pos.add(-10, -10, -10));
-        //     world.notifyBlockUpdate(pos, getState(), getState(), 3);
-        //     world.scheduleBlockUpdate(pos, this.getBlockType(), 0, 0);
-        // }
-    }
-
-    // private IBlockState getState() {
-    //     return world.getBlockState(pos);
-    // }
-
     public boolean isUsableByPlayer(EntityPlayer player) {
         return this.world.getTileEntity(this.pos) != this ? false
                 : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
                         (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
-
-    // // OpenComputers - 11/12/19 - Removed as TileEntity is destroyed when updating lighting.
-
-    // @Override
-    // public String getComponentName() {
-    //     return "etech_grow_light";
-    // }
-
-    // @Callback
-    // @Optional.Method(modid = "opencomputers")
-    // public Object[] getEnergyLevel(Context context, Arguments args) {
-    //     return new Object[] { getEnergy() };
-    // }
-
-    // @Callback
-    // @Optional.Method(modid = "opencomputers")
-    // public Object[] getMaxEnergyLevel(Context context, Arguments args) {
-    //     return new Object[] { Reference.LIGHT_ENERGY_CAPACITY };
-    // }
-
-    // @Callback
-    // @Optional.Method(modid = "opencomputers")
-    // public Object[] getBulbName(Context context, Arguments args) {
-    //     return new Object[] { getItemStack().getDisplayName() };
-    // }
-
-    // @Callback
-    // @Optional.Method(modid = "opencomputers")
-    // public Object[] getBulbGrowthMultiplier(Context context, Arguments args) {
-    //     return new Object[] { LightHelper.getGrowthProbabilityForBulbById(getBulbTypeId()) };
-    // }
 }
