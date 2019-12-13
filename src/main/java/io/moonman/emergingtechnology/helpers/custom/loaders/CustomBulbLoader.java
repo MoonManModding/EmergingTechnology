@@ -9,7 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.custom.classes.ModBulb;
+import io.moonman.emergingtechnology.providers.classes.ModBulb;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomBulbWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

@@ -5,7 +5,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
 import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
-import io.moonman.emergingtechnology.helpers.custom.classes.ModFluid;
+import io.moonman.emergingtechnology.providers.classes.ModFluid;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import net.minecraft.block.state.IBlockState;
