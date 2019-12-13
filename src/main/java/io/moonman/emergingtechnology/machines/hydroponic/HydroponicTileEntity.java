@@ -242,23 +242,14 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
             if (neighbour instanceof HydroponicTileEntity) {
                 HydroponicTileEntity targetTileEntity = (HydroponicTileEntity) neighbour;
 
-                // Check if neighbour is facing toward this grow bed to avoid infinite loop
-                EnumFacing neighbourFacing = this.world.getBlockState(targetTileEntity.getPos())
-                        .getValue(Hydroponic.FACING);
+                // Fill the neighbour and get amount filled
+                int filled = targetTileEntity.fluidHandler.fill(new FluidStack(this.fluidHandler.getFluid().getFluid(),
+                        EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate), true);
 
-                if (facing != neighbourFacing.getOpposite()) {
-
-                    // Fill the neighbour and get amount filled
-                    int filled = targetTileEntity.fluidHandler.fill(
-                            new FluidStack(this.fluidHandler.getFluid().getFluid(),
-                                    EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate),
-                            true);
-
-                    if (filled > 0) {
-                        // Drain self from amount
-                        this.fluidHandler.drain(filled, true);
-                        this.setWater(this.fluidHandler.getFluidAmount());
-                    }
+                if (filled > 0) {
+                    // Drain self from amount
+                    this.fluidHandler.drain(filled, true);
+                    this.setWater(this.fluidHandler.getFluidAmount());
                 }
             }
         }
@@ -308,7 +299,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
 
         // If this medium works especially well on this plant, we can give it a little
         // boost
-        int growthProbabilityBoostModifier = HydroponicHelper.getSpecificPlantGrowthBoostForId(mediumId, aboveBlockState);
+        int growthProbabilityBoostModifier = HydroponicHelper.getSpecificPlantGrowthBoostForId(mediumId,
+                aboveBlockState);
 
         growthProbabilityThreshold += growthProbabilityBoostModifier;
 
