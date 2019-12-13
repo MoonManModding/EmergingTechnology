@@ -57,7 +57,7 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
 
     private int tick = 0;
 
-    private int operationTick = 0;
+    private int progress = 0;
 
     private int energy = this.energyHandler.getEnergyStored();
 
@@ -94,6 +94,7 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
         this.setEnergy(compound.getInteger("GuiEnergy"));
+        this.setProgress(compound.getInteger("GuiProgress"));
 
         this.energyHandler.readFromNBT(compound);
     }
@@ -102,7 +103,9 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
+        
         compound.setInteger("GuiEnergy", energy);
+        compound.setInteger("GuiProgress", progress);
 
         this.energyHandler.writeToNBT(compound);
 
@@ -153,13 +156,13 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
 
         // Nothing in input stack
         if (inputStack.getCount() == 0) {
-            operationTick = 0;
+            progress = 0;
             return;
         }
 
         // Can't shred this item
         if (!ShredderHelper.canShredItem(inputStack)) {
-            operationTick = 0;
+            progress = 0;
             return;
         }
 
@@ -182,8 +185,8 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
         }
 
         // Not enough operations performed
-        if (operationTick < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken) {
-            operationTick++;
+        if (progress < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken) {
+            progress++;
             return;
         }
 
@@ -198,7 +201,7 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
                 false);
 
-        operationTick = 0;
+        progress = 0;
     }
 
     public void doOutputProcess() {
@@ -234,7 +237,7 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
     }
 
     public int getProgress() {
-        return this.operationTick;
+        return this.progress;
     }
 
     public int getMaxProgress() {
@@ -245,6 +248,11 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
 
     private void setEnergy(int quantity) {
         this.energy = quantity;
+    }
+
+    private void setProgress(int quantity) {
+        System.out.println("Setting progress to " + quantity);
+        this.progress = quantity;
     }
 
     @Override
@@ -262,6 +270,8 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
         switch (id) {
         case 0:
             return this.getEnergy();
+        case 1:
+            return this.getProgress();
         default:
             return 0;
         }
@@ -271,6 +281,8 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
         switch (id) {
         case 0:
             this.setEnergy(value);
+        case 1:
+            this.setProgress(value);
         }
     }
 

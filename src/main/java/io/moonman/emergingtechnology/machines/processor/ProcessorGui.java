@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.machines.processor;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiPosition;
@@ -52,21 +53,22 @@ public class ProcessorGui extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
 	{
+		this.mc.getTextureManager().bindTexture(TEXTURES);
 
-		// this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
-		// this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
+		int progress = this.getProgressScaled(34);
+		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
-		// int water = this.tileEntity.getWater();
-		// int energy = this.tileEntity.getEnergy();
+		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
 
-		// GuiIndicator waterIndicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
-		// GuiIndicator energyIndicator = new GuiIndicator(energy, Reference.PROCESSOR_ENERGY_CAPACITY);
+		int water = this.tileEntity.getWater();
+		int energy = this.tileEntity.getEnergy();
 
-		// this.fontRenderer.drawString(waterIndicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, waterIndicator.getPercentageColour());
-		// this.fontRenderer.drawString(energyIndicator.getPercentageString(), MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, energyIndicator.getPercentageColour());
+		GuiIndicator waterIndicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
+		GuiIndicator energyIndicator = new GuiIndicator(energy, Reference.PROCESSOR_ENERGY_CAPACITY);
 
-		int l = this.getProgressScaled(10);
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 176, 0, l, 10);
+		this.fontRenderer.drawString(waterIndicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, waterIndicator.getPercentageColour());
+		this.fontRenderer.drawString(energyIndicator.getPercentageString(), MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, energyIndicator.getPercentageColour());
 	}
 	
 	@Override
@@ -79,11 +81,6 @@ public class ProcessorGui extends GuiContainer
 
 	private int getProgressScaled(int scaled)
     {
-		return (int) (tileEntity.getField(2) * scaled / 20);
-
-        // int i = this.tileEntity.getField(2);
-		// int j = 20;
-		// System.out.println(i + " " + j);
-        // return j != 0 && i != 0 ? i * pixels / j : 0;
+		return (int) (tileEntity.getField(2) * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken);
     }
 }

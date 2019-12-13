@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.machines.shredder;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiPosition;
@@ -53,15 +54,13 @@ public class ShredderGui extends GuiContainer {
 		this.renderHoveredToolTip(mouseX, mouseY);
 	}
 
-	private int getProgressScaled(int pixels)
-    {
-		int i = this.tileEntity.getProgress();
-		int j = this.tileEntity.getMaxProgress();
-        return j != 0 && i != 0 ? i * pixels / j : 0;
-    }
-
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+
+		this.mc.getTextureManager().bindTexture(TEXTURES);
+
+		int progress = this.getProgressScaled(34);
+		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
@@ -83,4 +82,11 @@ public class ShredderGui extends GuiContainer {
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
 	}
+
+	private int getProgressScaled(int scaled)
+    {
+		int progress = tileEntity.getField(1);
+		System.out.println(progress);
+		return (int) (progress * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
+    }
 }

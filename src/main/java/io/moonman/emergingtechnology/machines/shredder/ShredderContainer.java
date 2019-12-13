@@ -16,6 +16,7 @@ public class ShredderContainer extends Container {
 	private final ShredderTileEntity tileEntity;
 
 	private int energy;
+	private int progress;
 
 	public ShredderContainer(InventoryPlayer player, ShredderTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -53,9 +54,11 @@ public class ShredderContainer extends Container {
 		{
 			IContainerListener listener = (IContainerListener)this.listeners.get(i);
 			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
+			if(this.progress != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
 		}
         
 		this.energy = this.tileEntity.getField(0);
+		this.progress = this.tileEntity.getField(1);
 	}
 
 	@Override
