@@ -138,10 +138,9 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
         compound.setInteger("GuiWater", water);
-        compound.setInteger("EnergyWater", energy);
+        compound.setInteger("GuiEnergy", energy);
 
         this.fluidHandler.writeToNBT(compound);
-
         this.energyHandler.writeToNBT(compound);
 
         return compound;
