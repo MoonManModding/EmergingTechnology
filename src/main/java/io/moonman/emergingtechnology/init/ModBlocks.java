@@ -2,6 +2,8 @@ package io.moonman.emergingtechnology.init;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.Frame;
+import io.moonman.emergingtechnology.block.blocks.MachineCase;
+import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.processor.Processor;
@@ -23,5 +25,7 @@ public class ModBlocks {
 	//region Polymers Blocks
 	public static final Processor processor = null;
 	public static final Shredder shredder = null;
+	public static final PlasticBlock plasticblock = null;
+	public static final MachineCase machinecase = null;
 	//endregion
 }

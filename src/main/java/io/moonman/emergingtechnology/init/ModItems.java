@@ -30,9 +30,13 @@ public class ModItems {
 	// Block Items
 	public static final Item processor = null;
 	public static final Item shredder = null;
+	public static final Item plasticblock = null;
+	public static final Item machinecase = null;
 
 	// Items
 	public static final Item shreddedplastic = null;
 	public static final Item shreddedplant = null;
+	public static final Item plasticrod = null;
+	public static final Item plasticsheet = null;
 	// endregion
 }

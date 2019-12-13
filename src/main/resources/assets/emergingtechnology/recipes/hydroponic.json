@@ -1,20 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SBS",
-    "III",
-    "III"
+    "PIP",
+    "IRI",
+    "IMI"
   ],
   "key": {
-    "S": {
-      "item": "minecraft:stone_slab",
-      "data": 7
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "blockPlastic"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "rodPlastic"
     },
     "I": {
       "item": "minecraft:iron_ingot"
     },
-    "B": {
-      "item": "minecraft:stone_button"
+    "M": {
+      "item": "emergingtechnology:machinecase"
     }
   },
   "result": {
