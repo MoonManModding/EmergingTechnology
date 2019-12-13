@@ -1,6 +1,9 @@
 package io.moonman.emergingtechnology.machines.light;
 
+import java.util.List;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
@@ -13,8 +16,10 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -24,6 +29,8 @@ import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk.EnumCreateEntityType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
 
 public class Light extends MachineBase implements ITileEntityProvider {
@@ -42,6 +49,16 @@ public class Light extends MachineBase implements ITileEntityProvider {
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, false)
                 .withProperty(BULBTYPE, 0));
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
+    {
+        int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange;
+        int energyUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage;
+
+        tooltip.add("Provides a growth boost to plants up to " + range + " blocks below.");
+        tooltip.add("Must be powered at " + energyUsage + "RF and contain a bulb to function.");
     }
 
     @Override
@@ -71,6 +88,25 @@ public class Light extends MachineBase implements ITileEntityProvider {
 
         if (worldIn.isRemote) {
             return true;
+        }
+
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+
+        if (tileEntity instanceof LightTileEntity) {
+
+            LightTileEntity lightTileEntity = (LightTileEntity) tileEntity;
+
+            ItemStack itemStackHeld = playerIn.getHeldItemMainhand();
+
+            if (LightHelper.isItemStackValidBulb(itemStackHeld)
+                    && lightTileEntity.itemHandler.getStackInSlot(0).isEmpty()) {
+
+                ItemStack remainder = lightTileEntity.itemHandler.insertItem(0, itemStackHeld, false);
+
+                playerIn.setHeldItem(EnumHand.MAIN_HAND, remainder);
+
+                return true;
+            }
         }
 
         playerIn.openGui(EmergingTechnology.instance, Reference.GUI_LIGHT, worldIn, pos.getX(), pos.getY(), pos.getZ());

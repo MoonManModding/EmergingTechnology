@@ -31,8 +31,8 @@ public class LightTileEntity extends TileEntity implements ITickable {
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.LIGHT_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
-            super.onContentsChanged();
             markDirtyClient();
+            super.onContentsChanged();
         }
     };
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
@@ -40,6 +40,16 @@ public class LightTileEntity extends TileEntity implements ITickable {
         protected void onContentsChanged(int slot) {
             markDirty();
             super.onContentsChanged(slot);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return LightHelper.isItemStackValidBulb(stack);
         }
     };
 
@@ -179,7 +189,7 @@ public class LightTileEntity extends TileEntity implements ITickable {
         int growthProbabilityThreshold = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
 
         // How many blocks below light?
-        int blocksBelow = 2;
+        int blocksBelow = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange;
 
         for (int i = 1; i < blocksBelow + 1; i++) {
             // Get position
@@ -201,16 +211,29 @@ public class LightTileEntity extends TileEntity implements ITickable {
 
                 growthProbabilityThreshold += growthProbabilityBoostModifier;
 
+                // If light dropoff set in config, calculate the penalty
+                int dropoff = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRangeDropoff;
+                int growthProbabilityDropoffPenalty = 0;
+
+                if (dropoff > 0) {
+                    growthProbabilityDropoffPenalty = dropoff * i;
+                };
+
+                growthProbabilityThreshold -= growthProbabilityDropoffPenalty;
+
+                // If growth is impossible, exit
+                if (growthProbabilityThreshold <= 0) {
+                    break;
+                }
+
                 rollForGrow(blockBelow, blockStateBelow, position, growthProbabilityThreshold);
+
                 break;
             } else if (blockBelow == Blocks.AIR) {
                 continue;
             } else {
                 break;
             }
-
-            // Let's roll
-
         }
 
         return;

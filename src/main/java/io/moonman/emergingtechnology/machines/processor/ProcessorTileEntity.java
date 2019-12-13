@@ -70,7 +70,7 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
     private int water = this.fluidHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
 
-    private int operationTick = 0;
+    private int progress = 0;
 
     public void markDirtyClient() {
         markDirty();
@@ -110,6 +110,7 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
 
         this.setWater(compound.getInteger("GuiWater"));
         this.setEnergy(compound.getInteger("GuiEnergy"));
+        this.setProgress(compound.getInteger("GuiProgress"));
 
         this.fluidHandler.readFromNBT(compound);
         this.energyHandler.readFromNBT(compound);
@@ -120,7 +121,8 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
         compound.setInteger("GuiWater", water);
-        compound.setInteger("EnergyWater", energy);
+        compound.setInteger("GuiEnergy", energy);
+        compound.setInteger("GuiProgress", progress);
 
         this.fluidHandler.writeToNBT(compound);
         this.energyHandler.writeToNBT(compound);
@@ -172,13 +174,13 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
 
         // Nothing in input stack
         if (inputStack.getCount() == 0) {
-            operationTick = 0;
+            progress = 0;
             return;
         }
 
         // Can't process this item
         if (!ProcessorHelper.canProcessItem(inputStack)) {
-            operationTick = 0;
+            progress = 0;
             return;
         }
 
@@ -206,8 +208,8 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
         }
 
         // Not enough operations performed
-        if (operationTick < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken) {
-            operationTick++;
+        if (progress < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken) {
+            progress++;
             return;
         }
 
@@ -222,7 +224,7 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage,
                 false);
 
-        operationTick = 0;
+        progress = 0;
     }
 
     public ItemStack getInputStack() {
@@ -243,6 +245,10 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
         return this.energyHandler.getEnergyStored();
     }
 
+    public int getProgress() {
+        return this.progress;
+    }
+
     // Setters
 
     private void setWater(int quantity) {
@@ -251,6 +257,10 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
 
     private void setEnergy(int quantity) {
         this.energy = quantity;
+    }
+
+    private void setProgress(int quantity) {
+        this.progress = quantity;
     }
 
     @Override
@@ -270,6 +280,8 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             return this.getEnergy();
         case 1:
             return this.getWater();
+        case 2:
+            return this.getProgress();
         default:
             return 0;
         }
@@ -281,6 +293,8 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             this.setEnergy(value);
         case 1:
             this.setWater(value);
+        case 2: 
+            this.setProgress(value);
         }
     }
 

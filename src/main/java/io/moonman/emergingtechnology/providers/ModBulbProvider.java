@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.custom.classes.ModBulb;
+import io.moonman.emergingtechnology.providers.classes.ModBulb;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomBulbLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

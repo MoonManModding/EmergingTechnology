@@ -56,7 +56,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         @Override
         public void onContentsChanged() {
             super.onContentsChanged();
-            markDirtyClient();
+            markDirty();
         }
     };
 
@@ -65,7 +65,17 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
             markDirty();
+            markDirtyClient();
+        }
 
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return HydroponicHelper.isItemStackValid(stack);
         }
     };
 

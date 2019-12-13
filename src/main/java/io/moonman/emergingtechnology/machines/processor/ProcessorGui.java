@@ -53,18 +53,20 @@ public class ProcessorGui extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
 	{
 
-		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
+		// this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
+		// this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
 
-		// Water Stats
-		int water = this.tileEntity.getWater();
-		int energy = this.tileEntity.getEnergy();
+		// int water = this.tileEntity.getWater();
+		// int energy = this.tileEntity.getEnergy();
 
-		GuiIndicator waterIndicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
-		GuiIndicator energyIndicator = new GuiIndicator(energy, Reference.PROCESSOR_ENERGY_CAPACITY);
+		// GuiIndicator waterIndicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
+		// GuiIndicator energyIndicator = new GuiIndicator(energy, Reference.PROCESSOR_ENERGY_CAPACITY);
 
-		this.fontRenderer.drawString(waterIndicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, waterIndicator.getPercentageColour());
-		this.fontRenderer.drawString(energyIndicator.getPercentageString(), MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, energyIndicator.getPercentageColour());
+		// this.fontRenderer.drawString(waterIndicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, waterIndicator.getPercentageColour());
+		// this.fontRenderer.drawString(energyIndicator.getPercentageString(), MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, energyIndicator.getPercentageColour());
+
+		int l = this.getProgressScaled(10);
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 176, 0, l, 10);
 	}
 	
 	@Override
@@ -73,6 +75,15 @@ public class ProcessorGui extends GuiContainer
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		
 	}
+
+	private int getProgressScaled(int scaled)
+    {
+		return (int) (tileEntity.getField(2) * scaled / 20);
+
+        // int i = this.tileEntity.getField(2);
+		// int j = 20;
+		// System.out.println(i + " " + j);
+        // return j != 0 && i != 0 ? i * pixels / j : 0;
+    }
 }

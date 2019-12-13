@@ -1,5 +1,7 @@
 package io.moonman.emergingtechnology.block.blocks;
 
+import java.util.List;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -8,7 +10,10 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -36,6 +41,12 @@ public class Frame extends Block {
         this.setUnlocalizedName(EmergingTechnology.MODID + "." + _name);
         this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
         this.setSoundType(SoundType.METAL);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
+    {
+        tooltip.add("A decorative plastic frame");
     }
 
 

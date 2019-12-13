@@ -27,8 +27,7 @@ public class OreRegistrationHandler {
         };
 
         Block[] blockPlastic = new Block[] {
-            ModBlocks.plasticblock,
-            ModBlocks.machinecase
+            ModBlocks.plasticblock
         };
 
         Item[] sheetPlastic = new Item[] {

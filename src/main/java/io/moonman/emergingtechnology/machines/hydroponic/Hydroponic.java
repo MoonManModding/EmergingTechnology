@@ -1,7 +1,11 @@
 package io.moonman.emergingtechnology.machines.hydroponic;
 
+import java.util.List;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
+import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
 import net.minecraft.block.SoundType;
@@ -11,6 +15,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -29,6 +34,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.UniversalBucket;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
 
 public class Hydroponic extends MachineBase implements ITileEntityProvider {
@@ -42,6 +49,16 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
 
         setDefaultState(
                 blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HAS_WATER, false));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
+    {
+        int fluidUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle;
+
+        tooltip.add("Provides a growth boost to plants grown on top.");
+        tooltip.add("Requires a growth medium to provide boost.");
+        tooltip.add("Requires at least " + fluidUsage + "MB of fluid per cycle to function");
     }
 
     @Override
@@ -134,7 +151,16 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
                 playerIn.setHeldItem(EnumHand.MAIN_HAND, bucket.getEmpty());
             }
 
+        } else if (HydroponicHelper.isItemStackValid(itemStackHeld) && tileEntity.itemHandler.getStackInSlot(0).isEmpty()) {
+
+            ItemStack remainder = tileEntity.itemHandler.insertItem(0, itemStackHeld, false);
+
+            playerIn.setHeldItem(EnumHand.MAIN_HAND, remainder);
+
+            return true;
+
         } else if (PlantHelper.isPlantItem(itemHeld) && facing == EnumFacing.UP) {
+
             return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 
             // Otherwise open the gui

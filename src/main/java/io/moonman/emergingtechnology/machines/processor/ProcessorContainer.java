@@ -17,6 +17,7 @@ public class ProcessorContainer extends Container {
 
 	private int water;
 	private int energy;
+	private int progress;
 
 	public ProcessorContainer(InventoryPlayer player, ProcessorTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -55,10 +56,12 @@ public class ProcessorContainer extends Container {
 			IContainerListener listener = (IContainerListener)this.listeners.get(i);
 			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
 			if(this.water != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
+			if(this.progress != this.tileEntity.getField(2)) listener.sendWindowProperty(this, 2, this.tileEntity.getField(2));
 		}
         
 		this.energy = this.tileEntity.getField(0);
 		this.water = this.tileEntity.getField(1);
+		this.progress = this.tileEntity.getField(2);
 	}
 
 	@Override

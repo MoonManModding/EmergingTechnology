@@ -11,6 +11,16 @@ public class HydroponicsModuleGrowLight {
 	@Config.Comment("Configure the boost to growth specific crops get when grown under specific bulb")
     public final IdealGrowthBoost BOOSTS = new IdealGrowthBoost();
 
+    @Name("Grow Light - Range")
+    @Config.Comment("How many blocks below the grow light should be checked when growing plants.")
+    @RangeInt(min = 0, max = 100)
+    public int lightBlockRange = 2;
+
+    @Name("Grow Light - Range Modifier Dropoff")
+    @Config.Comment("If this value is greater than 0, it will be multiplied by the distance from the light, then subtracted from growth probability.")
+    @RangeInt(min = 0, max = 100)
+    public int lightBlockRangeDropoff = 0;
+
     @Name("Red Bulb Growth Modifier %")
     @Config.Comment("Probability of growth from a grow lamp containing a red bulb per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)
