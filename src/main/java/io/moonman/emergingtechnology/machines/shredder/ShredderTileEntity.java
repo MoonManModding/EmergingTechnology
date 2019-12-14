@@ -248,7 +248,6 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
     private void setProgress(int quantity) {
         this.progress = quantity;
-        this.markDirty();
     }
 
     @Override
@@ -277,8 +276,10 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
         switch (id) {
         case 0:
             this.setEnergy(value);
+            break;
         case 1:
             this.setProgress(value);
+            break;
         }
     }
 

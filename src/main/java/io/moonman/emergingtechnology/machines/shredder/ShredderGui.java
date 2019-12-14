@@ -64,7 +64,7 @@ public class ShredderGui extends GuiContainer {
 				GuiHelper.LABEL_COLOUR);
 
 		// Water Stats
-		int energy = this.tileEntity.getEnergy();
+		int energy = this.tileEntity.getField(0);
 
 		GuiIndicator indicator = new GuiIndicator(energy, Reference.SHREDDER_ENERGY_CAPACITY);
 
@@ -82,9 +82,9 @@ public class ShredderGui extends GuiContainer {
 
 	private int getProgressScaled(int scaled)
     {
-		int progress = tileEntity.getField(1);
+		int progress = this.tileEntity.getField(1);
 
-		progress = progress > 20 ? 0 : progress;
+		System.out.println("Shredder:" + progress);
 
 		return (int) (progress * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
     }

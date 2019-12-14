@@ -98,6 +98,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
+
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
         this.setWater(compound.getInteger("GuiWater"));
@@ -111,10 +112,12 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
+
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
-        compound.setInteger("GuiWater", water);
-        compound.setInteger("GuiEnergy", energy);
-        compound.setInteger("GuiProgress", progress);
+
+        compound.setInteger("GuiWater", this.getWater());
+        compound.setInteger("GuiEnergy", this.getEnergy());
+        compound.setInteger("GuiProgress", this.getProgress());
 
         this.fluidHandler.writeToNBT(compound);
         this.energyHandler.writeToNBT(compound);
@@ -255,7 +258,6 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
 
     private void setProgress(int quantity) {
         this.progress = quantity;
-        this.markDirty();
     }
 
     @Override
@@ -286,10 +288,13 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         switch (id) {
         case 0:
             this.setEnergy(value);
+            break;
         case 1:
             this.setWater(value);
+            break;
         case 2: 
             this.setProgress(value);
+            break;
         }
     }
 

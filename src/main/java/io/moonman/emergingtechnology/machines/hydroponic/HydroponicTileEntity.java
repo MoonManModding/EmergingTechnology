@@ -398,6 +398,7 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         switch (id) {
         case 0:
             this.setWater(value);
+            break;
         case 1:
             this.setGrowthMediumId(value);
             break;

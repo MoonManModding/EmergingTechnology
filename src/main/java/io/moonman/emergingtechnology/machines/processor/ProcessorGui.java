@@ -61,8 +61,8 @@ public class ProcessorGui extends GuiContainer
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
 
-		int water = this.tileEntity.getWater();
-		int energy = this.tileEntity.getEnergy();
+		int energy = this.tileEntity.getField(0);
+		int water = this.tileEntity.getField(1);
 
 		GuiIndicator waterIndicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
 		GuiIndicator energyIndicator = new GuiIndicator(energy, Reference.PROCESSOR_ENERGY_CAPACITY);
@@ -81,6 +81,10 @@ public class ProcessorGui extends GuiContainer
 
 	private int getProgressScaled(int scaled)
     {
+		int progress = tileEntity.getField(2);
+		
+		System.out.println("Processor:" + progress);
+
 		return (int) (tileEntity.getField(2) * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken);
     }
 }
