@@ -154,7 +154,7 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
         }
 
         // Can't shred this item
-        if (!ShredderHelper.canShredItem(inputStack)) {
+        if (!ShredderHelper.canShredItemStack(inputStack)) {
             this.setProgress(0);
             return;
         }

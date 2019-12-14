@@ -1,5 +1,7 @@
 package io.moonman.emergingtechnology.machines.hydroponic;
 
+import java.util.List;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
@@ -56,6 +58,12 @@ public class HydroponicGui extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
 	{
+		this.mc.getTextureManager().bindTexture(TEXTURES);
+
+		int fluid = this.getFluidScaled(37);
+
+		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 0, fluid, 7);
+
 		ItemStack contents = this.tileEntity.getItemStack();
 		
 		boolean growthMediumEmpty = StackHelper.isItemStackEmpty(contents);
@@ -97,12 +105,6 @@ public class HydroponicGui extends GuiContainer
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString("+" + (growthModifier + boostModifier) + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, colour);
 
-		// Water Stats
-		int water = this.tileEntity.getWater();
-
-		GuiIndicator indicator = new GuiIndicator(water, Reference.HYDROPONIC_FLUID_CAPACITY);
-
-		this.fontRenderer.drawString(indicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, indicator.getPercentageColour());
 	}
 	
 	@Override
@@ -112,5 +114,10 @@ public class HydroponicGui extends GuiContainer
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
+	}
+	
+	private int getFluidScaled(int scaled)
+    {
+		return (int) (tileEntity.getField(0) * scaled / Reference.HYDROPONIC_FLUID_CAPACITY);
 	}
 }

@@ -57,6 +57,12 @@ public class LightGui extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
 	{
+		this.mc.getTextureManager().bindTexture(TEXTURES);
+
+		int energy = this.getEnergyScaled(37);
+
+		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 9, energy, 7);
+
 		ItemStack contents = this.tileEntity.getItemStack();
 		
 		boolean bulbSlotEmpty = StackHelper.isItemStackEmpty(contents);
@@ -97,13 +103,6 @@ public class LightGui extends GuiContainer
 		// Bulb Stats
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString("+" + growthModifier + "%", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, colour);
-
-		// Power Stats
-		int energy = this.tileEntity.getEnergy();
-
-		GuiIndicator indicator = new GuiIndicator(energy, Reference.LIGHT_ENERGY_CAPACITY);
-
-		this.fontRenderer.drawString(indicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, indicator.getPercentageColour());
 	}
 	
 	@Override
@@ -113,5 +112,10 @@ public class LightGui extends GuiContainer
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
+	}
+
+	private int getEnergyScaled(int scaled)
+    {
+		return (int) (tileEntity.getField(0) * scaled / Reference.LIGHT_ENERGY_CAPACITY);
 	}
 }

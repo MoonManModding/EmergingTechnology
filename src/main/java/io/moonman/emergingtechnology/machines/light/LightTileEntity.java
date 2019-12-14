@@ -327,6 +327,7 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
         switch (id) {
         case 0:
             this.energy = value;
+            break;
         }
     }
 

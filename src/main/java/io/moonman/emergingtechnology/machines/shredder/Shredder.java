@@ -37,7 +37,7 @@ public class Shredder extends MachineBase implements ITileEntityProvider {
             return true;
         }
 
-        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_PROCESSOR, worldIn, pos.getX(), pos.getY(),
+        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_SHREDDER, worldIn, pos.getX(), pos.getY(),
                 pos.getZ());
 
         return true;
@@ -56,15 +56,15 @@ public class Shredder extends MachineBase implements ITileEntityProvider {
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        // TileEntity tileEntity = worldIn.getTileEntity(pos);
 
-        if (tileEntity instanceof ShredderTileEntity) {
-            //ShredderTileEntity shredderTileEntity = (ShredderTileEntity) tileEntity;
+        // if (tileEntity instanceof ShredderTileEntity) {
+        //     //ShredderTileEntity shredderTileEntity = (ShredderTileEntity) tileEntity;
 
-            boolean isProcessing = false;
+        //     boolean isProcessing = false;
 
-            return state.withProperty(PROCESSING, isProcessing);
-        }
+        //     return state.withProperty(PROCESSING, isProcessing);
+        // }
 
         return state;
 

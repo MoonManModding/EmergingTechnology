@@ -12,7 +12,7 @@ import net.minecraftforge.oredict.OreDictionary;
  */
 public class ShredderHelper {
 
-    public static boolean canShredItem(ItemStack itemStack) {
+    public static boolean canShredItemStack(ItemStack itemStack) {
 
         if (StackHelper.compareItemStacks(itemStack, new ItemStack(ModItems.shreddedplant))) {
             return false;

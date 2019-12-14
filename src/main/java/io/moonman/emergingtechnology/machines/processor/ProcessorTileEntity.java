@@ -156,7 +156,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
 
             this.setEnergy(this.energyHandler.getEnergyStored());
             this.setWater(this.fluidHandler.getFluidAmount());
-            
+
             doProcessing();
 
             tick = 0;
@@ -174,7 +174,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
 
         // Can't process this item
-        if (!ProcessorHelper.canProcessItem(inputStack)) {
+        if (!ProcessorHelper.canProcessItemStack(inputStack)) {
             this.setProgress(0);
             return;
         }
@@ -192,8 +192,8 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-         // Not enough water
-         if (this.getWater() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage) {
+        // Not enough water
+        if (this.getWater() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage) {
             return;
         }
 
@@ -201,9 +201,15 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage) {
             return;
         }
-        
+
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage,
                 false);
+
+        this.fluidHandler.drain(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage,
+                true);
+
+        this.setEnergy(this.energyHandler.getEnergyStored());
+        this.setWater(this.fluidHandler.getFluidAmount());
 
         // Not enough operations performed
         if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken) {
@@ -211,15 +217,13 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-        getInputStack().shrink(1);
+        getInputStack().shrink(Reference.PROCESSOR_REQUIRED_INPUT_COUNT);
 
         if (outputStack.getCount() > 0) {
             outputStack.grow(1);
         } else {
             itemHandler.insertItem(1, plannedStack, false);
         }
-
-        
 
         this.setProgress(0);
     }
@@ -292,7 +296,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         case 1:
             this.setWater(value);
             break;
-        case 2: 
+        case 2:
             this.setProgress(value);
             break;
         }

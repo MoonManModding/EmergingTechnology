@@ -55,20 +55,16 @@ public class ProcessorGui extends GuiContainer
 	{
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 
+		int energy = this.getEnergyScaled(37);
+		int fluid = this.getFluidScaled(37);
 		int progress = this.getProgressScaled(34);
+
+		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 0, fluid, 7);
+		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
-
-		int energy = this.tileEntity.getField(0);
-		int water = this.tileEntity.getField(1);
-
-		GuiIndicator waterIndicator = new GuiIndicator(water, Reference.PROCESSOR_FLUID_CAPACITY);
-		GuiIndicator energyIndicator = new GuiIndicator(energy, Reference.PROCESSOR_ENERGY_CAPACITY);
-
-		this.fontRenderer.drawString(waterIndicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, waterIndicator.getPercentageColour());
-		this.fontRenderer.drawString(energyIndicator.getPercentageString(), MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, energyIndicator.getPercentageColour());
 	}
 	
 	@Override
@@ -79,10 +75,18 @@ public class ProcessorGui extends GuiContainer
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 
+	private int getEnergyScaled(int scaled)
+    {
+		return (int) (tileEntity.getField(0) * scaled / Reference.PROCESSOR_ENERGY_CAPACITY);
+	}
+	
+	private int getFluidScaled(int scaled)
+    {
+		return (int) (tileEntity.getField(1) * scaled / Reference.PROCESSOR_FLUID_CAPACITY);
+	}
+
 	private int getProgressScaled(int scaled)
     {
-		int progress = tileEntity.getField(2);
-		
 		return (int) (tileEntity.getField(2) * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken);
-    }
+	}
 }

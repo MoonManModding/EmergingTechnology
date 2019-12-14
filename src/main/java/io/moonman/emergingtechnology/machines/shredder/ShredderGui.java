@@ -56,6 +56,10 @@ public class ShredderGui extends GuiContainer {
 
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 
+		int energy = this.getEnergyScaled(37);
+
+		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 9, energy, 7);
+
 		int progress = this.getProgressScaled(34);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
@@ -63,13 +67,7 @@ public class ShredderGui extends GuiContainer {
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
 
-		// Water Stats
-		int energy = this.tileEntity.getField(0);
-
-		GuiIndicator indicator = new GuiIndicator(energy, Reference.SHREDDER_ENERGY_CAPACITY);
-
-		this.fontRenderer.drawString(indicator.getPercentageString(), TOP_RIGHT_POS.x, TOP_RIGHT_POS.y,
-				indicator.getPercentageColour());
+		
 	}
 
 	@Override
@@ -80,10 +78,13 @@ public class ShredderGui extends GuiContainer {
 
 	}
 
+	private int getEnergyScaled(int scaled)
+    {
+		return (int) (tileEntity.getField(0) * scaled / Reference.SHREDDER_ENERGY_CAPACITY);
+	}
+
 	private int getProgressScaled(int scaled)
     {
-		int progress = this.tileEntity.getField(1);
-
-		return (int) (progress * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
-    }
+		return (int) (tileEntity.getField(1) * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
+	}
 }
