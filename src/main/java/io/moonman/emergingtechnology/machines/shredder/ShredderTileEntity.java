@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ShredderHelper;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +30,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ShredderTileEntity extends TileEntity implements ITickable, SimpleComponent {
+public class ShredderTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SHREDDER_ENERGY_CAPACITY) {
         @Override
@@ -57,17 +58,9 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
 
     private int tick = 0;
 
-    private int progress = 0;
-
     private int energy = this.energyHandler.getEnergyStored();
 
-    public void markDirtyClient() {
-        markDirty();
-        if (world != null) {
-            IBlockState state = world.getBlockState(getPos());
-            world.notifyBlockUpdate(getPos(), state, state, 3);
-        }
-    }
+    private int progress = 0;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -132,7 +125,7 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
     @Override
     public void update() {
 
-        if (world.isRemote) {
+        if (this.isClient()) {
             return;
         }
 
@@ -156,13 +149,13 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
 
         // Nothing in input stack
         if (inputStack.getCount() == 0) {
-            progress = 0;
+            this.setProgress(0);
             return;
         }
 
         // Can't shred this item
         if (!ShredderHelper.canShredItem(inputStack)) {
-            progress = 0;
+            this.setProgress(0);
             return;
         }
 
@@ -184,9 +177,12 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
             return;
         }
 
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
+                false);
+
         // Not enough operations performed
-        if (progress < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken) {
-            progress++;
+        if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken) {
+            this.setProgress(this.getProgress() + 1);
             return;
         }
 
@@ -201,7 +197,7 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
                 false);
 
-        progress = 0;
+        this.setProgress(0);
     }
 
     public void doOutputProcess() {
@@ -251,8 +247,8 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
     }
 
     private void setProgress(int quantity) {
-        System.out.println("Setting progress to " + quantity);
         this.progress = quantity;
+        this.markDirty();
     }
 
     @Override
@@ -299,5 +295,12 @@ public class ShredderTileEntity extends TileEntity implements ITickable, SimpleC
     public Object[] getEnergyLevel(Context context, Arguments args) {
         int level = getEnergy();
         return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getProgress(Context context, Arguments args) {
+        int value = getProgress();
+        return new Object[] { value };
     }
 }

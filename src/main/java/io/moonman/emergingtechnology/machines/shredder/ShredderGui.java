@@ -46,9 +46,6 @@ public class ShredderGui extends GuiContainer {
 		this.drawDefaultBackground();
 
 		this.drawHorizontalLine(0, this.width, 65, 0x111);
-		
-		int l = this.getProgressScaled(24);
-		this.drawTexturedModalRect(guiLeft + 81, guiTop + 27, 176, 46, l + 1, 16);
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
@@ -86,7 +83,9 @@ public class ShredderGui extends GuiContainer {
 	private int getProgressScaled(int scaled)
     {
 		int progress = tileEntity.getField(1);
-		System.out.println(progress);
+
+		progress = progress > 20 ? 0 : progress;
+
 		return (int) (progress * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
     }
 }

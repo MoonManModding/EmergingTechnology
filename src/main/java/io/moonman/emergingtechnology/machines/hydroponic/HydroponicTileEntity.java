@@ -7,6 +7,8 @@ import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +39,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class HydroponicTileEntity extends TileEntity implements ITickable, SimpleComponent {
+public class HydroponicTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.HYDROPONIC_FLUID_CAPACITY) {
         @Override
@@ -77,14 +79,6 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
             return HydroponicHelper.isItemStackValid(stack);
         }
     };
-
-    public void markDirtyClient() {
-        markDirty();
-        if (world != null) {
-            IBlockState state = world.getBlockState(getPos());
-            world.notifyBlockUpdate(getPos(), state, state, 3);
-        }
-    }
 
     private int tick = 0;
 
@@ -166,7 +160,7 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     @Override
     public void update() {
 
-        if (world.isRemote) {
+        if (isClient()) {
             return;
         }
 
@@ -356,7 +350,8 @@ public class HydroponicTileEntity extends TileEntity implements ITickable, Simpl
     // Getters
     public int getGrowthMediumIdForTexture() {
         int id = getGrowthMediumId();
-        return id >= 6 ? 5 : id;
+        int max = ModMediumProvider.BASE_MEDIUM_COUNT;
+        return id > max ? max + 1 : id;
     }
 
     public int getWater() {

@@ -1,19 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " R ",
-    " G ",
-    " B "
+    "pIp",
+    "gBg",
+    "pIp"
   ],
   "key": {
-    "R": {
-      "item": "emergingtechnology:redbulb"
+    "I": {
+      "item": "minecraft:gold_ingot"
     },
-    "G": {
-      "item": "emergingtechnology:greenbulb"
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "platePlastic"
+    },
+    "g": {
+      "item": "minecraft:glass"
     },
     "B": {
-      "item": "emergingtechnology:bluebulb"
+      "item": "minecraft:diamond"
     }
   },
   "result": {

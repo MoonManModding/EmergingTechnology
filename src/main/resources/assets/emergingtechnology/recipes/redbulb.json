@@ -1,21 +1,27 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "   ",
-    " S ",
-    " I "
+    "pIp",
+    "gBg",
+    "pIp"
   ],
   "key": {
-    "S": {
-      "item": "minecraft:stained_glass",
-      "data": 14
-    },
     "I": {
       "item": "minecraft:iron_ingot"
+    },
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "platePlastic"
+    },
+    "g": {
+      "item": "minecraft:glass"
+    },
+    "B": {
+      "item": "minecraft:redstone"
     }
   },
   "result": {
     "item": "emergingtechnology:redbulb",
-    "count": 1
+    "count": 2
   }
 }

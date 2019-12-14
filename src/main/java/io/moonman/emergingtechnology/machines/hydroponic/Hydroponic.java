@@ -56,7 +56,7 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
     {
         int fluidUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle;
 
-        tooltip.add("Provides a growth boost to plants grown on top.");
+        tooltip.add("Plants grown on this block can receive a growth boost.");
         tooltip.add("Requires a growth medium to provide boost.");
         tooltip.add("Requires at least " + fluidUsage + "MB of fluid per cycle to function");
     }

@@ -7,13 +7,13 @@ import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ProcessorHelper;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +31,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ProcessorTileEntity extends TileEntity implements ITickable, SimpleComponent {
+public class ProcessorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.PROCESSOR_FLUID_CAPACITY) {
         @Override
@@ -71,14 +71,6 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
     private int energy = this.energyHandler.getEnergyStored();
 
     private int progress = 0;
-
-    public void markDirtyClient() {
-        markDirty();
-        if (world != null) {
-            IBlockState state = world.getBlockState(getPos());
-            world.notifyBlockUpdate(getPos(), state, state, 3);
-        }
-    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -150,7 +142,7 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
     @Override
     public void update() {
 
-        if (world.isRemote) {
+        if (isClient()) {
             return;
         }
 
@@ -174,13 +166,13 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
 
         // Nothing in input stack
         if (inputStack.getCount() == 0) {
-            progress = 0;
+            this.setProgress(0);
             return;
         }
 
         // Can't process this item
         if (!ProcessorHelper.canProcessItem(inputStack)) {
-            progress = 0;
+            this.setProgress(0);
             return;
         }
 
@@ -197,19 +189,22 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             return;
         }
 
+         // Not enough water
+         if (this.getWater() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage) {
+            return;
+        }
+
         // Not enough energy
         if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage) {
             return;
         }
-
-        // Not enough water
-        if (this.getWater() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage) {
-            return;
-        }
+        
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage,
+                false);
 
         // Not enough operations performed
-        if (progress < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken) {
-            progress++;
+        if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken) {
+            this.setProgress(this.getProgress() + 1);
             return;
         }
 
@@ -221,10 +216,9 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
             itemHandler.insertItem(1, plannedStack, false);
         }
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage,
-                false);
+        
 
-        progress = 0;
+        this.setProgress(0);
     }
 
     public ItemStack getInputStack() {
@@ -261,6 +255,7 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
 
     private void setProgress(int quantity) {
         this.progress = quantity;
+        this.markDirty();
     }
 
     @Override
@@ -318,5 +313,12 @@ public class ProcessorTileEntity extends TileEntity implements ITickable, Simple
     public Object[] getEnergyLevel(Context context, Arguments args) {
         int level = getEnergy();
         return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getProgress(Context context, Arguments args) {
+        int value = getProgress();
+        return new Object[] { value };
     }
 }
