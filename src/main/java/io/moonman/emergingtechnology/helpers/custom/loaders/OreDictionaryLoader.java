@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.init.ModBlocks;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -17,13 +16,6 @@ public class OreDictionaryLoader {
 
     public static void init() {
         PLASTIC_ORE_IDS = getValidPlasticOreDictIds();
-    }
-
-    public static void registerItems() {
-        OreDictionary.registerOre("machinePlastic", ModBlocks.hydroponic);
-        OreDictionary.registerOre("machinePlastic", ModBlocks.light);
-        OreDictionary.registerOre("machinePlastic", ModBlocks.shredder);
-        OreDictionary.registerOre("machinePlastic", ModBlocks.processor);
     }
 
     private static int[] getValidPlasticOreDictIds() {
@@ -44,12 +36,12 @@ public class OreDictionaryLoader {
             EmergingTechnology.logger.info(OreDictionary.getOreName(id));
         }
 
-        return convertIntegers(validOreIds); // I miss LINQ ;_;
+        return convertIntegers(validOreIds);
     }
 
     private static boolean isEntryPlastic(String name) {
         name = name.toLowerCase();
-        return name.contains("plastic") || name.contains("rubber") || name.contains("resin") || name.contains("rosin");
+        return name.contains("plastic");
     }
 
     public static int[] convertIntegers(List<Integer> integers) {

@@ -45,7 +45,7 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         @Override
         protected void onContentsChanged() {
             super.onContentsChanged();
-            markDirtyClient();
+            markDirty();
         }
 
         @Override
@@ -376,6 +376,9 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
     }
 
     private void setWater(int quantity) {
+
+        renderCheck(this.water, quantity);
+
         this.water = quantity;
     }
 
@@ -402,6 +405,16 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         case 1:
             this.setGrowthMediumId(value);
             break;
+        }
+    }
+
+    private void renderCheck(int oldValue, int newValue) {
+        if (oldValue == 0 && newValue > 0) {
+            this.markDirtyClient();
+        }
+
+        if (oldValue > 0 && newValue == 0) {
+            this.markDirtyClient();
         }
     }
 

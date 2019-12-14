@@ -18,9 +18,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -32,7 +34,7 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.LIGHT_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
-            markDirtyClient();
+            markDirty();
             super.onContentsChanged();
         }
     };
@@ -94,7 +96,6 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
         handleUpdateTag(pkt.getNbtCompound());
-        // this.sendUpdates(false);
     }
 
     @Override
@@ -175,6 +176,35 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
         }
 
         this.setEnergy(this.energyHandler.getEnergyStored());
+
+        int transferEnergy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growLightEnergyTransferRate;
+
+        // If enough energy to transfer...
+        if (this.energy >= transferEnergy) {
+
+            // Get the direction this grow light is facing
+            EnumFacing facing = this.world.getBlockState(this.pos).getValue(Light.FACING);
+
+            // Grab the vector
+            Vec3i vector = facing.getDirectionVec();
+
+            // Get neighbour based on facing vector
+            TileEntity neighbour = this.world.getTileEntity(this.pos.add(vector));
+
+            // Is neighbour a grow light?
+            if (neighbour instanceof LightTileEntity) {
+                LightTileEntity targetTileEntity = (LightTileEntity) neighbour;
+
+                // Send energy to the neighbour and get amount accepted
+                int accepted = targetTileEntity.energyHandler.receiveEnergy(transferEnergy, false);
+
+                if (accepted > 0) {
+                    // Drain self from amount
+                    this.energyHandler.extractEnergy(accepted, true);
+                    this.setEnergy(this.energyHandler.getEnergyStored());
+                }
+            }
+        }
     }
 
     public void doGrowthMultiplierProcess(int bulbTypeId) {

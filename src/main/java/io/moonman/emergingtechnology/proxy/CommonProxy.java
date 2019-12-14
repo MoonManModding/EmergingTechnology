@@ -30,7 +30,6 @@ public abstract class CommonProxy {
     @SubscribeEvent
     public static void registerItems(Register<Item> event) {
         RegistrationHandler.registerItems(event);
-        OreDictionaryLoader.registerItems();
     }
 
     @SubscribeEvent

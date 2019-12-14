@@ -35,17 +35,23 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
         final float BORDER = 1f * PX;
         final float MAXHEIGHT = 2 * PX;
 
-        float fluidLevel = (float) tileEntity.fluidHandler.getFluidAmount() / Reference.HYDROPONIC_FLUID_CAPACITY;
+        // float fluidLevel = (float) tileEntity.fluidHandler.getFluidAmount() / Reference.HYDROPONIC_FLUID_CAPACITY;
 
-        if (fluidLevel <= 0.01) {
+        // if (fluidLevel <= 0.01) {
+        //     return;
+        // }
+
+        // if (fluidLevel >= 0.9) {
+        //     fluidLevel = 1;
+        // }
+
+        boolean hasWater = tileEntity.fluidHandler.getFluidAmount() > 0;
+
+        if (!hasWater) {
             return;
         }
 
-        if (fluidLevel >= 0.9) {
-            fluidLevel = 1;
-        }
-
-        float actualHeight = (MAXHEIGHT * fluidLevel) + YOFF;
+        float actualHeight = MAXHEIGHT + YOFF;
 
         BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
         IBlockState blockState = tileEntity.fluidHandler.getFluid().getFluid().getBlock().getDefaultState();
