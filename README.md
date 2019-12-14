@@ -5,7 +5,7 @@ By MoonManModding.
 
 If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
 
-# Version 1.1.7 - Hydroponics & Lights! 🌱
+# Version 1.2.0 - Hydroponics & Lights! 🌱
 
 This version provides the Hydroponic Grow Bed and Hydroponic Grow Light.
 
@@ -17,25 +17,7 @@ Not everything needs to be functional, you know. A Hydroponic Frame is a slimlin
 
 # Recipes
 
-Grow Bed: 6 x Iron Bars, 2 x Quartz Slabs and 1 x Stone Button
-<br>
-<img src="/images/HydroponicRecipe.png" alt="Recipe">
-
-Grow Light: 1 x Iron Bar, 2 x Quartz Slabs and 3 x Glass
-<br>
-<img src="/images/LightRecipe.png" alt="Recipe">
-
-Frame: 3 x Quartz Slabs
-<br>
-<img src="/images/FrameRecipe.png" alt="Recipe">
-
-Bulb: 1 x Iron Bar, 1 x Stained Glass (Red, Green or Blue)
-<br>
-<img src="/images/BulbRecipe.png" alt="Recipe">
-
-UV Bulb: 1 x Red Bulb, 1 x Green Bulb, 1 x Blue Bulb
-<br>
-<img src="/images/UVLightRecipe.png" alt="Recipe">
+Recipes can be found on the <a href="https://github.com/MoonManModding/EmergingTechnology/wiki">wiki</a>
 
 # Requirements
 - Minecraft Version <b>1.12.2</b>
