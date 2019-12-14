@@ -83,8 +83,6 @@ public class ProcessorGui extends GuiContainer
     {
 		int progress = tileEntity.getField(2);
 		
-		System.out.println("Processor:" + progress);
-
 		return (int) (tileEntity.getField(2) * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken);
     }
 }

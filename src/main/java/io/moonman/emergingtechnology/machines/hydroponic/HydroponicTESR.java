@@ -33,7 +33,7 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
         final float PX = 1f / 16f;
         final float YOFF = 12 * PX;
         final float BORDER = 1f * PX;
-        final float MAXHEIGHT = 3 * PX;
+        final float MAXHEIGHT = 2 * PX;
 
         float fluidLevel = (float) tileEntity.fluidHandler.getFluidAmount() / Reference.HYDROPONIC_FLUID_CAPACITY;
 

@@ -84,8 +84,6 @@ public class ShredderGui extends GuiContainer {
     {
 		int progress = this.tileEntity.getField(1);
 
-		System.out.println("Shredder:" + progress);
-
 		return (int) (progress * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
     }
 }
