@@ -1,10 +1,6 @@
 package io.moonman.emergingtechnology.machines.hydroponic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
@@ -19,7 +15,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
 
 public class HydroponicGui extends GuiContainer {
 	private static final ResourceLocation TEXTURES = new ResourceLocation(

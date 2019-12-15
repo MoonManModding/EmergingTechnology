@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.machines.hydroponic;
 
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
-import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
@@ -34,16 +33,6 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
         final float YOFF = 12 * PX;
         final float BORDER = 1f * PX;
         final float MAXHEIGHT = 2 * PX;
-
-        // float fluidLevel = (float) tileEntity.fluidHandler.getFluidAmount() / Reference.HYDROPONIC_FLUID_CAPACITY;
-
-        // if (fluidLevel <= 0.01) {
-        //     return;
-        // }
-
-        // if (fluidLevel >= 0.9) {
-        //     fluidLevel = 1;
-        // }
 
         boolean hasWater = tileEntity.fluidHandler.getFluidAmount() > 0;
 

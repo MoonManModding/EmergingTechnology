@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.machines.fabricator.FabricatorContainer;
+import io.moonman.emergingtechnology.machines.fabricator.FabricatorGui;
+import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicContainer;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicGui;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
@@ -36,6 +39,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof ShredderTileEntity) {
             return new ShredderContainer(player.inventory, (ShredderTileEntity) te);
         }
+        if (te instanceof FabricatorTileEntity) {
+            return new FabricatorContainer(player.inventory, (FabricatorTileEntity) te);
+        }
         return null;
     }
 
@@ -62,6 +68,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof ShredderTileEntity) {
             ShredderTileEntity containerTileEntity = (ShredderTileEntity) te;
             return new ShredderGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof FabricatorTileEntity) {
+            FabricatorTileEntity containerTileEntity = (FabricatorTileEntity) te;
+            return new FabricatorGui(player.inventory, containerTileEntity);
         }
 
         return null;

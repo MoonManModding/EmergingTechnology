@@ -12,8 +12,8 @@ public class PolymersModule {
     @Name("Processor")
 	@Comment("Configure the Processor here")
     public final PolymersModuleProcessor PROCESSOR = new PolymersModuleProcessor();
-    
-    // @Name("Grow Lights")
-	// @Comment("Configure Grow Lights here")
-	// public final HydroponicsModuleGrowLight GROWLIGHT = new HydroponicsModuleGrowLight();
+
+    @Name("Fabricator")
+	@Comment("Configure the Fabricator here")
+    public final PolymersModuleFabricator FABRICATOR = new PolymersModuleFabricator();
 }

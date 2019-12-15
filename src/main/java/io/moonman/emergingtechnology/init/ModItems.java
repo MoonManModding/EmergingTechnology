@@ -32,6 +32,7 @@ public class ModItems {
 	public static final Item shredder = null;
 	public static final Item plasticblock = null;
 	public static final Item machinecase = null;
+	public static final Item fabricator = null;
 
 	// Items
 	public static final Item shreddedplastic = null;
