@@ -236,6 +236,16 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
             if (neighbour instanceof HydroponicTileEntity) {
                 HydroponicTileEntity targetTileEntity = (HydroponicTileEntity) neighbour;
 
+                FluidStack fluidStack = this.getFluidStack();
+
+                if (fluidStack == null) {
+                    return;
+                }
+
+                if (fluidStack.getFluid() == null) {
+                    return;
+                }
+
                 // Fill the neighbour and get amount filled
                 int filled = targetTileEntity.fluidHandler.fill(new FluidStack(this.fluidHandler.getFluid().getFluid(),
                         EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterTransferRate), true);
@@ -327,7 +337,7 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         return false;
     }
 
-    public int getCurrentPlantGrowthBoost() {
+    public int getSpecificPlantGrowthBoostFromMedium() {
         // Get blockstate of whatever is on top of block
         IBlockState aboveBlockState = this.world.getBlockState(this.pos.add(0, 1, 0));
 
@@ -337,6 +347,18 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         }
 
         return HydroponicHelper.getSpecificPlantGrowthBoostForId(this.getGrowthMediumId(), aboveBlockState);
+    }
+
+    public int getSpecificPlantGrowthBoostFromFluid() {
+        // Get blockstate of whatever is on top of block
+        IBlockState aboveBlockState = this.world.getBlockState(this.pos.add(0, 1, 0));
+
+        // If there is no blockstate above, abandon ship
+        if (aboveBlockState == null) {
+            return 0;
+        }
+
+        return HydroponicHelper.getSpecificPlantGrowthBoostForFluidStack(this.getFluidStack(), aboveBlockState);
     }
 
     public int getGrowthMediumId() {
@@ -368,6 +390,25 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         } else {
             return null;
         }
+    }
+
+    public FluidStack getFluidStack() {
+        return this.fluidHandler.getFluid();
+    }
+
+    public String getFluidName() {
+
+        FluidStack fluid = this.getFluidStack();
+
+        if (fluid == null) {
+            return "No fluid";
+        }
+
+        if (fluid.getFluid() == null) {
+            return "No fluid";
+        }
+
+        return fluid.getFluid().getName();
     }
 
     // Setters

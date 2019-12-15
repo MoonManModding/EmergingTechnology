@@ -1,9 +1,9 @@
 # Item
+
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
-
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
 item.emergingtechnology.bluebulb.name=Blue Bulb
@@ -11,8 +11,17 @@ item.emergingtechnology.purplebulb.name=UV Bulb
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processor
+item.emergingtechnology.shredder.name=Shredder
+item.emergingtechnology.shreddedplastic.name=Shredded Plastic
+item.emergingtechnology.shreddedplant.name=Shredded Plant
+item.emergingtechnology.plasticblock.name=Block of Plastic
+item.emergingtechnology.plasticrod.name=Plastic Rod
+item.emergingtechnology.plasticsheet.name=Plastic Sheet
+item.emergingtechnology.machinecase.name=Basic Machine Case
+
 
 #Blocks
+
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
@@ -20,11 +29,15 @@ blocks.emergingtechnology.frame.name=Hydroponic Frame
 
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processor
+blocks.emergingtechnology.shredder.name=Shredder
+blocks.emergingtechnology.plasticblock.name=Block of Plastic
+blocks.emergingtechnology.machinecase.name=Basic Machine Case
 
 #Containers
 
 
 #Tiles
+
 # HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 tile.emergingtechnology.light.name=Hydroponic Grow Light
@@ -32,6 +45,10 @@ tile.emergingtechnology.frame.name=Hydroponic Frame
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processor
+tile.emergingtechnology.shredder.name=Shredder
+tile.emergingtechnology.plasticblock.name=Block of Plastic
+tile.emergingtechnology.machinecase.name=Basic Machine Case
 
 #ItemGroup
+
 itemGroup.technologytab=Emerging Technology

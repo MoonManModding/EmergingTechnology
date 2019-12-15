@@ -3,8 +3,11 @@ package io.moonman.emergingtechnology.machines.light;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
-import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
-import io.moonman.emergingtechnology.gui.GuiHelper.GuiPosition;
+import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
+import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
+import io.moonman.emergingtechnology.gui.classes.GuiPosition;
+import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
+import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.Reference;
@@ -52,6 +55,7 @@ public class LightGui extends GuiContainer
         this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
+		this.renderTooltips(mouseX, mouseY);
     }
 	
 	@Override
@@ -84,7 +88,15 @@ public class LightGui extends GuiContainer
 			colour = bulbValid ? GuiHelper.DARK_COLOUR : GuiHelper.INVALID_COLOUR;
 
 			// Get bulb growth modifier
-			growthModifier = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
+			growthModifier = this.tileEntity.getGrowthProbabilityForBulb();
+
+			int boost = this.tileEntity.getSpecificPlantGrowthBoostForBulb();
+
+			growthModifier += boost;
+
+			if (boost > 0) {
+				colour = GuiHelper.VALID_COLOUR;
+			}
 
 			// Calculate bulb energy usage from modifier
 			energyUsage = energyUsage * LightHelper.getEnergyUsageModifierForBulbById(bulbTypeId);
@@ -117,5 +129,27 @@ public class LightGui extends GuiContainer
 	private int getEnergyScaled(int scaled)
     {
 		return (int) (tileEntity.getField(0) * scaled / Reference.LIGHT_ENERGY_CAPACITY);
+	}
+
+	private void renderTooltips(int mouseX, int mouseY) {
+
+		int energy = this.tileEntity.getField(0);
+		int maxEnergy = Reference.LIGHT_ENERGY_CAPACITY;
+
+		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
+				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
+
+		int growthFromBulb = this.tileEntity.getGrowthProbabilityForBulb();
+		int boostFromBulb = this.tileEntity.getSpecificPlantGrowthBoostForBulb();
+
+		GuiIndicatorData growthIndicator = GuiTooltipHelper.getLightGrowData(guiLeft, guiTop, mouseX, mouseY, growthFromBulb, boostFromBulb);
+
+		if (growthIndicator.isHovered) {
+			this.drawHoveringText(growthIndicator.list, mouseX, mouseY, fontRenderer);
+		}
+
+		if (energyIndicator.isHovered) {
+			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);
+		}
 	}
 }

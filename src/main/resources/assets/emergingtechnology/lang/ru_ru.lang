@@ -14,6 +14,12 @@ item.emergingtechnology.purplebulb.name=Ультрафиолетовый Све�
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
+item.emergingtechnology.shreddedplastic.name=Shredded Plastic
+item.emergingtechnology.shreddedplant.name=Shredded Plant
+item.emergingtechnology.plasticblock.name=Block of Plastic
+item.emergingtechnology.plasticrod.name=Plastic Rod
+item.emergingtechnology.plasticsheet.name=Plastic Sheet
+item.emergingtechnology.machinecase.name=Basic Machine Case
 
 #Blocks
 # HYDROPONICS MODULE
@@ -24,9 +30,10 @@ blocks.emergingtechnology.frame.name=Гидропонная рама
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
+blocks.emergingtechnology.plasticblock.name=Block of Plastic
+blocks.emergingtechnology.machinecase.name=Basic Machine Case
 
 #Containers
-
 
 #Tiles
 tile.emergingtechnology.hydroponic.name=Гидропонная Установка
@@ -36,6 +43,8 @@ tile.emergingtechnology.frame.name=Гидропонная рама
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Процессор
 tile.emergingtechnology.shredder.name=Измельчитель
+tile.emergingtechnology.plasticblock.name=Block of Plastic
+tile.emergingtechnology.machinecase.name=Basic Machine Case
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology

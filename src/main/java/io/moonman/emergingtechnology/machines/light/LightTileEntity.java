@@ -139,7 +139,6 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
 
             this.setBulbTypeId(getBulbTypeIdFromItemStack());
 
-            // Use power
             doPowerUsageProcess(bulbTypeId);
 
             boolean hasPower = this.energyHandler.getEnergyStored() > 0;
@@ -150,8 +149,6 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
             }
 
             Light.setState(hasPower || this.isGlowstonePowered(), LightHelper.getBulbColourFromBulbId(bulbTypeId), world, pos);
-
-            // this.sendUpdates(false);
 
             tick = 0;
         }
@@ -209,7 +206,7 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
 
     public void doGrowthMultiplierProcess(int bulbTypeId) {
         // Get growth probability from bulb type
-        int growthProbabilityThreshold = LightHelper.getGrowthProbabilityForBulbById(bulbTypeId);
+        int growthProbabilityThreshold = this.getGrowthProbabilityForBulb();
 
         // How many blocks below light?
         int blocksBelow = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange;
@@ -286,6 +283,44 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
     public boolean isGlowstonePowered() {
         ItemStack stack = getItemStack();
         return LightHelper.isGlowstonePowered(stack);
+    }
+
+    public int getGrowthProbabilityForBulb() {
+        return LightHelper.getGrowthProbabilityForBulbById(this.getBulbTypeId());
+    }
+
+    public int getSpecificPlantGrowthBoostForBulb() {
+        IBlockState plantBlockState = this.getFirstValidPlantBlockstate();
+
+        if (plantBlockState == null) {
+            return 0;
+        }
+
+        return LightHelper.getSpecificPlantGrowthBoostForId(this.getBulbTypeId(), plantBlockState);
+    }
+
+    private IBlockState getFirstValidPlantBlockstate() {
+        int blocksBelow = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange;
+
+        for (int i = 1; i < blocksBelow + 1; i++) {
+            
+            BlockPos position = this.pos.add(0, -i, 0);
+
+            IBlockState blockStateBelow = this.world.getBlockState(position);
+
+            Block blockBelow = blockStateBelow.getBlock();
+
+            if (PlantHelper.isPlantBlock(blockBelow)) {
+
+                return blockStateBelow;
+            } else if (blockBelow == Blocks.AIR) {
+                continue;
+            } else {
+                break;
+            }
+        }
+
+        return null;
     }
 
     private int getBulbTypeIdFromItemStack() {

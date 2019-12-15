@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import net.minecraft.entity.player.InventoryPlayer;
 
 /**
@@ -54,36 +55,28 @@ public class GuiHelper {
         return "-" + energyUsage + "RF";
     }
 
-    public static class GuiIndicator {
-        private float percentage;
+    // public static class GuiIndicator {
+    //     private float percentage;
 
-        public GuiIndicator(int current, int capacity) {
-            this.percentage = ((float) current / capacity) * 100;
-        }
+    //     public GuiIndicator(int current, int capacity) {
+    //         this.percentage = ((float) current / capacity) * 100;
+    //     }
 
-        public String getPercentageString() {
-            return String.format("%.2f", percentage) + "%";
-        }
+    //     public String getPercentageString() {
+    //         return String.format("%.2f", percentage) + "%";
+    //     }
 
-        public int getPercentageColour() {
-            if (percentage > 95) {
-                return VALID_COLOUR;
-            } else if (percentage > 25) {
-                return WARNING_COLOUR;
-            } else {
-                return INVALID_COLOUR;
-            }
-        }
-    }
+    //     public int getPercentageColour() {
+    //         if (percentage > 95) {
+    //             return VALID_COLOUR;
+    //         } else if (percentage > 25) {
+    //             return WARNING_COLOUR;
+    //         } else {
+    //             return INVALID_COLOUR;
+    //         }
+    //     }
+    // }
 
-    public static class GuiPosition {
-        public final int x;
-        public final int y;
-        
-        public GuiPosition(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
+
 
 }

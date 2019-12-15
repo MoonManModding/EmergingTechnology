@@ -3,8 +3,11 @@ package io.moonman.emergingtechnology.machines.shredder;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
-import io.moonman.emergingtechnology.gui.GuiHelper.GuiIndicator;
-import io.moonman.emergingtechnology.gui.GuiHelper.GuiPosition;
+import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
+import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
+import io.moonman.emergingtechnology.gui.classes.GuiPosition;
+import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
+import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -44,11 +47,9 @@ public class ShredderGui extends GuiContainer {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		this.drawDefaultBackground();
-
-		this.drawHorizontalLine(0, this.width, 65, 0x111);
-
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
+		this.renderTooltips(mouseX, mouseY);
 	}
 
 	@Override
@@ -86,5 +87,18 @@ public class ShredderGui extends GuiContainer {
 	private int getProgressScaled(int scaled)
     {
 		return (int) (tileEntity.getField(1) * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
+	}
+
+	private void renderTooltips(int mouseX, int mouseY) {
+
+		int energy = this.tileEntity.getField(0);
+		int maxEnergy = Reference.SHREDDER_ENERGY_CAPACITY;
+
+		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
+				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
+
+		if (energyIndicator.isHovered) {
+			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);
+		}
 	}
 }
