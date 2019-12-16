@@ -5,7 +5,7 @@ By MoonManModding.
 
 If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
 
-# Version 1.2.0 - Hydroponics & Lights! 🌱
+# Version 1.2.x - Hydroponics & Lights! 🌱
 
 This version provides the Hydroponic Grow Bed and Hydroponic Grow Light.
 
