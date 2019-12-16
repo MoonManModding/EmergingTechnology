@@ -217,7 +217,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-        getInputStack().shrink(Reference.PROCESSOR_REQUIRED_INPUT_COUNT);
+        getInputStack().shrink(1);
 
         if (outputStack.getCount() > 0) {
             outputStack.grow(1);

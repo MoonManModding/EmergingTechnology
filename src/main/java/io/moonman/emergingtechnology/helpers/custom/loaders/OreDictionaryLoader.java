@@ -22,21 +22,28 @@ public class OreDictionaryLoader {
         String[] oreDictNames = OreDictionary.getOreNames();
         ArrayList<Integer> validOreIds = new ArrayList<Integer>();
 
-        EmergingTechnology.logger.info("Checking for plastic oreDict entries...");
-
         for (int i = 0; i < oreDictNames.length; i++) {
             if (isEntryPlastic(oreDictNames[i])) {
                 validOreIds.add(OreDictionary.getOreID(oreDictNames[i]));
             }
         }
 
-        EmergingTechnology.logger.info("Found " + validOreIds.size() + " plastic entries: ");
-        
         for (int id : validOreIds) {
             EmergingTechnology.logger.info(OreDictionary.getOreName(id));
         }
 
         return convertIntegers(validOreIds);
+    }
+
+    public static String[] getValidPlasticOreDictNames() {
+        String[] oreDictNames = OreDictionary.getOreNames();
+        List<String> nameList = new ArrayList<String>();
+
+        for (int i = 0; i < oreDictNames.length; i++) {
+            nameList.add(oreDictNames[i]);
+        }
+
+        return nameList.stream().filter(x -> isEntryPlastic(x)).toArray(String[]::new);
     }
 
     private static boolean isEntryPlastic(String name) {

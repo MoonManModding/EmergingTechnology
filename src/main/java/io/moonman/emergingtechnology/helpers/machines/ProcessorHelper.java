@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.init.ModBlocks;
-import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -16,9 +15,7 @@ public class ProcessorHelper {
 
         for (int id : oreIds) {
             if (id == OreDictionary.getOreID("dustPlastic") || id == OreDictionary.getOreID("itemPlastic")) {
-                if (itemStack.getCount() >= Reference.PROCESSOR_REQUIRED_INPUT_COUNT) {
-                    return true;
-                }
+                return true;
             }
         }
 
