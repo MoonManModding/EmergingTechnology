@@ -35,6 +35,10 @@ public class OreRegistrationHandler {
             ModItems.plasticsheet
         };
 
+        Item[] platePlastic = new Item[] {
+            ModItems.plasticsheet
+        };
+
         Item[] dustPlastic = new Item[] {
             ModItems.shreddedplastic,
             ModItems.shreddedplant
@@ -57,6 +61,7 @@ public class OreRegistrationHandler {
         registerBlocks(blockPlastic, "blockPlastic");
 
         registerItems(sheetPlastic, "sheetPlastic");
+        registerItems(platePlastic, "platePlastic");
         registerItems(dustPlastic, "dustPlastic");
         registerItems(itemPlastic, "itemPlastic");
         registerItems(stickPlastic, "stickPlastic");

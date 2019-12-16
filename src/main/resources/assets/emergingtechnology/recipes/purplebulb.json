@@ -11,7 +11,7 @@
     },
     "p": {
       "type": "forge:ore_dict",
-      "ore": "platePlastic"
+      "ore": "sheetPlastic"
     },
     "g": {
       "item": "minecraft:glass"
