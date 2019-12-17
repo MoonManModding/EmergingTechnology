@@ -19,13 +19,11 @@ public class OreDictionaryLoader {
     }
 
     private static int[] getValidPlasticOreDictIds() {
-        String[] oreDictNames = OreDictionary.getOreNames();
+        String[] oreDictNames = getValidPlasticOreDictNames();
         ArrayList<Integer> validOreIds = new ArrayList<Integer>();
 
         for (int i = 0; i < oreDictNames.length; i++) {
-            if (isEntryPlastic(oreDictNames[i])) {
                 validOreIds.add(OreDictionary.getOreID(oreDictNames[i]));
-            }
         }
 
         for (int id : validOreIds) {

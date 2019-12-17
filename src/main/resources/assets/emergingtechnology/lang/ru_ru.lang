@@ -17,6 +17,7 @@ item.emergingtechnology.shredder.name=Измельчитель
 item.emergingtechnology.shreddedplastic.name=Shredded Plastic
 item.emergingtechnology.shreddedplant.name=Shredded Plant
 item.emergingtechnology.plasticblock.name=Block of Plastic
+item.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 item.emergingtechnology.plasticrod.name=Plastic Rod
 item.emergingtechnology.plasticsheet.name=Plastic Sheet
 item.emergingtechnology.machinecase.name=Basic Machine Case
@@ -31,6 +32,7 @@ blocks.emergingtechnology.frame.name=Гидропонная рама
 blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
 blocks.emergingtechnology.plasticblock.name=Block of Plastic
+blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
 
 #Containers
@@ -44,6 +46,7 @@ tile.emergingtechnology.frame.name=Гидропонная рама
 tile.emergingtechnology.processor.name=Процессор
 tile.emergingtechnology.shredder.name=Измельчитель
 tile.emergingtechnology.plasticblock.name=Block of Plastic
+tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
 
 #ItemGroup

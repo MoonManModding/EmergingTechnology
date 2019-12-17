@@ -14,7 +14,8 @@
       "ore": "sheetPlastic"
     },
     "g": {
-      "item": "minecraft:glass"
+      "type": "forge:ore_dict",
+      "ore": "blockGlass"
     },
     "B": {
       "item": "minecraft:redstone"

@@ -1,9 +1,6 @@
 package io.moonman.emergingtechnology.integration.jei.machines.processor;
 
-import java.util.List;
-
-import io.moonman.emergingtechnology.integration.jei.JEIIntegration;
-import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipe;
+import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -11,19 +8,19 @@ import net.minecraft.item.ItemStack;
 
 public class ProcessorRecipeWrapper implements IRecipeWrapper {
 
-    private List<List<ItemStack>> input;
+    private ItemStack input;
     private ItemStack output;
 
-    public ProcessorRecipeWrapper(ProcessorRecipe recipe)
+    public ProcessorRecipeWrapper(SimpleRecipe recipe)
     {
-        input = JEIIntegration.helpers.getStackHelper().expandRecipeItemStackInputs(recipe.getInputs());
+        input = recipe.getInput();
         output = recipe.getOutput();
     }
 
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInputLists(VanillaTypes.ITEM, input);
+        ingredients.setInput(VanillaTypes.ITEM, input);
         ingredients.setOutput(VanillaTypes.ITEM, output);
     }
 }

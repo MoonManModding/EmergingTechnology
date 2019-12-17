@@ -8,8 +8,7 @@ import io.moonman.emergingtechnology.integration.jei.machines.processor.Processo
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderRecipeWrapper;
 import io.moonman.emergingtechnology.recipes.RecipeHandler;
-import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipe;
-import io.moonman.emergingtechnology.recipes.machines.ShredderRecipe;
+import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IJeiRuntime;
@@ -56,14 +55,14 @@ public class JEIIntegration implements IModPlugin {
 
         helpers = registry.getJeiHelpers();
 
-        RecipeHandler.registerProcessorRecipes();
-        RecipeHandler.registerShredderRecipes();
+        RecipeHandler.buildProcessorRecipes();
+        RecipeHandler.buildShredderRecipes();
 
-        registry.handleRecipes(ProcessorRecipe.class, ProcessorRecipeWrapper::new, MachineReference.PROCESSOR_UID);
+        registry.handleRecipes(SimpleRecipe.class, ProcessorRecipeWrapper::new, MachineReference.PROCESSOR_UID);
         registry.addRecipes(RecipeHandler.processorRecipes, MachineReference.PROCESSOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.processor), MachineReference.PROCESSOR_UID);
 
-        registry.handleRecipes(ShredderRecipe.class, ShredderRecipeWrapper::new, MachineReference.SHREDDER_UID);
+        registry.handleRecipes(SimpleRecipe.class, ShredderRecipeWrapper::new, MachineReference.SHREDDER_UID);
         registry.addRecipes(RecipeHandler.shredderRecipes, MachineReference.SHREDDER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.shredder), MachineReference.SHREDDER_UID);
     }

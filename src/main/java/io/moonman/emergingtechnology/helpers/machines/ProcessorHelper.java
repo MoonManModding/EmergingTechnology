@@ -1,8 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
-import io.moonman.emergingtechnology.init.ModBlocks;
+import io.moonman.emergingtechnology.recipes.RecipeHandler;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
 Provides useful methods for the Processor
@@ -10,19 +9,10 @@ Provides useful methods for the Processor
 public class ProcessorHelper {
 
     public static boolean canProcessItemStack(ItemStack itemStack) {
-
-        int[] oreIds = OreDictionary.getOreIDs(itemStack);
-
-        for (int id : oreIds) {
-            if (id == OreDictionary.getOreID("dustPlastic") || id == OreDictionary.getOreID("itemPlastic")) {
-                return true;
-            }
-        }
-
-        return false;
+        return getPlannedStackFromItemStack(itemStack) != null;
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return new ItemStack(ModBlocks.plasticblock);
+        return RecipeHandler.getProcessorOutputForItemStack(itemStack);
     }
 }

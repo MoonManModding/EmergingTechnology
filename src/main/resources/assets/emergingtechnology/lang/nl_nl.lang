@@ -15,9 +15,11 @@ item.emergingtechnology.shredder.name=Shredder
 item.emergingtechnology.shreddedplastic.name=Shredded Plastic
 item.emergingtechnology.shreddedplant.name=Shredded Plant
 item.emergingtechnology.plasticblock.name=Block of Plastic
+item.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 item.emergingtechnology.plasticrod.name=Plastic Rod
 item.emergingtechnology.plasticsheet.name=Plastic Sheet
 item.emergingtechnology.machinecase.name=Basic Machine Case
+item.emergingtechnology.fabricator.name=Fabricator
 
 
 #Blocks
@@ -31,7 +33,9 @@ blocks.emergingtechnology.frame.name=Hydroponic Frame
 blocks.emergingtechnology.processor.name=Processor
 blocks.emergingtechnology.shredder.name=Shredder
 blocks.emergingtechnology.plasticblock.name=Block of Plastic
+blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
+blocks.emergingtechnology.fabricator.name=Fabricator
 
 #Containers
 
@@ -47,7 +51,9 @@ tile.emergingtechnology.frame.name=Hydroponic Frame
 tile.emergingtechnology.processor.name=Processor
 tile.emergingtechnology.shredder.name=Shredder
 tile.emergingtechnology.plasticblock.name=Block of Plastic
+tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
+tile.emergingtechnology.fabricator.name=Fabricator
 
 #ItemGroup
 

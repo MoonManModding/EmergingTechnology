@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.helpers.machines.ShredderHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
+import io.moonman.emergingtechnology.recipes.RecipeHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -161,6 +162,11 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
         ItemStack outputStack = getOutputStack();
         ItemStack plannedStack = ShredderHelper.getPlannedStackFromItemStack(inputStack);
+
+        // This is probably unneccessary
+        if (plannedStack == null) {
+            return;
+        }
 
         // Output stack is full
         if (outputStack.getCount() == 64) {

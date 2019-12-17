@@ -7,14 +7,15 @@
   ],
   "key": {
     "S": {
-      "item": "minecraft:stone_slab",
-      "data": 7
+      "type": "forge:ore_dict",
+      "ore": "blockPlastic"
     },
     "I": {
       "item": "minecraft:iron_ingot"
     },
     "G": {
-      "item": "minecraft:glass"
+      "type": "forge:ore_dict",
+      "ore": "blockGlass"
     }
   },
   "result": {

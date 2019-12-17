@@ -182,6 +182,11 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         ItemStack outputStack = getOutputStack();
         ItemStack plannedStack = ProcessorHelper.getPlannedStackFromItemStack(inputStack);
 
+        // This is probably unneccessary
+        if (plannedStack == null) {
+            return;
+        }
+
         // Output stack is full
         if (outputStack.getCount() == 64) {
             return;

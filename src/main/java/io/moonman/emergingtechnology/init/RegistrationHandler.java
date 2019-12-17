@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.init;
 import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.block.blocks.ClearPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.Frame;
 import io.moonman.emergingtechnology.block.blocks.MachineCase;
 import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
@@ -45,7 +46,7 @@ public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {
         final Block[] blocks = { new Hydroponic(), new Light(), new Frame(), new Processor(), new Shredder(),
-                new PlasticBlock(), new MachineCase(), new Fabricator() };
+                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator() };
 
         GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
         GameRegistry.registerTileEntity(LightTileEntity.class, getResourceLocation("light"));
@@ -64,7 +65,7 @@ public class RegistrationHandler {
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
-                ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.machinecase, ModBlocks.fabricator };
+                ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.fabricator };
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
@@ -93,6 +94,7 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.processor));
         registerModel(Item.getItemFromBlock(ModBlocks.shredder));
         registerModel(Item.getItemFromBlock(ModBlocks.plasticblock));
+        registerModel(Item.getItemFromBlock(ModBlocks.clearplasticblock));
         registerModel(Item.getItemFromBlock(ModBlocks.machinecase));
         registerModel(Item.getItemFromBlock(ModBlocks.fabricator));
 
