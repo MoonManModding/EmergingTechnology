@@ -11,72 +11,72 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class RecipeHandler {
+/**
+    Builds recipes for Emerging Technology. Used by machines and JEI if present
+    TODO: Refactor/rework
+*/
+public class RecipeBuilder {
 
-    public static List<SimpleRecipe> shredderRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> processorRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> fabricatorRecipes = new ArrayList<>();
-
-    public static ItemStack getProcessorOutputForItemStack(ItemStack itemStack) {
-        for (SimpleRecipe recipe : processorRecipes) {
-            if (recipe.getInput().isItemEqual(itemStack)) {
-                return recipe.getOutput();
-            }
-        }
-
-        return null;
+    public static void buildMachineRecipes() {
+        buildProcessorRecipes();
+        buildShredderRecipes();
     }
 
-    public static ItemStack getShredderOutputForItemStack(ItemStack itemStack) {
-        for (SimpleRecipe recipe : shredderRecipes) {
-            if (recipe.getInput().isItemEqual(itemStack)) {
-                return recipe.getOutput();
-            }
-        }
+    private static void buildProcessorRecipes() {
 
-        return null;
+        registerProcessorRecipes(new ItemStack(ModBlocks.plasticblock), getProcessorBlockItems());
+        registerProcessorRecipes(new ItemStack(ModBlocks.clearplasticblock), getProcessorClearBlockItems());
+
     }
 
-    public static void buildProcessorRecipes() {
-
-        List<ItemStack> itemInputs = new ArrayList<ItemStack>();
-        itemInputs.add(new ItemStack(ModItems.shreddedplant));
-        itemInputs.add(new ItemStack(ModItems.shreddedplastic));
-
-        List<String> oreInputs = new ArrayList<String>();
-        oreInputs.add("dustPlastic");
-        oreInputs.add("orePlastic");
-
-        List<ItemStack> inputs = buildRecipeList(itemInputs, oreInputs);
-
-        registerProcessorRecipes(new ItemStack(ModBlocks.plasticblock), inputs);
-    }
-
-    public static void buildShredderRecipes() {
+    private static void buildShredderRecipes() {
 
         registerShredderRecipes(new ItemStack(ModItems.shreddedplant), getShredderPlantItems());
-
         registerShredderRecipes(new ItemStack(ModItems.shreddedplastic), getShredderPlasticItems());
+        registerShredderRecipes(new ItemStack(ModItems.shreddedstarch), getShredderStarchItems());
     }
 
     private static void registerProcessorRecipes(ItemStack output, List<ItemStack> inputs) {
         for (ItemStack input : inputs) {
-            if (getProcessorOutputForItemStack(input) == null) {
+            if (RecipeProvider.getProcessorOutputForItemStack(input) == null) {
                 SimpleRecipe recipe = new SimpleRecipe(output, input);
-                processorRecipes.add(recipe);
+                RecipeProvider.processorRecipes.add(recipe);
             }
         }
     }
 
     private static void registerShredderRecipes(ItemStack output, List<ItemStack> inputs) {
         for (ItemStack input : inputs) {
-            if (getShredderOutputForItemStack(input) == null) {
+            if (RecipeProvider.getShredderOutputForItemStack(input) == null) {
                 SimpleRecipe recipe = new SimpleRecipe(output, input);
-                shredderRecipes.add(recipe);
+                RecipeProvider.shredderRecipes.add(recipe);
             }
         }
 
-        shredderRecipes = shredderRecipes.stream().distinct().collect(Collectors.toList());
+        RecipeProvider.shredderRecipes = RecipeProvider.shredderRecipes.stream().distinct().collect(Collectors.toList());
+    }
+
+    private static List<ItemStack> getProcessorBlockItems() {
+        List<ItemStack> itemInputs = new ArrayList<ItemStack>();
+        itemInputs.add(new ItemStack(ModItems.shreddedplastic));
+        itemInputs.add(new ItemStack(ModItems.shreddedstarch));
+
+        List<String> oreInputs = new ArrayList<String>();
+        oreInputs.add("dustPlastic");
+        oreInputs.add("orePlastic");
+        oreInputs.add("starch");
+        oreInputs.add("dustStarch");
+
+        return buildRecipeList(itemInputs, oreInputs);
+    } 
+    
+    private static List<ItemStack> getProcessorClearBlockItems() {
+        List<ItemStack> itemInputs = new ArrayList<ItemStack>();
+        itemInputs.add(new ItemStack(ModItems.shreddedplant));
+
+        List<String> oreInputs = new ArrayList<String>();
+
+        return buildRecipeList(itemInputs, oreInputs);
     }
 
     private static List<ItemStack> getShredderPlasticItems() {
@@ -85,6 +85,7 @@ public class RecipeHandler {
         itemInputs.add(new ItemStack(ModItems.frame));
         itemInputs.add(new ItemStack(ModItems.plasticsheet));
         itemInputs.add(new ItemStack(ModItems.plasticblock));
+        itemInputs.add(new ItemStack(ModItems.clearplasticblock));
         itemInputs.add(new ItemStack(ModItems.plasticrod));
         itemInputs.add(new ItemStack(ModItems.light));
         itemInputs.add(new ItemStack(ModItems.hydroponic));
@@ -115,9 +116,23 @@ public class RecipeHandler {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
 
         itemInputs.add(new ItemStack(Items.REEDS));
+
+        List<String> oreInputs = new ArrayList<String>();
+
+        List<ItemStack> inputs = buildRecipeList(itemInputs, oreInputs);
+
+        return inputs;
+    }
+
+    private static List<ItemStack> getShredderStarchItems() {
+        List<ItemStack> itemInputs = new ArrayList<ItemStack>();
+
+        itemInputs.add(new ItemStack(Items.BEETROOT));
         itemInputs.add(new ItemStack(Items.POTATO));
 
         List<String> oreInputs = new ArrayList<String>();
+        oreInputs.add("cropCorn");
+        oreInputs.add("corn");
 
         List<ItemStack> inputs = buildRecipeList(itemInputs, oreInputs);
 

@@ -7,7 +7,7 @@ import io.moonman.emergingtechnology.integration.jei.machines.processor.Processo
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderRecipeWrapper;
-import io.moonman.emergingtechnology.recipes.RecipeHandler;
+import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -51,20 +51,18 @@ public class JEIIntegration implements IModPlugin {
 
     @Override
     public void register(IModRegistry registry) {
-        EmergingTechnology.logger.info("Registering JEI...");
+        EmergingTechnology.logger.info("Registering with JEI...");
 
         helpers = registry.getJeiHelpers();
 
-        RecipeHandler.buildProcessorRecipes();
-        RecipeHandler.buildShredderRecipes();
-
         registry.handleRecipes(SimpleRecipe.class, ProcessorRecipeWrapper::new, MachineReference.PROCESSOR_UID);
-        registry.addRecipes(RecipeHandler.processorRecipes, MachineReference.PROCESSOR_UID);
+        registry.addRecipes(RecipeProvider.processorRecipes, MachineReference.PROCESSOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.processor), MachineReference.PROCESSOR_UID);
 
         registry.handleRecipes(SimpleRecipe.class, ShredderRecipeWrapper::new, MachineReference.SHREDDER_UID);
-        registry.addRecipes(RecipeHandler.shredderRecipes, MachineReference.SHREDDER_UID);
+        registry.addRecipes(RecipeProvider.shredderRecipes, MachineReference.SHREDDER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.shredder), MachineReference.SHREDDER_UID);
+        EmergingTechnology.logger.info("Registed " + (RecipeProvider.shredderRecipes.size() + RecipeProvider.processorRecipes.size()) + " recipes.");
     }
 
     public static boolean doesOreExist(String key) {

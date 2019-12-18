@@ -84,6 +84,8 @@ public class HydroponicGui extends GuiContainer {
 			colour = boostModifier > 0 ? GuiHelper.VALID_COLOUR : colour;
 		}
 
+		growthModifier += this.tileEntity.getTotalGrowthFromAdjacentLight();
+
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
@@ -135,8 +137,9 @@ public class HydroponicGui extends GuiContainer {
 		int growthFromFluid = HydroponicHelper.getGrowthProbabilityForFluid(this.tileEntity.getFluidStack());
 		int boostFromMedium = this.tileEntity.getSpecificPlantGrowthBoostFromMedium();
 		int boostFromFluid = this.tileEntity.getSpecificPlantGrowthBoostFromFluid();
+		int totalGrowthFromLight = this.tileEntity.getTotalGrowthFromAdjacentLight();
 
-		GuiIndicatorData growthIndicator = GuiTooltipHelper.getHydroponicGrowthData(guiLeft, guiTop, mouseX, mouseY, growthFromMedium, growthFromFluid, boostFromMedium, boostFromFluid);
+		GuiIndicatorData growthIndicator = GuiTooltipHelper.getHydroponicGrowthData(guiLeft, guiTop, mouseX, mouseY, growthFromMedium, growthFromFluid, boostFromMedium, boostFromFluid, totalGrowthFromLight);
 
 		if (fluidIndicator.isHovered) {
 			this.drawHoveringText(fluidIndicator.list, mouseX, mouseY, fontRenderer);

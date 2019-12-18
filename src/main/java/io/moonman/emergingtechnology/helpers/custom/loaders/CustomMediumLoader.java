@@ -27,16 +27,11 @@ public class CustomMediumLoader {
     }
 
     public static void loadCustomGrowthMedia(String customGrowthMediaFilePath) {
-        EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom growth media...");
+        EmergingTechnology.logger.info("EmergingTechnology - Loading custom growth media...");
         try {
             ModMediumProvider.customMedia= readFromJson(customGrowthMediaFilePath);
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
                     + ModMediumProvider.customMedia.length + " custom growth media.");
-
-            for (ModMedium medium : ModMediumProvider.customMedia) {
-                EmergingTechnology.logger.info(medium.name + " - Id:" + medium.id + " g: " + medium.growthModifier
-                        + " w: " + medium.waterUsage + " ap: " + medium.allPlants + " p: " + medium.plants.length);
-            }
 
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom growth media:");

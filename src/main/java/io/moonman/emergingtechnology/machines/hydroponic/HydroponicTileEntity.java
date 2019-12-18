@@ -8,11 +8,14 @@ import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.light.Light;
+import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -359,6 +362,32 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         }
 
         return HydroponicHelper.getSpecificPlantGrowthBoostForFluidStack(this.getFluidStack(), aboveBlockState);
+    }
+
+    public int getTotalGrowthFromAdjacentLight() {
+
+        for (int i = 1; i < EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange; i++) {
+
+            BlockPos pos = this.pos.add(0, i + 1, 0);
+
+            Block aboveBlock = this.world.getBlockState(pos).getBlock();
+
+            if (aboveBlock instanceof Light) {
+                TileEntity tileEntity = this.world.getTileEntity(pos);
+                if (tileEntity instanceof LightTileEntity) {
+                    LightTileEntity lightTileEntity = (LightTileEntity) tileEntity;
+                    int lightGrowthModifier = lightTileEntity.getGrowthProbabilityForBulb();
+                    int lightBoostModifier = lightTileEntity.getSpecificPlantGrowthBoostForBulb();
+                    return lightGrowthModifier + lightBoostModifier;
+                }
+            } else if (aboveBlock == Blocks.AIR || PlantHelper.isPlantBlock(aboveBlock)) {
+                continue;
+            } else {
+                return 0;
+            }
+        }
+
+        return 0;
     }
 
     public int getGrowthMediumId() {

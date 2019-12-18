@@ -24,25 +24,20 @@ public class ClearPlasticBlock extends BlockBreakable {
     this.setRegistryName(EmergingTechnology.MODID, _name);
     this.setUnlocalizedName(EmergingTechnology.MODID + "." + _name);
     this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
-    this.setSoundType(SoundType.GLASS);
+    this.setSoundType(SoundType.STONE);
     this.setLightOpacity(0);
   }
 
   @SideOnly(Side.CLIENT)
   @Override
   public BlockRenderLayer getBlockLayer() {
-    return BlockRenderLayer.CUTOUT;
+    return BlockRenderLayer.TRANSLUCENT;
   }
 
   @Override
   public boolean isFullCube(IBlockState state) {
     return false;
   }
-
-  // @Override
-  // public boolean isOpaqueCube(IBlockState iBlockState) {
-  //     return false;
-  // }
 
   @SideOnly(Side.CLIENT)
   @Override

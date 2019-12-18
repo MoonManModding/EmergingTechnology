@@ -26,10 +26,6 @@ public class OreDictionaryLoader {
                 validOreIds.add(OreDictionary.getOreID(oreDictNames[i]));
         }
 
-        for (int id : validOreIds) {
-            EmergingTechnology.logger.info(OreDictionary.getOreName(id));
-        }
-
         return convertIntegers(validOreIds);
     }
 

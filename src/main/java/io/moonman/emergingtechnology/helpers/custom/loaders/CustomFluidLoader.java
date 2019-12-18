@@ -27,16 +27,11 @@ public class CustomFluidLoader {
     }
 
     public static void loadCustomFluids(String filePath) {
-        EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom fluids...");
+        EmergingTechnology.logger.info("EmergingTechnology - Loading custom fluids...");
         try {
             ModFluidProvider.customFluids = readFromJson(filePath);
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
                     + ModFluidProvider.customFluids.length + " custom fluids.");
-
-            for (ModFluid fluid : ModFluidProvider.customFluids) {
-                EmergingTechnology.logger.info(fluid.name + " - Id:" + fluid.id + " g: " + fluid.growthModifier
-                         + " ap: " + fluid.allPlants + " p: " + fluid.plants.length);
-            }
 
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom fluids:");

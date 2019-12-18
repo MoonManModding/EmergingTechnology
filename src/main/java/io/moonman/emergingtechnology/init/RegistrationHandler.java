@@ -15,6 +15,7 @@ import io.moonman.emergingtechnology.item.polymers.PlasticRod;
 import io.moonman.emergingtechnology.item.polymers.PlasticSheet;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
+import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
@@ -61,7 +62,7 @@ public class RegistrationHandler {
 
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
-                new ShreddedPlant(), new PlasticRod(), new PlasticSheet() };
+                new ShreddedPlant(), new ShreddedStarch(), new PlasticRod(), new PlasticSheet() };
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
@@ -84,6 +85,7 @@ public class RegistrationHandler {
         registerModel(ModItems.purplebulb);
         registerModel(ModItems.shreddedplastic);
         registerModel(ModItems.shreddedplant);
+        registerModel(ModItems.shreddedstarch);
         registerModel(ModItems.plasticrod);
         registerModel(ModItems.plasticsheet);
 

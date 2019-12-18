@@ -27,16 +27,11 @@ public class CustomBulbLoader {
     }
 
     public static void loadCustomBulbs(String filePath) {
-        EmergingTechnology.logger.info("EmergingTechnology - Attempting to load custom bulbs...");
+        EmergingTechnology.logger.info("EmergingTechnology - Loading custom bulbs...");
         try {
             ModBulbProvider.customBulbs = readFromJson(filePath);
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
                     + ModBulbProvider.customBulbs.length + " custom bulbs.");
-
-            for (ModBulb bulb : ModBulbProvider.customBulbs) {
-                EmergingTechnology.logger.info(bulb.name + " - Id:" + bulb.id + " g: " + bulb.growthModifier
-                        + " e: " + bulb.energyUsage + " ap: " + bulb.allPlants + " p: " + bulb.plants.length);
-            }
 
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom bulbs:");

@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.helpers.custom.loaders.OreDictionaryLoader;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.init.OreRegistrationHandler;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
 import net.minecraft.block.Block;
@@ -55,6 +56,7 @@ public abstract class CommonProxy {
     public void init(FMLInitializationEvent e) {
         OreRegistrationHandler.init();
         OreDictionaryLoader.init();
+        RecipeBuilder.buildMachineRecipes();
     }
 
     public void postInit(FMLPostInitializationEvent e) {

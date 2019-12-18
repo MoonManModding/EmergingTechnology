@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiLabel;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
@@ -30,7 +31,7 @@ public class GuiTooltipHelper {
         return new GuiIndicatorData(false, new ArrayList<String>());
     }
 
-    public static GuiIndicatorData getHydroponicGrowthData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY, int growthFromMedium, int growthFromFluid, int boostFromMedium, int boostFromFluid) {
+    public static GuiIndicatorData getHydroponicGrowthData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY, int growthFromMedium, int growthFromFluid, int boostFromMedium, int boostFromFluid, int growthFromLight) {
 
         GuiLabel label = getLabel(IndicatorTypeEnum.GROWTH);
 
@@ -44,6 +45,7 @@ public class GuiTooltipHelper {
             list.add("Base (Fluid): " + growthFromFluid + label.unit);
             list.add("Boost (Medium): " + boostFromMedium + label.unit);
             list.add("Boost (Fluid): " + boostFromFluid + label.unit);
+            list.add("Light Total: " + growthFromLight + label.unit);
             return new GuiIndicatorData(true, list);
         }
 
@@ -62,6 +64,7 @@ public class GuiTooltipHelper {
             list.add(label.header);
             list.add("Base: " + growthFromBulb + label.unit);
             list.add("Boost: " + boostFromBulb + label.unit);
+            list.add("Max range: " + EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange);
             return new GuiIndicatorData(true, list);
         }
 

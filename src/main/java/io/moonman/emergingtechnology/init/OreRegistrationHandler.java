@@ -23,8 +23,7 @@ public class OreRegistrationHandler {
             ModBlocks.light,
             ModBlocks.shredder,
             ModBlocks.processor,
-            ModBlocks.machinecase,
-            //ModBlocks.fabricator
+            ModBlocks.machinecase
         };
 
         Block[] blockPlastic = new Block[] {
@@ -49,7 +48,12 @@ public class OreRegistrationHandler {
 
         Item[] dustPlastic = new Item[] {
             ModItems.shreddedplastic,
-            ModItems.shreddedplant
+            ModItems.shreddedstarch
+        };
+
+        Item[] orePlastic = new Item[] {
+            ModItems.shreddedplastic,
+            ModItems.shreddedstarch
         };
 
         Item[] itemPlastic = new Item[] {
@@ -64,17 +68,22 @@ public class OreRegistrationHandler {
             ModItems.plasticsheet
         };
 
+        Item[] starch = new Item[] {
+            ModItems.shreddedstarch
+        };
+
         registerBlocks(machinePlastic, "machinePlastic");
         registerBlocks(blockPlastic, "blockPlastic");
         registerBlocks(glass, "glass");
         registerBlocks(blockGlass, "blockGlass");
-
         registerItems(sheetPlastic, "sheetPlastic");
         registerItems(platePlastic, "platePlastic");
         registerItems(dustPlastic, "dustPlastic");
+        registerItems(orePlastic, "orePlastic");
         registerItems(itemPlastic, "itemPlastic");
         registerItems(stickPlastic, "stickPlastic");
         registerItems(bioplastic, "bioplastic");
+        registerItems(starch, "starch");
     }
 
     private static void registerBlocks(Block[] blocks, String name) {
