@@ -3,6 +3,8 @@ package io.moonman.emergingtechnology.integration.jei;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.integration.jei.machines.MachineReference;
+import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
@@ -46,7 +48,7 @@ public class JEIIntegration implements IModPlugin {
 
         IGuiHelper helper = registry.getJeiHelpers().getGuiHelper();
 
-        registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper));
+        registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper), new CookerCategory(helper));
     }
 
     @Override
@@ -62,7 +64,12 @@ public class JEIIntegration implements IModPlugin {
         registry.handleRecipes(SimpleRecipe.class, ShredderRecipeWrapper::new, MachineReference.SHREDDER_UID);
         registry.addRecipes(RecipeProvider.shredderRecipes, MachineReference.SHREDDER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.shredder), MachineReference.SHREDDER_UID);
-        EmergingTechnology.logger.info("Registed " + (RecipeProvider.shredderRecipes.size() + RecipeProvider.processorRecipes.size()) + " recipes.");
+
+        registry.handleRecipes(SimpleRecipe.class, CookerRecipeWrapper::new, MachineReference.COOKER_UID);
+        registry.addRecipes(RecipeProvider.cookerRecipes, MachineReference.COOKER_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.cooker), MachineReference.COOKER_UID);
+
+        EmergingTechnology.logger.info("Registed " + (RecipeProvider.shredderRecipes.size() + RecipeProvider.processorRecipes.size() + RecipeProvider.cookerRecipes.size()) + " recipes.");
     }
 
     public static boolean doesOreExist(String key) {

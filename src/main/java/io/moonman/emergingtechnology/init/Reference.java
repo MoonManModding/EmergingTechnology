@@ -23,4 +23,6 @@ public class Reference {
     public static final int SHREDDER_ENERGY_CAPACITY = 1000;
 
     public static final int FABRICATOR_ENERGY_CAPACITY = 1000;
+
+    public static final int COOKER_HEAT_CAPACITY = 400;
 }

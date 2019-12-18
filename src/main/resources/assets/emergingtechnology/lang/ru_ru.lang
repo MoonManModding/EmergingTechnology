@@ -23,6 +23,9 @@ item.emergingtechnology.plasticrod.name=Plastic Rod
 item.emergingtechnology.plasticsheet.name=Plastic Sheet
 item.emergingtechnology.machinecase.name=Basic Machine Case
 
+#SYNTHETICS MODULE
+item.emergingtechnology.cooker.name=Solar Cooker
+
 #Blocks
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
@@ -35,6 +38,9 @@ blocks.emergingtechnology.shredder.name=Измельчитель
 blocks.emergingtechnology.plasticblock.name=Block of Plastic
 blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
+
+#SYNTHETICS MODULE
+blocks.emergingtechnology.cooker.name=Solar Cooker
 
 #Containers
 
@@ -49,6 +55,9 @@ tile.emergingtechnology.shredder.name=Измельчитель
 tile.emergingtechnology.plasticblock.name=Block of Plastic
 tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
+
+#SYNTHETICS MODULE
+tile.emergingtechnology.cooker.name=Solar Cooker
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology

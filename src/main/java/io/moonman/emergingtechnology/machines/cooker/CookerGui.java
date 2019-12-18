@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines.shredder;
+package io.moonman.emergingtechnology.machines.cooker;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
@@ -15,13 +15,13 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class ShredderGui extends GuiContainer {
+public class CookerGui extends GuiContainer {
 	private static final ResourceLocation TEXTURES = new ResourceLocation(
-			EmergingTechnology.MODID + ":textures/gui/shreddergui.png");
+			EmergingTechnology.MODID + ":textures/gui/cookergui.png");
 	private final InventoryPlayer player;
-	private final ShredderTileEntity tileEntity;
+	private final CookerTileEntity tileEntity;
 
-	private String NAME = ModBlocks.shredder.getLocalizedName();
+	private String NAME = ModBlocks.cooker.getLocalizedName();
 
 	private static final int XSIZE = 175;
 	private static final int YSIZE = 165;
@@ -32,8 +32,8 @@ public class ShredderGui extends GuiContainer {
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
 
 	// Draws textures on gui
-	public ShredderGui(InventoryPlayer player, ShredderTileEntity tileEntity) {
-		super(new ShredderContainer(player, tileEntity));
+	public CookerGui(InventoryPlayer player, CookerTileEntity tileEntity) {
+		super(new CookerContainer(player, tileEntity));
 		this.player = player;
 		this.tileEntity = tileEntity;
 		this.xSize = XSIZE;
@@ -58,9 +58,9 @@ public class ShredderGui extends GuiContainer {
 
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 
-		int energy = this.getEnergyScaled(37);
+		int heat = this.getHeatScaled(37);
 
-		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 9, energy, 7);
+		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 0, heat, 7);
 
 		int progress = this.getProgressScaled(34);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
@@ -80,23 +80,23 @@ public class ShredderGui extends GuiContainer {
 
 	}
 
-	private int getEnergyScaled(int scaled)
+	private int getHeatScaled(int scaled)
     {
-		return (int) (tileEntity.getField(0) * scaled / Reference.SHREDDER_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(0) * scaled / Reference.COOKER_HEAT_CAPACITY);
 	}
 
 	private int getProgressScaled(int scaled)
     {
-		return (int) (tileEntity.getField(1) * scaled / EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
+		return (int) (tileEntity.getField(1) * scaled / EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseTimeTaken);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
-		int maxEnergy = Reference.SHREDDER_ENERGY_CAPACITY;
+		int heat = this.tileEntity.getField(0);
+		int maxHeat = Reference.COOKER_HEAT_CAPACITY;
 
-		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
-				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
+		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.HEAT,
+				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, heat, maxHeat);
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);

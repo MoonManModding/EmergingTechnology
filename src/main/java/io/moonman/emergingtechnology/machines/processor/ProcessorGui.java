@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -20,7 +21,7 @@ public class ProcessorGui extends GuiContainer {
 	private final InventoryPlayer player;
 	private final ProcessorTileEntity tileEntity;
 
-	private String NAME = "Processor";
+	private String NAME = ModBlocks.processor.getLocalizedName();
 
 	private static final int XSIZE = 175;
 	private static final int YSIZE = 165;

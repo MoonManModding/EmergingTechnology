@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import io.moonman.emergingtechnology.EmergingTechnology;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**

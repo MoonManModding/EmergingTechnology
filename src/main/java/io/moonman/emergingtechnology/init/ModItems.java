@@ -42,4 +42,11 @@ public class ModItems {
 	public static final Item plasticrod = null;
 	public static final Item plasticsheet = null;
 	// endregion
+
+	//region Synthetics Items
+	// Block Items
+	public static final Item cooker = null;
+	// Items
+
+	//endregion
 }

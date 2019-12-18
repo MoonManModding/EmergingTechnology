@@ -4,22 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.moonman.emergingtechnology.helpers.machines.CookerHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
-    Builds recipes for Emerging Technology. Used by machines and JEI if present
-    TODO: Refactor/rework
-*/
+ * Builds recipes for Emerging Technology. Used by machines and JEI if present
+ * TODO: Refactor/rework
+ */
 public class RecipeBuilder {
 
     public static void buildMachineRecipes() {
         buildProcessorRecipes();
         buildShredderRecipes();
+        buildCookerRecipes();
     }
 
     private static void buildProcessorRecipes() {
@@ -34,6 +37,20 @@ public class RecipeBuilder {
         registerShredderRecipes(new ItemStack(ModItems.shreddedplant), getShredderPlantItems());
         registerShredderRecipes(new ItemStack(ModItems.shreddedplastic), getShredderPlasticItems());
         registerShredderRecipes(new ItemStack(ModItems.shreddedstarch), getShredderStarchItems());
+    }
+
+    private static void buildCookerRecipes() {
+        List<ItemStack> validCookedFoodItems = CookerHelper.getValidCookedFoodItems();
+        registerCookerRecipes(validCookedFoodItems);
+    }
+
+    private static void registerCookerRecipes(List<ItemStack> inputs) {
+        for (ItemStack input : inputs) {
+            ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
+            SimpleRecipe recipe = new SimpleRecipe(output, input);
+            RecipeProvider.cookerRecipes.add(recipe);
+
+        }
     }
 
     private static void registerProcessorRecipes(ItemStack output, List<ItemStack> inputs) {
@@ -53,7 +70,8 @@ public class RecipeBuilder {
             }
         }
 
-        RecipeProvider.shredderRecipes = RecipeProvider.shredderRecipes.stream().distinct().collect(Collectors.toList());
+        RecipeProvider.shredderRecipes = RecipeProvider.shredderRecipes.stream().distinct()
+                .collect(Collectors.toList());
     }
 
     private static List<ItemStack> getProcessorBlockItems() {
@@ -68,8 +86,8 @@ public class RecipeBuilder {
         oreInputs.add("dustStarch");
 
         return buildRecipeList(itemInputs, oreInputs);
-    } 
-    
+    }
+
     private static List<ItemStack> getProcessorClearBlockItems() {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
         itemInputs.add(new ItemStack(ModItems.shreddedplant));

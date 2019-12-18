@@ -22,6 +22,9 @@ item.emergingtechnology.plasticsheet.name=Plastic Sheet
 item.emergingtechnology.machinecase.name=Basic Machine Case
 item.emergingtechnology.fabricator.name=Fabricator
 
+#SYNTHETICS MODULE
+item.emergingtechnology.cooker.name=Solar Cooker
+
 
 #Blocks
 
@@ -37,6 +40,9 @@ blocks.emergingtechnology.plasticblock.name=Block of Plastic
 blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
 blocks.emergingtechnology.fabricator.name=Fabricator
+
+#SYNTHETICS MODULE
+blocks.emergingtechnology.cooker.name=Solar Cooker
 
 #Containers
 
@@ -55,6 +61,9 @@ tile.emergingtechnology.plasticblock.name=Block of Plastic
 tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
 tile.emergingtechnology.fabricator.name=Fabricator
+
+# SYNTHETICS MODULE
+tile.emergingtechnology.cooker.name=Solar Cooker
 
 #ItemGroup
 

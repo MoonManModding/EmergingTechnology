@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.block.blocks.ClearPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.Frame;
 import io.moonman.emergingtechnology.block.blocks.MachineCase;
 import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
+import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.light.Light;
@@ -31,5 +32,9 @@ public class ModBlocks {
 	public static final ClearPlasticBlock clearplasticblock = null;
 	public static final MachineCase machinecase = null;
 	public static final Fabricator fabricator = null;
+	//endregion
+
+	//region Synthetics Blocks
+	public static final Cooker cooker = null;
 	//endregion
 }

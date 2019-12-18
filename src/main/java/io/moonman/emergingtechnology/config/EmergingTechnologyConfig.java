@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.config;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.hydroponics.HydroponicsModule;
 import io.moonman.emergingtechnology.config.polymers.PolymersModule;
+import io.moonman.emergingtechnology.config.synthetics.SyntheticsModule;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -26,6 +27,10 @@ public class EmergingTechnologyConfig {
 	@Name("Polymers Module")
 	@Comment("Configure Shredder and Processor here")
 	public static final PolymersModule POLYMERS_MODULE = new PolymersModule();
+
+	@Name("Synthetics Module")
+	@Comment("Configure Solar Cooker here")
+	public static final SyntheticsModule SYNTHETICS_MODULE = new SyntheticsModule();
 
 	public static void preInit() {
 		MinecraftForge.EVENT_BUS.register(new ServerConfigEventHandler());

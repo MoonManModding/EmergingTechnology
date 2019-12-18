@@ -54,29 +54,4 @@ public class GuiHelper {
     public static String getEnergyUsageLabel(int energyUsage) {
         return "-" + energyUsage + "RF";
     }
-
-    // public static class GuiIndicator {
-    //     private float percentage;
-
-    //     public GuiIndicator(int current, int capacity) {
-    //         this.percentage = ((float) current / capacity) * 100;
-    //     }
-
-    //     public String getPercentageString() {
-    //         return String.format("%.2f", percentage) + "%";
-    //     }
-
-    //     public int getPercentageColour() {
-    //         if (percentage > 95) {
-    //             return VALID_COLOUR;
-    //         } else if (percentage > 25) {
-    //             return WARNING_COLOUR;
-    //         } else {
-    //             return INVALID_COLOUR;
-    //         }
-    //     }
-    // }
-
-
-
 }

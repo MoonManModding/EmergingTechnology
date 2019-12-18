@@ -23,7 +23,8 @@ public class OreRegistrationHandler {
             ModBlocks.light,
             ModBlocks.shredder,
             ModBlocks.processor,
-            ModBlocks.machinecase
+            ModBlocks.machinecase,
+            ModBlocks.cooker
         };
 
         Block[] blockPlastic = new Block[] {

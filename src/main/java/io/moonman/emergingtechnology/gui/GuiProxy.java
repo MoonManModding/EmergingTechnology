@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.machines.cooker.CookerContainer;
+import io.moonman.emergingtechnology.machines.cooker.CookerGui;
+import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorContainer;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorGui;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
@@ -42,6 +45,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof FabricatorTileEntity) {
             return new FabricatorContainer(player.inventory, (FabricatorTileEntity) te);
         }
+        if (te instanceof CookerTileEntity) {
+            return new CookerContainer(player.inventory, (CookerTileEntity) te);
+        }
         return null;
     }
 
@@ -73,6 +79,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof FabricatorTileEntity) {
             FabricatorTileEntity containerTileEntity = (FabricatorTileEntity) te;
             return new FabricatorGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof CookerTileEntity) {
+            CookerTileEntity containerTileEntity = (CookerTileEntity) te;
+            return new CookerGui(player.inventory, containerTileEntity);
         }
 
         return null;
