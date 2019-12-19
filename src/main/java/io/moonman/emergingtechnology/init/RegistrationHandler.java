@@ -13,6 +13,7 @@ import io.moonman.emergingtechnology.item.hydroponics.PurpleBulb;
 import io.moonman.emergingtechnology.item.hydroponics.RedBulb;
 import io.moonman.emergingtechnology.item.polymers.PlasticRod;
 import io.moonman.emergingtechnology.item.polymers.PlasticSheet;
+import io.moonman.emergingtechnology.item.polymers.Filament;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
@@ -65,7 +66,7 @@ public class RegistrationHandler {
 
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
-                new ShreddedPlant(), new ShreddedStarch(), new PlasticRod(), new PlasticSheet() };
+                new ShreddedPlant(), new ShreddedStarch(), new PlasticRod(), new PlasticSheet(), new Filament() };
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
@@ -91,6 +92,7 @@ public class RegistrationHandler {
         registerModel(ModItems.shreddedstarch);
         registerModel(ModItems.plasticrod);
         registerModel(ModItems.plasticsheet);
+        registerModel(ModItems.filament);
 
         // Block Models
         registerModel(Item.getItemFromBlock(ModBlocks.hydroponic));

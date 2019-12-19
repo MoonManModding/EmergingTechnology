@@ -24,7 +24,7 @@ public class FabricatorGui extends GuiContainer {
 	private String NAME = ModBlocks.fabricator.getLocalizedName();
 
 	private static final int XSIZE = 175;
-	private static final int YSIZE = 165;
+	private static final int YSIZE = 185;
 
 	// Standard positions for labels
 	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();

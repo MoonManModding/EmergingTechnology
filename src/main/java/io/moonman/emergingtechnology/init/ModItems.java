@@ -39,6 +39,7 @@ public class ModItems {
 	public static final Item shreddedplastic = null;
 	public static final Item shreddedplant = null;
 	public static final Item shreddedstarch = null;
+	public static final Item filament = null;
 	public static final Item plasticrod = null;
 	public static final Item plasticsheet = null;
 	// endregion

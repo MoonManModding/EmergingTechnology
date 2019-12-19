@@ -23,18 +23,18 @@ public class FabricatorContainer extends Container {
 		IItemHandler handler = tileEntity.itemHandler;
 
 		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
-		this.addSlotToContainer(new SlotItemHandler(handler, 1, 80, 35));
+		this.addSlotToContainer(new SlotItemHandler(handler, 1, 123, 35));
 
 		// Inventory
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 9; x++) {
-				this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
+				this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 104 + y * 18));
 			}
 		}
 
 		// Hotbar
 		for (int x = 0; x < 9; x++) {
-			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
+			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 162));
 		}
 	}
 	

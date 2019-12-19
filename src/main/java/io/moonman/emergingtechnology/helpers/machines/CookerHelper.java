@@ -28,8 +28,6 @@ public class CookerHelper {
 
         List<ItemStack> validInputs = furnaceRecipes.keySet().stream().filter(x -> x.getItemUseAction() == EnumAction.EAT).collect(Collectors.toList());
 
-        System.out.println("Found " + validInputs.size() + " valid cooker items");
-
         return validInputs;
     }
 }
