@@ -1,16 +1,11 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.providers.classes.ModFluid;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
+import io.moonman.emergingtechnology.helpers.custom.system.JsonHelper;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomFluidWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -42,13 +37,7 @@ public class CustomFluidLoader {
 
     private static ModFluid[] readFromJson(String filePath) throws IOException {
 
-        Gson gson = new Gson();
-
-        FileReader fileReader = new FileReader(filePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        JsonElement je = gson.fromJson(bufferedReader, JsonElement.class);
-        JsonArray json = je.getAsJsonArray();
-        CustomFluidWrapper[] wrappers = gson.fromJson(json, CustomFluidWrapper[].class);
+        CustomFluidWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath), CustomFluidWrapper[].class);
 
         return generateModFluidsFromWrappers(wrappers);
     }

@@ -1,16 +1,11 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.providers.classes.ModMedium;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
+import io.moonman.emergingtechnology.helpers.custom.system.JsonHelper;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomMediumWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -40,15 +35,9 @@ public class CustomMediumLoader {
         }
     }
 
-    private static ModMedium[] readFromJson(String customGrowthMediaFilePath) throws IOException {
+    private static ModMedium[] readFromJson(String filePath) throws IOException {
 
-        Gson gson = new Gson();
-
-        FileReader fileReader = new FileReader(customGrowthMediaFilePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        JsonElement je = gson.fromJson(bufferedReader, JsonElement.class);
-        JsonArray json = je.getAsJsonArray();
-        CustomMediumWrapper[] wrappers = gson.fromJson(json, CustomMediumWrapper[].class);
+        CustomMediumWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath), CustomMediumWrapper[].class);
 
         return generateModMediaFromWrappers(wrappers);
     }

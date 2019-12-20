@@ -2,7 +2,6 @@ package io.moonman.emergingtechnology.proxy;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.custom.loaders.OreDictionaryLoader;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
@@ -55,7 +54,6 @@ public abstract class CommonProxy {
 
     public void init(FMLInitializationEvent e) {
         OreRegistrationHandler.init();
-        OreDictionaryLoader.init();
         RecipeBuilder.buildMachineRecipes();
     }
 

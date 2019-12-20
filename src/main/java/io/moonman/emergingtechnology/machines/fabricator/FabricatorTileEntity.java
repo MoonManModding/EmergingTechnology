@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.machines.fabricator;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
@@ -41,6 +42,11 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         protected void onContentsChanged(int slot) {
             markDirty();
             super.onContentsChanged(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return FabricatorHelper.isValidFilamentItemStack(stack);
         }
     };
 

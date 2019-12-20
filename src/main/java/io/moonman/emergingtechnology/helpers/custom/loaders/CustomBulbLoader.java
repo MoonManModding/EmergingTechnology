@@ -1,16 +1,11 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.providers.classes.ModBulb;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
+import io.moonman.emergingtechnology.helpers.custom.system.JsonHelper;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomBulbWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -42,13 +37,7 @@ public class CustomBulbLoader {
 
     private static ModBulb[] readFromJson(String filePath) throws IOException {
 
-        Gson gson = new Gson();
-
-        FileReader fileReader = new FileReader(filePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        JsonElement je = gson.fromJson(bufferedReader, JsonElement.class);
-        JsonArray json = je.getAsJsonArray();
-        CustomBulbWrapper[] wrappers = gson.fromJson(json, CustomBulbWrapper[].class);
+        CustomBulbWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath), CustomBulbWrapper[].class);
 
         return generateModBulbsFromWrappers(wrappers);
     }

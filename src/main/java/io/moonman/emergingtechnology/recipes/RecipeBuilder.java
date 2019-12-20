@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import io.moonman.emergingtechnology.helpers.machines.CookerHelper;
+import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,6 +25,9 @@ public class RecipeBuilder {
         buildProcessorRecipes();
         buildShredderRecipes();
         buildCookerRecipes();
+        buildFabricatorRecipeList();
+
+        registerFilamentFurnaceRecipes();
     }
 
     private static void buildProcessorRecipes() {
@@ -155,6 +160,37 @@ public class RecipeBuilder {
         List<ItemStack> inputs = buildRecipeList(itemInputs, oreInputs);
 
         return inputs;
+    }
+
+    private static void registerFilamentFurnaceRecipes() {
+        ItemStack result = new ItemStack(ModItems.filament);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedplant), result, 0.1f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedplastic), result, 0.1f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedstarch), result, 0.1f);
+    }
+
+    private static void buildFabricatorRecipeList() {
+
+        FabricatorRecipe recipe = new FabricatorRecipe(1, new ItemStack(ModBlocks.plasticblock), FabricatorHelper.FILAMENT, 1);
+        FabricatorRecipe recipe2 = new FabricatorRecipe(2, new ItemStack(ModItems.plasticrod), FabricatorHelper.FILAMENT, 2);
+        FabricatorRecipe recipe3 = new FabricatorRecipe(3, new ItemStack(ModItems.plasticsheet), FabricatorHelper.FILAMENT, 2);
+        FabricatorRecipe recipe4 = new FabricatorRecipe(4, new ItemStack(ModBlocks.machinecase), FabricatorHelper.FILAMENT, 8);
+        FabricatorRecipe recipe5 = new FabricatorRecipe(5, new ItemStack(ModBlocks.frame), FabricatorHelper.FILAMENT, 2);
+        FabricatorRecipe recipe6 = new FabricatorRecipe(6, new ItemStack(ModBlocks.clearplasticblock), FabricatorHelper.FILAMENT, 1);
+        FabricatorRecipe recipe7 = new FabricatorRecipe(7, new ItemStack(ModItems.plasticrod), FabricatorHelper.FILAMENT, 8);
+        FabricatorRecipe recipe8 = new FabricatorRecipe(8, new ItemStack(ModItems.machinecase), FabricatorHelper.FILAMENT, 2);
+        FabricatorRecipe recipe9 = new FabricatorRecipe(9, new ItemStack(ModBlocks.plasticblock), FabricatorHelper.FILAMENT, 8);
+        FabricatorRecipe recipe10 = new FabricatorRecipe(10, new ItemStack(ModBlocks.clearplasticblock), FabricatorHelper.FILAMENT, 8);
+        RecipeProvider.fabricatorRecipes.add(recipe);
+        RecipeProvider.fabricatorRecipes.add(recipe2);
+        RecipeProvider.fabricatorRecipes.add(recipe3);
+        RecipeProvider.fabricatorRecipes.add(recipe4);
+        RecipeProvider.fabricatorRecipes.add(recipe5);
+        RecipeProvider.fabricatorRecipes.add(recipe6);
+        RecipeProvider.fabricatorRecipes.add(recipe7);
+        RecipeProvider.fabricatorRecipes.add(recipe8);
+        RecipeProvider.fabricatorRecipes.add(recipe9);
+        RecipeProvider.fabricatorRecipes.add(recipe10);
     }
 
     private static List<ItemStack> buildRecipeList(List<ItemStack> itemStacks, List<String> oreNames) {

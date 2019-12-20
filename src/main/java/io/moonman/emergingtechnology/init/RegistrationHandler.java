@@ -117,6 +117,7 @@ public class RegistrationHandler {
 
         for (Block block : blocks) {
             itemBlocks.add(generateItemBlock(block));
+            
         }
 
         return itemBlocks.toArray(new Item[0]);

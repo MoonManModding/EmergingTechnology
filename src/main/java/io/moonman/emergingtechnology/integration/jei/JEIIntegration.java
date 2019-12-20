@@ -5,11 +5,14 @@ import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.integration.jei.machines.MachineReference;
 import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerRecipeWrapper;
+import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderRecipeWrapper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -48,7 +51,7 @@ public class JEIIntegration implements IModPlugin {
 
         IGuiHelper helper = registry.getJeiHelpers().getGuiHelper();
 
-        registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper), new CookerCategory(helper));
+        registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper), new CookerCategory(helper), new FabricatorCategory(helper));
     }
 
     @Override
@@ -69,7 +72,11 @@ public class JEIIntegration implements IModPlugin {
         registry.addRecipes(RecipeProvider.cookerRecipes, MachineReference.COOKER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.cooker), MachineReference.COOKER_UID);
 
-        EmergingTechnology.logger.info("Registed " + (RecipeProvider.shredderRecipes.size() + RecipeProvider.processorRecipes.size() + RecipeProvider.cookerRecipes.size()) + " recipes.");
+        registry.handleRecipes(FabricatorRecipe.class, FabricatorRecipeWrapper::new, MachineReference.FABRICATOR_UID);
+        registry.addRecipes(RecipeProvider.fabricatorRecipes, MachineReference.FABRICATOR_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.fabricator), MachineReference.FABRICATOR_UID);
+
+        EmergingTechnology.logger.info("Registered with JEI.");
     }
 
     public static boolean doesOreExist(String key) {
