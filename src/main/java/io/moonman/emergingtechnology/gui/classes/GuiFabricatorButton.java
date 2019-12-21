@@ -8,7 +8,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,19 +15,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiFabricatorButton extends GuiButton {
 
     private ItemStack itemStackToRender;
+    private int cost;
+    private String inputName;
 
     private GuiRegion buttonRegion;
 
     public List<String> list;
 
-    public GuiFabricatorButton(int id, int x, int y, int width, int height, ItemStack itemStackToRender) {
+    public GuiFabricatorButton(int id, int x, int y, int width, int height, ItemStack itemStackToRender, String inputName, int cost) {
         super(id, x, y, width, height, "");
 
         this.itemStackToRender = itemStackToRender;
-
-        if (this.itemStackToRender.isEmpty()) {
-            this.itemStackToRender = new ItemStack(Items.APPLE);
-        }
+        this.cost = cost;
+        this.inputName = inputName;
 
         this.list = createList();
 
@@ -63,10 +62,9 @@ public class GuiFabricatorButton extends GuiButton {
         List<String> tooltips = new ArrayList<String>();
 
         tooltips.add(this.itemStackToRender.getDisplayName());
-        //tooltips.add("Requires " + this.cost + " " + this.recipe.getInput().getDisplayName());
+        //tooltips.add("Program " + this.id);
+        tooltips.add("Requires " + this.cost + " " + this.inputName);
 
         return tooltips;
     }
-
-    
 }

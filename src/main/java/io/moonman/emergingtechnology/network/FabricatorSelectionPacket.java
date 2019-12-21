@@ -53,7 +53,6 @@ public class FabricatorSelectionPacket implements IMessage {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	World world = player.world;
             FabricatorTileEntity te = (FabricatorTileEntity) world.getTileEntity(message.pos);
-            System.out.println("Selection packet " + message.integer);
         	te.setField(2, message.integer);
         }
     }

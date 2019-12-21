@@ -53,7 +53,6 @@ public class FabricatorStopStartPacket implements IMessage {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	World world = player.world;
             FabricatorTileEntity te = (FabricatorTileEntity) world.getTileEntity(message.pos);
-            System.out.println("Stop start packet " + message.integer);
         	te.setField(3, message.integer);
         }
     }

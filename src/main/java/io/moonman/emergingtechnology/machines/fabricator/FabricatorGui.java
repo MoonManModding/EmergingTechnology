@@ -90,16 +90,16 @@ public class FabricatorGui extends GuiContainer {
 		if (this.printing) {
 			int progress = this.getProgressScaled(21);
 			this.drawTexturedModalRect(68, 32, 176, 29, 22, 22 - progress);
-			this.drawTexturedModalRect(87, 33, 198, 29, 2, progress);
+			this.drawTexturedModalRect(68, 52, 176, 51, progress, 1);
 		}
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
 
-		String pageLabel = Integer.toString(selection + 1);
+		// String pageLabel = Integer.toString(selection + 1);
 
-		this.fontRenderer.drawString(pageLabel, (this.xSize / 2 - this.fontRenderer.getStringWidth(pageLabel) / 2) - 7, 19, GuiHelper.LABEL_COLOUR);
+		// this.fontRenderer.drawString(pageLabel, (this.xSize / 2 - this.fontRenderer.getStringWidth(pageLabel) / 2) - 7, 21, GuiHelper.LABEL_COLOUR);
 	}
 
 	@Override
@@ -121,11 +121,11 @@ public class FabricatorGui extends GuiContainer {
 		List<FabricatorRecipe> recipes = RecipeProvider.fabricatorRecipes;
 
 		for (int i = 0; i < recipes.size(); i++) {
-			ItemStack itemStackToRender = recipes.get(i).getOutput().copy();
+			FabricatorRecipe recipe = recipes.get(i);
+			ItemStack itemStackToRender = recipe.getOutput().copy();
+			String inputName = recipe.getInput().getDisplayName();
 
-			System.out.println(i + " Creating GUI Fabricator button with itemstack " + itemStackToRender.getDisplayName());
-
-			GuiFabricatorButton button = new GuiFabricatorButton(i, leftOffset, topOffset, buttonWidth, buttonHeight, itemStackToRender);
+			GuiFabricatorButton button = new GuiFabricatorButton(i, leftOffset, topOffset, buttonWidth, buttonHeight, itemStackToRender, inputName, recipe.cost);
 
 			button.visible = false;
 

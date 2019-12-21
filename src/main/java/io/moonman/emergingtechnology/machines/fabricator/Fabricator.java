@@ -44,7 +44,7 @@ public class Fabricator extends MachineBase implements ITileEntityProvider {
     {
         int energyUsage = EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage;
 
-        tooltip.add("CURRENTLY NON-FUNCTIONAL");
+        tooltip.add("EXPERIMENTAL");
         tooltip.add("Automates the printing of plastic components.");
         tooltip.add("Requires " + energyUsage + "RF per cycle.");
     }
