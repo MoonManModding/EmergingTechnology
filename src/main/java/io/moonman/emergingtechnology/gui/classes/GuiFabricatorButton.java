@@ -3,41 +3,39 @@ package io.moonman.emergingtechnology.gui.classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GuiFabricatorButton extends GuiButton {
 
-    public int id;
-    public int page;
-    public int cost;
-
-    public String itemName;
-    private FabricatorRecipe recipe;
+    private ItemStack itemStackToRender;
 
     private GuiRegion buttonRegion;
 
     public List<String> list;
 
-    public GuiFabricatorButton(int page, int x, int y, int width, int height, FabricatorRecipe recipe) {
-        super(recipe.id, x, y, width, height, recipe.getOutput().getDisplayName());
+    public GuiFabricatorButton(int id, int x, int y, int width, int height, ItemStack itemStackToRender) {
+        super(id, x, y, width, height, "");
 
-        this.page = page;
-        this.id = recipe.id;
-        this.cost = recipe.cost;
-        this.itemName = recipe.getOutput().getDisplayName();
+        this.itemStackToRender = itemStackToRender;
 
-        this.recipe = recipe;
+        if (this.itemStackToRender.isEmpty()) {
+            this.itemStackToRender = new ItemStack(Items.APPLE);
+        }
 
         this.list = createList();
 
         buttonRegion = new GuiRegion(x,y,x + width, y + height);
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
 
@@ -50,7 +48,7 @@ public class GuiFabricatorButton extends GuiButton {
         GlStateManager.translate(0.0F, 0.0F, 32.0F);
         this.zLevel = 200.0F;
         itemRender.zLevel = 200.0F;
-        itemRender.renderItemAndEffectIntoGUI(recipe.getOutput(), x, y);
+        itemRender.renderItemAndEffectIntoGUI(itemStackToRender, x, y);
         this.zLevel = 0.0F;
         itemRender.zLevel = 0.0F;
 
@@ -64,8 +62,8 @@ public class GuiFabricatorButton extends GuiButton {
     public List<String> createList() {
         List<String> tooltips = new ArrayList<String>();
 
-        tooltips.add(this.recipe.getOutput().getDisplayName());
-        tooltips.add("Requires " + this.cost + " " + this.recipe.getInput().getDisplayName());
+        tooltips.add(this.itemStackToRender.getDisplayName());
+        //tooltips.add("Requires " + this.cost + " " + this.recipe.getInput().getDisplayName());
 
         return tooltips;
     }

@@ -2,6 +2,8 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -15,5 +17,8 @@ public class FabricatorHelper {
         return StackHelper.compareItemStacks(FILAMENT, itemStack);
     }
 
+    public static FabricatorRecipe getFabricatorRecipeByIndex(int id) {
+        return RecipeProvider.getFabricatorRecipeByIndex(id);
+    }
     
 }

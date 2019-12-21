@@ -49,6 +49,10 @@ public class RecipeProvider {
         return null;
     }
 
+    public static FabricatorRecipe getFabricatorRecipeByIndex(int index) {
+        return fabricatorRecipes.get(index);
+    }
+
     public static List<List<FabricatorRecipe>> getSplitRecipes(int slots) {
         return splitList(fabricatorRecipes, slots);
     }

@@ -23,6 +23,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class FabricatorGui extends GuiContainer {
@@ -86,8 +87,11 @@ public class FabricatorGui extends GuiContainer {
 
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 9, energy, 7);
 
-		int progress = this.getProgressScaled(34);
-		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
+		if (this.printing) {
+			int progress = this.getProgressScaled(21);
+			this.drawTexturedModalRect(68, 32, 176, 29, 22, 22 - progress);
+			this.drawTexturedModalRect(87, 33, 198, 29, 2, progress);
+		}
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
@@ -107,8 +111,6 @@ public class FabricatorGui extends GuiContainer {
 	}
 
 	private void createButtons() {
-		// page = 0;
-
 		buttonList.clear();
 
 		int topOffset = this.guiTop + 35;
@@ -119,8 +121,15 @@ public class FabricatorGui extends GuiContainer {
 		List<FabricatorRecipe> recipes = RecipeProvider.fabricatorRecipes;
 
 		for (int i = 0; i < recipes.size(); i++) {
-			buttonList
-					.add(new GuiFabricatorButton(i, leftOffset, topOffset, buttonWidth, buttonHeight, recipes.get(i)));
+			ItemStack itemStackToRender = recipes.get(i).getOutput().copy();
+
+			System.out.println(i + " Creating GUI Fabricator button with itemstack " + itemStackToRender.getDisplayName());
+
+			GuiFabricatorButton button = new GuiFabricatorButton(i, leftOffset, topOffset, buttonWidth, buttonHeight, itemStackToRender);
+
+			button.visible = false;
+
+			buttonList.add(button);
 		}
 
 		previousButtonId = recipes.size() + 1;
@@ -128,11 +137,21 @@ public class FabricatorGui extends GuiContainer {
 		playButtonId = recipes.size() + 3;
 		stopButtonId = recipes.size() + 4;
 
-		buttonList.add(new GuiImageButton(previousButtonId, this.guiLeft + 63, this.guiTop + 57, 16, 16, GuiHelper.LEFT_BUTTON_TEXTURE));
-		buttonList.add(new GuiImageButton(nextButtonId, this.guiLeft + 79, this.guiTop + 57, 16, 16, GuiHelper.RIGHT_BUTTON_TEXTURE));
+		GuiImageButton previousButton = new GuiImageButton(previousButtonId, this.guiLeft + 63, this.guiTop + 57, 16, 16, GuiHelper.LEFT_BUTTON_TEXTURE);
+		GuiImageButton nextButton = new GuiImageButton(nextButtonId, this.guiLeft + 79, this.guiTop + 57, 16, 16, GuiHelper.RIGHT_BUTTON_TEXTURE);
 
-		buttonList.add(new GuiImageButton(playButtonId, this.guiLeft + 63, this.guiTop + 73, 16, 16, GuiHelper.PLAY_BUTTON_TEXTURE));
-		buttonList.add(new GuiImageButton(stopButtonId, this.guiLeft + 79, this.guiTop + 73, 16, 16, GuiHelper.STOP_BUTTON_TEXTURE));
+		GuiImageButton playButton = new GuiImageButton(playButtonId, this.guiLeft + 63, this.guiTop + 73, 16, 16, GuiHelper.PLAY_BUTTON_TEXTURE);
+		GuiImageButton stopButton = new GuiImageButton(stopButtonId, this.guiLeft + 79, this.guiTop + 73, 16, 16, GuiHelper.STOP_BUTTON_TEXTURE);
+
+		previousButton.visible = false;
+		nextButton.visible = false;
+		playButton.visible = false;
+		stopButton.visible = false;
+
+		buttonList.add(previousButton);
+		buttonList.add(nextButton);
+		buttonList.add(playButton);
+		buttonList.add(stopButton);
 	}
 
 	@Override
@@ -146,7 +165,7 @@ public class FabricatorGui extends GuiContainer {
 
 		if (button instanceof GuiFabricatorButton) {
 			GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
-			return fabButton.page == selection;
+			return fabButton.id == selection;
 		}
 
 		if (button.id == playButtonId) {

@@ -3,9 +3,11 @@ package io.moonman.emergingtechnology.machines.fabricator;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -151,8 +153,80 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
             this.setEnergy(this.getEnergy());
 
+            this.doPrinting();
+
             tick = 0;
         }
+    }
+
+    public void doPrinting() {
+
+        if (!this.printing) {
+            return;
+        }
+
+        ItemStack inputStack = getInputStack();
+
+        // Nothing in input stack
+        if (inputStack.getCount() == 0) {
+            this.setProgress(0);
+            return;
+        }
+
+        ItemStack outputStack = getOutputStack();
+        FabricatorRecipe recipe = FabricatorHelper.getFabricatorRecipeByIndex(selection);
+
+        // Recipe validation just in case
+        if (recipe == null || recipe.getInput() == null || recipe.getOutput() == null || recipe.cost == 0) {
+            this.setProgress(0);
+            return;
+        }
+
+        // Check is correct input
+        if (!StackHelper.compareItemStacks(inputStack, recipe.getInput())) {
+            return;
+        }
+
+        if (inputStack.getCount() < recipe.cost) {
+            return;
+        }
+
+        // Output stack is full
+        if (outputStack.getCount() == 64) {
+            return;
+        }
+
+        // Output stack incompatible/non-empty
+        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput()) && !StackHelper.isItemStackEmpty(outputStack)) {
+            return;
+        }
+
+        // Not enough energy
+        if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage) {
+            return;
+        }
+
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage,
+                false);
+
+
+        this.setEnergy(this.energyHandler.getEnergyStored());
+
+        // Not enough operations performed
+        if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorBaseTimeTaken) {
+            this.setProgress(this.getProgress() + 1);
+            return;
+        }
+
+        getInputStack().shrink(recipe.cost);
+
+        if (outputStack.getCount() > 0) {
+            outputStack.grow(1);
+        } else {
+            itemHandler.insertItem(1, recipe.getOutput().copy(), false);
+        }
+
+        this.setProgress(0);
     }
 
     public ItemStack getInputStack() {
@@ -196,12 +270,15 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
     }
 
     private void setSelection(int id) {
-        System.out.println("Fabricator selection set to " + id);
+
+        if (this.selection != id) {
+            this.setProgress(0);
+        }
+
         this.selection = id;
     }
 
     private void setIsPrinting(int id) {
-        System.out.println("Fabricator printing?" + (id > 0));
         this.printing = id > 0;
     }
 
