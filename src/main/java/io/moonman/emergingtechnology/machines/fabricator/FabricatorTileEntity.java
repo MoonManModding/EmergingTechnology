@@ -374,6 +374,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         return new Object[] { value };
     }
 
+    // NON-FUNCTIONAL
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] startPrint(Context context, Arguments args) {
@@ -381,6 +382,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         return new Object[] { "Printing started." };
     }
 
+    // NON-FUNCTIONAL
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] stopPrint(Context context, Arguments args) {
@@ -388,6 +390,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         return new Object[] { "Printing stopped." };
     }
 
+    // NON-FUNCTIONAL
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] setProgram(Context context, Arguments args) {
