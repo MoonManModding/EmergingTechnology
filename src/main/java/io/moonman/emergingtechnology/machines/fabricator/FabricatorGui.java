@@ -1,7 +1,5 @@
 package io.moonman.emergingtechnology.machines.fabricator;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
@@ -9,13 +7,16 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiFabricatorButton;
+import io.moonman.emergingtechnology.gui.classes.GuiImageButton;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
-import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.network.FabricatorSelectionPacket;
+import io.moonman.emergingtechnology.network.FabricatorStopStartPacket;
+import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import net.minecraft.client.gui.GuiButton;
@@ -42,14 +43,22 @@ public class FabricatorGui extends GuiContainer {
 	private final InventoryPlayer player;
 	private final FabricatorTileEntity tileEntity;
 
-	private static int page = 0;
-	private static GuiRegion nextButton;
-	private static GuiRegion previousButton;
+	private int selection;
+	private boolean printing;
+
+	private int nextButtonId;
+	private int previousButtonId;
+	private int playButtonId;
+	private int stopButtonId;
 
 	public FabricatorGui(InventoryPlayer player, FabricatorTileEntity tileEntity) {
 		super(new FabricatorContainer(player, tileEntity));
 		this.player = player;
 		this.tileEntity = tileEntity;
+		
+		this.selection = this.tileEntity.getField(2);
+		this.printing = this.tileEntity.getField(3) > 0;
+
 		this.xSize = XSIZE;
 		this.ySize = YSIZE;
 	}
@@ -83,8 +92,10 @@ public class FabricatorGui extends GuiContainer {
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
-				
-		this.fontRenderer.drawString(page + 1 + "", 75, 19, GuiHelper.LABEL_COLOUR);
+
+		String pageLabel = Integer.toString(selection + 1);
+
+		this.fontRenderer.drawString(pageLabel, (this.xSize / 2 - this.fontRenderer.getStringWidth(pageLabel) / 2) - 7, 19, GuiHelper.LABEL_COLOUR);
 	}
 
 	@Override
@@ -96,47 +107,32 @@ public class FabricatorGui extends GuiContainer {
 	}
 
 	private void createButtons() {
-		page = 0;
+		// page = 0;
 
 		buttonList.clear();
 
-		int topOffset = this.guiTop + 32;
-		int leftOffset = this.guiLeft + 50;
+		int topOffset = this.guiTop + 35;
+		int leftOffset = this.guiLeft + 71;
 		int buttonWidth = 15;
 		int buttonHeight = 15;
-		int margin = 5;
 
-		int maxLeft = leftOffset + ((margin + buttonWidth) * 3);
-		int maxTop = topOffset + ((margin + buttonHeight) * 3);
+		List<FabricatorRecipe> recipes = RecipeProvider.fabricatorRecipes;
 
-		ArrayList<ArrayList<FabricatorRecipe>> splitRecipes = RecipeProvider.getSplitRecipes(9);
-
-		System.out.println(splitRecipes.size() + " buckets");
-
-		ArrayList<GuiPosition> buttonGridPositions = new ArrayList<GuiPosition>();
-
-		for (int x = leftOffset; x < maxLeft; x += (margin + buttonWidth)) {
-			for (int y = topOffset; y < maxTop; y += (margin + buttonHeight)) {
-				buttonGridPositions.add(new GuiPosition(x, y));
-			}
+		for (int i = 0; i < recipes.size(); i++) {
+			buttonList
+					.add(new GuiFabricatorButton(i, leftOffset, topOffset, buttonWidth, buttonHeight, recipes.get(i)));
 		}
 
-		int recipePage = 0;
+		previousButtonId = recipes.size() + 1;
+		nextButtonId = recipes.size() + 2;
+		playButtonId = recipes.size() + 3;
+		stopButtonId = recipes.size() + 4;
 
-		for (ArrayList<FabricatorRecipe> recipes : splitRecipes) {
-			System.out.println(recipes.size() + " items in bucket");
-			
-			for (int i = 0; i < recipes.size(); i++) {
-				GuiPosition pos = buttonGridPositions.get(i);
-				buttonList.add(
-						new GuiFabricatorButton(recipePage, pos.x, pos.y, buttonWidth, buttonHeight, recipes.get(i)));
-			}
-			
-			recipePage++;
-		}
+		buttonList.add(new GuiImageButton(previousButtonId, this.guiLeft + 63, this.guiTop + 57, 16, 16, GuiHelper.LEFT_BUTTON_TEXTURE));
+		buttonList.add(new GuiImageButton(nextButtonId, this.guiLeft + 79, this.guiTop + 57, 16, 16, GuiHelper.RIGHT_BUTTON_TEXTURE));
 
-		previousButton = new GuiRegion(this.guiLeft + 45, this.guiTop + 19, this.guiLeft + 55, this.guiTop + 29);
-		nextButton = new GuiRegion(this.guiLeft + 101, this.guiTop + 19, this.guiLeft + 111, this.guiTop + 29);
+		buttonList.add(new GuiImageButton(playButtonId, this.guiLeft + 63, this.guiTop + 73, 16, 16, GuiHelper.PLAY_BUTTON_TEXTURE));
+		buttonList.add(new GuiImageButton(stopButtonId, this.guiLeft + 79, this.guiTop + 73, 16, 16, GuiHelper.STOP_BUTTON_TEXTURE));
 	}
 
 	@Override
@@ -147,45 +143,74 @@ public class FabricatorGui extends GuiContainer {
 	}
 
 	private boolean shouldRenderButton(GuiButton button) {
-		GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
-		return fabButton.page == page;
+
+		if (button instanceof GuiFabricatorButton) {
+			GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
+			return fabButton.page == selection;
+		}
+
+		if (button.id == playButtonId) {
+			return !this.printing;
+		}
+
+		if (button.id == stopButtonId) {
+			return this.printing;
+		}
+
+		if (button.id == previousButtonId || button.id == nextButtonId) {
+			return !this.printing;
+		}
+
+		return false;
 	}
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
-		updateFabricatorSelection(fabButton.id);
-	}
 
-	@Override
-	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-		super.mouseClicked(mouseX, mouseY, mouseButton);
+		if (button.id == previousButtonId) {
+			previousPage();
+		}
 
-		GuiPosition position = new GuiPosition(mouseX, mouseY);
-
-		if (nextButton.isPositionInRegion(position)) {
+		if (button.id == nextButtonId) {
 			nextPage();
 		}
 
-		if (previousButton.isPositionInRegion(position)) {
-			previousPage();
+		if (button.id == playButtonId) {
+			this.printing = true;
+			updateFabricatorPrinting();
+		}
+
+		if (button.id == stopButtonId) {
+			this.printing = false;
+			updateFabricatorPrinting();
 		}
 	}
 
 	private void nextPage() {
-		if (page < (RecipeProvider.getRecipePagesCount(9) - 1)) {
-			page++;
+		if (selection < RecipeProvider.fabricatorRecipes.size() - 1) {
+			selection++;
+		} else {
+			selection = 0;
 		}
+		updateFabricatorSelection(selection);
 	}
 
 	private void previousPage() {
-		if (page > 0) {
-			page--;
+		if (selection > 0) {
+			selection--;
+		} else {
+			selection = RecipeProvider.fabricatorRecipes.size() - 1;
 		}
+		updateFabricatorSelection(selection);
 	}
 
 	private void updateFabricatorSelection(int id) {
-		System.out.println("Changing selection to " + id);
+		PacketHandler.INSTANCE.sendToServer(new FabricatorSelectionPacket(this.tileEntity.getPos(), id));
+	}
+
+	private void updateFabricatorPrinting() {
+		int isPrinting = this.printing ? 1 : 0;
+		PacketHandler.INSTANCE.sendToServer(new FabricatorStopStartPacket(this.tileEntity.getPos(), isPrinting));
 	}
 
 	private int getEnergyScaled(int scaled) {
@@ -210,9 +235,11 @@ public class FabricatorGui extends GuiContainer {
 		}
 
 		for (GuiButton button : buttonList) {
-			GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
-			if (fabButton.hovered(mouseX, mouseY) && fabButton.visible) {
-				this.drawHoveringText(fabButton.list, mouseX, mouseY);
+			if (button instanceof GuiFabricatorButton) {
+				GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
+				if (fabButton.hovered(mouseX, mouseY) && fabButton.visible) {
+					this.drawHoveringText(fabButton.list, mouseX, mouseY);
+				}
 			}
 		}
 	}

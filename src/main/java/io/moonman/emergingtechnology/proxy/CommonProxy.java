@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.init.OreRegistrationHandler;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
+import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -50,6 +51,8 @@ public abstract class CommonProxy {
         ModBulbProvider.preInit(e);
         ModMediumProvider.preInit(e);
         ModFluidProvider.preInit(e);
+
+        PacketHandler.registerMessages(EmergingTechnology.MODID);
     }
 
     public void init(FMLInitializationEvent e) {

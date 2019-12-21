@@ -49,21 +49,12 @@ public class RecipeProvider {
         return null;
     }
 
-    public static ArrayList<ArrayList<FabricatorRecipe>> getSplitRecipes(int slots) {
-        ArrayList<ArrayList<FabricatorRecipe>> splitRecipes = new ArrayList<ArrayList<FabricatorRecipe>>();
-
-        int listCount = getRecipePagesCount(slots);
-
-        for (int i = 0; i < listCount; i++) {
-            ArrayList<FabricatorRecipe> subList = new ArrayList<FabricatorRecipe>(fabricatorRecipes.subList(i * 9, i + 9));
-            splitRecipes.add(subList);
-        }
-
-        return splitRecipes;
+    public static List<List<FabricatorRecipe>> getSplitRecipes(int slots) {
+        return splitList(fabricatorRecipes, slots);
     }
 
     public static int getRecipePagesCount(int slots) {
-        return (int) Math.ceil((double)fabricatorRecipes.size() / slots);
+        return getSplitRecipes(slots).size();
     }
     
     public static ItemStack getCookerOutputForItemStack(ItemStack itemStack) {
@@ -78,5 +69,16 @@ public class RecipeProvider {
         }
 
         return null;
+    }
+
+    private static <T> List<List<T>> splitList(List<T> list, final int L) {
+        List<List<T>> parts = new ArrayList<List<T>>();
+        final int N = list.size();
+        for (int i = 0; i < N; i += L) {
+            parts.add(new ArrayList<T>(
+                list.subList(i, Math.min(N, i + L)))
+            );
+        }
+        return parts;
     }
 }

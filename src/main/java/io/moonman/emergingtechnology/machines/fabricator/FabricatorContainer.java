@@ -17,9 +17,12 @@ public class FabricatorContainer extends Container {
 
 	private int energy;
 	private int progress;
+	private int selection;
+	private int printing;
 
 	public FabricatorContainer(InventoryPlayer player, FabricatorTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
+
 		IItemHandler handler = tileEntity.itemHandler;
 
 		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
@@ -55,10 +58,14 @@ public class FabricatorContainer extends Container {
 			IContainerListener listener = (IContainerListener)this.listeners.get(i);
 			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
 			if(this.progress != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
+			if(this.selection != this.tileEntity.getField(2)) listener.sendWindowProperty(this, 2, this.tileEntity.getField(2));
+			if(this.printing != this.tileEntity.getField(3)) listener.sendWindowProperty(this, 3, this.tileEntity.getField(3));
 		}
         
 		this.energy = this.tileEntity.getField(0);
 		this.progress = this.tileEntity.getField(1);
+		this.selection = this.tileEntity.getField(2);
+		this.printing = this.tileEntity.getField(3);
 	}
 
 	@Override

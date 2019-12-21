@@ -1,7 +1,9 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 
 /**
 Provides useful methods and values for GUI rendering
@@ -20,6 +22,13 @@ public class GuiHelper {
     public static final int WARNING_COLOUR = 16738816;
 
     public static final int ENERGY_USAGE_COLOUR = 14567989;
+
+    // Textures
+    public static final ResourceLocation PLAY_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/play.png");
+    public static final ResourceLocation STOP_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/stop.png");
+    public static final ResourceLocation LEFT_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/left.png");
+    public static final ResourceLocation RIGHT_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/right.png");
+    public static final ResourceLocation OVERLAY_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/overlay.png");
 
     // Gui locations
     public static GuiPosition getTopLeft() {

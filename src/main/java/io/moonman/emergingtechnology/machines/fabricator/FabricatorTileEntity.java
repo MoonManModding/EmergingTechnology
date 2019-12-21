@@ -46,7 +46,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return FabricatorHelper.isValidFilamentItemStack(stack);
+            return FabricatorHelper.isValidFilamentItemStack(stack) && slot == 0;
         }
     };
 
@@ -56,6 +56,11 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             markDirty();
             super.onContentsChanged(slot);
         }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return FabricatorHelper.isValidFilamentItemStack(stack);
+        }
     };
 
     private int tick = 0;
@@ -63,6 +68,10 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
     private int energy = this.energyHandler.getEnergyStored();
 
     private int progress = 0;
+
+    private int selection = 0;
+
+    private boolean printing = false;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -90,6 +99,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         this.setEnergy(compound.getInteger("GuiEnergy"));
         this.setProgress(compound.getInteger("GuiProgress"));
+        this.setSelection(compound.getInteger("GuiSelection"));
+        this.setIsPrinting(compound.getInteger("GuiPrinting"));
 
         this.energyHandler.readFromNBT(compound);
     }
@@ -101,6 +112,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         
         compound.setInteger("GuiEnergy", energy);
         compound.setInteger("GuiProgress", progress);
+        compound.setInteger("GuiSelection", selection);
+        compound.setInteger("GuiPrinting", getIsPrinting());
 
         this.energyHandler.writeToNBT(compound);
 
@@ -160,6 +173,14 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         return this.progress;
     }
 
+    public int getSelection() {
+        return this.selection;
+    }
+
+    public int getIsPrinting() {
+        return this.printing ? 1 : 0;
+    }
+
     public int getMaxProgress() {
         return EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorBaseTimeTaken;
     }
@@ -172,6 +193,16 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
     private void setProgress(int quantity) {
         this.progress = quantity;
+    }
+
+    private void setSelection(int id) {
+        System.out.println("Fabricator selection set to " + id);
+        this.selection = id;
+    }
+
+    private void setIsPrinting(int id) {
+        System.out.println("Fabricator printing?" + (id > 0));
+        this.printing = id > 0;
     }
 
     @Override
@@ -191,6 +222,10 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             return this.getEnergy();
         case 1:
             return this.getProgress();
+        case 2:
+            return this.getSelection();
+        case 3:
+            return this.getIsPrinting();
         default:
             return 0;
         }
@@ -203,6 +238,12 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             break;
         case 1:
             this.setProgress(value);
+            break;
+        case 2:
+            this.setSelection(value);
+            break;
+        case 3:
+            this.setIsPrinting(value);
             break;
         }
     }
