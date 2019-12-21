@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -111,7 +112,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
-        
+
         compound.setInteger("GuiEnergy", energy);
         compound.setInteger("GuiProgress", progress);
         compound.setInteger("GuiSelection", selection);
@@ -197,7 +198,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         }
 
         // Output stack incompatible/non-empty
-        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput()) && !StackHelper.isItemStackEmpty(outputStack)) {
+        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput())
+                && !StackHelper.isItemStackEmpty(outputStack)) {
             return;
         }
 
@@ -208,7 +210,6 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage,
                 false);
-
 
         this.setEnergy(this.energyHandler.getEnergyStored());
 
@@ -327,6 +328,18 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
     // OpenComputers
 
+    private void startPrinting() {
+        this.setIsPrinting(1);
+    }
+
+    private void stopPrinting() {
+        this.setIsPrinting(0);
+    }
+
+    private void setProgram(int index) {
+        this.setSelection(index);
+    }
+
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
@@ -345,5 +358,68 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
     public Object[] getProgress(Context context, Arguments args) {
         int value = getProgress();
         return new Object[] { value };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getProgram(Context context, Arguments args) {
+        int value = getSelection();
+        return new Object[] { value };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getIsPrinting(Context context, Arguments args) {
+        boolean value = getIsPrinting() > 0;
+        return new Object[] { value };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] startPrint(Context context, Arguments args) {
+        this.startPrinting();
+        return new Object[] { "Printing started." };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] stopPrint(Context context, Arguments args) {
+        this.stopPrinting();
+        return new Object[] { "Printing stopped." };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] setProgram(Context context, Arguments args) {
+
+        boolean success = false;
+        String message = "There was an error setting the program";
+
+        try {
+
+            int max = RecipeProvider.fabricatorRecipes.size();
+
+            Object[] arguments = args.toArray();
+
+            if (arguments == null) {
+                message = "Invalid argument. Must be integer between 0 and " + max;
+                return new Object[] { success, message }; 
+            }
+
+            int program = (int) arguments[0];
+
+            if (program < 0 || program > max) {
+                message = "Invalid argument. Must be integer between 0 and " + max;
+            } else {
+                this.setSelection(program);
+                success = true;
+                message = "Fabricator program set to " + program;
+            }
+            
+        } catch (Exception ex) {
+            message = ex.toString();
+        }
+        
+        return new Object[] { success, message };
     }
 }

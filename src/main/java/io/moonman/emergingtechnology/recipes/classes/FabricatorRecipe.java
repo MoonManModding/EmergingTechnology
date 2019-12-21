@@ -10,11 +10,11 @@ public class FabricatorRecipe {
 	public final int id;
 	public final int cost;
 
-	public FabricatorRecipe(int id, ItemStack output, ItemStack input, int cost) {
+	public FabricatorRecipe(int id, ItemStack output, ItemStack input) {
 		this.output = output;
 		this.input = input;
 		this.id = id;
-		this.cost = cost;
+		this.cost = input.getCount();
 	}
 
 	public ItemStack getInput() {

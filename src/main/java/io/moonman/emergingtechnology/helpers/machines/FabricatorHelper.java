@@ -20,5 +20,9 @@ public class FabricatorHelper {
     public static FabricatorRecipe getFabricatorRecipeByIndex(int id) {
         return RecipeProvider.getFabricatorRecipeByIndex(id);
     }
+
+    public static ItemStack getFilamentWithAmount(int amount) {
+        return new ItemStack(ModItems.filament, amount);
+    }
     
 }
