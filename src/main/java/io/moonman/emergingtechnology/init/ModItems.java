@@ -34,6 +34,7 @@ public class ModItems {
 	public static final Item clearplasticblock = null;
 	public static final Item machinecase = null;
 	public static final Item fabricator = null;
+	public static final Item ladder = null;
 
 	// Items
 	public static final Item shreddedplastic = null;

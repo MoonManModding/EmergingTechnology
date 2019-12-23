@@ -62,7 +62,7 @@ public class GuiFabricatorButton extends GuiButton {
         List<String> tooltips = new ArrayList<String>();
 
         tooltips.add(this.itemStackToRender.getDisplayName());
-        //tooltips.add("Program " + this.id);
+        tooltips.add("Program " + this.id);
         tooltips.add("Requires " + this.cost + " " + this.inputName);
 
         return tooltips;

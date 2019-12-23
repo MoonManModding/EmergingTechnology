@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.block.blocks.ClearPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.Frame;
+import io.moonman.emergingtechnology.block.blocks.Ladder;
 import io.moonman.emergingtechnology.block.blocks.MachineCase;
 import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
 import io.moonman.emergingtechnology.item.hydroponics.BlueBulb;
@@ -50,7 +51,7 @@ public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {
         final Block[] blocks = { new Hydroponic(), new Light(), new Frame(), new Processor(), new Shredder(),
-                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker() };
+                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker(), new Ladder() };
 
         GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
         GameRegistry.registerTileEntity(LightTileEntity.class, getResourceLocation("light"));
@@ -70,7 +71,7 @@ public class RegistrationHandler {
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
-                ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.fabricator, ModBlocks.cooker };
+                ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.ladder };
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
@@ -105,6 +106,7 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.machinecase));
         registerModel(Item.getItemFromBlock(ModBlocks.fabricator));
         registerModel(Item.getItemFromBlock(ModBlocks.cooker));
+        registerModel(Item.getItemFromBlock(ModBlocks.ladder));
 
         // Hydroponic TESR
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0,

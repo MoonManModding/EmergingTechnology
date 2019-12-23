@@ -177,12 +177,14 @@ public class RecipeBuilder {
         FabricatorRecipe recipe4 = new FabricatorRecipe(4, new ItemStack(ModBlocks.machinecase), FabricatorHelper.getFilamentWithAmount(4));
         FabricatorRecipe recipe5 = new FabricatorRecipe(5, new ItemStack(ModBlocks.frame), FabricatorHelper.getFilamentWithAmount(1));
         FabricatorRecipe recipe6 = new FabricatorRecipe(6, new ItemStack(ModBlocks.clearplasticblock), FabricatorHelper.getFilamentWithAmount(1));
+        FabricatorRecipe recipe7 = new FabricatorRecipe(7, new ItemStack(ModBlocks.ladder), FabricatorHelper.getFilamentWithAmount(1));
         RecipeProvider.fabricatorRecipes.add(recipe);
         RecipeProvider.fabricatorRecipes.add(recipe2);
         RecipeProvider.fabricatorRecipes.add(recipe3);
         RecipeProvider.fabricatorRecipes.add(recipe4);
         RecipeProvider.fabricatorRecipes.add(recipe5);
         RecipeProvider.fabricatorRecipes.add(recipe6);
+        RecipeProvider.fabricatorRecipes.add(recipe7);
     }
 
     private static List<ItemStack> buildRecipeList(List<ItemStack> itemStacks, List<String> oreNames) {

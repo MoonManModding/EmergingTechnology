@@ -22,6 +22,7 @@ item.emergingtechnology.plasticblock.name=Block of Plastic
 item.emergingtechnology.plasticrod.name=Plastic Rod
 item.emergingtechnology.plasticsheet.name=Plastic Sheet
 item.emergingtechnology.machinecase.name=Basic Machine Case
+item.emergingtechnology.ladder.name=Plastic Ladder
 
 #Blocks
 # HYDROPONICS MODULE
@@ -34,6 +35,7 @@ blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
 blocks.emergingtechnology.plasticblock.name=Block of Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
+blocks.emergingtechnology.ladder.name=Plastic Ladder
 
 #Containers
 
@@ -46,6 +48,7 @@ tile.emergingtechnology.frame.name=Гідропонна Рама
 # POLYMERS MODULE
 tile.emergingtechnology.plasticblock.name=Block of Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
+tile.emergingtechnology.ladder.name=Plastic Ladder
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology

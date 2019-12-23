@@ -330,14 +330,17 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
     private void startPrinting() {
         this.setIsPrinting(1);
+        this.markDirty();
     }
 
     private void stopPrinting() {
         this.setIsPrinting(0);
+        this.markDirty();
     }
 
     private void setProgram(int index) {
         this.setSelection(index);
+        this.markDirty();
     }
 
     @Optional.Method(modid = "opencomputers")
@@ -400,7 +403,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         try {
 
-            int max = RecipeProvider.fabricatorRecipes.size();
+            int max = RecipeProvider.fabricatorRecipes.size() -1;
 
             Object[] arguments = args.toArray();
 
@@ -409,12 +412,14 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
                 return new Object[] { success, message }; 
             }
 
-            int program = (int) arguments[0];
+            Double thing = (Double) arguments[0];
+
+            int program = thing.intValue();
 
             if (program < 0 || program > max) {
                 message = "Invalid argument. Must be integer between 0 and " + max;
             } else {
-                this.setSelection(program);
+                this.setProgram(program);
                 success = true;
                 message = "Fabricator program set to " + program;
             }
