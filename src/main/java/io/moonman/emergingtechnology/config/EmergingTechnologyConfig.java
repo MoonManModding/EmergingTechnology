@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.config;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.config.electrics.ElectricsModule;
 import io.moonman.emergingtechnology.config.hydroponics.HydroponicsModule;
 import io.moonman.emergingtechnology.config.polymers.PolymersModule;
 import io.moonman.emergingtechnology.config.synthetics.SyntheticsModule;
@@ -31,6 +32,10 @@ public class EmergingTechnologyConfig {
 	@Name("Synthetics Module")
 	@Comment("Configure Solar Cooker here")
 	public static final SyntheticsModule SYNTHETICS_MODULE = new SyntheticsModule();
+
+	@Name("Electrics Module")
+	@Comment("Configure Piezoelectronic Tile here")
+	public static final ElectricsModule ELECTRICS_MODULE = new ElectricsModule();
 
 	public static void preInit() {
 		MinecraftForge.EVENT_BUS.register(new ServerConfigEventHandler());

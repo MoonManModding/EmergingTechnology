@@ -51,4 +51,11 @@ public class ModItems {
 	// Items
 
 	//endregion
+
+	//region Synthetics Items
+	// Block Items
+	public static final Item piezoelectric = null;
+	// Items
+
+	//endregion
 }

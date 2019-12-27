@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.light.Light;
+import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
@@ -38,5 +39,9 @@ public class ModBlocks {
 
 	//region Synthetics Blocks
 	public static final Cooker cooker = null;
+	//endregion
+
+	//region Electrics Blocks
+	public static final Piezoelectric piezoelectric = null;
 	//endregion
 }

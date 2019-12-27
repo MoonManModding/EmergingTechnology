@@ -27,6 +27,8 @@ import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTESR;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
 import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
+import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
+import io.moonman.emergingtechnology.machines.piezoelectric.PiezoelectricTileEntity;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
@@ -51,7 +53,7 @@ public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {
         final Block[] blocks = { new Hydroponic(), new Light(), new Frame(), new Processor(), new Shredder(),
-                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker(), new Ladder() };
+                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker(), new Ladder(), new Piezoelectric() };
 
         GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
         GameRegistry.registerTileEntity(LightTileEntity.class, getResourceLocation("light"));
@@ -59,6 +61,7 @@ public class RegistrationHandler {
         GameRegistry.registerTileEntity(ShredderTileEntity.class, getResourceLocation("shredder"));
         GameRegistry.registerTileEntity(FabricatorTileEntity.class, getResourceLocation("fabricator"));
         GameRegistry.registerTileEntity(CookerTileEntity.class, getResourceLocation("cooker"));
+        GameRegistry.registerTileEntity(PiezoelectricTileEntity.class, getResourceLocation("piezoelectric"));
 
         event.getRegistry().registerAll(blocks);
     }
@@ -71,7 +74,7 @@ public class RegistrationHandler {
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
-                ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.ladder };
+                ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.ladder, ModBlocks.piezoelectric };
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
@@ -107,6 +110,7 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.fabricator));
         registerModel(Item.getItemFromBlock(ModBlocks.cooker));
         registerModel(Item.getItemFromBlock(ModBlocks.ladder));
+        registerModel(Item.getItemFromBlock(ModBlocks.piezoelectric));
 
         // Hydroponic TESR
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0,

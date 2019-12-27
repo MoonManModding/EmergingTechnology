@@ -68,8 +68,6 @@ public class CookerTileEntity extends MachineTileBase implements ITickable, Simp
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return true;
-        if (capability == CapabilityEnergy.ENERGY)
-            return true;
 
         return super.hasCapability(capability, facing);
     }

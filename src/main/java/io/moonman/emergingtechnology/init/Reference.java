@@ -25,4 +25,6 @@ public class Reference {
     public static final int FABRICATOR_ENERGY_CAPACITY = 1000;
 
     public static final int COOKER_HEAT_CAPACITY = 400;
+
+    public static final int PIEZOELECTRIC_ENERGY_CAPACITY = 100;
 }
