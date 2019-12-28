@@ -32,6 +32,7 @@ item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Solar Cooker
 item.emergingtechnology.bioreactor.name=Tissue Bioreactor
+item.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
 item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
@@ -43,6 +44,10 @@ item.emergingtechnology.pigsample.name=Pig Tissue Sample
 item.emergingtechnology.horsesample.name=Horse Tissue Sample
 item.emergingtechnology.cowsample.name=Cow Tissue Sample
 item.emergingtechnology.chickensample.name=Chicken Tissue Sample
+
+item.emergingtechnology.syntheticbeefraw.name=Raw Synthetic Beef
+item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
+item.emergingtechnology.syntheticporkchopraw.name=Raw Synthetic Porkchop
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
@@ -68,6 +73,7 @@ blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=Solar Cooker
 blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
+blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
@@ -94,6 +100,7 @@ tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 #SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=Solar Cooker
 tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
+tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile

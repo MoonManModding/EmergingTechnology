@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "emergingtechnology:items/syringe/fullsyringe"
+        "layer0": "emergingtechnology:items/syringe/cowsyringe"
     },
   "display": {
     "thirdperson_righthand": {

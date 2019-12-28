@@ -21,6 +21,9 @@ import io.moonman.emergingtechnology.item.polymers.Filament;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticBeefRaw;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenRaw;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPorkchopRaw;
 import io.moonman.emergingtechnology.item.synthetics.samples.ChickenSample;
 import io.moonman.emergingtechnology.item.synthetics.samples.CowSample;
 import io.moonman.emergingtechnology.item.synthetics.samples.HorseSample;
@@ -89,7 +92,8 @@ public class RegistrationHandler {
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
                 new ShreddedPlant(), new ShreddedStarch(), new PlasticRod(), new PlasticSheet(), new Filament(),
                 new EmptySyringe(), new CowSample(), new CowSyringe(), new ChickenSample(), new ChickenSyringe(),
-                new PigSample(), new PigSyringe(), new HorseSample(), new HorseSyringe() };
+                new PigSample(), new PigSyringe(), new HorseSample(), new HorseSyringe(), new SyntheticBeefRaw(),
+                new SyntheticChickenRaw(), new SyntheticPorkchopRaw() };
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
@@ -113,22 +117,32 @@ public class RegistrationHandler {
         registerModel(ModItems.greenbulb);
         registerModel(ModItems.bluebulb);
         registerModel(ModItems.purplebulb);
+
         registerModel(ModItems.shreddedplastic);
         registerModel(ModItems.shreddedplant);
         registerModel(ModItems.shreddedstarch);
+        
         registerModel(ModItems.plasticrod);
         registerModel(ModItems.plasticsheet);
         registerModel(ModItems.filament);
 
         registerModel(ModItems.chickensample);
         registerModel(ModItems.chickensyringe);
+
         registerModel(ModItems.cowsample);
         registerModel(ModItems.cowsyringe);
+
         registerModel(ModItems.horsesample);
         registerModel(ModItems.horsesyringe);
+
         registerModel(ModItems.pigsample);
         registerModel(ModItems.pigsyringe);
+
         registerModel(ModItems.emptysyringe);
+
+        registerModel(ModItems.syntheticbeefraw);
+        registerModel(ModItems.syntheticchickenraw);
+        registerModel(ModItems.syntheticporkchopraw);
 
         // Block Models
         registerModel(Item.getItemFromBlock(ModBlocks.hydroponic));

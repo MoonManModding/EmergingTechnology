@@ -65,6 +65,10 @@ public class ModItems {
 	public static final Item pigsample = null;
 	public static final Item cowsample = null;
 	public static final Item chickensample = null;
+
+	public static final Item syntheticbeefraw = null;
+	public static final Item syntheticchickenraw = null;
+	public static final Item syntheticporkchopraw = null;
 	// Items
 
 	//endregion
