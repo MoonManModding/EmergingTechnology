@@ -59,7 +59,7 @@ public class Bioreactor extends MachineBase implements ITileEntityProvider {
             return true;
         }
 
-        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_PROCESSOR, worldIn, pos.getX(), pos.getY(),
+        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_SCAFFOLDER, worldIn, pos.getX(), pos.getY(),
                 pos.getZ());
 
         return true;

@@ -28,6 +28,7 @@ public class RecipeBuilder {
         buildCookerRecipes();
         buildFabricatorRecipeList();
         buildBioreactorRecipes();
+        buildScaffolderRecipes();
 
         registerFilamentFurnaceRecipes();
     }
@@ -62,7 +63,12 @@ public class RecipeBuilder {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticporkchopraw), new ItemStack(Items.COOKED_PORKCHOP), 0.1f);
     }
 
-    
+    private static void buildScaffolderRecipes() {
+        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.chickensample, ModItems.syntheticchickenraw));
+        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.horsesample, Items.LEATHER));
+        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.pigsample, ModItems.syntheticporkchopraw));
+        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.cowsample, ModItems.syntheticbeefraw));
+    }
 
     private static void registerCookerRecipes(List<ItemStack> inputs) {
         for (ItemStack input : inputs) {

@@ -1,20 +1,18 @@
-package io.moonman.emergingtechnology.machines.shredder;
+package io.moonman.emergingtechnology.machines.scaffolder;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.machines.ShredderHelper;
+import io.moonman.emergingtechnology.helpers.machines.ScaffolderHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
-import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -30,9 +28,9 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ShredderTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class ScaffolderTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SHREDDER_ENERGY_CAPACITY) {
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SCAFFOLDER_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
             super.onContentsChanged();
@@ -49,7 +47,7 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return ShredderHelper.canShredItemStack(itemStack);
+            return ScaffolderHelper.isItemStackValid(itemStack);
         }
     };
 
@@ -62,7 +60,7 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return ShredderHelper.canShredItemStack(itemStack);
+            return ScaffolderHelper.isItemStackValid(itemStack);
         }
     };
 
@@ -146,14 +144,13 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
             this.setEnergy(this.getEnergy());
 
-            doShreddingProcess();
-            doOutputProcess();
+            doScaffoldingProcess();
 
             tick = 0;
         }
     }
 
-    public void doShreddingProcess() {
+    public void doScaffoldingProcess() {
 
         ItemStack inputStack = getInputStack();
 
@@ -163,14 +160,14 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
             return;
         }
 
-        // Can't shred this item
-        if (!ShredderHelper.canShredItemStack(inputStack)) {
+        // Can't scaffold this item
+        if (!ScaffolderHelper.isItemStackValid(inputStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = ShredderHelper.getPlannedStackFromItemStack(inputStack);
+        ItemStack plannedStack = ScaffolderHelper.getPlannedStackFromItemStack(inputStack);
 
         // This is probably unneccessary
         if (plannedStack == null) {
@@ -188,15 +185,15 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage) {
+        if (this.getEnergy() < EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage) {
             return;
         }
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage,
                 false);
 
         // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken) {
+        if (this.getProgress() < EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken) {
             this.setProgress(this.getProgress() + 1);
             return;
         }
@@ -209,28 +206,10 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
             itemHandler.insertItem(1, plannedStack, false);
         }
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage,
                 false);
 
         this.setProgress(0);
-    }
-
-    public void doOutputProcess() {
-
-        if (StackHelper.isItemStackEmpty(getOutputStack())) {
-            return;
-        }
-
-        TileEntity downNeighbour = this.world.getTileEntity(this.pos.add(0, -1, 0));
-
-        if (downNeighbour instanceof ProcessorTileEntity == false) {
-            return;
-        }
-
-        ProcessorTileEntity targetTileEntity = (ProcessorTileEntity) downNeighbour;
-
-        ItemStack itemStack = itemHandler.extractItem(1, 1, false);
-        targetTileEntity.itemHandler.insertItem(0, itemStack, false);
     }
 
     public ItemStack getInputStack() {
@@ -252,7 +231,7 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
     }
 
     public int getMaxProgress() {
-        return EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken;
+        return EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken;
     }
 
     // Setters
@@ -303,7 +282,7 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
-        return "etech_shredder";
+        return "etech_scaffolder";
     }
 
     @Callback

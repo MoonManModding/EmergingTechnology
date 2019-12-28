@@ -18,6 +18,9 @@ import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import io.moonman.emergingtechnology.machines.processor.ProcessorContainer;
 import io.moonman.emergingtechnology.machines.processor.ProcessorGui;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
+import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderContainer;
+import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderGui;
+import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.ShredderContainer;
 import io.moonman.emergingtechnology.machines.shredder.ShredderGui;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
@@ -53,6 +56,9 @@ public class GuiProxy implements IGuiHandler {
         }
         if (te instanceof BioreactorTileEntity) {
             return new BioreactorContainer(player.inventory, (BioreactorTileEntity) te);
+        }
+        if (te instanceof ScaffolderTileEntity) {
+            return new ScaffolderContainer(player.inventory, (ScaffolderTileEntity) te);
         }
         return null;
     }
@@ -95,6 +101,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof BioreactorTileEntity) {
             BioreactorTileEntity containerTileEntity = (BioreactorTileEntity) te;
             return new BioreactorGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof ScaffolderTileEntity) {
+            ScaffolderTileEntity containerTileEntity = (ScaffolderTileEntity) te;
+            return new ScaffolderGui(player.inventory, containerTileEntity);
         }
 
         return null;

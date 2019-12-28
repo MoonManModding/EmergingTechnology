@@ -16,6 +16,7 @@ import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.processor.Processor;
+import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
  
@@ -48,6 +49,7 @@ public class ModBlocks {
 	//region Synthetics Blocks
 	public static final Cooker cooker = null;
 	public static final Bioreactor bioreactor = null;
+	public static final Scaffolder scaffolder = null;
 	//endregion
 
 	//region Electrics Blocks

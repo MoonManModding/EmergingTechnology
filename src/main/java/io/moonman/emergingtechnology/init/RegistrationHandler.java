@@ -48,6 +48,8 @@ import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.piezoelectric.PiezoelectricTileEntity;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
+import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
+import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
 import net.minecraft.block.Block;
@@ -72,7 +74,7 @@ public class RegistrationHandler {
         final Block[] blocks = { new Hydroponic(), new Light(), new Frame(), new Processor(), new Shredder(),
                 new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker(),
                 new Ladder(), new Piezoelectric(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
-                new ShreddedStarchBlock(), new Bioreactor() };
+                new ShreddedStarchBlock(), new Bioreactor(), new Scaffolder() };
 
         GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
         GameRegistry.registerTileEntity(LightTileEntity.class, getResourceLocation("light"));
@@ -82,6 +84,7 @@ public class RegistrationHandler {
         GameRegistry.registerTileEntity(CookerTileEntity.class, getResourceLocation("cooker"));
         GameRegistry.registerTileEntity(PiezoelectricTileEntity.class, getResourceLocation("piezoelectric"));
         GameRegistry.registerTileEntity(BioreactorTileEntity.class, getResourceLocation("bioreactor"));
+        GameRegistry.registerTileEntity(ScaffolderTileEntity.class, getResourceLocation("scaffolder"));
 
         event.getRegistry().registerAll(blocks);
     }
@@ -100,7 +103,7 @@ public class RegistrationHandler {
                 ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase,
                 ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.ladder, ModBlocks.piezoelectric,
                 ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock,
-                ModBlocks.bioreactor };
+                ModBlocks.bioreactor, ModBlocks.scaffolder };
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
@@ -158,6 +161,7 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.ladder));
         registerModel(Item.getItemFromBlock(ModBlocks.piezoelectric));
         registerModel(Item.getItemFromBlock(ModBlocks.bioreactor));
+        registerModel(Item.getItemFromBlock(ModBlocks.scaffolder));
 
         registerModel(Item.getItemFromBlock(ModBlocks.shreddedplantblock));
         registerModel(Item.getItemFromBlock(ModBlocks.shreddedplasticblock));

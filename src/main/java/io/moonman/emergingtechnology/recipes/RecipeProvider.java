@@ -17,27 +17,24 @@ public class RecipeProvider {
     public static List<SimpleRecipe> shredderRecipes = new ArrayList<>();
     public static List<SimpleRecipe> processorRecipes = new ArrayList<>();
     public static List<SimpleRecipe> cookerRecipes = new ArrayList<>();
-    public static List<FabricatorRecipe> fabricatorRecipes = new ArrayList<>();
     public static List<SimpleRecipe> bioreactorRecipes = new ArrayList<>();
+    public static List<SimpleRecipe> scaffolderRecipes = new ArrayList<>();
+    public static List<FabricatorRecipe> fabricatorRecipes = new ArrayList<>();
 
     public static ItemStack getProcessorOutputForItemStack(ItemStack itemStack) {
-        for (SimpleRecipe recipe : processorRecipes) {
-            if (recipe.getInput().isItemEqual(itemStack)) {
-                return recipe.getOutput();
-            }
-        }
-
-        return null;
+        return getMatchingItemStackFromRecipes(itemStack, processorRecipes);
     }
 
     public static ItemStack getShredderOutputForItemStack(ItemStack itemStack) {
-        for (SimpleRecipe recipe : shredderRecipes) {
-            if (recipe.getInput().isItemEqual(itemStack)) {
-                return recipe.getOutput();
-            }
-        }
+        return getMatchingItemStackFromRecipes(itemStack, shredderRecipes);
+    }
+    
+    public static ItemStack getBioreactorOutputForItemStack(ItemStack itemStack) {
+        return getMatchingItemStackFromRecipes(itemStack, bioreactorRecipes);
+    }
 
-        return null;
+    public static ItemStack getScaffolderOutputForItemStack(ItemStack itemStack) {
+        return getMatchingItemStackFromRecipes(itemStack, scaffolderRecipes);
     }
 
     public static ItemStack getFabricatorOutputForItemStack(ItemStack itemStack) {
@@ -46,17 +43,15 @@ public class RecipeProvider {
                 return recipe.getOutput();
             }
         }
-
         return null;
     } 
-    
-    public static ItemStack getBioreactorOutputForItemStack(ItemStack itemStack) {
-        for (SimpleRecipe recipe : bioreactorRecipes) {
+
+    private static ItemStack getMatchingItemStackFromRecipes(ItemStack itemStack, List<SimpleRecipe> recipes) {
+        for (SimpleRecipe recipe : recipes) {
             if (recipe.getInput().isItemEqual(itemStack)) {
                 return recipe.getOutput();
             }
         }
-
         return null;
     }
 

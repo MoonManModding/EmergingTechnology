@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines.cooker;
+package io.moonman.emergingtechnology.machines.scaffolder;
 
 import java.util.List;
 
@@ -22,18 +22,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
 
-public class Cooker extends MachineBase implements ITileEntityProvider {
+public class Scaffolder extends MachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    public Cooker() {
-        super(Material.IRON, "cooker");
+    public Scaffolder() {
+        super(Material.IRON, "scaffolder");
         this.setSoundType(SoundType.METAL);
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -42,13 +41,10 @@ public class Cooker extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int heatLoss = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseHeatLoss;
-        int heatGain = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseHeatGain;
-        int requiredHeat = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerRequiredCookingHeat;
+        int energyUsage = EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage;
 
-        tooltip.add("Uses direct sunlight to cook food items.");
-        tooltip.add("Gains " + heatGain + "C in sunlight and loses " + heatLoss + "C in darkness.");
-        tooltip.add("Requires " + requiredHeat + "C to function.");
+        tooltip.add("Forms Tissue Samples into synthetic animal products.");
+        tooltip.add("Requires " + energyUsage + "RF per cycle.");
     }
 
     @Override
@@ -59,7 +55,7 @@ public class Cooker extends MachineBase implements ITileEntityProvider {
             return true;
         }
 
-        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_COOKER, worldIn, pos.getX(), pos.getY(),
+        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_SHREDDER, worldIn, pos.getX(), pos.getY(),
                 pos.getZ());
 
         return true;
@@ -67,7 +63,7 @@ public class Cooker extends MachineBase implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new CookerTileEntity();
+        return new ScaffolderTileEntity();
     }
 
     @Override
@@ -123,23 +119,6 @@ public class Cooker extends MachineBase implements ITileEntityProvider {
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-
-        // TileEntity tileEntity = worldIn.getTileEntity(pos);
-
-        // if (tileEntity instanceof CookerTileEntity) {
-        //     //CookerTileEntity cookerTileEntity = (CookerTileEntity) tileEntity;
-
-        //     boolean isProcessing = false;
-
-        //     return state.withProperty(PROCESSING, isProcessing);
-        // }
-
-        return state;
-
-    }
-
-    @Override
     public IBlockState getStateFromMeta(int meta) {
         EnumFacing facing = EnumFacing.getHorizontal(meta);
         return this.getDefaultState().withProperty(FACING, facing);
@@ -149,5 +128,4 @@ public class Cooker extends MachineBase implements ITileEntityProvider {
     public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getIndex();
     }
-
 }

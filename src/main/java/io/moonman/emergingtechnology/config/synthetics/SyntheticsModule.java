@@ -12,4 +12,8 @@ public class SyntheticsModule {
     @Name("Tissue Bioreactor")
 	@Comment("Configure the Tissue Bioreactor here")
     public final SyntheticsModuleBioreactor BIOREACTOR = new SyntheticsModuleBioreactor();
+
+    @Name("Tissue Scaffolder")
+	@Comment("Configure the Tissue Scaffolder here")
+    public final SyntheticsModuleScaffolder SCAFFOLDER = new SyntheticsModuleScaffolder();
 }
