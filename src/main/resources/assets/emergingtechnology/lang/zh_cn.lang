@@ -29,6 +29,9 @@ item.emergingtechnology.ladder.name=塑料梯子
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=太阳能烤箱
 
+#ELECTRICS MODULE
+item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+
 #Blocks
 
 #HYDROPONICS MODULE
@@ -47,6 +50,9 @@ blocks.emergingtechnology.ladder.name=塑料梯子
 
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=太阳能烤箱
+
+#ELECTRICS MODULE
+blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 #Containers
 
@@ -68,6 +74,9 @@ tile.emergingtechnology.ladder.name=塑料梯子
 
 #SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=太阳能烤箱
+
+#ELECTRICS MODULE
+tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 #ItemGroup
 

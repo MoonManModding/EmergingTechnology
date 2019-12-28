@@ -109,7 +109,7 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     public void walkedOn() {
         if (this.cooldown == 0) {
             this.energyHandler.receiveEnergy(EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricEnergyGenerated, false);
-            this.cooldown = 10;
+            this.cooldown = EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricStepCooldown;
         }
     }
 
@@ -118,7 +118,7 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
             TileEntity tileEntity = world.getTileEntity(pos.offset(side));
 
             if (tileEntity != null) {
-                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side);
+                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
 
                 if (otherStorage != null) {
                     if (otherStorage.canReceive()) {
@@ -178,13 +178,13 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
-        return "etech_cooker";
+        return "etech_piezoelectric_tile";
     }
 
     @Callback
     @Optional.Method(modid = "opencomputers")
-    public Object[] step(Context context, Arguments args) {
-        boolean stepped = false;
+    public Object[] isSteppedOn(Context context, Arguments args) {
+        boolean stepped = this.cooldown == 10;
         return new Object[] { stepped };
     }
 }

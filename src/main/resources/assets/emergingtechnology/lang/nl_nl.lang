@@ -27,6 +27,9 @@ item.emergingtechnology.ladder.name=Plastic Ladder
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Solar Cooker
 
+#ELECTRICS MODULE
+item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+
 
 #Blocks
 
@@ -46,6 +49,9 @@ blocks.emergingtechnology.ladder.name=Plastic Ladder
 
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=Solar Cooker
+
+#ELECTRICS MODULE
+blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 #Containers
 
@@ -68,6 +74,9 @@ tile.emergingtechnology.ladder.name=Plastic Ladder
 
 # SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=Solar Cooker
+
+#ELECTRICS MODULE
+tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 #ItemGroup
 

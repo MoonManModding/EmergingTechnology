@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.machines.piezoelectric;
 
 import java.util.List;
 
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.machines.MachineBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -11,6 +12,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -39,8 +41,10 @@ public class Piezoelectric extends MachineBase implements ITileEntityProvider {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-        tooltip.add("CURRENTLY NON-FUNCTIONAL");
-        tooltip.add("Generates a tiny amount of energy when stepped on.");
+
+        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricEnergyGenerated;
+
+        tooltip.add("Generates " + energy + "RF when stepped on.");
 
     }
 
@@ -49,6 +53,8 @@ public class Piezoelectric extends MachineBase implements ITileEntityProvider {
 
         if (!worldIn.isRemote) {
 
+            if (entityIn instanceof EntityLivingBase) {
+
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 
             if (tileEntity instanceof PiezoelectricTileEntity) {
@@ -56,6 +62,7 @@ public class Piezoelectric extends MachineBase implements ITileEntityProvider {
 
                 piezoTileEntity.walkedOn();
             }
+        }
         }
 
         super.onEntityWalk(worldIn, pos, entityIn);

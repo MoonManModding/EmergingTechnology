@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IPI",
+    "IWI",
+    "ILI"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "sheetPlastic"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:light_weighted_pressure_plate"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:piezoelectric",
+    "count": 1
+  }
+}

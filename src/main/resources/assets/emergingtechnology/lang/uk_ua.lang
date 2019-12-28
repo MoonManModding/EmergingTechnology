@@ -24,6 +24,9 @@ item.emergingtechnology.plasticsheet.name=Plastic Sheet
 item.emergingtechnology.machinecase.name=Basic Machine Case
 item.emergingtechnology.ladder.name=Plastic Ladder
 
+#ELECTRICS MODULE
+item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+
 #Blocks
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гідропонна Установка
@@ -37,6 +40,9 @@ blocks.emergingtechnology.plasticblock.name=Block of Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
 blocks.emergingtechnology.ladder.name=Plastic Ladder
 
+#ELECTRICS MODULE
+blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+
 #Containers
 
 
@@ -49,6 +55,9 @@ tile.emergingtechnology.frame.name=Гідропонна Рама
 tile.emergingtechnology.plasticblock.name=Block of Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
 tile.emergingtechnology.ladder.name=Plastic Ladder
+
+#ELECTRICS MODULE
+tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology
