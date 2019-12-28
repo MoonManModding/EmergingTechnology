@@ -11,6 +11,7 @@ import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
@@ -26,6 +27,7 @@ public class RecipeBuilder {
         buildShredderRecipes();
         buildCookerRecipes();
         buildFabricatorRecipeList();
+        buildBioreactorRecipes();
 
         registerFilamentFurnaceRecipes();
     }
@@ -48,6 +50,15 @@ public class RecipeBuilder {
         List<ItemStack> validCookedFoodItems = CookerHelper.getValidCookedFoodItems();
         registerCookerRecipes(validCookedFoodItems);
     }
+
+    private static void buildBioreactorRecipes() {
+        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.chickensyringe, ModItems.chickensample));
+        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.horsesyringe, ModItems.horsesample));
+        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.pigsyringe, ModItems.pigsample));
+        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.cowsyringe, ModItems.cowsample));
+    }
+
+    
 
     private static void registerCookerRecipes(List<ItemStack> inputs) {
         for (ItemStack input : inputs) {
@@ -185,6 +196,13 @@ public class RecipeBuilder {
         RecipeProvider.fabricatorRecipes.add(recipe5);
         RecipeProvider.fabricatorRecipes.add(recipe6);
         RecipeProvider.fabricatorRecipes.add(recipe7);
+    }
+
+    private static SimpleRecipe createSimpleRecipe(Item input, Item output) {
+        ItemStack inputStack = new ItemStack(input);
+        ItemStack outputStack = new ItemStack(output);
+
+        return new SimpleRecipe(outputStack, inputStack);
     }
 
     private static List<ItemStack> buildRecipeList(List<ItemStack> itemStacks, List<String> oreNames) {

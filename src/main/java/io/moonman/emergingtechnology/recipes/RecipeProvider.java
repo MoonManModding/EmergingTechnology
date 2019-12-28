@@ -48,6 +48,16 @@ public class RecipeProvider {
         }
 
         return null;
+    } 
+    
+    public static ItemStack getBioreactorOutputForItemStack(ItemStack itemStack) {
+        for (SimpleRecipe recipe : bioreactorRecipes) {
+            if (recipe.getInput().isItemEqual(itemStack)) {
+                return recipe.getOutput();
+            }
+        }
+
+        return null;
     }
 
     public static FabricatorRecipe getFabricatorRecipeByIndex(int index) {

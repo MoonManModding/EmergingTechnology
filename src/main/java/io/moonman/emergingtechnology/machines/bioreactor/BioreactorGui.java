@@ -79,25 +79,25 @@ public class BioreactorGui extends GuiContainer {
 	}
 
 	private int getEnergyScaled(int scaled) {
-		return (int) (tileEntity.getField(0) * scaled / Reference.PROCESSOR_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(0) * scaled / Reference.BIOREACTOR_ENERGY_CAPACITY);
 	}
 
 	private int getFluidScaled(int scaled) {
-		return (int) (tileEntity.getField(1) * scaled / Reference.PROCESSOR_FLUID_CAPACITY);
+		return (int) (tileEntity.getField(1) * scaled / Reference.BIOREACTOR_FLUID_CAPACITY);
 	}
 
 	private int getProgressScaled(int scaled) {
 		return (int) (tileEntity.getField(2) * scaled
-				/ EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken);
+				/ EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorBaseTimeTaken);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
 		int energy = this.tileEntity.getField(0);
-		int maxEnergy = Reference.PROCESSOR_ENERGY_CAPACITY;
+		int maxEnergy = Reference.BIOREACTOR_ENERGY_CAPACITY;
 
 		int fluid = this.tileEntity.getField(1);
-		int maxFluid = Reference.PROCESSOR_FLUID_CAPACITY;
+		int maxFluid = Reference.BIOREACTOR_FLUID_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
 				IndicatorPositionEnum.SECONDARY, mouseX, mouseY, energy, maxEnergy);

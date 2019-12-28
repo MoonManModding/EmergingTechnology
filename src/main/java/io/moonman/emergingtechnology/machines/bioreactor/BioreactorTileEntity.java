@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.BioreactorHelper;
 import io.moonman.emergingtechnology.helpers.machines.ProcessorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
@@ -33,7 +34,7 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class BioreactorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    public FluidTank fluidHandler = new FluidStorageHandler(Reference.PROCESSOR_FLUID_CAPACITY) {
+    public FluidTank fluidHandler = new FluidStorageHandler(Reference.BIOREACTOR_FLUID_CAPACITY) {
         @Override
         protected void onContentsChanged() {
             super.onContentsChanged();
@@ -41,7 +42,7 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
         }
     };
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.PROCESSOR_ENERGY_CAPACITY) {
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.BIOREACTOR_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
             super.onContentsChanged();
@@ -55,6 +56,11 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
             markDirty();
             super.onContentsChanged(slot);
         }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return BioreactorHelper.isItemStackValid(itemStack);
+        }
     };
 
     public ItemStackHandler automationItemHandler = new AutomationItemStackHandler(itemHandler, 0, 1) {
@@ -62,6 +68,11 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
         protected void onContentsChanged(int slot) {
             markDirty();
             super.onContentsChanged(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return BioreactorHelper.isItemStackValid(itemStack);
         }
     };
 
@@ -174,13 +185,13 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
         }
 
         // Can't process this item
-        if (!ProcessorHelper.canProcessItemStack(inputStack)) {
+        if (!BioreactorHelper.isItemStackValid(inputStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = ProcessorHelper.getPlannedStackFromItemStack(inputStack);
+        ItemStack plannedStack = BioreactorHelper.getPlannedStackFromItemStack(inputStack);
 
         // This is probably unneccessary
         if (plannedStack == null) {
@@ -198,26 +209,26 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
         }
 
         // Not enough water
-        if (this.getWater() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage) {
+        if (this.getWater() < EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorWaterUsage) {
             return;
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage) {
+        if (this.getEnergy() < EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorEnergyUsage) {
             return;
         }
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage,
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorEnergyUsage,
                 false);
 
-        this.fluidHandler.drain(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage,
+        this.fluidHandler.drain(EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorWaterUsage,
                 true);
 
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());
 
         // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken) {
+        if (this.getProgress() < EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorBaseTimeTaken) {
             this.setProgress(this.getProgress() + 1);
             return;
         }

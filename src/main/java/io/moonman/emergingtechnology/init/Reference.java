@@ -27,4 +27,7 @@ public class Reference {
     public static final int COOKER_HEAT_CAPACITY = 400;
 
     public static final int PIEZOELECTRIC_ENERGY_CAPACITY = 100;
+
+    public static final int BIOREACTOR_FLUID_CAPACITY = 1000;
+    public static final int BIOREACTOR_ENERGY_CAPACITY = 1000;
 }

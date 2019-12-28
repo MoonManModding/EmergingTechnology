@@ -30,7 +30,7 @@ public class EmergingTechnologyConfig {
 	public static final PolymersModule POLYMERS_MODULE = new PolymersModule();
 
 	@Name("Synthetics Module")
-	@Comment("Configure Solar Cooker here")
+	@Comment("Configure Solar Cooker, Tissue Bioreactor and Tissue Scaffolder here")
 	public static final SyntheticsModule SYNTHETICS_MODULE = new SyntheticsModule();
 
 	@Name("Electrics Module")
