@@ -12,6 +12,7 @@
 !.gitattributes
 !ASSETS_LICENSE.txt
 !/images/
+!/resourcepacks/
 !custom-media.json
 !custom-bulbs.json
 !custom-fluids.json

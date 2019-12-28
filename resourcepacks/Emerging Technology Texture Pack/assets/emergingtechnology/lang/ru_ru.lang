@@ -1,0 +1,99 @@
+# Thanks to TigrKill and genom10 for these translations!
+
+# Item
+# HYDROPONICS MODULE
+item.emergingtechnology.hydroponic.name=Гидропонная Установка
+item.emergingtechnology.light.name=Фитолампа
+item.emergingtechnology.frame.name=Гидропонная рама
+
+item.emergingtechnology.redbulb.name=Красный Светодиод
+item.emergingtechnology.greenbulb.name=Зеленый Светодиод
+item.emergingtechnology.bluebulb.name=Синий Светодиод
+item.emergingtechnology.purplebulb.name=Ультрафиолетовый Светодиод
+
+# POLYMERS MODULE
+item.emergingtechnology.processor.name=Процессор
+item.emergingtechnology.shredder.name=Измельчитель
+item.emergingtechnology.shreddedplastic.name=Shredded Plastic
+item.emergingtechnology.shreddedplant.name=Shredded Plant
+item.emergingtechnology.shreddedstarch.name=Shredded Starch
+item.emergingtechnology.filament.name=Filament
+item.emergingtechnology.plasticblock.name=Block of Plastic
+item.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
+item.emergingtechnology.plasticrod.name=Plastic Rod
+item.emergingtechnology.plasticsheet.name=Plastic Sheet
+item.emergingtechnology.machinecase.name=Basic Machine Case
+item.emergingtechnology.ladder.name=Plastic Ladder
+
+item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
+#SYNTHETICS MODULE
+item.emergingtechnology.cooker.name=Solar Cooker
+
+item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
+item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
+item.emergingtechnology.cowsyringe.name=Cow Tissue Syringe
+item.emergingtechnology.chickensyringe.name=Chicken Tissue Syringe
+item.emergingtechnology.emptysyringe.name=Empty Syringe
+
+item.emergingtechnology.pigsample.name=Pig Tissue Sample
+item.emergingtechnology.horsesample.name=Horse Tissue Sample
+item.emergingtechnology.cowsample.name=Cow Tissue Sample
+item.emergingtechnology.chickensample.name=Chicken Tissue Sample
+
+#ELECTRICS MODULE
+item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+
+#Blocks
+# HYDROPONICS MODULE
+blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
+blocks.emergingtechnology.light.name=Фитолампа
+blocks.emergingtechnology.frame.name=Гидропонная рама
+
+# POLYMERS MODULE
+blocks.emergingtechnology.processor.name=Процессор
+blocks.emergingtechnology.shredder.name=Измельчитель
+blocks.emergingtechnology.plasticblock.name=Block of Plastic
+blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
+blocks.emergingtechnology.machinecase.name=Basic Machine Case
+blocks.emergingtechnology.ladder.name=Plastic Ladder
+
+blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
+#SYNTHETICS MODULE
+blocks.emergingtechnology.cooker.name=Solar Cooker
+
+#ELECTRICS MODULE
+blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+
+#Containers
+
+#Tiles
+tile.emergingtechnology.hydroponic.name=Гидропонная Установка
+tile.emergingtechnology.light.name=Фитолампа
+tile.emergingtechnology.frame.name=Гидропонная рама
+
+# POLYMERS MODULE
+tile.emergingtechnology.processor.name=Процессор
+tile.emergingtechnology.shredder.name=Измельчитель
+tile.emergingtechnology.plasticblock.name=Block of Plastic
+tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
+tile.emergingtechnology.machinecase.name=Basic Machine Case
+tile.emergingtechnology.ladder.name=Plastic Ladder
+
+tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
+#SYNTHETICS MODULE
+tile.emergingtechnology.cooker.name=Solar Cooker
+
+#ELECTRICS MODULE
+tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+
+#ItemGroup
+itemGroup.technologytab=Emerging Technology

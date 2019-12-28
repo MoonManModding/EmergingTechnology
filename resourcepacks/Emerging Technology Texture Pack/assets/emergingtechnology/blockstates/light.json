@@ -1,0 +1,71 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:light",
+        "textures": {
+            "bulb": "emergingtechnology:blocks/lights/whitelight"
+        }
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}],
+        "facing": {
+            "north": {},
+            "south": {
+                "y": 180,
+                "model": "emergingtechnology:light"
+            },
+            "west": {
+                "y": 270,
+                "model": "emergingtechnology:light"
+            },
+            "east": {
+                "y": 90,
+                "model": "emergingtechnology:light"
+            },
+            "up": {
+                "x": -90,
+                "model": "emergingtechnology:light"
+            },
+            "down": {
+                "x": 90,
+                "model": "emergingtechnology:light"
+            }
+        },
+        "powered": {
+            "false": {
+                "model": "emergingtechnology:light"
+            },
+            "true": {
+                "model": "emergingtechnology:light"
+            }
+        },
+        "bulbtype": {
+            "0": {
+                "textures": {
+                    "bulb": "emergingtechnology:blocks/lights/whitelight"
+                }
+            },
+            "1": {
+                "textures": {
+                    "bulb": "emergingtechnology:blocks/lights/redlight"
+                }
+            },
+            "2": {
+                "textures": {
+                    "bulb": "emergingtechnology:blocks/lights/greenlight"
+                }
+            },
+            "3": {
+                "textures": {
+                    "bulb": "emergingtechnology:blocks/lights/bluelight"
+                }
+            },
+            "4": {
+                "textures": {
+                    "bulb": "emergingtechnology:blocks/lights/purplelight"
+                }
+            }
+        }
+    }
+}
