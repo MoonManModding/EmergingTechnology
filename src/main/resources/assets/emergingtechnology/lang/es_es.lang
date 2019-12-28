@@ -24,8 +24,23 @@ item.emergingtechnology.machinecase.name=Basic Machine Case
 item.emergingtechnology.fabricator.name=Fabricator
 item.emergingtechnology.ladder.name=Plastic Ladder
 
+item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Solar Cooker
+
+item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
+item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
+item.emergingtechnology.cowsyringe.name=Cow Tissue Syringe
+item.emergingtechnology.chickensyringe.name=Chicken Tissue Syringe
+item.emergingtechnology.emptysyringe.name=Empty Syringe
+
+item.emergingtechnology.pigsample.name=Pig Tissue Sample
+item.emergingtechnology.horsesample.name=Horse Tissue Sample
+item.emergingtechnology.cowsample.name=Cow Tissue Sample
+item.emergingtechnology.chickensample.name=Chicken Tissue Sample
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
@@ -46,6 +61,10 @@ blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
 blocks.emergingtechnology.fabricator.name=Fabricator
 blocks.emergingtechnology.ladder.name=Plastic Ladder
+
+blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=Solar Cooker
@@ -71,6 +90,10 @@ tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
 tile.emergingtechnology.fabricator.name=Fabricator
 tile.emergingtechnology.ladder.name=Plastic Ladder
+
+tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 
 # SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=Solar Cooker

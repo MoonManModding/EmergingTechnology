@@ -6,6 +6,9 @@ import io.moonman.emergingtechnology.block.blocks.Frame;
 import io.moonman.emergingtechnology.block.blocks.Ladder;
 import io.moonman.emergingtechnology.block.blocks.MachineCase;
 import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
+import io.moonman.emergingtechnology.block.blocks.ShreddedPlantBlock;
+import io.moonman.emergingtechnology.block.blocks.ShreddedPlasticBlock;
+import io.moonman.emergingtechnology.block.blocks.ShreddedStarchBlock;
 import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
@@ -35,6 +38,10 @@ public class ModBlocks {
 	public static final MachineCase machinecase = null;
 	public static final Fabricator fabricator = null;
 	public static final Ladder ladder = null;
+
+	public static final ShreddedPlantBlock shreddedplantblock = null;
+	public static final ShreddedPlasticBlock shreddedplasticblock = null;
+	public static final ShreddedStarchBlock shreddedstarchblock = null;
 	//endregion
 
 	//region Synthetics Blocks

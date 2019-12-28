@@ -36,6 +36,10 @@ public class ModItems {
 	public static final Item fabricator = null;
 	public static final Item ladder = null;
 
+	public static final Item shreddedplasticblock = null;
+	public static final Item shreddedplantblock = null;
+	public static final Item shreddedstarchblock = null;
+
 	// Items
 	public static final Item shreddedplastic = null;
 	public static final Item shreddedplant = null;
@@ -48,11 +52,23 @@ public class ModItems {
 	//region Synthetics Items
 	// Block Items
 	public static final Item cooker = null;
+
+	public static final Item emptysyringe = null;
+
+	public static final Item horsesyringe = null;
+	public static final Item pigsyringe = null;
+	public static final Item cowsyringe = null;
+	public static final Item chickensyringe = null;
+
+	public static final Item horsesample = null;
+	public static final Item pigsample = null;
+	public static final Item cowsample = null;
+	public static final Item chickensample = null;
 	// Items
 
 	//endregion
 
-	//region Synthetics Items
+	//region Electrics Items
 	// Block Items
 	public static final Item piezoelectric = null;
 	// Items

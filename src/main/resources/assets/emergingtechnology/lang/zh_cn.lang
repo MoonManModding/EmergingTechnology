@@ -26,8 +26,23 @@ item.emergingtechnology.machinecase.name=基本机壳
 item.emergingtechnology.fabricator.name=制造机
 item.emergingtechnology.ladder.name=塑料梯子
 
+item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=太阳能烤箱
+
+item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
+item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
+item.emergingtechnology.cowsyringe.name=Cow Tissue Syringe
+item.emergingtechnology.chickensyringe.name=Chicken Tissue Syringe
+item.emergingtechnology.emptysyringe.name=Empty Syringe
+
+item.emergingtechnology.pigsample.name=Pig Tissue Sample
+item.emergingtechnology.horsesample.name=Horse Tissue Sample
+item.emergingtechnology.cowsample.name=Cow Tissue Sample
+item.emergingtechnology.chickensample.name=Chicken Tissue Sample
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
@@ -47,6 +62,10 @@ blocks.emergingtechnology.clearplasticblock.name=透明塑料块
 blocks.emergingtechnology.machinecase.name=基本机壳
 blocks.emergingtechnology.fabricator.name=制造机
 blocks.emergingtechnology.ladder.name=塑料梯子
+
+blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=太阳能烤箱
@@ -71,6 +90,10 @@ tile.emergingtechnology.clearplasticblock.name=透明塑料块
 tile.emergingtechnology.machinecase.name=基本机壳
 tile.emergingtechnology.fabricator.name=制造机
 tile.emergingtechnology.ladder.name=塑料梯子
+
+tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 
 #SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=太阳能烤箱

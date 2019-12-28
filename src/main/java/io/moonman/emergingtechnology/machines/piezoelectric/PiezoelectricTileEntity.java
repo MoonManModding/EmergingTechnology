@@ -26,7 +26,7 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class PiezoelectricTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.PIEZOELECTRIC_ENERGY_CAPACITY, 0,
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.PIEZOELECTRIC_ENERGY_CAPACITY, 100,
             100) {
         @Override
         public void onContentsChanged() {
