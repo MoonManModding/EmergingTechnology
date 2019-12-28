@@ -16,4 +16,7 @@ public class MachineReference {
 
     public static final String COOKER_NAME = ModBlocks.cooker.getLocalizedName();
     public static final String COOKER_UID = EmergingTechnology.MODID + ":cooker";
+    
+    public static final String BIOREACTOR_NAME = ModBlocks.bioreactor.getLocalizedName();
+    public static final String BIOREACTOR_UID = EmergingTechnology.MODID + ":bioreactor";
 }

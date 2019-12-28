@@ -52,6 +52,7 @@ public class ModItems {
 	//region Synthetics Items
 	// Block Items
 	public static final Item cooker = null;
+	public static final Item bioreactor = null;
 
 	public static final Item emptysyringe = null;
 

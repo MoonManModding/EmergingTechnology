@@ -33,6 +33,7 @@ item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Solar Cooker
+item.emergingtechnology.bioreactor.name=Tissue Bioreactor
 
 item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
 item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
@@ -62,6 +63,10 @@ blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
 blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
 blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 
+#SYNTHETICS MODULE
+
+blocks.emergingtechnology.cooker.name=Solar Cooker
+blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
@@ -82,6 +87,11 @@ tile.emergingtechnology.ladder.name=Plastic Ladder
 tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
 tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
 tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
+#SYNTHETICS MODULE
+
+tile.emergingtechnology.cooker.name=Solar Cooker
+tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile

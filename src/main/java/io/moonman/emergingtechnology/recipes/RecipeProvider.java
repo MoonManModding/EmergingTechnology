@@ -18,6 +18,7 @@ public class RecipeProvider {
     public static List<SimpleRecipe> processorRecipes = new ArrayList<>();
     public static List<SimpleRecipe> cookerRecipes = new ArrayList<>();
     public static List<FabricatorRecipe> fabricatorRecipes = new ArrayList<>();
+    public static List<SimpleRecipe> bioreactorRecipes = new ArrayList<>();
 
     public static ItemStack getProcessorOutputForItemStack(ItemStack itemStack) {
         for (SimpleRecipe recipe : processorRecipes) {

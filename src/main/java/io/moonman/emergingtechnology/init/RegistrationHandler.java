@@ -30,6 +30,8 @@ import io.moonman.emergingtechnology.item.synthetics.syringes.CowSyringe;
 import io.moonman.emergingtechnology.item.synthetics.syringes.EmptySyringe;
 import io.moonman.emergingtechnology.item.synthetics.syringes.HorseSyringe;
 import io.moonman.emergingtechnology.item.synthetics.syringes.PigSyringe;
+import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
+import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
@@ -66,7 +68,8 @@ public class RegistrationHandler {
     public static void registerBlocks(Register<Block> event) {
         final Block[] blocks = { new Hydroponic(), new Light(), new Frame(), new Processor(), new Shredder(),
                 new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker(),
-                new Ladder(), new Piezoelectric(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock() };
+                new Ladder(), new Piezoelectric(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
+                new ShreddedStarchBlock(), new Bioreactor() };
 
         GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
         GameRegistry.registerTileEntity(LightTileEntity.class, getResourceLocation("light"));
@@ -75,6 +78,7 @@ public class RegistrationHandler {
         GameRegistry.registerTileEntity(FabricatorTileEntity.class, getResourceLocation("fabricator"));
         GameRegistry.registerTileEntity(CookerTileEntity.class, getResourceLocation("cooker"));
         GameRegistry.registerTileEntity(PiezoelectricTileEntity.class, getResourceLocation("piezoelectric"));
+        GameRegistry.registerTileEntity(BioreactorTileEntity.class, getResourceLocation("bioreactor"));
 
         event.getRegistry().registerAll(blocks);
     }
@@ -84,13 +88,15 @@ public class RegistrationHandler {
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
                 new ShreddedPlant(), new ShreddedStarch(), new PlasticRod(), new PlasticSheet(), new Filament(),
-                new EmptySyringe(), new CowSample(), new CowSyringe(), new ChickenSample(), new ChickenSyringe(), new PigSample(),
-                new PigSyringe(), new HorseSample(), new HorseSyringe()};
+                new EmptySyringe(), new CowSample(), new CowSyringe(), new ChickenSample(), new ChickenSyringe(),
+                new PigSample(), new PigSyringe(), new HorseSample(), new HorseSyringe() };
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
                 ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase,
-                ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.ladder, ModBlocks.piezoelectric, ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock};
+                ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.ladder, ModBlocks.piezoelectric,
+                ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock,
+                ModBlocks.bioreactor };
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
@@ -137,6 +143,7 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.cooker));
         registerModel(Item.getItemFromBlock(ModBlocks.ladder));
         registerModel(Item.getItemFromBlock(ModBlocks.piezoelectric));
+        registerModel(Item.getItemFromBlock(ModBlocks.bioreactor));
 
         registerModel(Item.getItemFromBlock(ModBlocks.shreddedplantblock));
         registerModel(Item.getItemFromBlock(ModBlocks.shreddedplasticblock));
