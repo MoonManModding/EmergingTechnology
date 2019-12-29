@@ -11,6 +11,8 @@ import io.moonman.emergingtechnology.integration.jei.machines.fabricator.Fabrica
 import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorRecipeWrapper;
+import io.moonman.emergingtechnology.integration.jei.machines.scaffolder.ScaffolderCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.scaffolder.ScaffolderRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderRecipeWrapper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
@@ -53,7 +55,9 @@ public class JEIIntegration implements IModPlugin {
 
         IGuiHelper helper = registry.getJeiHelpers().getGuiHelper();
 
-        registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper), new CookerCategory(helper), new FabricatorCategory(helper), new BioreactorCategory(helper));
+        registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper),
+                new CookerCategory(helper), new FabricatorCategory(helper), new BioreactorCategory(helper),
+                new ScaffolderCategory(helper));
     }
 
     @Override
@@ -82,14 +86,17 @@ public class JEIIntegration implements IModPlugin {
         registry.addRecipes(RecipeProvider.bioreactorRecipes, MachineReference.BIOREACTOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.bioreactor), MachineReference.BIOREACTOR_UID);
 
+        registry.handleRecipes(SimpleRecipe.class, ScaffolderRecipeWrapper::new, MachineReference.SCAFFOLDER_UID);
+        registry.addRecipes(RecipeProvider.scaffolderRecipes, MachineReference.SCAFFOLDER_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.scaffolder), MachineReference.SCAFFOLDER_UID);
+
         EmergingTechnology.logger.info("Registered with JEI.");
     }
 
     public static boolean doesOreExist(String key) {
-		return OreDictionary.doesOreNameExist(key)
-				&& OreDictionary.getOres(key).stream()
-				.anyMatch(s -> s.getItem() instanceof ItemBlock);
-	}
+        return OreDictionary.doesOreNameExist(key)
+                && OreDictionary.getOres(key).stream().anyMatch(s -> s.getItem() instanceof ItemBlock);
+    }
 
     @Override
     public void onRuntimeAvailable(IJeiRuntime iJeiRuntime) {

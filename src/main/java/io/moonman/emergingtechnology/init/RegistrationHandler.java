@@ -99,21 +99,40 @@ public class RegistrationHandler {
                 new SyntheticChickenRaw(), new SyntheticPorkchopRaw() };
 
         // Blocks
-        Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.frame, ModBlocks.processor,
-                ModBlocks.shredder, ModBlocks.plasticblock, ModBlocks.clearplasticblock, ModBlocks.machinecase,
-                ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.ladder, ModBlocks.piezoelectric,
-                ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock,
-                ModBlocks.bioreactor, ModBlocks.scaffolder };
+        Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.processor, ModBlocks.shredder,
+                ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.bioreactor, ModBlocks.scaffolder,
+                ModBlocks.piezoelectric, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
+                ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
+                ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock };
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
         // Register
-        event.getRegistry().registerAll(items);
         event.getRegistry().registerAll(itemBlocks);
+        event.getRegistry().registerAll(items);
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
+
+        // Block Models
+        registerModel(Item.getItemFromBlock(ModBlocks.hydroponic));
+        registerModel(Item.getItemFromBlock(ModBlocks.light));
+        registerModel(Item.getItemFromBlock(ModBlocks.processor));
+        registerModel(Item.getItemFromBlock(ModBlocks.shredder));
+        registerModel(Item.getItemFromBlock(ModBlocks.fabricator));
+        registerModel(Item.getItemFromBlock(ModBlocks.cooker));
+        registerModel(Item.getItemFromBlock(ModBlocks.bioreactor));
+        registerModel(Item.getItemFromBlock(ModBlocks.scaffolder));
+        registerModel(Item.getItemFromBlock(ModBlocks.piezoelectric));
+        registerModel(Item.getItemFromBlock(ModBlocks.frame));
+        registerModel(Item.getItemFromBlock(ModBlocks.ladder));
+        registerModel(Item.getItemFromBlock(ModBlocks.machinecase));
+        registerModel(Item.getItemFromBlock(ModBlocks.plasticblock));
+        registerModel(Item.getItemFromBlock(ModBlocks.clearplasticblock));
+        registerModel(Item.getItemFromBlock(ModBlocks.shreddedplantblock));
+        registerModel(Item.getItemFromBlock(ModBlocks.shreddedplasticblock));
+        registerModel(Item.getItemFromBlock(ModBlocks.shreddedstarchblock));
 
         // Item Models
         registerModel(ModItems.redbulb);
@@ -124,7 +143,7 @@ public class RegistrationHandler {
         registerModel(ModItems.shreddedplastic);
         registerModel(ModItems.shreddedplant);
         registerModel(ModItems.shreddedstarch);
-        
+
         registerModel(ModItems.plasticrod);
         registerModel(ModItems.plasticsheet);
         registerModel(ModItems.filament);
@@ -147,26 +166,6 @@ public class RegistrationHandler {
         registerModel(ModItems.syntheticchickenraw);
         registerModel(ModItems.syntheticporkchopraw);
 
-        // Block Models
-        registerModel(Item.getItemFromBlock(ModBlocks.hydroponic));
-        registerModel(Item.getItemFromBlock(ModBlocks.light));
-        registerModel(Item.getItemFromBlock(ModBlocks.frame));
-        registerModel(Item.getItemFromBlock(ModBlocks.processor));
-        registerModel(Item.getItemFromBlock(ModBlocks.shredder));
-        registerModel(Item.getItemFromBlock(ModBlocks.plasticblock));
-        registerModel(Item.getItemFromBlock(ModBlocks.clearplasticblock));
-        registerModel(Item.getItemFromBlock(ModBlocks.machinecase));
-        registerModel(Item.getItemFromBlock(ModBlocks.fabricator));
-        registerModel(Item.getItemFromBlock(ModBlocks.cooker));
-        registerModel(Item.getItemFromBlock(ModBlocks.ladder));
-        registerModel(Item.getItemFromBlock(ModBlocks.piezoelectric));
-        registerModel(Item.getItemFromBlock(ModBlocks.bioreactor));
-        registerModel(Item.getItemFromBlock(ModBlocks.scaffolder));
-
-        registerModel(Item.getItemFromBlock(ModBlocks.shreddedplantblock));
-        registerModel(Item.getItemFromBlock(ModBlocks.shreddedplasticblock));
-        registerModel(Item.getItemFromBlock(ModBlocks.shreddedstarchblock));
-
         // Hydroponic TESR
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0,
                 new ModelResourceLocation(ModBlocks.hydroponic.getRegistryName(), "inventory"));
@@ -178,7 +177,6 @@ public class RegistrationHandler {
 
         for (Block block : blocks) {
             itemBlocks.add(generateItemBlock(block));
-
         }
 
         return itemBlocks.toArray(new Item[0]);

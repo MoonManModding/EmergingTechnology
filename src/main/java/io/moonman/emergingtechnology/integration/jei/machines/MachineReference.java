@@ -19,4 +19,7 @@ public class MachineReference {
     
     public static final String BIOREACTOR_NAME = ModBlocks.bioreactor.getLocalizedName();
     public static final String BIOREACTOR_UID = EmergingTechnology.MODID + ":bioreactor";
+    
+    public static final String SCAFFOLDER_NAME = ModBlocks.scaffolder.getLocalizedName();
+    public static final String SCAFFOLDER_UID = EmergingTechnology.MODID + ":scaffolder";
 }
