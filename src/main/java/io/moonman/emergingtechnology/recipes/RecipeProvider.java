@@ -3,11 +3,14 @@ package io.moonman.emergingtechnology.recipes;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.moonman.emergingtechnology.helpers.custom.loaders.CustomRecipeLoader;
+import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomRecipesWrapper;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
 Provides useful methods and machine recipe lists
@@ -20,6 +23,12 @@ public class RecipeProvider {
     public static List<SimpleRecipe> bioreactorRecipes = new ArrayList<>();
     public static List<SimpleRecipe> scaffolderRecipes = new ArrayList<>();
     public static List<FabricatorRecipe> fabricatorRecipes = new ArrayList<>();
+    
+    public static CustomRecipesWrapper customRecipes;
+
+    public static void preInit(FMLPreInitializationEvent e) {
+        CustomRecipeLoader.preInit(e);
+    }
 
     public static ItemStack getProcessorOutputForItemStack(ItemStack itemStack) {
         return getMatchingItemStackFromRecipes(itemStack, processorRecipes);

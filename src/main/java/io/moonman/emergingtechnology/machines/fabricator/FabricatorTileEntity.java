@@ -49,7 +49,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return FabricatorHelper.isValidFilamentItemStack(stack) && slot == 0;
+            return FabricatorHelper.isValidItemStack(stack) && slot == 0;
         }
     };
 
@@ -62,7 +62,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return FabricatorHelper.isValidFilamentItemStack(stack);
+            return FabricatorHelper.isValidItemStack(stack);
         }
     };
 

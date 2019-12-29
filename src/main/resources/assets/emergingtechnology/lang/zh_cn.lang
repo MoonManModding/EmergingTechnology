@@ -11,12 +11,14 @@ item.emergingtechnology.greenbulb.name=绿色灯泡
 item.emergingtechnology.bluebulb.name=蓝色灯泡
 item.emergingtechnology.purplebulb.name=紫外线灯泡
 
+ 
+
 #POLYMERS MODULE
-item.emergingtechnology.processor.name=处理器
+item.emergingtechnology.processor.name=加工机
 item.emergingtechnology.shredder.name=切碎机
-item.emergingtechnology.shreddedplastic.name=碎塑料
-item.emergingtechnology.shreddedplant.name=碎植物
-item.emergingtechnology.shreddedstarch.name=碎粉
+item.emergingtechnology.shreddedplastic.name=粉碎塑料
+item.emergingtechnology.shreddedplant.name=粉碎植物
+item.emergingtechnology.shreddedstarch.name=淀粉
 item.emergingtechnology.filament.name=化纤长丝
 item.emergingtechnology.plasticblock.name=塑料块
 item.emergingtechnology.clearplasticblock.name=透明塑料块
@@ -25,43 +27,54 @@ item.emergingtechnology.plasticsheet.name=塑料板
 item.emergingtechnology.machinecase.name=基本机壳
 item.emergingtechnology.fabricator.name=制造机
 item.emergingtechnology.ladder.name=塑料梯子
+item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
 
-item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+item.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
+item.emergingtechnology.shreddedplantblock.name=粉碎植物块
+item.emergingtechnology.shreddedstarchblock.name=淀粉块
+
+ 
 
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=太阳能烤箱
-item.emergingtechnology.bioreactor.name=Tissue Bioreactor
-item.emergingtechnology.scaffolder.name=Tissue Scaffolder
+item.emergingtechnology.bioreactor.name=生物组织反应机
+item.emergingtechnology.scaffolder.name=生物组织合成机
 
-item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
-item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
-item.emergingtechnology.cowsyringe.name=Cow Tissue Syringe
-item.emergingtechnology.chickensyringe.name=Chicken Tissue Syringe
-item.emergingtechnology.emptysyringe.name=Empty Syringe
+item.emergingtechnology.pigsyringe.name=猪组织注射器
+item.emergingtechnology.horsesyringe.name=马组织注射器
+item.emergingtechnology.cowsyringe.name=牛组织注射器
+item.emergingtechnology.chickensyringe.name=鸡组织注射器
+item.emergingtechnology.emptysyringe.name=空注射器
 
-item.emergingtechnology.pigsample.name=Pig Tissue Sample
-item.emergingtechnology.horsesample.name=Horse Tissue Sample
-item.emergingtechnology.cowsample.name=Cow Tissue Sample
-item.emergingtechnology.chickensample.name=Chicken Tissue Sample
+item.emergingtechnology.pigsample.name=猪组织样本
+item.emergingtechnology.horsesample.name=马组织样本
+item.emergingtechnology.cowsample.name=牛组织样本
+item.emergingtechnology.chickensample.name=鸡组织样本
 
-item.emergingtechnology.syntheticbeefraw.name=Raw Synthetic Beef
-item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
-item.emergingtechnology.syntheticporkchopraw.name=Raw Synthetic Porkchop
+item.emergingtechnology.syntheticbeefraw.name=生合成牛肉
+item.emergingtechnology.syntheticchickenraw.name=生合成鸡肉
+item.emergingtechnology.syntheticporkchopraw.name=生合成猪肉
+
+ 
 
 #ELECTRICS MODULE
-item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+item.emergingtechnology.piezoelectric.name=发电砖
+
+ 
 
 #Blocks
+
+ 
 
 #HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=水培生长床
 blocks.emergingtechnology.light.name=水培生长灯
 blocks.emergingtechnology.frame.name=水培框架
 
+ 
+
 #POLYMERS MODULE
-blocks.emergingtechnology.processor.name=处理器
+blocks.emergingtechnology.processor.name=加工机
 blocks.emergingtechnology.shredder.name=切碎机
 blocks.emergingtechnology.plasticblock.name=塑料块
 blocks.emergingtechnology.clearplasticblock.name=透明塑料块
@@ -69,47 +82,65 @@ blocks.emergingtechnology.machinecase.name=基本机壳
 blocks.emergingtechnology.fabricator.name=制造机
 blocks.emergingtechnology.ladder.name=塑料梯子
 
-blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+blocks.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
+blocks.emergingtechnology.shreddedplantblock.name=粉碎植物块
+blocks.emergingtechnology.shreddedstarchblock.name=淀粉块
+
+ 
 
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=太阳能烤箱
-blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
-blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
+blocks.emergingtechnology.bioreactor.name=生物组织反应机
+blocks.emergingtechnology.scaffolder.name=生物组织合成机
+
+ 
 
 #ELECTRICS MODULE
-blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+blocks.emergingtechnology.piezoelectric.name=发电砖
+
+ 
 
 #Containers
 
+ 
+
 #Tiles
+
+ 
 
 #HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=水培生长床
-tile.emergingtechnology.light.name=水培发育电灯
+tile.emergingtechnology.light.name=水培生长灯
 tile.emergingtechnology.frame.name=水培框架
 
+ 
+
 #POLYMERS MODULE
-tile.emergingtechnology.processor.name=处理器
-tile.emergingtechnology.shredder.name=碎纸机
+tile.emergingtechnology.processor.name=加工机
+tile.emergingtechnology.shredder.name=切碎机
 tile.emergingtechnology.plasticblock.name=塑料块
 tile.emergingtechnology.clearplasticblock.name=透明塑料块
 tile.emergingtechnology.machinecase.name=基本机壳
 tile.emergingtechnology.fabricator.name=制造机
 tile.emergingtechnology.ladder.name=塑料梯子
 
-tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+tile.emergingtechnology.shreddedplasticblock.name=碎塑料块
+tile.emergingtechnology.shreddedplantblock.name=碎植物块
+tile.emergingtechnology.shreddedstarchblock.name=淀粉块
+
+ 
 
 #SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=太阳能烤箱
-tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
-tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
+tile.emergingtechnology.bioreactor.name=生物组织反应机
+tile.emergingtechnology.scaffolder.name=生物组织合成机
+
+ 
 
 #ELECTRICS MODULE
-tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+tile.emergingtechnology.piezoelectric.name=发电砖
+
+ 
 
 #ItemGroup
 

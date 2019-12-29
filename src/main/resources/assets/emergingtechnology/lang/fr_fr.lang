@@ -25,6 +25,7 @@ item.emergingtechnology.plasticsheet.name=Feuille de plastique
 item.emergingtechnology.machinecase.name=Boîtier de machine basique
 item.emergingtechnology.fabricator.name=Fabricateur
 item.emergingtechnology.ladder.name=Échelle en plastique
+item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
 
 item.emergingtechnology.shreddedplasticblock.name=Bloc de plastique déchiqueté
 item.emergingtechnology.shreddedplantblock.name=Bloc de matières végétales déchiquetée
@@ -116,5 +117,4 @@ tile.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 
 #ItemGroup
 
-itemGroup.technologytab=Emerging Technology
-#itemGroup.technologytab=Technologies Émergentes
+itemGroup.technologytab=Technologies Émergentes

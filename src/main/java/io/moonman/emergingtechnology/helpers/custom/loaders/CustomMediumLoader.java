@@ -24,7 +24,7 @@ public class CustomMediumLoader {
     public static void loadCustomGrowthMedia(String customGrowthMediaFilePath) {
         EmergingTechnology.logger.info("EmergingTechnology - Loading custom growth media...");
         try {
-            ModMediumProvider.customMedia= readFromJson(customGrowthMediaFilePath);
+            ModMediumProvider.customMedia = readFromJson(customGrowthMediaFilePath);
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
                     + ModMediumProvider.customMedia.length + " custom growth media.");
 

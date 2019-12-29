@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomRecipeWrapper;
 import io.moonman.emergingtechnology.helpers.machines.CookerHelper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
@@ -14,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -206,6 +208,17 @@ public class RecipeBuilder {
         RecipeProvider.fabricatorRecipes.add(recipe5);
         RecipeProvider.fabricatorRecipes.add(recipe6);
         RecipeProvider.fabricatorRecipes.add(recipe7);
+        addCustomFabricatorRecipes(8);
+    }
+
+    private static void addCustomFabricatorRecipes(int id) {
+        for (CustomRecipeWrapper wrapper: RecipeProvider.customRecipes.fabricator) {
+            ItemStack inputStack = GameRegistry.makeItemStack(wrapper.input, wrapper.inputMeta, wrapper.inputCount, wrapper.inputNBTData);
+            ItemStack outputStack = GameRegistry.makeItemStack(wrapper.output, wrapper.outputMeta, wrapper.outputCount, wrapper.outputNBTData);
+            FabricatorRecipe recipe = new FabricatorRecipe(id, outputStack, inputStack);
+            RecipeProvider.fabricatorRecipes.add(recipe);
+            id++;
+        }
     }
 
     private static SimpleRecipe createSimpleRecipe(Item input, Item output) {

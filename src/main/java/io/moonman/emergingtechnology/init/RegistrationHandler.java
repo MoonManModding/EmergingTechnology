@@ -17,6 +17,7 @@ import io.moonman.emergingtechnology.item.hydroponics.PurpleBulb;
 import io.moonman.emergingtechnology.item.hydroponics.RedBulb;
 import io.moonman.emergingtechnology.item.polymers.PlasticRod;
 import io.moonman.emergingtechnology.item.polymers.PlasticSheet;
+import io.moonman.emergingtechnology.item.polymers.PlasticTissueScaffold;
 import io.moonman.emergingtechnology.item.polymers.Filament;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
@@ -93,7 +94,7 @@ public class RegistrationHandler {
 
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
-                new ShreddedPlant(), new ShreddedStarch(), new PlasticRod(), new PlasticSheet(), new Filament(),
+                new ShreddedPlant(), new ShreddedStarch(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
                 new EmptySyringe(), new CowSample(), new CowSyringe(), new ChickenSample(), new ChickenSyringe(),
                 new PigSample(), new PigSyringe(), new HorseSample(), new HorseSyringe(), new SyntheticBeefRaw(),
                 new SyntheticChickenRaw(), new SyntheticPorkchopRaw() };
@@ -147,6 +148,7 @@ public class RegistrationHandler {
         registerModel(ModItems.plasticrod);
         registerModel(ModItems.plasticsheet);
         registerModel(ModItems.filament);
+        registerModel(ModItems.plastictissuescaffold);
 
         registerModel(ModItems.chickensample);
         registerModel(ModItems.chickensyringe);

@@ -47,6 +47,7 @@ public class ModItems {
 	public static final Item filament = null;
 	public static final Item plasticrod = null;
 	public static final Item plasticsheet = null;
+	public static final Item plastictissuescaffold = null;
 	// endregion
 
 	//region Synthetics Items
