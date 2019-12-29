@@ -1,85 +1,84 @@
 # Item
 
 # HYDROPONICS MODULE
-item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
-item.emergingtechnology.light.name=Hydroponic Grow Light
-item.emergingtechnology.frame.name=Hydroponic Frame
-item.emergingtechnology.redbulb.name=Red Bulb
-item.emergingtechnology.greenbulb.name=Green Bulb
-item.emergingtechnology.bluebulb.name=Blue Bulb
-item.emergingtechnology.purplebulb.name=UV Bulb
+item.emergingtechnology.hydroponic.name=Tables à marées hydroponique
+item.emergingtechnology.light.name=Ampoule de croissance hydroponique
+item.emergingtechnology.frame.name=Chassis de table hydroponique
+item.emergingtechnology.redbulb.name=Ampoule rouge
+item.emergingtechnology.greenbulb.name=Ampoule verte
+item.emergingtechnology.bluebulb.name=Ampoule bleue
+item.emergingtechnology.purplebulb.name=Ampoule à UV
 
 # POLYMERS MODULE
-item.emergingtechnology.processor.name=Processor
-item.emergingtechnology.shredder.name=Shredder
-item.emergingtechnology.shreddedplastic.name=Shredded Plastic
-item.emergingtechnology.shreddedplant.name=Shredded Plant
-item.emergingtechnology.shreddedstarch.name=Shredded Starch
-item.emergingtechnology.filament.name=Filament
-item.emergingtechnology.plasticblock.name=Block of Plastic
-item.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
-item.emergingtechnology.plasticrod.name=Plastic Rod
-item.emergingtechnology.plasticsheet.name=Plastic Sheet
-item.emergingtechnology.machinecase.name=Basic Machine Case
-item.emergingtechnology.fabricator.name=Fabricator
-item.emergingtechnology.ladder.name=Plastic Ladder
+item.emergingtechnology.processor.name=Processeur
+item.emergingtechnology.shredder.name=Déchiqueteuse
+item.emergingtechnology.shreddedplastic.name=Granulats de plastique
+item.emergingtechnology.shreddedplant.name=Granulats de matières végétales
+item.emergingtechnology.shreddedstarch.name=Granulats d'amidon
+item.emergingtechnology.filament.name=Filament de plastique
+item.emergingtechnology.plasticblock.name=Bloc de plastique
+item.emergingtechnology.clearplasticblock.name=Bloc de plastique transparent
+item.emergingtechnology.plasticrod.name=Tige de plastique
+item.emergingtechnology.plasticsheet.name=Feuille de plastique
+item.emergingtechnology.machinecase.name=Boîtier de machine basique
+item.emergingtechnology.fabricator.name=Fabricateur
+item.emergingtechnology.ladder.name=Échelle en plastique
 
-item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+item.emergingtechnology.shreddedplasticblock.name=Bloc de plastique déchiqueté
+item.emergingtechnology.shreddedplantblock.name=Bloc de matières végétales déchiquetée
+item.emergingtechnology.shreddedstarchblock.name=Bloc d'amidon déchiqueté
 
 #SYNTHETICS MODULE
-item.emergingtechnology.cooker.name=Solar Cooker
+item.emergingtechnology.cooker.name=Four solaire
 
-item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
-item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
-item.emergingtechnology.cowsyringe.name=Cow Tissue Syringe
-item.emergingtechnology.chickensyringe.name=Chicken Tissue Syringe
-item.emergingtechnology.emptysyringe.name=Empty Syringe
+item.emergingtechnology.pigsyringe.name=Seringue de cellules souches de cochon
+item.emergingtechnology.horsesyringe.name=Seringue de cellules souches de cheval
+item.emergingtechnology.cowsyringe.name=Seringue de cellules souches de vache
+item.emergingtechnology.chickensyringe.name=Seringue de cellules souches de poule
+item.emergingtechnology.emptysyringe.name=Seringue vide
 
-item.emergingtechnology.pigsample.name=Pig Tissue Sample
-item.emergingtechnology.horsesample.name=Horse Tissue Sample
-item.emergingtechnology.cowsample.name=Cow Tissue Sample
-item.emergingtechnology.chickensample.name=Chicken Tissue Sample
+item.emergingtechnology.pigsample.name=Culture cellulaire de cochon
+item.emergingtechnology.horsesample.name=Culture cellulaire de cheval
+item.emergingtechnology.cowsample.name=Culture cellulaire de vache
+item.emergingtechnology.chickensample.name=Culture cellulaire de poulet
 
-item.emergingtechnology.syntheticbeefraw.name=Raw Synthetic Beef
-item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
-item.emergingtechnology.syntheticporkchopraw.name=Raw Synthetic Porkchop
+item.emergingtechnology.syntheticbeefraw.name=Steak synthétique cru
+item.emergingtechnology.syntheticchickenraw.name=Viande de poulet synthétique crue
+item.emergingtechnology.syntheticporkchopraw.name=Côtelette de porc synthétique crue
 
-item.emergingtechnology.bioreactor.name=Tissue Bioreactor
-item.emergingtechnology.scaffolder.name=Tissue Scaffolder
+item.emergingtechnology.bioreactor.name=Bioréacteur cellulaire
+item.emergingtechnology.scaffolder.name=Appareil à morphogenèse
 
 #ELECTRICS MODULE
-item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+item.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 
 
 #Blocks
 
 # HYDROPONICS MODULE
-blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
-blocks.emergingtechnology.light.name=Hydroponic Grow Light
-blocks.emergingtechnology.frame.name=Hydroponic Frame
+blocks.emergingtechnology.hydroponic.name=Tables à marées hydroponique
+blocks.emergingtechnology.light.name=Ampoule de croissance hydroponique
+blocks.emergingtechnology.frame.name=Chassis de table hydroponique
 
 # POLYMERS MODULE
-blocks.emergingtechnology.processor.name=Processor
-blocks.emergingtechnology.shredder.name=Shredder
-blocks.emergingtechnology.plasticblock.name=Block of Plastic
-blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
-blocks.emergingtechnology.machinecase.name=Basic Machine Case
-blocks.emergingtechnology.fabricator.name=Fabricator
-blocks.emergingtechnology.ladder.name=Plastic Ladder
-
-blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+blocks.emergingtechnology.processor.name=Processeur
+blocks.emergingtechnology.shredder.name=Déchiqueteuse
+blocks.emergingtechnology.plasticblock.name=Bloc de plastique
+blocks.emergingtechnology.clearplasticblock.name=Bloc de plastique transparent
+blocks.emergingtechnology.machinecase.name=Boîtier de machine basique
+blocks.emergingtechnology.fabricator.name=Fabricateur
+blocks.emergingtechnology.ladder.name=Échelle en plastique
+blocks.emergingtechnology.shreddedplasticblock.name=Bloc de plastique déchiqueté
+blocks.emergingtechnology.shreddedplantblock.name=Bloc de matières végétales déchiquetée
+blocks.emergingtechnology.shreddedstarchblock.name=Bloc d'amidon déchiqueté
 
 #SYNTHETICS MODULE
-blocks.emergingtechnology.cooker.name=Solar Cooker
-blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
-blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
+blocks.emergingtechnology.cooker.name=Four solaire
+blocks.emergingtechnology.bioreactor.name=Bioréacteur cellulaire
+blocks.emergingtechnology.scaffolder.name=Appareil à morphogenèse
 
 #ELECTRICS MODULE
-blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+blocks.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 
 #Containers
 
@@ -87,31 +86,33 @@ blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 #Tiles
 
 # HYDROPONICS MODULE
-tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
-tile.emergingtechnology.light.name=Hydroponic Grow Light
-tile.emergingtechnology.frame.name=Hydroponic Frame
+tile.emergingtechnology.hydroponic.name=Tables à marées hydroponique
+tile.emergingtechnology.light.name=Ampoule de croissance hydroponique
+tile.emergingtechnology.frame.name=Chassis de table hydroponique
 
 # POLYMERS MODULE
-tile.emergingtechnology.processor.name=Processor
-tile.emergingtechnology.shredder.name=Shredder
-tile.emergingtechnology.plasticblock.name=Block of Plastic
-tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
-tile.emergingtechnology.machinecase.name=Basic Machine Case
-tile.emergingtechnology.fabricator.name=Fabricator
-tile.emergingtechnology.ladder.name=Plastic Ladder
+tile.emergingtechnology.processor.name=Processeur
+tile.emergingtechnology.shredder.name=Déchiqueteuse
+tile.emergingtechnology.plasticblock.name=Bloc de plastique
+tile.emergingtechnology.clearplasticblock.name=Bloc de plastique transparent
+tile.emergingtechnology.machinecase.name=Boîtier de machine basique
+tile.emergingtechnology.fabricator.name=Fabricateur
+tile.emergingtechnology.ladder.name=Échelle en plastique
 
-tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+tile.emergingtechnology.shreddedplasticblock.name=Bloc de plastique déchiqueté
+tile.emergingtechnology.shreddedplantblock.name=Bloc de matières végétales déchiquetée
+tile.emergingtechnology.shreddedstarchblock.name=Bloc d'amidon déchiqueté
 
 # SYNTHETICS MODULE
-tile.emergingtechnology.cooker.name=Solar Cooker
-tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
-tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
+tile.emergingtechnology.cooker.name=Four solaire
+tile.emergingtechnology.bioreactor.name=Bioréacteur cellulaire
+tile.emergingtechnology.scaffolder.name=Appareil à morphogenèse
+
 
 #ELECTRICS MODULE
-tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+tile.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
+#itemGroup.technologytab=Technologies Émergentes
