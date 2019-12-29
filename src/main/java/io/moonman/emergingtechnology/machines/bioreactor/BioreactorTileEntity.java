@@ -6,7 +6,6 @@ import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.BioreactorHelper;
-import io.moonman.emergingtechnology.helpers.machines.ProcessorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
