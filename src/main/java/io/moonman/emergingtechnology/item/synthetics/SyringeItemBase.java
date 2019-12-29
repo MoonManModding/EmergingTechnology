@@ -2,8 +2,6 @@ package io.moonman.emergingtechnology.item.synthetics;
 
 import java.util.List;
 
-import org.codehaus.plexus.util.StringUtils;
-
 import io.moonman.emergingtechnology.item.ItemBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -17,7 +15,7 @@ public class SyringeItemBase extends ItemBase {
 
     public SyringeItemBase(String name) {
         super(name + "syringe");
-        this._name = StringUtils.capitalise(name);
+        this._name = name;
     }
 
     @SideOnly(Side.CLIENT)
