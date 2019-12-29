@@ -13,6 +13,6 @@ public class ScaffolderHelper {
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return RecipeProvider.getScaffolderOutputForItemStack(itemStack);
+        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.scaffolderRecipes);
     }
 }

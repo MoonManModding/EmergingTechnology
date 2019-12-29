@@ -21,7 +21,6 @@ public class EmptySyringe extends SyringeItemBase {
 
     public EmptySyringe() {
         super("empty");
-        this.setMaxStackSize(1);
     }
 
     @SideOnly(Side.CLIENT)

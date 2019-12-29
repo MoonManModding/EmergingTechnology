@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ProcessorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -180,10 +181,11 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = ProcessorHelper.getPlannedStackFromItemStack(inputStack);
+        SimpleRecipe recipe = ProcessorHelper.getRecipeFromInputItemStack(inputStack);
+        //ItemStack plannedStack = ProcessorHelper.getPlannedStackFromItemStack(inputStack);
 
         // This is probably unneccessary
-        if (plannedStack == null) {
+        if (recipe == null) {
             return;
         }
 
@@ -193,7 +195,17 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
 
         // Output stack incompatible/non-empty
-        if (!StackHelper.compareItemStacks(outputStack, plannedStack) && !StackHelper.isItemStackEmpty(outputStack)) {
+        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput()) && !StackHelper.isItemStackEmpty(outputStack)) {
+            return;
+        }
+
+        // Not enough room in output stack
+        if (outputStack.getCount() + recipe.getOutput().getCount() > recipe.getOutput().getMaxStackSize()) {
+            return;
+        }
+
+        // Not enough items in input stack
+        if (inputStack.getCount() < recipe.getInput().getCount()) {
             return;
         }
 
@@ -222,12 +234,12 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-        getInputStack().shrink(1);
+        getInputStack().shrink(recipe.getInput().getCount());
 
         if (outputStack.getCount() > 0) {
-            outputStack.grow(1);
+            outputStack.grow(recipe.getOutput().getCount());
         } else {
-            itemHandler.insertItem(1, plannedStack, false);
+            itemHandler.insertItem(1, recipe.getOutput(), false);
         }
 
         this.setProgress(0);

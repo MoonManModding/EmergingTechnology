@@ -13,6 +13,6 @@ public class BioreactorHelper {
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return RecipeProvider.getBioreactorOutputForItemStack(itemStack);
+        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.bioreactorRecipes);
     }
 }

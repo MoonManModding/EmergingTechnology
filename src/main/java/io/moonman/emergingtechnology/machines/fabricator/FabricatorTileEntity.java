@@ -188,6 +188,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             return;
         }
 
+        // Not enough items in input
         if (inputStack.getCount() < recipe.cost) {
             return;
         }
@@ -200,6 +201,11 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         // Output stack incompatible/non-empty
         if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput())
                 && !StackHelper.isItemStackEmpty(outputStack)) {
+            return;
+        }
+
+        // Not enough room in output stack
+        if (outputStack.getCount() + recipe.getOutput().getCount() > recipe.getOutput().getMaxStackSize()) {
             return;
         }
 
@@ -222,7 +228,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         getInputStack().shrink(recipe.cost);
 
         if (outputStack.getCount() > 0) {
-            outputStack.grow(1);
+            outputStack.grow(recipe.getOutput().getCount());
         } else {
             itemHandler.insertItem(1, recipe.getOutput().copy(), false);
         }

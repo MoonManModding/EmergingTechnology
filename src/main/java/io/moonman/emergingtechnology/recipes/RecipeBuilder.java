@@ -83,7 +83,7 @@ public class RecipeBuilder {
 
     private static void registerProcessorRecipes(ItemStack output, List<ItemStack> inputs) {
         for (ItemStack input : inputs) {
-            if (RecipeProvider.getProcessorOutputForItemStack(input) == null) {
+            if (RecipeProvider.getOutputForItemStackFromRecipes(input, RecipeProvider.processorRecipes) == null) {
                 SimpleRecipe recipe = new SimpleRecipe(output, input);
                 RecipeProvider.processorRecipes.add(recipe);
             }
@@ -92,7 +92,7 @@ public class RecipeBuilder {
 
     private static void registerShredderRecipes(ItemStack output, List<ItemStack> inputs) {
         for (ItemStack input : inputs) {
-            if (RecipeProvider.getShredderOutputForItemStack(input) == null) {
+            if (RecipeProvider.getOutputForItemStackFromRecipes(input, RecipeProvider.shredderRecipes) == null) {
                 SimpleRecipe recipe = new SimpleRecipe(output, input);
                 RecipeProvider.shredderRecipes.add(recipe);
             }
@@ -104,21 +104,24 @@ public class RecipeBuilder {
 
     private static List<ItemStack> getProcessorBlockItems() {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
-        itemInputs.add(new ItemStack(ModItems.shreddedplastic));
-        itemInputs.add(new ItemStack(ModItems.shreddedstarch));
+        itemInputs.add(new ItemStack(ModItems.shreddedplastic, 4));
+        itemInputs.add(new ItemStack(ModItems.shreddedstarch, 9));
+        itemInputs.add(new ItemStack(ModBlocks.shreddedplasticblock, 1));
+        itemInputs.add(new ItemStack(ModBlocks.shreddedstarchblock, 1));
 
         List<String> oreInputs = new ArrayList<String>();
-        oreInputs.add("dustPlastic");
-        oreInputs.add("orePlastic");
-        oreInputs.add("starch");
-        oreInputs.add("dustStarch");
+        // oreInputs.add("dustPlastic");
+        // oreInputs.add("orePlastic");
+        // oreInputs.add("starch");
+        // oreInputs.add("dustStarch");
 
         return buildRecipeList(itemInputs, oreInputs);
     }
 
     private static List<ItemStack> getProcessorClearBlockItems() {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
-        itemInputs.add(new ItemStack(ModItems.shreddedplant));
+        itemInputs.add(new ItemStack(ModItems.shreddedplant, 9));
+        itemInputs.add(new ItemStack(ModBlocks.shreddedplantblock, 1));
 
         List<String> oreInputs = new ArrayList<String>();
 
@@ -187,20 +190,20 @@ public class RecipeBuilder {
 
     private static void registerFilamentFurnaceRecipes() {
         ItemStack result = new ItemStack(ModItems.filament);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedplant), result, 0.1f);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedplastic), result, 0.1f);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedstarch), result, 0.1f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.plasticblock), result, 0.1f);
     }
 
     private static void buildFabricatorRecipeList() {
 
         FabricatorRecipe recipe = new FabricatorRecipe(1, new ItemStack(ModBlocks.plasticblock), FabricatorHelper.getFilamentWithAmount(1));
-        FabricatorRecipe recipe2 = new FabricatorRecipe(2, new ItemStack(ModItems.plasticrod), FabricatorHelper.getFilamentWithAmount(1));
-        FabricatorRecipe recipe3 = new FabricatorRecipe(3, new ItemStack(ModItems.plasticsheet), FabricatorHelper.getFilamentWithAmount(1));
-        FabricatorRecipe recipe4 = new FabricatorRecipe(4, new ItemStack(ModBlocks.machinecase), FabricatorHelper.getFilamentWithAmount(4));
+        FabricatorRecipe recipe2 = new FabricatorRecipe(2, new ItemStack(ModItems.plasticrod, 4), FabricatorHelper.getFilamentWithAmount(1));
+        FabricatorRecipe recipe3 = new FabricatorRecipe(3, new ItemStack(ModItems.plasticsheet, 2), FabricatorHelper.getFilamentWithAmount(1));
+        FabricatorRecipe recipe4 = new FabricatorRecipe(4, new ItemStack(ModBlocks.machinecase), FabricatorHelper.getFilamentWithAmount(2));
         FabricatorRecipe recipe5 = new FabricatorRecipe(5, new ItemStack(ModBlocks.frame), FabricatorHelper.getFilamentWithAmount(1));
         FabricatorRecipe recipe6 = new FabricatorRecipe(6, new ItemStack(ModBlocks.clearplasticblock), FabricatorHelper.getFilamentWithAmount(1));
-        FabricatorRecipe recipe7 = new FabricatorRecipe(7, new ItemStack(ModBlocks.ladder), FabricatorHelper.getFilamentWithAmount(1));
+        FabricatorRecipe recipe7 = new FabricatorRecipe(7, new ItemStack(ModBlocks.ladder, 2), FabricatorHelper.getFilamentWithAmount(1));
+        FabricatorRecipe recipe8 = new FabricatorRecipe(8, new ItemStack(ModItems.plastictissuescaffold, 2), FabricatorHelper.getFilamentWithAmount(1));
+        FabricatorRecipe recipe9 = new FabricatorRecipe(9, new ItemStack(ModItems.emptysyringe, 3), FabricatorHelper.getFilamentWithAmount(2));
         RecipeProvider.fabricatorRecipes.add(recipe);
         RecipeProvider.fabricatorRecipes.add(recipe2);
         RecipeProvider.fabricatorRecipes.add(recipe3);
@@ -208,7 +211,9 @@ public class RecipeBuilder {
         RecipeProvider.fabricatorRecipes.add(recipe5);
         RecipeProvider.fabricatorRecipes.add(recipe6);
         RecipeProvider.fabricatorRecipes.add(recipe7);
-        addCustomFabricatorRecipes(8);
+        RecipeProvider.fabricatorRecipes.add(recipe8);
+        RecipeProvider.fabricatorRecipes.add(recipe9);
+        addCustomFabricatorRecipes(10);
     }
 
     private static void addCustomFabricatorRecipes(int id) {

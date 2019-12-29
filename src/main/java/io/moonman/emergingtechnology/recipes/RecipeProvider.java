@@ -30,22 +30,6 @@ public class RecipeProvider {
         CustomRecipeLoader.preInit(e);
     }
 
-    public static ItemStack getProcessorOutputForItemStack(ItemStack itemStack) {
-        return getMatchingItemStackFromRecipes(itemStack, processorRecipes);
-    }
-
-    public static ItemStack getShredderOutputForItemStack(ItemStack itemStack) {
-        return getMatchingItemStackFromRecipes(itemStack, shredderRecipes);
-    }
-    
-    public static ItemStack getBioreactorOutputForItemStack(ItemStack itemStack) {
-        return getMatchingItemStackFromRecipes(itemStack, bioreactorRecipes);
-    }
-
-    public static ItemStack getScaffolderOutputForItemStack(ItemStack itemStack) {
-        return getMatchingItemStackFromRecipes(itemStack, scaffolderRecipes);
-    }
-
     public static ItemStack getFabricatorOutputForItemStack(ItemStack itemStack) {
         for (FabricatorRecipe recipe : fabricatorRecipes) {
             if (recipe.getInput().isItemEqual(itemStack)) {
@@ -55,10 +39,19 @@ public class RecipeProvider {
         return null;
     } 
 
-    private static ItemStack getMatchingItemStackFromRecipes(ItemStack itemStack, List<SimpleRecipe> recipes) {
+    public static ItemStack getOutputForItemStackFromRecipes(ItemStack itemStack, List<SimpleRecipe> recipes) {
         for (SimpleRecipe recipe : recipes) {
             if (recipe.getInput().isItemEqual(itemStack)) {
                 return recipe.getOutput();
+            }
+        }
+        return null;
+    }
+
+    public static SimpleRecipe getMatchingRecipe(ItemStack itemStack, List<SimpleRecipe> recipes) {
+        for (SimpleRecipe recipe : recipes) {
+            if (recipe.getInput().isItemEqual(itemStack)) {
+                return recipe;
             }
         }
         return null;

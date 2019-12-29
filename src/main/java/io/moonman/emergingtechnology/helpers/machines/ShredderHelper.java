@@ -13,6 +13,6 @@ public class ShredderHelper {
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return RecipeProvider.getShredderOutputForItemStack(itemStack);
+        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.shredderRecipes);
     }
 }

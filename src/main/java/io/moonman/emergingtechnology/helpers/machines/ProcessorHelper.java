@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -13,6 +14,10 @@ public class ProcessorHelper {
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return RecipeProvider.getProcessorOutputForItemStack(itemStack);
+        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.processorRecipes);
+    }
+
+    public static SimpleRecipe getRecipeFromInputItemStack(ItemStack itemStack) {
+        return RecipeProvider.getMatchingRecipe(itemStack, RecipeProvider.processorRecipes);
     }
 }
