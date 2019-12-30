@@ -559,7 +559,7 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] getPlantGrowth(Context context, Arguments args) {
-        int growth = PlantHelper.getPlantGrowthAtPosition(world, pos);
+        int growth = PlantHelper.getPlantGrowthAtPosition(world, pos.add(0, 1, 0));
         return new Object[] { growth };
     }
 

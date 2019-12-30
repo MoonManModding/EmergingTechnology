@@ -13,6 +13,8 @@ import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -22,6 +24,8 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -138,9 +142,14 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
 
             this.setEnergy(this.getEnergy());
 
-            boolean canHarvest = canHarvest();
+            if (canHarvest()) {
+                this.setIsActive(true);
+                this.doHarvest();
+            } else {
+                this.setIsActive(false);
+            }
 
-            this.setIsActive(canHarvest);
+            this.tryPlant();
 
             if (this.requiresUpdate) {
                 Harvester.setState(this.isActive, getWorld(), getPos());
@@ -158,12 +167,9 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         if (blockState == null)
             return false;
 
-        if (PlantHelper.isPlantBlock(blockState.getBlock())) {
-            doHarvest();
-            return true;
-        } else {
-            return false;
-        }
+        int age = PlantHelper.getPlantGrowthAtPosition(getWorld(), target);
+
+        return age == 7;
     }
 
     public void doHarvest() {
@@ -173,15 +179,74 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         if (blockState == null)
             return;
 
-        int age = PlantHelper.getPlantGrowthAtPosition(getWorld(), target);
+        world.destroyBlock(target, true);
+        List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(target));
+        insertItems(entityItems);
+    }
 
-        if (age == 7) {
-            world.destroyBlock(target, false);
-            List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(target));
+    private void insertItems(List<EntityItem> entityItems) {
+        for (EntityItem entity : entityItems) {
 
-            for (EntityItem item : items) {
-                System.out.println(item);
+            if (entity == null) {
+                continue;
+            } else {
+                ItemStack itemStack = entity.getItem().copy();
+
+                int slot = itemStack.getItem() instanceof IPlantable ? 0 : 1;
+
+                ItemStack itemStack1 = this.itemHandler.insertItem(slot, itemStack, false);
+
+                if (itemStack1.isEmpty()) {
+                    entity.setDead();
+                } else {
+                    entity.setItem(itemStack1);
+                }
+
+                continue;
             }
+        }
+    }
+
+    private void tryPlant() {
+        ItemStack inputStack = getInputStack();
+
+        // If no seeds to plant, return
+        if (StackHelper.isItemStackEmpty(inputStack)) {
+            return;
+        }
+
+        // If items aren't seeds, return.
+        if (inputStack.getItem() instanceof IPlantable == false) {
+            return;
+        }
+
+        BlockPos cropTarget = pos.offset(EnumFacing.NORTH);
+        IBlockState cropBlockTarget = getWorld().getBlockState(cropTarget);
+
+        // Probably not neccessary
+        if (cropBlockTarget == null) {
+            return;
+        }
+
+        // If crop space is occupied, return
+        if (cropBlockTarget.getBlock() != Blocks.AIR) {
+            return;
+        }
+
+        BlockPos soilTarget = cropTarget.add(0, -1, 0);
+        IBlockState soilBlockTarget = getWorld().getBlockState(soilTarget);
+
+        IPlantable seedToPlant = (IPlantable) inputStack.getItem();
+
+        // If can't plant on block, return
+        if (!soilBlockTarget.getBlock().canSustainPlant(soilBlockTarget, getWorld(), soilTarget, EnumFacing.UP, seedToPlant)) {
+            return;
+        }
+
+        // If it's a crop, do planting.
+        if (seedToPlant.getPlantType(world, cropTarget) == EnumPlantType.Crop) {
+            world.setBlockState(cropTarget, seedToPlant.getPlant(world, cropTarget), 3);
+            getInputStack().shrink(1);
         }
     }
 

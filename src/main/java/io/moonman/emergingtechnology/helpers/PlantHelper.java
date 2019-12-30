@@ -46,7 +46,7 @@ public class PlantHelper {
     }
 
     public static int getPlantGrowthAtPosition(World world, BlockPos position) {
-        IBlockState state = world.getBlockState(position.add(0, 1, 0));
+        IBlockState state = world.getBlockState(position);
 
         if (state == null) return 0;
 

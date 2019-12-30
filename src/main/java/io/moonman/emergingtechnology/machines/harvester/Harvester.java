@@ -3,7 +3,6 @@ package io.moonman.emergingtechnology.machines.harvester;
 import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
@@ -24,10 +23,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ChunkCache;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk.EnumCreateEntityType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
@@ -47,9 +43,10 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int energyUsage = 99; //EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyUsage;
+        int energyUsage = 0; //EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyUsage;
 
-        tooltip.add("Harvests and replants crops automatically");
+        tooltip.add("EXPERIMENTAL - USE AT YOUR OWN RISK");
+        tooltip.add("Harvests crops automatically");
         tooltip.add("Requires " + energyUsage + "RF per cycle.");
     }
 
@@ -69,8 +66,8 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
         //     harvesterTileEntity.setIsActive();
         // }
 
-        //playerIn.openGui(EmergingTechnology.instance, Reference.GUI_SHREDDER, worldIn, pos.getX(), pos.getY(),
-                //pos.getZ());
+        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_HARVESTER, worldIn, pos.getX(), pos.getY(),
+                pos.getZ());
 
         return true;
     }

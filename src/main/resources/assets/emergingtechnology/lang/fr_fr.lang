@@ -4,6 +4,7 @@
 
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Tables à marées hydroponique
+item.emergingtechnology.harvester.name=Harvester
 item.emergingtechnology.light.name=Ampoule de croissance hydroponique
 item.emergingtechnology.frame.name=Chassis de table hydroponique
 item.emergingtechnology.redbulb.name=Ampoule rouge
@@ -60,6 +61,7 @@ item.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Tables à marées hydroponique
+blocks.emergingtechnology.harvester.name=Harvester
 blocks.emergingtechnology.light.name=Ampoule de croissance hydroponique
 blocks.emergingtechnology.frame.name=Chassis de table hydroponique
 
@@ -90,6 +92,7 @@ blocks.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 
 # HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Tables à marées hydroponique
+tile.emergingtechnology.harvester.name=Harvester
 tile.emergingtechnology.light.name=Ampoule de croissance hydroponique
 tile.emergingtechnology.frame.name=Chassis de table hydroponique
 

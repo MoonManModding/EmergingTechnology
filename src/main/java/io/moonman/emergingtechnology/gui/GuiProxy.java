@@ -9,6 +9,9 @@ import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorContainer;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorGui;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
+import io.moonman.emergingtechnology.machines.harvester.HarvesterContainer;
+import io.moonman.emergingtechnology.machines.harvester.HarvesterGui;
+import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicContainer;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicGui;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
@@ -60,6 +63,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof ScaffolderTileEntity) {
             return new ScaffolderContainer(player.inventory, (ScaffolderTileEntity) te);
         }
+        if (te instanceof HarvesterTileEntity) {
+            return new HarvesterContainer(player.inventory, (HarvesterTileEntity) te);
+        }
         return null;
     }
 
@@ -106,6 +112,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof ScaffolderTileEntity) {
             ScaffolderTileEntity containerTileEntity = (ScaffolderTileEntity) te;
             return new ScaffolderGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof HarvesterTileEntity) {
+            HarvesterTileEntity containerTileEntity = (HarvesterTileEntity) te;
+            return new HarvesterGui(player.inventory, containerTileEntity);
         }
 
         return null;

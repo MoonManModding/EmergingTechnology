@@ -13,6 +13,7 @@ public class Reference {
     public static final int GUI_BIOREACTOR = 5;
     public static final int GUI_SCAFFOLDER = 6;
     public static final int GUI_COOKER = 7;
+    public static final int GUI_HARVESTER = 8;
 
     // STORAGE SIZES
     public static final int HYDROPONIC_FLUID_CAPACITY = 1000;
@@ -35,4 +36,6 @@ public class Reference {
     public static final int BIOREACTOR_ENERGY_CAPACITY = 1000;
 
     public static final int SCAFFOLDER_ENERGY_CAPACITY = 1000;
+
+    public static final int HARVESTER_ENERGY_CAPACITY = 1000;
 }
