@@ -2,6 +2,7 @@
 
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+item.emergingtechnology.harvester.name=Harvester
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
 item.emergingtechnology.redbulb.name=Red Bulb
@@ -58,6 +59,7 @@ item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+blocks.emergingtechnology.harvester.name=Harvester
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
 blocks.emergingtechnology.frame.name=Hydroponic Frame
 
@@ -89,6 +91,7 @@ blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 
 # HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+tile.emergingtechnology.harvester.name=Harvester
 tile.emergingtechnology.light.name=Hydroponic Grow Light
 tile.emergingtechnology.frame.name=Hydroponic Frame
 

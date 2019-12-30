@@ -13,6 +13,7 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
@@ -172,4 +173,20 @@ public class PlantHelper {
     public static int getBoostFromConfigurationForCropType(IIdealBoostsConfiguration configuration, CropTypeEnum cropType) {
         return configuration.getBoost(cropType);
     }
+
+    // public static ItemStack getSeedFromBlock(Block block) {
+    //     if (block instanceof BlockCrops == false) {
+    //         return null;
+    //     }
+
+    //     return null;
+    // }
+
+    // public static ItemStack getCropFromBlock(Block block) {
+    //     if (block instanceof BlockCrops == false) {
+    //         return null;
+    //     }
+
+    //     return null;
+    // }
 }

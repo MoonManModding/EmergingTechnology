@@ -16,6 +16,7 @@ public class ModItems {
 	public static final Item hydroponic = null;
 	public static final Item light = null;
 	public static final Item frame = null;
+	public static final Item harvester = null;
 
 	// Items
 	public static final Item redbulb = null;

@@ -40,6 +40,8 @@ import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
+import io.moonman.emergingtechnology.machines.harvester.Harvester;
+import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTESR;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
@@ -72,12 +74,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {
-        final Block[] blocks = { new Hydroponic(), new Light(), new Frame(), new Processor(), new Shredder(),
+        final Block[] blocks = { new Hydroponic(), new Harvester(), new Light(), new Frame(), new Processor(), new Shredder(),
                 new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker(),
                 new Ladder(), new Piezoelectric(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
                 new ShreddedStarchBlock(), new Bioreactor(), new Scaffolder() };
 
         GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
+        GameRegistry.registerTileEntity(HarvesterTileEntity.class, getResourceLocation("harvester"));
         GameRegistry.registerTileEntity(LightTileEntity.class, getResourceLocation("light"));
         GameRegistry.registerTileEntity(ProcessorTileEntity.class, getResourceLocation("processor"));
         GameRegistry.registerTileEntity(ShredderTileEntity.class, getResourceLocation("shredder"));
@@ -100,7 +103,7 @@ public class RegistrationHandler {
                 new SyntheticChickenRaw(), new SyntheticPorkchopRaw() };
 
         // Blocks
-        Block[] blocks = { ModBlocks.hydroponic, ModBlocks.light, ModBlocks.processor, ModBlocks.shredder,
+        Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.light, ModBlocks.processor, ModBlocks.shredder,
                 ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.bioreactor, ModBlocks.scaffolder,
                 ModBlocks.piezoelectric, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
                 ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
@@ -118,6 +121,7 @@ public class RegistrationHandler {
 
         // Block Models
         registerModel(Item.getItemFromBlock(ModBlocks.hydroponic));
+        registerModel(Item.getItemFromBlock(ModBlocks.harvester));
         registerModel(Item.getItemFromBlock(ModBlocks.light));
         registerModel(Item.getItemFromBlock(ModBlocks.processor));
         registerModel(Item.getItemFromBlock(ModBlocks.shredder));
