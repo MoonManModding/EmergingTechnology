@@ -1,16 +1,25 @@
 package io.moonman.emergingtechnology.helpers;
 
+import java.util.Collection;
+import java.util.Iterator;
+
+import com.google.common.collect.Iterables;
+
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.config.hydroponics.enums.BulbTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
 import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBeetroot;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,10 +28,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
 /**
-Provides useful methods to manipulate and validate plant items and blocks
-*/
+ * Provides useful methods to manipulate and validate plant items and blocks
+ */
 public class PlantHelper {
-    
+
     public static final String WHEAT = "minecraft:wheat";
     public static final String CARROTS = "minecraft:carrots";
     public static final String POTATOES = "minecraft:potatoes";
@@ -48,22 +57,17 @@ public class PlantHelper {
     public static int getPlantGrowthAtPosition(World world, BlockPos position) {
         IBlockState state = world.getBlockState(position);
 
-        if (state == null) return 0;
+        if (state == null)
+            return 0;
 
         Block block = state.getBlock();
-
-        if (block instanceof BlockCrops) {
-            return state.getValue(BlockCrops.AGE);
-        };
 
         if (block instanceof BlockReed || block instanceof BlockCactus) {
             int growth = 0;
 
-            Block[] aboveBlocks = new Block[] {
-                world.getBlockState(position.add(0, 1, 0)).getBlock(),
-                world.getBlockState(position.add(0, 2, 0)).getBlock(),
-                world.getBlockState(position.add(0, 3, 0)).getBlock()
-            };
+            Block[] aboveBlocks = new Block[] { world.getBlockState(position.add(0, 1, 0)).getBlock(),
+                    world.getBlockState(position.add(0, 2, 0)).getBlock(),
+                    world.getBlockState(position.add(0, 3, 0)).getBlock() };
 
             for (Block aboveBlock : aboveBlocks) {
                 if (aboveBlock instanceof BlockReed || block instanceof BlockCactus) {
@@ -76,13 +80,37 @@ public class PlantHelper {
             return growth;
         };
 
+        if (block instanceof BlockCrops) {
+
+            //int maxAge = 0;
+            int age = 0;
+
+            // tnx draco
+            Iterator<IProperty<?>> properties = state.getPropertyKeys().iterator();
+            while (properties.hasNext()) {
+
+                IProperty<?> p = properties.next();
+
+                if (p instanceof PropertyInteger && p.getName().toLowerCase().equals("age")) {
+
+                    PropertyInteger ageProperty = (PropertyInteger) p;
+
+                    //maxAge = Iterables.getLast(ageProperty.getAllowedValues());
+                    age = state.getValue(ageProperty);
+                }
+            }
+
+            return age;
+        }
+
         return 0;
     }
 
     public static String getPlantNameAtPosition(World world, BlockPos position) {
         IBlockState state = world.getBlockState(position.add(0, 1, 0));
 
-        if (state == null) return "Nothing";
+        if (state == null)
+            return "Nothing";
 
         return state.getBlock().getLocalizedName();
     }
@@ -90,13 +118,15 @@ public class PlantHelper {
     public static String getPlantRegistryNameAtPosition(World world, BlockPos position) {
         IBlockState state = world.getBlockState(position.add(0, 1, 0));
 
-        if (state == null) return "Nothing";
+        if (state == null)
+            return "Nothing";
 
         return state.getBlock().getRegistryName().getResourcePath();
     }
 
     private static boolean isItemInOverride(Item item) {
-        if (item == Items.REEDS) return true;
+        if (item == Items.REEDS)
+            return true;
         return false;
     }
 
@@ -170,23 +200,99 @@ public class PlantHelper {
         }
     }
 
-    public static int getBoostFromConfigurationForCropType(IIdealBoostsConfiguration configuration, CropTypeEnum cropType) {
+    public static int getBoostFromConfigurationForCropType(IIdealBoostsConfiguration configuration,
+            CropTypeEnum cropType) {
         return configuration.getBoost(cropType);
     }
 
-    // public static ItemStack getSeedFromBlock(Block block) {
-    //     if (block instanceof BlockCrops == false) {
-    //         return null;
-    //     }
+    public static boolean isCropAtPositionReadyForHarvest(World world, BlockPos position) {
+        IBlockState state = world.getBlockState(position);
 
-    //     return null;
-    // }
+        if (state == null)
+            return false;
 
-    // public static ItemStack getCropFromBlock(Block block) {
-    //     if (block instanceof BlockCrops == false) {
-    //         return null;
-    //     }
+        Block block = state.getBlock();
 
-    //     return null;
-    // }
+        if (block instanceof BlockReed || block instanceof BlockCactus) {
+            Block aboveBlock = world.getBlockState(position.add(0, 1, 0)).getBlock();
+
+            if (aboveBlock instanceof BlockReed || block instanceof BlockCactus) {
+                return true;
+            }
+        };
+
+        if (block instanceof BlockCrops) {
+
+            int maxAge = 0;
+            int age = 0;
+
+            // tnx draco
+            Iterator<IProperty<?>> properties = state.getPropertyKeys().iterator();
+            while (properties.hasNext()) {
+
+                IProperty<?> p = properties.next();
+
+                if (p instanceof PropertyInteger && p.getName().toLowerCase().equals("age")) {
+
+                    PropertyInteger ageProperty = (PropertyInteger) p;
+
+                    maxAge = Iterables.getLast(ageProperty.getAllowedValues());
+                    age = state.getValue(ageProperty);
+                }
+            }
+
+            if (maxAge == 0) {
+                return false;
+            }
+
+            if (age == maxAge) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isSeedItem(Item item) {
+        if (item instanceof IPlantable) {
+            return true;
+        }
+
+        if (item == Items.REEDS) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static IBlockState getBlockStateFromItemStackForPlanting(ItemStack itemStack, World world, BlockPos pos) {
+
+        if (itemStack.getItem() == Items.WHEAT_SEEDS) {
+            return Blocks.WHEAT.getDefaultState();
+        }
+        if (itemStack.getItem() == Items.POTATO) {
+            return Blocks.POTATOES.getDefaultState();
+        }
+        if (itemStack.getItem() == Items.CARROT) {
+            return Blocks.CARROTS.getDefaultState();
+        }
+        if (itemStack.getItem() == Items.BEETROOT_SEEDS) {
+            return Blocks.BEETROOTS.getDefaultState();
+        }
+        if (itemStack.getItem() == Items.REEDS) {
+            return Blocks.REEDS.getDefaultState();
+        }
+        if (itemStack.getItem() == Items.PUMPKIN_SEEDS) {
+            return Blocks.PUMPKIN_STEM.getDefaultState();
+        }
+        if (itemStack.getItem() == Items.MELON_SEEDS) {
+            return Blocks.MELON_STEM.getDefaultState();
+        }
+
+        if (itemStack.getItem() instanceof IPlantable) {
+            return ((IPlantable) itemStack.getItem()).getPlant(world, pos);
+        }
+
+        return null;
+    }
 }

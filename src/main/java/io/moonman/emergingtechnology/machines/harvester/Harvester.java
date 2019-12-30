@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.machines.harvester;
 import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
@@ -43,9 +44,9 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int energyUsage = 0; //EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyUsage;
+        int energyUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage;
 
-        tooltip.add("EXPERIMENTAL - USE AT YOUR OWN RISK");
+        tooltip.add("EXPERIMENTAL");
         tooltip.add("Harvests crops automatically");
         tooltip.add("Requires " + energyUsage + "RF per cycle.");
     }
@@ -57,14 +58,6 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
         if (worldIn.isRemote) {
             return true;
         }
-
-        // TileEntity tileEntity = worldIn.getTileEntity(pos);
-
-        // if (tileEntity instanceof HarvesterTileEntity) {
-        //     HarvesterTileEntity harvesterTileEntity = (HarvesterTileEntity) tileEntity;
-            
-        //     harvesterTileEntity.setIsActive();
-        // }
 
         playerIn.openGui(EmergingTechnology.instance, Reference.GUI_HARVESTER, worldIn, pos.getX(), pos.getY(),
                 pos.getZ());
@@ -131,8 +124,6 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
 
     public static void setState(boolean active, World worldIn, BlockPos pos) {
         IBlockState state = worldIn.getBlockState(pos);
-
-        System.out.println("SetState: Harvester active was " + active);
 
         worldIn.setBlockState(pos, ModBlocks.harvester.getDefaultState().withProperty(FACING, state.getValue(FACING))
                 .withProperty(ACTIVE, active), 3);

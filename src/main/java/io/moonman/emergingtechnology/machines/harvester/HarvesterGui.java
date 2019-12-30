@@ -82,7 +82,7 @@ public class HarvesterGui extends GuiContainer {
 	private void renderTooltips(int mouseX, int mouseY) {
 
 		int energy = this.tileEntity.getField(0);
-		int maxEnergy = Reference.SCAFFOLDER_ENERGY_CAPACITY;
+		int maxEnergy = Reference.HARVESTER_ENERGY_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);

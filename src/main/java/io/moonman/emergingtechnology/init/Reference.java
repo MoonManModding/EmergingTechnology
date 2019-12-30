@@ -37,5 +37,5 @@ public class Reference {
 
     public static final int SCAFFOLDER_ENERGY_CAPACITY = 1000;
 
-    public static final int HARVESTER_ENERGY_CAPACITY = 1000;
+    public static final int HARVESTER_ENERGY_CAPACITY = 5000;
 }
