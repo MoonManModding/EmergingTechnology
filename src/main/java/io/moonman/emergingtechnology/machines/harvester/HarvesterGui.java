@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.machines.harvester;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
@@ -62,14 +61,9 @@ public class HarvesterGui extends GuiContainer {
 
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 9, energy, 7);
 
-		int progress = this.getProgressScaled(34);
-		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
-
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
-
-		
 	}
 
 	@Override
@@ -82,14 +76,7 @@ public class HarvesterGui extends GuiContainer {
 
 	private int getEnergyScaled(int scaled)
     {
-		// TODO: Update this
-		return (int) (tileEntity.getField(0) * scaled / Reference.SCAFFOLDER_ENERGY_CAPACITY);
-	}
-
-	private int getProgressScaled(int scaled)
-    {
-		// TODO: Update this
-		return (int) (tileEntity.getField(1) * scaled / EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken);
+		return (int) (tileEntity.getField(0) * scaled / Reference.HARVESTER_ENERGY_CAPACITY);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {

@@ -7,14 +7,12 @@ import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -39,7 +37,7 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class HarvesterTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SCAFFOLDER_ENERGY_CAPACITY) {
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
             super.onContentsChanged();
@@ -151,7 +149,9 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
 
             this.tryPlant();
 
-            if (this.requiresUpdate) {
+            this.pullItems();
+
+            if (this.requiresUpdate && !EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterDisableAnimations) {
                 Harvester.setState(this.isActive, getWorld(), getPos());
                 this.requiresUpdate = false;
             }
@@ -161,27 +161,46 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
     }
 
     public boolean canHarvest() {
-        BlockPos target = pos.offset(EnumFacing.NORTH);
-        IBlockState blockState = getWorld().getBlockState(target);
-
-        if (blockState == null)
+        if (getTargetBlockState() == null) {
             return false;
+        }
 
-        int age = PlantHelper.getPlantGrowthAtPosition(getWorld(), target);
+        if (outputFull()) {
+            return false;
+        }
+
+        if (!sufficientEnergy()) {
+            return false;
+        }
+
+        int age = PlantHelper.getPlantGrowthAtPosition(getWorld(), getTarget());
 
         return age == 7;
     }
 
     public void doHarvest() {
-        BlockPos target = pos.offset(EnumFacing.NORTH);
-        IBlockState blockState = getWorld().getBlockState(target);
-
-        if (blockState == null)
+        if (getTargetBlockState() == null)
             return;
 
-        world.destroyBlock(target, true);
-        List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(target));
+        world.destroyBlock(getTarget(), true);
+        pullItems();
+
+        useEnergy();
+    }
+
+    private void pullItems() {
+
+        if (!sufficientEnergy()) {
+            return;
+        }
+
+        if (getTargetBlockState() == null)
+            return;
+
+        List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(getTarget()));
         insertItems(entityItems);
+
+        useEnergy();
     }
 
     private void insertItems(List<EntityItem> entityItems) {
@@ -193,6 +212,14 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
                 ItemStack itemStack = entity.getItem().copy();
 
                 int slot = itemStack.getItem() instanceof IPlantable ? 0 : 1;
+
+                if (slot == 0 && inputFull()) {
+                    continue;
+                }
+
+                if (slot == 1 && outputFull()) {
+                    continue;
+                }
 
                 ItemStack itemStack1 = this.itemHandler.insertItem(slot, itemStack, false);
 
@@ -220,34 +247,57 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-        BlockPos cropTarget = pos.offset(EnumFacing.NORTH);
-        IBlockState cropBlockTarget = getWorld().getBlockState(cropTarget);
-
         // Probably not neccessary
-        if (cropBlockTarget == null) {
+        if (getTargetBlockState() == null) {
             return;
         }
 
         // If crop space is occupied, return
-        if (cropBlockTarget.getBlock() != Blocks.AIR) {
+        if (getTargetBlockState().getBlock() != Blocks.AIR) {
             return;
         }
 
-        BlockPos soilTarget = cropTarget.add(0, -1, 0);
+        BlockPos soilTarget = getTarget().add(0, -1, 0);
         IBlockState soilBlockTarget = getWorld().getBlockState(soilTarget);
 
         IPlantable seedToPlant = (IPlantable) inputStack.getItem();
 
         // If can't plant on block, return
-        if (!soilBlockTarget.getBlock().canSustainPlant(soilBlockTarget, getWorld(), soilTarget, EnumFacing.UP, seedToPlant)) {
+        if (!soilBlockTarget.getBlock().canSustainPlant(soilBlockTarget, getWorld(), soilTarget, EnumFacing.UP,
+                seedToPlant)) {
             return;
         }
 
         // If it's a crop, do planting.
-        if (seedToPlant.getPlantType(world, cropTarget) == EnumPlantType.Crop) {
-            world.setBlockState(cropTarget, seedToPlant.getPlant(world, cropTarget), 3);
+        // TODO: Expand to allow other crops/mods
+        if (seedToPlant.getPlantType(world, getTarget()) == EnumPlantType.Crop) {
+            world.setBlockState(getTarget(), seedToPlant.getPlant(world, getTarget()), 3);
             getInputStack().shrink(1);
         }
+    }
+
+    private boolean inputFull() {
+        return getInputStack().getCount() == this.getInputStack().getMaxStackSize();
+    }
+
+    private boolean outputFull() {
+        return getOutputStack().getCount() == this.getOutputStack().getMaxStackSize();
+    }
+
+    private boolean sufficientEnergy() {
+        return getEnergy() < EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage;
+    }
+
+    private int useEnergy() {
+       return energyHandler.extractEnergy(EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage, false);
+    }
+
+    private BlockPos getTarget() {
+        return getPos().offset(EnumFacing.NORTH);
+    }
+
+    private IBlockState getTargetBlockState() {
+        return getWorld().getBlockState(getTarget());
     }
 
     public ItemStack getInputStack() {
@@ -262,11 +312,6 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
 
     public int getEnergy() {
         return this.energyHandler.getEnergyStored();
-    }
-
-    public int getMaxProgress() {
-        // TODO: update this
-        return EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorBaseTimeTaken;
     }
 
     public boolean getIsActive() {
