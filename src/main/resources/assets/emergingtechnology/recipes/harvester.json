@@ -1,28 +1,34 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "PIP",
-    "IRI",
-    "IMI"
+    "pWp",
+    "BDB",
+    "OMO"
   ],
   "key": {
-    "P": {
+    "W": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "B": {
       "type": "forge:ore_dict",
       "ore": "blockPlastic"
     },
-    "R": {
+    "p": {
       "type": "forge:ore_dict",
       "ore": "stickPlastic"
     },
-    "I": {
-      "item": "minecraft:iron_ingot"
+    "D": {
+      "item": "minecraft:diamond"
     },
-    "M": {
+    "M" : {
       "item": "emergingtechnology:machinecase"
+    },
+    "O" : {
+      "item": "minecraft:obsidian"
     }
   },
   "result": {
-    "item": "emergingtechnology:hydroponic",
+    "item": "emergingtechnology:harvester",
     "count": 1
   }
 }
