@@ -24,7 +24,7 @@ public class RecipeProvider {
     public static List<SimpleRecipe> scaffolderRecipes = new ArrayList<>();
     public static List<FabricatorRecipe> fabricatorRecipes = new ArrayList<>();
     
-    public static CustomRecipesWrapper customRecipes;
+    public static CustomRecipesWrapper customRecipes = new CustomRecipesWrapper();
 
     public static void preInit(FMLPreInitializationEvent e) {
         CustomRecipeLoader.preInit(e);
