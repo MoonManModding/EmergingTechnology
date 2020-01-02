@@ -1,3 +1,5 @@
+<img src="images/logo.png">
+
 # Emerging Technology
 <p>A Minecraft mod exploring emerging technologies</p>
 
