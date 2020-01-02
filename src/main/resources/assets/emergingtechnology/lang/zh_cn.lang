@@ -5,6 +5,7 @@
 #HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=水培生长床
 item.emergingtechnology.harvester.name=Harvester
+item.emergingtechnology.filler.name=Water Filler
 item.emergingtechnology.light.name=水培生长灯
 item.emergingtechnology.frame.name=水培框架
 item.emergingtechnology.redbulb.name=红色灯泡
@@ -70,6 +71,7 @@ item.emergingtechnology.piezoelectric.name=发电砖
 #HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=水培生长床
 blocks.emergingtechnology.harvester.name=Harvester
+blocks.emergingtechnology.filler.name=Water Filler
 blocks.emergingtechnology.light.name=水培生长灯
 blocks.emergingtechnology.frame.name=水培框架
 
@@ -113,6 +115,7 @@ blocks.emergingtechnology.piezoelectric.name=发电砖
 #HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=水培生长床
 tile.emergingtechnology.harvester.name=Harvester
+tile.emergingtechnology.filler.name=Water Filler
 tile.emergingtechnology.light.name=水培生长灯
 tile.emergingtechnology.frame.name=水培框架
 

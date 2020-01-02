@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.config.hydroponics;
 
 import io.moonman.emergingtechnology.config.hydroponics.beds.HydroponicsModuleGrowBed;
+import io.moonman.emergingtechnology.config.hydroponics.filler.HydroponicsModuleFiller;
 import io.moonman.emergingtechnology.config.hydroponics.harvester.HydroponicsModuleHarvester;
 import io.moonman.emergingtechnology.config.hydroponics.lights.HydroponicsModuleGrowLight;
 import net.minecraftforge.common.config.Config.Comment;
@@ -18,5 +19,9 @@ public class HydroponicsModule {
     
     @Name("Harvester")
 	@Comment("Configure Harvester here")
-	public final HydroponicsModuleHarvester HARVESTER = new HydroponicsModuleHarvester();
+    public final HydroponicsModuleHarvester HARVESTER = new HydroponicsModuleHarvester();
+    
+    @Name("Filler")
+	@Comment("Configure Filler here")
+	public final HydroponicsModuleFiller FILLER = new HydroponicsModuleFiller();
 }

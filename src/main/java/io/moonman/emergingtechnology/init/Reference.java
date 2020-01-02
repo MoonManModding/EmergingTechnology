@@ -4,6 +4,10 @@ package io.moonman.emergingtechnology.init;
 Useful constant values for Emerging Technology
 */
 public class Reference {
+
+    // GLOBALS
+    public static final int TICK_RATE = 10;
+
     // GUI
     public static final int GUI_HYDROPONIC = 0;
     public static final int GUI_LIGHT = 1;
@@ -38,4 +42,6 @@ public class Reference {
     public static final int SCAFFOLDER_ENERGY_CAPACITY = 1000;
 
     public static final int HARVESTER_ENERGY_CAPACITY = 5000;
+
+    public static final int FILLER_FLUID_CAPACITY = 5000;
 }

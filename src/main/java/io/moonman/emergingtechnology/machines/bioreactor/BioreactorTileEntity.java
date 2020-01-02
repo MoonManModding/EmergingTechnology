@@ -75,8 +75,6 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
         }
     };
 
-    private int tick = 0;
-
     private int water = this.fluidHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
 
@@ -153,24 +151,12 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
     }
 
     @Override
-    public void update() {
+    public void cycle() {
 
-        if (isClient()) {
-            return;
-        }
+        this.setEnergy(this.energyHandler.getEnergyStored());
+        this.setWater(this.fluidHandler.getFluidAmount());
 
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
-
-            this.setEnergy(this.energyHandler.getEnergyStored());
-            this.setWater(this.fluidHandler.getFluidAmount());
-
-            doProcessing();
-
-            tick = 0;
-        }
+        doProcessing();
     }
 
     public void doProcessing() {
@@ -220,8 +206,7 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorEnergyUsage,
                 false);
 
-        this.fluidHandler.drain(EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorWaterUsage,
-                true);
+        this.fluidHandler.drain(EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.bioreactorWaterUsage, true);
 
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());

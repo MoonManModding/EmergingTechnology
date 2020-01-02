@@ -161,16 +161,7 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
     }
 
     @Override
-    public void update() {
-
-        if (isClient()) {
-            return;
-        }
-
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
+    public void cycle() {
 
             this.setWater(this.fluidHandler.getFluidAmount());
             this.setEnergy(this.energyHandler.getEnergyStored());
@@ -191,9 +182,6 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
             } else {
                 doWaterUsageProcess(growSucceeded);
             }
-
-            tick = 0;
-        }
     }
 
     public boolean doPowerUsageProcess() {

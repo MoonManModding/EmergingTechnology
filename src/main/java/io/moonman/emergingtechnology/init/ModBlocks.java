@@ -12,6 +12,7 @@ import io.moonman.emergingtechnology.block.blocks.ShreddedStarchBlock;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
+import io.moonman.emergingtechnology.machines.filler.Filler;
 import io.moonman.emergingtechnology.machines.harvester.Harvester;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.light.Light;
@@ -32,6 +33,7 @@ public class ModBlocks {
 	public static final Light light = null;
 	public static final Frame frame = null;
 	public static final Harvester harvester = null;
+	public static final Filler filler = null;
 	//endregion
 
 	//region Polymers Blocks

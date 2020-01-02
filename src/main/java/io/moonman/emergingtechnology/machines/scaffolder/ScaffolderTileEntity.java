@@ -38,7 +38,7 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         }
     };
 
-    public ItemStackHandler itemHandler = new ItemStackHandler(2) {
+    public ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -46,8 +46,25 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         }
 
         @Override
+        public int getSlotLimit(int slot) {
+            if (slot == 2) {
+                return 1;
+            }
+            
+            return super.getSlotLimit(slot);
+        }
+
+        @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return ScaffolderHelper.isItemStackValid(itemStack);
+            if (slot == 0) {
+                return ScaffolderHelper.isItemStackValidScaffold(itemStack);
+            }
+
+            if (slot == 2) {
+                return ScaffolderHelper.isItemStackValidSample(itemStack);
+            }
+
+            return false;
         }
     };
 
@@ -59,8 +76,25 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         }
 
         @Override
+        public int getSlotLimit(int slot) {
+            if (slot == 2) {
+                return 1;
+            }
+
+            return super.getSlotLimit(slot);
+        }
+
+        @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return ScaffolderHelper.isItemStackValid(itemStack);
+            if (slot == 0) {
+                return ScaffolderHelper.isItemStackValidScaffold(itemStack);
+            }
+
+            if (slot == 2) {
+                return ScaffolderHelper.isItemStackValidSample(itemStack);
+            }
+
+            return false;
         }
     };
 
@@ -131,43 +165,30 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
     }
 
     @Override
-    public void update() {
-
-        if (this.isClient()) {
-            return;
-        }
-
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
-
-            this.setEnergy(this.getEnergy());
-
-            doScaffoldingProcess();
-
-            tick = 0;
-        }
+    public void cycle() {
+        this.setEnergy(this.getEnergy());
+        doScaffoldingProcess();
     }
 
     public void doScaffoldingProcess() {
 
-        ItemStack inputStack = getInputStack();
+        ItemStack scaffoldStack = getScaffoldStack();
+        ItemStack sampleStack = getSampleStack();
 
         // Nothing in input stack
-        if (inputStack.getCount() == 0) {
+        if (scaffoldStack.getCount() == 0 || sampleStack.getCount() == 0) {
             this.setProgress(0);
             return;
         }
 
         // Can't scaffold this item
-        if (!ScaffolderHelper.isItemStackValid(inputStack)) {
+        if (!ScaffolderHelper.isItemStackValidScaffold(scaffoldStack) || !ScaffolderHelper.isItemStackValidSample(sampleStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = ScaffolderHelper.getPlannedStackFromItemStack(inputStack);
+        ItemStack plannedStack = ScaffolderHelper.getPlannedStackFromItemStack(sampleStack);
 
         // This is probably unneccessary
         if (plannedStack == null) {
@@ -198,7 +219,7 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
             return;
         }
 
-        getInputStack().shrink(1);
+        getScaffoldStack().shrink(1);
 
         if (outputStack.getCount() > 0) {
             outputStack.grow(1);
@@ -212,8 +233,12 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         this.setProgress(0);
     }
 
-    public ItemStack getInputStack() {
+    public ItemStack getScaffoldStack() {
         return itemHandler.getStackInSlot(0);
+    }
+
+    public ItemStack getSampleStack() {
+        return itemHandler.getStackInSlot(2);
     }
 
     public ItemStack getOutputStack() {

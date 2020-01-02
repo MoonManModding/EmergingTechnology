@@ -4,6 +4,7 @@
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Гидропонная Установка
 item.emergingtechnology.harvester.name=Harvester
+item.emergingtechnology.filler.name=Water Filler
 item.emergingtechnology.light.name=Фитолампа
 item.emergingtechnology.frame.name=Гидропонная рама
 
@@ -58,6 +59,7 @@ item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
 blocks.emergingtechnology.harvester.name=Harvester
+blocks.emergingtechnology.filler.name=Water Filler
 blocks.emergingtechnology.light.name=Фитолампа
 blocks.emergingtechnology.frame.name=Гидропонная рама
 
@@ -86,6 +88,7 @@ blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 #Tiles
 tile.emergingtechnology.hydroponic.name=Гидропонная Установка
 tile.emergingtechnology.harvester.name=Harvester
+tile.emergingtechnology.filler.name=Water Filler
 tile.emergingtechnology.light.name=Фитолампа
 tile.emergingtechnology.frame.name=Гидропонная рама
 

@@ -60,8 +60,6 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
 
     private int bulbTypeId = 0;
 
-    private int tick = 0;
-
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY)
@@ -124,34 +122,22 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
     }
 
     @Override
-    public void update() {
+    public void cycle() {
+        this.energy = this.energyHandler.getEnergyStored();
 
-        if (isClient()) {
-            return;
+        this.setBulbTypeId(getBulbTypeIdFromItemStack());
+
+        doPowerUsageProcess(bulbTypeId);
+
+        boolean hasPower = this.energyHandler.getEnergyStored() > 0;
+
+        // If lamp has power, try to grow plants below
+        if (hasPower) {
+            doGrowthMultiplierProcess(this.bulbTypeId);
         }
 
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
-
-            this.energy = this.energyHandler.getEnergyStored();
-
-            this.setBulbTypeId(getBulbTypeIdFromItemStack());
-
-            doPowerUsageProcess(bulbTypeId);
-
-            boolean hasPower = this.energyHandler.getEnergyStored() > 0;
-
-            // If lamp has power, try to grow plants below
-            if (hasPower) {
-                doGrowthMultiplierProcess(this.bulbTypeId);
-            }
-
-            Light.setState(hasPower || this.isGlowstonePowered(), LightHelper.getBulbColourFromBulbId(bulbTypeId), world, pos);
-
-            tick = 0;
-        }
+        Light.setState(hasPower || this.isGlowstonePowered(), LightHelper.getBulbColourFromBulbId(bulbTypeId), world,
+                pos);
 
     }
 
@@ -237,7 +223,8 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
 
                 if (dropoff > 0) {
                     growthProbabilityDropoffPenalty = dropoff * i;
-                };
+                }
+                ;
 
                 growthProbabilityThreshold -= growthProbabilityDropoffPenalty;
 
@@ -303,7 +290,7 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
         int blocksBelow = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange;
 
         for (int i = 1; i < blocksBelow + 1; i++) {
-            
+
             BlockPos position = this.pos.add(0, -i, 0);
 
             IBlockState blockStateBelow = this.world.getBlockState(position);

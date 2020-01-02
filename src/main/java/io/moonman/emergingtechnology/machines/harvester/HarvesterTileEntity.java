@@ -23,8 +23,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -134,7 +132,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-        if (tick < 10) {
+        if (tick < Reference.TICK_RATE) {
             tick++;
             return;
         } else {

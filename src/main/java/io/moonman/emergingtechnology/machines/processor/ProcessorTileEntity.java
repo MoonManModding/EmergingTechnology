@@ -66,8 +66,6 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
     };
 
-    private int tick = 0;
-
     private int water = this.fluidHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
 
@@ -144,24 +142,11 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
     }
 
     @Override
-    public void update() {
+    public void cycle() {
+        this.setEnergy(this.energyHandler.getEnergyStored());
+        this.setWater(this.fluidHandler.getFluidAmount());
 
-        if (isClient()) {
-            return;
-        }
-
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
-
-            this.setEnergy(this.energyHandler.getEnergyStored());
-            this.setWater(this.fluidHandler.getFluidAmount());
-
-            doProcessing();
-
-            tick = 0;
-        }
+        doProcessing();
     }
 
     public void doProcessing() {
@@ -182,7 +167,8 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
 
         ItemStack outputStack = getOutputStack();
         SimpleRecipe recipe = ProcessorHelper.getRecipeFromInputItemStack(inputStack);
-        //ItemStack plannedStack = ProcessorHelper.getPlannedStackFromItemStack(inputStack);
+        // ItemStack plannedStack =
+        // ProcessorHelper.getPlannedStackFromItemStack(inputStack);
 
         // This is probably unneccessary
         if (recipe == null) {
@@ -195,7 +181,8 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
 
         // Output stack incompatible/non-empty
-        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput()) && !StackHelper.isItemStackEmpty(outputStack)) {
+        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput())
+                && !StackHelper.isItemStackEmpty(outputStack)) {
             return;
         }
 
@@ -222,8 +209,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage,
                 false);
 
-        this.fluidHandler.drain(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage,
-                true);
+        this.fluidHandler.drain(EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage, true);
 
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());

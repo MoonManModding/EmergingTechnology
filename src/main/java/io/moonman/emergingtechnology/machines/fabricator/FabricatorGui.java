@@ -10,8 +10,10 @@ import io.moonman.emergingtechnology.gui.classes.GuiFabricatorButton;
 import io.moonman.emergingtechnology.gui.classes.GuiImageButton;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
+import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.network.FabricatorSelectionPacket;
@@ -41,11 +43,14 @@ public class FabricatorGui extends GuiContainer {
 	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
 
+	private static GuiRegion STATUS_REGION;
+
 	private final InventoryPlayer player;
 	private final FabricatorTileEntity tileEntity;
 
 	private int selection;
 	private boolean printing;
+	private FabricatorStatusEnum status;
 
 	private int nextButtonId;
 	private int previousButtonId;
@@ -59,6 +64,7 @@ public class FabricatorGui extends GuiContainer {
 		
 		this.selection = this.tileEntity.getField(2);
 		this.printing = this.tileEntity.getField(3) > 0;
+		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(4));
 
 		this.xSize = XSIZE;
 		this.ySize = YSIZE;
@@ -93,13 +99,15 @@ public class FabricatorGui extends GuiContainer {
 			this.drawTexturedModalRect(68, 52, 176, 51, progress, 1);
 		}
 
+		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(4));
+
+		if (statusWarning()) {
+			this.drawTexturedModalRect(90, 32, 176, 53, 5, 7);
+		}
+
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
-
-		// String pageLabel = Integer.toString(selection + 1);
-
-		// this.fontRenderer.drawString(pageLabel, (this.xSize / 2 - this.fontRenderer.getStringWidth(pageLabel) / 2) - 7, 21, GuiHelper.LABEL_COLOUR);
 	}
 
 	@Override
@@ -257,9 +265,15 @@ public class FabricatorGui extends GuiContainer {
 			if (button instanceof GuiFabricatorButton) {
 				GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
 				if (fabButton.hovered(mouseX, mouseY) && fabButton.visible) {
-					this.drawHoveringText(fabButton.list, mouseX, mouseY);
+					this.drawHoveringText(fabButton.getTooltip(this.status), mouseX, mouseY);
 				}
 			}
 		}
+
+		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(4));
+	}
+
+	private boolean statusWarning() {
+		return !(this.status == FabricatorStatusEnum.IDLE || this.status == FabricatorStatusEnum.RUNNING);
 	}
 }

@@ -1,6 +1,5 @@
 package io.moonman.emergingtechnology.helpers;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import com.google.common.collect.Iterables;
@@ -11,7 +10,6 @@ import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
 import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBeetroot;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockReed;

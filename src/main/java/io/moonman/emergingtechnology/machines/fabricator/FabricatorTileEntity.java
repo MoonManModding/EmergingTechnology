@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
+import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
@@ -66,8 +67,6 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         }
     };
 
-    private int tick = 0;
-
     private int energy = this.energyHandler.getEnergyStored();
 
     private int progress = 0;
@@ -75,6 +74,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
     private int selection = 0;
 
     private boolean printing = false;
+
+    private FabricatorStatusEnum status = FabricatorStatusEnum.IDLE;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -104,6 +105,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         this.setProgress(compound.getInteger("GuiProgress"));
         this.setSelection(compound.getInteger("GuiSelection"));
         this.setIsPrinting(compound.getInteger("GuiPrinting"));
+        this.setStatus(compound.getInteger("GuiStatus"));
 
         this.energyHandler.readFromNBT(compound);
     }
@@ -117,6 +119,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         compound.setInteger("GuiProgress", progress);
         compound.setInteger("GuiSelection", selection);
         compound.setInteger("GuiPrinting", getIsPrinting());
+        compound.setInteger("GuiStatus", getStatus());
 
         this.energyHandler.writeToNBT(compound);
 
@@ -141,28 +144,15 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
     }
 
     @Override
-    public void update() {
-
-        if (this.isClient()) {
-            return;
-        }
-
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
-
-            this.setEnergy(this.getEnergy());
-
-            this.doPrinting();
-
-            tick = 0;
-        }
+    public void cycle() {
+        this.setEnergy(this.getEnergy());
+        this.doPrinting();
     }
 
     public void doPrinting() {
 
         if (!this.printing) {
+            status = FabricatorStatusEnum.IDLE;
             return;
         }
 
@@ -171,6 +161,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         // Nothing in input stack
         if (inputStack.getCount() == 0) {
             this.setProgress(0);
+            status = FabricatorStatusEnum.INSUFFICIENT_INPUT;
             return;
         }
 
@@ -180,37 +171,44 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         // Recipe validation just in case
         if (recipe == null || recipe.getInput() == null || recipe.getOutput() == null || recipe.cost == 0) {
             this.setProgress(0);
+            status = FabricatorStatusEnum.ERROR;
             return;
         }
 
         // Check is correct input
         if (!StackHelper.compareItemStacks(inputStack, recipe.getInput())) {
+            status = FabricatorStatusEnum.INVALID_INPUT;
             return;
         }
 
         // Not enough items in input
         if (inputStack.getCount() < recipe.cost) {
+            status = FabricatorStatusEnum.INSUFFICIENT_INPUT;
             return;
         }
 
         // Output stack is full
         if (outputStack.getCount() == 64) {
+            status = FabricatorStatusEnum.OUTPUT_FULL;
             return;
         }
 
         // Output stack incompatible/non-empty
         if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput())
                 && !StackHelper.isItemStackEmpty(outputStack)) {
+            status = FabricatorStatusEnum.INVALID_OUTPUT;
             return;
         }
 
         // Not enough room in output stack
         if (outputStack.getCount() + recipe.getOutput().getCount() > recipe.getOutput().getMaxStackSize()) {
+            status = FabricatorStatusEnum.OUTPUT_FULL;
             return;
         }
 
         // Not enough energy
         if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage) {
+            status = FabricatorStatusEnum.INSUFFICIENT_ENERGY;
             return;
         }
 
@@ -222,6 +220,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         // Not enough operations performed
         if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorBaseTimeTaken) {
             this.setProgress(this.getProgress() + 1);
+            status = FabricatorStatusEnum.RUNNING;
             return;
         }
 
@@ -232,6 +231,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         } else {
             itemHandler.insertItem(1, recipe.getOutput().copy(), false);
         }
+
+        status = FabricatorStatusEnum.RUNNING;
 
         this.setProgress(0);
     }
@@ -262,6 +263,10 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         return this.printing ? 1 : 0;
     }
 
+    public int getStatus() {
+        return FabricatorStatusEnum.getId(status);
+    }
+
     public int getMaxProgress() {
         return EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorBaseTimeTaken;
     }
@@ -289,6 +294,10 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         this.printing = id > 0;
     }
 
+    private void setStatus(int id) {
+        this.status = FabricatorStatusEnum.getById(id);
+    }
+
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
@@ -310,6 +319,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             return this.getSelection();
         case 3:
             return this.getIsPrinting();
+        case 4:
+            return this.getStatus();
         default:
             return 0;
         }
@@ -328,6 +339,9 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             break;
         case 3:
             this.setIsPrinting(value);
+            break;
+        case 4:
+            this.setStatus(value);
             break;
         }
     }
@@ -409,13 +423,13 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         try {
 
-            int max = RecipeProvider.fabricatorRecipes.size() -1;
+            int max = RecipeProvider.fabricatorRecipes.size() - 1;
 
             Object[] arguments = args.toArray();
 
             if (arguments == null) {
                 message = "Invalid argument. Must be integer between 0 and " + max;
-                return new Object[] { success, message }; 
+                return new Object[] { success, message };
             }
 
             Double thing = (Double) arguments[0];
@@ -429,11 +443,11 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
                 success = true;
                 message = "Fabricator program set to " + program;
             }
-            
+
         } catch (Exception ex) {
             message = ex.toString();
         }
-        
+
         return new Object[] { success, message };
     }
 }

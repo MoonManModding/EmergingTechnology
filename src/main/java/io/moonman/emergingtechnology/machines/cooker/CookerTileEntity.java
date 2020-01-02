@@ -54,8 +54,6 @@ public class CookerTileEntity extends MachineTileBase implements ITickable, Simp
         }
     };
 
-    private int tick = 0;
-
     private int heat = 0;
 
     private int progress = 0;
@@ -88,7 +86,7 @@ public class CookerTileEntity extends MachineTileBase implements ITickable, Simp
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
-        
+
         compound.setInteger("GuiProgress", progress);
         compound.setInteger("GuiHeat", heat);
 
@@ -113,26 +111,13 @@ public class CookerTileEntity extends MachineTileBase implements ITickable, Simp
     }
 
     @Override
-    public void update() {
-
-        if (this.isClient()) {
-            return;
-        }
-
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
-
-            doHeatProcess();
-            doCookingProcess();
-
-            tick = 0;
-        }
+    public void cycle() {
+        doHeatProcess();
+        doCookingProcess();
     }
 
     public void doHeatProcess() {
- 
+
         boolean canSeeSky = world.canSeeSky(getPos());
         boolean isDayTime = world.isDaytime();
 

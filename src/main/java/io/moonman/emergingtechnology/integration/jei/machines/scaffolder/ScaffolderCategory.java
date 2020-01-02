@@ -19,13 +19,14 @@ public class ScaffolderCategory implements IRecipeCategory<ScaffolderRecipeWrapp
     public static final ResourceLocation TEXTURE = new ResourceLocation(
         EmergingTechnology.MODID + ":textures/jei/scaffoldergui.png");
 
-    private static final int INPUT_SLOT = 0;
+    private static final int INPUT_SLOT = 2;
     private static final int OUTPUT_SLOT = 1;
+    private static final int SCAFFOLD_SLOT = 0;
 
     private final IDrawable background;
     private final String localizedName;
     private int xSize = 175;
-    private int ySize = 80;
+    private int ySize = 100;
 
     public ScaffolderCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(TEXTURE, 0, 0, xSize, ySize);
@@ -74,6 +75,7 @@ public class ScaffolderCategory implements IRecipeCategory<ScaffolderRecipeWrapp
 
         guiStacks.init(INPUT_SLOT, true, 16, 34);
         guiStacks.init(OUTPUT_SLOT, false, 79, 34);
+        guiStacks.init(SCAFFOLD_SLOT, true, 79, 72);
 
         guiStacks.set(ingredients);
     }

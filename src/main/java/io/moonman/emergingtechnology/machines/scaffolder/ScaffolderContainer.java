@@ -24,17 +24,18 @@ public class ScaffolderContainer extends Container {
 
 		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
 		this.addSlotToContainer(new SlotItemHandler(handler, 1, 80, 35));
+		this.addSlotToContainer(new SlotItemHandler(handler, 2, 80, 72));
 
 		// Inventory
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 9; x++) {
-				this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
+				this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 104 + y * 18));
 			}
 		}
 
 		// Hotbar
 		for (int x = 0; x < 9; x++) {
-			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
+			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 162));
 		}
 	}
 	
@@ -77,14 +78,14 @@ public class ScaffolderContainer extends Container {
 			stack = fromStack.copy();
 
 			// If it's from the scaffolder, put in player's inventory
-			if (index < 2) {
-				if (!this.mergeItemStack(fromStack, 2, 38, false)) {
+			if (index < 3) {
+				if (!this.mergeItemStack(fromStack, 3, 38, false)) {
 					return ItemStack.EMPTY;
 				} else {
 					fromSlot.onSlotChanged();
 				}
 			} else {// Otherwise try to put it in input slot
-				if (!this.mergeItemStack(fromStack, 0, 1, false)) {
+				if (!this.mergeItemStack(fromStack, 0, 3, false)) {
 					return ItemStack.EMPTY;
 				} else {
 					fromSlot.onSlotChanged();

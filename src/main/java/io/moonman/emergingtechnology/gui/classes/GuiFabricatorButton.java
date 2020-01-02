@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.gui.classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -64,7 +65,13 @@ public class GuiFabricatorButton extends GuiButton {
         tooltips.add(this.itemStackToRender.getDisplayName());
         tooltips.add("Program " + this.id);
         tooltips.add("Requires " + this.cost + " " + this.inputName);
+        tooltips.add("Status: ");
 
         return tooltips;
+    }
+
+    public List<String> getTooltip(FabricatorStatusEnum status) {
+        list.set(3, "Status: " + status.toString());
+        return list;
     }
 }

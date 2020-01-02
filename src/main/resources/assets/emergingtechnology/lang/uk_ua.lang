@@ -4,6 +4,7 @@
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Гідропонна Установка
 item.emergingtechnology.harvester.name=Harvester
+item.emergingtechnology.filler.name=Water Filler
 item.emergingtechnology.light.name=Фітолампа
 item.emergingtechnology.frame.name=Гідропонная Рама
 
@@ -57,6 +58,7 @@ item.emergingtechnology.syntheticporkchopraw.name=Raw Synthetic Porkchop
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гідропонна Установка
 blocks.emergingtechnology.harvester.name=Harvester
+blocks.emergingtechnology.filler.name=Water Filler
 blocks.emergingtechnology.light.name=Фітолампа
 blocks.emergingtechnology.frame.name=Гідропонна Рама
 
@@ -86,6 +88,7 @@ blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 #Tiles
 tile.emergingtechnology.hydroponic.name=Гідропонна Установка
 tile.emergingtechnology.harvester.name=Harvester
+tile.emergingtechnology.filler.name=Water Filler
 tile.emergingtechnology.light.name=Фітолампа
 tile.emergingtechnology.frame.name=Гідропонна Рама
 

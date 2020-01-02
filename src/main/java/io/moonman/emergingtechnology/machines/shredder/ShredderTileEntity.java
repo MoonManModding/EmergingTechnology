@@ -66,8 +66,6 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
         }
     };
 
-    private int tick = 0;
-
     private int energy = this.energyHandler.getEnergyStored();
 
     private int progress = 0;
@@ -133,24 +131,11 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
     }
 
     @Override
-    public void update() {
+    public void cycle() {
+        this.setEnergy(this.getEnergy());
 
-        if (this.isClient()) {
-            return;
-        }
-
-        if (tick < 10) {
-            tick++;
-            return;
-        } else {
-
-            this.setEnergy(this.getEnergy());
-
-            doShreddingProcess();
-            doOutputProcess();
-
-            tick = 0;
-        }
+        doShreddingProcess();
+        doOutputProcess();
     }
 
     public void doShreddingProcess() {
