@@ -3,8 +3,8 @@
 # Item
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Гидропонная Установка
-item.emergingtechnology.harvester.name=Harvester
-item.emergingtechnology.filler.name=Water Filler
+item.emergingtechnology.harvester.name=Сборщик
+item.emergingtechnology.filler.name=Водяной Наполнитель
 item.emergingtechnology.light.name=Фитолампа
 item.emergingtechnology.frame.name=Гидропонная рама
 
@@ -16,101 +16,101 @@ item.emergingtechnology.purplebulb.name=Ультрафиолетовый Све�
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
-item.emergingtechnology.shreddedplastic.name=Shredded Plastic
-item.emergingtechnology.shreddedplant.name=Shredded Plant
-item.emergingtechnology.shreddedstarch.name=Shredded Starch
-item.emergingtechnology.filament.name=Filament
-item.emergingtechnology.plasticblock.name=Block of Plastic
-item.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
-item.emergingtechnology.plasticrod.name=Plastic Rod
-item.emergingtechnology.plasticsheet.name=Plastic Sheet
-item.emergingtechnology.machinecase.name=Basic Machine Case
-item.emergingtechnology.ladder.name=Plastic Ladder
-item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
+item.emergingtechnology.shreddedplastic.name=Измельченный Пластик
+item.emergingtechnology.shreddedplant.name=Измельченные Растения
+item.emergingtechnology.shreddedstarch.name=Измельченный Крахмал
+item.emergingtechnology.filament.name=Волокно
+item.emergingtechnology.plasticblock.name=Блок Пластика
+item.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
+item.emergingtechnology.plasticrod.name=Пластиковый Стержень
+item.emergingtechnology.plasticsheet.name=Пластиковый Лист
+item.emergingtechnology.machinecase.name=Простой Корпус Механизма
+item.emergingtechnology.ladder.name=Пластиковая Лестница
+item.emergingtechnology.plastictissuescaffold.name=Пластиковые Леса
 
-item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+item.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
+item.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
+item.emergingtechnology.shreddedstarchblock.name=Блок Измельченного Крахмала
 
 #SYNTHETICS MODULE
-item.emergingtechnology.cooker.name=Solar Cooker
-item.emergingtechnology.bioreactor.name=Tissue Bioreactor
-item.emergingtechnology.scaffolder.name=Tissue Scaffolder
+item.emergingtechnology.cooker.name=Солнечная Плита
+item.emergingtechnology.bioreactor.name=Тканевый Биореактор
+item.emergingtechnology.scaffolder.name=Сборщик Тканевых Лесов
 
-item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
-item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
-item.emergingtechnology.cowsyringe.name=Cow Tissue Syringe
-item.emergingtechnology.chickensyringe.name=Chicken Tissue Syringe
-item.emergingtechnology.emptysyringe.name=Empty Syringe
+item.emergingtechnology.pigsyringe.name=Шприц Свинных Клеток
+item.emergingtechnology.horsesyringe.name=Шприц Лошадиных Клеток
+item.emergingtechnology.cowsyringe.name=Шприц Коровьих Клеток
+item.emergingtechnology.chickensyringe.name=Шприц Куриных Клеток
+item.emergingtechnology.emptysyringe.name=Пустой Шприц
 
-item.emergingtechnology.pigsample.name=Pig Tissue Sample
-item.emergingtechnology.horsesample.name=Horse Tissue Sample
-item.emergingtechnology.cowsample.name=Cow Tissue Sample
-item.emergingtechnology.chickensample.name=Chicken Tissue Sample
+item.emergingtechnology.pigsample.name=Образец Свинных Клеток
+item.emergingtechnology.horsesample.name=Образец Лошадиных Клеток
+item.emergingtechnology.cowsample.name=Образец Коровьих Клеток
+item.emergingtechnology.chickensample.name=Образец Куриных Клеток
 
-item.emergingtechnology.syntheticbeefraw.name=Raw Synthetic Beef
-item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
-item.emergingtechnology.syntheticporkchopraw.name=Raw Synthetic Porkchop
+item.emergingtechnology.syntheticbeefraw.name=Сырая Синтетическая Говядина
+item.emergingtechnology.syntheticchickenraw.name=Сырая Синтетическая Курица
+item.emergingtechnology.syntheticporkchopraw.name=Сырая Синтетическая Свинина
 
 #ELECTRICS MODULE
-item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+item.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
 
 #Blocks
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
-blocks.emergingtechnology.harvester.name=Harvester
-blocks.emergingtechnology.filler.name=Water Filler
+blocks.emergingtechnology.harvester.name=Сборщик
+blocks.emergingtechnology.filler.name=Водяной Наполнитель
 blocks.emergingtechnology.light.name=Фитолампа
 blocks.emergingtechnology.frame.name=Гидропонная рама
 
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
-blocks.emergingtechnology.plasticblock.name=Block of Plastic
-blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
-blocks.emergingtechnology.machinecase.name=Basic Machine Case
-blocks.emergingtechnology.ladder.name=Plastic Ladder
+blocks.emergingtechnology.plasticblock.name=Блок Пластика
+blocks.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
+blocks.emergingtechnology.machinecase.name=Простой Корпус Механизма
+blocks.emergingtechnology.ladder.name=Пластиковая Лестница
 
-blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+blocks.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
+blocks.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
+blocks.emergingtechnology.shreddedstarchblock.name=Блок Измельченного Крахмала
 
 #SYNTHETICS MODULE
-blocks.emergingtechnology.cooker.name=Solar Cooker
-blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
-blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
+blocks.emergingtechnology.cooker.name=Солнечная Плита
+blocks.emergingtechnology.bioreactor.name=Тканевый Биореактор
+blocks.emergingtechnology.scaffolder.name=Сборщик Тканевых Лесов
 
 #ELECTRICS MODULE
-blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+blocks.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
 
 #Containers
 
 #Tiles
 tile.emergingtechnology.hydroponic.name=Гидропонная Установка
-tile.emergingtechnology.harvester.name=Harvester
-tile.emergingtechnology.filler.name=Water Filler
+tile.emergingtechnology.harvester.name=Сборщик
+tile.emergingtechnology.filler.name=Водяной Наполнитель
 tile.emergingtechnology.light.name=Фитолампа
 tile.emergingtechnology.frame.name=Гидропонная рама
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Процессор
 tile.emergingtechnology.shredder.name=Измельчитель
-tile.emergingtechnology.plasticblock.name=Block of Plastic
-tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
-tile.emergingtechnology.machinecase.name=Basic Machine Case
-tile.emergingtechnology.ladder.name=Plastic Ladder
+tile.emergingtechnology.plasticblock.name=Блок Пластика
+tile.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
+tile.emergingtechnology.machinecase.name=Простой Корпус Механизма
+tile.emergingtechnology.ladder.name=Пластиковая Лестница
 
-tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
-tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
-tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+tile.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
+tile.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
+tile.emergingtechnology.shreddedstarchblock.name=Блок Измельченного Крахмала
 
 #SYNTHETICS MODULE
-tile.emergingtechnology.cooker.name=Solar Cooker
-tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
-tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
+tile.emergingtechnology.cooker.name=Солнечная Плита
+tile.emergingtechnology.bioreactor.name=Тканевый Биореактор
+tile.emergingtechnology.scaffolder.name=Сборщик Тканевых Лесов
 
 #ELECTRICS MODULE
-tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+tile.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology
