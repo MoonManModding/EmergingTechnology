@@ -26,7 +26,7 @@ item.emergingtechnology.plasticrod.name=Пластиковый Стержень
 item.emergingtechnology.plasticsheet.name=Пластиковый Лист
 item.emergingtechnology.machinecase.name=Простой Корпус Механизма
 item.emergingtechnology.ladder.name=Пластиковая Лестница
-item.emergingtechnology.plastictissuescaffold.name=Пластиковые Леса
+item.emergingtechnology.plastictissuescaffold.name=Пластиковая Основа Ткани
 
 item.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
 item.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
@@ -35,7 +35,7 @@ item.emergingtechnology.shreddedstarchblock.name=Блок Измельченно
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Солнечная Плита
 item.emergingtechnology.bioreactor.name=Тканевый Биореактор
-item.emergingtechnology.scaffolder.name=Сборщик Тканевых Лесов
+item.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
 
 item.emergingtechnology.pigsyringe.name=Шприц Свинных Клеток
 item.emergingtechnology.horsesyringe.name=Шприц Лошадиных Клеток
@@ -78,7 +78,7 @@ blocks.emergingtechnology.shreddedstarchblock.name=Блок Измельченн
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=Солнечная Плита
 blocks.emergingtechnology.bioreactor.name=Тканевый Биореактор
-blocks.emergingtechnology.scaffolder.name=Сборщик Тканевых Лесов
+blocks.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
@@ -107,7 +107,7 @@ tile.emergingtechnology.shreddedstarchblock.name=Блок Измельченно
 #SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=Солнечная Плита
 tile.emergingtechnology.bioreactor.name=Тканевый Биореактор
-tile.emergingtechnology.scaffolder.name=Сборщик Тканевых Лесов
+tile.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
