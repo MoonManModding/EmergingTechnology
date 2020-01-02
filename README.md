@@ -1,6 +1,4 @@
-<img src="images/Logo.png" alt="Emerging Technology" height="42" width="42">
-
-# Emerging Technology
+# <img src="images/Logo.png" alt="Emerging Technology" height="42" width="42"> Emerging Technology
 <p>A Minecraft mod exploring emerging technologies</p>
 
 By MoonManModding.
