@@ -209,6 +209,7 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
     @Override
     public int getMetaFromState(IBlockState state) {
         int meta = state.getValue(FACING).getIndex() + (state.getValue(HAS_WATER) ? 8 : 0);
+        System.out.println(meta);
         return meta;
     }
 }
