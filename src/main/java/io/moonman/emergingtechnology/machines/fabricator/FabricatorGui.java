@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiFabricatorButton;
+import io.moonman.emergingtechnology.gui.classes.GuiFabricatorStatus;
 import io.moonman.emergingtechnology.gui.classes.GuiImageButton;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
@@ -43,7 +44,7 @@ public class FabricatorGui extends GuiContainer {
 	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
 
-	private static GuiRegion STATUS_REGION;
+	private GuiFabricatorStatus statusIndicator;
 
 	private final InventoryPlayer player;
 	private final FabricatorTileEntity tileEntity;
@@ -160,6 +161,8 @@ public class FabricatorGui extends GuiContainer {
 		buttonList.add(nextButton);
 		buttonList.add(playButton);
 		buttonList.add(stopButton);
+
+		statusIndicator = new GuiFabricatorStatus(this.guiLeft + 90, this.guiTop + 32);
 	}
 
 	@Override
@@ -265,12 +268,15 @@ public class FabricatorGui extends GuiContainer {
 			if (button instanceof GuiFabricatorButton) {
 				GuiFabricatorButton fabButton = (GuiFabricatorButton) button;
 				if (fabButton.hovered(mouseX, mouseY) && fabButton.visible) {
-					this.drawHoveringText(fabButton.getTooltip(this.status), mouseX, mouseY);
+					this.drawHoveringText(fabButton.list, mouseX, mouseY);
 				}
 			}
 		}
 
-		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(4));
+		if (statusWarning() && statusIndicator.isMouseOver(mouseX, mouseY)) {
+			String message = statusIndicator.getMessageForStatus(this.status);
+			this.drawHoveringText(message, mouseX, mouseY);
+		}
 	}
 
 	private boolean statusWarning() {

@@ -65,13 +65,7 @@ public class GuiFabricatorButton extends GuiButton {
         tooltips.add(this.itemStackToRender.getDisplayName());
         tooltips.add("Program " + this.id);
         tooltips.add("Requires " + this.cost + " " + this.inputName);
-        tooltips.add("Status: ");
 
         return tooltips;
-    }
-
-    public List<String> getTooltip(FabricatorStatusEnum status) {
-        list.set(3, "Status: " + status.toString());
-        return list;
     }
 }

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IRI",
+    "WRW",
+    "IMI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "stickPlastic"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:filler",
+    "count": 1
+  }
+}

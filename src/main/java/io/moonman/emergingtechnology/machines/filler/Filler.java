@@ -3,12 +3,12 @@ package io.moonman.emergingtechnology.machines.filler;
 import java.util.List;
 
 import io.moonman.emergingtechnology.machines.GeneratorBase;
-import io.moonman.emergingtechnology.machines.MachineBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -60,6 +60,8 @@ public class Filler extends GeneratorBase implements ITileEntityProvider {
             if (bucket.getEmpty().isEmpty()) {
                 playerIn.setHeldItem(EnumHand.MAIN_HAND, FluidUtil.getFilledBucket(new FluidStack(FluidRegistry.WATER, 1000)));
             }
+        } else if (itemHeld == Items.BUCKET) {
+            playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Items.WATER_BUCKET));
         }
 
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
