@@ -25,7 +25,9 @@ public class OreRegistrationHandler {
             ModBlocks.processor,
             ModBlocks.machinecase,
             ModBlocks.cooker,
-            ModBlocks.bioreactor
+            ModBlocks.bioreactor,
+            ModBlocks.scaffolder,
+            ModBlocks.fabricator
         };
 
         Block[] blockPlastic = new Block[] {
@@ -48,15 +50,15 @@ public class OreRegistrationHandler {
             ModItems.plasticsheet
         };
 
-        Item[] dustPlastic = new Item[] {
-            ModItems.shreddedplastic,
-            ModItems.shreddedstarch
-        };
+        // Item[] dustPlastic = new Item[] {
+        //     ModItems.shreddedplastic,
+        //     ModItems.shreddedstarch
+        // };
 
-        Item[] orePlastic = new Item[] {
-            ModItems.shreddedplastic,
-            ModItems.shreddedstarch
-        };
+        // Item[] orePlastic = new Item[] {
+        //     ModItems.shreddedplastic,
+        //     ModItems.shreddedstarch
+        // };
 
         Item[] itemPlastic = new Item[] {
             
@@ -84,8 +86,8 @@ public class OreRegistrationHandler {
         registerBlocks(blockGlass, "blockGlass");
         registerItems(sheetPlastic, "sheetPlastic");
         registerItems(platePlastic, "platePlastic");
-        registerItems(dustPlastic, "dustPlastic");
-        registerItems(orePlastic, "orePlastic");
+        // registerItems(dustPlastic, "dustPlastic");
+        // registerItems(orePlastic, "orePlastic");
         registerItems(itemPlastic, "itemPlastic");
         registerItems(stickPlastic, "stickPlastic");
         registerItems(bioplastic, "bioplastic");

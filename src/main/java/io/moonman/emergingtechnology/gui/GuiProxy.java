@@ -3,6 +3,9 @@ package io.moonman.emergingtechnology.gui;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorContainer;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorGui;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
+import io.moonman.emergingtechnology.machines.collector.CollectorContainer;
+import io.moonman.emergingtechnology.machines.collector.CollectorGui;
+import io.moonman.emergingtechnology.machines.collector.CollectorTileEntity;
 import io.moonman.emergingtechnology.machines.cooker.CookerContainer;
 import io.moonman.emergingtechnology.machines.cooker.CookerGui;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
@@ -66,6 +69,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof HarvesterTileEntity) {
             return new HarvesterContainer(player.inventory, (HarvesterTileEntity) te);
         }
+        if (te instanceof CollectorTileEntity) {
+            return new CollectorContainer(player.inventory, (CollectorTileEntity) te);
+        }
         return null;
     }
 
@@ -117,6 +123,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof HarvesterTileEntity) {
             HarvesterTileEntity containerTileEntity = (HarvesterTileEntity) te;
             return new HarvesterGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof CollectorTileEntity) {
+            CollectorTileEntity containerTileEntity = (CollectorTileEntity) te;
+            return new CollectorGui(player.inventory, containerTileEntity);
         }
 
         return null;

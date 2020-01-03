@@ -16,4 +16,8 @@ public class PolymersModule {
     @Name("Fabricator")
 	@Comment("Configure the Fabricator here")
     public final PolymersModuleFabricator FABRICATOR = new PolymersModuleFabricator();
+
+    @Name("Collector")
+	@Comment("Configure the Collector here")
+    public final PolymersModuleCollector COLLECTOR = new PolymersModuleCollector();
 }

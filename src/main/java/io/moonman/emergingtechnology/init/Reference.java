@@ -18,6 +18,7 @@ public class Reference {
     public static final int GUI_SCAFFOLDER = 6;
     public static final int GUI_COOKER = 7;
     public static final int GUI_HARVESTER = 8;
+    public static final int GUI_COLLECTOR = 9;
 
     // STORAGE SIZES
     public static final int HYDROPONIC_FLUID_CAPACITY = 1000;

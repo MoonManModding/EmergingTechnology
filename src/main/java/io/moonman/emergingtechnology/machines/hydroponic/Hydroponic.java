@@ -27,6 +27,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
@@ -56,6 +57,9 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
     {
         int fluidUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle;
 
+        TextComponentTranslation translation = new TextComponentTranslation("info.emergingtechnology.hydroponic.test");
+
+        tooltip.add(translation.getFormattedText());
         tooltip.add("Plants grown on this block can receive a growth boost.");
         tooltip.add("Requires a growth medium to provide boost.");
         tooltip.add("Requires at least " + fluidUsage + "MB of fluid per cycle to function");

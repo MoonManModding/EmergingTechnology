@@ -36,6 +36,8 @@ import io.moonman.emergingtechnology.item.synthetics.syringes.HorseSyringe;
 import io.moonman.emergingtechnology.item.synthetics.syringes.PigSyringe;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
+import io.moonman.emergingtechnology.machines.collector.Collector;
+import io.moonman.emergingtechnology.machines.collector.CollectorTileEntity;
 import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
@@ -72,12 +74,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Registers blocks, items and models for Emerging Technology
+ * TODO: Improve and organise
  */
 public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {
         final Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Light(), new Frame(), new Processor(), new Shredder(),
-                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Cooker(),
+                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Collector(), new Cooker(),
                 new Ladder(), new Piezoelectric(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
                 new ShreddedStarchBlock(), new Bioreactor(), new Scaffolder() };
 
@@ -88,6 +91,7 @@ public class RegistrationHandler {
         GameRegistry.registerTileEntity(ProcessorTileEntity.class, getResourceLocation("processor"));
         GameRegistry.registerTileEntity(ShredderTileEntity.class, getResourceLocation("shredder"));
         GameRegistry.registerTileEntity(FabricatorTileEntity.class, getResourceLocation("fabricator"));
+        GameRegistry.registerTileEntity(CollectorTileEntity.class, getResourceLocation("collector"));
         GameRegistry.registerTileEntity(CookerTileEntity.class, getResourceLocation("cooker"));
         GameRegistry.registerTileEntity(PiezoelectricTileEntity.class, getResourceLocation("piezoelectric"));
         GameRegistry.registerTileEntity(BioreactorTileEntity.class, getResourceLocation("bioreactor"));
@@ -107,7 +111,7 @@ public class RegistrationHandler {
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light, ModBlocks.processor, ModBlocks.shredder,
-                ModBlocks.fabricator, ModBlocks.cooker, ModBlocks.bioreactor, ModBlocks.scaffolder,
+                ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker, ModBlocks.bioreactor, ModBlocks.scaffolder,
                 ModBlocks.piezoelectric, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
                 ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
                 ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock };
@@ -130,6 +134,7 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.processor));
         registerModel(Item.getItemFromBlock(ModBlocks.shredder));
         registerModel(Item.getItemFromBlock(ModBlocks.fabricator));
+        registerModel(Item.getItemFromBlock(ModBlocks.collector));
         registerModel(Item.getItemFromBlock(ModBlocks.cooker));
         registerModel(Item.getItemFromBlock(ModBlocks.bioreactor));
         registerModel(Item.getItemFromBlock(ModBlocks.scaffolder));

@@ -122,3 +122,5 @@ tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
+
+info.emergingtechnology.hydroponic.test=This is a test.

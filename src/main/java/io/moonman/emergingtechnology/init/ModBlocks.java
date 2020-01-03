@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.block.blocks.ShreddedPlantBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedStarchBlock;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
+import io.moonman.emergingtechnology.machines.collector.Collector;
 import io.moonman.emergingtechnology.machines.cooker.Cooker;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
 import io.moonman.emergingtechnology.machines.filler.Filler;
@@ -43,6 +44,7 @@ public class ModBlocks {
 	public static final ClearPlasticBlock clearplasticblock = null;
 	public static final MachineCase machinecase = null;
 	public static final Fabricator fabricator = null;
+	public static final Collector collector = null;
 	public static final Ladder ladder = null;
 
 	public static final ShreddedPlantBlock shreddedplantblock = null;
