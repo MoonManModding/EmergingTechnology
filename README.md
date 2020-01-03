@@ -1,7 +1,5 @@
-# Emerging Technology
-<p>A Minecraft mod exploring emerging technologies</p>
-
-By MoonManModding.
+# <img src="images/Logo.png" alt="Emerging Technology" height="42" width="42"> Emerging Technology
+<p>A Minecraft mod exploring emerging technologies by MoonManModding</p>
 
 If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
 
@@ -35,7 +33,7 @@ Currently incompatible with power/crops:
 
 The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. In terms of pumping water into the grow beds, this mod should also be compatible with any mod that uses IFluidHandler and CapabilityFluidHandler. Manipulating inventory is available through ItemStackHandler. 
 
-The Grow Beds and Lights can also be integrated into OpenComputers. Take a look at the <a href="https://github.com/MoonManModding/EmergingTechnology/blob/master/open-computers-example.lua">example program</a> for more details. 
+The Grow Beds and Lights can also be integrated into OpenComputers. Take a look at the <a href="https://github.com/MoonManModding/EmergingTechnology/blob/master/examples/open-computers-example.lua">example program</a> for more details. 
 
 # About 🔬
 
