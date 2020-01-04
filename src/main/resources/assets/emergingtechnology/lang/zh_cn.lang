@@ -4,8 +4,8 @@
 
 #HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=水培生长床
-item.emergingtechnology.harvester.name=Harvester
-item.emergingtechnology.filler.name=Water Filler
+item.emergingtechnology.harvester.name=收割器
+item.emergingtechnology.filler.name=注水机
 item.emergingtechnology.light.name=水培生长灯
 item.emergingtechnology.frame.name=水培框架
 item.emergingtechnology.redbulb.name=红色灯泡
@@ -18,6 +18,7 @@ item.emergingtechnology.purplebulb.name=紫外线灯泡
 #POLYMERS MODULE
 item.emergingtechnology.processor.name=加工机
 item.emergingtechnology.shredder.name=切碎机
+item.emergingtechnology.collector.name=Collector
 item.emergingtechnology.shreddedplastic.name=粉碎塑料
 item.emergingtechnology.shreddedplant.name=粉碎植物
 item.emergingtechnology.shreddedstarch.name=淀粉
@@ -27,9 +28,9 @@ item.emergingtechnology.clearplasticblock.name=透明塑料块
 item.emergingtechnology.plasticrod.name=塑料棒
 item.emergingtechnology.plasticsheet.name=塑料板
 item.emergingtechnology.machinecase.name=基本机壳
-item.emergingtechnology.fabricator.name=制造机
+item.emergingtechnology.fabricator.name=打印机
 item.emergingtechnology.ladder.name=塑料梯子
-item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
+item.emergingtechnology.plastictissuescaffold.name=塑料组织支架
 
 item.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
 item.emergingtechnology.shreddedplantblock.name=粉碎植物块
@@ -70,8 +71,8 @@ item.emergingtechnology.piezoelectric.name=发电砖
 
 #HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=水培生长床
-blocks.emergingtechnology.harvester.name=Harvester
-blocks.emergingtechnology.filler.name=Water Filler
+blocks.emergingtechnology.harvester.name=收割器
+blocks.emergingtechnology.filler.name=注水机
 blocks.emergingtechnology.light.name=水培生长灯
 blocks.emergingtechnology.frame.name=水培框架
 
@@ -80,10 +81,11 @@ blocks.emergingtechnology.frame.name=水培框架
 #POLYMERS MODULE
 blocks.emergingtechnology.processor.name=加工机
 blocks.emergingtechnology.shredder.name=切碎机
+blocks.emergingtechnology.collector.name=Collector
 blocks.emergingtechnology.plasticblock.name=塑料块
 blocks.emergingtechnology.clearplasticblock.name=透明塑料块
 blocks.emergingtechnology.machinecase.name=基本机壳
-blocks.emergingtechnology.fabricator.name=制造机
+blocks.emergingtechnology.fabricator.name=打印机
 blocks.emergingtechnology.ladder.name=塑料梯子
 
 blocks.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
@@ -114,8 +116,8 @@ blocks.emergingtechnology.piezoelectric.name=发电砖
 
 #HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=水培生长床
-tile.emergingtechnology.harvester.name=Harvester
-tile.emergingtechnology.filler.name=Water Filler
+tile.emergingtechnology.harvester.name=收割器
+tile.emergingtechnology.filler.name=注水机
 tile.emergingtechnology.light.name=水培生长灯
 tile.emergingtechnology.frame.name=水培框架
 
@@ -127,7 +129,7 @@ tile.emergingtechnology.shredder.name=切碎机
 tile.emergingtechnology.plasticblock.name=塑料块
 tile.emergingtechnology.clearplasticblock.name=透明塑料块
 tile.emergingtechnology.machinecase.name=基本机壳
-tile.emergingtechnology.fabricator.name=制造机
+tile.emergingtechnology.fabricator.name=打印机
 tile.emergingtechnology.ladder.name=塑料梯子
 
 tile.emergingtechnology.shreddedplasticblock.name=碎塑料块

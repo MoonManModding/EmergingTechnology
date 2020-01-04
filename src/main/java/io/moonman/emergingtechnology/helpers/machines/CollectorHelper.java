@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.helpers.machines;
 import java.util.Random;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import net.minecraft.block.Block;
@@ -19,6 +20,9 @@ import net.minecraft.world.biome.Biome;
  * Provides useful methods for the Collector
  */
 public class CollectorHelper {
+
+    private static ItemStack PAPER = new ItemStack(Items.PAPER);
+    private static ItemStack PLASTIC = new ItemStack(ModItems.shreddedplastic);
 
     public static boolean isInValidBiome(Biome biome) {
         return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN;
@@ -53,10 +57,14 @@ public class CollectorHelper {
         int random = new Random().nextInt(101);
 
         if (random < 50) {
-            return new ItemStack(ModItems.shreddedplastic);
+            return PLASTIC.copy();
         } else {
-            return new ItemStack(Items.PAPER);
+            return PAPER.copy();
         }
+    }
+
+    public static boolean isValidItemStack(ItemStack itemStack) {
+        return StackHelper.compareItemStacks(itemStack, PAPER) || StackHelper.compareItemStacks(itemStack, PLASTIC);
     }
 
     private static boolean isValidNeighbour(IBlockState state) {

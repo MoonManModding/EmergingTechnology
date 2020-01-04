@@ -31,6 +31,11 @@ public class CollectorTileEntity extends MachineTileBase implements ITickable {
             markDirty();
             super.onContentsChanged(slot);
         }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return CollectorHelper.isValidItemStack(itemStack);
+        }
     };
 
     @Override

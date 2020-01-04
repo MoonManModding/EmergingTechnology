@@ -14,6 +14,7 @@ item.emergingtechnology.purplebulb.name=UV Bulb
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processor
 item.emergingtechnology.shredder.name=Shredder
+item.emergingtechnology.collector.name=Collector
 item.emergingtechnology.shreddedplastic.name=Shredded Plastic
 item.emergingtechnology.shreddedplant.name=Shredded Plant
 item.emergingtechnology.shreddedstarch.name=Shredded Starch
@@ -68,6 +69,7 @@ blocks.emergingtechnology.frame.name=Hydroponic Frame
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processor
 blocks.emergingtechnology.shredder.name=Shredder
+blocks.emergingtechnology.collector.name=Collector
 blocks.emergingtechnology.plasticblock.name=Block of Plastic
 blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
@@ -101,6 +103,7 @@ tile.emergingtechnology.frame.name=Hydroponic Frame
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processor
 tile.emergingtechnology.shredder.name=Shredder
+tile.emergingtechnology.collector.name=Collector
 tile.emergingtechnology.plasticblock.name=Block of Plastic
 tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
 tile.emergingtechnology.machinecase.name=Basic Machine Case
@@ -122,3 +125,5 @@ tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
+
+info.emergingtechnology.hydroponic.test=This is a test.

@@ -16,6 +16,7 @@ item.emergingtechnology.purplebulb.name=Ультрафиолетовый Све�
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
+item.emergingtechnology.collector.name=Collector
 item.emergingtechnology.shreddedplastic.name=Измельченный Пластик
 item.emergingtechnology.shreddedplant.name=Измельченные Растения
 item.emergingtechnology.shreddedstarch.name=Измельченный Крахмал
@@ -66,6 +67,7 @@ blocks.emergingtechnology.frame.name=Гидропонная рама
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
+blocks.emergingtechnology.collector.name=Collector
 blocks.emergingtechnology.plasticblock.name=Блок Пластика
 blocks.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
 blocks.emergingtechnology.machinecase.name=Простой Корпус Механизма
@@ -95,6 +97,7 @@ tile.emergingtechnology.frame.name=Гидропонная рама
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Процессор
 tile.emergingtechnology.shredder.name=Измельчитель
+tile.emergingtechnology.collector.name=Collector
 tile.emergingtechnology.plasticblock.name=Блок Пластика
 tile.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
 tile.emergingtechnology.machinecase.name=Простой Корпус Механизма

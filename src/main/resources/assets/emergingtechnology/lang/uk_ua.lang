@@ -16,6 +16,7 @@ item.emergingtechnology.purplebulb.name=Ультрафіолетовий Сві�
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
+item.emergingtechnology.collector.name=Collector
 item.emergingtechnology.shreddedplastic.name=Shredded Plastic
 item.emergingtechnology.shreddedplant.name=Shredded Plant
 item.emergingtechnology.shreddedstarch.name=Shredded Starch
@@ -65,6 +66,7 @@ blocks.emergingtechnology.frame.name=Гідропонна Рама
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
+blocks.emergingtechnology.collector.name=Collector
 blocks.emergingtechnology.plasticblock.name=Block of Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
 blocks.emergingtechnology.ladder.name=Plastic Ladder
@@ -94,8 +96,11 @@ tile.emergingtechnology.frame.name=Гідропонна Рама
 
 # POLYMERS MODULE
 tile.emergingtechnology.plasticblock.name=Block of Plastic
+tile.emergingtechnology.collector.name=Collector
 tile.emergingtechnology.machinecase.name=Basic Machine Case
 tile.emergingtechnology.ladder.name=Plastic Ladder
+tile.emergingtechnology.processor.name=Процессор
+tile.emergingtechnology.shredder.name=Измельчитель
 
 tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
 tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
