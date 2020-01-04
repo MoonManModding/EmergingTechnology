@@ -16,10 +16,11 @@ item.emergingtechnology.purplebulb.name=Ampoule à UV
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processeur
 item.emergingtechnology.shredder.name=Déchiqueteuse
-item.emergingtechnology.collector.name=Collector
+item.emergingtechnology.collector.name=Waste Collector
 item.emergingtechnology.shreddedplastic.name=Granulats de plastique
 item.emergingtechnology.shreddedplant.name=Granulats de matières végétales
 item.emergingtechnology.shreddedstarch.name=Granulats d'amidon
+item.emergingtechnology.plasticwaste.name=Plastic Waste
 item.emergingtechnology.filament.name=Filament de plastique
 item.emergingtechnology.plasticblock.name=Bloc de plastique
 item.emergingtechnology.clearplasticblock.name=Bloc de plastique transparent
@@ -71,7 +72,7 @@ blocks.emergingtechnology.frame.name=Chassis de table hydroponique
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processeur
 blocks.emergingtechnology.shredder.name=Déchiqueteuse
-blocks.emergingtechnology.collector.name=Collector
+blocks.emergingtechnology.collector.name=Waste Collector
 blocks.emergingtechnology.plasticblock.name=Bloc de plastique
 blocks.emergingtechnology.clearplasticblock.name=Bloc de plastique transparent
 blocks.emergingtechnology.machinecase.name=Boîtier de machine basique
@@ -104,7 +105,7 @@ tile.emergingtechnology.frame.name=Chassis de table hydroponique
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processeur
 tile.emergingtechnology.shredder.name=Déchiqueteuse
-tile.emergingtechnology.collector.name=Collector
+tile.emergingtechnology.collector.name=Waste Collector
 tile.emergingtechnology.plasticblock.name=Bloc de plastique
 tile.emergingtechnology.clearplasticblock.name=Bloc de plastique transparent
 tile.emergingtechnology.machinecase.name=Boîtier de machine basique

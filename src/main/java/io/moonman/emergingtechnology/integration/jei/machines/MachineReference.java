@@ -22,4 +22,7 @@ public class MachineReference {
     
     public static final String SCAFFOLDER_NAME = ModBlocks.scaffolder.getLocalizedName();
     public static final String SCAFFOLDER_UID = EmergingTechnology.MODID + ":scaffolder";
+
+    public static final String COLLECTOR_NAME = ModBlocks.collector.getLocalizedName();
+    public static final String COLLECTOR_UID = EmergingTechnology.MODID + ":collector";
 }

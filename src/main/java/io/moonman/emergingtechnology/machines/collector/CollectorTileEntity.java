@@ -111,10 +111,12 @@ public class CollectorTileEntity extends MachineTileBase implements ITickable {
 
             for (int i = 0; i < 5; i++) {
 
-                this.itemHandler.insertItem(i, recoveredItemStack, false);
+                ItemStack remainder = this.itemHandler.insertItem(i, recoveredItemStack, false);
 
+                if (StackHelper.isItemStackEmpty(remainder)) {
+                    return;
+                }
             }
-
         }
     }
 

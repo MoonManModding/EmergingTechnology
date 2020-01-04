@@ -5,6 +5,8 @@ import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.integration.jei.machines.MachineReference;
 import io.moonman.emergingtechnology.integration.jei.machines.bioreactor.BioreactorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.bioreactor.BioreactorRecipeWrapper;
+import io.moonman.emergingtechnology.integration.jei.machines.collector.CollectorCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.collector.CollectorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorCategory;
@@ -57,7 +59,7 @@ public class JEIIntegration implements IModPlugin {
 
         registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper),
                 new CookerCategory(helper), new FabricatorCategory(helper), new BioreactorCategory(helper),
-                new ScaffolderCategory(helper));
+                new ScaffolderCategory(helper), new CollectorCategory(helper));
     }
 
     @Override
@@ -89,6 +91,10 @@ public class JEIIntegration implements IModPlugin {
         registry.handleRecipes(SimpleRecipe.class, ScaffolderRecipeWrapper::new, MachineReference.SCAFFOLDER_UID);
         registry.addRecipes(RecipeProvider.scaffolderRecipes, MachineReference.SCAFFOLDER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.scaffolder), MachineReference.SCAFFOLDER_UID);
+
+        registry.handleRecipes(SimpleRecipe.class, CollectorRecipeWrapper::new, MachineReference.COLLECTOR_UID);
+        registry.addRecipes(RecipeProvider.collectorRecipes, MachineReference.COLLECTOR_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.collector), MachineReference.COLLECTOR_UID);
 
         EmergingTechnology.logger.info("Registered with JEI.");
     }

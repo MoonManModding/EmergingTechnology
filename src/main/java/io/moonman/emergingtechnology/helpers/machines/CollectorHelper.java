@@ -4,7 +4,6 @@ import java.util.Random;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +21,7 @@ import net.minecraft.world.biome.Biome;
 public class CollectorHelper {
 
     private static ItemStack PAPER = new ItemStack(Items.PAPER);
-    private static ItemStack PLASTIC = new ItemStack(ModItems.shreddedplastic);
+    private static ItemStack PLASTIC = new ItemStack(ModItems.plasticwaste);
 
     public static boolean isInValidBiome(Biome biome) {
         return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN;

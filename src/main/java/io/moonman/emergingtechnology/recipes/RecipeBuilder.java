@@ -31,6 +31,7 @@ public class RecipeBuilder {
         buildFabricatorRecipeList();
         buildBioreactorRecipes();
         buildScaffolderRecipes();
+        buildCollectorRecipes();
 
         registerFilamentFurnaceRecipes();
     }
@@ -70,6 +71,11 @@ public class RecipeBuilder {
         RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.horsesample, Items.LEATHER));
         RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.pigsample, ModItems.syntheticporkchopraw));
         RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.cowsample, ModItems.syntheticbeefraw));
+    }
+
+    private static void buildCollectorRecipes() {
+        RecipeProvider.collectorRecipes.add(createSimpleRecipe(Items.AIR, ModItems.plasticwaste));
+        RecipeProvider.collectorRecipes.add(createSimpleRecipe(Items.AIR, Items.PAPER));
     }
 
     private static void registerCookerRecipes(List<ItemStack> inputs) {
@@ -145,6 +151,7 @@ public class RecipeBuilder {
         itemInputs.add(new ItemStack(ModItems.greenbulb));
         itemInputs.add(new ItemStack(ModItems.bluebulb));
         itemInputs.add(new ItemStack(ModItems.purplebulb));
+        itemInputs.add(new ItemStack(ModItems.plasticwaste));
 
         List<String> oreInputs = new ArrayList<String>();
 

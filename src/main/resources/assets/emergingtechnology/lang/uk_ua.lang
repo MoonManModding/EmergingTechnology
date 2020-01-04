@@ -16,10 +16,11 @@ item.emergingtechnology.purplebulb.name=Ультрафіолетовий Сві�
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
-item.emergingtechnology.collector.name=Collector
+item.emergingtechnology.collector.name=Waste Collector
 item.emergingtechnology.shreddedplastic.name=Shredded Plastic
 item.emergingtechnology.shreddedplant.name=Shredded Plant
 item.emergingtechnology.shreddedstarch.name=Shredded Starch
+item.emergingtechnology.plasticwaste.name=Plastic Waste
 item.emergingtechnology.filament.name=Filament
 item.emergingtechnology.plasticblock.name=Block of Plastic
 item.emergingtechnology.plasticrod.name=Plastic Rod
@@ -66,7 +67,7 @@ blocks.emergingtechnology.frame.name=Гідропонна Рама
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
-blocks.emergingtechnology.collector.name=Collector
+blocks.emergingtechnology.collector.name=Waste Collector
 blocks.emergingtechnology.plasticblock.name=Block of Plastic
 blocks.emergingtechnology.machinecase.name=Basic Machine Case
 blocks.emergingtechnology.ladder.name=Plastic Ladder
@@ -96,7 +97,7 @@ tile.emergingtechnology.frame.name=Гідропонна Рама
 
 # POLYMERS MODULE
 tile.emergingtechnology.plasticblock.name=Block of Plastic
-tile.emergingtechnology.collector.name=Collector
+tile.emergingtechnology.collector.name=Waste Collector
 tile.emergingtechnology.machinecase.name=Basic Machine Case
 tile.emergingtechnology.ladder.name=Plastic Ladder
 tile.emergingtechnology.processor.name=Процессор

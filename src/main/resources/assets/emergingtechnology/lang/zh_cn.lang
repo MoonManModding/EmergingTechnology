@@ -18,10 +18,11 @@ item.emergingtechnology.purplebulb.name=紫外线灯泡
 #POLYMERS MODULE
 item.emergingtechnology.processor.name=加工机
 item.emergingtechnology.shredder.name=切碎机
-item.emergingtechnology.collector.name=Collector
+item.emergingtechnology.collector.name=Waste Collector
 item.emergingtechnology.shreddedplastic.name=粉碎塑料
 item.emergingtechnology.shreddedplant.name=粉碎植物
 item.emergingtechnology.shreddedstarch.name=淀粉
+item.emergingtechnology.plasticwaste.name=Plastic Waste
 item.emergingtechnology.filament.name=化纤长丝
 item.emergingtechnology.plasticblock.name=塑料块
 item.emergingtechnology.clearplasticblock.name=透明塑料块
@@ -81,7 +82,7 @@ blocks.emergingtechnology.frame.name=水培框架
 #POLYMERS MODULE
 blocks.emergingtechnology.processor.name=加工机
 blocks.emergingtechnology.shredder.name=切碎机
-blocks.emergingtechnology.collector.name=Collector
+blocks.emergingtechnology.collector.name=Waste Collector
 blocks.emergingtechnology.plasticblock.name=塑料块
 blocks.emergingtechnology.clearplasticblock.name=透明塑料块
 blocks.emergingtechnology.machinecase.name=基本机壳
@@ -126,6 +127,7 @@ tile.emergingtechnology.frame.name=水培框架
 #POLYMERS MODULE
 tile.emergingtechnology.processor.name=加工机
 tile.emergingtechnology.shredder.name=切碎机
+tile.emergingtechnology.collector.name=Waste Collector
 tile.emergingtechnology.plasticblock.name=塑料块
 tile.emergingtechnology.clearplasticblock.name=透明塑料块
 tile.emergingtechnology.machinecase.name=基本机壳

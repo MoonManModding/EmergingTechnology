@@ -1,15 +1,9 @@
 package io.moonman.emergingtechnology.machines.collector;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
-import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
-import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
-import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
-import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;

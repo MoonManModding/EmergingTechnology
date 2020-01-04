@@ -3,7 +3,7 @@ package io.moonman.emergingtechnology.machines.collector;
 import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.init.ModBlocks;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
 import net.minecraft.block.SoundType;
@@ -14,7 +14,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemLilyPad;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -39,7 +38,11 @@ public class Collector extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add("Slowly collects plastic when placed in water in Ocean Biomes.");
+        int blockCount = EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.minimumWaterBlocks;
+
+        tooltip.add("Slowly collects plastic when placed in water.");
+        tooltip.add("Only functions in Ocean and Beach biomes.");
+        tooltip.add("Requires at least " + blockCount + " surrounding water blocks and must be placed at water's surface.");
     }
 
     @Override
