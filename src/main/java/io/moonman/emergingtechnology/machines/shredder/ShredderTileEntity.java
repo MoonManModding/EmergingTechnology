@@ -186,13 +186,10 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
             return;
         }
 
-        getInputStack().shrink(1);
-
-        if (outputStack.getCount() > 0) {
-            outputStack.grow(1);
-        } else {
-            itemHandler.insertItem(1, plannedStack, false);
-        }
+        
+        itemHandler.insertItem(1, plannedStack.copy(), false);
+        itemHandler.extractItem(0, 1, false);
+        
 
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
                 false);
@@ -214,8 +211,13 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
         ProcessorTileEntity targetTileEntity = (ProcessorTileEntity) downNeighbour;
 
-        ItemStack itemStack = itemHandler.extractItem(1, 1, false);
-        targetTileEntity.itemHandler.insertItem(0, itemStack, false);
+        ItemStackHandler targetStackHandler = targetTileEntity.itemHandler;
+
+        ItemStack remainder = targetStackHandler.insertItem(0, getOutputStack().copy(), false);
+
+        if (StackHelper.isItemStackEmpty(remainder)) {
+            this.itemHandler.extractItem(1, 1, false);
+        }
     }
 
     public ItemStack getInputStack() {

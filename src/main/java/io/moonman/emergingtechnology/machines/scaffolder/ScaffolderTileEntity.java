@@ -219,13 +219,8 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
             return;
         }
 
-        getScaffoldStack().shrink(1);
-
-        if (outputStack.getCount() > 0) {
-            outputStack.grow(1);
-        } else {
-            itemHandler.insertItem(1, plannedStack, false);
-        }
+        itemHandler.insertItem(1, plannedStack.copy(), false);
+        itemHandler.extractItem(0, 1, false);
 
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage,
                 false);

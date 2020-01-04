@@ -224,13 +224,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             return;
         }
 
-        getInputStack().shrink(recipe.cost);
-
-        if (outputStack.getCount() > 0) {
-            outputStack.grow(recipe.getOutput().getCount());
-        } else {
-            itemHandler.insertItem(1, recipe.getOutput().copy(), false);
-        }
+        itemHandler.insertItem(1, recipe.getOutput().copy(), false);
+        itemHandler.extractItem(0, recipe.cost, false);
 
         status = FabricatorStatusEnum.RUNNING;
 

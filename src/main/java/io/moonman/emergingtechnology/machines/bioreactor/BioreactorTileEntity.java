@@ -217,13 +217,8 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
             return;
         }
 
-        getInputStack().shrink(1);
-
-        if (outputStack.getCount() > 0) {
-            outputStack.grow(1);
-        } else {
-            itemHandler.insertItem(1, plannedStack, false);
-        }
+        itemHandler.insertItem(1, plannedStack.copy(), false);
+        itemHandler.extractItem(0, 1, false);
 
         this.setProgress(0);
     }

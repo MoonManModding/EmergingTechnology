@@ -275,7 +275,8 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
 
         world.setBlockState(getTarget(), blockStateToPlace, 3);
-        getInputStack().shrink(1);
+        
+        this.itemHandler.extractItem(0, 1, false);
     }
 
     private boolean inputFull() {

@@ -105,23 +105,15 @@ public class CollectorTileEntity extends MachineTileBase implements ITickable {
             ItemStack recoveredItemStack = CollectorHelper.getRandomRecoveredItemStack();
 
             for (int i = 0; i < 5; i++) {
-                ItemStack currentStack = this.itemHandler.getStackInSlot(i);
 
-                if (StackHelper.isItemStackEmpty(currentStack)) {
-                    this.itemHandler.insertItem(i, recoveredItemStack, false);
-                    return;
-                }
+                this.itemHandler.insertItem(i, recoveredItemStack, false);
 
-                if (StackHelper.compareItemStacks(recoveredItemStack, currentStack)) {
-                    currentStack.grow(i);
-                    return;
-                }
             }
 
         }
     }
 
-    private void checkHasInventory(){
+    private void checkHasInventory() {
         boolean newHasInventory = hasInventory();
         if (newHasInventory != this.hasInventory) {
             this.requiresUpdate = true;
