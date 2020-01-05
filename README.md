@@ -21,6 +21,7 @@ Emerging Technology works with the following mods:
 - OpenComputers (full support)
 - NuclearCraft
 - XNET
+- Thermal Series
 - AgriCraft (requires some setup)
 
 Untested but likely compatible:
