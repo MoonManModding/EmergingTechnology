@@ -40,7 +40,7 @@ public class Collector extends MachineBase implements ITileEntityProvider {
     {
         int blockCount = EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.minimumWaterBlocks;
 
-        tooltip.add("Slowly collects plastic when placed in water.");
+        tooltip.add("Slowly collects waste plastic when placed in water.");
         tooltip.add("Only functions in Ocean and Beach biomes.");
         tooltip.add("Requires at least " + blockCount + " surrounding water blocks and must be placed at water's surface.");
     }

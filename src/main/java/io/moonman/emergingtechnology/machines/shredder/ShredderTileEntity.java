@@ -7,14 +7,12 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ShredderHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
-import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -135,7 +133,6 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
         this.setEnergy(this.getEnergy());
 
         doShreddingProcess();
-        doOutputProcess();
     }
 
     public void doShreddingProcess() {
@@ -195,29 +192,6 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
                 false);
 
         this.setProgress(0);
-    }
-
-    public void doOutputProcess() {
-
-        if (StackHelper.isItemStackEmpty(getOutputStack())) {
-            return;
-        }
-
-        TileEntity downNeighbour = this.world.getTileEntity(this.pos.add(0, -1, 0));
-
-        if (downNeighbour instanceof ProcessorTileEntity == false) {
-            return;
-        }
-
-        ProcessorTileEntity targetTileEntity = (ProcessorTileEntity) downNeighbour;
-
-        ItemStackHandler targetStackHandler = targetTileEntity.itemHandler;
-
-        ItemStack remainder = targetStackHandler.insertItem(0, getOutputStack().copy(), false);
-
-        if (StackHelper.isItemStackEmpty(remainder)) {
-            this.itemHandler.extractItem(1, 1, false);
-        }
     }
 
     public ItemStack getInputStack() {
