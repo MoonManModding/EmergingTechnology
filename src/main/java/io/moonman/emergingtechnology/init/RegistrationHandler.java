@@ -11,6 +11,7 @@ import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlantBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedStarchBlock;
+import io.moonman.emergingtechnology.item.electrics.Biomass;
 import io.moonman.emergingtechnology.item.hydroponics.BlueBulb;
 import io.moonman.emergingtechnology.item.hydroponics.GreenBulb;
 import io.moonman.emergingtechnology.item.hydroponics.PurpleBulb;
@@ -108,7 +109,7 @@ public class RegistrationHandler {
                 new ShreddedPlant(), new ShreddedStarch(), new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
                 new EmptySyringe(), new CowSample(), new CowSyringe(), new ChickenSample(), new ChickenSyringe(),
                 new PigSample(), new PigSyringe(), new HorseSample(), new HorseSyringe(), new SyntheticBeefRaw(),
-                new SyntheticChickenRaw(), new SyntheticPorkchopRaw() };
+                new SyntheticChickenRaw(), new SyntheticPorkchopRaw(), new Biomass() };
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light, ModBlocks.processor, ModBlocks.shredder,
@@ -182,6 +183,8 @@ public class RegistrationHandler {
         registerModel(ModItems.syntheticbeefraw);
         registerModel(ModItems.syntheticchickenraw);
         registerModel(ModItems.syntheticporkchopraw);
+
+        registerModel(ModItems.biomass);
 
         // Hydroponic TESR
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0,

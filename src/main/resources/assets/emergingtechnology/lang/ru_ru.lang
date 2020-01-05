@@ -56,6 +56,9 @@ item.emergingtechnology.syntheticporkchopraw.name=Сырая Синтетиче�
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
+item.emergingtechnology.biomass.name=Biomass
+item.emergingtechnology.biomassgenerator.name=Biomass Generator
+item.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #Blocks
 # HYDROPONICS MODULE
@@ -85,6 +88,9 @@ blocks.emergingtechnology.scaffolder.name=Структурный Сборщик 
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
+blocks.emergingtechnology.biomass.name=Biomass
+blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
+blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #Containers
 
@@ -115,6 +121,9 @@ tile.emergingtechnology.scaffolder.name=Структурный Сборщик Т
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
+tile.emergingtechnology.biomass.name=Biomass
+tile.emergingtechnology.biomassgenerator.name=Biomass Generator
+tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #ItemGroup
 itemGroup.technologytab=Emerging Technology

@@ -58,6 +58,9 @@ item.emergingtechnology.scaffolder.name=Appareil à morphogenèse
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
+item.emergingtechnology.biomass.name=Biomass
+item.emergingtechnology.biomassgenerator.name=Biomass Generator
+item.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 
 #Blocks
@@ -89,6 +92,9 @@ blocks.emergingtechnology.scaffolder.name=Appareil à morphogenèse
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
+blocks.emergingtechnology.biomass.name=Biomass
+blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
+blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #Containers
 
@@ -124,6 +130,9 @@ tile.emergingtechnology.scaffolder.name=Appareil à morphogenèse
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
+tile.emergingtechnology.biomass.name=Biomass
+tile.emergingtechnology.biomassgenerator.name=Biomass Generator
+tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #ItemGroup
 

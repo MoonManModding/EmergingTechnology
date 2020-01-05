@@ -33,7 +33,7 @@ public class RecipeBuilder {
         buildScaffolderRecipes();
         buildCollectorRecipes();
 
-        registerFilamentFurnaceRecipes();
+        registerFurnaceRecipes();
     }
 
     private static void buildProcessorRecipes() {
@@ -195,9 +195,10 @@ public class RecipeBuilder {
         return inputs;
     }
 
-    private static void registerFilamentFurnaceRecipes() {
-        ItemStack result = new ItemStack(ModItems.filament);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.plasticblock), result, 0.1f);
+    private static void registerFurnaceRecipes() {
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.plasticblock), new ItemStack(ModItems.filament), 0.1f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedplant), new ItemStack(ModItems.biomass), 0.1f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedstarch), new ItemStack(ModItems.biomass), 0.1f);
     }
 
     private static void buildFabricatorRecipeList() {

@@ -84,6 +84,6 @@ public class ModItems {
 	// Block Items
 	public static final Item piezoelectric = null;
 	// Items
-
+	public static final Item biomass = null;
 	//endregion
 }

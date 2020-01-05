@@ -55,7 +55,10 @@ item.emergingtechnology.bioreactor.name=Tissue Bioreactor
 item.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
-item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+item.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+item.emergingtechnology.biomass.name=Biomass
+item.emergingtechnology.biomassgenerator.name=Biomass Generator
+item.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 
 #Blocks
@@ -87,7 +90,11 @@ blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
 blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
-blocks.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+blocks.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+blocks.emergingtechnology.biomass.name=Biomass
+blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
+blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
+
 
 #Containers
 
@@ -121,7 +128,10 @@ tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
 tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
-tile.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+tile.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+tile.emergingtechnology.biomass.name=Biomass
+tile.emergingtechnology.biomassgenerator.name=Biomass Generator
+tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #ItemGroup
 

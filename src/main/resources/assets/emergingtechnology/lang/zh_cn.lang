@@ -13,8 +13,6 @@ item.emergingtechnology.greenbulb.name=绿色灯泡
 item.emergingtechnology.bluebulb.name=蓝色灯泡
 item.emergingtechnology.purplebulb.name=紫外线灯泡
 
- 
-
 #POLYMERS MODULE
 item.emergingtechnology.processor.name=加工机
 item.emergingtechnology.shredder.name=切碎机
@@ -37,8 +35,6 @@ item.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
 item.emergingtechnology.shreddedplantblock.name=粉碎植物块
 item.emergingtechnology.shreddedstarchblock.name=淀粉块
 
- 
-
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=太阳能烤箱
 item.emergingtechnology.bioreactor.name=生物组织反应机
@@ -59,16 +55,13 @@ item.emergingtechnology.syntheticbeefraw.name=生合成牛肉
 item.emergingtechnology.syntheticchickenraw.name=生合成鸡肉
 item.emergingtechnology.syntheticporkchopraw.name=生合成猪肉
 
- 
-
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=发电砖
-
- 
+item.emergingtechnology.biomass.name=Biomass
+item.emergingtechnology.biomassgenerator.name=Biomass Generator
+item.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #Blocks
-
- 
 
 #HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=水培生长床
@@ -76,8 +69,6 @@ blocks.emergingtechnology.harvester.name=收割器
 blocks.emergingtechnology.filler.name=注水机
 blocks.emergingtechnology.light.name=水培生长灯
 blocks.emergingtechnology.frame.name=水培框架
-
- 
 
 #POLYMERS MODULE
 blocks.emergingtechnology.processor.name=加工机
@@ -93,27 +84,20 @@ blocks.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
 blocks.emergingtechnology.shreddedplantblock.name=粉碎植物块
 blocks.emergingtechnology.shreddedstarchblock.name=淀粉块
 
- 
-
 #SYNTHETICS MODULE
 blocks.emergingtechnology.cooker.name=太阳能烤箱
 blocks.emergingtechnology.bioreactor.name=生物组织反应机
 blocks.emergingtechnology.scaffolder.name=生物组织合成机
 
- 
-
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=发电砖
-
- 
+blocks.emergingtechnology.biomass.name=Biomass
+blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
+blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #Containers
 
- 
-
 #Tiles
-
- 
 
 #HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=水培生长床
@@ -121,8 +105,6 @@ tile.emergingtechnology.harvester.name=收割器
 tile.emergingtechnology.filler.name=注水机
 tile.emergingtechnology.light.name=水培生长灯
 tile.emergingtechnology.frame.name=水培框架
-
- 
 
 #POLYMERS MODULE
 tile.emergingtechnology.processor.name=加工机
@@ -138,19 +120,16 @@ tile.emergingtechnology.shreddedplasticblock.name=碎塑料块
 tile.emergingtechnology.shreddedplantblock.name=碎植物块
 tile.emergingtechnology.shreddedstarchblock.name=淀粉块
 
- 
-
 #SYNTHETICS MODULE
 tile.emergingtechnology.cooker.name=太阳能烤箱
 tile.emergingtechnology.bioreactor.name=生物组织反应机
 tile.emergingtechnology.scaffolder.name=生物组织合成机
 
- 
-
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=发电砖
-
- 
+tile.emergingtechnology.biomass.name=Biomass
+tile.emergingtechnology.biomassgenerator.name=Biomass Generator
+tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 
 #ItemGroup
 

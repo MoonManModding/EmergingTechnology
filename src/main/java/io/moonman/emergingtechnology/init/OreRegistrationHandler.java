@@ -76,8 +76,16 @@ public class OreRegistrationHandler {
             ModItems.shreddedstarch
         };
 
-        Item[] filament = new Item[] {
+        Item[] filamentPlastic = new Item[] {
             ModItems.filament
+        };
+
+        Item[] biomass = new Item[] {
+            ModItems.biomass
+        };
+
+        Item[] dustBiomass = new Item[] {
+            ModItems.biomass
         };
 
         registerBlocks(machinePlastic, "machinePlastic");
@@ -92,7 +100,9 @@ public class OreRegistrationHandler {
         registerItems(stickPlastic, "stickPlastic");
         registerItems(bioplastic, "bioplastic");
         registerItems(starch, "starch");
-        registerItems(filament, "filament");
+        registerItems(filamentPlastic, "filamentPlastic");
+        registerItems(biomass, "biomass");
+        registerItems(dustBiomass, "dustBiomass");
     }
 
     private static void registerBlocks(Block[] blocks, String name) {
