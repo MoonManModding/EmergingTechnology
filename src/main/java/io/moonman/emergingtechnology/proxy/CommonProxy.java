@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
+import io.moonman.emergingtechnology.providers.ModTissueProvider;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.init.OreRegistrationHandler;
@@ -52,6 +53,7 @@ public abstract class CommonProxy {
         ModBulbProvider.preInit(e);
         ModMediumProvider.preInit(e);
         ModFluidProvider.preInit(e);
+        ModTissueProvider.preInit(e);
         RecipeProvider.preInit(e);
 
         PacketHandler.registerMessages(EmergingTechnology.MODID);

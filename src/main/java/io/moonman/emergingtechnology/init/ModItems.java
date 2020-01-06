@@ -63,15 +63,9 @@ public class ModItems {
 
 	public static final Item emptysyringe = null;
 
-	public static final Item horsesyringe = null;
-	public static final Item pigsyringe = null;
-	public static final Item cowsyringe = null;
-	public static final Item chickensyringe = null;
+	public static final Item fullsyringe = null;
 
-	public static final Item horsesample = null;
-	public static final Item pigsample = null;
-	public static final Item cowsample = null;
-	public static final Item chickensample = null;
+	public static final Item sample = null;
 
 	public static final Item syntheticbeefraw = null;
 	public static final Item syntheticchickenraw = null;

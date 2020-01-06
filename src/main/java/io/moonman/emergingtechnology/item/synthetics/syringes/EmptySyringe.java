@@ -2,13 +2,11 @@ package io.moonman.emergingtechnology.item.synthetics.syringes;
 
 import java.util.List;
 
-import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
+import io.moonman.emergingtechnology.providers.ModTissueProvider;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -19,8 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EmptySyringe extends SyringeItemBase {
 
+    private static final String _name = "empty";
+
     public EmptySyringe() {
-        super("empty");
+        super(_name, "");
     }
 
     @SideOnly(Side.CLIENT)
@@ -38,26 +38,20 @@ public class EmptySyringe extends SyringeItemBase {
             return false;
         }
 
-        if (target instanceof EntityCow) {
-            playerIn.setHeldItem(hand, new ItemStack(ModItems.cowsyringe));
-            return true;
-        }
+        String entityId = EntityList.getKey(target).toString();
 
-        if (target instanceof EntityPig) {
-            playerIn.setHeldItem(hand, new ItemStack(ModItems.pigsyringe));
-            return true;
-        }
+        ItemStack itemStack = ModTissueProvider.getSyringeItemStackByEntityId(entityId);
 
-        if (target instanceof EntityChicken) {
-            playerIn.setHeldItem(hand, new ItemStack(ModItems.chickensyringe));
-            return true;
-        }
-
-        if (target instanceof EntityHorse){
-            playerIn.setHeldItem(hand, new ItemStack(ModItems.horsesyringe));
+        if (!StackHelper.isItemStackEmpty(itemStack)) {
+            playerIn.setHeldItem(hand, itemStack);
             return true;
         }
 
         return false;
+    }
+
+    public String getItemStackDisplayName(ItemStack stack)
+    {
+        return "Empty Tissue Syringe";
     }
 }

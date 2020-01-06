@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class SyringeItemBase extends ItemBase {
+public class SampleItemBase extends ItemBase {
 
     private String _name = "";
     public String entityId = "";
 
-    public SyringeItemBase(String name, String entityId) {
-        super(name + "syringe");
+    public SampleItemBase(String name, String entityId) {
+        super(name + "sample");
         this._name = name;
         this.entityId = entityId;
     }
@@ -23,11 +23,11 @@ public class SyringeItemBase extends ItemBase {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add("A syringe containing " + this._name + " tissue.");
+        tooltip.add("A sample containing " + this._name + " tissue.");
     }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return "Syringe of " + this._name + " Tissue";
+        return this._name + " Tissue Sample";
     }
 }

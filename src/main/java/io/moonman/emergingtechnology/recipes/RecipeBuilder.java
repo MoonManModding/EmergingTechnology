@@ -56,21 +56,23 @@ public class RecipeBuilder {
     }
 
     private static void buildBioreactorRecipes() {
-        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.chickensyringe, ModItems.chickensample));
-        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.horsesyringe, ModItems.horsesample));
-        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.pigsyringe, ModItems.pigsample));
-        RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.cowsyringe, ModItems.cowsample));
+        //TODO: Implement new method
+        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.chickensyringe, ModItems.chickensample));
+        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.horsesyringe, ModItems.horsesample));
+        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.pigsyringe, ModItems.pigsample));
+        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.cowsyringe, ModItems.cowsample));
 
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticbeefraw), new ItemStack(Items.COOKED_BEEF), 0.1f);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticchickenraw), new ItemStack(Items.COOKED_CHICKEN), 0.1f);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticporkchopraw), new ItemStack(Items.COOKED_PORKCHOP), 0.1f);
+        // FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticbeefraw), new ItemStack(Items.COOKED_BEEF), 0.1f);
+        // FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticchickenraw), new ItemStack(Items.COOKED_CHICKEN), 0.1f);
+        // FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticporkchopraw), new ItemStack(Items.COOKED_PORKCHOP), 0.1f);
     }
 
     private static void buildScaffolderRecipes() {
-        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.chickensample, ModItems.syntheticchickenraw));
-        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.horsesample, Items.LEATHER));
-        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.pigsample, ModItems.syntheticporkchopraw));
-        RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.cowsample, ModItems.syntheticbeefraw));
+        //TODO: Implement new method
+        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.chickensample, ModItems.syntheticchickenraw));
+        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.horsesample, Items.LEATHER));
+        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.pigsample, ModItems.syntheticporkchopraw));
+        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.cowsample, ModItems.syntheticbeefraw));
     }
 
     private static void buildCollectorRecipes() {

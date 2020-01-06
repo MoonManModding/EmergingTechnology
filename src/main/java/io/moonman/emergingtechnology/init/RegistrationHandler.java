@@ -24,18 +24,16 @@ import io.moonman.emergingtechnology.item.polymers.Filament;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
+import io.moonman.emergingtechnology.item.synthetics.CookedMeatItemBase;
+import io.moonman.emergingtechnology.item.synthetics.RawMeatItemBase;
+import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
+import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticBeefRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPorkchopRaw;
-import io.moonman.emergingtechnology.item.synthetics.samples.ChickenSample;
-import io.moonman.emergingtechnology.item.synthetics.samples.CowSample;
-import io.moonman.emergingtechnology.item.synthetics.samples.HorseSample;
-import io.moonman.emergingtechnology.item.synthetics.samples.PigSample;
-import io.moonman.emergingtechnology.item.synthetics.syringes.ChickenSyringe;
-import io.moonman.emergingtechnology.item.synthetics.syringes.CowSyringe;
+import io.moonman.emergingtechnology.item.synthetics.samples.Sample;
 import io.moonman.emergingtechnology.item.synthetics.syringes.EmptySyringe;
-import io.moonman.emergingtechnology.item.synthetics.syringes.HorseSyringe;
-import io.moonman.emergingtechnology.item.synthetics.syringes.PigSyringe;
+import io.moonman.emergingtechnology.item.synthetics.syringes.FullSyringe;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.collector.Collector;
@@ -61,6 +59,7 @@ import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
+import io.moonman.emergingtechnology.providers.ModTissueProvider;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -75,16 +74,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * Registers blocks, items and models for Emerging Technology
+ * Registers blocks, items and models for Emerging Technology 
  * TODO: Improve and organise
  */
 public class RegistrationHandler {
 
     public static void registerBlocks(Register<Block> event) {
-        final Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Light(), new Frame(), new Processor(), new Shredder(),
-                new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(), new Collector(), new Cooker(),
-                new Ladder(), new Piezoelectric(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
-                new ShreddedStarchBlock(), new Bioreactor(), new Scaffolder() };
+        final Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Light(), new Frame(),
+                new Processor(), new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(),
+                new Fabricator(), new Collector(), new Cooker(), new Ladder(), new Piezoelectric(),
+                new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new Bioreactor(),
+                new Scaffolder() };
 
         GameRegistry.registerTileEntity(HydroponicTileEntity.class, getResourceLocation("hydroponic"));
         GameRegistry.registerTileEntity(HarvesterTileEntity.class, getResourceLocation("harvester"));
@@ -106,19 +106,37 @@ public class RegistrationHandler {
 
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
-                new ShreddedPlant(), new ShreddedStarch(), new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
-                new EmptySyringe(), new CowSample(), new CowSyringe(), new ChickenSample(), new ChickenSyringe(),
-                new PigSample(), new PigSyringe(), new HorseSample(), new HorseSyringe(), new SyntheticBeefRaw(),
-                new SyntheticChickenRaw(), new SyntheticPorkchopRaw(), new Biomass() };
+                new ShreddedPlant(), new ShreddedStarch(), new PlasticWaste(), new PlasticRod(), new PlasticSheet(),
+                new Filament(), new PlasticTissueScaffold(), new EmptySyringe(), new SyntheticBeefRaw(), new SyntheticChickenRaw(), new SyntheticPorkchopRaw(),
+                new Biomass() };
 
         // Blocks
-        Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light, ModBlocks.processor, ModBlocks.shredder,
-                ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker, ModBlocks.bioreactor, ModBlocks.scaffolder,
-                ModBlocks.piezoelectric, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
-                ModBlocks.clearplasticblock, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
-                ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock };
+        Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light,
+                ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker,
+                ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.ladder,
+                ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock, ModBlocks.machinecase,
+                ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock };
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
+
+        System.out.println("Uhu");
+
+        for (Item item: ModTissueProvider.modSamples) {
+            event.getRegistry().register(item);
+        }
+
+        for (Item item: ModTissueProvider.modSyringes) {
+            event.getRegistry().register(item);
+        }
+
+        for (Item item: ModTissueProvider.modCookedMeats) {
+            event.getRegistry().register(item);
+        }
+
+        for (Item item: ModTissueProvider.modRawMeats) {
+            event.getRegistry().register(item);
+        }
+
 
         // Register
         event.getRegistry().registerAll(itemBlocks);
@@ -166,18 +184,6 @@ public class RegistrationHandler {
         registerModel(ModItems.plastictissuescaffold);
         registerModel(ModItems.plasticwaste);
 
-        registerModel(ModItems.chickensample);
-        registerModel(ModItems.chickensyringe);
-
-        registerModel(ModItems.cowsample);
-        registerModel(ModItems.cowsyringe);
-
-        registerModel(ModItems.horsesample);
-        registerModel(ModItems.horsesyringe);
-
-        registerModel(ModItems.pigsample);
-        registerModel(ModItems.pigsyringe);
-
         registerModel(ModItems.emptysyringe);
 
         registerModel(ModItems.syntheticbeefraw);
@@ -185,6 +191,8 @@ public class RegistrationHandler {
         registerModel(ModItems.syntheticporkchopraw);
 
         registerModel(ModItems.biomass);
+
+        registerModTissueModels();
 
         // Hydroponic TESR
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0,
@@ -209,6 +217,29 @@ public class RegistrationHandler {
     private static void registerModel(Item item) {
         ModelLoader.setCustomModelResourceLocation(item, 0,
                 new ModelResourceLocation(item.getRegistryName(), "inventory"));
+    }
+
+    private static void registerModTissueModels() {
+
+        for (SyringeItemBase item: ModTissueProvider.modSyringes) {
+            ModelLoader.setCustomModelResourceLocation(item, 0,
+            new ModelResourceLocation(EmergingTechnology.MODID + ":fullsyringe", "inventory"));
+        }
+
+        for (SampleItemBase item: ModTissueProvider.modSamples) {
+            ModelLoader.setCustomModelResourceLocation(item, 0,
+            new ModelResourceLocation(EmergingTechnology.MODID + ":sample", "inventory"));
+        }
+
+        for (RawMeatItemBase item: ModTissueProvider.modRawMeats) {
+            ModelLoader.setCustomModelResourceLocation(item, 0,
+            new ModelResourceLocation(ModTissueProvider.getRawMeatResourceLocationByEntityId(item.entityId), "inventory"));
+        }
+
+        for (CookedMeatItemBase item: ModTissueProvider.modCookedMeats) {
+            ModelLoader.setCustomModelResourceLocation(item, 0,
+            new ModelResourceLocation(ModTissueProvider.getCookedMeatResourceLocationByEntityId(item.entityId), "inventory"));
+        }
     }
 
     private static ResourceLocation getResourceLocation(String location) {

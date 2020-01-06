@@ -1,10 +1,10 @@
 package io.moonman.emergingtechnology.item.synthetics.consumables;
 
-import io.moonman.emergingtechnology.item.ItemBase;
+import io.moonman.emergingtechnology.item.synthetics.RawMeatItemBase;
 
-public class SyntheticBeefRaw extends ItemBase {
+public class SyntheticBeefRaw extends RawMeatItemBase {
 
     public SyntheticBeefRaw() {
-        super("syntheticbeefraw");
+        super("beef", "minecraft:cow");
     }
 }
