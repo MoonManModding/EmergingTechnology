@@ -51,9 +51,9 @@ item.emergingtechnology.horsesample.name=马组织样本
 item.emergingtechnology.cowsample.name=牛组织样本
 item.emergingtechnology.chickensample.name=鸡组织样本
 
-item.emergingtechnology.syntheticbeefraw.name=生合成牛肉
+item.emergingtechnology.syntheticcowraw.name=生合成牛肉
 item.emergingtechnology.syntheticchickenraw.name=生合成鸡肉
-item.emergingtechnology.syntheticporkchopraw.name=生合成猪肉
+item.emergingtechnology.syntheticpigraw.name=生合成猪肉
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=发电砖

@@ -49,9 +49,9 @@ item.emergingtechnology.horsesample.name=Culture cellulaire de cheval
 item.emergingtechnology.cowsample.name=Culture cellulaire de vache
 item.emergingtechnology.chickensample.name=Culture cellulaire de poulet
 
-item.emergingtechnology.syntheticbeefraw.name=Steak synthétique cru
+item.emergingtechnology.syntheticcowraw.name=Steak synthétique cru
 item.emergingtechnology.syntheticchickenraw.name=Viande de poulet synthétique crue
-item.emergingtechnology.syntheticporkchopraw.name=Côtelette de porc synthétique crue
+item.emergingtechnology.syntheticpigraw.name=Côtelette de porc synthétique crue
 
 item.emergingtechnology.bioreactor.name=Bioréacteur cellulaire
 item.emergingtechnology.scaffolder.name=Appareil à morphogenèse

@@ -26,9 +26,15 @@ import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
-import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticBeefRaw;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenCooked;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenRaw;
-import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPorkchopRaw;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticCowCooked;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticCowRaw;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPigCooked;
+import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPigRaw;
+import io.moonman.emergingtechnology.item.synthetics.products.SyntheticLeather;
+import io.moonman.emergingtechnology.item.synthetics.products.SyntheticSilk;
+import io.moonman.emergingtechnology.item.synthetics.products.SyntheticSlime;
 import io.moonman.emergingtechnology.item.synthetics.syringes.EmptySyringe;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
@@ -70,8 +76,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * Registers blocks, items and models for Emerging Technology 
- * TODO: Improve and organise
+ * Registers blocks, items and models for Emerging Technology TODO: Improve and
+ * organise
  */
 public class RegistrationHandler {
 
@@ -103,8 +109,9 @@ public class RegistrationHandler {
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
                 new ShreddedPlant(), new ShreddedStarch(), new PlasticWaste(), new PlasticRod(), new PlasticSheet(),
-                new Filament(), new PlasticTissueScaffold(), new EmptySyringe(), new SyntheticBeefRaw(), new SyntheticChickenRaw(), new SyntheticPorkchopRaw(),
-                new Biomass() };
+                new Filament(), new PlasticTissueScaffold(), new EmptySyringe(), new SyntheticCowRaw(),
+                new SyntheticChickenRaw(), new SyntheticPigRaw(), new SyntheticPigCooked(), new SyntheticCowCooked(),
+                new SyntheticChickenCooked(), new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new Biomass() };
 
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light,
@@ -115,11 +122,11 @@ public class RegistrationHandler {
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
-        for (Item item: ModTissueProvider.modSamples) {
+        for (Item item : ModTissueProvider.modSamples) {
             event.getRegistry().register(item);
         }
 
-        for (Item item: ModTissueProvider.modSyringes) {
+        for (Item item : ModTissueProvider.modSyringes) {
             event.getRegistry().register(item);
         }
 
@@ -171,9 +178,17 @@ public class RegistrationHandler {
 
         registerModel(ModItems.emptysyringe);
 
-        registerModel(ModItems.syntheticbeefraw);
+        registerModel(ModItems.syntheticcowraw);
         registerModel(ModItems.syntheticchickenraw);
-        registerModel(ModItems.syntheticporkchopraw);
+        registerModel(ModItems.syntheticpigraw);
+
+        registerModel(ModItems.syntheticcowcooked);
+        registerModel(ModItems.syntheticchickencooked);
+        registerModel(ModItems.syntheticpigcooked);
+
+        registerModel(ModItems.syntheticleather);
+        registerModel(ModItems.syntheticslime);
+        registerModel(ModItems.syntheticsilk);
 
         registerModel(ModItems.biomass);
 
@@ -206,14 +221,14 @@ public class RegistrationHandler {
 
     private static void registerModTissueModels() {
 
-        for (SyringeItemBase item: ModTissueProvider.modSyringes) {
+        for (SyringeItemBase item : ModTissueProvider.modSyringes) {
             ModelLoader.setCustomModelResourceLocation(item, 0,
-            new ModelResourceLocation(EmergingTechnology.MODID + ":fullsyringe", "inventory"));
+                    new ModelResourceLocation(EmergingTechnology.MODID + ":fullsyringe", "inventory"));
         }
 
-        for (SampleItemBase item: ModTissueProvider.modSamples) {
+        for (SampleItemBase item : ModTissueProvider.modSamples) {
             ModelLoader.setCustomModelResourceLocation(item, 0,
-            new ModelResourceLocation(EmergingTechnology.MODID + ":sample", "inventory"));
+                    new ModelResourceLocation(EmergingTechnology.MODID + ":sample", "inventory"));
         }
     }
 

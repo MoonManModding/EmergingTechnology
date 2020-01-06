@@ -50,9 +50,9 @@ item.emergingtechnology.horsesample.name=Образец Лошадиных Кл�
 item.emergingtechnology.cowsample.name=Образец Коровьих Клеток
 item.emergingtechnology.chickensample.name=Образец Куриных Клеток
 
-item.emergingtechnology.syntheticbeefraw.name=Сырая Синтетическая Говядина
+item.emergingtechnology.syntheticcowraw.name=Сырая Синтетическая Говядина
 item.emergingtechnology.syntheticchickenraw.name=Сырая Синтетическая Курица
-item.emergingtechnology.syntheticporkchopraw.name=Сырая Синтетическая Свинина
+item.emergingtechnology.syntheticpigraw.name=Сырая Синтетическая Свинина
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита

@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.providers;
 import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomTissueLoader;
+import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.providers.classes.ModTissue;
@@ -40,12 +41,13 @@ public class ModTissueProvider {
     private static ArrayList<ModTissue> generateBaseTissues() {
         ArrayList<ModTissue> baseTissues = new ArrayList<ModTissue>();
 
-            baseTissues.add(new ModTissue("Cow", "minecraft:cow", Items.BEEF.getRegistryName().toString()));
-            baseTissues.add(new ModTissue("Chicken", "minecraft:chicken", Items.CHICKEN.getRegistryName().toString()));
-            baseTissues.add(new ModTissue("Horse", "minecraft:horse", Items.LEATHER.getRegistryName().toString()));
-            baseTissues.add(new ModTissue("Pig", "minecraft:pig", Items.PORKCHOP.getRegistryName().toString()));
+            baseTissues.add(new ModTissue("Cow", "minecraft:cow", "emergingtechnology:syntheticcowraw"));
+            baseTissues.add(new ModTissue("Chicken", "minecraft:chicken", "emergingtechnology:syntheticchickenraw"));
+            baseTissues.add(new ModTissue("Pig", "minecraft:pig", "emergingtechnology:syntheticpigraw"));
+            baseTissues.add(new ModTissue("Horse", "minecraft:horse", "emergingtechnology:syntheticleather"));
+            baseTissues.add(new ModTissue("Spider", "minecraft:spider", "emergingtechnology:syntheticsilk"));
+            baseTissues.add(new ModTissue("Slime", "minecraft:slime", "emergingtechnology:syntheticslime"));
             baseTissues.add(new ModTissue("Zombie", "minecraft:zombie", Items.ROTTEN_FLESH.getRegistryName().toString()));
-            baseTissues.add(new ModTissue("Spider", "minecraft:spider", Items.STRING.getRegistryName().toString()));
 
         return baseTissues;
     }

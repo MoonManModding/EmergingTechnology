@@ -210,6 +210,10 @@ public class RecipeBuilder {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.plasticblock), new ItemStack(ModItems.filament), 0.1f);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedplant), new ItemStack(ModItems.biomass), 0.1f);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedstarch), new ItemStack(ModItems.biomass), 0.1f);
+
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticchickenraw), new ItemStack(ModItems.syntheticchickencooked), 0.2f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticcowraw), new ItemStack(ModItems.syntheticcowcooked), 0.2f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticpigraw), new ItemStack(ModItems.syntheticpigcooked), 0.2f);
     }
 
     private static void buildFabricatorRecipeList() {

@@ -52,9 +52,9 @@ item.emergingtechnology.horsesample.name=Horse Tissue Sample
 item.emergingtechnology.cowsample.name=Cow Tissue Sample
 item.emergingtechnology.chickensample.name=Chicken Tissue Sample
 
-item.emergingtechnology.syntheticbeefraw.name=Raw Synthetic Beef
+item.emergingtechnology.syntheticcowraw.name=Raw Synthetic Beef
 item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
-item.emergingtechnology.syntheticporkchopraw.name=Raw Synthetic Porkchop
+item.emergingtechnology.syntheticpigraw.name=Raw Synthetic Porkchop
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Generator

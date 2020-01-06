@@ -61,16 +61,26 @@ public class ModItems {
 	public static final Item bioreactor = null;
 	public static final Item scaffolder = null;
 
+	
+	// Items
+
 	public static final Item emptysyringe = null;
 
 	public static final Item fullsyringe = null;
 
 	public static final Item sample = null;
 
-	public static final Item syntheticbeefraw = null;
+	public static final Item syntheticcowraw = null;
 	public static final Item syntheticchickenraw = null;
-	public static final Item syntheticporkchopraw = null;
-	// Items
+	public static final Item syntheticpigraw = null;
+
+	public static final Item syntheticcowcooked = null;
+	public static final Item syntheticchickencooked = null;
+	public static final Item syntheticpigcooked = null;
+
+	public static final Item syntheticleather = null;
+	public static final Item syntheticslime = null;
+	public static final Item syntheticsilk = null;
 
 	//endregion
 
