@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomRecipeWrapper;
 import io.moonman.emergingtechnology.helpers.machines.CookerHelper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.providers.ModTissueProvider;
+import io.moonman.emergingtechnology.providers.classes.ModTissue;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.init.Items;
@@ -56,23 +59,30 @@ public class RecipeBuilder {
     }
 
     private static void buildBioreactorRecipes() {
-        //TODO: Implement new method
-        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.chickensyringe, ModItems.chickensample));
-        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.horsesyringe, ModItems.horsesample));
-        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.pigsyringe, ModItems.pigsample));
-        // RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(ModItems.cowsyringe, ModItems.cowsample));
+        for (ModTissue modTissue: ModTissueProvider.allTissues) {
+            ItemStack syringe = ModTissueProvider.getSyringeItemStackByEntityId(modTissue.entityId);
+            ItemStack sample = ModTissueProvider.getSampleItemStackByEntityId(modTissue.entityId);
 
-        // FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticbeefraw), new ItemStack(Items.COOKED_BEEF), 0.1f);
-        // FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticchickenraw), new ItemStack(Items.COOKED_CHICKEN), 0.1f);
-        // FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticporkchopraw), new ItemStack(Items.COOKED_PORKCHOP), 0.1f);
+            if (StackHelper.isItemStackEmpty(syringe) || StackHelper.isItemStackEmpty(sample)) {
+                continue;
+            }
+
+            RecipeProvider.bioreactorRecipes.add(createSimpleRecipe(syringe.getItem(), sample.getItem()));
+        }
     }
 
     private static void buildScaffolderRecipes() {
-        //TODO: Implement new method
-        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.chickensample, ModItems.syntheticchickenraw));
-        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.horsesample, Items.LEATHER));
-        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.pigsample, ModItems.syntheticporkchopraw));
-        // RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(ModItems.cowsample, ModItems.syntheticbeefraw));
+        
+        for (ModTissue modTissue: ModTissueProvider.allTissues) {
+            ItemStack sample = ModTissueProvider.getSampleItemStackByEntityId(modTissue.entityId);
+            ItemStack result = ModTissueProvider.getResultItemStackByEntityId(modTissue.entityId);
+
+            if (StackHelper.isItemStackEmpty(sample) || StackHelper.isItemStackEmpty(result)) {
+                continue;
+            }
+
+            RecipeProvider.scaffolderRecipes.add(createSimpleRecipe(sample.getItem(), result.getItem()));
+        }
     }
 
     private static void buildCollectorRecipes() {
@@ -85,7 +95,6 @@ public class RecipeBuilder {
             ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
             SimpleRecipe recipe = new SimpleRecipe(output, input);
             RecipeProvider.cookerRecipes.add(recipe);
-
         }
     }
 

@@ -43,7 +43,10 @@ public class EmptySyringe extends SyringeItemBase {
         ItemStack itemStack = ModTissueProvider.getSyringeItemStackByEntityId(entityId);
 
         if (!StackHelper.isItemStackEmpty(itemStack)) {
-            playerIn.setHeldItem(hand, itemStack);
+            ItemStack newItemStack = stack.copy();
+            newItemStack.shrink(1);
+            playerIn.setHeldItem(hand, newItemStack);
+            playerIn.addItemStackToInventory(itemStack);
             return true;
         }
 

@@ -4,14 +4,12 @@ public class ModTissue {
 
     public String displayName;
     public String entityId;
-    public String rawMeatName;
-    public String cookedMeatName;
+    public String result;
 
 
-    public ModTissue(String displayName, String entityId, String rawMeatName, String cookedMeatName) {
+    public ModTissue(String displayName, String entityId, String result) {
         this.displayName = displayName;
         this.entityId = entityId;
-        this.rawMeatName = rawMeatName;
-        this.cookedMeatName = cookedMeatName;
+        this.result = result;
     }
 }

@@ -24,16 +24,12 @@ import io.moonman.emergingtechnology.item.polymers.Filament;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
-import io.moonman.emergingtechnology.item.synthetics.CookedMeatItemBase;
-import io.moonman.emergingtechnology.item.synthetics.RawMeatItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticBeefRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPorkchopRaw;
-import io.moonman.emergingtechnology.item.synthetics.samples.Sample;
 import io.moonman.emergingtechnology.item.synthetics.syringes.EmptySyringe;
-import io.moonman.emergingtechnology.item.synthetics.syringes.FullSyringe;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.collector.Collector;
@@ -119,8 +115,6 @@ public class RegistrationHandler {
 
         final Item[] itemBlocks = generateItemBlocks(blocks);
 
-        System.out.println("Uhu");
-
         for (Item item: ModTissueProvider.modSamples) {
             event.getRegistry().register(item);
         }
@@ -128,15 +122,6 @@ public class RegistrationHandler {
         for (Item item: ModTissueProvider.modSyringes) {
             event.getRegistry().register(item);
         }
-
-        for (Item item: ModTissueProvider.modCookedMeats) {
-            event.getRegistry().register(item);
-        }
-
-        for (Item item: ModTissueProvider.modRawMeats) {
-            event.getRegistry().register(item);
-        }
-
 
         // Register
         event.getRegistry().registerAll(itemBlocks);
@@ -229,16 +214,6 @@ public class RegistrationHandler {
         for (SampleItemBase item: ModTissueProvider.modSamples) {
             ModelLoader.setCustomModelResourceLocation(item, 0,
             new ModelResourceLocation(EmergingTechnology.MODID + ":sample", "inventory"));
-        }
-
-        for (RawMeatItemBase item: ModTissueProvider.modRawMeats) {
-            ModelLoader.setCustomModelResourceLocation(item, 0,
-            new ModelResourceLocation(ModTissueProvider.getRawMeatResourceLocationByEntityId(item.entityId), "inventory"));
-        }
-
-        for (CookedMeatItemBase item: ModTissueProvider.modCookedMeats) {
-            ModelLoader.setCustomModelResourceLocation(item, 0,
-            new ModelResourceLocation(ModTissueProvider.getCookedMeatResourceLocationByEntityId(item.entityId), "inventory"));
         }
     }
 
