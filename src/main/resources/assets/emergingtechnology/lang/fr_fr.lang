@@ -38,20 +38,19 @@ item.emergingtechnology.shreddedstarchblock.name=Bloc d'amidon déchiqueté
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Four solaire
 
-item.emergingtechnology.pigsyringe.name=Seringue de cellules souches de cochon
-item.emergingtechnology.horsesyringe.name=Seringue de cellules souches de cheval
-item.emergingtechnology.cowsyringe.name=Seringue de cellules souches de vache
-item.emergingtechnology.chickensyringe.name=Seringue de cellules souches de poule
 item.emergingtechnology.emptysyringe.name=Seringue vide
-
-item.emergingtechnology.pigsample.name=Culture cellulaire de cochon
-item.emergingtechnology.horsesample.name=Culture cellulaire de cheval
-item.emergingtechnology.cowsample.name=Culture cellulaire de vache
-item.emergingtechnology.chickensample.name=Culture cellulaire de poulet
 
 item.emergingtechnology.syntheticcowraw.name=Steak synthétique cru
 item.emergingtechnology.syntheticchickenraw.name=Viande de poulet synthétique crue
 item.emergingtechnology.syntheticpigraw.name=Côtelette de porc synthétique crue
+
+item.emergingtechnology.syntheticcowcooked.name=Cooked Synthetic Beef
+item.emergingtechnology.syntheticchickencooked.name=Cooked Synthetic Chicken
+item.emergingtechnology.syntheticpigcooked.name=Cooked Synthetic Porkchop
+
+item.emergingtechnology.syntheticsilk.name=Synthetic Silk
+item.emergingtechnology.syntheticslime.name=Synthetic Slime Ball
+item.emergingtechnology.syntheticleather.name=Synthetic Leather
 
 item.emergingtechnology.bioreactor.name=Bioréacteur cellulaire
 item.emergingtechnology.scaffolder.name=Appareil à morphogenèse

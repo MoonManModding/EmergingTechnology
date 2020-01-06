@@ -41,20 +41,19 @@ item.emergingtechnology.cooker.name=Solar Cooker
 item.emergingtechnology.bioreactor.name=Tissue Bioreactor
 item.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
-item.emergingtechnology.pigsyringe.name=Pig Tissue Syringe
-item.emergingtechnology.horsesyringe.name=Horse Tissue Syringe
-item.emergingtechnology.cowsyringe.name=Cow Tissue Syringe
-item.emergingtechnology.chickensyringe.name=Chicken Tissue Syringe
 item.emergingtechnology.emptysyringe.name=Empty Syringe
-
-item.emergingtechnology.pigsample.name=Pig Tissue Sample
-item.emergingtechnology.horsesample.name=Horse Tissue Sample
-item.emergingtechnology.cowsample.name=Cow Tissue Sample
-item.emergingtechnology.chickensample.name=Chicken Tissue Sample
 
 item.emergingtechnology.syntheticcowraw.name=Raw Synthetic Beef
 item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
 item.emergingtechnology.syntheticpigraw.name=Raw Synthetic Porkchop
+
+item.emergingtechnology.syntheticcowcooked.name=Cooked Synthetic Beef
+item.emergingtechnology.syntheticchickencooked.name=Cooked Synthetic Chicken
+item.emergingtechnology.syntheticpigcooked.name=Cooked Synthetic Porkchop
+
+item.emergingtechnology.syntheticsilk.name=Synthetic Silk
+item.emergingtechnology.syntheticslime.name=Synthetic Slime Ball
+item.emergingtechnology.syntheticleather.name=Synthetic Leather
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Generator

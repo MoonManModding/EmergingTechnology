@@ -5,6 +5,6 @@ import io.moonman.emergingtechnology.item.ItemBase;
 public class Biomass extends ItemBase {
 
     public Biomass() {
-        super("Biomass");
+        super("biomass");
     }
 }

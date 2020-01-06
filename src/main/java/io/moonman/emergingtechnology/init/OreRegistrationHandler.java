@@ -50,16 +50,6 @@ public class OreRegistrationHandler {
             ModItems.plasticsheet
         };
 
-        // Item[] dustPlastic = new Item[] {
-        //     ModItems.shreddedplastic,
-        //     ModItems.shreddedstarch
-        // };
-
-        // Item[] orePlastic = new Item[] {
-        //     ModItems.shreddedplastic,
-        //     ModItems.shreddedstarch
-        // };
-
         Item[] itemPlastic = new Item[] {
             
         };
@@ -88,21 +78,56 @@ public class OreRegistrationHandler {
             ModItems.biomass
         };
 
+        Item[] leather = new Item[] {
+            ModItems.syntheticleather
+        };
+
+        Item[] string = new Item[] {
+            ModItems.syntheticsilk
+        };
+
+        Item[] slimeball = new Item[] {
+            ModItems.syntheticslime
+        };
+
+        Item[] listAllmeat = new Item[] {
+            ModItems.syntheticchickencooked,
+            ModItems.syntheticcowcooked,
+            ModItems.syntheticpigcooked
+        };
+
+        Item[] cookedMeat = new Item[] {
+            ModItems.syntheticchickencooked,
+            ModItems.syntheticcowcooked,
+            ModItems.syntheticpigcooked
+        };
+
+        Item[] rawMeat = new Item[] {
+            ModItems.syntheticchickenraw,
+            ModItems.syntheticcowraw,
+            ModItems.syntheticpigraw
+        };
+
         registerBlocks(machinePlastic, "machinePlastic");
         registerBlocks(blockPlastic, "blockPlastic");
         registerBlocks(glass, "glass");
         registerBlocks(blockGlass, "blockGlass");
         registerItems(sheetPlastic, "sheetPlastic");
         registerItems(platePlastic, "platePlastic");
-        // registerItems(dustPlastic, "dustPlastic");
-        // registerItems(orePlastic, "orePlastic");
         registerItems(itemPlastic, "itemPlastic");
         registerItems(stickPlastic, "stickPlastic");
+        registerItems(stickPlastic, "rodPlastic");
         registerItems(bioplastic, "bioplastic");
         registerItems(starch, "starch");
         registerItems(filamentPlastic, "filamentPlastic");
         registerItems(biomass, "biomass");
         registerItems(dustBiomass, "dustBiomass");
+        registerItems(slimeball, "slimeball");
+        registerItems(string, "string");
+        registerItems(leather, "leather");
+        registerItems(listAllmeat, "listAllmeat");
+        registerItems(rawMeat, "rawMeat");
+        registerItems(cookedMeat, "cookedMeat");
     }
 
     private static void registerBlocks(Block[] blocks, String name) {

@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Rabbit",
+        "entityId": "minecraft:rabbit",
+        "result": "minecraft:carrot"
+    },
+    {
+        "name": "Donkey",
+        "entityId": "minecraft:donkey",
+        "result": "minecraft:glowstone"
+    }
+]

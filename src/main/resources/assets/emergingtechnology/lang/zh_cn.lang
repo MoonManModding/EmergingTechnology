@@ -40,20 +40,19 @@ item.emergingtechnology.cooker.name=太阳能烤箱
 item.emergingtechnology.bioreactor.name=生物组织反应机
 item.emergingtechnology.scaffolder.name=生物组织合成机
 
-item.emergingtechnology.pigsyringe.name=猪组织注射器
-item.emergingtechnology.horsesyringe.name=马组织注射器
-item.emergingtechnology.cowsyringe.name=牛组织注射器
-item.emergingtechnology.chickensyringe.name=鸡组织注射器
 item.emergingtechnology.emptysyringe.name=空注射器
 
-item.emergingtechnology.pigsample.name=猪组织样本
-item.emergingtechnology.horsesample.name=马组织样本
-item.emergingtechnology.cowsample.name=牛组织样本
-item.emergingtechnology.chickensample.name=鸡组织样本
+item.emergingtechnology.syntheticcowraw.name=Raw Synthetic Beef
+item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
+item.emergingtechnology.syntheticpigraw.name=Raw Synthetic Porkchop
 
-item.emergingtechnology.syntheticcowraw.name=生合成牛肉
-item.emergingtechnology.syntheticchickenraw.name=生合成鸡肉
-item.emergingtechnology.syntheticpigraw.name=生合成猪肉
+item.emergingtechnology.syntheticcowcooked.name=Cooked Synthetic Beef
+item.emergingtechnology.syntheticchickencooked.name=Cooked Synthetic Chicken
+item.emergingtechnology.syntheticpigcooked.name=Cooked Synthetic Porkchop
+
+item.emergingtechnology.syntheticsilk.name=Synthetic Silk
+item.emergingtechnology.syntheticslime.name=Synthetic Slime Ball
+item.emergingtechnology.syntheticleather.name=Synthetic Leather
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=发电砖
