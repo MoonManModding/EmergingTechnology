@@ -90,7 +90,6 @@ blocks.emergingtechnology.scaffolder.name=生物组织合成机
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=发电砖
-blocks.emergingtechnology.biomass.name=Biomass
 blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 
@@ -126,7 +125,6 @@ tile.emergingtechnology.scaffolder.name=生物组织合成机
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=发电砖
-tile.emergingtechnology.biomass.name=Biomass
 tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 

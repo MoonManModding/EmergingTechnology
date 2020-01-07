@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorContainer;
+import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorGui;
+import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorContainer;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorGui;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
@@ -72,6 +75,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof CollectorTileEntity) {
             return new CollectorContainer(player.inventory, (CollectorTileEntity) te);
         }
+        if (te instanceof BiomassGeneratorTileEntity) {
+            return new BiomassGeneratorContainer(player.inventory, (BiomassGeneratorTileEntity) te);
+        }
         return null;
     }
 
@@ -128,6 +134,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof CollectorTileEntity) {
             CollectorTileEntity containerTileEntity = (CollectorTileEntity) te;
             return new CollectorGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof BiomassGeneratorTileEntity) {
+            BiomassGeneratorTileEntity containerTileEntity = (BiomassGeneratorTileEntity) te;
+            return new BiomassGeneratorGui(player.inventory, containerTileEntity);
         }
 
         return null;

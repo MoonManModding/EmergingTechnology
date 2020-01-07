@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines.piezoelectric;
+package io.moonman.emergingtechnology.machines.tidal;
 
 import java.util.List;
 
@@ -11,7 +11,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -25,50 +24,29 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
 
-public class Piezoelectric extends SimpleMachineBase implements ITileEntityProvider {
+public class TidalGenerator extends SimpleMachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    public Piezoelectric() {
-        super(Material.IRON, "piezoelectric");
+    public TidalGenerator() {
+        super(Material.IRON, "tidalgenerator");
         this.setSoundType(SoundType.METAL);
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-
     }
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 
-        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricEnergyGenerated;
+        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.tidalEnergyGenerated;
 
-        tooltip.add("Generates " + energy + "RF when stepped on.");
+        tooltip.add("Generates " + energy + "RF when under water.");
 
-    }
-
-    @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-
-        if (!worldIn.isRemote) {
-
-            if (entityIn instanceof EntityLivingBase) {
-
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-
-            if (tileEntity instanceof PiezoelectricTileEntity) {
-                PiezoelectricTileEntity piezoTileEntity = (PiezoelectricTileEntity) tileEntity;
-
-                piezoTileEntity.walkedOn();
-            }
-        }
-        }
-
-        super.onEntityWalk(worldIn, pos, entityIn);
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new PiezoelectricTileEntity();
+        return new TidalGeneratorTileEntity();
     }
 
     @Override

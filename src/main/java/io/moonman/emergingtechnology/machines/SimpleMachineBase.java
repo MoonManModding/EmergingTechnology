@@ -5,9 +5,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 
-public class GeneratorBase extends Block {
+/**
+An Emerging Technology machine
+*/
+public class SimpleMachineBase extends Block {
 
-    public GeneratorBase(Material material, String name) {
+    public SimpleMachineBase(Material material, String name) {
         super(material);
         this.setHardness(1.0f);
         this.setRegistryName(EmergingTechnology.MODID, name);

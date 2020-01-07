@@ -19,6 +19,7 @@ public class Reference {
     public static final int GUI_COOKER = 7;
     public static final int GUI_HARVESTER = 8;
     public static final int GUI_COLLECTOR = 9;
+    public static final int GUI_BIOMASS = 10;
 
     // STORAGE SIZES
     public static final int HYDROPONIC_FLUID_CAPACITY = 1000;
@@ -36,6 +37,10 @@ public class Reference {
     public static final int COOKER_HEAT_CAPACITY = 400;
 
     public static final int PIEZOELECTRIC_ENERGY_CAPACITY = 100;
+
+    public static final int TIDAL_ENERGY_CAPACITY = 10000;
+
+    public static final int BIOMASS_ENERGY_CAPACITY = 10000;
 
     public static final int BIOREACTOR_FLUID_CAPACITY = 1000;
     public static final int BIOREACTOR_ENERGY_CAPACITY = 1000;

@@ -9,6 +9,7 @@ import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlantBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedStarchBlock;
+import io.moonman.emergingtechnology.machines.biomass.BiomassGenerator;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.collector.Collector;
 import io.moonman.emergingtechnology.machines.cooker.Cooker;
@@ -21,6 +22,7 @@ import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
+import io.moonman.emergingtechnology.machines.tidal.TidalGenerator;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
  
 /**
@@ -60,5 +62,7 @@ public class ModBlocks {
 
 	//region Electrics Blocks
 	public static final Piezoelectric piezoelectric = null;
+	public static final TidalGenerator tidalgenerator = null;
+	public static final BiomassGenerator biomassgenerator = null;
 	//endregion
 }

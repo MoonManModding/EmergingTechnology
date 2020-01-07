@@ -3,7 +3,6 @@ package io.moonman.emergingtechnology.gui.classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;

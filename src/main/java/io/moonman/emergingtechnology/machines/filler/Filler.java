@@ -2,7 +2,7 @@ package io.moonman.emergingtechnology.machines.filler;
 
 import java.util.List;
 
-import io.moonman.emergingtechnology.machines.GeneratorBase;
+import io.moonman.emergingtechnology.machines.SimpleMachineBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
 
-public class Filler extends GeneratorBase implements ITileEntityProvider {
+public class Filler extends SimpleMachineBase implements ITileEntityProvider {
 
     public Filler() {
         super(Material.IRON, "filler");
