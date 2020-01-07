@@ -2,11 +2,11 @@
     {
         "name": "Rabbit",
         "entityId": "minecraft:rabbit",
-        "result": "minecraft:carrot"
+        "result": "minecraft:rabbit_foot"
     },
     {
-        "name": "Donkey",
-        "entityId": "minecraft:donkey",
-        "result": "minecraft:glowstone"
+        "name": "Sheep",
+        "entityId": "minecraft:sheep",
+        "result": "minecraft:mutton"
     }
 ]
