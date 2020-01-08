@@ -4,8 +4,10 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -41,10 +43,10 @@ public class Scaffolder extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int energyUsage = EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage;
+        int energy = EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage;
 
-        tooltip.add("Forms Tissue Samples into synthetic animal products.");
-        tooltip.add("Requires " + energyUsage + "RF per cycle.");
+        tooltip.add(Lang.get(Lang.SCAFFOLDER_DESC));
+        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
     }
 
     @Override

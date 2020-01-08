@@ -4,10 +4,12 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -55,10 +57,11 @@ public class Light extends MachineBase implements ITileEntityProvider {
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
         int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange;
-        int energyUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage;
+        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage;
 
-        tooltip.add("Provides a growth boost to plants up to " + range + " blocks below.");
-        tooltip.add("Must be powered at " + energyUsage + "RF and contain a bulb to function.");
+        tooltip.add(Lang.get(Lang.LIGHT_DESC));
+        tooltip.add(Lang.getLightRange(range));
+        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
     }
 
     @Override

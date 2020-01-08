@@ -4,8 +4,10 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -43,11 +45,10 @@ public class Fabricator extends MachineBase implements ITileEntityProvider {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-        int energyUsage = EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage;
+        int energy = EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage;
 
-        tooltip.add("EXPERIMENTAL");
-        tooltip.add("Automates the printing of plastic components.");
-        tooltip.add("Requires " + energyUsage + "RF per cycle.");
+        tooltip.add(Lang.get(Lang.FABRICATOR_DESC));
+        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
     }
 
     @Override

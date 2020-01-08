@@ -6,7 +6,7 @@ import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -84,7 +84,7 @@ public class HarvesterGui extends GuiContainer {
 		int energy = this.tileEntity.getField(0);
 		int maxEnergy = Reference.HARVESTER_ENERGY_CAPACITY;
 
-		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
+		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
 
 		if (energyIndicator.isHovered) {

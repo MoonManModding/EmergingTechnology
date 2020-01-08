@@ -3,6 +3,8 @@ package io.moonman.emergingtechnology.item.hydroponics;
 import java.util.List;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -18,10 +20,11 @@ public class RedBulb extends BulbItem {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int growthMultiplier = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthRedBulbModifier;
-        int energyUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyRedBulbModifier;
+        int growth = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthRedBulbModifier;
+        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyRedBulbModifier;
 
-        tooltip.add("A bulb used in a Hydroponic Grow Light.");
-        tooltip.add("Provides " + growthMultiplier + "% boost to growth and uses " + energyUsage + "RF");
+        tooltip.add(Lang.get(Lang.BULB_DESC));
+        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        tooltip.add(Lang.getGenerated(growth, ResourceTypeEnum.GROWTH));
     }
 }

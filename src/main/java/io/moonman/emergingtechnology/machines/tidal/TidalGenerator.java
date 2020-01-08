@@ -3,7 +3,9 @@ package io.moonman.emergingtechnology.machines.tidal;
 import java.util.List;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.machines.SimpleMachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -41,10 +43,12 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
         int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.tidalEnergyGenerated;
         int min = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.minOptimalDepth;
         int max = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.maxOptimalDepth;
+        int surround = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.minimumWaterBlocks;
 
-        tooltip.add("Generates " + energy + "RF when under water.");
-        tooltip.add("Generates energy at 200% efficiency when at a depth between Y" + min + " and Y" + max);
-
+        tooltip.add(Lang.get(Lang.TIDAL_DESC));
+        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY) + " " + Lang.getDepthBoost(min, max));
+        tooltip.add(Lang.getWaterBlocksRequired(surround));
+        tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
     }
 
     @Override

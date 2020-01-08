@@ -11,9 +11,8 @@ import io.moonman.emergingtechnology.gui.classes.GuiFabricatorStatus;
 import io.moonman.emergingtechnology.gui.classes.GuiImageButton;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
-import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
@@ -257,7 +256,7 @@ public class FabricatorGui extends GuiContainer {
 		int energy = this.tileEntity.getField(0);
 		int maxEnergy = Reference.FABRICATOR_ENERGY_CAPACITY;
 
-		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
+		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
 
 		if (energyIndicator.isHovered) {

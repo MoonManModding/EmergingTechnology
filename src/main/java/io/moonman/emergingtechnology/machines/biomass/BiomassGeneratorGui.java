@@ -7,7 +7,7 @@ import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -29,8 +29,6 @@ public class BiomassGeneratorGui extends GuiContainer
 	// Standard positions for labels
 	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();
 	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
-	private static final GuiPosition FIRST_FIELD_POS = GuiHelper.getFirstField();
-	private static final GuiPosition SECOND_FIELD_POS = GuiHelper.getSecondField();
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
     
     // Draws textures on gui
@@ -97,7 +95,7 @@ public class BiomassGeneratorGui extends GuiContainer
 		int energy = this.tileEntity.getField(0);
 		int maxEnergy = Reference.BIOMASS_ENERGY_CAPACITY;
 
-		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.ENERGY,
+		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
 
 		if (energyIndicator.isHovered) {

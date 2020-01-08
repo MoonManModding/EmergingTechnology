@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.block.blocks;
 import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -45,7 +46,7 @@ public class Frame extends Block {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add("A decorative plastic frame");
+        tooltip.add(Lang.get(Lang.FRAME_DESC));
     }
 
 

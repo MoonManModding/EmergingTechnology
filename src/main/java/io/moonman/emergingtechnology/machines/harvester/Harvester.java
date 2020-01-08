@@ -4,9 +4,11 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -44,11 +46,10 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int energyUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage;
+        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage;
 
-        tooltip.add("EXPERIMENTAL");
-        tooltip.add("Harvests crops automatically");
-        tooltip.add("Requires " + energyUsage + "RF per cycle.");
+        tooltip.add(Lang.get(Lang.HARVESTER_DESC));
+        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
     }
 
     @Override

@@ -4,8 +4,10 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -43,13 +45,13 @@ public class Cooker extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int heatLoss = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseHeatLoss;
-        int heatGain = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseHeatGain;
-        int requiredHeat = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerRequiredCookingHeat;
+        int loss = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseHeatLoss;
+        int gain = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseHeatGain;
+        int heat = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerRequiredCookingHeat;
 
-        tooltip.add("Uses direct sunlight to cook food items.");
-        tooltip.add("Gains " + heatGain + "C in sunlight and loses " + heatLoss + "C in darkness.");
-        tooltip.add("Requires " + requiredHeat + "C to function.");
+        tooltip.add(Lang.get(Lang.COOKER_DESC));
+        tooltip.add(Lang.getHeatGainLoss(gain, loss));
+        tooltip.add(Lang.getRequired(heat, ResourceTypeEnum.HEAT));
     }
 
     @Override

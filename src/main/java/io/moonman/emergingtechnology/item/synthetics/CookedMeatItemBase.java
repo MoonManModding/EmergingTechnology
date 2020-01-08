@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.item.synthetics;
 import java.util.List;
 
 import io.moonman.emergingtechnology.item.ItemFoodBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -23,11 +24,11 @@ public class CookedMeatItemBase extends ItemFoodBase {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add("Cooked synthetic " + this._name + " meat.");
+        tooltip.add(Lang.getMeatDescription(this._name, true));
     }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return "Synthetic " + this._name + " Meat";
+        return Lang.getMeatName(this._name, true);
     }
 }

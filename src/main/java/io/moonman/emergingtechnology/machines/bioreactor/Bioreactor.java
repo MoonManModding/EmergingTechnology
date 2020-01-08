@@ -4,8 +4,10 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -41,12 +43,12 @@ public class Bioreactor extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        int energyUsage = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage;
-        int fluidUsage = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage;
+        int energy = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage;
+        int fluid = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage;
 
-        tooltip.add("Processes animal tissues into usable samples");
-        tooltip.add("Requires " + energyUsage + "RF per cycle.");
-        tooltip.add("Requires " + fluidUsage + "MB water per cycle.");
+        tooltip.add(Lang.get(Lang.BIOREACTOR_DESC));
+        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        tooltip.add(Lang.getRequired(fluid, ResourceTypeEnum.WATER));
     }
 
     @Override

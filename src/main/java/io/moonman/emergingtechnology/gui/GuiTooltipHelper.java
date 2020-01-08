@@ -9,11 +9,11 @@ import io.moonman.emergingtechnology.gui.classes.GuiLabel;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 
 public class GuiTooltipHelper {
 
-    public static GuiIndicatorData getIndicatorData(int guiStartLeft, int guiStartTop, IndicatorTypeEnum type,
+    public static GuiIndicatorData getIndicatorData(int guiStartLeft, int guiStartTop, ResourceTypeEnum type,
             IndicatorPositionEnum position, int mouseX, int mouseY, int level, int max) {
 
         GuiLabel label = getLabel(type);
@@ -33,7 +33,7 @@ public class GuiTooltipHelper {
 
     public static GuiIndicatorData getHydroponicGrowthData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY, int growthFromMedium, int growthFromFluid, int boostFromMedium, int boostFromFluid, int growthFromLight) {
 
-        GuiLabel label = getLabel(IndicatorTypeEnum.GROWTH);
+        GuiLabel label = getLabel(ResourceTypeEnum.GROWTH);
 
         GuiRegion region = getRegion(IndicatorPositionEnum.MAIN, new GuiPosition(guiStartLeft, guiStartTop));
         GuiPosition mousePosition = new GuiPosition(mouseX, mouseY);
@@ -54,7 +54,7 @@ public class GuiTooltipHelper {
 
     public static GuiIndicatorData getLightGrowData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY, int growthFromBulb, int boostFromBulb) {
 
-        GuiLabel label = getLabel(IndicatorTypeEnum.GROWTH);
+        GuiLabel label = getLabel(ResourceTypeEnum.GROWTH);
 
         GuiRegion region = getRegion(IndicatorPositionEnum.MAIN, new GuiPosition(guiStartLeft, guiStartTop));
         GuiPosition mousePosition = new GuiPosition(mouseX, mouseY);
@@ -71,7 +71,7 @@ public class GuiTooltipHelper {
         return new GuiIndicatorData(false, new ArrayList<String>());
     }
 
-    private static GuiLabel getLabel(IndicatorTypeEnum type) {
+    private static GuiLabel getLabel(ResourceTypeEnum type) {
         switch (type) {
         case ENERGY:
             return new GuiLabel("Energy Storage", "RF");

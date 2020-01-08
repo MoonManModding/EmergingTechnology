@@ -7,7 +7,7 @@ import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -95,7 +95,7 @@ public class CookerGui extends GuiContainer {
 		int heat = this.tileEntity.getField(0);
 		int maxHeat = Reference.COOKER_HEAT_CAPACITY;
 
-		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.HEAT,
+		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.HEAT,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, heat, maxHeat);
 
 		if (energyIndicator.isHovered) {

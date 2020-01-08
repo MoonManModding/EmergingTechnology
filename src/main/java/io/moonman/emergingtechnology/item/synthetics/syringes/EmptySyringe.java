@@ -5,6 +5,7 @@ import java.util.List;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +27,8 @@ public class EmptySyringe extends SyringeItemBase {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add("An empty syringe used for collecting tissue samples from animals.");
-        tooltip.add("Right click to take a sample.");
+        tooltip.add(Lang.get(Lang.EMPTY_SYRINGE_DESC));
+        tooltip.add(Lang.get(Lang.INTERACT_RIGHT_CLICK));
     }
 
     @Override

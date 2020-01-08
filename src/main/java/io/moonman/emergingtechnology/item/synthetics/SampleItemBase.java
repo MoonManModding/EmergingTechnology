@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.item.synthetics;
 import java.util.List;
 
 import io.moonman.emergingtechnology.item.ItemBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -23,11 +24,11 @@ public class SampleItemBase extends ItemBase {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add("A sample containing " + this._name + " tissue.");
+        tooltip.add(Lang.getTissueDescription(this._name, true));
     }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return this._name + " Tissue Sample";
+        return Lang.getTissueName(this._name, true);
     }
 }

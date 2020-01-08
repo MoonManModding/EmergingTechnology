@@ -4,8 +4,10 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -43,9 +45,8 @@ public class BiomassGenerator extends MachineBase implements ITileEntityProvider
 
         int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
 
-        tooltip.add("Burns Biomass to produce energy.");
-        tooltip.add("Generates " + energy + "RF per cycle when supplied with biomass.");
-
+        tooltip.add(Lang.get(Lang.BIOMASS_DESC));
+        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY));
     }
 
     @Override

@@ -6,8 +6,9 @@ import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.gui.enums.IndicatorTypeEnum;
+
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -130,7 +131,7 @@ public class HydroponicGui extends GuiContainer {
 		int fluidLevel = this.tileEntity.getField(0);
 		int maxFluidLevel = Reference.HYDROPONIC_FLUID_CAPACITY;
 
-		GuiIndicatorData fluidIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.FLUID,
+		GuiIndicatorData fluidIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.FLUID,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, fluidLevel, maxFluidLevel);
 
 		int growthFromMedium = HydroponicHelper.getGrowthProbabilityForMedium(this.tileEntity.getItemStack());

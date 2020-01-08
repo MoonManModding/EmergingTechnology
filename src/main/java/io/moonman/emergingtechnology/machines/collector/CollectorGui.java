@@ -22,7 +22,6 @@ public class CollectorGui extends GuiContainer {
 
 	// Standard positions for labels
 	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();
-	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
 
 	// Draws textures on gui
@@ -68,7 +67,7 @@ public class CollectorGui extends GuiContainer {
 	private void renderTooltips(int mouseX, int mouseY) {
 
 
-		// GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, IndicatorTypeEnum.HEAT,
+		// GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.HEAT,
 		// 		IndicatorPositionEnum.PRIMARY, mouseX, mouseY, heat, maxHeat);
 
 		// if (energyIndicator.isHovered) {

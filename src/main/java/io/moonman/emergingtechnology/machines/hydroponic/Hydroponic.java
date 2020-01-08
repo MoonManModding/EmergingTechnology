@@ -5,9 +5,11 @@ import java.util.List;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
+import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -57,12 +59,8 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
     {
         int fluidUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle;
 
-        // TextComponentTranslation translation = new TextComponentTranslation("info.emergingtechnology.hydroponic.test");
-
-        // tooltip.add(translation.getFormattedText());
-        tooltip.add("Plants grown on this block can receive a growth boost.");
-        tooltip.add("Requires a growth medium to provide boost.");
-        tooltip.add("Requires at least " + fluidUsage + "MB of fluid per cycle to function");
+        tooltip.add(Lang.get(Lang.HYDROPONIC_DESC));
+        tooltip.add(Lang.getRequired(fluidUsage, ResourceTypeEnum.FLUID));
     }
 
     @Override
