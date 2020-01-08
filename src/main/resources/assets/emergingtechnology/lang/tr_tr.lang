@@ -1,0 +1,136 @@
+# Item
+
+# HYDROPONICS MODULE
+item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+item.emergingtechnology.harvester.name=Harvester
+item.emergingtechnology.filler.name=Water Filler
+item.emergingtechnology.light.name=Hydroponic Grow Light
+item.emergingtechnology.frame.name=Hydroponic Frame
+item.emergingtechnology.redbulb.name=Red Bulb
+item.emergingtechnology.greenbulb.name=Green Bulb
+item.emergingtechnology.bluebulb.name=Blue Bulb
+item.emergingtechnology.purplebulb.name=UV Bulb
+
+# POLYMERS MODULE
+item.emergingtechnology.processor.name=Processor
+item.emergingtechnology.shredder.name=Shredder
+item.emergingtechnology.collector.name=Waste Collector
+item.emergingtechnology.shreddedplastic.name=Shredded Plastic
+item.emergingtechnology.shreddedplant.name=Shredded Plant
+item.emergingtechnology.shreddedstarch.name=Shredded Starch
+item.emergingtechnology.plasticwaste.name=Plastic Waste
+item.emergingtechnology.filament.name=Filament
+item.emergingtechnology.plasticblock.name=Block of Plastic
+item.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
+item.emergingtechnology.plasticrod.name=Plastic Rod
+item.emergingtechnology.plasticsheet.name=Plastic Sheet
+item.emergingtechnology.machinecase.name=Basic Machine Case
+item.emergingtechnology.fabricator.name=Fabricator
+item.emergingtechnology.ladder.name=Plastic Ladder
+item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
+
+item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
+#SYNTHETICS MODULE
+item.emergingtechnology.cooker.name=Solar Cooker
+
+item.emergingtechnology.emptysyringe.name=Empty Syringe
+
+item.emergingtechnology.syntheticcowraw.name=Raw Synthetic Beef
+item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
+item.emergingtechnology.syntheticpigraw.name=Raw Synthetic Porkchop
+
+item.emergingtechnology.syntheticcowcooked.name=Cooked Synthetic Beef
+item.emergingtechnology.syntheticchickencooked.name=Cooked Synthetic Chicken
+item.emergingtechnology.syntheticpigcooked.name=Cooked Synthetic Porkchop
+
+item.emergingtechnology.syntheticsilk.name=Synthetic Silk
+item.emergingtechnology.syntheticslime.name=Synthetic Slime Ball
+item.emergingtechnology.syntheticleather.name=Synthetic Leather
+
+item.emergingtechnology.bioreactor.name=Tissue Bioreactor
+item.emergingtechnology.scaffolder.name=Tissue Scaffolder
+
+#ELECTRICS MODULE
+item.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+item.emergingtechnology.biomass.name=Biomass
+item.emergingtechnology.biomassgenerator.name=Biomass Generator
+item.emergingtechnology.tidalgenerator.name=Tidal Generator
+
+
+#Blocks
+
+# HYDROPONICS MODULE
+blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+blocks.emergingtechnology.harvester.name=Harvester
+blocks.emergingtechnology.filler.name=Water Filler
+blocks.emergingtechnology.light.name=Hydroponic Grow Light
+blocks.emergingtechnology.frame.name=Hydroponic Frame
+
+# POLYMERS MODULE
+blocks.emergingtechnology.processor.name=Processor
+blocks.emergingtechnology.shredder.name=Shredder
+blocks.emergingtechnology.collector.name=Waste Collector
+blocks.emergingtechnology.plasticblock.name=Block of Plastic
+blocks.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
+blocks.emergingtechnology.machinecase.name=Basic Machine Case
+blocks.emergingtechnology.fabricator.name=Fabricator
+blocks.emergingtechnology.ladder.name=Plastic Ladder
+
+blocks.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+blocks.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
+#SYNTHETICS MODULE
+blocks.emergingtechnology.cooker.name=Solar Cooker
+blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
+blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
+
+#ELECTRICS MODULE
+blocks.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
+blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
+
+#Containers
+
+
+#Tiles
+
+# HYDROPONICS MODULE
+tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
+tile.emergingtechnology.harvester.name=Harvester
+tile.emergingtechnology.filler.name=Water Filler
+tile.emergingtechnology.light.name=Hydroponic Grow Light
+tile.emergingtechnology.frame.name=Hydroponic Frame
+
+# POLYMERS MODULE
+tile.emergingtechnology.processor.name=Processor
+tile.emergingtechnology.shredder.name=Shredder
+tile.emergingtechnology.collector.name=Waste Collector
+tile.emergingtechnology.plasticblock.name=Block of Plastic
+tile.emergingtechnology.clearplasticblock.name=Block of Clear Plastic
+tile.emergingtechnology.machinecase.name=Basic Machine Case
+tile.emergingtechnology.fabricator.name=Fabricator
+tile.emergingtechnology.ladder.name=Plastic Ladder
+
+tile.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
+tile.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
+tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
+
+# SYNTHETICS MODULE
+tile.emergingtechnology.cooker.name=Solar Cooker
+tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
+tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
+
+#ELECTRICS MODULE
+tile.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+tile.emergingtechnology.biomassgenerator.name=Biomass Generator
+tile.emergingtechnology.tidalgenerator.name=Tidal Generator
+
+#ItemGroup
+
+itemGroup.technologytab=Emerging Technology
+
+info.emergingtechnology.hydroponic.test=This is a test.
