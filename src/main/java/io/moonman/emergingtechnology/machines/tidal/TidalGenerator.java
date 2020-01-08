@@ -39,8 +39,11 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 
         int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.tidalEnergyGenerated;
+        int min = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.minOptimalDepth;
+        int max = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.maxOptimalDepth;
 
         tooltip.add("Generates " + energy + "RF when under water.");
+        tooltip.add("Generates energy at 200% efficiency when at a depth between Y" + min + " and Y" + max);
 
     }
 

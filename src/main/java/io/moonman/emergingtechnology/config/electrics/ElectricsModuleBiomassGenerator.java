@@ -9,7 +9,7 @@ public class ElectricsModuleBiomassGenerator {
     @Name("Biomass Generator Energy Generated")
     @Config.Comment("How much energy the Biomass Generator generates per biomass item.")
     @RangeInt(min = 0, max = 10000)
-    public int biomassEnergyGenerated = 750;
+    public int biomassEnergyGenerated = 250;
 
     @Name("Biomass Generator Process Time")
     @Config.Comment("How long the biomass generator takes to process a biomass item into energy")

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PbP",
+    "rBr",
+    "PMP"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "sheetPlastic"
+    },
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "rodPlastic"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:tidalgenerator",
+    "count": 1
+  }
+}

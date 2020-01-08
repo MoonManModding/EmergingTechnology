@@ -29,11 +29,14 @@ public class TidalHelper {
                 boolean isValidNeighbour = isValidNeighbour(world.getBlockState(startPos.add(x, 0, z)));
                 if (isValidNeighbour) {
                     waterBlockCount++;
+                    if (waterBlockCount >= EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.minimumWaterBlocks) {
+                        return true;
+                    }
                 }
             }
         }
 
-        return waterBlockCount >= EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.minimumWaterBlocks;
+        return false;
     }
 
     public static boolean isGeneratorAtOptimalDepth(BlockPos pos) {

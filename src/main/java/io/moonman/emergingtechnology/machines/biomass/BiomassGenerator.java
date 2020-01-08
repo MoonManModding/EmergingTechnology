@@ -41,10 +41,10 @@ public class BiomassGenerator extends MachineBase implements ITileEntityProvider
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 
-        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.tidalEnergyGenerated;
+        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
 
-        tooltip.add("Burns Biomass to product energy.");
-        tooltip.add("Generates " + energy + "RF when under water.");
+        tooltip.add("Burns Biomass to produce energy.");
+        tooltip.add("Generates " + energy + "RF per cycle when supplied with biomass.");
 
     }
 

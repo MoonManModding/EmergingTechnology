@@ -45,11 +45,14 @@ public class CollectorHelper {
                 boolean isValidNeighbour = isValidNeighbour(world.getBlockState(startPos.add(x, 0, z)));
                 if (isValidNeighbour) {
                     waterBlockCount++;
+                    if (waterBlockCount >= EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.minimumWaterBlocks) {
+                        return true;
+                    }
                 }
             }
         }
 
-        return waterBlockCount >= EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.minimumWaterBlocks;
+        return false;
     }
 
     public static ItemStack getRandomRecoveredItemStack() {
