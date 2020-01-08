@@ -64,8 +64,6 @@ public class BiomassGeneratorGui extends GuiContainer
 		int energy = this.getEnergyScaled(37);
 		int progress = this.getProgressScaled(34);
 
-		System.out.println("GUI energy was " + energy);
-
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 9, energy, 7);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
@@ -86,8 +84,6 @@ public class BiomassGeneratorGui extends GuiContainer
 
 	private int getEnergyScaled(int scaled)
     {
-		System.out.println("Raw energy " + tileEntity.getField(0));
-
 		return (int) (tileEntity.getField(0) * scaled / Reference.BIOMASS_ENERGY_CAPACITY);
 	}
 
