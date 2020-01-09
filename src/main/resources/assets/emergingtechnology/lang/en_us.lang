@@ -162,17 +162,17 @@ info.emergingtechnology.cookedmeat.name=Cooked Synthetic %s Meat
 info.emergingtechnology.sample.name=Sample of %s Tissue
 info.emergingtechnology.syringe.name=Syringe of %s Tissue
 
-info.emergingtechnology.rawmeat.description=Raw synthetic %s meat
-info.emergingtechnology.cookedmeat.description=Cooked synthetic %s meat
+info.emergingtechnology.rawmeat.description=Looks like %s meat
+info.emergingtechnology.cookedmeat.description=Tastes like %s meat
 info.emergingtechnology.sample.description=A sample containing %s tissue.
-info.emergingtechnology.syringe.description=A sample syringe %s tissue.
+info.emergingtechnology.syringe.description=A syringe containing %s tissue.
 
 # Required
 info.emergingtechnology.energy.required=Requires %sRF per cycle.
 info.emergingtechnology.fluid.required=Requires %sMB of fluid per cycle.
 info.emergingtechnology.water.required=Requires %sMB of water per cycle.
 info.emergingtechnology.heat.required=Requires %sC heat per cycle.
-info.emergingtechnology.growth.required=Provides a %s% growth boost per cycle;
+info.emergingtechnology.growth.required=Provides a %s percent growth boost per cycle;
 
 info.emergingtechnology.biome.required=Only functions in Ocean, Deep Ocean and Beach biomes.
 info.emergingtechnology.waterblocks.required=Requires at least %s surrounding water blocks.
@@ -184,7 +184,7 @@ info.emergingtechnology.energy.generated=Generates %sRF per cycle.
 info.emergingtechnology.fluid.generated=Provides %sMB of fluid per cycle.
 info.emergingtechnology.water.generated=Provides %sMB of water per cycle.
 info.emergingtechnology.heat.generated=Generates %sC heat per cycle.
-info.emergingtechnology.growth.generated=Provides a %s% growth boost per cycle;
+info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per cycle.
 
 info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
 info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.

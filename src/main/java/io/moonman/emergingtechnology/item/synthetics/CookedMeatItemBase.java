@@ -24,11 +24,11 @@ public class CookedMeatItemBase extends ItemFoodBase {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add(Lang.getMeatDescription(this._name, true));
+        tooltip.add(Lang.getMeatDescription(Lang.capitaliseName(this._name), true));
     }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return Lang.getMeatName(this._name, true);
+        return Lang.getMeatName(Lang.capitaliseName(this._name), true);
     }
 }

@@ -24,11 +24,11 @@ public class SampleItemBase extends ItemBase {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add(Lang.getTissueDescription(this._name, true));
+        tooltip.add(Lang.getTissueDescription(Lang.capitaliseName(this._name), true));
     }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return Lang.getTissueName(this._name, true);
+        return Lang.getTissueName(Lang.capitaliseName(this._name), true);
     }
 }

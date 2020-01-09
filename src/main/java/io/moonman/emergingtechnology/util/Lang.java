@@ -46,12 +46,12 @@ public class Lang {
 
     public static String getTissueName(String name, boolean isSample) {
         String type = isSample ? "sample" : "syringe";
-        return new TextComponentTranslation(SOURCE + type + "name", name).getFormattedText();
+        return new TextComponentTranslation(SOURCE + type + ".name", name).getFormattedText();
     }
 
     public static String getTissueDescription(String name, boolean isSample) {
         String type = isSample ? "sample" : "syringe";
-        return new TextComponentTranslation(SOURCE + type + "description", name).getFormattedText();
+        return new TextComponentTranslation(SOURCE + type + ".description", name).getFormattedText();
     }
 
     // Special requirements
@@ -79,12 +79,15 @@ public class Lang {
         return new TextComponentTranslation(SOURCE + type.toString().toLowerCase() + ".required", required).getFormattedText();
     }
 
-    public static String getGenerated(int required, ResourceTypeEnum type) {
-        return new TextComponentTranslation(SOURCE + type.toString().toLowerCase() + ".generated", required).getFormattedText();
+    public static String getGenerated(int generated, ResourceTypeEnum type) {
+        return new TextComponentTranslation(SOURCE + type.toString().toLowerCase() + ".generated", generated).getFormattedText();
     }
 
     public static String get(TextComponentTranslation translation) {
         return translation.getFormattedText();
     }
 
+    public static String capitaliseName(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
+    }
 }
