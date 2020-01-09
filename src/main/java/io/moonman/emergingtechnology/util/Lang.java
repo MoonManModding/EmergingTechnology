@@ -6,6 +6,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 public class Lang {
 
     private static final String SOURCE = "info.emergingtechnology.";
+    private static final String GUI_SOURCE = "gui.emergingtechnology.";
 
     // Machine descriptions for tooltips
     public static final TextComponentTranslation BIOMASS_DESC = new TextComponentTranslation(SOURCE + "light.description");
@@ -32,6 +33,21 @@ public class Lang {
 
     // Interaction descriptions
     public static final TextComponentTranslation INTERACT_RIGHT_CLICK = new TextComponentTranslation(SOURCE + "interaction.rightclick");
+    
+    // GUI
+    public static final TextComponentTranslation GUI_BASE_MEDIUM = new TextComponentTranslation(GUI_SOURCE + "label.basemedium");
+    public static final TextComponentTranslation GUI_BASE_FLUID = new TextComponentTranslation(GUI_SOURCE + "label.basefluid");
+    public static final TextComponentTranslation GUI_BOOST_MEDIUM = new TextComponentTranslation(GUI_SOURCE + "label.boostmedium");
+    public static final TextComponentTranslation GUI_BOOST_FLUID = new TextComponentTranslation(GUI_SOURCE + "label.boostfluid");
+    public static final TextComponentTranslation GUI_BOOST_LIGHT = new TextComponentTranslation(GUI_SOURCE + "label.boostlight");
+    public static final TextComponentTranslation GUI_BASE = new TextComponentTranslation(GUI_SOURCE + "label.base");
+    public static final TextComponentTranslation GUI_BOOST = new TextComponentTranslation(GUI_SOURCE + "label.boost");
+    public static final TextComponentTranslation GUI_MAX_RANGE = new TextComponentTranslation(GUI_SOURCE + "label.maxrange");
+    public static final TextComponentTranslation GUI_STORAGE_ENERGY = new TextComponentTranslation(GUI_SOURCE + "label.energy");
+    public static final TextComponentTranslation GUI_STORAGE_FLUID = new TextComponentTranslation(GUI_SOURCE + "label.fluid");
+    public static final TextComponentTranslation GUI_STORAGE_HEAT = new TextComponentTranslation(GUI_SOURCE + "label.heat");
+    public static final TextComponentTranslation GUI_GROWTH = new TextComponentTranslation(GUI_SOURCE + "label.growth");
+    public static final TextComponentTranslation GUI_ERROR = new TextComponentTranslation(GUI_SOURCE + "label.error");
 
     // Items
     public static String getMeatName(String name, boolean cooked) {

@@ -125,9 +125,20 @@ public class OreRegistrationHandler {
         registerItems(slimeball, "slimeball");
         registerItems(string, "string");
         registerItems(leather, "leather");
+
         registerItems(listAllmeat, "listAllmeat");
         registerItems(rawMeat, "rawMeat");
         registerItems(cookedMeat, "cookedMeat");
+        registerItems(rawMeat, "listAllmeatraw");
+        registerItems(cookedMeat, "listAllmeatcooked");
+
+        OreDictionary.registerOre("listAllchickenraw", ModItems.syntheticchickenraw);
+        OreDictionary.registerOre("listAllporkraw", ModItems.syntheticpigraw);
+        OreDictionary.registerOre("listAllbeefraw", ModItems.syntheticcowraw);
+
+        OreDictionary.registerOre("listAllchickencooked", ModItems.syntheticchickencooked);
+        OreDictionary.registerOre("listAllporkcooked", ModItems.syntheticpigcooked);
+        OreDictionary.registerOre("listAllbeefcooked", ModItems.syntheticcowcooked);
     }
 
     private static void registerBlocks(Block[] blocks, String name) {

@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.util.Lang;
 
 public class GuiTooltipHelper {
 
@@ -41,11 +42,11 @@ public class GuiTooltipHelper {
         if (region.isPositionInRegion(mousePosition)) {
             List<String> list = new ArrayList<String>();
             list.add(label.header);
-            list.add("Base (Medium): " + growthFromMedium + label.unit);
-            list.add("Base (Fluid): " + growthFromFluid + label.unit);
-            list.add("Boost (Medium): " + boostFromMedium + label.unit);
-            list.add("Boost (Fluid): " + boostFromFluid + label.unit);
-            list.add("Light Total: " + growthFromLight + label.unit);
+            list.add(Lang.get(Lang.GUI_BASE_MEDIUM) + growthFromMedium + label.unit);
+            list.add(Lang.get(Lang.GUI_BASE_FLUID) + growthFromFluid + label.unit);
+            list.add(Lang.get(Lang.GUI_BOOST_MEDIUM) + boostFromMedium + label.unit);
+            list.add(Lang.get(Lang.GUI_BOOST_FLUID) + boostFromFluid + label.unit);
+            list.add(Lang.get(Lang.GUI_BOOST_LIGHT) + growthFromLight + label.unit);
             return new GuiIndicatorData(true, list);
         }
 
@@ -62,9 +63,9 @@ public class GuiTooltipHelper {
         if (region.isPositionInRegion(mousePosition)) {
             List<String> list = new ArrayList<String>();
             list.add(label.header);
-            list.add("Base: " + growthFromBulb + label.unit);
-            list.add("Boost: " + boostFromBulb + label.unit);
-            list.add("Max range: " + EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange);
+            list.add(Lang.get(Lang.GUI_BASE) + growthFromBulb + label.unit);
+            list.add(Lang.get(Lang.GUI_BOOST) + boostFromBulb + label.unit);
+            list.add(Lang.get(Lang.GUI_MAX_RANGE) + EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange);
             return new GuiIndicatorData(true, list);
         }
 
@@ -74,15 +75,15 @@ public class GuiTooltipHelper {
     private static GuiLabel getLabel(ResourceTypeEnum type) {
         switch (type) {
         case ENERGY:
-            return new GuiLabel("Energy Storage", "RF");
+            return new GuiLabel(Lang.get(Lang.GUI_STORAGE_ENERGY), "RF");
         case FLUID:
-            return new GuiLabel("Fluid Storage", "MB");
+            return new GuiLabel(Lang.get(Lang.GUI_STORAGE_FLUID), "MB");
         case HEAT:
-            return new GuiLabel("Temperature", "C");
+            return new GuiLabel(Lang.get(Lang.GUI_STORAGE_HEAT), "C");
         case GROWTH:
-            return new GuiLabel("Growth Modifiers", "%");
+            return new GuiLabel(Lang.get(Lang.GUI_GROWTH), "%");
         default:
-            return new GuiLabel("Error", "$");
+            return new GuiLabel(Lang.get(Lang.GUI_ERROR), "$");
         }
     }
 
