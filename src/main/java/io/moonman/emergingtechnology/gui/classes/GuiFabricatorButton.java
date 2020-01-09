@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.gui.classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -62,8 +63,8 @@ public class GuiFabricatorButton extends GuiButton {
         List<String> tooltips = new ArrayList<String>();
 
         tooltips.add(this.itemStackToRender.getDisplayName());
-        tooltips.add("Program " + this.id);
-        tooltips.add("Requires " + this.cost + " " + this.inputName);
+        tooltips.add(Lang.get(Lang.GUI_FABRICATOR_BUTTON_PROGRAM) + this.id);
+        tooltips.add(Lang.get(Lang.GUI_FABRICATOR_BUTTON_REQUIRES) + this.cost + " " + this.inputName);
 
         return tooltips;
     }

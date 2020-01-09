@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.gui.classes;
 
 import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
+import io.moonman.emergingtechnology.util.Lang;
 
 public class GuiFabricatorStatus {
 
@@ -17,19 +18,19 @@ public class GuiFabricatorStatus {
     public String getMessageForStatus(FabricatorStatusEnum status) {
         switch(status) {
             case ERROR:
-                return "Unable to fabricate item";
+                return Lang.get(Lang.GUI_FABRICATOR_ERROR);
             case INSUFFICIENT_ENERGY:
-                return "Insufficient energy";
+                return Lang.get(Lang.GUI_FABRICATOR_NO_ENERGY);
             case INSUFFICIENT_INPUT:
-                return "Insufficient items in input";
+                return Lang.get(Lang.GUI_FABRICATOR_NO_INPUT);
             case OUTPUT_FULL:
-                return "Output full";
+                return Lang.get(Lang.GUI_FABRICATOR_FULL_OUTPUT);
             case INVALID_OUTPUT:
-                return "Invalid output item";
+                return Lang.get(Lang.GUI_FABRICATOR_INVALID_OUTPUT);
             case INVALID_INPUT:
-                return "Invalid input item";
+                return Lang.get(Lang.GUI_FABRICATOR_INVALID_INPUT);
             default:
-                return "No problems detected";
+                return "OK";
         }
     }
 }

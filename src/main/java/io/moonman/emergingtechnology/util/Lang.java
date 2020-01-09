@@ -48,6 +48,15 @@ public class Lang {
     public static final TextComponentTranslation GUI_STORAGE_HEAT = new TextComponentTranslation(GUI_SOURCE + "label.heat");
     public static final TextComponentTranslation GUI_GROWTH = new TextComponentTranslation(GUI_SOURCE + "label.growth");
     public static final TextComponentTranslation GUI_ERROR = new TextComponentTranslation(GUI_SOURCE + "label.error");
+    
+    public static final TextComponentTranslation GUI_FABRICATOR_ERROR = new TextComponentTranslation(GUI_SOURCE + "fabricator.error");
+    public static final TextComponentTranslation GUI_FABRICATOR_NO_ENERGY = new TextComponentTranslation(GUI_SOURCE + "fabricator.noenergy");
+    public static final TextComponentTranslation GUI_FABRICATOR_NO_INPUT = new TextComponentTranslation(GUI_SOURCE + "fabricator.noinput");
+    public static final TextComponentTranslation GUI_FABRICATOR_FULL_OUTPUT = new TextComponentTranslation(GUI_SOURCE + "fabricator.fulloutput");
+    public static final TextComponentTranslation GUI_FABRICATOR_INVALID_OUTPUT = new TextComponentTranslation(GUI_SOURCE + "fabricator.invalidoutput");
+    public static final TextComponentTranslation GUI_FABRICATOR_INVALID_INPUT = new TextComponentTranslation(GUI_SOURCE + "fabricator.invalidinput");
+    public static final TextComponentTranslation GUI_FABRICATOR_BUTTON_PROGRAM = new TextComponentTranslation(GUI_SOURCE + "fabricator.buttonprogram");
+    public static final TextComponentTranslation GUI_FABRICATOR_BUTTON_REQUIRES = new TextComponentTranslation(GUI_SOURCE + "fabricator.buttonrequires");
 
     // Items
     public static String getMeatName(String name, boolean cooked) {

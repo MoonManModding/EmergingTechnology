@@ -131,3 +131,89 @@ tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 #ItemGroup
 
 itemGroup.technologytab=新兴技术
+
+
+# NOTE TO TRANSLATORS: The text %s in the translations below are replaced with values!
+
+# Machine descriptions
+info.emergingtechnology.biomass.description=Burns Biomass to produce energy.
+info.emergingtechnology.bioreactor.description=Processes animal tissues into usable samples.
+info.emergingtechnology.collector.description=Slowly collects waste plastic when placed in water.
+info.emergingtechnology.cooker.description=Uses direct sunlight to cook food items.
+info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
+info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.
+info.emergingtechnology.harvester.description=Harvests crops automatically.
+info.emergingtechnology.hydroponic.description=Plants grown on this block can receive a growth boost.
+info.emergingtechnology.light.description=Provides a growth boost to plants grown below.
+info.emergingtechnology.piezoelectric.description=Generates a tiny amount of energy when stepped on.
+info.emergingtechnology.processor.description=Processes raw materials into usable plastics.
+info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthetic animal products.
+info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
+info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
+
+info.emergingtechnology.frame.description=A decorative plastic frame
+
+# Item descriptions
+info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.
+info.emergingtechnology.emptysyringe.description=An empty syringe used for collecting tissue samples from animals.
+
+info.emergingtechnology.rawmeat.name=Raw Synthetic %s Meat
+info.emergingtechnology.cookedmeat.name=Cooked Synthetic %s Meat
+info.emergingtechnology.sample.name=Sample of %s Tissue
+info.emergingtechnology.syringe.name=Syringe of %s Tissue
+
+info.emergingtechnology.rawmeat.description=Looks like %s meat
+info.emergingtechnology.cookedmeat.description=Tastes like %s meat
+info.emergingtechnology.sample.description=A sample containing %s tissue.
+info.emergingtechnology.syringe.description=A syringe containing %s tissue.
+
+# Required
+info.emergingtechnology.energy.required=Requires %sRF per cycle.
+info.emergingtechnology.fluid.required=Requires %sMB of fluid per cycle.
+info.emergingtechnology.water.required=Requires %sMB of water per cycle.
+info.emergingtechnology.heat.required=Requires %sC heat per cycle.
+info.emergingtechnology.growth.required=Provides a %s percent growth boost per cycle;
+
+info.emergingtechnology.biome.required=Only functions in Ocean, Deep Ocean and Beach biomes.
+info.emergingtechnology.waterblocks.required=Requires at least %s surrounding water blocks.
+info.emergingtechnology.watersurface.required=Must be placed at water's surface.
+info.emergingtechnology.waterdepth.required=(x2 when at depth between Y%1$s and Y%2$s)
+
+# Generated
+info.emergingtechnology.energy.generated=Generates %sRF per cycle.
+info.emergingtechnology.fluid.generated=Provides %sMB of fluid per cycle.
+info.emergingtechnology.water.generated=Provides %sMB of water per cycle.
+info.emergingtechnology.heat.generated=Generates %sC heat per cycle.
+info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per cycle.
+
+info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
+info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
+
+# Interactions
+info.emergingtechnology.interaction.rightclick=Right click to use.
+
+# GUI
+gui.emergingtechnology.label.basemedium=Base (Medium): 
+gui.emergingtechnology.label.basefluid=Base (Fluid): 
+gui.emergingtechnology.label.boostmedium=Boost (Medium): 
+gui.emergingtechnology.label.boostfluid=Boost (Fluid): 
+gui.emergingtechnology.label.boostlight=Light Total: 
+
+gui.emergingtechnology.label.base=Base: 
+gui.emergingtechnology.label.boost=Boost: 
+gui.emergingtechnology.label.maxrange=Max range: 
+
+gui.emergingtechnology.label.energy=Energy Storage
+gui.emergingtechnology.label.fluid=Fluid Storage
+gui.emergingtechnology.label.heat=Temperature
+gui.emergingtechnology.label.growth=Growth Modifiers
+gui.emergingtechnology.label.error=Error
+
+gui.emergingtechnology.fabricator.error=Unable to fabricate item
+gui.emergingtechnology.fabricator.noenergy=Insufficient energy
+gui.emergingtechnology.fabricator.noinput=Insufficient items in input
+gui.emergingtechnology.fabricator.fulloutput=Output full
+gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
+gui.emergingtechnology.fabricator.invalidinput=Invalid input item
+gui.emergingtechnology.fabricator.buttonprogram=Program 
+gui.emergingtechnology.fabricator.buttonrequires=Requires 

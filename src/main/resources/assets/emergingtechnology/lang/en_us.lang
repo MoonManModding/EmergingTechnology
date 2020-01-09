@@ -193,18 +193,27 @@ info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks
 info.emergingtechnology.interaction.rightclick=Right click to use.
 
 # GUI
-gui.emergingtechnology.label.basemedium=Base (Medium):
-gui.emergingtechnology.label.basefluid=Base (Fluid):
-gui.emergingtechnology.label.boostmedium=Boost (Medium):
-gui.emergingtechnology.label.boostfluid=Boost (Fluid):
-gui.emergingtechnology.label.boostlight=Light Total:
+gui.emergingtechnology.label.basemedium=Base (Medium): 
+gui.emergingtechnology.label.basefluid=Base (Fluid): 
+gui.emergingtechnology.label.boostmedium=Boost (Medium): 
+gui.emergingtechnology.label.boostfluid=Boost (Fluid): 
+gui.emergingtechnology.label.boostlight=Light Total: 
 
-gui.emergingtechnology.label.base=Base:
-gui.emergingtechnology.label.boost=Boost:
-gui.emergingtechnology.label.maxrange=Max range:
+gui.emergingtechnology.label.base=Base: 
+gui.emergingtechnology.label.boost=Boost: 
+gui.emergingtechnology.label.maxrange=Max range: 
 
 gui.emergingtechnology.label.energy=Energy Storage
 gui.emergingtechnology.label.fluid=Fluid Storage
 gui.emergingtechnology.label.heat=Temperature
 gui.emergingtechnology.label.growth=Growth Modifiers
 gui.emergingtechnology.label.error=Error
+
+gui.emergingtechnology.fabricator.error=Unable to fabricate item
+gui.emergingtechnology.fabricator.noenergy=Insufficient energy
+gui.emergingtechnology.fabricator.noinput=Insufficient items in input
+gui.emergingtechnology.fabricator.fulloutput=Output full
+gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
+gui.emergingtechnology.fabricator.invalidinput=Invalid input item
+gui.emergingtechnology.fabricator.buttonprogram=Program 
+gui.emergingtechnology.fabricator.buttonrequires=Requires 
