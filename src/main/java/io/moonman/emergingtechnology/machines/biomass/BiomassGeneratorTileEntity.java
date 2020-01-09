@@ -126,16 +126,16 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
 
         ItemStack inputStack = getInputStack();
 
-        // Nothing in input stack
-        if (inputStack.getCount() == 0) {
-            this.setProgress(0);
-            return;
-        }
+        if (this.getProgress() == 0) {
+            if (inputStack.getCount() == 0) {
+                return;
+            }
 
-        // Can't process this item
-        if (!BiomassHelper.isItemStackValid(inputStack)) {
-            this.setProgress(0);
-            return;
+            if (!BiomassHelper.isItemStackValid(inputStack)) {
+                return;
+            }
+
+            itemHandler.extractItem(0, 1, false);
         }
 
         // Generator full - stop processing
@@ -152,8 +152,6 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
             this.setProgress(this.getProgress() + 1);
             return;
         }
-
-        itemHandler.extractItem(0, 1, false);
 
         this.setProgress(0);
     }
