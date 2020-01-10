@@ -22,10 +22,10 @@ Emerging Technology works with the following mods:
 - NuclearCraft
 - XNET
 - Thermal Series
+- Ender IO
 - AgriCraft (requires some setup)
 
 Untested but likely compatible:
-- Ender IO
 - Mekanism
 - BuildCraft
 
