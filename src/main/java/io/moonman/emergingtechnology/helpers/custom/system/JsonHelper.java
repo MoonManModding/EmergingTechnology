@@ -17,18 +17,17 @@ public class JsonHelper {
     public static final Gson GSON_INSTANCE = new Gson();
 
     public static JsonArray readFromJson(String filePath) throws IOException {
-
-        FileReader fileReader = new FileReader(filePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        JsonElement je = GSON_INSTANCE.fromJson(bufferedReader, JsonElement.class);
-        return je.getAsJsonArray();
+        return read(filePath).getAsJsonArray();
     }
 
     public static JsonObject readFromJsonObject(String filePath) throws IOException {
+        return read(filePath).getAsJsonObject();
+    }
 
+    private static JsonElement read(String filePath) throws IOException {
         FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         JsonElement je = GSON_INSTANCE.fromJson(bufferedReader, JsonElement.class);
-        return je.getAsJsonObject();
+        return je;
     }
 }

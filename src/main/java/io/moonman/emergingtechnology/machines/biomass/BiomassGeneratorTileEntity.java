@@ -138,12 +138,12 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
             itemHandler.extractItem(0, 1, false);
         }
 
+        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
+
         // Generator full - stop processing
-        if (getEnergy() == Reference.BIOMASS_ENERGY_CAPACITY) {
+        if (getEnergy() + energy > Reference.BIOMASS_ENERGY_CAPACITY) {
             return;
         }
-
-        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
 
         this.energyHandler.receiveEnergy(energy, false);
 
