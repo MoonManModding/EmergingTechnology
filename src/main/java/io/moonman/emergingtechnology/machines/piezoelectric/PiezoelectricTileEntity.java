@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.machines.piezoelectric;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.GeneratorEnergyStorageHandler;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
@@ -35,6 +36,10 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
         }
     };
 
+    public GeneratorEnergyStorageHandler generatorEnergyHandler = new GeneratorEnergyStorageHandler(energyHandler) {
+
+    };
+
     private int tick = 0;
     private int cooldown = 0;
     private int energy = 0;
@@ -50,7 +55,7 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.energyHandler;
+            return (T) this.generatorEnergyHandler;
         return super.getCapability(capability, facing);
     }
 

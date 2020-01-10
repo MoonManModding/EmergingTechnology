@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.machines.tidal;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.GeneratorEnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.machines.TidalHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
@@ -33,6 +34,10 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
         }
     };
 
+    public GeneratorEnergyStorageHandler generatorEnergyHandler = new GeneratorEnergyStorageHandler(energyHandler) {
+
+    };
+
     private int tick = 0;
     private int energy = 0;
 
@@ -47,7 +52,7 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.energyHandler;
+            return (T) this.generatorEnergyHandler;
         return super.getCapability(capability, facing);
     }
 
