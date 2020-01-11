@@ -1,13 +1,13 @@
 # Thanks to TigrKill and genom10 for these translations!
 
 # Item
+
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Гидропонная Установка
 item.emergingtechnology.harvester.name=Сборщик
 item.emergingtechnology.filler.name=Водяной Наполнитель
 item.emergingtechnology.light.name=Фитолампа
 item.emergingtechnology.frame.name=Гидропонная рама
-
 item.emergingtechnology.redbulb.name=Красный Светодиод
 item.emergingtechnology.greenbulb.name=Зеленый Светодиод
 item.emergingtechnology.bluebulb.name=Синий Светодиод
@@ -16,17 +16,18 @@ item.emergingtechnology.purplebulb.name=Ультрафиолетовый Све�
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
-item.emergingtechnology.collector.name=Waste Collector
+item.emergingtechnology.collector.name=Сборщик отходов
 item.emergingtechnology.shreddedplastic.name=Измельченный Пластик
 item.emergingtechnology.shreddedplant.name=Измельченные Растения
 item.emergingtechnology.shreddedstarch.name=Измельченный Крахмал
-item.emergingtechnology.plasticwaste.name=Plastic Waste
+item.emergingtechnology.plasticwaste.name=Пластиковые отходы
 item.emergingtechnology.filament.name=Волокно
 item.emergingtechnology.plasticblock.name=Блок Пластика
 item.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
 item.emergingtechnology.plasticrod.name=Пластиковый Стержень
 item.emergingtechnology.plasticsheet.name=Пластиковый Лист
 item.emergingtechnology.machinecase.name=Простой Корпус Механизма
+item.emergingtechnology.fabricator.name=Конструктор
 item.emergingtechnology.ladder.name=Пластиковая Лестница
 item.emergingtechnology.plastictissuescaffold.name=Пластиковая Основа Ткани
 
@@ -36,30 +37,33 @@ item.emergingtechnology.shreddedstarchblock.name=Блок Измельченно
 
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Солнечная Плита
-item.emergingtechnology.bioreactor.name=Тканевый Биореактор
-item.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
 
 item.emergingtechnology.emptysyringe.name=Пустой Шприц
 
-item.emergingtechnology.syntheticcowraw.name=Raw Synthetic Beef
-item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
-item.emergingtechnology.syntheticpigraw.name=Raw Synthetic Porkchop
+item.emergingtechnology.syntheticcowraw.name=Сырая синтетическая говядина
+item.emergingtechnology.syntheticchickenraw.name=Сырая синтетическая курятина
+item.emergingtechnology.syntheticpigraw.name=Сырая синтетическая свинина
 
-item.emergingtechnology.syntheticcowcooked.name=Cooked Synthetic Beef
-item.emergingtechnology.syntheticchickencooked.name=Cooked Synthetic Chicken
-item.emergingtechnology.syntheticpigcooked.name=Cooked Synthetic Porkchop
+item.emergingtechnology.syntheticcowcooked.name=Приготовленная синтетическая говядина
+item.emergingtechnology.syntheticchickencooked.name=Приготовленная синтетическая курятина
+item.emergingtechnology.syntheticpigcooked.name=Приготовленная синтетическая свинина
 
-item.emergingtechnology.syntheticsilk.name=Synthetic Silk
-item.emergingtechnology.syntheticslime.name=Synthetic Slime Ball
-item.emergingtechnology.syntheticleather.name=Synthetic Leather
+item.emergingtechnology.syntheticsilk.name=Синтетический шёлк
+item.emergingtechnology.syntheticslime.name=Синтетический сгусток слизи
+item.emergingtechnology.syntheticleather.name=Синтетическая кожа
+
+item.emergingtechnology.bioreactor.name=Тканевый Биореактор
+item.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
-item.emergingtechnology.biomass.name=Biomass
-item.emergingtechnology.biomassgenerator.name=Biomass Generator
-item.emergingtechnology.tidalgenerator.name=Tidal Generator
+item.emergingtechnology.biomass.name=Биомасса
+item.emergingtechnology.biomassgenerator.name=Генератор на биомассе
+item.emergingtechnology.tidalgenerator.name=Приливный генератор
+
 
 #Blocks
+
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
 blocks.emergingtechnology.harvester.name=Сборщик
@@ -70,10 +74,11 @@ blocks.emergingtechnology.frame.name=Гидропонная рама
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процессор
 blocks.emergingtechnology.shredder.name=Измельчитель
-blocks.emergingtechnology.collector.name=Waste Collector
+blocks.emergingtechnology.collector.name=Сборщик отходов
 blocks.emergingtechnology.plasticblock.name=Блок Пластика
 blocks.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
 blocks.emergingtechnology.machinecase.name=Простой Корпус Механизма
+blocks.emergingtechnology.fabricator.name=Конструктор
 blocks.emergingtechnology.ladder.name=Пластиковая Лестница
 
 blocks.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
@@ -87,13 +92,15 @@ blocks.emergingtechnology.scaffolder.name=Структурный Сборщик 
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
-blocks.emergingtechnology.biomass.name=Biomass
-blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
-blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
+blocks.emergingtechnology.biomassgenerator.name=Генератор на биомассе
+blocks.emergingtechnology.tidalgenerator.name=Приливный генератор
 
 #Containers
 
+
 #Tiles
+
+# HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Гидропонная Установка
 tile.emergingtechnology.harvester.name=Сборщик
 tile.emergingtechnology.filler.name=Водяной Наполнитель
@@ -103,10 +110,11 @@ tile.emergingtechnology.frame.name=Гидропонная рама
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Процессор
 tile.emergingtechnology.shredder.name=Измельчитель
-tile.emergingtechnology.collector.name=Waste Collector
+tile.emergingtechnology.collector.name=Сборщик отходов
 tile.emergingtechnology.plasticblock.name=Блок Пластика
 tile.emergingtechnology.clearplasticblock.name=Блок Прозрачного Пластика
 tile.emergingtechnology.machinecase.name=Простой Корпус Механизма
+tile.emergingtechnology.fabricator.name=Конструктор
 tile.emergingtechnology.ladder.name=Пластиковая Лестница
 
 tile.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
@@ -120,72 +128,71 @@ tile.emergingtechnology.scaffolder.name=Структурный Сборщик Т
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
-tile.emergingtechnology.biomass.name=Biomass
-tile.emergingtechnology.biomassgenerator.name=Biomass Generator
-tile.emergingtechnology.tidalgenerator.name=Tidal Generator
+tile.emergingtechnology.biomassgenerator.name=Генератор на биомассе
+tile.emergingtechnology.tidalgenerator.name=Приливный генератор
 
 #ItemGroup
+
 itemGroup.technologytab=Emerging Technology
 
-
-# NOTE TO TRANSLATORS: The text %s in the translations below are replaced with values!
+# ПРИМЕЧАНИЕ ДЛЯ ПЕРЕВОДЧИКОВ: Текст %s в переводах ниже заменяется значениями!
 
 # Machine descriptions
-info.emergingtechnology.biomass.description=Burns Biomass to produce energy.
-info.emergingtechnology.bioreactor.description=Processes animal tissues into usable samples.
-info.emergingtechnology.collector.description=Slowly collects waste plastic when placed in water.
-info.emergingtechnology.cooker.description=Uses direct sunlight to cook food items.
-info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
-info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.
-info.emergingtechnology.harvester.description=Harvests crops automatically.
-info.emergingtechnology.hydroponic.description=Plants grown on this block can receive a growth boost.
-info.emergingtechnology.light.description=Provides a growth boost to plants grown below.
-info.emergingtechnology.piezoelectric.description=Generates a tiny amount of energy when stepped on.
-info.emergingtechnology.processor.description=Processes raw materials into usable plastics.
-info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthetic animal products.
-info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
-info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
+info.emergingtechnology.biomass.description=Сжигает биомассу для производства энергии.
+info.emergingtechnology.bioreactor.description=Перерабатывает ткани животных в полезные образцы.
+info.emergingtechnology.collector.description=Медленно собирает отходы пластика при помещении в воду.
+info.emergingtechnology.cooker.description=Использует прямой солнечный свет для приготовления пищи.
+info.emergingtechnology.fabricator.description=Автоматизирует печать пластиковых компонентов.
+info.emergingtechnology.filler.description=Заполняет смежные баки водой.
+info.emergingtechnology.harvester.description=Собирает урожай автоматически.
+info.emergingtechnology.hydroponic.description=Растения, выращенные на этом блоке, могут получить импульс роста.
+info.emergingtechnology.light.description=Обеспечивает импульс роста растениям, выращенным ниже.
+info.emergingtechnology.piezoelectric.description=Вырабатывает небольшое количество энергии при наступании на него.
+info.emergingtechnology.processor.description=Перерабатывает сырье в пригодную для использования пластмассу.
+info.emergingtechnology.scaffolder.description=Образует образцы тканей в синтетические продукты животного происхождения.
+info.emergingtechnology.shredder.description=Измельчает растения и пластмассовые изделия в сырье для процессора.
+info.emergingtechnology.tidal.description=Генерирует энергию, используя движение приливов.
 
-info.emergingtechnology.frame.description=A decorative plastic frame
+info.emergingtechnology.frame.description=Декоративная пластиковая рамка
 
 # Item descriptions
-info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.
-info.emergingtechnology.emptysyringe.description=An empty syringe used for collecting tissue samples from animals.
+info.emergingtechnology.bulb.description=Светодиод, используемый в гидропонике.
+info.emergingtechnology.emptysyringe.description=Пустой шприц, используемый для сбора образцов ткани у животных.
 
-info.emergingtechnology.rawmeat.name=Raw Synthetic %s Meat
-info.emergingtechnology.cookedmeat.name=Cooked Synthetic %s Meat
-info.emergingtechnology.sample.name=Sample of %s Tissue
-info.emergingtechnology.syringe.name=Syringe of %s Tissue
+info.emergingtechnology.rawmeat.name=Сырое синтетическое %s мясо
+info.emergingtechnology.cookedmeat.name=Приготовленное синтетическое %s мясо
+info.emergingtechnology.sample.name=Образец %s ткани
+info.emergingtechnology.syringe.name=Шприц с %s тканью
 
-info.emergingtechnology.rawmeat.description=Looks like %s meat
-info.emergingtechnology.cookedmeat.description=Tastes like %s meat
-info.emergingtechnology.sample.description=A sample containing %s tissue.
-info.emergingtechnology.syringe.description=A syringe containing %s tissue.
+info.emergingtechnology.rawmeat.description=На вид как %s мясо
+info.emergingtechnology.cookedmeat.description=На вкус как %s мясо
+info.emergingtechnology.sample.description=Образец содержащий %s ткань.
+info.emergingtechnology.syringe.description=Шприц содержащий %s ткань.
 
 # Required
-info.emergingtechnology.energy.required=Requires %sRF per cycle.
-info.emergingtechnology.fluid.required=Requires %sMB of fluid per cycle.
-info.emergingtechnology.water.required=Requires %sMB of water per cycle.
-info.emergingtechnology.heat.required=Requires %sC heat per cycle.
-info.emergingtechnology.growth.required=Provides a %s percent growth boost per cycle;
+info.emergingtechnology.energy.required=Требует %sRF за цикл.
+info.emergingtechnology.fluid.required=Требует %sMB жидкости за цикл.
+info.emergingtechnology.water.required=Требует %sMB воды за цикл.
+info.emergingtechnology.heat.required=Требует %sC тепла за цикл.
+info.emergingtechnology.growth.required=Обеспечивает %s процентный импульс роста за цикл;
 
-info.emergingtechnology.biome.required=Only functions in Ocean, Deep Ocean and Beach biomes.
-info.emergingtechnology.waterblocks.required=Requires at least %s surrounding water blocks.
-info.emergingtechnology.watersurface.required=Must be placed at water's surface.
-info.emergingtechnology.waterdepth.required=(x2 when at depth between Y%1$s and Y%2$s)
+info.emergingtechnology.biome.required=Работает только в биомах Ocean, Deep Ocean и Beach.
+info.emergingtechnology.waterblocks.required=Требует по крайней мере %s окружающих блоков воды.
+info.emergingtechnology.watersurface.required=Должен быть размещен на поверхности воды.
+info.emergingtechnology.waterdepth.required=(x2 когда на глубине между Y%1$s и Y%2$s)
 
 # Generated
-info.emergingtechnology.energy.generated=Generates %sRF per cycle.
-info.emergingtechnology.fluid.generated=Provides %sMB of fluid per cycle.
-info.emergingtechnology.water.generated=Provides %sMB of water per cycle.
-info.emergingtechnology.heat.generated=Generates %sC heat per cycle.
-info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per cycle.
+info.emergingtechnology.energy.generated=Генерирует %sRF за цикл.
+info.emergingtechnology.fluid.generated=Обеспечивает %sMB жидкости за цикл.
+info.emergingtechnology.water.generated=Обеспечивает %sMB воды за цикл.
+info.emergingtechnology.heat.generated=Генерирует %sC тепла за цикл.
+info.emergingtechnology.growth.generated=Обеспечивает %s процентную вероятность импульса роста.
 
-info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
-info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
+info.emergingtechnology.cookerheat.generated=Получает %1$sC на сонце и теряет %2$sC в темноте.
+info.emergingtechnology.lightrange.generated=Увеличивает рост растений до %s блоков ниже.
 
 # Interactions
-info.emergingtechnology.interaction.rightclick=Right click to use.
+info.emergingtechnology.interaction.rightclick=ПКМ для использования.
 
 # GUI
 gui.emergingtechnology.label.basemedium=Base (Medium): 
@@ -198,17 +205,17 @@ gui.emergingtechnology.label.base=Base:
 gui.emergingtechnology.label.boost=Boost: 
 gui.emergingtechnology.label.maxrange=Max range: 
 
-gui.emergingtechnology.label.energy=Energy Storage
-gui.emergingtechnology.label.fluid=Fluid Storage
-gui.emergingtechnology.label.heat=Temperature
-gui.emergingtechnology.label.growth=Growth Modifiers
-gui.emergingtechnology.label.error=Error
+gui.emergingtechnology.label.energy=Запас энергии
+gui.emergingtechnology.label.fluid=Запас жидкости
+gui.emergingtechnology.label.heat=Температура
+gui.emergingtechnology.label.growth=Модификаторы роста
+gui.emergingtechnology.label.error=Ошибка
 
-gui.emergingtechnology.fabricator.error=Unable to fabricate item
-gui.emergingtechnology.fabricator.noenergy=Insufficient energy
-gui.emergingtechnology.fabricator.noinput=Insufficient items in input
-gui.emergingtechnology.fabricator.fulloutput=Output full
+gui.emergingtechnology.fabricator.error=Невозможно изготовить предмет
+gui.emergingtechnology.fabricator.noenergy=Недостаточно энергии
+gui.emergingtechnology.fabricator.noinput=Недостаточно элементов на входе
+gui.emergingtechnology.fabricator.fulloutput=Выход заполнен
 gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
-gui.emergingtechnology.fabricator.buttonrequires=Requires 
+gui.emergingtechnology.fabricator.buttonrequires=Требует 
