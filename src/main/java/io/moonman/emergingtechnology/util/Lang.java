@@ -9,7 +9,7 @@ public class Lang {
     private static final String GUI_SOURCE = "gui.emergingtechnology.";
 
     // Machine descriptions for tooltips
-    public static final TextComponentTranslation BIOMASS_DESC = new TextComponentTranslation(SOURCE + "light.description");
+    public static final TextComponentTranslation BIOMASS_DESC = new TextComponentTranslation(SOURCE + "biomass.description");
     public static final TextComponentTranslation BIOREACTOR_DESC = new TextComponentTranslation(SOURCE + "bioreactor.description");
     public static final TextComponentTranslation COLLECTOR_DESC = new TextComponentTranslation(SOURCE + "collector.description");
     public static final TextComponentTranslation COOKER_DESC = new TextComponentTranslation(SOURCE + "cooker.description");

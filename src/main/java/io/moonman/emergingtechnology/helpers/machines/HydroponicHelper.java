@@ -49,6 +49,25 @@ public class HydroponicHelper {
         }
     }
 
+    public static int getDestroyProbabilityForMedium(ItemStack medium) {
+        int id = getGrowthMediaIdFromStack(medium);
+
+        switch (id) {
+        case 1:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.destroyProbability;
+        case 2:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.destroyProbability;
+        case 3:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.destroyProbability;
+        case 4:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability;
+        case 5:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability;
+        default:
+            return ModMediumProvider.getDestroyProbabilityForMediumById(id);
+        }
+    }
+
     public static IBlockState getMediumBlockStateFromId(int id) {
         switch (id) {
         case 1:

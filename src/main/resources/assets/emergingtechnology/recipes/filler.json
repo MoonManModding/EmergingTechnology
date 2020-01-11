@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IRI",
-    "WRW",
+    "ITI",
+    "W W",
     "IMI"
   ],
   "key": {
@@ -15,9 +15,8 @@
     "W": {
       "item": "minecraft:water_bucket"
     },
-    "R": {
-      "type": "forge:ore_dict",
-      "ore": "stickPlastic"
+    "T": {
+      "item": "minecraft:iron_trapdoor"
     }
   },
   "result": {

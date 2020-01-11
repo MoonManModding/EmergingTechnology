@@ -49,6 +49,10 @@ public class HydroponicsModuleGrowBed {
     @Config.Comment("The amount of water transferred to other beds by a grow bed per cycle (~10 ticks).")
     @RangeInt(min = 1, max = 100)
     public int growBedWaterTransferRate = 100;
+
+    @Name("Grow Bed - Destroy Media")
+    @Config.Comment("Can growth media be destroyed during use in Grow Bed (configured for each medium)?")
+    public boolean growBedDestroyMedia = false;
     
     @Name("Netherwart on Lava Modifier %")
     @Config.Comment("Probability of growth for Netherwart when grow bed contains lava per cycle (~10 ticks).")

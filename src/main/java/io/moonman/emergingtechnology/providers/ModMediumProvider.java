@@ -34,11 +34,11 @@ public class ModMediumProvider {
 
         String[] plants = new String[] {};
 
-        ModMedium dirt = new ModMedium(1, "minecraft:dirt", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtModifier, plants, 0);
-        ModMedium sand = new ModMedium(2, "minecraft:sand", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandModifier, plants, 0);
-        ModMedium gravel = new ModMedium(3, "minecraft:gravel", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelModifier, plants, 0);
-        ModMedium clay = new ModMedium(4, "minecraft:clay", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0);
-        ModMedium clayball = new ModMedium(5, "minecraft:clay_ball", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0);
+        ModMedium dirt = new ModMedium(1, "minecraft:dirt", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.growthDirtModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.DIRT.destroyProbability);
+        ModMedium sand = new ModMedium(2, "minecraft:sand", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.growthSandModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.SAND.destroyProbability);
+        ModMedium gravel = new ModMedium(3, "minecraft:gravel", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.destroyProbability);
+        ModMedium clay = new ModMedium(4, "minecraft:clay", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability);
+        ModMedium clayball = new ModMedium(5, "minecraft:clay_ball", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability);
 
         ArrayList<ModMedium> baseMedia = new ArrayList<ModMedium>();
 
@@ -118,6 +118,15 @@ public class ModMediumProvider {
         if (medium == null) return 0;
 
         return medium.growthModifier;
+
+    }
+
+    public static int getDestroyProbabilityForMediumById(int id) {
+        ModMedium medium = getMediumById(id);
+
+        if (medium == null) return 0;
+
+        return medium.destroyChance;
 
     }
 

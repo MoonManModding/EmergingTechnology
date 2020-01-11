@@ -16,4 +16,8 @@ public class HydroponicsModuleGravel {
     @RangeInt(min = 0, max = 100)
     public int growthGravelFluidUsage = 1;
 
+    @Name("Gravel Destroy Probability")
+    @Config.Comment("Probability of Gravel being destroyed (out of 1000) during use in Grow Bed per cycle (~10 ticks).")
+    @RangeInt(min = 0, max = 999)
+    public int destroyProbability = 1;
 }

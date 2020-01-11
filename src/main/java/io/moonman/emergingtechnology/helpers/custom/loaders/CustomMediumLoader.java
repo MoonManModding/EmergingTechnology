@@ -58,15 +58,23 @@ public class CustomMediumLoader {
         String name = wrapper.name;
         int growthModifier = checkBounds(wrapper.growthModifier);
         int waterUsage = checkBounds(wrapper.waterUsage);
+        int destroyChance = checkDestroyBounds(wrapper.destroyChance);
 
         int boostModifier = wrapper.boostModifier;
         String[] plants = wrapper.plants;
 
-        return new ModMedium(0, name, waterUsage, growthModifier, plants, boostModifier);
+        return new ModMedium(0, name, waterUsage, growthModifier, plants, boostModifier, destroyChance);
     }
 
     private static int checkBounds(int value) {
         value = value > 100 ? 100 : value;
+        value = value < 0 ? 0 : value;
+
+        return value;
+    }
+
+    private static int checkDestroyBounds(int value) {
+        value = value > 999 ? 999 : value;
         value = value < 0 ? 0 : value;
 
         return value;

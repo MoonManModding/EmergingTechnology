@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
@@ -170,6 +171,10 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
             // Do all the plant growth work and let us know how it went
             boolean growSucceeded = doGrowthMultiplierProcess();
 
+            if (growSucceeded) {
+                this.doMediumDestroyProcess();
+            }
+
             // If beds require power to pump
             if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedsRequireEnergy) {
                 boolean enoughPower = doPowerUsageProcess();
@@ -311,6 +316,31 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         }
 
         return false;
+    }
+
+    public void doMediumDestroyProcess() {
+
+        ItemStack growthMedium = this.getItemStack();
+
+        if (StackHelper.isItemStackEmpty(growthMedium)) {
+            return;
+        }
+
+        if (!EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedDestroyMedia) {
+            return;
+        }
+
+        int destroyProbability = HydroponicHelper.getDestroyProbabilityForMedium(growthMedium);
+
+        if (destroyProbability == 0) {
+            return;
+        }
+
+        int random = new Random().nextInt(1001);
+
+        if (random < destroyProbability) {
+            this.itemHandler.extractItem(0, 1, false);
+        }
     }
 
     public boolean rollForGrow(Block block, IBlockState blockState, int growthProbability) {
