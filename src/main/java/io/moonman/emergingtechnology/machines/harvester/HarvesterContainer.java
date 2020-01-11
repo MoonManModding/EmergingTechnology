@@ -23,7 +23,9 @@ public class HarvesterContainer extends Container {
 		IItemHandler handler = tileEntity.itemHandler;
 
 		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
-		this.addSlotToContainer(new SlotItemHandler(handler, 1, 80, 35));
+		this.addSlotToContainer(new SlotItemHandler(handler, 1, 52, 35));
+		this.addSlotToContainer(new SlotItemHandler(handler, 2, 80, 35));
+		this.addSlotToContainer(new SlotItemHandler(handler, 3, 108, 35));
 
 		// Inventory
 		for (int y = 0; y < 3; y++) {
@@ -77,8 +79,8 @@ public class HarvesterContainer extends Container {
 			stack = fromStack.copy();
 
 			// If it's from the harvester, put in player's inventory
-			if (index < 2) {
-				if (!this.mergeItemStack(fromStack, 2, 38, false)) {
+			if (index < 4) {
+				if (!this.mergeItemStack(fromStack, 4, 38, false)) {
 					return ItemStack.EMPTY;
 				} else {
 					fromSlot.onSlotChanged();

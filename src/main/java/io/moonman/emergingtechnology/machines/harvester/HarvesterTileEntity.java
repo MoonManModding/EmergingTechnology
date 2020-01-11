@@ -44,7 +44,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
     };
 
-    public ItemStackHandler itemHandler = new ItemStackHandler(2) {
+    public ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -57,6 +57,15 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         protected void onContentsChanged(int slot) {
             markDirty();
             super.onContentsChanged(slot);
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot == 0) {
+                return ItemStack.EMPTY;
+            }
+
+            return itemHandler.extractItem(slot, amount, simulate);
         }
     };
 
@@ -169,7 +178,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return false;
         }
 
-        if (outputFull()) {
+        if (outputsFull()) {
             return false;
         }
 
@@ -210,34 +219,51 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             } else {
                 ItemStack itemStack = entity.getItem().copy();
 
-                int slot = PlantHelper.isSeedItem(itemStack.getItem()) ? 0 : 1;
+                // Try insert seeds into seed slot
+                if (PlantHelper.isSeedItem(itemStack.getItem()) && !inputFull() && (this.getInputStack().isEmpty()
+                        || StackHelper.compareItemStacks(itemStack, getInputStack()))) {
 
-                // If seed slot is full..
-                if (slot == 0 && inputFull()) {
-                    // Try to place in output slot
-                    if (!outputFull()) {
-                        slot = 1;
-                    } else {
-                        // Otherwise leave item alone
-                        continue;
-                    }
-                }
-
-                // If output slot is full, leave item alone
-                if (slot == 1 && outputFull()) {
-                    continue;
-                }
-
-                ItemStack itemStack1 = this.itemHandler.insertItem(slot, itemStack, false);
-
-                if (itemStack1.isEmpty()) {
-                    entity.setDead();
+                    ItemStack inserted = this.itemHandler.insertItem(0, itemStack, false);
+                    handleEntity(entity, inserted);
                 } else {
-                    entity.setItem(itemStack1);
+                    // Otherwise try insert to output
+                    ItemStack inserted = this.tryInsertItemStackIntoOutput(itemStack);
+                    handleEntity(entity, inserted);
                 }
+            }
+        }
+    }
 
+    private ItemStack tryInsertItemStackIntoOutput(ItemStack itemStack) {
+
+        if (this.outputsFull()) {
+            return itemStack;
+        }
+
+        for (int i = 1; i < this.itemHandler.getSlots(); i++) {
+            ItemStack outputStack = this.itemHandler.getStackInSlot(i);
+
+            if (outputStack.getCount() == outputStack.getMaxStackSize()) {
                 continue;
             }
+
+            if (!outputStack.isEmpty() && !StackHelper.compareItemStacks(itemStack, outputStack)) {
+                continue;
+            }
+
+            ItemStack remainder = this.itemHandler.insertItem(i, itemStack, false);
+
+            return remainder;
+        }
+
+        return itemStack;
+    }
+
+    private void handleEntity(EntityItem entity, ItemStack itemStack) {
+        if (itemStack.isEmpty()) {
+            entity.setDead();
+        } else {
+            entity.setItem(itemStack);
         }
     }
 
@@ -275,7 +301,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
 
         world.setBlockState(getTarget(), blockStateToPlace, 3);
-        
+
         this.itemHandler.extractItem(0, 1, false);
     }
 
@@ -283,8 +309,19 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         return getInputStack().getCount() == this.getInputStack().getMaxStackSize();
     }
 
-    private boolean outputFull() {
-        return getOutputStack().getCount() == this.getOutputStack().getMaxStackSize();
+    private boolean outputsFull() {
+
+        ItemStack[] outputStacks = this.getOutputStacks();
+
+        boolean isFull = true;
+
+        for (ItemStack itemStack : outputStacks) {
+            if (itemStack.getCount() < itemStack.getMaxStackSize()) {
+                isFull = false;
+            }
+        }
+
+        return isFull;
     }
 
     private boolean sufficientEnergy() {
@@ -318,8 +355,14 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         return itemHandler.getStackInSlot(0);
     }
 
-    public ItemStack getOutputStack() {
-        return itemHandler.getStackInSlot(1);
+    public ItemStack[] getOutputStacks() {
+        ItemStack[] stacks = new ItemStack[this.itemHandler.getSlots() - 1];
+
+        for (int i = 1; i < this.itemHandler.getSlots(); i++) {
+            stacks[i - 1] = this.itemHandler.getStackInSlot(i);
+        }
+
+        return stacks;
     }
 
     // Getters
