@@ -32,7 +32,7 @@ Untested but likely compatible:
 Currently incompatible with power/crops:
 - IndustrialCraft 2 (will be added in future)
 
-The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. If you are using a mod which does appear to work with Grow Beds, please create a new Issue above.
+The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. If you are using a mod which does not appear to work with Grow Beds, please create a new Issue above.
 
 Most machines can also be integrated into OpenComputers. Take a look at the <a href="https://github.com/MoonManModding/EmergingTechnology/blob/master/examples/open-computers-example.lua">example program</a> for more details. 
 
