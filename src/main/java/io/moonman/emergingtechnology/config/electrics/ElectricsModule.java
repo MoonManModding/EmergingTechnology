@@ -13,6 +13,10 @@ public class ElectricsModule {
 	@Comment("Configure the Tidal Generator here")
     public final ElectricsModuleTidalGenerator TIDALGENERATOR = new ElectricsModuleTidalGenerator();
 
+    @Name("Solar Generator")
+	@Comment("Configure the Solar Generator here")
+    public final ElectricsModuleSolar SOLAR = new ElectricsModuleSolar();
+
     @Name("Biomass Generator")
 	@Comment("Configure the Biomass Generator here")
     public final ElectricsModuleBiomassGenerator BIOMASSGENERATOR = new ElectricsModuleBiomassGenerator();

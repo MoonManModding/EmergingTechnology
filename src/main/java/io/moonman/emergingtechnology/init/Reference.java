@@ -37,6 +37,7 @@ public class Reference {
     public static final int COOKER_HEAT_CAPACITY = 400;
 
     public static final int PIEZOELECTRIC_ENERGY_CAPACITY = 1000;
+    public static final int SOLAR_ENERGY_CAPACITY = 5000;
 
     public static final int TIDAL_ENERGY_CAPACITY = 10000;
 

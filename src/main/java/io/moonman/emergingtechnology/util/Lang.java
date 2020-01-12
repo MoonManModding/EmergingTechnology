@@ -22,6 +22,7 @@ public class Lang {
     public static final TextComponentTranslation PROCESSOR_DESC = new TextComponentTranslation(SOURCE + "processor.description");
     public static final TextComponentTranslation SCAFFOLDER_DESC = new TextComponentTranslation(SOURCE + "scaffolder.description");
     public static final TextComponentTranslation SHREDDER_DESC = new TextComponentTranslation(SOURCE + "shredder.description");
+    public static final TextComponentTranslation SOLAR_DESC = new TextComponentTranslation(SOURCE + "solar.description");
     public static final TextComponentTranslation TIDAL_DESC = new TextComponentTranslation(SOURCE + "tidal.description");
     
     // Block descriptions for tooltips

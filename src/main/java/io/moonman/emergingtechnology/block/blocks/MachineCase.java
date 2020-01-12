@@ -16,7 +16,7 @@ public class MachineCase extends Block {
       this.setRegistryName(EmergingTechnology.MODID, _name);
       this.setUnlocalizedName(EmergingTechnology.MODID + "." + _name);
       this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
-      this.setSoundType(SoundType.ANVIL);
+      this.setSoundType(SoundType.METAL);
   }
 
   @Override

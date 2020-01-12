@@ -22,6 +22,7 @@ import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
+import io.moonman.emergingtechnology.machines.solar.Solar;
 import io.moonman.emergingtechnology.machines.tidal.TidalGenerator;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
  
@@ -63,6 +64,7 @@ public class ModBlocks {
 	//region Electrics Blocks
 	public static final Piezoelectric piezoelectric = null;
 	public static final TidalGenerator tidalgenerator = null;
+	public static final Solar solar = null;
 	public static final BiomassGenerator biomassgenerator = null;
 	//endregion
 }

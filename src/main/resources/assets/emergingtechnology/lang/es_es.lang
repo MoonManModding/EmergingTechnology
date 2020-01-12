@@ -55,6 +55,7 @@ item.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+item.emergingtechnology.solar.name=Solar Panel
 item.emergingtechnology.biomass.name=Biomass
 item.emergingtechnology.biomassgenerator.name=Biomass Generator
 item.emergingtechnology.tidalgenerator.name=Tidal Generator
@@ -90,6 +91,7 @@ blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+blocks.emergingtechnology.solar.name=Solar Panel
 blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 
@@ -126,6 +128,7 @@ tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+tile.emergingtechnology.solar.name=Solar Panel
 tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 
@@ -150,6 +153,7 @@ info.emergingtechnology.piezoelectric.description=Generates a tiny amount of ene
 info.emergingtechnology.processor.description=Processes raw materials into usable plastics.
 info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthetic animal products.
 info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
+info.emergingtechnology.solar.description=Generates energy when in sunlight.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
