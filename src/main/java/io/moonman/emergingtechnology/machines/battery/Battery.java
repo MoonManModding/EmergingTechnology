@@ -1,9 +1,10 @@
-package io.moonman.emergingtechnology.machines.solar;
+package io.moonman.emergingtechnology.machines.battery;
 
 import java.util.List;
 
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.SimpleMachineBase;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
@@ -27,12 +28,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
 
-public class Solar extends SimpleMachineBase implements ITileEntityProvider {
+public class Battery extends SimpleMachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    public Solar() {
-        super(Material.IRON, "solar");
+    public Battery() {
+        super(Material.IRON, "battery");
         this.setSoundType(SoundType.METAL);
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -41,15 +42,29 @@ public class Solar extends SimpleMachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 
-        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.solarEnergyGenerated;
+        int energy = Reference.BATTERY_ENERGY_CAPACITY;
 
-        tooltip.add(Lang.get(Lang.SOLAR_DESC));
-        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY));
+        tooltip.add(Lang.get(Lang.BATTERY_DESC));
+        tooltip.add(Lang.getCapacity(energy, ResourceTypeEnum.ENERGY));
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+        if (worldIn.isRemote) {
+            return true;
+        }
+
+        playerIn.openGui(EmergingTechnology.instance, Reference.GUI_BATTERY, worldIn, pos.getX(), pos.getY(),
+                pos.getZ());
+
+        return true;
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new SolarTileEntity();
+        return new BatteryTileEntity();
     }
 
     @Override

@@ -24,6 +24,7 @@ public class Lang {
     public static final TextComponentTranslation SHREDDER_DESC = new TextComponentTranslation(SOURCE + "shredder.description");
     public static final TextComponentTranslation SOLAR_DESC = new TextComponentTranslation(SOURCE + "solar.description");
     public static final TextComponentTranslation TIDAL_DESC = new TextComponentTranslation(SOURCE + "tidal.description");
+    public static final TextComponentTranslation BATTERY_DESC = new TextComponentTranslation(SOURCE + "battery.description");
     
     // Block descriptions for tooltips
     public static final TextComponentTranslation FRAME_DESC = new TextComponentTranslation(SOURCE + "frame.description");
@@ -107,6 +108,10 @@ public class Lang {
 
     public static String getGenerated(int generated, ResourceTypeEnum type) {
         return new TextComponentTranslation(SOURCE + type.toString().toLowerCase() + ".generated", generated).getFormattedText();
+    }
+
+    public static String getCapacity(int capacity, ResourceTypeEnum type) {
+        return new TextComponentTranslation(SOURCE + type.toString().toLowerCase() + ".capacity", capacity).getFormattedText();
     }
 
     public static String get(TextComponentTranslation translation) {

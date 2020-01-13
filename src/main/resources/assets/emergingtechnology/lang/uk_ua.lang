@@ -35,6 +35,7 @@ item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Tile
+item.emergingtechnology.solar.name=Solar Panel
 
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Solar Cooker
@@ -89,6 +90,7 @@ blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+blocks.emergingtechnology.solar.name=Solar Panel
 blocks.emergingtechnology.biomass.name=Biomass
 blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
@@ -123,6 +125,7 @@ tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Piezoelectric Generator
+tile.emergingtechnology.solar.name=Solar Panel
 tile.emergingtechnology.biomass.name=Biomass
 tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
@@ -148,6 +151,7 @@ info.emergingtechnology.processor.description=Processes raw materials into usabl
 info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthetic animal products.
 info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
+info.emergingtechnology.solar.description=Generates energy when in sunlight.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 

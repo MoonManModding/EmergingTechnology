@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.machines.battery.BatteryContainer;
+import io.moonman.emergingtechnology.machines.battery.BatteryGui;
+import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorContainer;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorGui;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity;
@@ -78,6 +81,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof BiomassGeneratorTileEntity) {
             return new BiomassGeneratorContainer(player.inventory, (BiomassGeneratorTileEntity) te);
         }
+        if (te instanceof BatteryTileEntity) {
+            return new BatteryContainer(player.inventory, (BatteryTileEntity) te);
+        }
         return null;
     }
 
@@ -139,6 +145,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof BiomassGeneratorTileEntity) {
             BiomassGeneratorTileEntity containerTileEntity = (BiomassGeneratorTileEntity) te;
             return new BiomassGeneratorGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof BatteryTileEntity) {
+            BatteryTileEntity containerTileEntity = (BatteryTileEntity) te;
+            return new BatteryGui(player.inventory, containerTileEntity);
         }
 
         return null;

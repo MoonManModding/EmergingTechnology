@@ -9,6 +9,7 @@ import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlantBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedStarchBlock;
+import io.moonman.emergingtechnology.machines.battery.Battery;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGenerator;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.collector.Collector;
@@ -65,6 +66,7 @@ public class ModBlocks {
 	public static final Piezoelectric piezoelectric = null;
 	public static final TidalGenerator tidalgenerator = null;
 	public static final Solar solar = null;
+	public static final Battery battery = null;
 	public static final BiomassGenerator biomassgenerator = null;
 	//endregion
 }

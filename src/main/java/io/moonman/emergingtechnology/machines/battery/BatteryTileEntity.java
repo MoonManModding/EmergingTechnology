@@ -1,6 +1,6 @@
-package io.moonman.emergingtechnology.machines.piezoelectric;
+package io.moonman.emergingtechnology.machines.battery;
 
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
 import io.moonman.emergingtechnology.init.Reference;
@@ -19,30 +19,48 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.common.Optional;
-import li.cil.oc.api.machine.Arguments;
-import li.cil.oc.api.machine.Callback;
-import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class PiezoelectricTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class BatteryTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.PIEZOELECTRIC_ENERGY_CAPACITY, 100,
-            100) {
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.BATTERY_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
-            markDirty();
+            markDirtyClient();
             super.onContentsChanged();
+        }
+
+        @Override
+        public int extractEnergy(int maxReceive, boolean simulate) {
+            int energy = super.extractEnergy(maxReceive, simulate);
+
+            int output = getTotalOutput() + energy;
+
+            setTotalOutput(output);
+
+            return energy;
+        }
+
+        @Override
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            int energy = super.receiveEnergy(maxReceive, simulate);
+
+            int input = getTotalInput() + energy;
+
+            setTotalInput(input);
+
+            return energy;
         }
     };
 
-    public GeneratorEnergyStorageHandler generatorEnergyHandler = new GeneratorEnergyStorageHandler(energyHandler) {
+    public GeneratorEnergyStorageHandler generatorStorageHandler = new GeneratorEnergyStorageHandler(energyHandler);
+    public ConsumerEnergyStorageHandler consumerStorageHandler = new ConsumerEnergyStorageHandler(energyHandler);
 
-    };
+    int energy = 0;
 
-    private int tick = 0;
-    private int cooldown = 0;
-    private int energy = 0;
+    int totalInput = 0;
+    int totalOutput = 0;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -54,8 +72,14 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.generatorEnergyHandler;
+        if (capability == CapabilityEnergy.ENERGY) {
+            if (facing == getFacing()) {
+                return (T) this.consumerStorageHandler;
+            } else {
+                return (T) this.generatorStorageHandler;
+            }
+        }
+
         return super.getCapability(capability, facing);
     }
 
@@ -66,12 +90,16 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
         this.energyHandler.readFromNBT(compound);
 
         this.setEnergy(compound.getInteger("GuiEnergy"));
+        this.setTotalInput(compound.getInteger("GuiTotalInput"));
+        this.setTotalOutput(compound.getInteger("GuiTotalOutput"));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("GuiEnergy", this.getEnergy());
+        compound.setInteger("GuiTotalInput", this.getTotalInput());
+        compound.setInteger("GuiTotalOutput", this.getTotalOutput());
         this.energyHandler.writeToNBT(compound);
 
         return compound;
@@ -95,31 +123,20 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     }
 
     @Override
-    public void update() {
-
-        if (this.isClient()) {
-            return;
-        }
-
-        decreaseCooldown();
+    public void cycle() {
         spreadEnergy();
-    }
-
-    private void decreaseCooldown() {
-        if (this.cooldown > 0) {
-            this.cooldown--;
-        }
-    }
-
-    public void walkedOn() {
-        if (this.cooldown == 0) {
-            this.energyHandler.receiveEnergy(EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricEnergyGenerated, false);
-            this.cooldown = EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricStepCooldown;
-        }
+        System.out.println(this.getTotalInput() + "/" + this.getTotalOutput());
+        this.setTotalInput(0);
+        this.setTotalOutput(0);
     }
 
     private void spreadEnergy() {
         for (EnumFacing side : EnumFacing.VALUES) {
+
+            if (side == getFacing()) {
+                continue;
+            }
+
             TileEntity tileEntity = world.getTileEntity(pos.offset(side));
 
             if (tileEntity != null) {
@@ -143,10 +160,34 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
         return this.energyHandler.getEnergyStored();
     }
 
+    public int getTotalInput() {
+        return this.totalInput;
+    }
+
+    public int getTotalOutput() {
+        return this.totalOutput;
+    }
+
+    public EnumFacing getFacing() {
+        int metadata = getBlockMetadata();
+
+        return EnumFacing.VALUES[metadata];
+    }
+
     // Setters
 
     private void setEnergy(int quantity) {
         this.energy = quantity;
+    }
+
+    private void setTotalInput(int quantity) {
+        System.out.println("Input " + quantity);
+        this.totalInput = quantity;
+    }
+
+    private void setTotalOutput(int quantity) {
+        System.out.println("Output " + quantity);
+        this.totalOutput = quantity;
     }
 
     @Override
@@ -164,6 +205,10 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
         switch (id) {
         case 0:
             return this.getEnergy();
+        case 1:
+            return this.getTotalInput();
+        case 2:
+            return this.getTotalOutput();
         default:
             return 0;
         }
@@ -174,7 +219,12 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
         case 0:
             this.setEnergy(value);
             break;
-
+        case 1:
+            this.setTotalInput(value);
+            break;
+        case 2:
+            this.setTotalOutput(value);
+            break;
         }
     }
 
@@ -183,13 +233,6 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
-        return "etech_piezoelectric_tile";
-    }
-
-    @Callback
-    @Optional.Method(modid = "opencomputers")
-    public Object[] isSteppedOn(Context context, Arguments args) {
-        boolean stepped = this.cooldown == 10;
-        return new Object[] { stepped };
+        return "etech_battery_tile";
     }
 }

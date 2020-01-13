@@ -1,8 +1,8 @@
 package io.moonman.emergingtechnology.machines.tidal;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
-import io.moonman.emergingtechnology.handlers.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.machines.TidalHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;

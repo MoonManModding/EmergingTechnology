@@ -89,6 +89,7 @@ public class ModItems {
 	public static final Item piezoelectric = null;
 	public static final Item tidalgenerator = null;
 	public static final Item solar = null;
+	public static final Item battery = null;
 	public static final Item biomassgenerator = null;
 	// Items
 	public static final Item biomass = null;

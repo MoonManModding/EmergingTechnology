@@ -1,25 +1,25 @@
-package io.moonman.emergingtechnology.handlers;
+package io.moonman.emergingtechnology.handlers.energy;
 
 /**
- * An EnergyStorageHandler which can only provide energy to automation
+ * An EnergyStorageHandler which can only accept energy from automation
  */
-public class GeneratorEnergyStorageHandler extends EnergyStorageHandler {
+public class ConsumerEnergyStorageHandler extends EnergyStorageHandler {
 
     EnergyStorageHandler mainHandler;
 
-    public GeneratorEnergyStorageHandler(EnergyStorageHandler mainHandler) {
+    public ConsumerEnergyStorageHandler(EnergyStorageHandler mainHandler) {
         super(mainHandler.getMaxEnergyStored());
         this.mainHandler = mainHandler;
     }
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
-        return 0;
+        return this.mainHandler.receiveEnergy(maxReceive, simulate);
     }
 
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
-        return this.mainHandler.extractEnergy(maxExtract, simulate);
+        return 0;
     }
 
     @Override
@@ -34,12 +34,12 @@ public class GeneratorEnergyStorageHandler extends EnergyStorageHandler {
 
     @Override
     public boolean canExtract() {
-        return this.mainHandler.canExtract();
+        return false;
     }
 
     @Override
     public boolean canReceive() {
-        return false;
+        return this.mainHandler.canReceive();
     }
 
     @Override

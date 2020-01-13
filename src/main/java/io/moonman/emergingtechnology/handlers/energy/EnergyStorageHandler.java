@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.handlers;
+package io.moonman.emergingtechnology.handlers.energy;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.energy.EnergyStorage;

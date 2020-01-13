@@ -36,6 +36,8 @@ import io.moonman.emergingtechnology.item.synthetics.products.SyntheticLeather;
 import io.moonman.emergingtechnology.item.synthetics.products.SyntheticSilk;
 import io.moonman.emergingtechnology.item.synthetics.products.SyntheticSlime;
 import io.moonman.emergingtechnology.item.synthetics.syringes.EmptySyringe;
+import io.moonman.emergingtechnology.machines.battery.Battery;
+import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGenerator;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
@@ -90,7 +92,7 @@ public class RegistrationHandler {
     public static void registerBlocks(Register<Block> event) {
         final Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Light(), new Frame(),
                 new Processor(), new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(),
-                new Fabricator(), new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(), new Solar(),
+                new Fabricator(), new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(), new Solar(), new Battery(),
                 new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new Bioreactor(),
                 new Scaffolder() };
 
@@ -109,6 +111,7 @@ public class RegistrationHandler {
         GameRegistry.registerTileEntity(TidalGeneratorTileEntity.class, getResourceLocation("tidalgenerator"));
         GameRegistry.registerTileEntity(BiomassGeneratorTileEntity.class, getResourceLocation("biomassgenerator"));
         GameRegistry.registerTileEntity(SolarTileEntity.class, getResourceLocation("solar"));
+        GameRegistry.registerTileEntity(BatteryTileEntity.class, getResourceLocation("battery"));
 
         event.getRegistry().registerAll(blocks);
     }
@@ -125,7 +128,7 @@ public class RegistrationHandler {
         // Blocks
         Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light,
                 ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker,
-                ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator, ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.ladder,
+                ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator, ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.battery, ModBlocks.ladder,
                 ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock, ModBlocks.machinecase,
                 ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock };
 
@@ -163,6 +166,7 @@ public class RegistrationHandler {
         registerModel(Item.getItemFromBlock(ModBlocks.tidalgenerator));
         registerModel(Item.getItemFromBlock(ModBlocks.biomassgenerator));
         registerModel(Item.getItemFromBlock(ModBlocks.solar));
+        registerModel(Item.getItemFromBlock(ModBlocks.battery));
         registerModel(Item.getItemFromBlock(ModBlocks.frame));
         registerModel(Item.getItemFromBlock(ModBlocks.ladder));
         registerModel(Item.getItemFromBlock(ModBlocks.machinecase));

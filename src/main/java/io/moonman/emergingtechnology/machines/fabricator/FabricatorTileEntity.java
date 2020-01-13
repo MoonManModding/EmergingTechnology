@@ -2,7 +2,8 @@ package io.moonman.emergingtechnology.machines.fabricator;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
-import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
@@ -40,6 +41,8 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
             markDirtyClient();
         }
     };
+
+    public ConsumerEnergyStorageHandler consumerEnergyHandler = new ConsumerEnergyStorageHandler(energyHandler);
 
     public ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
@@ -92,7 +95,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) this.automationItemHandler;
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.energyHandler;
+            return (T) this.consumerEnergyHandler;
         return super.getCapability(capability, facing);
     }
 

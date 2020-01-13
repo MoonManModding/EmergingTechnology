@@ -5,7 +5,8 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.handlers.EnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
+import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.Reference;
@@ -38,6 +39,9 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
             super.onContentsChanged();
         }
     };
+
+    public ConsumerEnergyStorageHandler consumerEnergyHandler = new ConsumerEnergyStorageHandler(energyHandler);
+
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -75,7 +79,7 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) this.itemHandler;
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.energyHandler;
+            return (T) this.consumerEnergyHandler;
         return super.getCapability(capability, facing);
     }
 
