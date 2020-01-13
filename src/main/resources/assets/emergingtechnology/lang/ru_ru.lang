@@ -58,6 +58,7 @@ item.emergingtechnology.scaffolder.name=Структурный Сборщик Т
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
 item.emergingtechnology.solar.name=Solar Panel
+item.emergingtechnology.battery.name=Battery
 item.emergingtechnology.biomass.name=Биомасса
 item.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 item.emergingtechnology.tidalgenerator.name=Приливный генератор
@@ -94,6 +95,7 @@ blocks.emergingtechnology.scaffolder.name=Структурный Сборщик 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
 blocks.emergingtechnology.solar.name=Solar Panel
+blocks.emergingtechnology.battery.name=Battery
 blocks.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 blocks.emergingtechnology.tidalgenerator.name=Приливный генератор
 
@@ -131,6 +133,7 @@ tile.emergingtechnology.scaffolder.name=Структурный Сборщик Т
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Пьезоэлектрическая Плита
 tile.emergingtechnology.solar.name=Solar Panel
+tile.emergingtechnology.battery.name=Battery
 tile.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 tile.emergingtechnology.tidalgenerator.name=Приливный генератор
 
@@ -156,6 +159,7 @@ info.emergingtechnology.scaffolder.description=Образует образцы �
 info.emergingtechnology.shredder.description=Измельчает растения и пластмассовые изделия в сырье для процессора.
 info.emergingtechnology.tidal.description=Генерирует энергию, используя движение приливов.
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
+info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
 
 info.emergingtechnology.frame.description=Декоративная пластиковая рамка
 
@@ -194,6 +198,11 @@ info.emergingtechnology.growth.generated=Обеспечивает %s проце�
 
 info.emergingtechnology.cookerheat.generated=Получает %1$sC на сонце и теряет %2$sC в темноте.
 info.emergingtechnology.lightrange.generated=Увеличивает рост растений до %s блоков ниже.
+
+# Capacity
+info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
+info.emergingtechnology.fluid.capacity=Can store up to %sMB of fluid.
+info.emergingtechnology.water.capacity=Can store up to %sRF of water.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=ПКМ для использования.

@@ -32,8 +32,8 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
         }
 
         @Override
-        public int extractEnergy(int maxReceive, boolean simulate) {
-            int energy = super.extractEnergy(maxReceive, simulate);
+        public int extractEnergy(int maxExtract, boolean simulate) {
+            int energy = super.extractEnergy(maxExtract, simulate);
 
             int output = getTotalOutput() + energy;
 
@@ -61,6 +61,8 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
 
     int totalInput = 0;
     int totalOutput = 0;
+
+    int monitorCount = 0;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -125,9 +127,7 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
     @Override
     public void cycle() {
         spreadEnergy();
-        System.out.println(this.getTotalInput() + "/" + this.getTotalOutput());
-        this.setTotalInput(0);
-        this.setTotalOutput(0);
+        resetEnergyMonitor();
     }
 
     private void spreadEnergy() {
@@ -151,6 +151,16 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
                     }
                 }
             }
+        }
+    }
+
+    private void resetEnergyMonitor() {
+        if (monitorCount == 1) {
+            this.totalInput = 0;
+            this.totalOutput = 0;
+            this.monitorCount = 0;
+        } else {
+            this.monitorCount++;
         }
     }
 
@@ -181,13 +191,11 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
     }
 
     private void setTotalInput(int quantity) {
-        System.out.println("Input " + quantity);
-        this.totalInput = quantity;
+            this.totalInput = quantity;
     }
 
     private void setTotalOutput(int quantity) {
-        System.out.println("Output " + quantity);
-        this.totalOutput = quantity;
+            this.totalOutput = quantity;
     }
 
     @Override
@@ -215,6 +223,7 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
     }
 
     public void setField(int id, int value) {
+
         switch (id) {
         case 0:
             this.setEnergy(value);
@@ -233,6 +242,6 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
-        return "etech_battery_tile";
+        return "etech_battery";
     }
 }

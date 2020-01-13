@@ -1,21 +1,18 @@
 package io.moonman.emergingtechnology.machines.battery;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 
-import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class BatteryGui extends GuiContainer
@@ -72,6 +69,17 @@ public class BatteryGui extends GuiContainer
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
+
+		int totalInput = this.tileEntity.getField(1);
+		int totalOutput = this.tileEntity.getField(2);
+
+		// Bulb Name
+		this.fontRenderer.drawString("Input", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString("+" + totalInput + "RF", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, GuiHelper.VALID_COLOUR);
+
+		// Bulb Stats
+		this.fontRenderer.drawString("Output", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString("-" + totalOutput + "RF", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, GuiHelper.INVALID_COLOUR);
 	}
 	
 	@Override

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IBI",
+    "IFI",
+    "IMI"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:redstone_block"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:battery",
+    "count": 1
+  }
+}

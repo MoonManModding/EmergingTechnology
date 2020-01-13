@@ -57,6 +57,7 @@ item.emergingtechnology.syntheticleather.name=Synthetic Leather
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=发电砖
 item.emergingtechnology.solar.name=Solar Panel
+item.emergingtechnology.battery.name=Battery
 item.emergingtechnology.biomass.name=Biomass
 item.emergingtechnology.biomassgenerator.name=Biomass Generator
 item.emergingtechnology.tidalgenerator.name=Tidal Generator
@@ -92,6 +93,7 @@ blocks.emergingtechnology.scaffolder.name=生物组织合成机
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=发电砖
 blocks.emergingtechnology.solar.name=Solar Panel
+blocks.emergingtechnology.battery.name=Battery
 blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 
@@ -128,6 +130,7 @@ tile.emergingtechnology.scaffolder.name=生物组织合成机
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=发电砖
 tile.emergingtechnology.solar.name=Solar Panel
+tile.emergingtechnology.battery.name=Battery
 tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 
@@ -154,6 +157,7 @@ info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthet
 info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
+info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 
@@ -192,6 +196,11 @@ info.emergingtechnology.growth.generated=Provides a %s percent chance of growth 
 
 info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
 info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
+
+# Capacity
+info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
+info.emergingtechnology.fluid.capacity=Can store up to %sMB of fluid.
+info.emergingtechnology.water.capacity=Can store up to %sRF of water.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=Right click to use.
