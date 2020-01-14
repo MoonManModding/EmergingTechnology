@@ -9,8 +9,8 @@ I'm looking for someone to overhaul the images for the following items:
 - shreddedpaper.png (+ block texture)
 - shreddedstarch.png (+ block texture)
 - shreddedplants.png (+ block texture)
-- plasticwaste.png
-- paperwaste.png
+- plasticwaste.png (think trash from the ocean, plastic bottles, colourful fragments etc)
+- paperwaste.png (again from the ocean)
 
 And if you're up for something more complex:
 
@@ -18,7 +18,7 @@ And if you're up for something more complex:
 - emptysyringe.png
 - fullsyringe.png
 - sample.png
-- filament.png
+- filament.png (i.e. 3D printer filament)
 
 The main palette used for the blocks/machines in this mod is shown below:
 
