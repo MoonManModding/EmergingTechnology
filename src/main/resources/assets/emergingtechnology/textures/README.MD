@@ -26,4 +26,4 @@ If accepted, you will of course receive full credit both on CurseForge and in th
 
 If you'd like to have a go at improving these textures let me know at moonmanmodding@gmail.com with a few examples of your artwork.
 
-## Thanks in advance ❤
+## Thanks ❤
