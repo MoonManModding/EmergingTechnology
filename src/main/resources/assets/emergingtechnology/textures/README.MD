@@ -20,7 +20,11 @@ And if you're up for something more complex:
 - sample.png
 - filament.png
 
-In terms of artistic direction, the mod's design style is inspired roughly by LEGO (50%), Astroneer(25%) and WALL-E(25%). Love those things too? This project might be for you! 
+The main palette used for the blocks/machines in this mod is shown below:
+
+<img src="palette.png">
+
+In terms of artistic direction, the mod's design style is inspired roughly by Lego (50%), Astroneer (25%) and WALL-E (25%). Love those things too? This project might be for you!
 
 If accepted, you will of course receive full credit both on CurseForge and in the mod itself for your work. Sadly as this is a passion project I will not be able to reimburse you monetarily for your time - apologies 😓
 
