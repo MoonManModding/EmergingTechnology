@@ -30,6 +30,6 @@ In terms of artistic direction, the mod's design style is inspired roughly by Le
 
 If I end up using your textures, you will of course receive full credit both on CurseForge and in the mod itself for your work. Sadly as this is a passion project I will not be able to reimburse you monetarily for your time - apologies 😓
 
-If you'd like to have a go at improving these textures let me know at moonmanmodding@gmail.com with a few examples of your artwork.
+If you'd like to have a go at improving these textures let me know on Discord at MoonMan#7432 or via email at moonmanmodding@gmail.com with a few examples of your artwork.
 
 ## Thanks ❤
