@@ -12,7 +12,7 @@ public class CollectorRecipeBuilder {
         
         if (EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.disabled) return;
 
-        RecipeProvider.collectorRecipes.add(new SimpleRecipe(Items.AIR, ModItems.plasticwaste));
-        RecipeProvider.collectorRecipes.add(new SimpleRecipe(Items.AIR, ModItems.paperwaste));
+        RecipeProvider.collectorRecipes.add(new SimpleRecipe(ModItems.plasticwaste, Items.AIR));
+        RecipeProvider.collectorRecipes.add(new SimpleRecipe(ModItems.paperwaste, Items.AIR));
     }
 }

@@ -22,7 +22,7 @@ public class ScaffolderRecipeBuilder {
                 continue;
             }
 
-            RecipeProvider.scaffolderRecipes.add(new SimpleRecipe(sample.copy(), result.copy()));
+            RecipeProvider.scaffolderRecipes.add(new SimpleRecipe(result.copy(), sample.copy()));
         }
     }
 
