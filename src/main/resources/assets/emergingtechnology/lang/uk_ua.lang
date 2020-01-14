@@ -29,6 +29,10 @@ item.emergingtechnology.machinecase.name=Basic Machine Case
 item.emergingtechnology.ladder.name=Plastic Ladder
 item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
 
+item.emergingtechnology.paperwaste.name=Paper Waste
+item.emergingtechnology.paperpulp.name=Paper Pulp
+item.emergingtechnology.shreddedpaper.name=Shredded Paper
+
 item.emergingtechnology.shreddedplasticblock.name=Shredded Plastic Block
 item.emergingtechnology.shreddedplantblock.name=Shredded Plant Block
 item.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block

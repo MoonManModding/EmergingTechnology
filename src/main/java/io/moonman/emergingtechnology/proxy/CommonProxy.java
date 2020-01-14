@@ -14,6 +14,7 @@ import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent.Register;
@@ -24,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 @EventBusSubscriber(modid = EmergingTechnology.MODID)
 public abstract class CommonProxy {
@@ -38,6 +40,12 @@ public abstract class CommonProxy {
     @SubscribeEvent
     public static void registerBlocks(Register<Block> event) {
         RegistrationHandler.registerBlocks(event);
+    }
+
+    @SubscribeEvent
+    public static void registerRecipes(Register<IRecipe> event) {
+        IForgeRegistryModifiable<IRecipe> registry = (IForgeRegistryModifiable<IRecipe>) event.getRegistry();
+        RecipeBuilder.removeRecipes(registry);
     }
 
     @SideOnly(Side.CLIENT)

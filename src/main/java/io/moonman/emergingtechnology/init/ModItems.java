@@ -48,11 +48,18 @@ public class ModItems {
 	public static final Item shreddedplastic = null;
 	public static final Item shreddedplant = null;
 	public static final Item shreddedstarch = null;
+	public static final Item shreddedpaper = null;
+
+	public static final Item plasticwaste = null;
+	public static final Item paperwaste = null;
+	public static final Item paperpulp = null;
+
 	public static final Item filament = null;
 	public static final Item plasticrod = null;
 	public static final Item plasticsheet = null;
 	public static final Item plastictissuescaffold = null;
-	public static final Item plasticwaste = null;
+
+	
 	// endregion
 
 	//region Synthetics Items

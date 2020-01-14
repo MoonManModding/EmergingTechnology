@@ -31,6 +31,10 @@ item.emergingtechnology.fabricator.name=打印机
 item.emergingtechnology.ladder.name=塑料梯子
 item.emergingtechnology.plastictissuescaffold.name=塑料组织支架
 
+item.emergingtechnology.paperwaste.name=Paper Waste
+item.emergingtechnology.paperpulp.name=Paper Pulp
+item.emergingtechnology.shreddedpaper.name=Shredded Paper
+
 item.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
 item.emergingtechnology.shreddedplantblock.name=粉碎植物块
 item.emergingtechnology.shreddedstarchblock.name=淀粉块

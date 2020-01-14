@@ -1,8 +1,13 @@
 {
-  "parameters": {},
+  "parameters": {
+    "slowed_anim_time": [
+      "/",
+      4
+    ]
+  },
   "clips": {
     "default": "emergingtechnology:block/tidalgeneratorturbine@default",
-    "slow": "emergingtechnology:block/tidalgeneratorturbine@slow",
+    "slow": [ "apply", "emergingtechnology:block/tidalgeneratorturbine@slow", "#slowed_anim_time" ],
     "fast": "emergingtechnology:block/tidalgeneratorturbine@fast"
   },
   "states": [
@@ -11,9 +16,18 @@
     "fast"
   ],
   "transitions": {
-    "default": ["slow", "fast"],
-    "slow": ["default", "fast"],
-    "fast": ["default", "slow"]
+    "default": [
+      "slow",
+      "fast"
+    ],
+    "slow": [
+      "default",
+      "fast"
+    ],
+    "fast": [
+      "default",
+      "slow"
+    ]
   },
   "start_state": "default"
 }

@@ -6,6 +6,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class SyntheticsModuleCooker {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Solar Cooker Operation Heat Loss")
     @Config.Comment("How much heat the Solar Cooker loses when not in sunlight per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)

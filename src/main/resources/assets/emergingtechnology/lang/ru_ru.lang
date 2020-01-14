@@ -31,6 +31,10 @@ item.emergingtechnology.fabricator.name=Конструктор
 item.emergingtechnology.ladder.name=Пластиковая Лестница
 item.emergingtechnology.plastictissuescaffold.name=Пластиковая Основа Ткани
 
+item.emergingtechnology.paperwaste.name=Paper Waste
+item.emergingtechnology.paperpulp.name=Paper Pulp
+item.emergingtechnology.shreddedpaper.name=Shredded Paper
+
 item.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
 item.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
 item.emergingtechnology.shreddedstarchblock.name=Блок Измельченного Крахмала

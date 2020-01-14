@@ -20,4 +20,8 @@ public class ElectricsModule {
     @Name("Biomass Generator")
 	@Comment("Configure the Biomass Generator here")
     public final ElectricsModuleBiomassGenerator BIOMASSGENERATOR = new ElectricsModuleBiomassGenerator();
+
+    @Name("Battery")
+	@Comment("Configure the Battery here")
+    public final ElectricsModuleBattery BATTERY = new ElectricsModuleBattery();
 }

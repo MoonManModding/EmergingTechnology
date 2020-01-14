@@ -31,6 +31,10 @@ item.emergingtechnology.fabricator.name=Fabricateur
 item.emergingtechnology.ladder.name=Échelle en plastique
 item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
 
+item.emergingtechnology.paperwaste.name=Paper Waste
+item.emergingtechnology.paperpulp.name=Paper Pulp
+item.emergingtechnology.shreddedpaper.name=Shredded Paper
+
 item.emergingtechnology.shreddedplasticblock.name=Bloc de plastique déchiqueté
 item.emergingtechnology.shreddedplantblock.name=Bloc de matières végétales déchiquetée
 item.emergingtechnology.shreddedstarchblock.name=Bloc d'amidon déchiqueté

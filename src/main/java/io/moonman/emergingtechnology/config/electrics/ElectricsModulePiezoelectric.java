@@ -6,6 +6,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class ElectricsModulePiezoelectric {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Piezoelectric Energy Generated")
     @Config.Comment("How much energy the Piezoelectric tile generates when stepped on.")
     @RangeInt(min = 0, max = 100)

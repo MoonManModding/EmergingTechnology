@@ -7,6 +7,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class HydroponicsModuleGrowLight {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Crops Boost from Bulb")
 	@Config.Comment("Configure the boost to growth specific crops get when grown under specific bulb")
     public final IdealGrowthBoost BOOSTS = new IdealGrowthBoost();

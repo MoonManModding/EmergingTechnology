@@ -6,6 +6,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class HydroponicsModuleHarvester {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Harvester Operation Energy Cost")
     @Config.Comment("How much energy the Harvester uses when harvesting per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 1000)

@@ -6,6 +6,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class ElectricsModuleBiomassGenerator {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Biomass Generator Energy Generated")
     @Config.Comment("How much energy the Biomass Generator generates per biomass item.")
     @RangeInt(min = 0, max = 10000)

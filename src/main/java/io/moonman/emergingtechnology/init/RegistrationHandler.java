@@ -20,7 +20,10 @@ import io.moonman.emergingtechnology.item.polymers.PlasticRod;
 import io.moonman.emergingtechnology.item.polymers.PlasticSheet;
 import io.moonman.emergingtechnology.item.polymers.PlasticTissueScaffold;
 import io.moonman.emergingtechnology.item.polymers.PlasticWaste;
+import io.moonman.emergingtechnology.item.polymers.ShreddedPaper;
 import io.moonman.emergingtechnology.item.polymers.Filament;
+import io.moonman.emergingtechnology.item.polymers.PaperPulp;
+import io.moonman.emergingtechnology.item.polymers.PaperWaste;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
@@ -121,8 +124,8 @@ public class RegistrationHandler {
 
         // Items
         final Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
-                new ShreddedPlant(), new ShreddedStarch(), new PlasticWaste(), new PlasticRod(), new PlasticSheet(),
-                new Filament(), new PlasticTissueScaffold(), new EmptySyringe(), new SyntheticCowRaw(),
+                new ShreddedPlant(), new ShreddedStarch(), new ShreddedPaper(), new PaperWaste(), new PaperPulp(), new PlasticWaste(), new PlasticRod(), new PlasticSheet(),
+                new Filament(),  new PlasticTissueScaffold(), new EmptySyringe(), new SyntheticCowRaw(),
                 new SyntheticChickenRaw(), new SyntheticPigRaw(), new SyntheticPigCooked(), new SyntheticCowCooked(),
                 new SyntheticChickenCooked(), new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new Biomass() };
 
@@ -186,12 +189,15 @@ public class RegistrationHandler {
         registerModel(ModItems.shreddedplastic);
         registerModel(ModItems.shreddedplant);
         registerModel(ModItems.shreddedstarch);
+        registerModel(ModItems.shreddedpaper);
 
         registerModel(ModItems.plasticrod);
         registerModel(ModItems.plasticsheet);
         registerModel(ModItems.filament);
         registerModel(ModItems.plastictissuescaffold);
         registerModel(ModItems.plasticwaste);
+        registerModel(ModItems.paperwaste);
+        registerModel(ModItems.paperpulp);
 
         registerModel(ModItems.emptysyringe);
 

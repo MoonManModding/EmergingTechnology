@@ -74,6 +74,10 @@ public class OreRegistrationHandler {
             ModItems.biomass
         };
 
+        Item[] pulpWood = new Item[] {
+            ModItems.paperpulp
+        };
+
         Item[] dustBiomass = new Item[] {
             ModItems.biomass
         };
@@ -119,6 +123,7 @@ public class OreRegistrationHandler {
         registerItems(stickPlastic, "rodPlastic");
         registerItems(bioplastic, "bioplastic");
         registerItems(starch, "starch");
+        registerItems(pulpWood, "pulpWood");
         registerItems(filamentPlastic, "filamentPlastic");
         registerItems(biomass, "biomass");
         registerItems(dustBiomass, "dustBiomass");

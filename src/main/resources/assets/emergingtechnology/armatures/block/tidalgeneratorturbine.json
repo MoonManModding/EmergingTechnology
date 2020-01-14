@@ -44,9 +44,7 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            90,
-                            180,
-                            90
+                            180
                         ]
                     }
                 ]

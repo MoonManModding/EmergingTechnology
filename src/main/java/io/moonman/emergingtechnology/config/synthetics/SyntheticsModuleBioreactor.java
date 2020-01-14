@@ -6,6 +6,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class SyntheticsModuleBioreactor {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Tissue Bioreactor Energy Usage")
     @Config.Comment("How much energy the Tissue Bioreactor uses per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 1000)

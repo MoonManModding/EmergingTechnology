@@ -6,6 +6,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class PolymersModuleShredder {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Shredder Operation Energy Cost")
     @Config.Comment("How much energy the Shredder uses when shredding per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)

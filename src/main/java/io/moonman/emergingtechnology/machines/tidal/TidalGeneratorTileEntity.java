@@ -178,7 +178,6 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
         String newState = TidalHelper.getTurbineStateFromSpeedEnum(speed);
 
         if (!state.equalsIgnoreCase(newState)) {
-            System.out.println("Turbine set to " + newState);
 			this.asm.transition(newState);
         }
     }

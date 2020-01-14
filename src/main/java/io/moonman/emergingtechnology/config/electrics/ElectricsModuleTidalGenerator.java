@@ -6,6 +6,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class ElectricsModuleTidalGenerator {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Tidal Generator Energy Generated")
     @Config.Comment("How much energy the Tidal Generator generates when underwater.")
     @RangeInt(min = 0, max = 10000)

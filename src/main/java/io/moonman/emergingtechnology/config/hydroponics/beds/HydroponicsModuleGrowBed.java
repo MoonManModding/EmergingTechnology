@@ -11,6 +11,10 @@ import net.minecraftforge.common.config.Config.RangeInt;
 
 public class HydroponicsModuleGrowBed {
 
+    @Name("Disable Machine")
+    @Config.Comment("Prevent this machine from being crafted?")
+    public boolean disabled = false;
+
     @Name("Crops Boost from Media")
 	@Config.Comment("Configure the boost to growth specific crops get when grown on specific media")
     public final IdealGrowthBoost BOOSTS = new IdealGrowthBoost();
