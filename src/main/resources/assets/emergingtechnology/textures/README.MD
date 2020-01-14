@@ -23,7 +23,7 @@ And if you're up for something more complex:
 The main palette used for the blocks/machines in this mod is shown below:
 
 <p align="center">
-  <img src="palette.png">
+  <img src="https://raw.githubusercontent.com/MoonManModding/EmergingTechnology/master/examples/palette.png">
 </p>
 
 In terms of artistic direction, the mod's design style is inspired roughly by Lego (50%), Astroneer (25%) and WALL-E (25%). Love those things too? This project might be for you!
