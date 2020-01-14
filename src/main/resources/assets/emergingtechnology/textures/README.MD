@@ -1,2 +1,29 @@
 ## Note to Artists
 
+Hi creative person! Interested in contributing to the textures for this mod? 🎨
+
+I'm looking for someone to overhaul the images for the following items:
+
+- biomass.png
+- shreddedplastic.png (+ block texture)
+- shreddedpaper.png (+ block texture)
+- shreddedstarch.png (+ block texture)
+- shreddedplants.png (+ block texture)
+- plasticwaste.png
+- paperwaste.png
+
+And if you're up for something more complex:
+
+- tissuescaffold.png
+- emptysyringe.png
+- fullsyringe.png
+- sample.png
+- filament.png
+
+In terms of artistic direction, the mod's design style is inspired roughly by LEGO (50%), Astroneer(25%) and WALL-E(25%). Love those things too? This project might be for you! 
+
+If accepted, you will of course receive full credit both on CurseForge and in the mod itself for your work. Sadly as this is a passion project I will not be able to reimburse you monetarily for your time - apologies 😓
+
+If you'd like to have a go at improving these textures let me know at moonmanmodding@gmail.com with a few examples of your artwork.
+
+## Thanks in advance ❤
