@@ -1,0 +1,19 @@
+{
+  "parameters": {},
+  "clips": {
+    "default": "emergingtechnology:block/tidalgeneratorturbine@default",
+    "slow": "emergingtechnology:block/tidalgeneratorturbine@slow",
+    "fast": "emergingtechnology:block/tidalgeneratorturbine@fast"
+  },
+  "states": [
+    "default",
+    "slow",
+    "fast"
+  ],
+  "transitions": {
+    "default": ["slow", "fast"],
+    "slow": ["default", "fast"],
+    "fast": ["default", "slow"]
+  },
+  "start_state": "default"
+}

@@ -16,12 +16,17 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
@@ -56,9 +61,14 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
         return new TidalGeneratorTileEntity();
     }
 
+    // @Override
+    // protected BlockStateContainer createBlockState() {
+    //     return new BlockStateContainer(this, new IProperty[] { FACING }, new IUnlistedProperty[]{ Properties.AnimationProperty });
+    // }
+
     @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { FACING });
+    public ExtendedBlockState createBlockState() {
+        return new ExtendedBlockState(this, new IProperty[] { FACING, Properties.StaticProperty }, new IUnlistedProperty[]{ Properties.AnimationProperty });
     }
 
     @Override
@@ -107,6 +117,27 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
         return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
     }
+
+    // Required for animation (?)
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        // return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+        return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		return state.withProperty(Properties.StaticProperty, true);
+	}
+
+    // End required for animation
+
 
     @Override
     public IBlockState getStateFromMeta(int meta) {

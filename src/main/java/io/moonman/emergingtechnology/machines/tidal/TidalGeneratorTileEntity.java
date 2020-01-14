@@ -1,11 +1,17 @@
 package io.moonman.emergingtechnology.machines.tidal;
 
+import com.google.common.collect.ImmutableMap;
+
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.machines.TidalHelper;
+import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.network.PacketHandler;
+import io.moonman.emergingtechnology.network.TidalGeneratorAnimationPacket;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,16 +20,31 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.model.animation.CapabilityAnimation;
+import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class TidalGeneratorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+
+    private final IAnimationStateMachine asm;
+
+    public TidalGeneratorTileEntity() {
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+			asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/tidalgenerator.json"), ImmutableMap.of());
+        } else asm = null;
+    }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.TIDAL_ENERGY_CAPACITY, 1000,
             1000) {
@@ -40,19 +61,25 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
 
     private int tick = 0;
     private int energy = 0;
+    private TurbineSpeedEnum speed = TurbineSpeedEnum.OFF;
+
+    @Override
+    public boolean hasFastRenderer() {
+        return true;
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY)
-            return true;
+        if (capability == CapabilityEnergy.ENERGY) return true;
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) return true;
 
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.generatorEnergyHandler;
+        if (capability == CapabilityEnergy.ENERGY) return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
         return super.getCapability(capability, facing);
     }
 
@@ -63,12 +90,15 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
         this.energyHandler.readFromNBT(compound);
 
         this.setEnergy(compound.getInteger("GuiEnergy"));
+
+        this.setTurbineState(TurbineSpeedEnum.getById(compound.getInteger("Speed")));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("GuiEnergy", this.getEnergy());
+        compound.setInteger("Speed", TurbineSpeedEnum.getId(this.speed));
         this.energyHandler.writeToNBT(compound);
 
         return compound;
@@ -107,11 +137,18 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
 
             int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.tidalEnergyGenerated;
 
+            
+
             if (TidalHelper.isGeneratorAtOptimalDepth(getPos())) {
                 energy *= 2;
+                this.setTurbineState(TurbineSpeedEnum.FAST);
+            } else {
+                this.setTurbineState(TurbineSpeedEnum.SLOW);
             }
 
             this.energyHandler.receiveEnergy(energy, false);
+        } else {
+            this.setTurbineState(TurbineSpeedEnum.OFF);
         }
     }
 
@@ -132,6 +169,27 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
                 }
             }
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setTurbineStateClient(TurbineSpeedEnum speed) {
+
+        String state = this.asm.currentState();
+        String newState = TidalHelper.getTurbineStateFromSpeedEnum(speed);
+
+        if (!state.equalsIgnoreCase(newState)) {
+            System.out.println("Turbine set to " + newState);
+			this.asm.transition(newState);
+        }
+    }
+    
+    private void setTurbineState(TurbineSpeedEnum speed) {
+
+        if (speed != this.speed) {
+            PacketHandler.INSTANCE.sendToAll(new TidalGeneratorAnimationPacket(this.getPos(), speed));
+        }
+
+        this.speed = speed;
     }
 
     // Getters

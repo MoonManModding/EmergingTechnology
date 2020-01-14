@@ -29,6 +29,10 @@
             "down": {
                 "x": 90
             }
+        },
+        "static": {
+            "true": {"model": "emergingtechnology:tidalgeneratorframe"},
+            "false": {"model": "emergingtechnology:tidalgeneratorturbine"}
         }
     }
 }

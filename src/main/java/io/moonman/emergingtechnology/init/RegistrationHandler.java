@@ -77,6 +77,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -213,7 +214,9 @@ public class RegistrationHandler {
         // Hydroponic TESR
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.hydroponic), 0,
                 new ModelResourceLocation(ModBlocks.hydroponic.getRegistryName(), "inventory"));
+
         ClientRegistry.bindTileEntitySpecialRenderer(HydroponicTileEntity.class, new HydroponicTESR());
+        ClientRegistry.bindTileEntitySpecialRenderer(TidalGeneratorTileEntity.class, new AnimationTESR<TidalGeneratorTileEntity>());
     }
 
     private static Item[] generateItemBlocks(Block[] blocks) {

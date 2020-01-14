@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -46,6 +47,15 @@ public class TidalHelper {
 
         return pos.getY() < max && pos.getY() > min;
 
+    }
+
+    public static String getTurbineStateFromSpeedEnum(TurbineSpeedEnum speed) {
+        switch(speed) {
+            case OFF: return "default";
+            case SLOW: return "slow";
+            case FAST: return "fast";
+            default: return "default";
+        }
     }
 
     private static boolean isValidNeighbour(IBlockState state) {

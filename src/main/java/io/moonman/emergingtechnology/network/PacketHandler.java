@@ -20,5 +20,6 @@ public class PacketHandler {
     public static void registerMessages() {
         INSTANCE.registerMessage(FabricatorSelectionPacket.Handler.class, FabricatorSelectionPacket.class, nextID(), Side.SERVER);
         INSTANCE.registerMessage(FabricatorStopStartPacket.Handler.class, FabricatorStopStartPacket.class, nextID(), Side.SERVER);
+        INSTANCE.registerMessage(TidalGeneratorAnimationPacket.Handler.class, TidalGeneratorAnimationPacket.class, nextID(), Side.CLIENT);
     }
 }
