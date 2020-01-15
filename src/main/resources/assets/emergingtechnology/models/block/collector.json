@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"6": "emergingtechnology:blocks/green",
-		"7": "emergingtechnology:blocks/shreddedplastic",
+		"7": "emergingtechnology:blocks/plasticwaste",
 		"10": "emergingtechnology:blocks/dark",
 		"particle": "emergingtechnology:blocks/white"
 	},
