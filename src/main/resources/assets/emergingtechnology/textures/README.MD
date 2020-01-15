@@ -4,21 +4,14 @@ Hi creative person! Interested in contributing to the textures for this mod? ðŸŽ
 
 I'm looking for someone to overhaul the images for the following items:
 
-- biomass.png
-- shreddedplastic.png (+ block texture)
-- shreddedpaper.png (+ block texture)
-- shreddedstarch.png (+ block texture)
-- shreddedplants.png (+ block texture)
-- plasticwaste.png (think trash from the ocean, plastic bottles, colourful fragments etc)
-- paperwaste.png (again from the ocean)
-
-And if you're up for something more complex:
-
-- tissuescaffold.png
-- emptysyringe.png
-- fullsyringe.png
-- sample.png
-- filament.png (i.e. 3D printer filament)
+- items/redbulb.png
+- items/bluebulb.png
+- items/greenbulb.png
+- items/purplebulb.png
+- blocks/shreddedplant.png
+- blocks/shreddedplastic.png
+- blocks/shreddedstarch.png
+- blocks/plasticwaste.png
 
 The main palette used for the blocks/machines in this mod is shown below:
 
