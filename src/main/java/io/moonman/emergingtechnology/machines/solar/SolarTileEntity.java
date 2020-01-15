@@ -27,7 +27,7 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class SolarTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SOLAR_ENERGY_CAPACITY, 100, 100) {
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SOLAR_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
             markDirty();

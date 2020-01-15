@@ -19,10 +19,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -71,8 +73,6 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return itemHandler.extractItem(slot, amount, simulate);
         }
     };
-
-    private int tick = 0;
 
     private int energy = this.energyHandler.getEnergyStored();
 
@@ -138,36 +138,25 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
     }
 
     @Override
-    public void update() {
+    public void cycle() {
 
-        if (this.isClient()) {
-            return;
-        }
+        this.setEnergy(this.getEnergy());
 
-        if (tick < Reference.TICK_RATE) {
-            tick++;
-            return;
+        if (canHarvest()) {
+            this.setIsActive(true);
+            this.doHarvest();
         } else {
-
-            this.setEnergy(this.getEnergy());
-
-            if (canHarvest()) {
-                this.setIsActive(true);
-                this.doHarvest();
-            } else {
-                this.setIsActive(false);
-            }
-
-            this.tryPlant();
-
-            if (this.requiresUpdate
-                    && !EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterDisableAnimations) {
-                Harvester.setState(this.isActive, getWorld(), getPos());
-                this.requiresUpdate = false;
-            }
-
-            tick = 0;
+            this.setIsActive(false);
         }
+
+        this.tryPlant();
+
+        if (this.requiresUpdate && !EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterDisableAnimations) {
+            Harvester.setState(this.isActive, getWorld(), getPos());
+            this.requiresUpdate = false;
+        }
+
+        this.doEnergyTransferProcess();
     }
 
     public boolean canHarvest() {
@@ -226,7 +215,6 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
                 // Try insert seeds into seed slot
                 if (PlantHelper.isSeedItem(itemStack.getItem()) && !inputFull() && (this.getInputStack().isEmpty()
                         || StackHelper.compareItemStacks(itemStack, getInputStack()))) {
-
 
                     ItemStack inserted = this.itemHandler.insertItem(0, itemStack, false);
                     handleEntity(entity, inserted);
@@ -297,6 +285,12 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
+        Hydroponic hydroponic = (Hydroponic) soilBlockTarget.getBlock();
+
+        if (!hydroponic.getActualState(soilBlockTarget, getWorld(), soilTarget).getValue(Hydroponic.HAS_WATER)) {
+            return;
+        }
+
         IBlockState blockStateToPlace = PlantHelper.getBlockStateFromItemStackForPlanting(inputStack, getWorld(),
                 getTarget());
 
@@ -308,6 +302,40 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         world.setBlockState(getTarget(), blockStateToPlace, 3);
 
         this.itemHandler.extractItem(0, 1, false);
+    }
+
+    public void doEnergyTransferProcess() {
+        int transferEnergy = EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyTransferRate;
+
+        // If enough energy to transfer...
+        if (this.energy >= transferEnergy) {
+
+            // Get the direction this harvester is facing
+            EnumFacing facing = this.world.getBlockState(this.pos).getValue(Harvester.FACING);
+
+            // Get the left side of the harvester
+            EnumFacing left = facing.rotateYCCW();
+
+            // Grab the vector
+            Vec3i vector = left.getDirectionVec();
+
+            // Get neighbour based on facing vector
+            TileEntity neighbour = this.world.getTileEntity(this.pos.add(vector));
+
+            // Is neighbour a grow light?
+            if (neighbour instanceof HarvesterTileEntity) {
+                HarvesterTileEntity targetTileEntity = (HarvesterTileEntity) neighbour;
+
+                // Send energy to the neighbour and get amount accepted
+                int accepted = targetTileEntity.energyHandler.receiveEnergy(transferEnergy, false);
+
+                if (accepted > 0) {
+                    // Drain self from amount
+                    this.energyHandler.extractEnergy(accepted, true);
+                    this.setEnergy(this.energyHandler.getEnergyStored());
+                }
+            }
+        }
     }
 
     private boolean inputFull() {

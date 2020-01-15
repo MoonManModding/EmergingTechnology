@@ -15,6 +15,11 @@ public class HydroponicsModuleHarvester {
     @RangeInt(min = 0, max = 1000)
     public int harvesterEnergyBaseUsage = 150;
 
+    @Name("Harvester Energy Transfer Rate")
+    @Config.Comment("How much energy the Harvester uses when harvesting per cycle (~10 ticks).")
+    @RangeInt(min = 0, max = 1000)
+    public int harvesterEnergyTransferRate = 450;
+
     @Name("Harvester - Disable animations")
     @Config.Comment("Disable to improve performance. Only necessary with a significant number of Harvesters")
     public boolean harvesterDisableAnimations = false;
