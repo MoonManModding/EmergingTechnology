@@ -160,8 +160,6 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
 
             this.tryPlant();
 
-            this.pullItems();
-
             if (this.requiresUpdate
                     && !EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterDisableAnimations) {
                 Harvester.setState(this.isActive, getWorld(), getPos());
@@ -208,7 +206,10 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         if (getTargetBlockState() == null)
             return false;
 
-        List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(getTarget()));
+        // Includes target and directly above target
+        AxisAlignedBB collectionArea = new AxisAlignedBB(getTarget()).expand(0, 1, 0);
+
+        List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, collectionArea);
         insertItems(entityItems);
 
         return true;
@@ -225,6 +226,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
                 // Try insert seeds into seed slot
                 if (PlantHelper.isSeedItem(itemStack.getItem()) && !inputFull() && (this.getInputStack().isEmpty()
                         || StackHelper.compareItemStacks(itemStack, getInputStack()))) {
+
 
                     ItemStack inserted = this.itemHandler.insertItem(0, itemStack, false);
                     handleEntity(entity, inserted);
@@ -263,7 +265,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
     }
 
     private void handleEntity(EntityItem entity, ItemStack itemStack) {
-        if (itemStack.isEmpty()) {
+        if (StackHelper.isItemStackEmpty(itemStack)) {
             entity.setDead();
         } else {
             entity.setItem(itemStack);
