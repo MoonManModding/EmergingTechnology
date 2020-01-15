@@ -22,7 +22,7 @@ public class BioreactorRecipeBuilder {
                 continue;
             }
 
-            RecipeProvider.bioreactorRecipes.add(new SimpleRecipe(syringe.getItem(), sample.getItem()));
+            RecipeProvider.bioreactorRecipes.add(new SimpleRecipe(sample.getItem(), syringe.getItem()));
         }
     }
 
