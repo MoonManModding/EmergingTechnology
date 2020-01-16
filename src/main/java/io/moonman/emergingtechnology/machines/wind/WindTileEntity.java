@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines.tidal;
+package io.moonman.emergingtechnology.machines.wind;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -6,12 +6,12 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
-import io.moonman.emergingtechnology.helpers.machines.TidalHelper;
+import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.TidalGeneratorAnimationPacket;
+import io.moonman.emergingtechnology.network.WindGeneratorAnimationPacket;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,18 +36,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class TidalGeneratorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class WindTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
     private final IAnimationStateMachine asm;
 
-    public TidalGeneratorTileEntity() {
+    public WindTileEntity() {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-			asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/tidalgenerator.json"), ImmutableMap.of());
+			asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/wind.json"), ImmutableMap.of());
         } else asm = null;
     }
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.TIDAL_ENERGY_CAPACITY, 1000,
-            1000) {
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.WIND_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
             markDirty();
@@ -128,13 +127,13 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
     }
 
     public void generate() {
-        if (TidalHelper.isGeneratorInWater(getWorld(), getPos())) {
+        if (WindHelper.isGeneratorInAir(getWorld(), getPos())) {
 
-            int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.tidalEnergyGenerated;
+            int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.energyGenerated;
 
             
 
-            if (TidalHelper.isGeneratorAtOptimalDepth(getPos())) {
+            if (WindHelper.isGeneratorAtOptimalHeight(getPos())) {
                 energy *= 2;
                 this.setTurbineState(TurbineSpeedEnum.FAST);
             } else {
@@ -170,7 +169,7 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
     public void setTurbineStateClient(TurbineSpeedEnum speed) {
 
         String state = this.asm.currentState();
-        String newState = TidalHelper.getTurbineStateFromSpeedEnum(speed);
+        String newState = WindHelper.getTurbineStateFromSpeedEnum(speed);
 
         if (!state.equalsIgnoreCase(newState)) {
 			this.asm.transition(newState);
@@ -180,7 +179,7 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
     private void setTurbineState(TurbineSpeedEnum speed) {
 
         if (speed != this.speed) {
-            PacketHandler.INSTANCE.sendToAll(new TidalGeneratorAnimationPacket(this.getPos(), speed));
+            PacketHandler.INSTANCE.sendToAll(new WindGeneratorAnimationPacket(this.getPos(), speed));
         }
 
         this.speed = speed;
@@ -232,6 +231,6 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
-        return "etech_tidal_generator";
+        return "etech_wind_generator";
     }
 }

@@ -1,7 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "emergingtechnology:tidalgenerator"
+        "model": "emergingtechnology:wind"
     },
     "variants": {
         "normal": [
@@ -9,7 +9,7 @@
         ],
         "inventory": [
             {
-                "model": "emergingtechnology:tidalgenerator"
+                "model": "emergingtechnology:wind"
             }
         ],
         "facing": {
@@ -32,10 +32,10 @@
         },
         "static": {
             "true": {
-                "model": "emergingtechnology:tidalgeneratorframe"
+                "model": "emergingtechnology:windframe"
             },
             "false": {
-                "model": "emergingtechnology:tidalgeneratorturbine"
+                "model": "emergingtechnology:windturbine"
             }
         }
     }

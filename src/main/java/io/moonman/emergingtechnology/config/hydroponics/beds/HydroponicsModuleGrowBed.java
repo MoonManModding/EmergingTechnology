@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.config.hydroponics.beds;
 
 import io.moonman.emergingtechnology.config.hydroponics.beds.boosts.IdealGrowthBoost;
+import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleBiochar;
 import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleClay;
 import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleDirt;
 import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleGravel;
@@ -35,6 +36,10 @@ public class HydroponicsModuleGrowBed {
     @Name("Medium - Gravel")
 	@Config.Comment("Configure the growth multiplier and fluid usage of Gravel in the grow bed")
     public final HydroponicsModuleGravel GRAVEL = new HydroponicsModuleGravel();
+
+    @Name("Medium - Biochar")
+	@Config.Comment("Configure the growth multiplier and fluid usage of Biochar in the grow bed")
+    public final HydroponicsModuleBiochar BIOCHAR = new HydroponicsModuleBiochar();
 
     @Name("Grow Bed - Energy Required for Transfer")
     @Config.Comment("Do grow beds require energy to transfer water to other beds? (~10 ticks).")

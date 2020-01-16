@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.machines.biomass;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.BiomassHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
@@ -40,7 +41,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
 
     };
 
-    public ItemStackHandler itemHandler = new ItemStackHandler(1) {
+    public ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
@@ -118,11 +119,6 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
 
     @Override
     public void cycle() {
-
-        if (this.isClient()) {
-            return;
-        }
-
         generate();
         spreadEnergy();
     }
@@ -143,6 +139,24 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
             itemHandler.extractItem(0, 1, false);
         }
 
+        ItemStack outputStack = getOutputStack();
+        ItemStack plannedStack = BiomassHelper.getPlannedStackFromItemStack(inputStack);
+
+        // This is probably unneccessary
+        if (plannedStack == null) {
+            return;
+        }
+
+        // Output stack is full
+        if (outputStack.getCount() == 64) {
+            return;
+        }
+
+        // Output stack incompatible/non-empty
+        if (!StackHelper.compareItemStacks(outputStack, plannedStack) && !StackHelper.isItemStackEmpty(outputStack)) {
+            return;
+        }
+
         int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
 
         // Generator full - stop processing
@@ -158,6 +172,8 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
             return;
         }
 
+        itemHandler.insertItem(1, plannedStack, false);
+        
         this.setProgress(0);
     }
 
@@ -184,6 +200,10 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
 
     public ItemStack getInputStack() {
         return itemHandler.getStackInSlot(0);
+    }
+    
+    public ItemStack getOutputStack() {
+        return itemHandler.getStackInSlot(1);
     }
 
     public int getEnergy() {

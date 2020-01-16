@@ -62,10 +62,12 @@ item.emergingtechnology.scaffolder.name=Appareil à morphogenèse
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 item.emergingtechnology.biomass.name=Biomass
+item.emergingtechnology.biochar.name=Biochar
 item.emergingtechnology.solar.name=Solar Panel
 item.emergingtechnology.battery.name=Battery
 item.emergingtechnology.biomassgenerator.name=Biomass Generator
 item.emergingtechnology.tidalgenerator.name=Tidal Generator
+item.emergingtechnology.wind.name=Wind Generator
 
 
 #Blocks
@@ -102,6 +104,7 @@ blocks.emergingtechnology.battery.name=Battery
 blocks.emergingtechnology.biomass.name=Biomass
 blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
+blocks.emergingtechnology.wind.name=Wind Generator
 
 #Containers
 
@@ -142,6 +145,7 @@ tile.emergingtechnology.battery.name=Battery
 tile.emergingtechnology.biomass.name=Biomass
 tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
+tile.emergingtechnology.wind.name=Wind Generator
 
 #ItemGroup
 
@@ -167,6 +171,7 @@ info.emergingtechnology.shredder.description=Shreds plants and plastic items int
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
+info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 

@@ -13,6 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class BiomassHelper {
 
     public final static ItemStack BIOMASS = new ItemStack(ModItems.biomass);
+    public final static ItemStack BIOCHAR = new ItemStack(ModItems.biochar);
 
     public static boolean isItemStackValid(ItemStack itemStack) {
 
@@ -26,5 +27,9 @@ public class BiomassHelper {
         }
 
         return StackHelper.compareItemStacks(itemStack, BIOMASS);
+    }
+
+    public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
+        return BIOCHAR.copy();
     }
 }

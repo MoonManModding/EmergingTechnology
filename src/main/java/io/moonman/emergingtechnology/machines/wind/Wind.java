@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines.solar;
+package io.moonman.emergingtechnology.machines.wind;
 
 import java.util.List;
 
@@ -16,22 +16,27 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.ITileEntityProvider;
 
-public class Solar extends SimpleMachineBase implements ITileEntityProvider {
+public class Wind extends SimpleMachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    public Solar() {
-        super(Material.IRON, "solar");
+    public Wind() {
+        super(Material.IRON, "wind");
         this.setSoundType(SoundType.METAL);
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -40,20 +45,24 @@ public class Solar extends SimpleMachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 
-        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.solarEnergyGenerated;
+        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.energyGenerated;
+        int min = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.minOptimalHeight;
+        int max = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.maxOptimalHeight;
+        int surround = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.minimumAirBlocks;
 
-        tooltip.add(Lang.get(Lang.SOLAR_DESC));
-        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY));
+        tooltip.add(Lang.get(Lang.WIND_DESC));
+        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY) + " " + Lang.getDepthBoost(min, max));
+        tooltip.add(Lang.getAirBlocksRequired(surround));
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new SolarTileEntity();
+        return new WindTileEntity();
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { FACING });
+    public ExtendedBlockState createBlockState() {
+        return new ExtendedBlockState(this, new IProperty[] { FACING, Properties.StaticProperty }, new IUnlistedProperty[]{ Properties.AnimationProperty });
     }
 
     @Override
@@ -102,6 +111,26 @@ public class Solar extends SimpleMachineBase implements ITileEntityProvider {
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
         return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
     }
+
+    // Required for animation (?)
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		return state.withProperty(Properties.StaticProperty, true);
+	}
+
+    // End required for animation
+
 
     @Override
     public IBlockState getStateFromMeta(int meta) {

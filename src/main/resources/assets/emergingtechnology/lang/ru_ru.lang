@@ -66,7 +66,7 @@ item.emergingtechnology.battery.name=Battery
 item.emergingtechnology.biomass.name=Биомасса
 item.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 item.emergingtechnology.tidalgenerator.name=Приливный генератор
-
+item.emergingtechnology.wind.name=Wind Generator
 
 #Blocks
 
@@ -102,6 +102,7 @@ blocks.emergingtechnology.solar.name=Solar Panel
 blocks.emergingtechnology.battery.name=Battery
 blocks.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 blocks.emergingtechnology.tidalgenerator.name=Приливный генератор
+blocks.emergingtechnology.wind.name=Wind Generator
 
 #Containers
 
@@ -140,6 +141,7 @@ tile.emergingtechnology.solar.name=Solar Panel
 tile.emergingtechnology.battery.name=Battery
 tile.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 tile.emergingtechnology.tidalgenerator.name=Приливный генератор
+tile.emergingtechnology.wind.name=Wind Generator
 
 #ItemGroup
 
@@ -164,6 +166,7 @@ info.emergingtechnology.shredder.description=Измельчает растени
 info.emergingtechnology.tidal.description=Генерирует энергию, используя движение приливов.
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
+info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 
 info.emergingtechnology.frame.description=Декоративная пластиковая рамка
 

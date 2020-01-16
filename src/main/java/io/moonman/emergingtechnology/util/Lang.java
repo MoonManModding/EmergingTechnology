@@ -7,24 +7,26 @@ public class Lang {
 
     private static final String SOURCE = "info.emergingtechnology.";
     private static final String GUI_SOURCE = "gui.emergingtechnology.";
+    private static final String DESC = ".description";
 
     // Machine descriptions for tooltips
-    public static final TextComponentTranslation BIOMASS_DESC = new TextComponentTranslation(SOURCE + "biomass.description");
-    public static final TextComponentTranslation BIOREACTOR_DESC = new TextComponentTranslation(SOURCE + "bioreactor.description");
-    public static final TextComponentTranslation COLLECTOR_DESC = new TextComponentTranslation(SOURCE + "collector.description");
-    public static final TextComponentTranslation COOKER_DESC = new TextComponentTranslation(SOURCE + "cooker.description");
-    public static final TextComponentTranslation FABRICATOR_DESC = new TextComponentTranslation(SOURCE + "fabricator.description");
-    public static final TextComponentTranslation FILLER_DESC = new TextComponentTranslation(SOURCE + "filler.description");
-    public static final TextComponentTranslation HARVESTER_DESC = new TextComponentTranslation(SOURCE + "harvester.description");
-    public static final TextComponentTranslation HYDROPONIC_DESC = new TextComponentTranslation(SOURCE + "hydroponic.description");
-    public static final TextComponentTranslation LIGHT_DESC = new TextComponentTranslation(SOURCE + "light.description");
-    public static final TextComponentTranslation PIEZOELECTRIC_DESC = new TextComponentTranslation(SOURCE + "piezoelectric.description");
-    public static final TextComponentTranslation PROCESSOR_DESC = new TextComponentTranslation(SOURCE + "processor.description");
-    public static final TextComponentTranslation SCAFFOLDER_DESC = new TextComponentTranslation(SOURCE + "scaffolder.description");
-    public static final TextComponentTranslation SHREDDER_DESC = new TextComponentTranslation(SOURCE + "shredder.description");
-    public static final TextComponentTranslation SOLAR_DESC = new TextComponentTranslation(SOURCE + "solar.description");
-    public static final TextComponentTranslation TIDAL_DESC = new TextComponentTranslation(SOURCE + "tidal.description");
-    public static final TextComponentTranslation BATTERY_DESC = new TextComponentTranslation(SOURCE + "battery.description");
+    public static final TextComponentTranslation BIOMASS_DESC = new TextComponentTranslation(SOURCE + "biomass" + DESC);
+    public static final TextComponentTranslation BIOREACTOR_DESC = new TextComponentTranslation(SOURCE + "bioreactor" + DESC);
+    public static final TextComponentTranslation COLLECTOR_DESC = new TextComponentTranslation(SOURCE + "collector" + DESC);
+    public static final TextComponentTranslation COOKER_DESC = new TextComponentTranslation(SOURCE + "cooker" + DESC);
+    public static final TextComponentTranslation FABRICATOR_DESC = new TextComponentTranslation(SOURCE + "fabricator" + DESC);
+    public static final TextComponentTranslation FILLER_DESC = new TextComponentTranslation(SOURCE + "filler" + DESC);
+    public static final TextComponentTranslation HARVESTER_DESC = new TextComponentTranslation(SOURCE + "harvester" + DESC);
+    public static final TextComponentTranslation HYDROPONIC_DESC = new TextComponentTranslation(SOURCE + "hydroponic" + DESC);
+    public static final TextComponentTranslation LIGHT_DESC = new TextComponentTranslation(SOURCE + "light" + DESC);
+    public static final TextComponentTranslation PIEZOELECTRIC_DESC = new TextComponentTranslation(SOURCE + "piezoelectric" + DESC);
+    public static final TextComponentTranslation PROCESSOR_DESC = new TextComponentTranslation(SOURCE + "processor" + DESC);
+    public static final TextComponentTranslation SCAFFOLDER_DESC = new TextComponentTranslation(SOURCE + "scaffolder" + DESC);
+    public static final TextComponentTranslation SHREDDER_DESC = new TextComponentTranslation(SOURCE + "shredder" + DESC);
+    public static final TextComponentTranslation SOLAR_DESC = new TextComponentTranslation(SOURCE + "solar" + DESC);
+    public static final TextComponentTranslation TIDAL_DESC = new TextComponentTranslation(SOURCE + "tidal" + DESC);
+    public static final TextComponentTranslation WIND_DESC = new TextComponentTranslation(SOURCE + "wind" + DESC);
+    public static final TextComponentTranslation BATTERY_DESC = new TextComponentTranslation(SOURCE + "battery" + DESC);
     
     // Block descriptions for tooltips
     public static final TextComponentTranslation FRAME_DESC = new TextComponentTranslation(SOURCE + "frame.description");
@@ -87,6 +89,10 @@ public class Lang {
 
     public static String getWaterBlocksRequired(int required) {
         return new TextComponentTranslation(SOURCE + "waterblocks.required", required).getFormattedText();
+    }
+    
+    public static String getAirBlocksRequired(int required) {
+        return new TextComponentTranslation(SOURCE + "airblocks.required", required).getFormattedText();
     }
 
     public static String getDepthBoost(int min, int max) {

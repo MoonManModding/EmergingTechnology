@@ -62,8 +62,10 @@ item.emergingtechnology.piezoelectric.name=Piezoelectric Generator
 item.emergingtechnology.solar.name=Solar Panel
 item.emergingtechnology.battery.name=Battery
 item.emergingtechnology.biomass.name=Biomass
+item.emergingtechnology.biochar.name=Biochar
 item.emergingtechnology.biomassgenerator.name=Biomass Generator
 item.emergingtechnology.tidalgenerator.name=Tidal Generator
+item.emergingtechnology.wind.name=Wind Generator
 
 
 #Blocks
@@ -100,6 +102,7 @@ blocks.emergingtechnology.solar.name=Solar Panel
 blocks.emergingtechnology.battery.name=Battery
 blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
+blocks.emergingtechnology.wind.name=Wind Generator
 
 #Containers
 
@@ -138,6 +141,7 @@ tile.emergingtechnology.solar.name=Solar Panel
 tile.emergingtechnology.battery.name=Battery
 tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
+tile.emergingtechnology.wind.name=Wind Generator
 
 #ItemGroup
 
@@ -161,6 +165,7 @@ info.emergingtechnology.processor.description=Processes raw materials into usabl
 info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthetic animal products.
 info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
+info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
 
@@ -189,8 +194,9 @@ info.emergingtechnology.growth.required=Provides a %s percent growth boost per c
 
 info.emergingtechnology.biome.required=Only functions in Ocean, Deep Ocean and Beach biomes.
 info.emergingtechnology.waterblocks.required=Requires at least %s surrounding water blocks.
+info.emergingtechnology.airblocks.required=Requires at least %s surrounding air blocks.
 info.emergingtechnology.watersurface.required=Must be placed at water's surface.
-info.emergingtechnology.waterdepth.required=(x2 when at depth between Y%1$s and Y%2$s)
+info.emergingtechnology.waterdepth.required=(x2 when at level between Y%1$s and Y%2$s)
 
 # Generated
 info.emergingtechnology.energy.generated=Generates %sRF per cycle.
@@ -273,3 +279,4 @@ config.emergingtechnology.electrics.tidal.title=Tidal Generator
 config.emergingtechnology.electrics.biomass.title=Biomass Generator
 config.emergingtechnology.electrics.piezoelectric.title=Piezoelectric Generator
 config.emergingtechnology.electrics.battery.title=Battery
+config.emergingtechnology.electrics.wind.title=Wind Generator

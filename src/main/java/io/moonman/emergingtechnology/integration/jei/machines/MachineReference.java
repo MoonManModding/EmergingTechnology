@@ -25,4 +25,7 @@ public class MachineReference {
 
     public static final String COLLECTOR_NAME = ModBlocks.collector.getLocalizedName();
     public static final String COLLECTOR_UID = EmergingTechnology.MODID + ":collector";
+
+    public static final String BIOMASS_NAME = ModBlocks.biomassgenerator.getLocalizedName();
+    public static final String BIOMASS_UID = EmergingTechnology.MODID + ":biomass";
 }

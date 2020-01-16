@@ -12,7 +12,7 @@ public class ModMediumProvider {
     private static ModMedium[] allMedia;
     public static ModMedium[] customMedia;
 
-    public static final int BASE_MEDIUM_COUNT = 5;
+    public static final int BASE_MEDIUM_COUNT = 6;
 
     public static ModMedium[] getMedia() {
         return allMedia;
@@ -39,6 +39,7 @@ public class ModMediumProvider {
         ModMedium gravel = new ModMedium(3, "minecraft:gravel", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.growthGravelModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.GRAVEL.destroyProbability);
         ModMedium clay = new ModMedium(4, "minecraft:clay", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability);
         ModMedium clayball = new ModMedium(5, "minecraft:clay_ball", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability);
+        ModMedium biochar = new ModMedium(6, "emergingtechnology:biochar", EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BIOCHAR.growthBiocharFluidUsage, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BIOCHAR.growthBiocharModifier, plants, 0, EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BIOCHAR.destroyProbability);
 
         ArrayList<ModMedium> baseMedia = new ArrayList<ModMedium>();
 
@@ -47,6 +48,7 @@ public class ModMediumProvider {
         baseMedia.add(gravel);
         baseMedia.add(clay);
         baseMedia.add(clayball);
+        baseMedia.add(biochar);
 
         return baseMedia;
     }

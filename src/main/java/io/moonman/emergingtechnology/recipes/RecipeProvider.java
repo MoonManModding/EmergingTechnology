@@ -23,6 +23,7 @@ public class RecipeProvider {
     public static List<SimpleRecipe> bioreactorRecipes = new ArrayList<>();
     public static List<SimpleRecipe> scaffolderRecipes = new ArrayList<>();
     public static List<SimpleRecipe> collectorRecipes = new ArrayList<>();
+    public static List<SimpleRecipe> biomassRecipes = new ArrayList<>();
     public static List<FabricatorRecipe> fabricatorRecipes = new ArrayList<>();
     
     public static CustomRecipesWrapper customRecipes = new CustomRecipesWrapper();

@@ -15,6 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Provides useful methods for the Hydroponic Grow Bed
+ * TODO: Tidy
  */
 public class HydroponicHelper {
 
@@ -44,6 +45,8 @@ public class HydroponicHelper {
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier;
         case 5:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayModifier;
+        case 6:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BIOCHAR.growthBiocharModifier;
         default:
             return ModMediumProvider.getGrowthProbabilityForMediumById(id);
         }
@@ -63,6 +66,8 @@ public class HydroponicHelper {
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability;
         case 5:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.destroyProbability;
+        case 6:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BIOCHAR.destroyProbability;
         default:
             return ModMediumProvider.getDestroyProbabilityForMediumById(id);
         }
@@ -80,6 +85,8 @@ public class HydroponicHelper {
             return Blocks.CLAY.getDefaultState();
         case 5:
             return Blocks.CLAY.getDefaultState();
+        case 6:
+            return Blocks.COAL_BLOCK.getDefaultState();
         default:
             return Blocks.WOOL.getDefaultState();
         }
@@ -97,6 +104,8 @@ public class HydroponicHelper {
             return MediumTypeEnum.CLAY;
         case 5:
             return MediumTypeEnum.CLAY;
+        case 6:
+            return MediumTypeEnum.BIOCHAR;
         default:
             return MediumTypeEnum.CUSTOM;
         }
@@ -114,6 +123,8 @@ public class HydroponicHelper {
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage;
         case 5:
             return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.CLAY.growthClayFluidUsage;
+        case 6:
+            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BIOCHAR.growthBiocharFluidUsage;
         default:
             return ModMediumProvider.getFluidUsageForMediumById(id);
         }

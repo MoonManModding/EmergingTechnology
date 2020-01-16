@@ -13,6 +13,10 @@ public class ElectricsModule {
 	@LangKey("config.emergingtechnology.electrics.tidal.title")
     public final ElectricsModuleTidalGenerator TIDALGENERATOR = new ElectricsModuleTidalGenerator();
 
+    @Name("Wind Generator")
+	@LangKey("config.emergingtechnology.electrics.wind.title")
+    public final ElectricsModuleWind WIND = new ElectricsModuleWind();
+
     @Name("Solar Generator")
 	@LangKey("config.emergingtechnology.electrics.solar.title")
     public final ElectricsModuleSolar SOLAR = new ElectricsModuleSolar();

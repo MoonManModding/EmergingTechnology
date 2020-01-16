@@ -5,5 +5,6 @@ public enum MediumTypeEnum {
     DIRT,
     SAND,
     GRAVEL,
-    CLAY
+    CLAY,
+    BIOCHAR
   }

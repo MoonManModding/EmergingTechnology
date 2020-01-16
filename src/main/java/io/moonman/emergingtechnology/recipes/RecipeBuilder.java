@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.classes.EmptyRecipe;
+import io.moonman.emergingtechnology.recipes.machines.BiomassRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.CollectorRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.CookerRecipeBuilder;
@@ -18,7 +19,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
@@ -36,6 +36,7 @@ public class RecipeBuilder {
         ScaffolderRecipeBuilder.build();
         ProcessorRecipeBuilder.build();
         FabricatorRecipeBuilder.build();
+        BiomassRecipeBuilder.build();
 
         registerFurnaceRecipes();
     }
@@ -81,6 +82,7 @@ public class RecipeBuilder {
         ArrayList<Block> disabledBlocks = new ArrayList<Block>();
 
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.disabled) disabledBlocks.add(ModBlocks.solar);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.disabled) disabledBlocks.add(ModBlocks.wind);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.BATTERY.disabled) disabledBlocks.add(ModBlocks.battery);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.disabled) disabledBlocks.add(ModBlocks.tidalgenerator);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.disabled) disabledBlocks.add(ModBlocks.piezoelectric);
