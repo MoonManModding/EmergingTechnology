@@ -7,10 +7,12 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientOnlyProxy extends CommonProxy {
 
@@ -40,6 +42,11 @@ public class ClientOnlyProxy extends CommonProxy {
         }
         return false;
     }
+
+    @Override
+    public World getWorld(MessageContext ctx) {
+		return Minecraft.getMinecraft().world;
+	}
 
     @Override
     public boolean isDedicatedServer() {

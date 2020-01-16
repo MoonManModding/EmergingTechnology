@@ -6,13 +6,14 @@ import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsMo
 import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleGravel;
 import io.moonman.emergingtechnology.config.hydroponics.beds.media.HydroponicsModuleSand;
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RangeInt;
 
 public class HydroponicsModuleGrowBed {
 
     @Name("Disable Machine")
-    @Config.Comment("Prevent this machine from being crafted?")
+    @LangKey("config.emergingtechnology.common.disable.title")
     public boolean disabled = false;
 
     @Name("Crops Boost from Media")

@@ -1,13 +1,14 @@
 package io.moonman.emergingtechnology.config.synthetics;
 
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RangeInt;
 
 public class SyntheticsModuleScaffolder {
 
     @Name("Disable Machine")
-    @Config.Comment("Prevent this machine from being crafted?")
+    @LangKey("config.emergingtechnology.common.disable.title")
     public boolean disabled = false;
 
     @Name("Tissue Scaffolder Energy Usage")

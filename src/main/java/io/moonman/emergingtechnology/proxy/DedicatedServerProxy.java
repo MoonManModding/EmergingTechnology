@@ -2,28 +2,32 @@ package io.moonman.emergingtechnology.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 /**
- * DedicatedServerProxy is used to set up the mod and start it running on dedicated servers.  It contains all the code that should run on the
- *   dedicated servers.  This is almost never required.
- *   For more background information see here http://greyminecraftcoder.blogspot.com/2013/11/how-forge-starts-up-your-code.html
+ * DedicatedServerProxy is used to set up the mod and start it running on
+ * dedicated servers. It contains all the code that should run on the dedicated
+ * servers. This is almost never required. For more background information see
+ * here
+ * http://greyminecraftcoder.blogspot.com/2013/11/how-forge-starts-up-your-code.html
  */
-public class DedicatedServerProxy extends CommonProxy
-{
+public class DedicatedServerProxy extends CommonProxy {
 
   /**
-   * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
+   * Run before anything else. Read your config, create blocks, items, etc, and
+   * register them with the GameRegistry
    */
   public void preInit(FMLPreInitializationEvent e) {
     super.preInit(e);
   }
 
   /**
-   * Do your mod setup. Build whatever data structures you care about. Register recipes,
-   * send FMLInterModComms messages to other mods.
+   * Do your mod setup. Build whatever data structures you care about. Register
+   * recipes, send FMLInterModComms messages to other mods.
    */
   public void init(FMLInitializationEvent e) {
     super.init(e);
@@ -37,6 +41,11 @@ public class DedicatedServerProxy extends CommonProxy
   }
 
   @Override
+  public World getWorld(MessageContext ctx) {
+    return ctx.getServerHandler().player.world;
+  }
+
+  @Override
   public boolean playerIsInCreativeMode(EntityPlayer player) {
     if (player instanceof EntityPlayerMP) {
       EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
@@ -46,6 +55,8 @@ public class DedicatedServerProxy extends CommonProxy
   }
 
   @Override
-  public boolean isDedicatedServer() {return true;}
+  public boolean isDedicatedServer() {
+    return true;
+  }
 
 }

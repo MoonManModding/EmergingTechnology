@@ -239,6 +239,9 @@ gui.emergingtechnology.fabricator.buttonrequires=Requires
 # Configuration
 config.emergingtechnology.title=Emerging Technology - Configuration
 
+config.emergingtechnology.common.disable.title=Disable Machine
+config.emergingtechnology.common.disable.title.tooltip=Prevent this machine from being crafted and appearing in Creative Tab
+
 config.emergingtechnology.hydroponics.title=Hydroponics
 config.emergingtechnology.hydroponics.title.tooltip=Configure Grow Bed, Grow Light, Harvester and Filler here
 

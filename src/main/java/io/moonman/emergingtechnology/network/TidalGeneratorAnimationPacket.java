@@ -1,9 +1,9 @@
 package io.moonman.emergingtechnology.network;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -49,7 +49,7 @@ public class TidalGeneratorAnimationPacket implements IMessage {
 
         private void handle(TidalGeneratorAnimationPacket message, MessageContext ctx) {
 
-            World world = Minecraft.getMinecraft().world;
+            World world = EmergingTechnology.proxy.getWorld(ctx);
 
             if (world != null && world.isBlockLoaded(message.pos)) {
                 TidalGeneratorTileEntity tileEntity = (TidalGeneratorTileEntity) world.getTileEntity(message.pos);
