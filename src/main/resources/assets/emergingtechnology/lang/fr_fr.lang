@@ -239,3 +239,41 @@ gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Requires 
+
+# Configuration
+config.emergingtechnology.title=Emerging Technology - Configuration
+
+config.emergingtechnology.common.disable.title=Disable Machine
+config.emergingtechnology.common.disable.title.tooltip=Prevent this machine from being crafted and appearing in Creative Tab
+
+config.emergingtechnology.hydroponics.title=Hydroponics
+config.emergingtechnology.hydroponics.title.tooltip=Configure Grow Bed, Grow Light, Harvester and Filler here
+
+config.emergingtechnology.hydroponics.growbed.title=Hydroponic Grow Bed
+config.emergingtechnology.hydroponics.growlight.title=Hydroponic Grow Light
+config.emergingtechnology.hydroponics.harvester.title=Harvester
+config.emergingtechnology.hydroponics.filler.title=Water Filler
+
+config.emergingtechnology.polymers.title=Polymers
+config.emergingtechnology.polymers.title.tooltip=Configure Shredder, Processor, Fabricator and Collector here
+
+config.emergingtechnology.polymers.shredder.title=Shredder
+config.emergingtechnology.polymers.processor.title=Processor
+config.emergingtechnology.polymers.fabricator.title=Fabricator
+config.emergingtechnology.polymers.collector.title=Waste Collector
+
+config.emergingtechnology.synthetics.title=Synthetics
+config.emergingtechnology.synthetics.title.tooltip=Configure Bioreactor, Scaffolder and Solar Cooker here
+
+config.emergingtechnology.synthetics.bioreactor.title=Tissue Bioreactor
+config.emergingtechnology.synthetics.scaffolder.title=Tissue Scaffolder
+config.emergingtechnology.synthetics.cooker.title=Solar Cooker
+
+config.emergingtechnology.electrics.title=Electrics
+config.emergingtechnology.electrics.title.tooltip=Configure Solar Panel, Tidal Generator, Biomass Generator, Piezoelectric Generator and Battery here
+
+config.emergingtechnology.electrics.solar.title=Solar Panel
+config.emergingtechnology.electrics.tidal.title=Tidal Generator
+config.emergingtechnology.electrics.biomass.title=Biomass Generator
+config.emergingtechnology.electrics.piezoelectric.title=Piezoelectric Generator
+config.emergingtechnology.electrics.battery.title=Battery
