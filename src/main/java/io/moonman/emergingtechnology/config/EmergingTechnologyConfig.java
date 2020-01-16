@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.config.Config.Comment;
+import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -18,23 +19,23 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 The main configuration class for Emerging Technology
 */
 @Config(modid = EmergingTechnology.MODID, name = "emergingtechnology/" + EmergingTechnology.NAME)
-@Config.LangKey("emergingtechnology.config.title")
+@Config.LangKey("config.emergingtechnology.title")
 public class EmergingTechnologyConfig {
 	
 	@Name("Hydroponics Module")
-	@Comment("Configure Grow Beds and Lights here")
+	@LangKey("config.emergingtechnology.hydroponics.title")
 	public static final HydroponicsModule HYDROPONICS_MODULE = new HydroponicsModule();
 
 	@Name("Polymers Module")
-	@Comment("Configure Shredder and Processor here")
+	@LangKey("config.emergingtechnology.polymers.title")
 	public static final PolymersModule POLYMERS_MODULE = new PolymersModule();
 
 	@Name("Synthetics Module")
-	@Comment("Configure Solar Cooker, Tissue Bioreactor and Tissue Scaffolder here")
+	@LangKey("config.emergingtechnology.synthetics.title")
 	public static final SyntheticsModule SYNTHETICS_MODULE = new SyntheticsModule();
 
 	@Name("Electrics Module")
-	@Comment("Configure Piezoelectronic Tile here")
+	@LangKey("config.emergingtechnology.electrics.title")
 	public static final ElectricsModule ELECTRICS_MODULE = new ElectricsModule();
 
 	public static void preInit() {

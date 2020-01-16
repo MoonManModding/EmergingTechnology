@@ -1,23 +1,23 @@
 package io.moonman.emergingtechnology.config.polymers;
 
-import net.minecraftforge.common.config.Config.Comment;
+import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
 
 public class PolymersModule {
 
     @Name("Shredder")
-	@Comment("Configure the Shredder here")
+	@LangKey("config.emergingtechnology.polymers.shredder.title")
     public final PolymersModuleShredder SHREDDER = new PolymersModuleShredder();
 
     @Name("Processor")
-	@Comment("Configure the Processor here")
+	@LangKey("config.emergingtechnology.polymers.processor.title")
     public final PolymersModuleProcessor PROCESSOR = new PolymersModuleProcessor();
 
     @Name("Fabricator")
-	@Comment("Configure the Fabricator here")
+	@LangKey("config.emergingtechnology.polymers.fabricator.title")
     public final PolymersModuleFabricator FABRICATOR = new PolymersModuleFabricator();
 
     @Name("Collector")
-	@Comment("Configure the Collector here")
+	@LangKey("config.emergingtechnology.polymers.collector.title")
     public final PolymersModuleCollector COLLECTOR = new PolymersModuleCollector();
 }
