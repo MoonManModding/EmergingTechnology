@@ -125,6 +125,13 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
 
     public void generate() {
 
+        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
+
+        // Generator full - stop processing
+        if (getEnergy() + energy > Reference.BIOMASS_ENERGY_CAPACITY) {
+            return;
+        }
+
         ItemStack inputStack = getInputStack();
 
         if (this.getProgress() == 0) {
@@ -154,13 +161,6 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
 
         // Output stack incompatible/non-empty
         if (!StackHelper.compareItemStacks(outputStack, plannedStack) && !StackHelper.isItemStackEmpty(outputStack)) {
-            return;
-        }
-
-        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
-
-        // Generator full - stop processing
-        if (getEnergy() + energy > Reference.BIOMASS_ENERGY_CAPACITY) {
             return;
         }
 
