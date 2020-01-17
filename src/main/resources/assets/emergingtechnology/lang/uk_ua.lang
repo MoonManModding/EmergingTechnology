@@ -205,7 +205,7 @@ info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
 info.emergingtechnology.fluid.capacity=Can store up to %sMB of fluid.
-info.emergingtechnology.water.capacity=Can store up to %sRF of water.
+info.emergingtechnology.water.capacity=Can store up to %sMB of water.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=Right click to use.
