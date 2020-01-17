@@ -19,12 +19,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraft.block.ITileEntityProvider;
 
 public class Filler extends SimpleMachineBase implements ITileEntityProvider {
@@ -59,15 +56,9 @@ public class Filler extends SimpleMachineBase implements ITileEntityProvider {
         ItemStack itemStackHeld = playerIn.getHeldItemMainhand();
         Item itemHeld = itemStackHeld.getItem();
 
-        if (itemHeld instanceof UniversalBucket) {
-
-            UniversalBucket bucket = (UniversalBucket) itemHeld;
-
-            if (bucket.getEmpty().isEmpty()) {
-                playerIn.setHeldItem(EnumHand.MAIN_HAND, FluidUtil.getFilledBucket(new FluidStack(FluidRegistry.WATER, 1000)));
-            }
-        } else if (itemHeld == Items.BUCKET) {
-            playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Items.WATER_BUCKET));
+        if (itemHeld == Items.BUCKET) {
+            ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(Items.WATER_BUCKET));
+            itemStackHeld.shrink(1);
         }
 
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
