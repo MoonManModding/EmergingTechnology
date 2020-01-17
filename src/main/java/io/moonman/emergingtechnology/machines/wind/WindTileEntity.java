@@ -58,7 +58,6 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
 
     };
 
-    private int tick = 0;
     private int energy = 0;
     private TurbineSpeedEnum speed = TurbineSpeedEnum.OFF;
 

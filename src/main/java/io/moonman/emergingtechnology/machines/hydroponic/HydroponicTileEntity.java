@@ -113,11 +113,11 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-            return (T) this.fluidHandler;
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.fluidHandler);
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.itemHandler;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.itemHandler);
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.consumerEnergyHandler;
+            return CapabilityEnergy.ENERGY.cast(this.consumerEnergyHandler);
         return super.getCapability(capability, facing);
     }
 

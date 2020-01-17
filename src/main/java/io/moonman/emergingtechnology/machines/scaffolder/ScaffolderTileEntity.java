@@ -53,7 +53,7 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
             if (slot == 2) {
                 return 1;
             }
-            
+
             return super.getSlotLimit(slot);
         }
 
@@ -101,8 +101,6 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         }
     };
 
-    private int tick = 0;
-
     private int energy = this.energyHandler.getEnergyStored();
 
     private int progress = 0;
@@ -120,9 +118,9 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.automationItemHandler;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.automationItemHandler);
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.consumerEnergyHandler;
+            return CapabilityEnergy.ENERGY.cast(this.consumerEnergyHandler);
         return super.getCapability(capability, facing);
     }
 
@@ -141,7 +139,7 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
-        
+
         compound.setInteger("GuiEnergy", energy);
         compound.setInteger("GuiProgress", progress);
 
@@ -185,7 +183,8 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         }
 
         // Can't scaffold this item
-        if (!ScaffolderHelper.isItemStackValidScaffold(scaffoldStack) || !ScaffolderHelper.isItemStackValidSample(sampleStack)) {
+        if (!ScaffolderHelper.isItemStackValidScaffold(scaffoldStack)
+                || !ScaffolderHelper.isItemStackValidSample(sampleStack)) {
             this.setProgress(0);
             return;
         }

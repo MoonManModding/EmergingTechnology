@@ -69,7 +69,7 @@ public class CookerTileEntity extends MachineTileBase implements ITickable, Simp
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.automationItemHandler;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.automationItemHandler);
         return super.getCapability(capability, facing);
     }
 

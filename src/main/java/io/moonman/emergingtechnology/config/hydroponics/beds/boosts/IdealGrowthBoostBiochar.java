@@ -53,7 +53,6 @@ public class IdealGrowthBoostBiochar implements IIdealBoostsConfiguration {
     @RangeInt(min = 0, max = 100)
     public int netherWartAddedProbability = 5;
 
-    // TODO: be smarter about this...
     public int getBoost(CropTypeEnum cropType) {
         switch (cropType) {
         case WHEAT:

@@ -26,23 +26,24 @@ import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import io.moonman.emergingtechnology.machines.solar.Solar;
 import io.moonman.emergingtechnology.machines.tidal.TidalGenerator;
 import io.moonman.emergingtechnology.machines.wind.Wind;
+import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
- 
+
 /**
-All blocks from Emerging Technology
-*/
+ * All blocks from Emerging Technology
+ */
 @ObjectHolder(EmergingTechnology.MODID)
 public class ModBlocks {
 
-	//region Hydroponics Blocks
+	// region Hydroponics Blocks
 	public static final Hydroponic hydroponic = null;
 	public static final Light light = null;
 	public static final Frame frame = null;
 	public static final Harvester harvester = null;
 	public static final Filler filler = null;
-	//endregion
+	// endregion
 
-	//region Polymers Blocks
+	// region Polymers Blocks
 	public static final Processor processor = null;
 	public static final Shredder shredder = null;
 	public static final PlasticBlock plasticblock = null;
@@ -55,20 +56,41 @@ public class ModBlocks {
 	public static final ShreddedPlantBlock shreddedplantblock = null;
 	public static final ShreddedPlasticBlock shreddedplasticblock = null;
 	public static final ShreddedStarchBlock shreddedstarchblock = null;
-	//endregion
+	// endregion
 
-	//region Synthetics Blocks
+	// region Synthetics Blocks
 	public static final Cooker cooker = null;
 	public static final Bioreactor bioreactor = null;
 	public static final Scaffolder scaffolder = null;
-	//endregion
+	// endregion
 
-	//region Electrics Blocks
+	// region Electrics Blocks
 	public static final Piezoelectric piezoelectric = null;
 	public static final TidalGenerator tidalgenerator = null;
 	public static final Solar solar = null;
 	public static final Wind wind = null;
 	public static final Battery battery = null;
 	public static final BiomassGenerator biomassgenerator = null;
-	//endregion
+	// endregion
+
+	public static Block[] getBlocks() {
+		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light,
+				ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker,
+				ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
+				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.wind, ModBlocks.battery, ModBlocks.ladder,
+				ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock, ModBlocks.machinecase,
+				ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock };
+
+		return blocks;
+	}
+
+	public static Block[] generateBlocks() {
+		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Light(), new Frame(),
+			new Processor(), new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(),
+			new Fabricator(), new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(), new Solar(), new Wind(), new Battery(),
+			new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new Bioreactor(),
+			new Scaffolder() };
+
+		return blocks;
+	}
 }

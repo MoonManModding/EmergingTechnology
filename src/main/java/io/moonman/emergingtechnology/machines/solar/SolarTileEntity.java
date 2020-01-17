@@ -52,7 +52,7 @@ public class SolarTileEntity extends MachineTileBase implements ITickable, Simpl
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.generatorEnergyHandler;
+            return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
         return super.getCapability(capability, facing);
     }
 
@@ -171,13 +171,6 @@ public class SolarTileEntity extends MachineTileBase implements ITickable, Simpl
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
-        return "etech_solar_tile";
-    }
-
-    @Callback
-    @Optional.Method(modid = "opencomputers")
-    public Object[] isInSunlight(Context context, Arguments args) {
-        boolean sunlight = false;
-        return new Object[] { false };
+        return "etech_solar_generator";
     }
 }

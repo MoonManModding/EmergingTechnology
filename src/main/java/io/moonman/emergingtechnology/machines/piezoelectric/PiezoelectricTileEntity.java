@@ -55,7 +55,7 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.generatorEnergyHandler;
+            return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
         return super.getCapability(capability, facing);
     }
 

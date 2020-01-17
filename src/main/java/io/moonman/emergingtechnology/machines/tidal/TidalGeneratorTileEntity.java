@@ -59,7 +59,6 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
 
     };
 
-    private int tick = 0;
     private int energy = 0;
     private TurbineSpeedEnum speed = TurbineSpeedEnum.OFF;
 

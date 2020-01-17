@@ -15,7 +15,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Provides useful methods for the Hydroponic Grow Bed
- * TODO: Tidy
  */
 public class HydroponicHelper {
 

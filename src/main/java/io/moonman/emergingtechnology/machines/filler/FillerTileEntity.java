@@ -43,7 +43,7 @@ public class FillerTileEntity extends MachineTileBase implements ITickable {
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-            return (T) this.fluidHandler;
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.fluidHandler);
         return super.getCapability(capability, facing);
     }
 

@@ -8,7 +8,6 @@ import io.moonman.emergingtechnology.config.synthetics.SyntheticsModule;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;

@@ -70,9 +70,9 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.generatorEnergyHandler;
+            return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.itemHandler;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.itemHandler);
         return super.getCapability(capability, facing);
     }
 

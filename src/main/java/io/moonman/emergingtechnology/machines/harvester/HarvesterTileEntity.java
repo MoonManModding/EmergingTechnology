@@ -92,9 +92,9 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.automationItemHandler;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.automationItemHandler);
         if (capability == CapabilityEnergy.ENERGY)
-            return (T) this.consumerEnergyHandler;
+            return CapabilityEnergy.ENERGY.cast(this.consumerEnergyHandler);
         return super.getCapability(capability, facing);
     }
 

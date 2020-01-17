@@ -76,9 +76,9 @@ public class BatteryTileEntity extends MachineTileBase implements ITickable, Sim
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY) {
             if (facing == getFacing()) {
-                return (T) this.consumerStorageHandler;
+                return CapabilityEnergy.ENERGY.cast(this.consumerStorageHandler);
             } else {
-                return (T) this.generatorStorageHandler;
+                return CapabilityEnergy.ENERGY.cast(this.generatorStorageHandler);
             }
         }
 

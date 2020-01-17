@@ -49,7 +49,7 @@ public class CollectorTileEntity extends MachineTileBase implements ITickable {
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) this.itemHandler;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.itemHandler);
         return super.getCapability(capability, facing);
     }
 
