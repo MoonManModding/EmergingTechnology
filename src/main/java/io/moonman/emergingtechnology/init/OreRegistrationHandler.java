@@ -86,6 +86,10 @@ public class OreRegistrationHandler {
             ModItems.biochar
         };
 
+        Item[] blockCoal = new Item[] {
+            ModItems.biocharblock
+        };
+
         Item[] leather = new Item[] {
             ModItems.syntheticleather
         };
@@ -131,6 +135,7 @@ public class OreRegistrationHandler {
         registerItems(filamentPlastic, "filamentPlastic");
         registerItems(biomass, "biomass");
         registerItems(coal, "coal");
+        registerItems(blockCoal, "blockCoal");
         registerItems(dustBiomass, "dustBiomass");
         registerItems(slimeball, "slimeball");
         registerItems(string, "string");

@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.init;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.block.blocks.BiocharBlock;
 import io.moonman.emergingtechnology.block.blocks.ClearPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.Frame;
 import io.moonman.emergingtechnology.block.blocks.Ladder;
@@ -71,6 +72,7 @@ public class ModBlocks {
 	public static final Wind wind = null;
 	public static final Battery battery = null;
 	public static final BiomassGenerator biomassgenerator = null;
+	public static final BiocharBlock biocharblock = null;
 	// endregion
 
 	public static Block[] getBlocks() {
@@ -79,7 +81,7 @@ public class ModBlocks {
 				ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.wind, ModBlocks.battery, ModBlocks.ladder,
 				ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock, ModBlocks.machinecase,
-				ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock };
+				ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock, ModBlocks.biocharblock };
 
 		return blocks;
 	}
@@ -88,7 +90,7 @@ public class ModBlocks {
 		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Light(), new Frame(),
 			new Processor(), new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(),
 			new Fabricator(), new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(), new Solar(), new Wind(), new Battery(),
-			new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new Bioreactor(),
+			new BiocharBlock(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new Bioreactor(),
 			new Scaffolder() };
 
 		return blocks;

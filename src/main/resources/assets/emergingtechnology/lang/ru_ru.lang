@@ -67,6 +67,7 @@ item.emergingtechnology.biomass.name=Биомасса
 item.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 item.emergingtechnology.tidalgenerator.name=Приливный генератор
 item.emergingtechnology.wind.name=Wind Generator
+item.emergingtechnology.biocharblock.name=Biochar Block
 
 #Blocks
 
@@ -103,6 +104,7 @@ blocks.emergingtechnology.battery.name=Battery
 blocks.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 blocks.emergingtechnology.tidalgenerator.name=Приливный генератор
 blocks.emergingtechnology.wind.name=Wind Generator
+blocks.emergingtechnology.biocharblock.name=Biochar Block
 
 #Containers
 
@@ -142,6 +144,7 @@ tile.emergingtechnology.battery.name=Battery
 tile.emergingtechnology.biomassgenerator.name=Генератор на биомассе
 tile.emergingtechnology.tidalgenerator.name=Приливный генератор
 tile.emergingtechnology.wind.name=Wind Generator
+tile.emergingtechnology.biocharblock.name=Biochar Block
 
 #ItemGroup
 

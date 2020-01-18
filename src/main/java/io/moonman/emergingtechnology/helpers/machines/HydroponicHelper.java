@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.helpers.PlantHelper;
+import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
@@ -85,7 +86,7 @@ public class HydroponicHelper {
         case 5:
             return Blocks.CLAY.getDefaultState();
         case 6:
-            return Blocks.COAL_BLOCK.getDefaultState();
+            return ModBlocks.biocharblock.getDefaultState();
         default:
             return Blocks.WOOL.getDefaultState();
         }
