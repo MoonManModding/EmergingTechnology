@@ -11,7 +11,7 @@ public class IdealGrowthBoostClay implements IIdealBoostsConfiguration {
     @Name("Wheat")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Wheat")
     @RangeInt(min = 0, max = 100)
-    public int wheatAddedProbability = 5;
+    public int wheatAddedProbability = 10;
 
     @Name("Carrots")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Carrots")
@@ -36,7 +36,7 @@ public class IdealGrowthBoostClay implements IIdealBoostsConfiguration {
     @Name("Cactus")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Cacti")
     @RangeInt(min = 0, max = 100)
-    public int cactusAddedProbability = 0;
+    public int cactusAddedProbability = 10;
 
     @Name("Melon")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Melons")

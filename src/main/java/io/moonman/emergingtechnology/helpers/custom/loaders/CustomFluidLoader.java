@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
@@ -28,6 +29,9 @@ public class CustomFluidLoader {
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
                     + ModFluidProvider.customFluids.length + " custom fluids.");
 
+        } catch (FileNotFoundException ex) {
+            EmergingTechnology.logger.warn("Fluid file not found.");
+            ModFluidProvider.customFluids = new ModFluid[] {};
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom fluids:");
             EmergingTechnology.logger.warn(ex);

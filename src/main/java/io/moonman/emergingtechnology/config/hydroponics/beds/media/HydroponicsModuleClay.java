@@ -14,7 +14,7 @@ public class HydroponicsModuleClay {
     @Name("Clay Fluid Usage")
     @Config.Comment("Fluid used by Clay on successful growth per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)
-    public int growthClayFluidUsage = 1;
+    public int growthClayFluidUsage = 5;
 
     @Name("Clay Destroy Probability")
     @Config.Comment("Probability of Clay being destroyed (out of 1000) during use in Grow Bed per cycle (~10 ticks).")

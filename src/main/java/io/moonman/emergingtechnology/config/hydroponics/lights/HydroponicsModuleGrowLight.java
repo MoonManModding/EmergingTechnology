@@ -48,8 +48,8 @@ public class HydroponicsModuleGrowLight {
     
     @Name("Light Base Energy Usage")
     @Config.Comment("Base power usage of light per cycle (~10 ticks).")
-    @RangeInt(min = 0, max = 100)
-    public int lightEnergyBaseUsage = 10;
+    @RangeInt(min = 0, max = 1000)
+    public int lightEnergyBaseUsage = 100;
 
     @Name("Red Bulb Energy Modifier")
     @Config.Comment("Energy Modifier of Red Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
@@ -73,6 +73,6 @@ public class HydroponicsModuleGrowLight {
 
     @Name("Grow Light - Energy Transfer Rate")
     @Config.Comment("The amount of energy transferred to other lights by a grow light per cycle (~10 ticks).")
-    @RangeInt(min = 1, max = 100)
+    @RangeInt(min = 1, max = 1000)
     public int growLightEnergyTransferRate = 100;
 }

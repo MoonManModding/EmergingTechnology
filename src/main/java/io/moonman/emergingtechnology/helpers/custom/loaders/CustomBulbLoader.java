@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
@@ -28,7 +29,10 @@ public class CustomBulbLoader {
             EmergingTechnology.logger.info("EmergingTechnology - Loaded "
                     + ModBulbProvider.customBulbs.length + " custom bulbs.");
 
-        } catch (Exception ex) {
+        } catch (FileNotFoundException ex) {
+            EmergingTechnology.logger.warn("Bulb file not found.");
+            ModBulbProvider.customBulbs = new ModBulb[] {};
+        }  catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom bulbs:");
             EmergingTechnology.logger.warn(ex);
             ModBulbProvider.customBulbs = new ModBulb[] {};

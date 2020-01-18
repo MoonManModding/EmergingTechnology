@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
@@ -25,9 +26,12 @@ public class CustomTissueLoader {
         EmergingTechnology.logger.info("EmergingTechnology - Loading custom tissues...");
         try {
             ModTissueProvider.customTissues = readFromJson(path);
-            EmergingTechnology.logger.info("EmergingTechnology - Loaded "
-                    + ModTissueProvider.customTissues.length + " custom tissues.");
+            EmergingTechnology.logger
+                    .info("EmergingTechnology - Loaded " + ModTissueProvider.customTissues.length + " custom tissues.");
 
+        } catch (FileNotFoundException ex) {
+            EmergingTechnology.logger.warn("Tissue file not found.");
+            ModTissueProvider.customTissues = new ModTissue[] {};
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom tissues:");
             EmergingTechnology.logger.warn(ex);
@@ -37,7 +41,8 @@ public class CustomTissueLoader {
 
     private static ModTissue[] readFromJson(String filePath) throws IOException {
 
-        CustomTissueWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath), CustomTissueWrapper[].class);
+        CustomTissueWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath),
+                CustomTissueWrapper[].class);
 
         return generateModTissueFromWrappers(wrappers);
     }

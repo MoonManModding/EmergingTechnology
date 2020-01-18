@@ -47,17 +47,17 @@ public class HydroponicsModuleGrowBed {
 
     @Name("Grow Bed - Energy Usage")
     @Config.Comment("If 'Energy Required for Transfer' is true, a grow bed will use this amount of energy per cycle (~10 ticks).")
-    @RangeInt(min = 1, max = 100)
+    @RangeInt(min = 1, max = 1000)
     public int growBedsEnergyUsePerCycle = 10;
     
     @Name("Grow Bed - Water Usage")
     @Config.Comment("The amount of water used by a grow bed per cycle (~10 ticks).")
-    @RangeInt(min = 1, max = 100)
-    public int growBedWaterUsePerCycle = 1;
+    @RangeInt(min = 1, max = 1000)
+    public int growBedWaterUsePerCycle = 10;
 
     @Name("Grow Bed - Water Transfer Rate")
     @Config.Comment("The amount of water transferred to other beds by a grow bed per cycle (~10 ticks).")
-    @RangeInt(min = 1, max = 100)
+    @RangeInt(min = 1, max = 1000)
     public int growBedWaterTransferRate = 100;
 
     @Name("Grow Bed - Destroy Media")

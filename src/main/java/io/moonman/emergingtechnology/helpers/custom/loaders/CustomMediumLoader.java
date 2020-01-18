@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
@@ -25,9 +26,12 @@ public class CustomMediumLoader {
         EmergingTechnology.logger.info("EmergingTechnology - Loading custom growth media...");
         try {
             ModMediumProvider.customMedia = readFromJson(customGrowthMediaFilePath);
-            EmergingTechnology.logger.info("EmergingTechnology - Loaded "
-                    + ModMediumProvider.customMedia.length + " custom growth media.");
+            EmergingTechnology.logger.info(
+                    "EmergingTechnology - Loaded " + ModMediumProvider.customMedia.length + " custom growth media.");
 
+        } catch (FileNotFoundException ex) {
+            EmergingTechnology.logger.warn("Media file not found.");
+            ModMediumProvider.customMedia = new ModMedium[] {};
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom growth media:");
             EmergingTechnology.logger.warn(ex);
@@ -37,7 +41,8 @@ public class CustomMediumLoader {
 
     private static ModMedium[] readFromJson(String filePath) throws IOException {
 
-        CustomMediumWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath), CustomMediumWrapper[].class);
+        CustomMediumWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath),
+                CustomMediumWrapper[].class);
 
         return generateModMediaFromWrappers(wrappers);
     }

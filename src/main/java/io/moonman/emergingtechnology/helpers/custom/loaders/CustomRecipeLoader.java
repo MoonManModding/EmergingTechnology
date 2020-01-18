@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers.custom.loaders;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
@@ -26,6 +27,9 @@ public class CustomRecipeLoader {
             RecipeProvider.customRecipes = readFromJson(filePath);
             EmergingTechnology.logger.info("EmergingTechnology - Loaded custom recipes.");
 
+        } catch (FileNotFoundException ex) {
+            EmergingTechnology.logger.warn("Recipe file not found.");
+            RecipeProvider.customRecipes = new CustomRecipesWrapper();
         } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom recipes:");
             EmergingTechnology.logger.warn(ex);
@@ -35,7 +39,8 @@ public class CustomRecipeLoader {
 
     private static CustomRecipesWrapper readFromJson(String filePath) throws IOException {
 
-        CustomRecipesWrapper wrapper = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJsonObject(filePath), CustomRecipesWrapper.class);
+        CustomRecipesWrapper wrapper = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJsonObject(filePath),
+                CustomRecipesWrapper.class);
 
         return wrapper;
     }

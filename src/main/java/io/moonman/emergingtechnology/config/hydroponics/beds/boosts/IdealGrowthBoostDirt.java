@@ -16,12 +16,12 @@ public class IdealGrowthBoostDirt implements IIdealBoostsConfiguration {
     @Name("Carrots")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Carrots")
     @RangeInt(min = 0, max = 100)
-    public int carrotsAddedProbability = 0;
+    public int carrotsAddedProbability = 5;
 
     @Name("Potatoes")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Potatoes")
     @RangeInt(min = 0, max = 100)
-    public int potatoesAddedProbability = 0;
+    public int potatoesAddedProbability = 5;
 
     @Name("Beetroot")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Beetroot")

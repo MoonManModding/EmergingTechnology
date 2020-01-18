@@ -26,7 +26,7 @@ public class Reference {
     public static final int HYDROPONIC_FLUID_CAPACITY = 5000;
     public static final int HYDROPONIC_ENERGY_CAPACITY = 5000;
     
-    public static final int LIGHT_ENERGY_CAPACITY = 5000;
+    public static final int LIGHT_ENERGY_CAPACITY = 10000;
 
     public static final int PROCESSOR_FLUID_CAPACITY = 10000;
     public static final int PROCESSOR_ENERGY_CAPACITY = 10000;

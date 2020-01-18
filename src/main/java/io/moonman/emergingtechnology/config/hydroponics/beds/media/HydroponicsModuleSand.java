@@ -14,10 +14,10 @@ public class HydroponicsModuleSand {
     @Name("Sand Fluid Usage")
     @Config.Comment("Fluid used by Sand on successful growth per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 100)
-    public int growthSandFluidUsage = 1;
+    public int growthSandFluidUsage = 10;
 
     @Name("Sand Destroy Probability")
     @Config.Comment("Probability of Sand being destroyed (out of 1000) during use in Grow Bed per cycle (~10 ticks).")
     @RangeInt(min = 0, max = 999)
-    public int destroyProbability = 1;
+    public int destroyProbability = 2;
 }
