@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -37,14 +38,18 @@ public class Collector extends MachineBase implements ITileEntityProvider {
     }
 
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
-    {
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         int count = EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.minimumWaterBlocks;
+        
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.COLLECTOR_DESC));
+            tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
+            tooltip.add(Lang.getWaterBlocksRequired(count));
+            tooltip.add(Lang.get(Lang.WATER_SURFACE_REQUIREMENT));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
 
-        tooltip.add(Lang.get(Lang.COLLECTOR_DESC));
-        tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
-        tooltip.add(Lang.getWaterBlocksRequired(count));
-        tooltip.add(Lang.get(Lang.WATER_SURFACE_REQUIREMENT));
     }
 
     @Override
@@ -87,5 +92,4 @@ public class Collector extends MachineBase implements ITileEntityProvider {
         int meta = state.getValue(HAS_ITEMS) ? 8 : 0;
         return meta;
     }
-
 }

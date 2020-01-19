@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -47,8 +48,13 @@ public class Fabricator extends MachineBase implements ITileEntityProvider {
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         int energy = EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage;
 
-        tooltip.add(Lang.get(Lang.FABRICATOR_DESC));
-        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.FABRICATOR_DESC));
+            tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
+
     }
 
     @Override

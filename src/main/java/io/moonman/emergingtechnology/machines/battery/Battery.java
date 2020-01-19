@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.SimpleMachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -44,8 +45,12 @@ public class Battery extends SimpleMachineBase implements ITileEntityProvider {
 
         int energy = Reference.BATTERY_ENERGY_CAPACITY;
 
-        tooltip.add(Lang.get(Lang.BATTERY_DESC));
-        tooltip.add(Lang.getCapacity(energy, ResourceTypeEnum.ENERGY));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.BATTERY_DESC));
+            tooltip.add(Lang.getCapacity(energy, ResourceTypeEnum.ENERGY));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override

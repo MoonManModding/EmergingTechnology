@@ -5,6 +5,7 @@ import java.util.List;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.machines.SimpleMachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -36,8 +37,12 @@ public class Filler extends SimpleMachineBase implements ITileEntityProvider {
     {
         int water = EmergingTechnologyConfig.HYDROPONICS_MODULE.FILLER.fillerFluidTransferRate;
 
-        tooltip.add(Lang.get(Lang.FILLER_DESC));
-        tooltip.add(Lang.getGenerated(water, ResourceTypeEnum.WATER));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.FILLER_DESC));
+            tooltip.add(Lang.getGenerated(water, ResourceTypeEnum.WATER));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override

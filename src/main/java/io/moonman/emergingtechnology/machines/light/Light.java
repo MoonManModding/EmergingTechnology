@@ -9,6 +9,7 @@ import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -59,9 +60,14 @@ public class Light extends MachineBase implements ITileEntityProvider {
         int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange;
         int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage;
 
-        tooltip.add(Lang.get(Lang.LIGHT_DESC));
-        tooltip.add(Lang.getLightRange(range));
-        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.LIGHT_DESC));
+            tooltip.add(Lang.getLightRange(range));
+            tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
+       
     }
 
     @Override

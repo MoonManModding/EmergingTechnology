@@ -220,6 +220,7 @@ info.emergingtechnology.water.capacity=Може зберігати до %sMB в�
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=ПКМ для використання.
+info.emergingtechnology.interaction.shift=Press SHIFT for more details.
 
 # GUI
 gui.emergingtechnology.label.basemedium=Base (Medium): 

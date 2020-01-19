@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.machines.biomass;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
@@ -54,6 +55,19 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
         }
     };
 
+    public ItemStackHandler automationItemHandler = new AutomationItemStackHandler(itemHandler, 0, 1) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            markDirty();
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return BiomassHelper.isItemStackValid(stack);
+        }
+    };
+
     private int energy = 0;
     private int progress = 0;
 
@@ -72,7 +86,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
         if (capability == CapabilityEnergy.ENERGY)
             return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.itemHandler);
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.automationItemHandler);
         return super.getCapability(capability, facing);
     }
 

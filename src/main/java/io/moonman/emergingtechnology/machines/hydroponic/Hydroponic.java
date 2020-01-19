@@ -9,6 +9,7 @@ import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -58,8 +59,12 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
     {
         int fluidUsage = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.growBedWaterUsePerCycle;
 
-        tooltip.add(Lang.get(Lang.HYDROPONIC_DESC));
-        tooltip.add(Lang.getRequired(fluidUsage, ResourceTypeEnum.FLUID));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.HYDROPONIC_DESC));
+            tooltip.add(Lang.getRequired(fluidUsage, ResourceTypeEnum.FLUID));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override

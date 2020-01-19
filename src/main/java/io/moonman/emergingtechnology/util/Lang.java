@@ -37,6 +37,7 @@ public class Lang {
 
     // Interaction descriptions
     public static final TextComponentTranslation INTERACT_RIGHT_CLICK = new TextComponentTranslation(SOURCE + "interaction.rightclick");
+    public static final TextComponentTranslation INTERACT_SHIFT = new TextComponentTranslation(SOURCE + "interaction.shift");
     
     // GUI
     public static final TextComponentTranslation GUI_BASE_MEDIUM = new TextComponentTranslation(GUI_SOURCE + "label.basemedium");

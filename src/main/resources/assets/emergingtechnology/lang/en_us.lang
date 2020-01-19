@@ -218,6 +218,7 @@ info.emergingtechnology.water.capacity=Can store up to %sMB of water.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=Right click to use.
+info.emergingtechnology.interaction.shift=Press SHIFT for more details.
 
 # GUI
 gui.emergingtechnology.label.basemedium=Base (Medium): 

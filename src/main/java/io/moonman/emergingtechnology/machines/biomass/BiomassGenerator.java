@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -45,8 +46,13 @@ public class BiomassGenerator extends MachineBase implements ITileEntityProvider
 
         int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
 
-        tooltip.add(Lang.get(Lang.BIOMASS_DESC));
-        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.BIOMASS_DESC));
+            tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
+        
     }
 
     @Override
