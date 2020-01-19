@@ -130,9 +130,7 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
 
             int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.energyGenerated;
 
-            
-
-            if (WindHelper.isGeneratorAtOptimalHeight(getPos())) {
+            if (WindHelper.isGeneratorAtOptimalHeight(getPos()) || getWorld().isThundering()) {
                 energy *= 2;
                 this.setTurbineState(TurbineSpeedEnum.FAST);
             } else {

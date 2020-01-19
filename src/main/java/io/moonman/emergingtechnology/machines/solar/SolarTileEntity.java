@@ -98,11 +98,14 @@ public class SolarTileEntity extends MachineTileBase implements ITickable, Simpl
     }
 
     private void generateEnergy() {
-        boolean canSeeSky = world.canSeeSky(getPos());
-        boolean isDayTime = world.isDaytime();
+        if (getWorld().canSeeSky(getPos()) && getWorld().isDaytime()) {
+            int generated = EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.solarEnergyGenerated;
 
-        if (canSeeSky && isDayTime) {
-            this.energyHandler.receiveEnergy(EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.solarEnergyGenerated, false);
+            if (getWorld().isThundering() || getWorld().isRaining()) {
+                generated = Math.round(generated / 2);
+            }
+
+            this.energyHandler.receiveEnergy(generated, false);
         }
     }
 

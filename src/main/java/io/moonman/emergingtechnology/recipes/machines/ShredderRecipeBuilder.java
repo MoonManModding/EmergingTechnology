@@ -90,6 +90,7 @@ public class ShredderRecipeBuilder {
 
         itemInputs.add(new ItemStack(Items.BEETROOT));
         itemInputs.add(new ItemStack(Items.POTATO));
+        itemInputs.add(new ItemStack(Items.POISONOUS_POTATO));
 
         List<String> oreInputs = new ArrayList<String>();
         oreInputs.add("cropCorn");
