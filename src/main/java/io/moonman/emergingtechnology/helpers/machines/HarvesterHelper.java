@@ -1,27 +1,47 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
-import io.moonman.emergingtechnology.init.ModItems;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
-import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import java.util.List;
+
+import io.moonman.emergingtechnology.helpers.PlantHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 /**
  * Provides useful methods for the Harvester
  */
 public class HarvesterHelper {
 
-    public static final ItemStack FILAMENT = new ItemStack(ModItems.filament);
+    public static boolean isInteractableCrop(Block block) {
+        if (block == null)
+            return false;
 
-    public static boolean isItemStackValid(ItemStack itemStack) {
-        return RecipeProvider.getFabricatorOutputForItemStack(itemStack) != null;
+        if (block.getRegistryName().toString().equalsIgnoreCase("agricraft:crop")) {
+            return true;
+        }
+
+        return false;
     }
 
-    public static FabricatorRecipe getFabricatorRecipeByIndex(int id) {
-        return RecipeProvider.getFabricatorRecipeByIndex(id);
+    public static boolean isInteractableCropReadyForHarvest(IBlockState blockState, World world, BlockPos pos) {
+
+        int itemCount = 0;
+
+        List<ItemStack> drops = getCropDrops(blockState, world, pos);
+
+        for (ItemStack drop : drops) {
+            itemCount += drop.getCount();
+        }
+
+        return  itemCount > 2;
     }
 
-    public static ItemStack getFilamentWithAmount(int amount) {
-        return new ItemStack(ModItems.filament, amount);
+    private static List<ItemStack> getCropDrops(IBlockState blockState, World world, BlockPos pos) {
+        return blockState.getBlock().getDrops(world, pos, blockState, 1);
     }
-    
+
 }

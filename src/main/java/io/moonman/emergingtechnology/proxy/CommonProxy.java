@@ -87,8 +87,8 @@ public abstract class CommonProxy {
 
 	public World getWorld(MessageContext ctx) {
 		return ctx.getServerHandler().player.world;
-	}
-
+    }
+    
     abstract public boolean playerIsInCreativeMode(EntityPlayer player);
 
     /**

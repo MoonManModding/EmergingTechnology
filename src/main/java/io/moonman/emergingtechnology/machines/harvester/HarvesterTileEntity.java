@@ -1,6 +1,9 @@
 package io.moonman.emergingtechnology.machines.harvester;
 
 import java.util.List;
+import java.util.UUID;
+
+import com.mojang.authlib.GameProfile;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
@@ -8,9 +11,11 @@ import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandle
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
+import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,12 +26,14 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -38,6 +45,9 @@ import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class HarvesterTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+
+    public static final GameProfile HARVESTER_PROFILE = new GameProfile(UUID.fromString("36f373ac-29ef-4150-b654-e7e6006efcd8"), "[Harvester]");
+    private static FakePlayer HARVESTER_PLAYER = null;
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY) {
         @Override
@@ -141,7 +151,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
     public void cycle() {
 
         this.setEnergy(this.getEnergy());
-
+ 
         if (canHarvest()) {
             this.setIsActive(true);
             this.doHarvest();
@@ -172,10 +182,14 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return false;
         }
 
+        if (HarvesterHelper.isInteractableCrop(getTargetBlockState().getBlock())) {
+            return HarvesterHelper.isInteractableCropReadyForHarvest(getTargetBlockState(), getWorld(), getTarget());
+        }
+
         return PlantHelper.isCropAtPositionReadyForHarvest(getWorld(), getTarget());
     }
 
-    public void doHarvest() {
+    private void doHarvest() {
         if (getTargetBlockState() == null) {
             return;
         }
@@ -184,10 +198,20 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-        world.destroyBlock(getTarget(), true);
+        if (HarvesterHelper.isInteractableCrop(getTargetBlockState().getBlock())) {
+            doInteractableHarvest();
+        } else {
+            world.destroyBlock(getTarget(), true);
+        }
+
         pullItems();
 
         useEnergy();
+    }
+
+    private void doInteractableHarvest() {
+        getTargetBlockState().getBlock().onBlockActivated(world, getTarget(), getTargetBlockState(), getFakePlayer(), EnumHand.MAIN_HAND,
+        getFacing(), 0, 0, 0);
     }
 
     private boolean pullItems() {
@@ -396,6 +420,15 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
 
         return stacks;
+    }
+
+    private FakePlayer getFakePlayer() {
+        if (HARVESTER_PLAYER == null) {
+            int dimension = getWorld().provider.getDimension();
+            HARVESTER_PLAYER = new FakePlayer(getWorld().getMinecraftServer().getWorld(dimension), HARVESTER_PROFILE);
+        }
+
+        return HARVESTER_PLAYER;
     }
 
     // Getters
