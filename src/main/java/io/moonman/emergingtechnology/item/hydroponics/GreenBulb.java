@@ -21,8 +21,9 @@ public class GreenBulb extends BulbItem {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
+        int lightBaseEnergy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage;
         int growth = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthGreenBulbModifier;
-        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyGreenBulbModifier;
+        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyGreenBulbModifier * lightBaseEnergy;
 
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.BULB_DESC));

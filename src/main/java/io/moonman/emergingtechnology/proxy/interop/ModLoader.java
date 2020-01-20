@@ -13,12 +13,14 @@ public class ModLoader {
 	
 	private static boolean ICLoaded = false;
 	private static boolean OCLoaded = false;
+	private static boolean CTLoaded = false;
 	
 	public static void init() {
 		if (initialized) return;
 		
 		ICLoaded = Loader.isModLoaded("ic2");
 		OCLoaded = Loader.isModLoaded("opencomputers");
+		CTLoaded = Loader.isModLoaded("crafttweaker");
 		
 		initialized = true;
 	}
@@ -29,6 +31,10 @@ public class ModLoader {
 	
 	public static boolean isOpenComputersLoaded() {
 		return OCLoaded;
+	}
+
+	public static boolean isCraftTweakerLoaded() {
+		return CTLoaded;
 	}
 
 	public static InteropProxy getProxy()

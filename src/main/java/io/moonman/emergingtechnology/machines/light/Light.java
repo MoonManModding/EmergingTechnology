@@ -26,7 +26,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
@@ -41,8 +40,6 @@ public class Light extends MachineBase implements ITileEntityProvider {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool POWERED = PropertyBool.create("powered");
     public static final PropertyInteger BULBTYPE = PropertyInteger.create("bulbtype", 0, 4);
-
-    protected static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0f, 1.0f, 0.0f, 1.0f, 0.69f, 1.0f);
 
     public Light() {
         super(Material.GLASS, "light");
@@ -68,16 +65,6 @@ public class Light extends MachineBase implements ITileEntityProvider {
             tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
         }
        
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BOUNDING_BOX;
     }
 
     @Override

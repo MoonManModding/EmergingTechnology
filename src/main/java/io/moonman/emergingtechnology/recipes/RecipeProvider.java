@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.recipes;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomRecipeLoader;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomRecipesWrapper;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
@@ -83,6 +84,32 @@ public class RecipeProvider {
         }
 
         return null;
+    }
+
+    public static List<SimpleRecipe> removeRecipesByOutput(List<SimpleRecipe> recipeList, ItemStack outputStack) {
+
+        List<SimpleRecipe> removedRecipes = new ArrayList<SimpleRecipe>();
+
+        recipeList.removeIf(x -> {
+            boolean match = StackHelper.compareItemStacks(x.getInput(), outputStack);
+            removedRecipes.add(x);
+            return match;
+        });
+
+        return removedRecipes;
+    }
+
+    public static List<FabricatorRecipe> removeFabricatorRecipesByOutput(List<FabricatorRecipe> recipeList, ItemStack outputStack) {
+
+        List<FabricatorRecipe> removedRecipes = new ArrayList<FabricatorRecipe>();
+
+        recipeList.removeIf(x -> {
+            boolean match = StackHelper.compareItemStacks(x.getInput(), outputStack);
+            removedRecipes.add(x);
+            return match;
+        });
+
+        return removedRecipes;
     }
 
     private static <T> List<List<T>> splitList(List<T> list, final int L) {

@@ -29,5 +29,5 @@ public class ElectricsModuleWind {
     @Name("Minimum Optimal Height")
     @Config.Comment("The lowest point of the Wind Generator's optimal height")
     @RangeInt(min = 0, max = 100)
-    public int minOptimalHeight = 15;
+    public int minOptimalHeight = 75;
 }

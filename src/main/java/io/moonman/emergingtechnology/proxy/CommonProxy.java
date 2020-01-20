@@ -6,10 +6,12 @@ import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
+import io.moonman.emergingtechnology.proxy.interop.ModLoader;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.init.OreRegistrationHandler;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
+import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,12 +68,17 @@ public abstract class CommonProxy {
         ModTissueProvider.preInit(e);
         RecipeProvider.preInit(e);
 
+        CraftTweakerHelper.preInit();
+
         PacketHandler.registerMessages(EmergingTechnology.MODID);
     }
 
     public void init(FMLInitializationEvent e) {
         OreRegistrationHandler.init();
+        
         RecipeBuilder.buildMachineRecipes();
+
+        ModLoader.init();
     }
 
     public void postInit(FMLPostInitializationEvent e) {
