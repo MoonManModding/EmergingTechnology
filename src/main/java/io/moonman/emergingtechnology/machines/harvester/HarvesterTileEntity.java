@@ -285,6 +285,12 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
     }
 
     private void tryPlant() {
+
+        // If non-break-harvest plant, return
+        if (HarvesterHelper.isInteractableCrop(getTargetBlockState().getBlock())) {
+            return;
+        }
+
         ItemStack inputStack = getInputStack();
 
         // If no seeds to plant, return

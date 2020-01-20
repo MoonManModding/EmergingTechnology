@@ -2,12 +2,9 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import java.util.List;
 
-import io.moonman.emergingtechnology.helpers.PlantHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
