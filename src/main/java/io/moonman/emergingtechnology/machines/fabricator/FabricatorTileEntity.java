@@ -169,7 +169,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
         }
 
         ItemStack outputStack = getOutputStack();
-        FabricatorRecipe recipe = FabricatorHelper.getFabricatorRecipeByIndex(selection);
+        FabricatorRecipe recipe = (FabricatorRecipe) FabricatorHelper.getFabricatorRecipeByIndex(selection);
 
         // Recipe validation just in case
         if (recipe == null || recipe.getInput() == null || recipe.getOutput() == null || recipe.cost == 0) {

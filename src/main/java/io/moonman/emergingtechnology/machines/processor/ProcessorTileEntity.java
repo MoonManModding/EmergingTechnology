@@ -9,7 +9,7 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ProcessorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
-import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -169,7 +169,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
 
         ItemStack outputStack = getOutputStack();
-        SimpleRecipe recipe = ProcessorHelper.getRecipeFromInputItemStack(inputStack);
+        IMachineRecipe recipe = ProcessorHelper.getRecipeFromInputItemStack(inputStack);
         // ItemStack plannedStack =
         // ProcessorHelper.getPlannedStackFromItemStack(inputStack);
 

@@ -6,6 +6,7 @@ import crafttweaker.api.item.IItemStack;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -17,10 +18,11 @@ import java.util.List;
 public class Fabricator
 {
     @ZenMethod
-	public static void addRecipe(IItemStack output, IItemStack input)
+	public static void addRecipe(IItemStack output, Object input, int count)
 	{
-		FabricatorRecipe r = new FabricatorRecipe(RecipeProvider.fabricatorRecipes.size() + 1, CraftTweakerHelper.toStack(output), CraftTweakerHelper.toStack(input));
-		CraftTweakerAPI.apply(new Add(r));
+		FabricatorRecipe recipe = CraftTweakerHelper.getFabricatorRecipe(output, input, count);
+
+		CraftTweakerAPI.apply(new Add(recipe));
 	}
 
 	private static class Add implements IAction
@@ -54,7 +56,7 @@ public class Fabricator
 	private static class Remove implements IAction
 	{
 		private final ItemStack output;
-		List<FabricatorRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes;
 
 		public Remove(ItemStack output)
 		{
@@ -64,7 +66,7 @@ public class Fabricator
 		@Override
 		public void apply()
 		{
-			removedRecipes = RecipeProvider.removeFabricatorRecipesByOutput(RecipeProvider.fabricatorRecipes, output);
+			removedRecipes = RecipeProvider.removeRecipesByOutput(RecipeProvider.fabricatorRecipes, output);
 		}
 
 		@Override
@@ -82,7 +84,7 @@ public class Fabricator
 
 	private static class RemoveAll implements IAction
 	{
-		List<FabricatorRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes;
 
 		public RemoveAll(){
 		}
@@ -91,7 +93,7 @@ public class Fabricator
 		public void apply()
 		{
             removedRecipes = new ArrayList<>(RecipeProvider.fabricatorRecipes);
-            RecipeProvider.fabricatorRecipes = new ArrayList<FabricatorRecipe>();
+            RecipeProvider.fabricatorRecipes = new ArrayList<IMachineRecipe>();
 		}
 
 		@Override

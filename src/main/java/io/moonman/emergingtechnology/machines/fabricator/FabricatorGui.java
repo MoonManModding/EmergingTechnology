@@ -21,6 +21,7 @@ import io.moonman.emergingtechnology.network.FabricatorStopStartPacket;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -126,10 +127,10 @@ public class FabricatorGui extends GuiContainer {
 		int buttonWidth = 15;
 		int buttonHeight = 15;
 
-		List<FabricatorRecipe> recipes = RecipeProvider.fabricatorRecipes;
+		List<IMachineRecipe> recipes = RecipeProvider.fabricatorRecipes;
 
 		for (int i = 0; i < recipes.size(); i++) {
-			FabricatorRecipe recipe = recipes.get(i);
+			FabricatorRecipe recipe = (FabricatorRecipe) recipes.get(i);
 			ItemStack itemStackToRender = recipe.getOutput().copy();
 			String inputName = recipe.getInput().getDisplayName();
 

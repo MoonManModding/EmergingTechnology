@@ -13,6 +13,10 @@ import io.moonman.emergingtechnology.integration.crafttweaker.machines.Fabricato
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Processor;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Scaffolder;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Shredder;
+import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
@@ -38,6 +42,22 @@ public class CraftTweakerHelper {
 	}
 
 	public void postInit() {
+	}
+
+	public static IMachineRecipe getMachineRecipe(IItemStack output, Object input) {
+		if (input instanceof String) {
+			return new SimpleRecipe(CraftTweakerHelper.toStack(output), (String) input);
+		} else {
+			return new SimpleRecipe(CraftTweakerHelper.toStack(output), CraftTweakerHelper.toStack((IItemStack)input));
+		}
+	}
+
+	public static FabricatorRecipe getFabricatorRecipe(IItemStack output, Object input, int count) {
+		if (input instanceof String) {
+			return new FabricatorRecipe(RecipeProvider.fabricatorRecipes.size() + 1, CraftTweakerHelper.toStack(output), (String) input, count);
+		} else {
+			return new FabricatorRecipe(RecipeProvider.fabricatorRecipes.size() + 1, CraftTweakerHelper.toStack(output), CraftTweakerHelper.toStack((IItemStack)input));
+		}
 	}
 
 	/**

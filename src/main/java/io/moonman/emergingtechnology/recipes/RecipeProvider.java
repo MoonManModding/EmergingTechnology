@@ -7,26 +7,28 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.custom.loaders.CustomRecipeLoader;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomRecipesWrapper;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
-Provides useful methods and machine recipe lists
-*/
+ * Provides useful methods and machine recipe lists
+ */
 public class RecipeProvider {
 
-    public static List<SimpleRecipe> shredderRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> processorRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> cookerRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> bioreactorRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> scaffolderRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> collectorRecipes = new ArrayList<>();
-    public static List<SimpleRecipe> biomassRecipes = new ArrayList<>();
-    public static List<FabricatorRecipe> fabricatorRecipes = new ArrayList<>();
-    
+    public static List<IMachineRecipe> shredderRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> processorRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> cookerRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> bioreactorRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> scaffolderRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> collectorRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> biomassRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> fabricatorRecipes = new ArrayList<IMachineRecipe>();
+
     public static CustomRecipesWrapper customRecipes = new CustomRecipesWrapper();
 
     public static void preInit(FMLPreInitializationEvent e) {
@@ -34,25 +36,35 @@ public class RecipeProvider {
     }
 
     public static ItemStack getFabricatorOutputForItemStack(ItemStack itemStack) {
-        for (FabricatorRecipe recipe : fabricatorRecipes) {
-            if (recipe.getInput().isItemEqual(itemStack)) {
-                return recipe.getOutput();
-            }
-        }
-        return null;
-    } 
+        return getOutputForItemStackFromRecipes(itemStack, fabricatorRecipes);
+    }
 
-    public static ItemStack getOutputForItemStackFromRecipes(ItemStack itemStack, List<SimpleRecipe> recipes) {
-        for (SimpleRecipe recipe : recipes) {
-            if (recipe.getInput().isItemEqual(itemStack)) {
-                return recipe.getOutput();
+    public static ItemStack getOutputForItemStackFromRecipes(ItemStack itemStack, List<IMachineRecipe> recipes) {
+
+        int[] oreIds = OreDictionary.getOreIDs(itemStack);
+
+        for (IMachineRecipe recipe : recipes) {
+
+            if (!recipe.hasOreDictInput()) {
+                if (recipe.getInput().isItemEqual(itemStack)) {
+                    return recipe.getOutput();
+                }
+            } else {
+                
+                int oreId = OreDictionary.getOreID(recipe.getInputOreName());
+
+                for (int id : oreIds) {
+                    if (id == oreId) {
+                        return recipe.getOutput();
+                    }
+                }
             }
         }
         return null;
     }
 
-    public static SimpleRecipe getMatchingRecipe(ItemStack itemStack, List<SimpleRecipe> recipes) {
-        for (SimpleRecipe recipe : recipes) {
+    public static IMachineRecipe getMatchingRecipe(ItemStack itemStack, List<IMachineRecipe> recipes) {
+        for (IMachineRecipe recipe : recipes) {
             if (recipe.getInput().isItemEqual(itemStack)) {
                 return recipe;
             }
@@ -60,18 +72,18 @@ public class RecipeProvider {
         return null;
     }
 
-    public static FabricatorRecipe getFabricatorRecipeByIndex(int index) {
+    public static IMachineRecipe getFabricatorRecipeByIndex(int index) {
         return fabricatorRecipes.get(index);
     }
 
-    public static List<List<FabricatorRecipe>> getSplitRecipes(int slots) {
+    public static List<List<IMachineRecipe>> getSplitRecipes(int slots) {
         return splitList(fabricatorRecipes, slots);
     }
 
     public static int getRecipePagesCount(int slots) {
         return getSplitRecipes(slots).size();
     }
-    
+
     public static ItemStack getCookerOutputForItemStack(ItemStack itemStack) {
         ItemStack resultStack = FurnaceRecipes.instance().getSmeltingResult(itemStack);
 
@@ -86,12 +98,12 @@ public class RecipeProvider {
         return null;
     }
 
-    public static List<SimpleRecipe> removeRecipesByOutput(List<SimpleRecipe> recipeList, ItemStack outputStack) {
+    public static List<IMachineRecipe> removeRecipesByOutput(List<IMachineRecipe> recipeList, ItemStack outputStack) {
 
-        List<SimpleRecipe> removedRecipes = new ArrayList<SimpleRecipe>();
+        List<IMachineRecipe> removedRecipes = new ArrayList<IMachineRecipe>();
 
         recipeList.removeIf(x -> {
-            boolean match = StackHelper.compareItemStacks(x.getInput(), outputStack);
+            boolean match = StackHelper.compareItemStacks(x.getOutput(), outputStack);
             removedRecipes.add(x);
             return match;
         });
@@ -99,26 +111,25 @@ public class RecipeProvider {
         return removedRecipes;
     }
 
-    public static List<FabricatorRecipe> removeFabricatorRecipesByOutput(List<FabricatorRecipe> recipeList, ItemStack outputStack) {
+    // public static List<FabricatorRecipe> removeFabricatorRecipesByOutput(List<FabricatorRecipe> recipeList,
+    //         ItemStack outputStack) {
 
-        List<FabricatorRecipe> removedRecipes = new ArrayList<FabricatorRecipe>();
+    //     List<FabricatorRecipe> removedRecipes = new ArrayList<FabricatorRecipe>();
 
-        recipeList.removeIf(x -> {
-            boolean match = StackHelper.compareItemStacks(x.getInput(), outputStack);
-            removedRecipes.add(x);
-            return match;
-        });
+    //     recipeList.removeIf(x -> {
+    //         boolean match = StackHelper.compareItemStacks(x.getOutput(), outputStack);
+    //         removedRecipes.add(x);
+    //         return match;
+    //     });
 
-        return removedRecipes;
-    }
+    //     return removedRecipes;
+    // }
 
     private static <T> List<List<T>> splitList(List<T> list, final int L) {
         List<List<T>> parts = new ArrayList<List<T>>();
         final int N = list.size();
         for (int i = 0; i < N; i += L) {
-            parts.add(new ArrayList<T>(
-                list.subList(i, Math.min(N, i + L)))
-            );
+            parts.add(new ArrayList<T>(list.subList(i, Math.min(N, i + L))));
         }
         return parts;
     }

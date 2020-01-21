@@ -5,7 +5,7 @@ import crafttweaker.IAction;
 import crafttweaker.api.item.IItemStack;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
-import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -17,17 +17,18 @@ import java.util.List;
 public class Bioreactor
 {
     @ZenMethod
-	public static void addRecipe(IItemStack output, IItemStack input)
+	public static void addRecipe(IItemStack output, Object input)
 	{
-		SimpleRecipe r = new SimpleRecipe(CraftTweakerHelper.toStack(output), CraftTweakerHelper.toStack(input));
-		CraftTweakerAPI.apply(new Add(r));
+		IMachineRecipe recipe = CraftTweakerHelper.getMachineRecipe(output, input);
+
+		CraftTweakerAPI.apply(new Add(recipe));
 	}
 
 	private static class Add implements IAction
 	{
-		private final SimpleRecipe recipe;
+		private final IMachineRecipe recipe;
 
-		public Add(SimpleRecipe recipe)
+		public Add(IMachineRecipe recipe)
 		{
 			this.recipe = recipe;
 		}
@@ -54,7 +55,7 @@ public class Bioreactor
 	private static class Remove implements IAction
 	{
 		private final ItemStack output;
-		List<SimpleRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes;
 
 		public Remove(ItemStack output)
 		{
@@ -82,7 +83,7 @@ public class Bioreactor
 
 	private static class RemoveAll implements IAction
 	{
-		List<SimpleRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes;
 
 		public RemoveAll(){
 		}
@@ -91,7 +92,7 @@ public class Bioreactor
 		public void apply()
 		{
             removedRecipes = new ArrayList<>(RecipeProvider.bioreactorRecipes);
-            RecipeProvider.bioreactorRecipes = new ArrayList<SimpleRecipe>();
+            RecipeProvider.bioreactorRecipes = new ArrayList<IMachineRecipe>();
 		}
 
 		@Override
