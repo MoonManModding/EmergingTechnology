@@ -343,6 +343,11 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             // Get the direction this harvester is facing
             EnumFacing facing = this.world.getBlockState(this.pos).getValue(Harvester.FACING);
 
+            // Abort if facing up or down
+            if (facing == EnumFacing.UP || facing == EnumFacing.DOWN) {
+                return;
+            }
+
             // Get the left side of the harvester
             EnumFacing left = facing.rotateYCCW();
 
