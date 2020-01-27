@@ -5,6 +5,6 @@ import io.moonman.emergingtechnology.item.synthetics.CookedMeatItemBase;
 public class SyntheticCowCooked extends CookedMeatItemBase {
 
     public SyntheticCowCooked() {
-        super("cow", "minecraft:cow", 3);
+        super("cow", "minecraft:cow", 7);
     }
 }

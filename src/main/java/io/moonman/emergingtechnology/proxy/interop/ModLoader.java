@@ -37,6 +37,7 @@ public class ModLoader {
 		return CTLoaded;
 	}
 
+	// Legacy
 	public static InteropProxy getProxy()
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		if (ModLoader.isOpenComputersLoaded()) {

@@ -13,6 +13,7 @@ import io.moonman.emergingtechnology.integration.crafttweaker.machines.Fabricato
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Processor;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Scaffolder;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Shredder;
+import io.moonman.emergingtechnology.proxy.interop.ModLoader;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
@@ -24,6 +25,12 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class CraftTweakerHelper {
 	public static void preInit() {
+
+		if (!ModLoader.isCraftTweakerLoaded()) {
+			EmergingTechnology.logger.info("CraftTweaker not found. Skipping...");
+			return;
+		}
+
 		EmergingTechnology.logger.info("CraftTweaker initialising...");
 		CraftTweakerAPI.registerClass(Biomass.class);
 		CraftTweakerAPI.registerClass(Bioreactor.class);
