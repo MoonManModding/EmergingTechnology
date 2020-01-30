@@ -25,7 +25,7 @@ public class ProcessorRecipeBuilder {
     private static List<ItemStack> getProcessorBlockItems() {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
         itemInputs.add(new ItemStack(ModItems.shreddedplastic, 4));
-        itemInputs.add(new ItemStack(ModItems.shreddedstarch, 9));
+        itemInputs.add(new ItemStack(ModItems.shreddedstarch, 4));
         itemInputs.add(new ItemStack(ModBlocks.shreddedplasticblock, 1));
         itemInputs.add(new ItemStack(ModBlocks.shreddedstarchblock, 1));
 
@@ -36,7 +36,7 @@ public class ProcessorRecipeBuilder {
 
     private static List<ItemStack> getProcessorClearBlockItems() {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
-        itemInputs.add(new ItemStack(ModItems.shreddedplant, 9));
+        itemInputs.add(new ItemStack(ModItems.shreddedplant, 4));
         itemInputs.add(new ItemStack(ModBlocks.shreddedplantblock, 1));
 
         List<String> oreInputs = new ArrayList<String>();
