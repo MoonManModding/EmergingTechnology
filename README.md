@@ -37,7 +37,7 @@ The mod should be compatible with any mods whose plants implement IGrowable and 
 Most machines can also be integrated into OpenComputers. Take a look at the <a href="https://github.com/MoonManModding/EmergingTechnology/blob/master/examples/open-computers-example.lua">example program</a> for more details. 
 
 # Discord
-<a href="https://discord.gg/Nm3sMXF">Join</a>
+<a href="https://discord.gg/Nm3sMXF">Join and discuss!</a>
 
 # About 🔬
 
