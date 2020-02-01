@@ -130,6 +130,10 @@ public class ModItems {
 	public static final Item biochar = null;
 	// endregion
 
+	// region Fluid block items
+	public static final Item carbondioxideblock = null;
+	// endregion
+
 	// All *non-block* items
 	public static Item[] getItems() {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,

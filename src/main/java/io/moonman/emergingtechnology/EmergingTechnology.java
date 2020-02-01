@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import io.moonman.emergingtechnology.gui.GuiProxy;
 import io.moonman.emergingtechnology.proxy.CommonProxy;
 import io.moonman.emergingtechnology.util.TechnologyTab;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,7 +29,11 @@ public class EmergingTechnology {
   @SidedProxy(clientSide = "io.moonman.emergingtechnology.proxy.ClientOnlyProxy", serverSide = "io.moonman.emergingtechnology.proxy.DedicatedServerProxy")
   public static CommonProxy proxy;
 
-  //static InteropProxy interopProxy;
+  // static InteropProxy interopProxy;
+
+  static {
+    FluidRegistry.enableUniversalBucket();
+  }
 
   @Mod.EventHandler
   public void preInit(FMLPreInitializationEvent event) {
@@ -42,7 +47,7 @@ public class EmergingTechnology {
 
     NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxy());
 
-    //interopProxy = ModLoadedCheck.getProxy();
+    // interopProxy = ModLoadedCheck.getProxy();
   }
 
   @Mod.EventHandler

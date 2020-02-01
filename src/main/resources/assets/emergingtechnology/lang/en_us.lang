@@ -146,6 +146,10 @@ tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
 
+#FLUIDS
+tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
+fluid.emergingtechnology.carbondioxide=Carbon Dioxide
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology

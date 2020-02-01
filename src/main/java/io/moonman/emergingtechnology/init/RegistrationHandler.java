@@ -25,15 +25,21 @@ import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.wind.WindTileEntity;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidRegistry.FluidRegisterEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -87,14 +93,19 @@ public class RegistrationHandler {
         event.getRegistry().registerAll(items);
     }
 
+    public static void registerFluids() {
+        FluidRegistry.registerFluid(ModFluids.CARBON_DIOXIDE);
+        FluidRegistry.addBucketForFluid(ModFluids.CARBON_DIOXIDE);
+    }
+
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
 
-        for (Block block: ModBlocks.getBlocks()) {
+        for (Block block : ModBlocks.getBlocks()) {
             registerModel(Item.getItemFromBlock(block));
         }
 
-        for (Item item: ModItems.getItems()) {
+        for (Item item : ModItems.getItems()) {
             registerModel(item);
         }
 
@@ -105,8 +116,11 @@ public class RegistrationHandler {
                 new ModelResourceLocation(ModBlocks.hydroponic.getRegistryName(), "inventory"));
 
         ClientRegistry.bindTileEntitySpecialRenderer(HydroponicTileEntity.class, new HydroponicTESR());
-        ClientRegistry.bindTileEntitySpecialRenderer(TidalGeneratorTileEntity.class, new AnimationTESR<TidalGeneratorTileEntity>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TidalGeneratorTileEntity.class,
+                new AnimationTESR<TidalGeneratorTileEntity>());
         ClientRegistry.bindTileEntitySpecialRenderer(WindTileEntity.class, new AnimationTESR<WindTileEntity>());
+
+        RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.carbondioxideblock);
     }
 
     private static Item[] generateItemBlocks(Block[] blocks) {
