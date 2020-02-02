@@ -1,0 +1,37 @@
+{
+  "parameters": {
+    "slowed_anim_time": [
+      "/",
+      4
+    ],
+    "fast_anim_time": [
+      "*",
+      2
+    ]
+  },
+  "clips": {
+    "default": "emergingtechnology:block/scrubberturbine@default",
+    "slow": [ "apply", "emergingtechnology:block/scrubberturbine@slow", "#slowed_anim_time" ],
+    "fast": [ "apply", "emergingtechnology:block/scrubberturbine@fast", "#fast_anim_time" ]
+  },
+  "states": [
+    "default",
+    "slow",
+    "fast"
+  ],
+  "transitions": {
+    "default": [
+      "slow",
+      "fast"
+    ],
+    "slow": [
+      "default",
+      "fast"
+    ],
+    "fast": [
+      "default",
+      "slow"
+    ]
+  },
+  "start_state": "fast"
+}

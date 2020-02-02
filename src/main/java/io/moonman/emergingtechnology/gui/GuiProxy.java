@@ -33,6 +33,9 @@ import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderContainer;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderGui;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberContainer;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberGui;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.ShredderContainer;
 import io.moonman.emergingtechnology.machines.shredder.ShredderGui;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
@@ -83,6 +86,10 @@ public class GuiProxy implements IGuiHandler {
         }
         if (te instanceof BatteryTileEntity) {
             return new BatteryContainer(player.inventory, (BatteryTileEntity) te);
+        }
+
+        if (te instanceof ScrubberTileEntity) {
+            return new ScrubberContainer(player.inventory, (ScrubberTileEntity) te);
         }
         return null;
     }
@@ -150,6 +157,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof BatteryTileEntity) {
             BatteryTileEntity containerTileEntity = (BatteryTileEntity) te;
             return new BatteryGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof ScrubberTileEntity) {
+            ScrubberTileEntity containerTileEntity = (ScrubberTileEntity) te;
+            return new ScrubberGui(player.inventory, containerTileEntity);
         }
 
         return null;

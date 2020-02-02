@@ -4,6 +4,7 @@ import io.moonman.emergingtechnology.config.hydroponics.beds.HydroponicsModuleGr
 import io.moonman.emergingtechnology.config.hydroponics.filler.HydroponicsModuleFiller;
 import io.moonman.emergingtechnology.config.hydroponics.harvester.HydroponicsModuleHarvester;
 import io.moonman.emergingtechnology.config.hydroponics.lights.HydroponicsModuleGrowLight;
+import io.moonman.emergingtechnology.config.hydroponics.scrubber.HydroponicsModuleScrubber;
 import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
 
@@ -23,5 +24,9 @@ public class HydroponicsModule {
     
     @Name("Filler")
 	@LangKey("config.emergingtechnology.hydroponics.filler.title")
-	public final HydroponicsModuleFiller FILLER = new HydroponicsModuleFiller();
+    public final HydroponicsModuleFiller FILLER = new HydroponicsModuleFiller();
+    
+    @Name("Scrubber")
+	@LangKey("config.emergingtechnology.hydroponics.filler.title")
+	public final HydroponicsModuleScrubber SCRUBBER = new HydroponicsModuleScrubber();
 }

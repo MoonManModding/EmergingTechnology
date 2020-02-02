@@ -53,9 +53,4 @@ public class EmptySyringe extends SyringeItemBase {
 
         return false;
     }
-
-    public String getItemStackDisplayName(ItemStack stack)
-    {
-        return "Empty Tissue Syringe";
-    }
 }

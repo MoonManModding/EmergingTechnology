@@ -8,6 +8,7 @@
             }
         },
         "inventory":{
+            "model": "forge:fluid",
             "textures": {
                 "all": "emergingtechnology:blocks/fluids/carbondioxide"
             }

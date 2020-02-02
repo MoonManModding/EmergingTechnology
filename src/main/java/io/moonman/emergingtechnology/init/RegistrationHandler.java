@@ -19,6 +19,7 @@ import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import io.moonman.emergingtechnology.machines.piezoelectric.PiezoelectricTileEntity;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
 import io.moonman.emergingtechnology.machines.solar.SolarTileEntity;
 import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
@@ -39,7 +40,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidRegistry.FluidRegisterEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -57,6 +57,7 @@ public class RegistrationHandler {
         registerTileEntity(HydroponicTileEntity.class, "hydroponic");
         registerTileEntity(HarvesterTileEntity.class, "harvester");
         registerTileEntity(FillerTileEntity.class, "filler");
+        registerTileEntity(ScrubberTileEntity.class, "scrubber");
         registerTileEntity(LightTileEntity.class, "light");
         registerTileEntity(ProcessorTileEntity.class, "processor");
         registerTileEntity(ShredderTileEntity.class, "shredder");
@@ -116,9 +117,12 @@ public class RegistrationHandler {
                 new ModelResourceLocation(ModBlocks.hydroponic.getRegistryName(), "inventory"));
 
         ClientRegistry.bindTileEntitySpecialRenderer(HydroponicTileEntity.class, new HydroponicTESR());
+
         ClientRegistry.bindTileEntitySpecialRenderer(TidalGeneratorTileEntity.class,
                 new AnimationTESR<TidalGeneratorTileEntity>());
+
         ClientRegistry.bindTileEntitySpecialRenderer(WindTileEntity.class, new AnimationTESR<WindTileEntity>());
+        ClientRegistry.bindTileEntitySpecialRenderer(ScrubberTileEntity.class, new AnimationTESR<ScrubberTileEntity>());
 
         RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.carbondioxideblock);
     }

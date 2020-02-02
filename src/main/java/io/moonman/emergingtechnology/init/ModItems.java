@@ -45,6 +45,7 @@ public class ModItems {
 	public static final Item frame = null;
 	public static final Item harvester = null;
 	public static final Item filler = null;
+	public static final Item scrubber = null;
 
 	// Items
 	public static final Item redbulb = null;

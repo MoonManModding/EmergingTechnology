@@ -4,6 +4,7 @@
 item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 item.emergingtechnology.harvester.name=Harvester
 item.emergingtechnology.filler.name=Water Filler
+item.emergingtechnology.scrubber.name=CO2 Scrubber
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
 item.emergingtechnology.redbulb.name=Red Bulb
@@ -75,6 +76,7 @@ item.emergingtechnology.biocharblock.name=Biochar Block
 blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 blocks.emergingtechnology.harvester.name=Harvester
 blocks.emergingtechnology.filler.name=Water Filler
+blocks.emergingtechnology.scrubber.name=CO2 Scrubber
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
 blocks.emergingtechnology.frame.name=Hydroponic Frame
 
@@ -115,6 +117,7 @@ blocks.emergingtechnology.biocharblock.name=Biochar Block
 tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 tile.emergingtechnology.harvester.name=Harvester
 tile.emergingtechnology.filler.name=Water Filler
+tile.emergingtechnology.scrubber.name=CO2 Scrubber
 tile.emergingtechnology.light.name=Hydroponic Grow Light
 tile.emergingtechnology.frame.name=Hydroponic Frame
 

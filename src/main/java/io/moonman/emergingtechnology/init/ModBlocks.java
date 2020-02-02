@@ -24,6 +24,7 @@ import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
+import io.moonman.emergingtechnology.machines.scrubber.Scrubber;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import io.moonman.emergingtechnology.machines.solar.Solar;
 import io.moonman.emergingtechnology.machines.tidal.TidalGenerator;
@@ -43,6 +44,7 @@ public class ModBlocks {
 	public static final Frame frame = null;
 	public static final Harvester harvester = null;
 	public static final Filler filler = null;
+	public static final Scrubber scrubber = null;
 	// endregion
 
 	// region Polymers Blocks
@@ -81,7 +83,7 @@ public class ModBlocks {
 	// endregion
 
 	public static Block[] getBlocks() {
-		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.light,
+		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.scrubber, ModBlocks.light,
 				ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker,
 				ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.wind, ModBlocks.battery, ModBlocks.ladder,
@@ -93,7 +95,7 @@ public class ModBlocks {
 	}
 
 	public static Block[] generateBlocks() {
-		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Light(), new Frame(), new Processor(),
+		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Light(), new Frame(), new Processor(),
 				new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(),
 				new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(),
 				new BiomassGenerator(), new Solar(), new Wind(), new Battery(), new BiocharBlock(),
