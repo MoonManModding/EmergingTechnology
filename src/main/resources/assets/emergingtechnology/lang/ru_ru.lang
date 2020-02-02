@@ -148,6 +148,10 @@ tile.emergingtechnology.tidalgenerator.name=Приливный генерато�
 tile.emergingtechnology.wind.name=Ветрогенератор
 tile.emergingtechnology.biocharblock.name=Блок биоугля
 
+#FLUIDS
+tile.emergingtechnology.carbondioxideblock.name=Углекислота
+fluid.emergingtechnology.carbondioxide=Углекислота
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
