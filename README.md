@@ -1,7 +1,7 @@
 # <img src="images/Logo.png" alt="Emerging Technology" height="42" width="42"> Emerging Technology
 <p>A Minecraft mod exploring emerging technologies by MoonManModding</p>
 
-If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
+If you enjoyed this mod and want to support its development, please consider <a href="https://www.patreon.com/moonmanmodding">supporting me on Patreon!</a>
 
 # Requirements
 - Minecraft Version <b>1.12.2</b>
