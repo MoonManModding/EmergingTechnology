@@ -8,15 +8,14 @@ import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
-import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
+import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.ScrubberAnimationPacket;
-import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -33,6 +32,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -73,6 +74,14 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             super.onContentsChanged();
             markDirtyClient();
         }
+
+        @Override
+        public boolean canFillFluidType(FluidStack fluidStack) {
+
+            Fluid fluid = fluidStack.getFluid();
+
+            return fluid == ModFluids.CARBON_DIOXIDE || fluid.getName() == "carbondioxide";
+        }
     };
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SCRUBBER_ENERGY_CAPACITY) {
@@ -102,10 +111,11 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     };
 
     private int water = this.fluidHandler.getFluidAmount();
+    private int gas = this.gasHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
 
     private int progress = 0;
-    private TurbineSpeedEnum speed = TurbineSpeedEnum.FAST;
+    private TurbineSpeedEnum speed = TurbineSpeedEnum.OFF;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -141,6 +151,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
         this.setWater(compound.getInteger("GuiWater"));
+        this.setGas(compound.getInteger("GuiGas"));
         this.setEnergy(compound.getInteger("GuiEnergy"));
         this.setProgress(compound.getInteger("GuiProgress"));
         this.setTurbineState(TurbineSpeedEnum.getById(compound.getInteger("Speed")));
@@ -156,6 +167,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
 
         compound.setInteger("GuiWater", this.getWater());
+        compound.setInteger("GuiGas", this.getGas());
         compound.setInteger("GuiEnergy", this.getEnergy());
         compound.setInteger("GuiProgress", this.getProgress());
         compound.setInteger("Speed", TurbineSpeedEnum.getId(this.speed));
@@ -187,66 +199,25 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     public void cycle() {
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());
+        this.setGas(this.gasHandler.getFluidAmount());
 
         doProcessing();
     }
 
     public void doProcessing() {
-
-        ItemStack inputStack = getInputStack();
-
-        // Nothing in input stack
-        if (inputStack.getCount() == 0) {
-            this.setProgress(0);
-            return;
-        }
-
-        // Can't process this item
-        if (!ScrubberHelper.canProcessItemStack(inputStack)) {
-            this.setProgress(0);
-            return;
-        }
-
-        ItemStack outputStack = getOutputStack();
-        IMachineRecipe recipe = ScrubberHelper.getRecipeFromInputItemStack(inputStack);
-        // ItemStack plannedStack =
-        // ScrubberHelper.getPlannedStackFromItemStack(inputStack);
-
-        // This is probably unneccessary
-        if (recipe == null) {
-            return;
-        }
-
-        // Output stack is full
-        if (outputStack.getCount() == 64) {
-            return;
-        }
-
-        // Output stack incompatible/non-empty
-        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput())
-                && !StackHelper.isItemStackEmpty(outputStack)) {
-            return;
-        }
-
-        // Not enough room in output stack
-        if (outputStack.getCount() + recipe.getOutput().getCount() > recipe.getOutput().getMaxStackSize()) {
-            return;
-        }
-
-        // Not enough items in input stack
-        if (inputStack.getCount() < recipe.getInput().getCount()) {
-            return;
-        }
-
         // Not enough water
         if (this.getWater() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage) {
+            this.setTurbineState(TurbineSpeedEnum.OFF);
             return;
         }
 
         // Not enough energy
         if (this.getEnergy() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage) {
+            this.setTurbineState(TurbineSpeedEnum.OFF);
             return;
         }
+
+        this.setTurbineState(TurbineSpeedEnum.FAST);
 
         this.energyHandler.extractEnergy(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage,
                 false);
@@ -262,8 +233,8 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             return;
         }
 
-        itemHandler.insertItem(1, recipe.getOutput().copy(), false);
-        itemHandler.extractItem(0, recipe.getInput().getCount(), false);
+        this.gasHandler.fill(new FluidStack(ModFluids.CARBON_DIOXIDE,
+                EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasGenerated), true);
 
         this.setProgress(0);
     }
@@ -275,7 +246,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         String newState = WindHelper.getTurbineStateFromSpeedEnum(speed);
 
         if (!state.equalsIgnoreCase(newState)) {
-			this.asm.transition(newState);
+            this.asm.transition(newState);
         }
     }
 
@@ -302,6 +273,10 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         return this.fluidHandler.getFluidAmount();
     }
 
+    public int getGas() {
+        return this.gasHandler.getFluidAmount();
+    }
+
     public int getEnergy() {
         return this.energyHandler.getEnergyStored();
     }
@@ -314,6 +289,10 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
 
     private void setWater(int quantity) {
         this.water = quantity;
+    }
+
+    private void setGas(int quantity) {
+        this.gas = quantity;
     }
 
     private void setEnergy(int quantity) {
@@ -343,6 +322,8 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             return this.getWater();
         case 2:
             return this.getProgress();
+        case 3:
+            return this.getGas();
         default:
             return 0;
         }
@@ -358,6 +339,9 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             break;
         case 2:
             this.setProgress(value);
+            break;
+        case 3:
+            this.setGas(value);
             break;
         }
     }

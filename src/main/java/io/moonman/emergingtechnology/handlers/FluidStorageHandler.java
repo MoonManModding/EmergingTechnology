@@ -5,7 +5,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
 /**
- * A customisable FluidTank used in Emerging Technology
+ * A customisable FluidTank used in Emerging Technology for use with Water
  */
 public class FluidStorageHandler extends FluidTank {
     public FluidStorageHandler(int capacity) {

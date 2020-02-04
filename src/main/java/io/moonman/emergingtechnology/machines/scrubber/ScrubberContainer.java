@@ -18,6 +18,7 @@ public class ScrubberContainer extends Container {
 	private int water;
 	private int energy;
 	private int progress;
+	private int gas;
 
 	public ScrubberContainer(InventoryPlayer player, ScrubberTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -57,11 +58,13 @@ public class ScrubberContainer extends Container {
 			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
 			if(this.water != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
 			if(this.progress != this.tileEntity.getField(2)) listener.sendWindowProperty(this, 2, this.tileEntity.getField(2));
+			if(this.gas != this.tileEntity.getField(3)) listener.sendWindowProperty(this, 3, this.tileEntity.getField(3));
 		}
         
 		this.energy = this.tileEntity.getField(0);
 		this.water = this.tileEntity.getField(1);
 		this.progress = this.tileEntity.getField(2);
+		this.gas = this.tileEntity.getField(3);
 	}
 
 	@Override

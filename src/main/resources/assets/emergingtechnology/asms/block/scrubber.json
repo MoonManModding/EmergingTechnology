@@ -33,5 +33,5 @@
       "slow"
     ]
   },
-  "start_state": "fast"
+  "start_state": "default"
 }
