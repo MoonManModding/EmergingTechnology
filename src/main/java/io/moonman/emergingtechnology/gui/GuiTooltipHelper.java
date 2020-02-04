@@ -82,6 +82,8 @@ public class GuiTooltipHelper {
             return new GuiLabel(Lang.get(Lang.GUI_STORAGE_HEAT), "C");
         case GROWTH:
             return new GuiLabel(Lang.get(Lang.GUI_GROWTH), "%");
+        case GAS:
+            return new GuiLabel(Lang.get(Lang.GUI_STORAGE_GAS), "MB");
         default:
             return new GuiLabel(Lang.get(Lang.GUI_ERROR), "$");
         }
@@ -95,6 +97,8 @@ public class GuiTooltipHelper {
             return new GuiRegion(guiStart.x + 119, guiStart.y + 19, guiStart.x + 171, guiStart.y + 31);
         case MAIN:
             return new GuiRegion(guiStart.x + 43, guiStart.y + 29, guiStart.x + 142, guiStart.y + 55);
+        case LOWER:
+            return new GuiRegion(guiStart.x + 66, guiStart.y + 63, guiStart.x + 110, guiStart.y + 77);
         default:
             return new GuiRegion(guiStart.x, guiStart.x, guiStart.y, guiStart.y);
         }

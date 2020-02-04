@@ -19,7 +19,7 @@ public class HydroponicsModuleScrubber {
     @Name("Scrubber - Water Usage")
     @Config.Comment("The amount of water used per cycle (~10 ticks).")
     @RangeInt(min = 1, max = 1000)
-    public int scrubberWaterBaseUsage = 100;
+    public int scrubberWaterBaseUsage = 50;
     
     @Name("Scrubber - CO2 capture rate")
     @Config.Comment("The amount of CO2 captured per cycle (~10 ticks).")

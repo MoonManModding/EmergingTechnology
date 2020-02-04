@@ -50,6 +50,7 @@ public class Lang {
     public static final TextComponentTranslation GUI_MAX_RANGE = new TextComponentTranslation(GUI_SOURCE + "label.maxrange");
     public static final TextComponentTranslation GUI_STORAGE_ENERGY = new TextComponentTranslation(GUI_SOURCE + "label.energy");
     public static final TextComponentTranslation GUI_STORAGE_FLUID = new TextComponentTranslation(GUI_SOURCE + "label.fluid");
+    public static final TextComponentTranslation GUI_STORAGE_GAS = new TextComponentTranslation(GUI_SOURCE + "label.gas");
     public static final TextComponentTranslation GUI_STORAGE_HEAT = new TextComponentTranslation(GUI_SOURCE + "label.heat");
     public static final TextComponentTranslation GUI_GROWTH = new TextComponentTranslation(GUI_SOURCE + "label.growth");
     public static final TextComponentTranslation GUI_ERROR = new TextComponentTranslation(GUI_SOURCE + "label.error");

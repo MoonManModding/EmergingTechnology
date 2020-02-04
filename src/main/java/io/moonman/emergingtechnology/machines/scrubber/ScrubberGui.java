@@ -30,6 +30,7 @@ public class ScrubberGui extends GuiContainer {
 	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();
 	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
 	private static final GuiPosition MIDDLE_RIGHT_POS = GuiHelper.getMiddleRight(XSIZE, 44);
+	private static final GuiPosition MIDDLE_LOWER_POS = GuiHelper.getMiddleLower(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
 
 	// Draws textures on gui
@@ -60,10 +61,12 @@ public class ScrubberGui extends GuiContainer {
 
 		int energy = this.getEnergyScaled(37);
 		int fluid = this.getFluidScaled(37);
+		int gas = this.getGasScaled(37);
 		int progress = this.getProgressScaled(34);
 
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 0, fluid, 7);
 		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
+		this.drawTexturedModalRect(MIDDLE_LOWER_POS.x, MIDDLE_LOWER_POS.y, 176, 29, gas, 7);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
@@ -91,6 +94,10 @@ public class ScrubberGui extends GuiContainer {
 				/ EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberBaseTimeTaken);
 	}
 
+	private int getGasScaled(int scaled) {
+		return (int) (tileEntity.getField(3) * scaled / Reference.SCRUBBER_GAS_CAPACITY);
+	}
+
 	private void renderTooltips(int mouseX, int mouseY) {
 
 		int energy = this.tileEntity.getField(0);
@@ -99,11 +106,17 @@ public class ScrubberGui extends GuiContainer {
 		int fluid = this.tileEntity.getField(1);
 		int maxFluid = Reference.SCRUBBER_FLUID_CAPACITY;
 
+		int gas = this.tileEntity.getField(3);
+		int maxGas = Reference.SCRUBBER_GAS_CAPACITY;
+
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.SECONDARY, mouseX, mouseY, energy, maxEnergy);
 
 		GuiIndicatorData fluidIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.FLUID,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, fluid, maxFluid);
+
+		GuiIndicatorData gasIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.GAS,
+				IndicatorPositionEnum.LOWER, mouseX, mouseY, gas, maxGas);
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);
@@ -111,6 +124,10 @@ public class ScrubberGui extends GuiContainer {
 
 		if (fluidIndicator.isHovered) {
 			this.drawHoveringText(fluidIndicator.list, mouseX, mouseY, fontRenderer);
+		}
+
+		if (gasIndicator.isHovered) {
+			this.drawHoveringText(gasIndicator.list, mouseX, mouseY, fontRenderer);
 		}
 	}
 }

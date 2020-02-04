@@ -42,6 +42,10 @@ public class GuiHelper {
     public static GuiPosition getMiddleRight(int xSize, int labelLength) {
         return new GuiPosition(xSize - labelLength, 23);
     }
+    
+    public static GuiPosition getMiddleLower(int xSize, int labelLength) {
+        return new GuiPosition((xSize - labelLength) - 61, 67);
+    }
 
     public static GuiPosition getInventory(int ySize) {
         return new GuiPosition(118, ySize - 95);
@@ -58,9 +62,5 @@ public class GuiHelper {
     // String formatting methods
     public static String inventoryLabel(InventoryPlayer player) {
         return player.getDisplayName().getUnformattedText();
-    }
-
-    public static String getEnergyUsageLabel(int energyUsage) {
-        return "-" + energyUsage + "RF";
     }
 }

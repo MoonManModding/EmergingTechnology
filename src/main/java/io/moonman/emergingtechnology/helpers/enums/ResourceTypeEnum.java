@@ -5,5 +5,6 @@ public enum ResourceTypeEnum {
     FLUID,
     WATER,
     HEAT,
-    GROWTH
+    GROWTH,
+    GAS
 }

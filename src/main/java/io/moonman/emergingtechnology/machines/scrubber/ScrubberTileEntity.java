@@ -157,6 +157,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.setTurbineState(TurbineSpeedEnum.getById(compound.getInteger("Speed")));
 
         this.fluidHandler.readFromNBT(compound);
+        this.gasHandler.readFromNBT(compound);
         this.energyHandler.readFromNBT(compound);
     }
 
@@ -173,6 +174,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         compound.setInteger("Speed", TurbineSpeedEnum.getId(this.speed));
 
         this.fluidHandler.writeToNBT(compound);
+        this.gasHandler.writeToNBT(compound);
         this.energyHandler.writeToNBT(compound);
 
         return compound;
@@ -205,6 +207,13 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     }
 
     public void doProcessing() {
+
+        // Gas full
+        if (this.getGas() + EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasGenerated >= Reference.SCRUBBER_GAS_CAPACITY) {
+            this.setTurbineState(TurbineSpeedEnum.OFF);
+            return;
+        }
+
         // Not enough water
         if (this.getWater() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage) {
             this.setTurbineState(TurbineSpeedEnum.OFF);
@@ -235,6 +244,8 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
 
         this.gasHandler.fill(new FluidStack(ModFluids.CARBON_DIOXIDE,
                 EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasGenerated), true);
+
+        this.setGas(this.gasHandler.getFluidAmount());
 
         this.setProgress(0);
     }

@@ -199,6 +199,7 @@ info.emergingtechnology.syringe.description=A syringe containing %s tissue.
 info.emergingtechnology.energy.required=Requires %sRF per cycle.
 info.emergingtechnology.fluid.required=Requires %sMB of fluid per cycle.
 info.emergingtechnology.water.required=Requires %sMB of water per cycle.
+info.emergingtechnology.gas.required=Requires %sMB of CO2 per cycle.
 info.emergingtechnology.heat.required=Requires %sC heat per cycle.
 info.emergingtechnology.growth.required=Provides a %s percent growth boost per cycle;
 
@@ -212,6 +213,7 @@ info.emergingtechnology.waterdepth.required=(x2 when at level between Y%1$s and 
 info.emergingtechnology.energy.generated=Generates %sRF per cycle.
 info.emergingtechnology.fluid.generated=Provides %sMB of fluid per cycle.
 info.emergingtechnology.water.generated=Provides %sMB of water per cycle.
+info.emergingtechnology.gas.generated=Provides %sMB of CO2 per cycle.
 info.emergingtechnology.heat.generated=Generates %sC heat per cycle.
 info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per cycle.
 
@@ -221,6 +223,7 @@ info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
 info.emergingtechnology.fluid.capacity=Can store up to %sMB of fluid.
+info.emergingtechnology.gas.capacity=Can store up to %sMB of CO2.
 info.emergingtechnology.water.capacity=Can store up to %sMB of water.
 
 # Interactions
@@ -240,6 +243,7 @@ gui.emergingtechnology.label.maxrange=Max range:
 
 gui.emergingtechnology.label.energy=Energy Storage
 gui.emergingtechnology.label.fluid=Fluid Storage
+gui.emergingtechnology.label.gas=Gas Storage
 gui.emergingtechnology.label.heat=Temperature
 gui.emergingtechnology.label.growth=Growth Modifiers
 gui.emergingtechnology.label.error=Error
@@ -266,6 +270,7 @@ config.emergingtechnology.hydroponics.growbed.title=Hydroponic Grow Bed
 config.emergingtechnology.hydroponics.growlight.title=Hydroponic Grow Light
 config.emergingtechnology.hydroponics.harvester.title=Harvester
 config.emergingtechnology.hydroponics.filler.title=Water Filler
+config.emergingtechnology.hydroponics.scrubber.title=CO2 Scrubber
 
 config.emergingtechnology.polymers.title=Polymers
 config.emergingtechnology.polymers.title.tooltip=Configure Shredder, Processor, Fabricator and Collector here
