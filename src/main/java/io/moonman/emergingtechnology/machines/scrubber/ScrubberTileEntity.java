@@ -209,7 +209,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     public void doProcessing() {
 
         // Gas full
-        if (this.getGas() + EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasGenerated >= Reference.SCRUBBER_GAS_CAPACITY) {
+        if (this.getGas() >= Reference.SCRUBBER_GAS_CAPACITY) {
             this.setTurbineState(TurbineSpeedEnum.OFF);
             return;
         }
