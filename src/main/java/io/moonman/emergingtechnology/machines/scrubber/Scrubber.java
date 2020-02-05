@@ -48,16 +48,18 @@ public class Scrubber extends MachineBase implements ITileEntityProvider {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-        // int energy = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.scrubberEnergyBaseUsage;
-        // int water = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.scrubberWaterBaseUsage;
+        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage;
+        int water = EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage;
+        int gas = EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasGenerated;
 
-        // if (KeyBindings.showExtendedTooltips()) {
-        //     tooltip.add(Lang.get(Lang.PROCESSOR_DESC));
-        //     tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
-        //     tooltip.add(Lang.getRequired(water, ResourceTypeEnum.WATER));
-        // } else {
-        //     tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
-        // }
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.SCRUBBER_DESC));
+            tooltip.add(Lang.getGenerated(gas, ResourceTypeEnum.GAS));
+            tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+            tooltip.add(Lang.getRequired(water, ResourceTypeEnum.WATER));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override

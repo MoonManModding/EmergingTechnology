@@ -4,7 +4,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
-import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
+import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.BioreactorHelper;
 import io.moonman.emergingtechnology.init.Reference;

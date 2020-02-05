@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.handlers;
+package io.moonman.emergingtechnology.handlers.fluid;
 
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;

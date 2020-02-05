@@ -7,7 +7,8 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
-import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
+import io.moonman.emergingtechnology.handlers.fluid.DoubleFluidStorageHandler;
+import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
@@ -60,7 +61,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             asm = null;
     }
 
-    public FluidTank fluidHandler = new FluidStorageHandler(Reference.SCRUBBER_FLUID_CAPACITY) {
+    private FluidTank fluidHandler = new FluidStorageHandler(Reference.SCRUBBER_FLUID_CAPACITY) {
         @Override
         protected void onContentsChanged() {
             super.onContentsChanged();
@@ -68,7 +69,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         }
     };
 
-    public FluidTank gasHandler = new FluidStorageHandler(Reference.SCRUBBER_GAS_CAPACITY) {
+    private FluidTank gasHandler = new FluidStorageHandler(Reference.SCRUBBER_GAS_CAPACITY) {
         @Override
         protected void onContentsChanged() {
             super.onContentsChanged();
@@ -83,6 +84,8 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             return fluid == ModFluids.CARBON_DIOXIDE || fluid.getName() == "carbondioxide";
         }
     };
+
+    public DoubleFluidStorageHandler fluidTanksHandler = new DoubleFluidStorageHandler(fluidHandler, gasHandler);
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SCRUBBER_ENERGY_CAPACITY) {
         @Override
@@ -133,8 +136,9 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.fluidHandler);
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.fluidTanksHandler);
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.automationItemHandler);
         if (capability == CapabilityEnergy.ENERGY)
@@ -156,8 +160,9 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.setProgress(compound.getInteger("GuiProgress"));
         this.setTurbineState(TurbineSpeedEnum.getById(compound.getInteger("Speed")));
 
-        this.fluidHandler.readFromNBT(compound);
-        this.gasHandler.readFromNBT(compound);
+        this.fluidHandler.readFromNBT(compound.getCompoundTag("InputTank"));
+        this.gasHandler.readFromNBT(compound.getCompoundTag("OutputTank"));
+
         this.energyHandler.readFromNBT(compound);
     }
 
@@ -173,8 +178,15 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         compound.setInteger("GuiProgress", this.getProgress());
         compound.setInteger("Speed", TurbineSpeedEnum.getId(this.speed));
 
-        this.fluidHandler.writeToNBT(compound);
-        this.gasHandler.writeToNBT(compound);
+        NBTTagCompound fluidTag = new NBTTagCompound();
+        NBTTagCompound gasTag = new NBTTagCompound();
+
+        this.fluidHandler.writeToNBT(fluidTag);
+        this.gasHandler.writeToNBT(gasTag);
+
+        compound.setTag("InputTank", fluidTag);
+        compound.setTag("OutputTank", gasTag);
+
         this.energyHandler.writeToNBT(compound);
 
         return compound;

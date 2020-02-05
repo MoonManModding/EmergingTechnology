@@ -1,7 +1,7 @@
 package io.moonman.emergingtechnology.machines.filler;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
+import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;

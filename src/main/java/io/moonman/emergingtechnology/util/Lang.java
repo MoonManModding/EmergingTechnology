@@ -16,6 +16,7 @@ public class Lang {
     public static final TextComponentTranslation COOKER_DESC = new TextComponentTranslation(SOURCE + "cooker" + DESC);
     public static final TextComponentTranslation FABRICATOR_DESC = new TextComponentTranslation(SOURCE + "fabricator" + DESC);
     public static final TextComponentTranslation FILLER_DESC = new TextComponentTranslation(SOURCE + "filler" + DESC);
+    public static final TextComponentTranslation SCRUBBER_DESC = new TextComponentTranslation(SOURCE + "scrubber" + DESC);
     public static final TextComponentTranslation HARVESTER_DESC = new TextComponentTranslation(SOURCE + "harvester" + DESC);
     public static final TextComponentTranslation HYDROPONIC_DESC = new TextComponentTranslation(SOURCE + "hydroponic" + DESC);
     public static final TextComponentTranslation LIGHT_DESC = new TextComponentTranslation(SOURCE + "light" + DESC);
