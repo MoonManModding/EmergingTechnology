@@ -1,11 +1,15 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.init.ModBlocks;
+import io.moonman.emergingtechnology.machines.biomass.BiomassGenerator;
+import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -39,7 +43,7 @@ public class ScrubberHelper {
         for (int y = 0; y < 5; y++) {
             for (int x = 0; x < 5; x++) {
                 for (int z = 0; z < 5; z++) {
-                    pollutionBonus += getPollutionBonusForBlockState(world.getBlockState(startPos.add(x, y, z)));
+                    pollutionBonus += getPollutionBonusForBlockState(world, startPos.add(x, y, z));
                 }
             }
         }
@@ -47,11 +51,21 @@ public class ScrubberHelper {
         return pollutionBonus;
     }
 
-    private static int getPollutionBonusForBlockState(IBlockState blockState) {
+    private static int getPollutionBonusForBlockState(World world, BlockPos pos) {
         int pollutionBonus = 0;
+
+        IBlockState blockState = world.getBlockState(pos);
+        TileEntity tileEntity = world.getTileEntity(pos);
 
         if (blockState.getBlock() == Blocks.LIT_FURNACE) {
             pollutionBonus = 100;
+        }
+        
+        if (tileEntity instanceof BiomassGeneratorTileEntity) {
+            BiomassGeneratorTileEntity generator = (BiomassGeneratorTileEntity) tileEntity;
+            if (generator.getProgress() > 0) {
+                pollutionBonus = 50;
+            }
         }
 
         return pollutionBonus;
