@@ -254,8 +254,9 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             return;
         }
 
-        this.gasHandler.fill(new FluidStack(ModFluids.CARBON_DIOXIDE,
-                EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasGenerated), true);
+        int gasGenerated = ScrubberHelper.getGasGenerated(getWorld(), getPos());
+
+        this.gasHandler.fill(new FluidStack(ModFluids.CARBON_DIOXIDE, gasGenerated), true);
 
         this.setGas(this.gasHandler.getFluidAmount());
 
