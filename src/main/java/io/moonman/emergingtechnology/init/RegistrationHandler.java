@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.collector.CollectorTileEntity;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
 import io.moonman.emergingtechnology.machines.filler.FillerTileEntity;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
@@ -58,6 +59,7 @@ public class RegistrationHandler {
         registerTileEntity(HarvesterTileEntity.class, "harvester");
         registerTileEntity(FillerTileEntity.class, "filler");
         registerTileEntity(ScrubberTileEntity.class, "scrubber");
+        registerTileEntity(DiffuserTileEntity.class, "diffuser");
         registerTileEntity(LightTileEntity.class, "light");
         registerTileEntity(ProcessorTileEntity.class, "processor");
         registerTileEntity(ShredderTileEntity.class, "shredder");

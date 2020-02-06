@@ -16,6 +16,7 @@ import io.moonman.emergingtechnology.machines.biomass.BiomassGenerator;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
 import io.moonman.emergingtechnology.machines.collector.Collector;
 import io.moonman.emergingtechnology.machines.cooker.Cooker;
+import io.moonman.emergingtechnology.machines.diffuser.Diffuser;
 import io.moonman.emergingtechnology.machines.fabricator.Fabricator;
 import io.moonman.emergingtechnology.machines.filler.Filler;
 import io.moonman.emergingtechnology.machines.harvester.Harvester;
@@ -45,6 +46,7 @@ public class ModBlocks {
 	public static final Harvester harvester = null;
 	public static final Filler filler = null;
 	public static final Scrubber scrubber = null;
+	public static final Diffuser diffuser = null;
 	// endregion
 
 	// region Polymers Blocks
@@ -83,7 +85,7 @@ public class ModBlocks {
 	// endregion
 
 	public static Block[] getBlocks() {
-		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.scrubber, ModBlocks.light,
+		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.scrubber, ModBlocks.diffuser, ModBlocks.light,
 				ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker,
 				ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.wind, ModBlocks.battery, ModBlocks.ladder,
@@ -95,7 +97,7 @@ public class ModBlocks {
 	}
 
 	public static Block[] generateBlocks() {
-		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Light(), new Frame(), new Processor(),
+		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Diffuser(), new Light(), new Frame(), new Processor(),
 				new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(),
 				new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(),
 				new BiomassGenerator(), new Solar(), new Wind(), new Battery(), new BiocharBlock(),

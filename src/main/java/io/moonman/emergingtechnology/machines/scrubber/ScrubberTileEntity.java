@@ -13,9 +13,12 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
+import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.diffuser.Diffuser;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.ScrubberAnimationPacket;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
@@ -25,6 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
@@ -227,6 +231,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.setGas(this.gasHandler.getFluidAmount());
 
         doProcessing();
+        pushToDiffusers();
     }
 
     public void doProcessing() {
@@ -285,6 +290,35 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.setGas(this.gasHandler.getFluidAmount());
 
         this.setProgress(0);
+    }
+
+    public void pushToDiffusers() {
+        for (EnumFacing facing : EnumFacing.VALUES) {
+
+            if (this.getGas() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate) {
+
+                BlockPos pos = getPos().offset(facing);
+                IBlockState blockState = world.getBlockState(pos);
+
+                if (blockState.getBlock() == ModBlocks.diffuser) {
+                    TileEntity tileEntity = world.getTileEntity(pos);
+                    if (tileEntity instanceof DiffuserTileEntity) {
+
+                        DiffuserTileEntity diffuserTileEntity = (DiffuserTileEntity) tileEntity;
+
+                        int filled = diffuserTileEntity.gasHandler.fill(
+                                new FluidStack(this.gasHandler.getFluid().getFluid(),
+                                        EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate),
+                                true);
+
+                        if (filled > 0) {
+                            this.gasHandler.drain(filled, true);
+                            this.setGas(this.gasHandler.getFluidAmount());
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -420,6 +454,13 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     @Optional.Method(modid = "opencomputers")
     public Object[] getProgress(Context context, Arguments args) {
         int value = getProgress();
+        return new Object[] { value };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getGas(Context context, Arguments args) {
+        int value = getGas();
         return new Object[] { value };
     }
 }

@@ -15,6 +15,9 @@ import io.moonman.emergingtechnology.machines.collector.CollectorTileEntity;
 import io.moonman.emergingtechnology.machines.cooker.CookerContainer;
 import io.moonman.emergingtechnology.machines.cooker.CookerGui;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserContainer;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserGui;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorContainer;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorGui;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
@@ -87,9 +90,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof BatteryTileEntity) {
             return new BatteryContainer(player.inventory, (BatteryTileEntity) te);
         }
-
         if (te instanceof ScrubberTileEntity) {
             return new ScrubberContainer(player.inventory, (ScrubberTileEntity) te);
+        }
+        if (te instanceof DiffuserTileEntity) {
+            return new DiffuserContainer(player.inventory, (DiffuserTileEntity) te);
         }
         return null;
     }
@@ -162,6 +167,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof ScrubberTileEntity) {
             ScrubberTileEntity containerTileEntity = (ScrubberTileEntity) te;
             return new ScrubberGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof DiffuserTileEntity) {
+            DiffuserTileEntity containerTileEntity = (DiffuserTileEntity) te;
+            return new DiffuserGui(player.inventory, containerTileEntity);
         }
 
         return null;

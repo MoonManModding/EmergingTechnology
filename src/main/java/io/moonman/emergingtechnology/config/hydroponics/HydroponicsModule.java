@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.config.hydroponics;
 
 import io.moonman.emergingtechnology.config.hydroponics.beds.HydroponicsModuleGrowBed;
+import io.moonman.emergingtechnology.config.hydroponics.diffuser.HydroponicsModuleDiffuser;
 import io.moonman.emergingtechnology.config.hydroponics.filler.HydroponicsModuleFiller;
 import io.moonman.emergingtechnology.config.hydroponics.harvester.HydroponicsModuleHarvester;
 import io.moonman.emergingtechnology.config.hydroponics.lights.HydroponicsModuleGrowLight;
@@ -27,6 +28,10 @@ public class HydroponicsModule {
     public final HydroponicsModuleFiller FILLER = new HydroponicsModuleFiller();
     
     @Name("Scrubber")
-	@LangKey("config.emergingtechnology.hydroponics.filler.title")
-	public final HydroponicsModuleScrubber SCRUBBER = new HydroponicsModuleScrubber();
+	@LangKey("config.emergingtechnology.hydroponics.scrubber.title")
+    public final HydroponicsModuleScrubber SCRUBBER = new HydroponicsModuleScrubber();
+    
+    @Name("Diffuser")
+	@LangKey("config.emergingtechnology.hydroponics.diffuser.title")
+	public final HydroponicsModuleDiffuser DIFFUSER = new HydroponicsModuleDiffuser();
 }

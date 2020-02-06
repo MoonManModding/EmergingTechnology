@@ -24,12 +24,17 @@ public class HydroponicsModuleScrubber {
     @Name("Scrubber - CO2 capture rate")
     @Config.Comment("The amount of CO2 captured per cycle (~10 ticks).")
     @RangeInt(min = 1, max = 1000)
-    public int scrubberGasGenerated = 5;
+    public int scrubberGasGenerated = 160;
 
     @Name("Scrubber - Operation Time")
     @Config.Comment("The time taken for the Scrubber to process Carbon Dioxide")
     @RangeInt(min = 1, max = 1000)
     public int scrubberBaseTimeTaken = 10;
+    
+    @Name("Scrubber - Transfer rate")
+    @Config.Comment("The amount of Carbon Dioxide transferred to adjacent Diffusers per cycle (~10 ticks)")
+    @RangeInt(min = 1, max = 1000)
+    public int scrubberGasTransferRate = 160;
     
     @Name("Scrubber - Biochar Boost")
     @Config.Comment("The amount of Carbon Dioxide boosted when Biochar used")
