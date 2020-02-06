@@ -277,7 +277,7 @@ config.emergingtechnology.hydroponics.growlight.title=Hydroponic Grow Light
 config.emergingtechnology.hydroponics.harvester.title=Harvester
 config.emergingtechnology.hydroponics.filler.title=Water Filler
 config.emergingtechnology.hydroponics.scrubber.title=CO2 Scrubber
-config.emergingtechnology.hydroponics.diffuser.title=CO2 Scrubber
+config.emergingtechnology.hydroponics.diffuser.title=CO2 Diffuser
 
 config.emergingtechnology.polymers.title=Polymers
 config.emergingtechnology.polymers.title.tooltip=Configure Shredder, Processor, Fabricator and Collector here
