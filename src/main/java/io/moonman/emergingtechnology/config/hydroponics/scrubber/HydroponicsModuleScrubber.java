@@ -30,4 +30,9 @@ public class HydroponicsModuleScrubber {
     @Config.Comment("The time taken for the Scrubber to process Carbon Dioxide")
     @RangeInt(min = 1, max = 1000)
     public int scrubberBaseTimeTaken = 10;
+    
+    @Name("Scrubber - Biochar Boost")
+    @Config.Comment("The amount of Carbon Dioxide boosted when Biochar used")
+    @RangeInt(min = 1, max = 1000)
+    public int biocharBoostAmount = 100;
 }

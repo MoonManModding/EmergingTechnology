@@ -28,6 +28,7 @@ public class RecipeProvider {
     public static List<IMachineRecipe> collectorRecipes = new ArrayList<IMachineRecipe>();
     public static List<IMachineRecipe> biomassRecipes = new ArrayList<IMachineRecipe>();
     public static List<IMachineRecipe> fabricatorRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> scrubberRecipes = new ArrayList<IMachineRecipe>();
 
     public static CustomRecipesWrapper customRecipes = new CustomRecipesWrapper();
 

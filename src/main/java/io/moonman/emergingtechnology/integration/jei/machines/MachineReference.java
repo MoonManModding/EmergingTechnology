@@ -28,4 +28,7 @@ public class MachineReference {
 
     public static final String BIOMASS_NAME = ModBlocks.biomassgenerator.getLocalizedName();
     public static final String BIOMASS_UID = EmergingTechnology.MODID + ":biomass";
+
+    public static final String SCRUBBER_NAME = ModBlocks.scrubber.getLocalizedName();
+    public static final String SCRUBBER_UID = EmergingTechnology.MODID + ":scrubber";
 }

@@ -20,6 +20,7 @@ import io.moonman.emergingtechnology.item.polymers.PaperWaste;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
+import io.moonman.emergingtechnology.item.polymers.Turbine;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenCooked;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticCowCooked;
@@ -86,6 +87,7 @@ public class ModItems {
 	public static final Item plasticrod = null;
 	public static final Item plasticsheet = null;
 	public static final Item plastictissuescaffold = null;
+	public static final Item turbine = null;
 
 	// endregion
 
@@ -139,7 +141,7 @@ public class ModItems {
 	public static Item[] getItems() {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,
 				ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch, ModItems.shreddedpaper,
-				ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament, ModItems.plastictissuescaffold,
+				ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament, ModItems.plastictissuescaffold, ModItems.turbine,
 				ModItems.plasticwaste, ModItems.paperwaste, ModItems.paperpulp, ModItems.emptysyringe,
 				ModItems.syntheticcowraw, ModItems.syntheticchickenraw, ModItems.syntheticpigraw,
 				ModItems.syntheticcowcooked, ModItems.syntheticchickencooked, ModItems.syntheticpigcooked,
@@ -152,7 +154,7 @@ public class ModItems {
 	public static Item[] generateItems() {
 		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
 				new ShreddedPlant(), new ShreddedStarch(), new ShreddedPaper(), new PaperWaste(), new PaperPulp(),
-				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
+				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(), new Turbine(),
 				new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(), new SyntheticPigRaw(),
 				new SyntheticPigCooked(), new SyntheticCowCooked(), new SyntheticChickenCooked(),
 				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new Biomass(), new Biochar() };

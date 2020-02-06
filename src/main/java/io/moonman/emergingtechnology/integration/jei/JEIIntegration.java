@@ -17,6 +17,8 @@ import io.moonman.emergingtechnology.integration.jei.machines.processor.Processo
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.scaffolder.ScaffolderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.scaffolder.ScaffolderRecipeWrapper;
+import io.moonman.emergingtechnology.integration.jei.machines.scrubber.ScrubberCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.scrubber.ScrubberRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderRecipeWrapper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
@@ -61,7 +63,7 @@ public class JEIIntegration implements IModPlugin {
 
         registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper),
                 new CookerCategory(helper), new FabricatorCategory(helper), new BioreactorCategory(helper),
-                new ScaffolderCategory(helper), new CollectorCategory(helper), new BiomassCategory(helper));
+                new ScaffolderCategory(helper), new CollectorCategory(helper), new BiomassCategory(helper), new ScrubberCategory(helper));
     }
 
     @Override
@@ -101,6 +103,10 @@ public class JEIIntegration implements IModPlugin {
         registry.handleRecipes(SimpleRecipe.class, BiomassRecipeWrapper::new, MachineReference.BIOMASS_UID);
         registry.addRecipes(RecipeProvider.biomassRecipes, MachineReference.BIOMASS_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.biomassgenerator), MachineReference.BIOMASS_UID);
+
+        registry.handleRecipes(SimpleRecipe.class, ScrubberRecipeWrapper::new, MachineReference.SCRUBBER_UID);
+        registry.addRecipes(RecipeProvider.scrubberRecipes, MachineReference.SCRUBBER_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.scrubber), MachineReference.SCRUBBER_UID);
 
         EmergingTechnology.logger.info("Registered with JEI.");
     }

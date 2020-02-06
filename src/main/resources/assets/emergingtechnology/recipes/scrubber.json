@@ -3,7 +3,7 @@
   "pattern": [
     "PbP",
     "rBr",
-    "PMP"
+    "WMW"
   ],
   "key": {
     "b": {
@@ -13,8 +13,7 @@
       "item": "minecraft:iron_block"
     },
     "P": {
-      "type": "forge:ore_dict",
-      "ore": "sheetPlastic"
+      "item": "minecraft:iron_bars"
     },
     "r": {
       "type": "forge:ore_dict",
@@ -22,10 +21,14 @@
     },
     "M": {
       "item": "emergingtechnology:machinecase"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "blockWool"
     }
   },
   "result": {
-    "item": "emergingtechnology:tidalgenerator",
+    "item": "emergingtechnology:scrubber",
     "count": 1
   }
 }

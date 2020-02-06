@@ -19,11 +19,11 @@ public class FluidBase extends Fluid {
 	public FluidBase(String fluidName, boolean canBeStill, String textureName, Integer color) {
 		super(fluidName, stillTextureLocation(textureName, canBeStill), flowingTextureLocation(textureName, canBeStill));
 		
-		int fixedColor = color.intValue();
-		if (((fixedColor >> 24) & 0xFF) == 0) {
-			fixedColor |= 0xFF << 24;
-		}
-		setColor(fixedColor);
+		// int fixedColor = color.intValue();
+		// if (((fixedColor >> 24) & 0xFF) == 0) {
+		// 	fixedColor |= 0xFF << 24;
+		// }
+		// setColor(fixedColor);
 		
 		if (FluidRegistry.registerFluid(this)) {
 			FluidRegistry.addBucketForFluid(this);

@@ -14,6 +14,7 @@ import io.moonman.emergingtechnology.recipes.machines.CookerRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.ShredderRecipeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -37,6 +38,7 @@ public class RecipeBuilder {
         ProcessorRecipeBuilder.build();
         FabricatorRecipeBuilder.build();
         BiomassRecipeBuilder.build();
+        ScrubberRecipeBuilder.build();
 
         registerFurnaceRecipes();
     }
@@ -101,6 +103,7 @@ public class RecipeBuilder {
         if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.disabled) disabledBlocks.add(ModBlocks.light);
         if (EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.disabled) disabledBlocks.add(ModBlocks.harvester);
         if (EmergingTechnologyConfig.HYDROPONICS_MODULE.FILLER.disabled) disabledBlocks.add(ModBlocks.filler);
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.disabled) disabledBlocks.add(ModBlocks.scrubber);
 
         for (Block block : disabledBlocks) {
             removeBlockRecipe(registry, block);

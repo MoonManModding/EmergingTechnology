@@ -4,6 +4,7 @@
 
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Гідропонна Установка
+item.emergingtechnology.scrubber.name=CO2 Scrubber
 item.emergingtechnology.harvester.name=Збирач
 item.emergingtechnology.filler.name=Водяний наповнювач
 item.emergingtechnology.light.name=Фітолампа
@@ -38,6 +39,8 @@ item.emergingtechnology.shreddedpaper.name=Подрібнений папір
 item.emergingtechnology.shreddedplasticblock.name=Блок подрібненого пластику
 item.emergingtechnology.shreddedplantblock.name=Блок подрібненої рослини
 item.emergingtechnology.shreddedstarchblock.name=Блок подрібненого крохмалю
+
+item.emergingtechnology.turbine.name=Turbine
 
 #SYNTHETICS MODULE
 item.emergingtechnology.cooker.name=Сонячна плита
@@ -75,6 +78,7 @@ item.emergingtechnology.biocharblock.name=Блок біовугілля
 
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гідропонна Установка
+blocks.emergingtechnology.scrubber.name=CO2 Scrubber
 blocks.emergingtechnology.harvester.name=Збирач
 blocks.emergingtechnology.filler.name=Водяний наповнювач
 blocks.emergingtechnology.light.name=Фітолампа
@@ -115,6 +119,7 @@ blocks.emergingtechnology.biocharblock.name=Блок біовугілля
 
 # HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Гідропонна Установка
+tile.emergingtechnology.scrubber.name=CO2 Scrubber
 tile.emergingtechnology.harvester.name=Збирач
 tile.emergingtechnology.filler.name=Водяний наповнювач
 tile.emergingtechnology.light.name=Фітолампа
@@ -148,6 +153,10 @@ tile.emergingtechnology.tidalgenerator.name=Припливний генерат�
 tile.emergingtechnology.wind.name=Вітрогенератор
 tile.emergingtechnology.biocharblock.name=Блок біовугілля
 
+#FLUIDS
+tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
+fluid.emergingtechnology.carbondioxide=Carbon Dioxide
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
@@ -163,6 +172,7 @@ info.emergingtechnology.cooker.description=Використовує прямі �
 info.emergingtechnology.fabricator.description=Автоматизує друк пластикових компонентів.
 info.emergingtechnology.filler.description=Заповнює суміжні баки водою.
 info.emergingtechnology.harvester.description=Автоматично збирає врожай.
+info.emergingtechnology.scrubber.description=Captures CO2 from the surrounding atmosphere.
 info.emergingtechnology.hydroponic.description=Рослини, вирощені на цьому блоці, можуть отримати імпульс зростання.
 info.emergingtechnology.light.description=Забезпечує імпульс зростання рослинам, вирощеним нижче.
 info.emergingtechnology.piezoelectric.description=Генерує невелику кількість енергії при наступанні на нього.

@@ -4,6 +4,7 @@
 
 #HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=水培生长床
+item.emergingtechnology.scrubber.name=CO2 Scrubber
 item.emergingtechnology.harvester.name=收割器
 item.emergingtechnology.filler.name=注水机
 item.emergingtechnology.light.name=水培生长灯
@@ -30,6 +31,7 @@ item.emergingtechnology.machinecase.name=基本机壳
 item.emergingtechnology.fabricator.name=打印机
 item.emergingtechnology.ladder.name=塑料梯子
 item.emergingtechnology.plastictissuescaffold.name=塑料组织支架
+item.emergingtechnology.turbine.name=Turbine
 
 item.emergingtechnology.paperwaste.name=Paper Waste
 item.emergingtechnology.paperpulp.name=Paper Pulp
@@ -73,6 +75,7 @@ item.emergingtechnology.biocharblock.name=Biochar Block
 
 #HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=水培生长床
+blocks.emergingtechnology.scrubber.name=CO2 Scrubber
 blocks.emergingtechnology.harvester.name=收割器
 blocks.emergingtechnology.filler.name=注水机
 blocks.emergingtechnology.light.name=水培生长灯
@@ -112,6 +115,7 @@ blocks.emergingtechnology.biocharblock.name=Biochar Block
 
 #HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=水培生长床
+tile.emergingtechnology.scrubber.name=CO2 Scrubber
 tile.emergingtechnology.harvester.name=收割器
 tile.emergingtechnology.filler.name=注水机
 tile.emergingtechnology.light.name=水培生长灯
@@ -145,6 +149,10 @@ tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
 
+#FLUIDS
+tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
+fluid.emergingtechnology.carbondioxide=Carbon Dioxide
+
 #ItemGroup
 
 itemGroup.technologytab=新兴技术
@@ -160,6 +168,7 @@ info.emergingtechnology.cooker.description=Uses direct sunlight to cook food ite
 info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
 info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.
 info.emergingtechnology.harvester.description=Harvests crops automatically.
+info.emergingtechnology.scrubber.description=Captures CO2 from the surrounding atmosphere.
 info.emergingtechnology.hydroponic.description=Plants grown on this block can receive a growth boost.
 info.emergingtechnology.light.description=Provides a growth boost to plants grown below.
 info.emergingtechnology.piezoelectric.description=Generates a tiny amount of energy when stepped on.

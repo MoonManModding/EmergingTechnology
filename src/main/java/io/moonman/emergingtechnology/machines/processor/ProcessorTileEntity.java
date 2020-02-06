@@ -170,8 +170,6 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
 
         ItemStack outputStack = getOutputStack();
         IMachineRecipe recipe = ProcessorHelper.getRecipeFromInputItemStack(inputStack);
-        // ItemStack plannedStack =
-        // ProcessorHelper.getPlannedStackFromItemStack(inputStack);
 
         // This is probably unneccessary
         if (recipe == null) {

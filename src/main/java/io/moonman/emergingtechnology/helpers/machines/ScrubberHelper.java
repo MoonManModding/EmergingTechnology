@@ -18,16 +18,16 @@ import net.minecraft.world.World;
  */
 public class ScrubberHelper {
 
-    public static boolean canProcessItemStack(ItemStack itemStack) {
+    public static boolean isItemStackValid(ItemStack itemStack) {
         return getPlannedStackFromItemStack(itemStack) != null;
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.processorRecipes);
+        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.scrubberRecipes);
     }
 
     public static IMachineRecipe getRecipeFromInputItemStack(ItemStack itemStack) {
-        return RecipeProvider.getMatchingRecipe(itemStack, RecipeProvider.processorRecipes);
+        return RecipeProvider.getMatchingRecipe(itemStack, RecipeProvider.scrubberRecipes);
     }
 
     public static int getGasGenerated(World world, BlockPos pos) {

@@ -11,4 +11,10 @@ public class CarbonDioxide extends FluidGasBase {
         super(_name);
         this.setUnlocalizedName(EmergingTechnology.MODID + "." + _name);
     }
+
+    @Override
+    public int getColor() {
+        return 0xFF847777;
+    }
+
 }

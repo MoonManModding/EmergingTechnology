@@ -9,6 +9,7 @@ import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandle
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.DoubleFluidStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
@@ -17,6 +18,7 @@ import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.ScrubberAnimationPacket;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -102,6 +104,15 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         protected void onContentsChanged(int slot) {
             markDirty();
             super.onContentsChanged(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+
+            if (slot == 1)
+                return false;
+
+            return ScrubberHelper.isItemStackValid(stack);
         }
     };
 
@@ -255,6 +266,19 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         }
 
         int gasGenerated = ScrubberHelper.getGasGenerated(getWorld(), getPos());
+
+        if (!StackHelper.isItemStackEmpty(getInputStack())) {
+
+            IMachineRecipe recipe = ScrubberHelper.getRecipeFromInputItemStack(getInputStack());
+
+            if (recipe != null) {
+
+                if (getInputStack().getCount() >= recipe.getInput().getCount()) {
+                    itemHandler.extractItem(0, recipe.getInput().getCount(), false);
+                    gasGenerated += EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.biocharBoostAmount;
+                }
+            }
+        }
 
         this.gasHandler.fill(new FluidStack(ModFluids.CARBON_DIOXIDE, gasGenerated), true);
 
