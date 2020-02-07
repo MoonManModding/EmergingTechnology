@@ -27,7 +27,7 @@ public class DiffuserHelper {
     public static boolean isItemStackValid(ItemStack itemStack) {
         return itemStack.getItem() instanceof NozzleBase;
     }
-    
+
     public static int getNozzleIdForItemStack(ItemStack itemStack) {
 
         if (StackHelper.isItemStackEmpty(itemStack)) {
@@ -36,16 +36,71 @@ public class DiffuserHelper {
 
         Item nozzle = itemStack.getItem();
 
-        if (nozzle instanceof NozzleWide) return 1;
-        if (nozzle instanceof NozzleLong) return 2;
-        if (nozzle instanceof NozzlePrecise) return 3;
+        if (nozzle instanceof NozzleWide)
+            return 1;
+        if (nozzle instanceof NozzleLong)
+            return 2;
+        if (nozzle instanceof NozzlePrecise)
+            return 3;
 
         return 0;
     }
 
-    public static int boostSurroundingPlants(World world, BlockPos pos, FluidTank gasHandler, int probability, int nozzleId) {
+    public static int boostSurroundingPlants(World world, BlockPos pos, FluidTank gasHandler, int probability,
+            int nozzleId) {
+
+        int baseRange = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
+
+        if (nozzleId == 0) {
+            return doRegularBoost(world, pos, gasHandler, probability, baseRange);
+        }
+
+        if (nozzleId == 1) {
+            return doRegularBoost(world, pos, gasHandler, probability, baseRange);
+        }
+
+        if (nozzleId == 2) {
+            return doRegularBoost(world, pos, gasHandler, probability, baseRange * 2);
+        }
+
+        if (nozzleId == 3) {
+            return doRegularBoost(world, pos, gasHandler, probability * 2, baseRange);
+        }
+
+        return 0;
+    }
+
+    private static int doAreaBoost(World world, BlockPos pos, FluidTank gasHandler, int probability, int range) {
         int plantsBoosted = 0;
-        int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
+
+        for (int x = -range; x < range; x++) {
+            for (int y = -range; x < range; y++) {
+
+                // Not enough gas
+                if (gasHandler
+                        .getFluidAmount() < EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserGasBaseUsage) {
+                    break;
+                }
+
+                BlockPos position = pos.add(x, y, 0);
+                IBlockState blockState = world.getBlockState(position);
+                Block block = blockState.getBlock();
+
+                if (PlantHelper.isPlantBlock(blockState.getBlock())) {
+
+                    boolean success = growBlock(world, blockState, block, position, gasHandler, probability);
+
+                    if (success)
+                        plantsBoosted += 1;
+                }
+            }
+        }
+
+        return plantsBoosted;
+    }
+
+    private static int doRegularBoost(World world, BlockPos pos, FluidTank gasHandler, int probability, int range) {
+        int plantsBoosted = 0;
 
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             for (int i = 1; i < range + 1; i++) {
@@ -62,24 +117,14 @@ public class DiffuserHelper {
 
                 if (PlantHelper.isPlantBlock(blockState.getBlock())) {
 
-                    // If plant is not fully grown...
-                    if (!PlantHelper.isCropAtPositionReadyForHarvest(world, position)) {
+                    boolean success = growBlock(world, blockState, block, position, gasHandler, probability);
 
-                        // If roll is successful
-                        if (rollForGrow(probability) == true) {
-                            // ...do boost
-                            block.updateTick(world, position, blockState, new Random());
-                            plantsBoosted += 1;
-                            gasHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserGasBaseUsage,
-                                    true);
-                        }
-                    }
+                    if (success)
+                        plantsBoosted += 1;
 
                 } else if (blockState.getBlock() == Blocks.AIR) {
-                    // Pass through air
                     continue;
                 } else {
-                    // Blocked by object
                     break;
                 }
             }
@@ -88,13 +133,21 @@ public class DiffuserHelper {
         return plantsBoosted;
     }
 
-    private static void growBlock(World world, BlockPos pos, FluidTank gasHandler, int probability) {
+    private static boolean growBlock(World world, IBlockState blockState, Block block, BlockPos position,
+            FluidTank gasHandler, int probability) {
+        boolean isValidPlant = false;
+        if (!PlantHelper.isCropAtPositionReadyForHarvest(world, position)) {
+            isValidPlant = true;
+            if (rollForGrow(probability) == true) {
+                block.updateTick(world, position, blockState, new Random());
+                gasHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserGasBaseUsage, true);
+            }
+        }
 
+        return isValidPlant;
     }
 
     private static boolean rollForGrow(int probability) {
-        int random = new Random().nextInt(101);
-
-        return random < probability;
+        return (new Random().nextInt(101)) < probability;
     }
 }
