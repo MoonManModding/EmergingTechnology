@@ -31,6 +31,7 @@ public class FabricatorRecipeBuilder {
         FabricatorRecipe recipe8 = new FabricatorRecipe(8, new ItemStack(ModItems.plastictissuescaffold, 2), FabricatorHelper.getFilamentWithAmount(1));
         FabricatorRecipe recipe9 = new FabricatorRecipe(9, new ItemStack(ModItems.emptysyringe, 3), FabricatorHelper.getFilamentWithAmount(2));
         FabricatorRecipe recipe10 = new FabricatorRecipe(10, new ItemStack(ModItems.turbine, 3), FabricatorHelper.getFilamentWithAmount(2));
+        FabricatorRecipe recipe11 = new FabricatorRecipe(11, new ItemStack(ModItems.nozzlecomponent, 1), FabricatorHelper.getFilamentWithAmount(1));
         RecipeProvider.fabricatorRecipes.add(recipe);
         RecipeProvider.fabricatorRecipes.add(recipe2);
         RecipeProvider.fabricatorRecipes.add(recipe3);
@@ -41,7 +42,8 @@ public class FabricatorRecipeBuilder {
         RecipeProvider.fabricatorRecipes.add(recipe8);
         RecipeProvider.fabricatorRecipes.add(recipe9);
         RecipeProvider.fabricatorRecipes.add(recipe10);
-        addCustomFabricatorRecipes(11);
+        RecipeProvider.fabricatorRecipes.add(recipe11);
+        addCustomFabricatorRecipes(12);
     }
 
     private static void addCustomFabricatorRecipes(int id) {

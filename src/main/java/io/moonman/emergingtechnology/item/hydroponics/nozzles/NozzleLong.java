@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.item.hydroponics.nozzles;
 
 import io.moonman.emergingtechnology.util.Lang;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class NozzleLong extends NozzleBase {
 
@@ -10,8 +9,8 @@ public class NozzleLong extends NozzleBase {
     }
 
     @Override
-    public TextComponentTranslation getSpecialDescription() {
-        return Lang.NOZZLE_LONG_DESC;
+    public String getSpecialDescription() {
+        return Lang.getLongNozzleDescription();
     }
 
 }

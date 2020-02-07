@@ -65,6 +65,7 @@ public class DiffuserGui extends GuiContainer {
 		int gas = this.getGasScaled(37);
 		int nozzleId = this.getNozzleId();
 		String nozzleName = DiffuserHelper.getNozzleShortNameById(nozzleId);
+		int boost = DiffuserHelper.getNozzleBoostModifierById(nozzleId) * DiffuserHelper.getBaseBoost();
 
 		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 29, gas, 7);
@@ -75,7 +76,7 @@ public class DiffuserGui extends GuiContainer {
 
 		// Nozzle Stats
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x - 5, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString("+" + 0 + "%", SECOND_FIELD_POS.x - 5, SECOND_FIELD_POS.y + 10,
+		this.fontRenderer.drawString(boost + "%", SECOND_FIELD_POS.x - 5, SECOND_FIELD_POS.y + 10,
 				GuiHelper.EMPTY_COLOUR);
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
@@ -114,8 +115,11 @@ public class DiffuserGui extends GuiContainer {
 		int gas = this.tileEntity.getField(1);
 		int maxGas = Reference.DIFFUSER_GAS_CAPACITY;
 
-		int growth = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseBoostProbability;
-		int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
+		int growth = DiffuserHelper.getBaseBoost();
+		int range = DiffuserHelper.getBaseRange();
+
+		int boostGrowth = DiffuserHelper.getNozzleBoostModifierById(getNozzleId());
+		int boostRange = DiffuserHelper.getNozzleRangeModifierById(getNozzleId());
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.SECONDARY, mouseX, mouseY, energy, maxEnergy);
@@ -124,7 +128,7 @@ public class DiffuserGui extends GuiContainer {
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, gas, maxGas);
 
 		GuiIndicatorData growthIndicator = GuiTooltipHelper.getDiffuserGrowthData(guiLeft, guiTop, mouseX, mouseY,
-				growth, 0, range, getPlants());
+				growth, boostGrowth, range, boostRange, getPlants());
 
 		if (growthIndicator.isHovered) {
 			this.drawHoveringText(growthIndicator.list, mouseX, mouseY, fontRenderer);

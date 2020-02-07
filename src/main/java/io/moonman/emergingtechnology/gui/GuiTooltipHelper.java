@@ -76,7 +76,7 @@ public class GuiTooltipHelper {
     }
 
     public static GuiIndicatorData getDiffuserGrowthData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY,
-            int baseGrowth, int boostFromNozzle, int range, int affectedPlants) {
+            int baseGrowth, int boostFromNozzle, int baseRange, int rangeFromNozzle, int affectedPlants) {
 
         GuiLabel label = getLabel(ResourceTypeEnum.GROWTH);
 
@@ -86,9 +86,8 @@ public class GuiTooltipHelper {
         if (region.isPositionInRegion(mousePosition)) {
             List<String> list = new ArrayList<String>();
             list.add(label.header);
-            list.add(Lang.get(Lang.GUI_BASE) + baseGrowth + label.unit);
-            list.add(Lang.get(Lang.GUI_BOOST) + boostFromNozzle + label.unit);
-            list.add(Lang.get(Lang.GUI_MAX_RANGE) + range);
+            list.add(Lang.get(Lang.GUI_BOOST) + (baseGrowth * boostFromNozzle) + label.unit);
+            list.add(Lang.get(Lang.GUI_MAX_RANGE) + (baseRange * rangeFromNozzle));
             list.add(Lang.get(Lang.GUI_AFFECTED_PLANTS) + affectedPlants);
             return new GuiIndicatorData(true, list);
         }

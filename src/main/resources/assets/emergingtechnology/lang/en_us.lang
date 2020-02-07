@@ -195,9 +195,9 @@ info.emergingtechnology.frame.description=A decorative plastic frame
 
 info.emergingtechnology.nozzle.description=A nozzle used by the Diffuser.
 info.emergingtechnology.nozzlecomponent.description=A crafting ingredient used to create nozzles.
-info.emergingtechnology.nozzlesmart.description=Grows crops in an area surrounding the Diffuser instead of just North, South, East and West.
-info.emergingtechnology.nozzlelong.description=Doubles the range of the Diffuser.
-info.emergingtechnology.nozzleprecise.description=Doubles the effectiveness of the Diffuser.
+info.emergingtechnology.nozzlesmart.description=Multiplies the range and effectiveness of the Diffuser by %1$s and %2$s respectively.
+info.emergingtechnology.nozzlelong.description=Multiplies the range of the Diffuser by %s.
+info.emergingtechnology.nozzleprecise.description=Multiplies the effectiveness of the Diffuser by %s.
 
 # Item descriptions
 info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.
@@ -237,7 +237,7 @@ info.emergingtechnology.growth.generated=Provides a %s percent chance of growth 
 
 info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
 info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
-info.emergingtechnology.gasrange.generated=Boosts plant growth up to %s blocks to the North, East, South or West sides (unless nozzle installed).
+info.emergingtechnology.gasrange.generated=Boosts plant growth up to %s blocks to the North, East, South or West sides.
 
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.

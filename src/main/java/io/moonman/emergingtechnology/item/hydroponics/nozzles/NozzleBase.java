@@ -7,7 +7,6 @@ import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,13 +22,13 @@ public class NozzleBase extends ItemBase {
 
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.NOZZLE_DESC));
-            tooltip.add(Lang.get(getSpecialDescription()));
+            tooltip.add(getSpecialDescription());
         } else {
             tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
         }
     }
 
-    public TextComponentTranslation getSpecialDescription() {
-        return null;
+    public String getSpecialDescription() {
+        return "";
     }
 }

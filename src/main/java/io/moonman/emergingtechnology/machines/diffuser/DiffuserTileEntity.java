@@ -64,7 +64,7 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
     public ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
-            markDirty();
+            markDirtyClient();
             super.onContentsChanged(slot);
         }
 
@@ -193,10 +193,7 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
     }
 
     public int doBoost() {
-
-        int probability = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseBoostProbability;
-
-        return DiffuserHelper.boostSurroundingPlants(getWorld(), getPos(), this.gasHandler, probability, this.getNozzle());
+        return DiffuserHelper.boostSurroundingPlants(getWorld(), getPos(), this.gasHandler, this.getNozzle());
     }
 
     public ItemStack getInputStack() {

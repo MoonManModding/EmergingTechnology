@@ -32,7 +32,7 @@ public class HydroponicsModuleDiffuser {
     @Name("Diffuser - Base Growth Probability")
     @Config.Comment("The base probability of plant growth when in range of the Diffuser")
     @RangeInt(min = 1, max = 100)
-    public int diffuserBaseBoostProbability = 15;
+    public int diffuserBaseBoostProbability = 5;
 
     @Name("Long Nozzle")
 	@Config.Comment("Configure the Long nozzle attachment")
