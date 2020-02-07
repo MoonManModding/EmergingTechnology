@@ -5,10 +5,14 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import io.moonman.emergingtechnology.item.electrics.Biochar;
 import io.moonman.emergingtechnology.item.electrics.Biomass;
-import io.moonman.emergingtechnology.item.hydroponics.BlueBulb;
-import io.moonman.emergingtechnology.item.hydroponics.GreenBulb;
-import io.moonman.emergingtechnology.item.hydroponics.PurpleBulb;
-import io.moonman.emergingtechnology.item.hydroponics.RedBulb;
+import io.moonman.emergingtechnology.item.hydroponics.bulbs.BlueBulb;
+import io.moonman.emergingtechnology.item.hydroponics.bulbs.GreenBulb;
+import io.moonman.emergingtechnology.item.hydroponics.bulbs.PurpleBulb;
+import io.moonman.emergingtechnology.item.hydroponics.bulbs.RedBulb;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleComponent;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleLong;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzlePrecise;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleWide;
 import io.moonman.emergingtechnology.item.polymers.PlasticRod;
 import io.moonman.emergingtechnology.item.polymers.PlasticSheet;
 import io.moonman.emergingtechnology.item.polymers.PlasticTissueScaffold;
@@ -54,6 +58,11 @@ public class ModItems {
 	public static final Item greenbulb = null;
 	public static final Item bluebulb = null;
 	public static final Item purplebulb = null;
+
+	public static final Item nozzlecomponent = null;
+	public static final Item nozzlewide = null;
+	public static final Item nozzlelong = null;
+	public static final Item nozzleprecise = null;
 
 	// endregion
 
@@ -141,9 +150,10 @@ public class ModItems {
 	// All *non-block* items
 	public static Item[] getItems() {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,
+				ModItems.nozzlecomponent, ModItems.nozzlewide, ModItems.nozzlelong, ModItems.nozzleprecise,
 				ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch, ModItems.shreddedpaper,
-				ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament, ModItems.plastictissuescaffold, ModItems.turbine,
-				ModItems.plasticwaste, ModItems.paperwaste, ModItems.paperpulp, ModItems.emptysyringe,
+				ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament, ModItems.plastictissuescaffold,
+				ModItems.turbine, ModItems.plasticwaste, ModItems.paperwaste, ModItems.paperpulp, ModItems.emptysyringe,
 				ModItems.syntheticcowraw, ModItems.syntheticchickenraw, ModItems.syntheticpigraw,
 				ModItems.syntheticcowcooked, ModItems.syntheticchickencooked, ModItems.syntheticpigcooked,
 				ModItems.syntheticleather, ModItems.syntheticslime, ModItems.syntheticsilk, ModItems.biomass,
@@ -153,11 +163,11 @@ public class ModItems {
 	}
 
 	public static Item[] generateItems() {
-		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new ShreddedPlastic(),
+		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new NozzleComponent(), new NozzleWide(), new NozzleLong(), new NozzlePrecise(), new ShreddedPlastic(),
 				new ShreddedPlant(), new ShreddedStarch(), new ShreddedPaper(), new PaperWaste(), new PaperPulp(),
-				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(), new Turbine(),
-				new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(), new SyntheticPigRaw(),
-				new SyntheticPigCooked(), new SyntheticCowCooked(), new SyntheticChickenCooked(),
+				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
+				new Turbine(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),
+				new SyntheticPigRaw(), new SyntheticPigCooked(), new SyntheticCowCooked(), new SyntheticChickenCooked(),
 				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new Biomass(), new Biochar() };
 
 		return items;

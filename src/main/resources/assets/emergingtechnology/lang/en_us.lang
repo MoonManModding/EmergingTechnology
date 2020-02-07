@@ -8,10 +8,16 @@ item.emergingtechnology.scrubber.name=CO2 Scrubber
 item.emergingtechnology.diffuser.name=CO2 Diffuser
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
+
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
 item.emergingtechnology.bluebulb.name=Blue Bulb
 item.emergingtechnology.purplebulb.name=UV Bulb
+
+item.emergingtechnology.nozzlecomponent.name=Nozzle Component
+item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
+item.emergingtechnology.nozzlewide.name=Wide Spray Nozzle
+item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processor
@@ -186,6 +192,12 @@ info.emergingtechnology.tidal.description=Generates energy using the movement of
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
+
+info.emergingtechnology.nozzle.description=A nozzle used by the Diffuser.
+info.emergingtechnology.nozzlecomponent.description=A crafting ingredient used to create nozzles.
+info.emergingtechnology.nozzlewide.description=Grows crops in an area surrounding the Diffuser instead of just North, South, East and West.
+info.emergingtechnology.nozzlelong.description=Doubles the range of the Diffuser.
+info.emergingtechnology.nozzleprecise.description=Doubles the effectiveness of the Diffuser.
 
 # Item descriptions
 info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.

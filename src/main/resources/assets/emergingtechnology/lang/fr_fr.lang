@@ -14,6 +14,11 @@ item.emergingtechnology.greenbulb.name=Ampoule verte
 item.emergingtechnology.bluebulb.name=Ampoule bleue
 item.emergingtechnology.purplebulb.name=Ampoule à UV
 
+item.emergingtechnology.nozzlecomponent.name=Nozzle Component
+item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
+item.emergingtechnology.nozzlewide.name=Wide Spray Nozzle
+item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
+
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processeur
 item.emergingtechnology.shredder.name=Déchiqueteuse

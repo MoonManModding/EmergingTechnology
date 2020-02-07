@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.item.hydroponics;
+package io.moonman.emergingtechnology.item.hydroponics.bulbs;
 
 import java.util.List;
 
@@ -12,18 +12,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GreenBulb extends BulbItem {
+public class RedBulb extends BulbItem {
 
-    public GreenBulb() {
-        super("greenbulb");
+    public RedBulb() {
+        super("redbulb");
     }
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
         int lightBaseEnergy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightEnergyBaseUsage;
-        int growth = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthGreenBulbModifier;
-        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyGreenBulbModifier * lightBaseEnergy;
+        int growth = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growthRedBulbModifier;
+        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.energyRedBulbModifier * lightBaseEnergy;
 
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.BULB_DESC));

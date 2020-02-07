@@ -14,6 +14,11 @@ item.emergingtechnology.greenbulb.name=绿色灯泡
 item.emergingtechnology.bluebulb.name=蓝色灯泡
 item.emergingtechnology.purplebulb.name=紫外线灯泡
 
+item.emergingtechnology.nozzlecomponent.name=Nozzle Component
+item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
+item.emergingtechnology.nozzlewide.name=Wide Spray Nozzle
+item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
+
 #POLYMERS MODULE
 item.emergingtechnology.processor.name=加工机
 item.emergingtechnology.shredder.name=切碎机

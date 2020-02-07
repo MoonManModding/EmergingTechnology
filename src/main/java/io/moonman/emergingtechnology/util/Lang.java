@@ -37,6 +37,13 @@ public class Lang {
     public static final TextComponentTranslation BULB_DESC = new TextComponentTranslation(SOURCE + "bulb.description");
     public static final TextComponentTranslation EMPTY_SYRINGE_DESC = new TextComponentTranslation(SOURCE + "emptysyringe.description");
 
+    // Nozzle descriptions for tooltips
+    public static final TextComponentTranslation NOZZLE_DESC = new TextComponentTranslation(SOURCE + "nozzle.description");
+    public static final TextComponentTranslation NOZZLE_COMPONENT_DESC = new TextComponentTranslation(SOURCE + "nozzlecomponent.description");
+    public static final TextComponentTranslation NOZZLE_WIDE_DESC = new TextComponentTranslation(SOURCE + "nozzlewide.description");
+    public static final TextComponentTranslation NOZZLE_LONG_DESC = new TextComponentTranslation(SOURCE + "nozzlelong.description");
+    public static final TextComponentTranslation NOZZLE_PRECISE_DESC = new TextComponentTranslation(SOURCE + "nozzleprecise.description");
+
     // Interaction descriptions
     public static final TextComponentTranslation INTERACT_RIGHT_CLICK = new TextComponentTranslation(SOURCE + "interaction.rightclick");
     public static final TextComponentTranslation INTERACT_SHIFT = new TextComponentTranslation(SOURCE + "interaction.shift");

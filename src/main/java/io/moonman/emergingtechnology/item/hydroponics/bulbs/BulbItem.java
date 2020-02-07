@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.item.hydroponics;
+package io.moonman.emergingtechnology.item.hydroponics.bulbs;
 
 import io.moonman.emergingtechnology.item.ItemBase;
 

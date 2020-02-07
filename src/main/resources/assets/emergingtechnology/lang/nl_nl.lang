@@ -5,12 +5,19 @@ item.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 item.emergingtechnology.harvester.name=Harvester
 item.emergingtechnology.filler.name=Water Filler
 item.emergingtechnology.scrubber.name=CO2 Scrubber
+item.emergingtechnology.diffuser.name=CO2 Diffuser
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
+
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
 item.emergingtechnology.bluebulb.name=Blue Bulb
 item.emergingtechnology.purplebulb.name=UV Bulb
+
+item.emergingtechnology.nozzlecomponent.name=Nozzle Component
+item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
+item.emergingtechnology.nozzlewide.name=Wide Spray Nozzle
+item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processor
@@ -78,6 +85,7 @@ blocks.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 blocks.emergingtechnology.harvester.name=Harvester
 blocks.emergingtechnology.filler.name=Water Filler
 blocks.emergingtechnology.scrubber.name=CO2 Scrubber
+blocks.emergingtechnology.diffuser.name=CO2 Diffuser
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
 blocks.emergingtechnology.frame.name=Hydroponic Frame
 
@@ -119,6 +127,7 @@ tile.emergingtechnology.hydroponic.name=Hydroponic Grow Bed
 tile.emergingtechnology.harvester.name=Harvester
 tile.emergingtechnology.filler.name=Water Filler
 tile.emergingtechnology.scrubber.name=CO2 Scrubber
+tile.emergingtechnology.diffuser.name=CO2 Diffuser
 tile.emergingtechnology.light.name=Hydroponic Grow Light
 tile.emergingtechnology.frame.name=Hydroponic Frame
 
@@ -170,6 +179,7 @@ info.emergingtechnology.fabricator.description=Automates the printing of plastic
 info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.
 info.emergingtechnology.harvester.description=Harvests crops automatically.
 info.emergingtechnology.scrubber.description=Captures CO2 from the surrounding atmosphere.
+info.emergingtechnology.diffuser.description=Diffuses CO2 to boost surround plants' growth.
 info.emergingtechnology.hydroponic.description=Plants grown on this block can receive a growth boost.
 info.emergingtechnology.light.description=Provides a growth boost to plants grown below.
 info.emergingtechnology.piezoelectric.description=Generates a tiny amount of energy when stepped on.
@@ -182,6 +192,12 @@ info.emergingtechnology.tidal.description=Generates energy using the movement of
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
+
+info.emergingtechnology.nozzle.description=A nozzle used by the Diffuser.
+info.emergingtechnology.nozzlecomponent.description=A crafting ingredient used to create nozzles.
+info.emergingtechnology.nozzlewide.description=Grows crops in an area surrounding the Diffuser instead of just North, South, East and West.
+info.emergingtechnology.nozzlelong.description=Doubles the range of the Diffuser.
+info.emergingtechnology.nozzleprecise.description=Doubles the effectiveness of the Diffuser.
 
 # Item descriptions
 info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.
@@ -221,6 +237,7 @@ info.emergingtechnology.growth.generated=Provides a %s percent chance of growth 
 
 info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
 info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
+info.emergingtechnology.gasrange.generated=Boosts plant growth up to %s blocks to the North, East, South or West sides (unless nozzle installed).
 
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
@@ -242,6 +259,7 @@ gui.emergingtechnology.label.boostlight=Light Total:
 gui.emergingtechnology.label.base=Base: 
 gui.emergingtechnology.label.boost=Boost: 
 gui.emergingtechnology.label.maxrange=Max range: 
+gui.emergingtechnology.label.affectedplants=Affected Plants: 
 
 gui.emergingtechnology.label.energy=Energy Storage
 gui.emergingtechnology.label.fluid=Fluid Storage
@@ -273,6 +291,7 @@ config.emergingtechnology.hydroponics.growlight.title=Hydroponic Grow Light
 config.emergingtechnology.hydroponics.harvester.title=Harvester
 config.emergingtechnology.hydroponics.filler.title=Water Filler
 config.emergingtechnology.hydroponics.scrubber.title=CO2 Scrubber
+config.emergingtechnology.hydroponics.diffuser.title=CO2 Diffuser
 
 config.emergingtechnology.polymers.title=Polymers
 config.emergingtechnology.polymers.title.tooltip=Configure Shredder, Processor, Fabricator and Collector here

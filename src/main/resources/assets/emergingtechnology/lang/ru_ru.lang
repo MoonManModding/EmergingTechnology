@@ -1,4 +1,4 @@
-# Thanks to TigrKill and genom10 for these translations!
+# Thanks to TigrKill, genom10 and Smollet777 for these translations!
 
 # Item
 
@@ -13,6 +13,11 @@ item.emergingtechnology.redbulb.name=Красный Светодиод
 item.emergingtechnology.greenbulb.name=Зеленый Светодиод
 item.emergingtechnology.bluebulb.name=Синий Светодиод
 item.emergingtechnology.purplebulb.name=Ультрафиолетовый Светодиод
+
+item.emergingtechnology.nozzlecomponent.name=Nozzle Component
+item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
+item.emergingtechnology.nozzlewide.name=Wide Spray Nozzle
+item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
