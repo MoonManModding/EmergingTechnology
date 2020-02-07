@@ -25,4 +25,9 @@ public class HydroponicsModuleDiffuser {
     @Config.Comment("The range of effect of the Diffuser (in N,S,W,E directions)")
     @RangeInt(min = 1, max = 10)
     public int diffuserBaseRange = 4;
+    
+    @Name("Diffuser - Base Growth Probability")
+    @Config.Comment("The base probability of plant growth when in range of the Diffuser")
+    @RangeInt(min = 1, max = 100)
+    public int diffuserBaseBoostProbability = 15;
 }

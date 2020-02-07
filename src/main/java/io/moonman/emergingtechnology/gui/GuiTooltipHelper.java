@@ -32,7 +32,8 @@ public class GuiTooltipHelper {
         return new GuiIndicatorData(false, new ArrayList<String>());
     }
 
-    public static GuiIndicatorData getHydroponicGrowthData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY, int growthFromMedium, int growthFromFluid, int boostFromMedium, int boostFromFluid, int growthFromLight) {
+    public static GuiIndicatorData getHydroponicGrowthData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY,
+            int growthFromMedium, int growthFromFluid, int boostFromMedium, int boostFromFluid, int growthFromLight) {
 
         GuiLabel label = getLabel(ResourceTypeEnum.GROWTH);
 
@@ -53,7 +54,8 @@ public class GuiTooltipHelper {
         return new GuiIndicatorData(false, new ArrayList<String>());
     }
 
-    public static GuiIndicatorData getLightGrowData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY, int growthFromBulb, int boostFromBulb) {
+    public static GuiIndicatorData getLightGrowData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY,
+            int growthFromBulb, int boostFromBulb) {
 
         GuiLabel label = getLabel(ResourceTypeEnum.GROWTH);
 
@@ -65,7 +67,29 @@ public class GuiTooltipHelper {
             list.add(label.header);
             list.add(Lang.get(Lang.GUI_BASE) + growthFromBulb + label.unit);
             list.add(Lang.get(Lang.GUI_BOOST) + boostFromBulb + label.unit);
-            list.add(Lang.get(Lang.GUI_MAX_RANGE) + EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange);
+            list.add(Lang.get(Lang.GUI_MAX_RANGE)
+                    + EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.lightBlockRange);
+            return new GuiIndicatorData(true, list);
+        }
+
+        return new GuiIndicatorData(false, new ArrayList<String>());
+    }
+
+    public static GuiIndicatorData getDiffuserGrowthData(int guiStartLeft, int guiStartTop, int mouseX, int mouseY,
+            int baseGrowth, int boostFromNozzle, int range, int affectedPlants) {
+
+        GuiLabel label = getLabel(ResourceTypeEnum.GROWTH);
+
+        GuiRegion region = getRegion(IndicatorPositionEnum.MAINSMALL, new GuiPosition(guiStartLeft, guiStartTop));
+        GuiPosition mousePosition = new GuiPosition(mouseX, mouseY);
+
+        if (region.isPositionInRegion(mousePosition)) {
+            List<String> list = new ArrayList<String>();
+            list.add(label.header);
+            list.add(Lang.get(Lang.GUI_BASE) + baseGrowth + label.unit);
+            list.add(Lang.get(Lang.GUI_BOOST) + boostFromNozzle + label.unit);
+            list.add(Lang.get(Lang.GUI_MAX_RANGE) + range);
+            list.add(Lang.get(Lang.GUI_AFFECTED_PLANTS) + affectedPlants);
             return new GuiIndicatorData(true, list);
         }
 
@@ -97,6 +121,8 @@ public class GuiTooltipHelper {
             return new GuiRegion(guiStart.x + 119, guiStart.y + 19, guiStart.x + 171, guiStart.y + 31);
         case MAIN:
             return new GuiRegion(guiStart.x + 43, guiStart.y + 29, guiStart.x + 142, guiStart.y + 55);
+        case MAINSMALL:
+            return new GuiRegion(guiStart.x + 43, guiStart.y + 35, guiStart.x + 132, guiStart.y + 55);
         case LOWER:
             return new GuiRegion(guiStart.x + 66, guiStart.y + 63, guiStart.x + 110, guiStart.y + 77);
         default:

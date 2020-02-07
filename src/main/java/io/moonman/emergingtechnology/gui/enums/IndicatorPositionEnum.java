@@ -4,5 +4,6 @@ public enum IndicatorPositionEnum {
     PRIMARY,
     SECONDARY,
     MAIN,
+    MAINSMALL,
     LOWER
 }

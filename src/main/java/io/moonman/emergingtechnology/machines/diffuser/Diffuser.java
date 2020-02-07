@@ -50,9 +50,11 @@ public class Diffuser extends MachineBase implements ITileEntityProvider {
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserEnergyBaseUsage;
         int gas = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserGasBaseUsage;
+        int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
 
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.DIFFUSER_DESC));
+            tooltip.add(Lang.getGasRange(range));
             tooltip.add(Lang.getRequired(gas, ResourceTypeEnum.GAS));
             tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
         } else {

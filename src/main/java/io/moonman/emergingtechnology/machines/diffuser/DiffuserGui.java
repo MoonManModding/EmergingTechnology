@@ -62,19 +62,18 @@ public class DiffuserGui extends GuiContainer {
 
 		int energy = this.getEnergyScaled(37);
 		int gas = this.getGasScaled(37);
-		int plants = this.getPlants();
 
 		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 29, gas, 7);
 
-		// Plants boosted
-		this.fontRenderer.drawString("Plants", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString(plants + "", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, GuiHelper.LABEL_COLOUR);
+		// Nozzle Name
+		this.fontRenderer.drawString("Nozzle", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString("None", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, GuiHelper.EMPTY_COLOUR);
 
-		// Range
-		this.fontRenderer.drawString("Range", SECOND_FIELD_POS.x, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString(EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange + "",
-				SECOND_FIELD_POS.x, SECOND_FIELD_POS.y + 10, GuiHelper.LABEL_COLOUR);
+		// Nozzle Stats
+		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x - 5, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString("+" + 0 + "%", SECOND_FIELD_POS.x - 5, SECOND_FIELD_POS.y + 10,
+				GuiHelper.EMPTY_COLOUR);
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
@@ -108,11 +107,21 @@ public class DiffuserGui extends GuiContainer {
 		int gas = this.tileEntity.getField(1);
 		int maxGas = Reference.DIFFUSER_GAS_CAPACITY;
 
+		int growth = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseBoostProbability;
+		int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
+
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.SECONDARY, mouseX, mouseY, energy, maxEnergy);
 
 		GuiIndicatorData gasIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.GAS,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, gas, maxGas);
+
+		GuiIndicatorData growthIndicator = GuiTooltipHelper.getDiffuserGrowthData(guiLeft, guiTop, mouseX, mouseY,
+				growth, 0, range, getPlants());
+
+		if (growthIndicator.isHovered) {
+			this.drawHoveringText(growthIndicator.list, mouseX, mouseY, fontRenderer);
+		}
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);

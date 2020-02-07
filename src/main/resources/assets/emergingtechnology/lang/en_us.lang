@@ -225,6 +225,7 @@ info.emergingtechnology.growth.generated=Provides a %s percent chance of growth 
 
 info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
 info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
+info.emergingtechnology.gasrange.generated=Boosts plant growth up to %s blocks to the North, East, South or West sides (unless nozzle installed).
 
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
@@ -246,6 +247,7 @@ gui.emergingtechnology.label.boostlight=Light Total:
 gui.emergingtechnology.label.base=Base: 
 gui.emergingtechnology.label.boost=Boost: 
 gui.emergingtechnology.label.maxrange=Max range: 
+gui.emergingtechnology.label.affectedplants=Affected Plants: 
 
 gui.emergingtechnology.label.energy=Energy Storage
 gui.emergingtechnology.label.fluid=Fluid Storage

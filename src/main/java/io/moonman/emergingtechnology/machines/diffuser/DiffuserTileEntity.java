@@ -160,12 +160,12 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
 
     public void doGrowthProcess() {
 
-        // Gas full
-        if (this.getGas() >= Reference.DIFFUSER_GAS_CAPACITY) {
+        // Insufficient gas
+        if (this.getGas() < EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserGasBaseUsage) {
             return;
         }
 
-        // Not enough energy
+        // Insufficient energy
         if (this.getEnergy() < EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserEnergyBaseUsage) {
             return;
         }
@@ -186,7 +186,10 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
     }
 
     public int doBoost() {
-        return DiffuserHelper.boostSurroundingPlants(getWorld(), getPos(), this.gasHandler);
+
+        int probability = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseBoostProbability;
+
+        return DiffuserHelper.boostSurroundingPlants(getWorld(), getPos(), this.gasHandler, probability);
     }
 
     public ItemStack getInputStack() {

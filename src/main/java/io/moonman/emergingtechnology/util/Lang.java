@@ -55,6 +55,7 @@ public class Lang {
     public static final TextComponentTranslation GUI_STORAGE_GAS = new TextComponentTranslation(GUI_SOURCE + "label.gas");
     public static final TextComponentTranslation GUI_STORAGE_HEAT = new TextComponentTranslation(GUI_SOURCE + "label.heat");
     public static final TextComponentTranslation GUI_GROWTH = new TextComponentTranslation(GUI_SOURCE + "label.growth");
+    public static final TextComponentTranslation GUI_AFFECTED_PLANTS = new TextComponentTranslation(GUI_SOURCE + "label.affectedplants");
     public static final TextComponentTranslation GUI_ERROR = new TextComponentTranslation(GUI_SOURCE + "label.error");
     
     public static final TextComponentTranslation GUI_FABRICATOR_ERROR = new TextComponentTranslation(GUI_SOURCE + "fabricator.error");
@@ -109,6 +110,10 @@ public class Lang {
 
     public static String getLightRange(int range) {
         return new TextComponentTranslation(SOURCE + "lightrange.generated", range).getFormattedText();
+    }
+    
+    public static String getGasRange(int range) {
+        return new TextComponentTranslation(SOURCE + "gasrange.generated", range).getFormattedText();
     }
 
     // Resource 
