@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.helpers.machines.DiffuserHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -63,13 +64,14 @@ public class DiffuserGui extends GuiContainer {
 		int energy = this.getEnergyScaled(37);
 		int gas = this.getGasScaled(37);
 		int nozzleId = this.getNozzleId();
+		String nozzleName = DiffuserHelper.getNozzleShortNameById(nozzleId);
 
 		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 29, gas, 7);
 
 		// Nozzle Name
 		this.fontRenderer.drawString("Nozzle", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString(nozzleId + "", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, GuiHelper.EMPTY_COLOUR);
+		this.fontRenderer.drawString(nozzleName, FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, GuiHelper.EMPTY_COLOUR);
 
 		// Nozzle Stats
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x - 5, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);

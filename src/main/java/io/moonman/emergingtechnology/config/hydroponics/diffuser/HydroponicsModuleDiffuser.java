@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.config.hydroponics.diffuser;
 
+import io.moonman.emergingtechnology.config.hydroponics.diffuser.nozzle.HydroponicsModuleLongNozzle;
+import io.moonman.emergingtechnology.config.hydroponics.diffuser.nozzle.HydroponicsModulePreciseNozzle;
+import io.moonman.emergingtechnology.config.hydroponics.diffuser.nozzle.HydroponicsModuleSmartNozzle;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
@@ -30,4 +33,16 @@ public class HydroponicsModuleDiffuser {
     @Config.Comment("The base probability of plant growth when in range of the Diffuser")
     @RangeInt(min = 1, max = 100)
     public int diffuserBaseBoostProbability = 15;
+
+    @Name("Long Nozzle")
+	@Config.Comment("Configure the Long nozzle attachment")
+    public final HydroponicsModuleLongNozzle LONG = new HydroponicsModuleLongNozzle();
+
+    @Name("Precise Nozzle")
+	@Config.Comment("Configure the Precise nozzle attachment")
+    public final HydroponicsModulePreciseNozzle PRECISE = new HydroponicsModulePreciseNozzle();
+
+    @Name("Smart Nozzle")
+	@Config.Comment("Configure the Smart nozzle attachment")
+    public final HydroponicsModuleSmartNozzle SMART = new HydroponicsModuleSmartNozzle();
 }

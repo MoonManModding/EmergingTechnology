@@ -5,6 +5,7 @@ import java.util.Random;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleBase;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleLong;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzlePrecise;
@@ -46,28 +47,55 @@ public class DiffuserHelper {
         return 0;
     }
 
-    public static int boostSurroundingPlants(World world, BlockPos pos, FluidTank gasHandler, int probability,
-            int nozzleId) {
+    public static String getNozzleShortNameById(int id) {
+        switch (id) {
+        case 1:
+            return "Precise";
+        case 2:
+            return "Long";
+        case 3:
+            return "Smart";
+        default:
+            return "None";
+        }
+    }
+
+    public static int getNozzleBoostModifierById(int id) {
+
+        int baseBoost = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseBoostProbability;
+
+        switch (id) {
+        case 1:
+            return baseBoost * EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.PRECISE.boostMultiplier;
+        case 2:
+            return baseBoost * EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.LONG.boostMultiplier;
+        case 3:
+            return baseBoost * EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.SMART.boostMultiplier;
+        default:
+            return baseBoost;
+        }
+    }
+
+    public static int getNozzleRangeModifierById(int id) {
 
         int baseRange = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
 
-        if (nozzleId == 0) {
-            return doBoost(world, pos, gasHandler, probability, baseRange);
+        switch (id) {
+        case 1:
+            return baseRange * EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.PRECISE.rangeMultiplier;
+        case 2:
+            return baseRange * EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.LONG.rangeMultiplier;
+        case 3:
+            return baseRange * EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.SMART.rangeMultiplier;
+        default:
+            return baseRange;
         }
+    }
 
-        if (nozzleId == 1) {
-            return doBoost(world, pos, gasHandler, probability * 2, baseRange);
-        }
+    public static int boostSurroundingPlants(World world, BlockPos pos, FluidTank gasHandler, int probability,
+            int nozzleId) {
 
-        if (nozzleId == 2) {
-            return doBoost(world, pos, gasHandler, probability, baseRange * 2);
-        }
-
-        if (nozzleId == 3) {
-            return doBoost(world, pos, gasHandler, probability * 2, baseRange * 2);
-        }
-
-        return 0;
+        return doBoost(world, pos, gasHandler, getNozzleBoostModifierById(nozzleId), getNozzleRangeModifierById(nozzleId));
     }
 
     private static int doBoost(World world, BlockPos pos, FluidTank gasHandler, int probability, int range) {
