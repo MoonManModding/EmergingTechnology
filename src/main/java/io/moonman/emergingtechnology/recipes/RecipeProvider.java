@@ -112,20 +112,6 @@ public class RecipeProvider {
         return removedRecipes;
     }
 
-    // public static List<FabricatorRecipe> removeFabricatorRecipesByOutput(List<FabricatorRecipe> recipeList,
-    //         ItemStack outputStack) {
-
-    //     List<FabricatorRecipe> removedRecipes = new ArrayList<FabricatorRecipe>();
-
-    //     recipeList.removeIf(x -> {
-    //         boolean match = StackHelper.compareItemStacks(x.getOutput(), outputStack);
-    //         removedRecipes.add(x);
-    //         return match;
-    //     });
-
-    //     return removedRecipes;
-    // }
-
     private static <T> List<List<T>> splitList(List<T> list, final int L) {
         List<List<T>> parts = new ArrayList<List<T>>();
         final int N = list.size();
