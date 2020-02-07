@@ -16,7 +16,7 @@ item.emergingtechnology.purplebulb.name=UV Bulb
 
 item.emergingtechnology.nozzlecomponent.name=Nozzle Component
 item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
-item.emergingtechnology.nozzlewide.name=Wide Spray Nozzle
+item.emergingtechnology.nozzlesmart.name=Smart Spray Nozzle
 item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
 
 # POLYMERS MODULE
@@ -195,7 +195,7 @@ info.emergingtechnology.frame.description=A decorative plastic frame
 
 info.emergingtechnology.nozzle.description=A nozzle used by the Diffuser.
 info.emergingtechnology.nozzlecomponent.description=A crafting ingredient used to create nozzles.
-info.emergingtechnology.nozzlewide.description=Grows crops in an area surrounding the Diffuser instead of just North, South, East and West.
+info.emergingtechnology.nozzlesmart.description=Grows crops in an area surrounding the Diffuser instead of just North, South, East and West.
 info.emergingtechnology.nozzlelong.description=Doubles the range of the Diffuser.
 info.emergingtechnology.nozzleprecise.description=Doubles the effectiveness of the Diffuser.
 

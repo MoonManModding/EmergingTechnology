@@ -8,7 +8,7 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleBase;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleLong;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzlePrecise;
-import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleWide;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleSmart;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -36,11 +36,11 @@ public class DiffuserHelper {
 
         Item nozzle = itemStack.getItem();
 
-        if (nozzle instanceof NozzleWide)
+        if (nozzle instanceof NozzlePrecise)
             return 1;
         if (nozzle instanceof NozzleLong)
             return 2;
-        if (nozzle instanceof NozzlePrecise)
+        if (nozzle instanceof NozzleSmart)
             return 3;
 
         return 0;
@@ -52,54 +52,25 @@ public class DiffuserHelper {
         int baseRange = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
 
         if (nozzleId == 0) {
-            return doRegularBoost(world, pos, gasHandler, probability, baseRange);
+            return doBoost(world, pos, gasHandler, probability, baseRange);
         }
 
         if (nozzleId == 1) {
-            return doRegularBoost(world, pos, gasHandler, probability, baseRange);
+            return doBoost(world, pos, gasHandler, probability * 2, baseRange);
         }
 
         if (nozzleId == 2) {
-            return doRegularBoost(world, pos, gasHandler, probability, baseRange * 2);
+            return doBoost(world, pos, gasHandler, probability, baseRange * 2);
         }
 
         if (nozzleId == 3) {
-            return doRegularBoost(world, pos, gasHandler, probability * 2, baseRange);
+            return doBoost(world, pos, gasHandler, probability * 2, baseRange * 2);
         }
 
         return 0;
     }
 
-    private static int doAreaBoost(World world, BlockPos pos, FluidTank gasHandler, int probability, int range) {
-        int plantsBoosted = 0;
-
-        for (int x = -range; x < range; x++) {
-            for (int y = -range; x < range; y++) {
-
-                // Not enough gas
-                if (gasHandler
-                        .getFluidAmount() < EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserGasBaseUsage) {
-                    break;
-                }
-
-                BlockPos position = pos.add(x, y, 0);
-                IBlockState blockState = world.getBlockState(position);
-                Block block = blockState.getBlock();
-
-                if (PlantHelper.isPlantBlock(blockState.getBlock())) {
-
-                    boolean success = growBlock(world, blockState, block, position, gasHandler, probability);
-
-                    if (success)
-                        plantsBoosted += 1;
-                }
-            }
-        }
-
-        return plantsBoosted;
-    }
-
-    private static int doRegularBoost(World world, BlockPos pos, FluidTank gasHandler, int probability, int range) {
+    private static int doBoost(World world, BlockPos pos, FluidTank gasHandler, int probability, int range) {
         int plantsBoosted = 0;
 
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {

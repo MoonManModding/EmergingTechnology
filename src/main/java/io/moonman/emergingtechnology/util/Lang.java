@@ -40,7 +40,7 @@ public class Lang {
     // Nozzle descriptions for tooltips
     public static final TextComponentTranslation NOZZLE_DESC = new TextComponentTranslation(SOURCE + "nozzle.description");
     public static final TextComponentTranslation NOZZLE_COMPONENT_DESC = new TextComponentTranslation(SOURCE + "nozzlecomponent.description");
-    public static final TextComponentTranslation NOZZLE_WIDE_DESC = new TextComponentTranslation(SOURCE + "nozzlewide.description");
+    public static final TextComponentTranslation NOZZLE_SMART_DESC = new TextComponentTranslation(SOURCE + "nozzlesmart.description");
     public static final TextComponentTranslation NOZZLE_LONG_DESC = new TextComponentTranslation(SOURCE + "nozzlelong.description");
     public static final TextComponentTranslation NOZZLE_PRECISE_DESC = new TextComponentTranslation(SOURCE + "nozzleprecise.description");
 

@@ -3,14 +3,14 @@ package io.moonman.emergingtechnology.item.hydroponics.nozzles;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.util.text.TextComponentTranslation;
 
-public class NozzleWide extends NozzleBase {
+public class NozzleSmart extends NozzleBase {
 
-    public NozzleWide() {
-        super("nozzlewide");
+    public NozzleSmart() {
+        super("nozzlesmart");
     }
 
     @Override
     public TextComponentTranslation getSpecialDescription() {
-        return Lang.NOZZLE_WIDE_DESC;
+        return Lang.NOZZLE_SMART_DESC;
     }
 }

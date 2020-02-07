@@ -12,7 +12,7 @@ import io.moonman.emergingtechnology.item.hydroponics.bulbs.RedBulb;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleComponent;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleLong;
 import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzlePrecise;
-import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleWide;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleSmart;
 import io.moonman.emergingtechnology.item.polymers.PlasticRod;
 import io.moonman.emergingtechnology.item.polymers.PlasticSheet;
 import io.moonman.emergingtechnology.item.polymers.PlasticTissueScaffold;
@@ -60,7 +60,7 @@ public class ModItems {
 	public static final Item purplebulb = null;
 
 	public static final Item nozzlecomponent = null;
-	public static final Item nozzlewide = null;
+	public static final Item nozzlesmart = null;
 	public static final Item nozzlelong = null;
 	public static final Item nozzleprecise = null;
 
@@ -150,7 +150,7 @@ public class ModItems {
 	// All *non-block* items
 	public static Item[] getItems() {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,
-				ModItems.nozzlecomponent, ModItems.nozzlewide, ModItems.nozzlelong, ModItems.nozzleprecise,
+				ModItems.nozzlecomponent, ModItems.nozzlesmart, ModItems.nozzlelong, ModItems.nozzleprecise,
 				ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch, ModItems.shreddedpaper,
 				ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament, ModItems.plastictissuescaffold,
 				ModItems.turbine, ModItems.plasticwaste, ModItems.paperwaste, ModItems.paperpulp, ModItems.emptysyringe,
@@ -163,7 +163,7 @@ public class ModItems {
 	}
 
 	public static Item[] generateItems() {
-		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new NozzleComponent(), new NozzleWide(), new NozzleLong(), new NozzlePrecise(), new ShreddedPlastic(),
+		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new NozzleComponent(), new NozzleSmart(), new NozzleLong(), new NozzlePrecise(), new ShreddedPlastic(),
 				new ShreddedPlant(), new ShreddedStarch(), new ShreddedPaper(), new PaperWaste(), new PaperPulp(),
 				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
 				new Turbine(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),
