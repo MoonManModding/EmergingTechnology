@@ -18,6 +18,7 @@ public class DiffuserContainer extends Container {
 	private int energy;
 	private int gas;
 	private int plants;
+	private int nozzle;
 
 	public DiffuserContainer(InventoryPlayer player, DiffuserTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -56,11 +57,13 @@ public class DiffuserContainer extends Container {
 			if(this.energy != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
 			if(this.gas != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
 			if(this.plants != this.tileEntity.getField(2)) listener.sendWindowProperty(this, 2, this.tileEntity.getField(2));
+			if(this.nozzle != this.tileEntity.getField(3)) listener.sendWindowProperty(this, 3, this.tileEntity.getField(3));
 		}
         
 		this.energy = this.tileEntity.getField(0);
 		this.gas = this.tileEntity.getField(1);
 		this.plants = this.tileEntity.getField(2);
+		this.nozzle = this.tileEntity.getField(3);
 	}
 
 	@Override

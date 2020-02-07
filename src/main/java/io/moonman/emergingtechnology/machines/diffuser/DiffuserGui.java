@@ -62,13 +62,14 @@ public class DiffuserGui extends GuiContainer {
 
 		int energy = this.getEnergyScaled(37);
 		int gas = this.getGasScaled(37);
+		int nozzleId = this.getNozzleId();
 
 		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 29, gas, 7);
 
 		// Nozzle Name
 		this.fontRenderer.drawString("Nozzle", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString("None", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, GuiHelper.EMPTY_COLOUR);
+		this.fontRenderer.drawString(nozzleId + "", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y + 10, GuiHelper.EMPTY_COLOUR);
 
 		// Nozzle Stats
 		this.fontRenderer.drawString("Growth", SECOND_FIELD_POS.x - 5, SECOND_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
@@ -97,6 +98,10 @@ public class DiffuserGui extends GuiContainer {
 
 	private int getPlants() {
 		return tileEntity.getField(2);
+	}
+
+	private int getNozzleId() {
+		return tileEntity.getField(3);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {

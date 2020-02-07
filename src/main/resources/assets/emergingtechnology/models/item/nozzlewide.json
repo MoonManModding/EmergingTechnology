@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "emergingtechnology:items/nozzlecomponent"
+        "layer0": "emergingtechnology:items/nozzlewide"
     },
   "display": {
     "thirdperson_righthand": {

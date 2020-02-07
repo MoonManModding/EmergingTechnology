@@ -11,6 +11,6 @@ public class NozzleWide extends NozzleBase {
 
     @Override
     public TextComponentTranslation getSpecialDescription() {
-        return Lang.NOZZLE_LONG_DESC;
+        return Lang.NOZZLE_WIDE_DESC;
     }
 }

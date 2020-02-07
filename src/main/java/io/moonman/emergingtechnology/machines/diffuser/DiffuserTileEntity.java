@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.machines.diffuser;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
@@ -71,13 +70,19 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return false;
+            return DiffuserHelper.isItemStackValid(stack);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
         }
     };
 
     private int gas = this.gasHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
     private int plants = 0;
+    private int nozzle = 0;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -112,6 +117,7 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
         this.setGas(compound.getInteger("GuiGas"));
         this.setEnergy(compound.getInteger("GuiEnergy"));
         this.setPlants(compound.getInteger("GuiPlants"));
+        this.setNozzle(compound.getInteger("GuiNozzle"));
 
         this.gasHandler.readFromNBT(compound);
         this.energyHandler.readFromNBT(compound);
@@ -126,6 +132,7 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
         compound.setInteger("GuiGas", this.getGas());
         compound.setInteger("GuiEnergy", this.getEnergy());
         compound.setInteger("GuiPlants", this.getPlants());
+        compound.setInteger("GuiNozzle", this.getNozzle());
 
         this.gasHandler.writeToNBT(compound);
         this.energyHandler.writeToNBT(compound);
@@ -189,15 +196,11 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
 
         int probability = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseBoostProbability;
 
-        return DiffuserHelper.boostSurroundingPlants(getWorld(), getPos(), this.gasHandler, probability);
+        return DiffuserHelper.boostSurroundingPlants(getWorld(), getPos(), this.gasHandler, probability, this.getNozzle());
     }
 
     public ItemStack getInputStack() {
         return itemHandler.getStackInSlot(0);
-    }
-
-    public ItemStack getOutputStack() {
-        return itemHandler.getStackInSlot(1);
     }
 
     // Getters
@@ -214,6 +217,10 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
         return this.plants;
     }
 
+    public int getNozzle() {
+        return DiffuserHelper.getNozzleIdForItemStack(getInputStack());
+    }
+
     // Setters
 
     private void setGas(int quantity) {
@@ -226,6 +233,10 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
 
     private void setPlants(int quantity) {
         this.plants = quantity;
+    }
+
+    private void setNozzle(int id) {
+        this.nozzle = id;
     }
 
     @Override
@@ -247,6 +258,8 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
             return this.getGas();
         case 2:
             return this.getPlants();
+        case 3:
+            return this.getNozzle();
         default:
             return 0;
         }
@@ -262,6 +275,8 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
             break;
         case 2:
             this.setPlants(value);
+        case 3:
+            this.setNozzle(value);
             break;
         }
     }

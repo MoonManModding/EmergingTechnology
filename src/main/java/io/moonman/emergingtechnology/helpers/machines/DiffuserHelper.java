@@ -4,9 +4,15 @@ import java.util.Random;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
+import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleBase;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleLong;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzlePrecise;
+import io.moonman.emergingtechnology.item.hydroponics.nozzles.NozzleWide;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -19,21 +25,25 @@ import net.minecraftforge.fluids.FluidTank;
 public class DiffuserHelper {
 
     public static boolean isItemStackValid(ItemStack itemStack) {
-        return false; // getPlannedStackFromItemStack(itemStack) != null;
+        return itemStack.getItem() instanceof NozzleBase;
+    }
+    
+    public static int getNozzleIdForItemStack(ItemStack itemStack) {
+
+        if (StackHelper.isItemStackEmpty(itemStack)) {
+            return 0;
+        }
+
+        Item nozzle = itemStack.getItem();
+
+        if (nozzle instanceof NozzleWide) return 1;
+        if (nozzle instanceof NozzleLong) return 2;
+        if (nozzle instanceof NozzlePrecise) return 3;
+
+        return 0;
     }
 
-    // public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-    // return RecipeProvider.getOutputForItemStackFromRecipes(itemStack,
-    // RecipeProvider.scrubberRecipes);
-    // }
-
-    // public static IMachineRecipe getRecipeFromInputItemStack(ItemStack itemStack)
-    // {
-    // return RecipeProvider.getMatchingRecipe(itemStack,
-    // RecipeProvider.scrubberRecipes);
-    // }
-
-    public static int boostSurroundingPlants(World world, BlockPos pos, FluidTank gasHandler, int probability) {
+    public static int boostSurroundingPlants(World world, BlockPos pos, FluidTank gasHandler, int probability, int nozzleId) {
         int plantsBoosted = 0;
         int range = EmergingTechnologyConfig.HYDROPONICS_MODULE.DIFFUSER.diffuserBaseRange;
 
@@ -76,6 +86,10 @@ public class DiffuserHelper {
         }
 
         return plantsBoosted;
+    }
+
+    private static void growBlock(World world, BlockPos pos, FluidTank gasHandler, int probability) {
+
     }
 
     private static boolean rollForGrow(int probability) {
