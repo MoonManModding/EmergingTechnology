@@ -5,19 +5,21 @@
 # HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=Гидропонная Установка
 item.emergingtechnology.harvester.name=Сборщик
-item.emergingtechnology.scrubber.name=CO2 Scrubber
 item.emergingtechnology.filler.name=Водяной Наполнитель
+item.emergingtechnology.scrubber.name=Газопромыватель СО2
+item.emergingtechnology.diffuser.name=Диффузор CO2
 item.emergingtechnology.light.name=Фитолампа
 item.emergingtechnology.frame.name=Гидропонная рама
+
 item.emergingtechnology.redbulb.name=Красный Светодиод
 item.emergingtechnology.greenbulb.name=Зеленый Светодиод
 item.emergingtechnology.bluebulb.name=Синий Светодиод
 item.emergingtechnology.purplebulb.name=Ультрафиолетовый Светодиод
 
-item.emergingtechnology.nozzlecomponent.name=Nozzle Component
-item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
-item.emergingtechnology.nozzlesmart.name=Smart Spray Nozzle
-item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
+item.emergingtechnology.nozzlecomponent.name=Компонент форсунки
+item.emergingtechnology.nozzlelong.name=Длинная форсунка
+item.emergingtechnology.nozzlesmart.name=Умная форсунка
+item.emergingtechnology.nozzleprecise.name=Точная форсунка
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
@@ -36,7 +38,7 @@ item.emergingtechnology.machinecase.name=Простой Корпус Механ�
 item.emergingtechnology.fabricator.name=Конструктор
 item.emergingtechnology.ladder.name=Биопластиковая лестница
 item.emergingtechnology.plastictissuescaffold.name=Биопластиковая основа ткани
-item.emergingtechnology.turbine.name=Turbine
+item.emergingtechnology.turbine.name=Турбина
 
 item.emergingtechnology.paperwaste.name=Бумажные отходы
 item.emergingtechnology.paperpulp.name=Бумажная пульпа
@@ -83,8 +85,9 @@ item.emergingtechnology.biocharblock.name=Блок биоугля
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
 blocks.emergingtechnology.harvester.name=Сборщик
-blocks.emergingtechnology.scrubber.name=CO2 Scrubber
 blocks.emergingtechnology.filler.name=Водяной Наполнитель
+blocks.emergingtechnology.scrubber.name=Газопромыватель СО2
+blocks.emergingtechnology.diffuser.name=Диффузор CO2
 blocks.emergingtechnology.light.name=Фитолампа
 blocks.emergingtechnology.frame.name=Гидропонная рама
 
@@ -123,9 +126,10 @@ blocks.emergingtechnology.biocharblock.name=Блок биоугля
 
 # HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Гидропонная Установка
-tile.emergingtechnology.scrubber.name=CO2 Scrubber
 tile.emergingtechnology.harvester.name=Сборщик
 tile.emergingtechnology.filler.name=Водяной Наполнитель
+tile.emergingtechnology.scrubber.name=Газопромыватель СО2
+tile.emergingtechnology.diffuser.name=Диффузор CO2
 tile.emergingtechnology.light.name=Фитолампа
 tile.emergingtechnology.frame.name=Гидропонная рама
 
@@ -161,10 +165,6 @@ tile.emergingtechnology.biocharblock.name=Блок биоугля
 tile.emergingtechnology.carbondioxideblock.name=Углекислота
 fluid.emergingtechnology.carbondioxide=Углекислота
 
-#FLUIDS
-tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
-fluid.emergingtechnology.carbondioxide=Carbon Dioxide
-
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
@@ -180,7 +180,8 @@ info.emergingtechnology.cooker.description=Использует прямой с�
 info.emergingtechnology.fabricator.description=Автоматизирует печать пластиковых компонентов.
 info.emergingtechnology.filler.description=Заполняет смежные баки водой.
 info.emergingtechnology.harvester.description=Собирает урожай автоматически.
-info.emergingtechnology.scrubber.description=Captures CO2 from the surrounding atmosphere.
+info.emergingtechnology.scrubber.description=Собирает углекислый газ из окружающей атмосферы.
+info.emergingtechnology.diffuser.description=Рассеивает углекислый газ для ускорения роста окружающих растений.
 info.emergingtechnology.hydroponic.description=Растения, выращенные на этом блоке, могут получить импульс роста.
 info.emergingtechnology.light.description=Обеспечивает импульс роста растениям, выращенным ниже.
 info.emergingtechnology.piezoelectric.description=Вырабатывает небольшое количество энергии при наступании на него.
@@ -193,6 +194,12 @@ info.emergingtechnology.battery.description=Накапливает энерги�
 info.emergingtechnology.wind.description=Генерирует энергию, используя движение ветра.
 
 info.emergingtechnology.frame.description=Декоративная пластиковая рамка
+
+info.emergingtechnology.nozzle.description=Насадка, используемая Диффузором.
+info.emergingtechnology.nozzlecomponent.description=Крафт ингредиент, используемый для создания форсунок.
+info.emergingtechnology.nozzlesmart.description=Умножает дальность и эффективность Диффузора на %1$s и %2$s соответственно.
+info.emergingtechnology.nozzlelong.description=Умножает дальность Диффузора на %s.
+info.emergingtechnology.nozzleprecise.description=Умножает эффективность Диффузора на %s.
 
 # Item descriptions
 info.emergingtechnology.bulb.description=Светодиод, используемый в гидропонике.
@@ -212,12 +219,13 @@ info.emergingtechnology.syringe.description=Шприц содержащий %s �
 info.emergingtechnology.energy.required=Требует %sRF за цикл.
 info.emergingtechnology.fluid.required=Требует %sMB жидкости за цикл.
 info.emergingtechnology.water.required=Требует %sMB воды за цикл.
+info.emergingtechnology.gas.required=Требует %sMB углекислого газа за цикл.
 info.emergingtechnology.heat.required=Требует %sC тепла за цикл.
 info.emergingtechnology.growth.required=Обеспечивает %s процентный импульс роста за цикл;
 
 info.emergingtechnology.biome.required=Работает только в биомах Ocean, Deep Ocean и Beach.
 info.emergingtechnology.waterblocks.required=Требует по крайней мере %s окружающих блоков воды.
-info.emergingtechnology.airblocks.required=Requires at least %s surrounding air blocks.
+info.emergingtechnology.airblocks.required=Требует по крайней мере %s окружающих блоков воздуха.
 info.emergingtechnology.watersurface.required=Должен быть размещен на поверхности воды.
 info.emergingtechnology.waterdepth.required=(x2 когда на уровне между Y%1$s и Y%2$s)
 
@@ -225,20 +233,23 @@ info.emergingtechnology.waterdepth.required=(x2 когда на уровне м�
 info.emergingtechnology.energy.generated=Генерирует %sRF за цикл.
 info.emergingtechnology.fluid.generated=Обеспечивает %sMB жидкости за цикл.
 info.emergingtechnology.water.generated=Обеспечивает %sMB воды за цикл.
+info.emergingtechnology.gas.generated=Обеспечивает %sMB углекислого газа за цикл.
 info.emergingtechnology.heat.generated=Генерирует %sC тепла за цикл.
 info.emergingtechnology.growth.generated=Обеспечивает %s процентную вероятность импульса роста.
 
 info.emergingtechnology.cookerheat.generated=Получает %1$sC на сонце и теряет %2$sC в темноте.
 info.emergingtechnology.lightrange.generated=Увеличивает рост растений до %s блоков ниже.
+info.emergingtechnology.gasrange.generated=Увеличивает рост растений до %s блоков на Север, Восток, Юг или Запад.
 
 # Capacity
 info.emergingtechnology.energy.capacity=Может хранить до %sRF энергии.
 info.emergingtechnology.fluid.capacity=Может хранить до %sMB жидкости.
+info.emergingtechnology.gas.capacity=Может хранить до %sMB углекислого газа.
 info.emergingtechnology.water.capacity=Может хранить до %sMB воды.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=ПКМ для использования.
-info.emergingtechnology.interaction.shift=Press SHIFT for more details.
+info.emergingtechnology.interaction.shift=Зажмите SHIFT для деталей.
 
 # GUI
 gui.emergingtechnology.label.basemedium=Base (Medium): 
@@ -247,12 +258,14 @@ gui.emergingtechnology.label.boostmedium=Boost (Medium):
 gui.emergingtechnology.label.boostfluid=Boost (Fluid): 
 gui.emergingtechnology.label.boostlight=Light Total: 
 
-gui.emergingtechnology.label.base=Base: 
-gui.emergingtechnology.label.boost=Boost: 
-gui.emergingtechnology.label.maxrange=Max range: 
+gui.emergingtechnology.label.base=База: 
+gui.emergingtechnology.label.boost=Увеличение: 
+gui.emergingtechnology.label.maxrange=Макс. диапазон: 
+gui.emergingtechnology.label.affectedplants=Затронутые растения:
 
 gui.emergingtechnology.label.energy=Запас энергии
 gui.emergingtechnology.label.fluid=Запас жидкости
+gui.emergingtechnology.label.gas=Запас газа
 gui.emergingtechnology.label.heat=Температура
 gui.emergingtechnology.label.growth=Модификаторы роста
 gui.emergingtechnology.label.error=Ошибка
@@ -273,12 +286,14 @@ config.emergingtechnology.common.disable.title=Отключить машину
 config.emergingtechnology.common.disable.title.tooltip=Предотвращение создания и отображения этой машины во вкладке креатива
 
 config.emergingtechnology.hydroponics.title=Гидропоника
-config.emergingtechnology.hydroponics.title.tooltip=Тут настраивается Гидропонная установка, Фитолампа, Сборщик и Наполнитель
+config.emergingtechnology.hydroponics.title.tooltip=Тут настраивается Гидропонная установка, Фитолампа, Сборщик, Наполнитель, Газопромыватель и Диффузор
 
 config.emergingtechnology.hydroponics.growbed.title=Гидропонная установка
 config.emergingtechnology.hydroponics.growlight.title=Фитолампа
 config.emergingtechnology.hydroponics.harvester.title=Сборщик
 config.emergingtechnology.hydroponics.filler.title=Водяной Наполнитель
+config.emergingtechnology.hydroponics.scrubber.title=Газопромыватель СО2
+config.emergingtechnology.hydroponics.diffuser.title=Диффузор CO2
 
 config.emergingtechnology.polymers.title=Полимеры
 config.emergingtechnology.polymers.title.tooltip=Тут настраивается Измельчитель, Процессор, Конструктор и Сборщик отходов
