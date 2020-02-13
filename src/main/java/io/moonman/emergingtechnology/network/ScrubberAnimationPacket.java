@@ -54,7 +54,10 @@ public class ScrubberAnimationPacket implements IMessage {
 
             if (world != null && world.isBlockLoaded(message.pos)) {
                 ScrubberTileEntity tileEntity = (ScrubberTileEntity) world.getTileEntity(message.pos);
-                tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
+
+                if (tileEntity != null) {
+                    tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
+                }
             }
         }
     }

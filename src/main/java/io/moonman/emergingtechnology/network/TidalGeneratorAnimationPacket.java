@@ -53,7 +53,9 @@ public class TidalGeneratorAnimationPacket implements IMessage {
 
             if (world != null && world.isBlockLoaded(message.pos)) {
                 TidalGeneratorTileEntity tileEntity = (TidalGeneratorTileEntity) world.getTileEntity(message.pos);
-                tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
+                if (tileEntity != null) {
+                    tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
+                }
             }
         }
     }

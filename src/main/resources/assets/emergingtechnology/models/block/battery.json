@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "emergingtechnology:blocks/grey",
+		"0": "emergingtechnology:blocks/container",
 		"3": "emergingtechnology:blocks/greyflat",
 		"4": "emergingtechnology:blocks/white",
 		"5": "emergingtechnology:blocks/batteryport",
