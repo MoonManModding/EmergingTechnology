@@ -15,4 +15,8 @@ public class ElectricsModuleSolarGlass {
     @Config.Comment("How much energy Solar Glass generates when in sunshine.")
     @RangeInt(min = 0, max = 1000)
     public int solarEnergyGenerated = 25;
+
+    @Name("Push Energy Down")
+    @LangKey("Pushes energy downward to other Solar Glass blocks if true, otherwise pushes up.")
+    public boolean pushEnergyDown = true;
 }

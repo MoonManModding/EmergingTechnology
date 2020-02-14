@@ -48,12 +48,8 @@ public class ClearPlasticBlock extends BlockBreakable {
 
         if (this == ModBlocks.clearplasticblock)
         {
-            if (blockState != iblockstate)
-            {
-                return true;
-            }
 
-            if (block == this)
+            if (block == this || block == ModBlocks.solarglass)
             {
                 return false;
             }

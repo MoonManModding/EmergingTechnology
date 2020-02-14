@@ -6,6 +6,7 @@ item.emergingtechnology.harvester.name=Harvester
 item.emergingtechnology.filler.name=Water Filler
 item.emergingtechnology.scrubber.name=CO2 Scrubber
 item.emergingtechnology.diffuser.name=CO2 Diffuser
+item.emergingtechnology.injector.name=Nutrient Injector
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
 
@@ -65,10 +66,12 @@ item.emergingtechnology.syntheticleather.name=Synthetic Leather
 
 item.emergingtechnology.bioreactor.name=Tissue Bioreactor
 item.emergingtechnology.scaffolder.name=Tissue Scaffolder
+item.emergingtechnology.algaebioreactor.name=Algae Bioreactor
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Piezoelectric Generator
 item.emergingtechnology.solar.name=Solar Panel
+item.emergingtechnology.solarglass.name=Solar Glass
 item.emergingtechnology.battery.name=Battery
 item.emergingtechnology.biomass.name=Biomass
 item.emergingtechnology.biochar.name=Biochar
@@ -86,6 +89,7 @@ blocks.emergingtechnology.harvester.name=Harvester
 blocks.emergingtechnology.filler.name=Water Filler
 blocks.emergingtechnology.scrubber.name=CO2 Scrubber
 blocks.emergingtechnology.diffuser.name=CO2 Diffuser
+blocks.emergingtechnology.injector.name=Nutrient Injector
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
 blocks.emergingtechnology.frame.name=Hydroponic Frame
 
@@ -107,10 +111,12 @@ blocks.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 blocks.emergingtechnology.cooker.name=Solar Cooker
 blocks.emergingtechnology.bioreactor.name=Tissue Bioreactor
 blocks.emergingtechnology.scaffolder.name=Tissue Scaffolder
+blocks.emergingtechnology.algaebioreactor.name=Algae Bioreactor
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=Piezoelectric Generator
 blocks.emergingtechnology.solar.name=Solar Panel
+blocks.emergingtechnology.solarglass.name=Solar Glass
 blocks.emergingtechnology.battery.name=Battery
 blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
@@ -128,6 +134,7 @@ tile.emergingtechnology.harvester.name=Harvester
 tile.emergingtechnology.filler.name=Water Filler
 tile.emergingtechnology.scrubber.name=CO2 Scrubber
 tile.emergingtechnology.diffuser.name=CO2 Diffuser
+tile.emergingtechnology.injector.name=Nutrient Injector
 tile.emergingtechnology.light.name=Hydroponic Grow Light
 tile.emergingtechnology.frame.name=Hydroponic Frame
 
@@ -149,10 +156,12 @@ tile.emergingtechnology.shreddedstarchblock.name=Shredded Starch Block
 tile.emergingtechnology.cooker.name=Solar Cooker
 tile.emergingtechnology.bioreactor.name=Tissue Bioreactor
 tile.emergingtechnology.scaffolder.name=Tissue Scaffolder
+tile.emergingtechnology.algaebioreactor.name=Algae Bioreactor
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=Piezoelectric Generator
 tile.emergingtechnology.solar.name=Solar Panel
+tile.emergingtechnology.solarglass.name=Solar Glass
 tile.emergingtechnology.battery.name=Battery
 tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
@@ -162,6 +171,9 @@ tile.emergingtechnology.biocharblock.name=Biochar Block
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
 fluid.emergingtechnology.carbondioxide=Carbon Dioxide
+
+tile.emergingtechnology.nutrientblock.name=Nutrient Fluid
+fluid.emergingtechnology.nutrient=Nutrient Fluid
 
 #ItemGroup
 
@@ -173,6 +185,7 @@ itemGroup.technologytab=Emerging Technology
 # Machine descriptions
 info.emergingtechnology.biomass.description=Burns Biomass to produce energy.
 info.emergingtechnology.bioreactor.description=Processes animal tissues into usable samples.
+info.emergingtechnology.algaebioreactor.description=Uses CO2 to produce Algae.
 info.emergingtechnology.collector.description=Slowly collects waste plastic when placed in water.
 info.emergingtechnology.cooker.description=Uses direct sunlight to cook food items.
 info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
@@ -180,6 +193,7 @@ info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water
 info.emergingtechnology.harvester.description=Harvests crops automatically.
 info.emergingtechnology.scrubber.description=Captures CO2 from the surrounding atmosphere.
 info.emergingtechnology.diffuser.description=Diffuses CO2 to boost surround plants' growth.
+info.emergingtechnology.injector.description=Injects nutrients into water to produce Nutrient Fluid.
 info.emergingtechnology.hydroponic.description=Plants grown on this block can receive a growth boost.
 info.emergingtechnology.light.description=Provides a growth boost to plants grown below.
 info.emergingtechnology.piezoelectric.description=Generates a tiny amount of energy when stepped on.
@@ -187,6 +201,7 @@ info.emergingtechnology.processor.description=Processes raw materials into usabl
 info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthetic animal products.
 info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
+info.emergingtechnology.solarglass.description=Transparent Solar Panel which generates energy if one of two blocks in front are in sunlight.
 info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
@@ -309,9 +324,10 @@ config.emergingtechnology.synthetics.scaffolder.title=Tissue Scaffolder
 config.emergingtechnology.synthetics.cooker.title=Solar Cooker
 
 config.emergingtechnology.electrics.title=Electrics
-config.emergingtechnology.electrics.title.tooltip=Configure Solar Panel, Tidal Generator, Biomass Generator, Piezoelectric Generator and Battery here
+config.emergingtechnology.electrics.title.tooltip=Configure Solar Panel, Solar Glass, Tidal Generator, Biomass Generator, Piezoelectric Generator and Battery here
 
 config.emergingtechnology.electrics.solar.title=Solar Panel
+config.emergingtechnology.electrics.solarglass.title=Solar Glass
 config.emergingtechnology.electrics.tidal.title=Tidal Generator
 config.emergingtechnology.electrics.biomass.title=Biomass Generator
 config.emergingtechnology.electrics.piezoelectric.title=Piezoelectric Generator

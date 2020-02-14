@@ -5,7 +5,7 @@
 #HYDROPONICS MODULE
 item.emergingtechnology.hydroponic.name=水培生长床
 item.emergingtechnology.scrubber.name=CO2 Scrubber
-item.emergingtechnology.harvester.name=收割器
+item.emergingtechnology.harvester.name=农作机器臂
 item.emergingtechnology.filler.name=注水机
 item.emergingtechnology.light.name=水培生长灯
 item.emergingtechnology.frame.name=水培框架
@@ -22,25 +22,25 @@ item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
 #POLYMERS MODULE
 item.emergingtechnology.processor.name=加工机
 item.emergingtechnology.shredder.name=切碎机
-item.emergingtechnology.collector.name=Waste Collector
+item.emergingtechnology.collector.name=废品收集器
 item.emergingtechnology.shreddedplastic.name=粉碎塑料
 item.emergingtechnology.shreddedplant.name=粉碎植物
 item.emergingtechnology.shreddedstarch.name=淀粉
-item.emergingtechnology.plasticwaste.name=Plastic Waste
+item.emergingtechnology.plasticwaste.name=废塑料
 item.emergingtechnology.filament.name=化纤长丝
 item.emergingtechnology.plasticblock.name=塑料块
 item.emergingtechnology.clearplasticblock.name=透明塑料块
 item.emergingtechnology.plasticrod.name=塑料棒
 item.emergingtechnology.plasticsheet.name=塑料板
 item.emergingtechnology.machinecase.name=基本机壳
-item.emergingtechnology.fabricator.name=打印机
+item.emergingtechnology.fabricator.name=3D打印机
 item.emergingtechnology.ladder.name=塑料梯子
 item.emergingtechnology.plastictissuescaffold.name=塑料组织支架
 item.emergingtechnology.turbine.name=Turbine
 
-item.emergingtechnology.paperwaste.name=Paper Waste
-item.emergingtechnology.paperpulp.name=Paper Pulp
-item.emergingtechnology.shreddedpaper.name=Shredded Paper
+item.emergingtechnology.paperwaste.name=废纸
+item.emergingtechnology.paperpulp.name=纸浆
+item.emergingtechnology.shreddedpaper.name=碎纸
 
 item.emergingtechnology.shreddedplasticblock.name=粉碎塑料块
 item.emergingtechnology.shreddedplantblock.name=粉碎植物块
@@ -53,28 +53,28 @@ item.emergingtechnology.scaffolder.name=生物组织合成机
 
 item.emergingtechnology.emptysyringe.name=空注射器
 
-item.emergingtechnology.syntheticcowraw.name=Raw Synthetic Beef
-item.emergingtechnology.syntheticchickenraw.name=Raw Synthetic Chicken
-item.emergingtechnology.syntheticpigraw.name=Raw Synthetic Porkchop
+item.emergingtechnology.syntheticcowraw.name=生合成牛肉
+item.emergingtechnology.syntheticchickenraw.name=生合成鸡肉
+item.emergingtechnology.syntheticpigraw.name=生合成猪肉
 
-item.emergingtechnology.syntheticcowcooked.name=Cooked Synthetic Beef
-item.emergingtechnology.syntheticchickencooked.name=Cooked Synthetic Chicken
-item.emergingtechnology.syntheticpigcooked.name=Cooked Synthetic Porkchop
+item.emergingtechnology.syntheticcowcooked.name=熟合成牛肉
+item.emergingtechnology.syntheticchickencooked.name=熟合成鸡肉
+item.emergingtechnology.syntheticpigcooked.name=熟合成牛肉
 
-item.emergingtechnology.syntheticsilk.name=Synthetic Silk
-item.emergingtechnology.syntheticslime.name=Synthetic Slime Ball
-item.emergingtechnology.syntheticleather.name=Synthetic Leather
+item.emergingtechnology.syntheticsilk.name=合成线
+item.emergingtechnology.syntheticslime.name=合成粘液球
+item.emergingtechnology.syntheticleather.name=合成皮革
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=发电砖
-item.emergingtechnology.solar.name=Solar Panel
-item.emergingtechnology.battery.name=Battery
-item.emergingtechnology.biomass.name=Biomass
-item.emergingtechnology.biochar.name=Biochar
-item.emergingtechnology.biomassgenerator.name=Biomass Generator
-item.emergingtechnology.tidalgenerator.name=Tidal Generator
-item.emergingtechnology.wind.name=Wind Generator
-item.emergingtechnology.biocharblock.name=Biochar Block
+item.emergingtechnology.solar.name=太阳能电池板
+item.emergingtechnology.battery.name=电池
+item.emergingtechnology.biomass.name=生物质
+item.emergingtechnology.biochar.name=生物碳
+item.emergingtechnology.biomassgenerator.name=生物质发电机
+item.emergingtechnology.tidalgenerator.name=潮汐发电机
+item.emergingtechnology.wind.name=风力发电机
+item.emergingtechnology.biocharblock.name=生物碳块
 
 #Blocks
 
@@ -166,70 +166,72 @@ itemGroup.technologytab=新兴技术
 # NOTE TO TRANSLATORS: The text %s in the translations below are replaced with values!
 
 # Machine descriptions
-info.emergingtechnology.biomass.description=Burns Biomass to produce energy.
-info.emergingtechnology.bioreactor.description=Processes animal tissues into usable samples.
-info.emergingtechnology.collector.description=Slowly collects waste plastic when placed in water.
-info.emergingtechnology.cooker.description=Uses direct sunlight to cook food items.
-info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
-info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.
-info.emergingtechnology.harvester.description=Harvests crops automatically.
 info.emergingtechnology.scrubber.description=Captures CO2 from the surrounding atmosphere.
-info.emergingtechnology.hydroponic.description=Plants grown on this block can receive a growth boost.
-info.emergingtechnology.light.description=Provides a growth boost to plants grown below.
-info.emergingtechnology.piezoelectric.description=Generates a tiny amount of energy when stepped on.
-info.emergingtechnology.processor.description=Processes raw materials into usable plastics.
-info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthetic animal products.
-info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
-info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
-info.emergingtechnology.solar.description=Generates energy when in sunlight.
-info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
-info.emergingtechnology.wind.description=Generates energy using the movement of wind.
+info.emergingtechnology.biomass.description=燃烧生物质产生能量。
+info.emergingtechnology.bioreactor.description=将动物组织加工成可用样本。
+info.emergingtechnology.collector.description=缓慢地收集水中的废塑料。
+info.emergingtechnology.cooker.description=利用太阳能烹调食物。
+info.emergingtechnology.fabricator.description=自动打印塑料部件。
+info.emergingtechnology.filler.description=为相邻的机器的注入水。
+info.emergingtechnology.harvester.description=自动收割农作物。
+info.emergingtechnology.hydroponic.description=在这个方块上种植植物可以促进其生长。
+info.emergingtechnology.light.description=为下方的植物提供生长动力。
+info.emergingtechnology.piezoelectric.description=踩上去会产生少量的能量。
+info.emergingtechnology.processor.description=把原材料加工成可用的塑料。
+info.emergingtechnology.scaffolder.description=将组织样本制成人工合成的动物产品。
+info.emergingtechnology.shredder.description=把植物和废塑料加工成原料，供加工机使用。
+info.emergingtechnology.tidal.description=利用潮汐运动产生能量。
+info.emergingtechnology.solar.description=利用光能产生能量。
+info.emergingtechnology.battery.description=储存能量以备日后使用。红色输入，黄色输出。
+info.emergingtechnology.wind.description=利用风能产生能量。
+
+info.emergingtechnology.frame.description=具有装饰性的塑料框
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 
 # Item descriptions
-info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.
-info.emergingtechnology.emptysyringe.description=An empty syringe used for collecting tissue samples from animals.
+info.emergingtechnology.bulb.description=水培生长灯所用的灯泡。
+info.emergingtechnology.emptysyringe.description=可以从动物身上采集组织样本的空注射器。
 
-info.emergingtechnology.rawmeat.name=Raw Synthetic %s Meat
-info.emergingtechnology.cookedmeat.name=Cooked Synthetic %s Meat
-info.emergingtechnology.sample.name=Sample of %s Tissue
-info.emergingtechnology.syringe.name=Syringe of %s Tissue
+info.emergingtechnology.rawmeat.name=生的合成%s肉
+info.emergingtechnology.cookedmeat.name=熟的合成%s肉
+info.emergingtechnology.sample.name=%s 的组织样本
+info.emergingtechnology.syringe.name=装有 %s 组织的注射器
 
-info.emergingtechnology.rawmeat.description=Looks like %s meat
-info.emergingtechnology.cookedmeat.description=Tastes like %s meat
-info.emergingtechnology.sample.description=A sample containing %s tissue.
-info.emergingtechnology.syringe.description=A syringe containing %s tissue.
+info.emergingtechnology.rawmeat.description=看起来像是%s肉
+info.emergingtechnology.cookedmeat.description=尝起来像是%s肉
+info.emergingtechnology.sample.description=包含%s组织的样本
+info.emergingtechnology.syringe.description=含有%s组织的注射器
 
 # Required
-info.emergingtechnology.energy.required=Requires %sRF per cycle.
-info.emergingtechnology.fluid.required=Requires %sMB of fluid per cycle.
-info.emergingtechnology.water.required=Requires %sMB of water per cycle.
-info.emergingtechnology.heat.required=Requires %sC heat per cycle.
-info.emergingtechnology.growth.required=Provides a %s percent growth boost per cycle;
+info.emergingtechnology.energy.required=每个周期需要%sRF。
+info.emergingtechnology.fluid.required=每个周期需要%sMB的流体。
+info.emergingtechnology.water.required=每个周期需要%sMB的水。
+info.emergingtechnology.heat.required=每个周期需要%sC热量。
+info.emergingtechnology.growth.required=每个周期提供%s%的增长率；
 
-info.emergingtechnology.biome.required=Only functions in Ocean, Deep Ocean and Beach biomes.
-info.emergingtechnology.waterblocks.required=Requires at least %s surrounding water blocks.
-info.emergingtechnology.watersurface.required=Must be placed at water's surface.
-info.emergingtechnology.waterdepth.required=(x2 when at depth between Y%1$s and Y%2$s)
+info.emergingtechnology.biome.required=仅在海洋、深海和海滩生物群系中能发挥作用。
+info.emergingtechnology.waterblocks.required=周围至少需要%s格水。
+info.emergingtechnology.watersurface.required=必须放在水面上。
+info.emergingtechnology.waterdepth.required=(当深度介于 Y%1$s 和 Y%2$s 之间时x2)
 
 # Generated
-info.emergingtechnology.energy.generated=Generates %sRF per cycle.
-info.emergingtechnology.fluid.generated=Provides %sMB of fluid per cycle.
-info.emergingtechnology.water.generated=Provides %sMB of water per cycle.
-info.emergingtechnology.heat.generated=Generates %sC heat per cycle.
-info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per cycle.
+info.emergingtechnology.energy.generated=每个周期产生%sRF。
+info.emergingtechnology.fluid.generated=每个周期提供%sMB的流体。
+info.emergingtechnology.water.generated=每个周期提供%sMB水。
+info.emergingtechnology.heat.generated=每个周期产生%sC热量。
+info.emergingtechnology.growth.generated=每个周期提供%s%的增长率。
 
-info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
-info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
+info.emergingtechnology.cookerheat.generated=在阳光下获得%1$sC，在黑暗中失去%2$sC。
+info.emergingtechnology.lightrange.generated=促进植物生长至以下%s个方块。
 
 # Capacity
-info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
-info.emergingtechnology.fluid.capacity=Can store up to %sMB of fluid.
-info.emergingtechnology.water.capacity=Can store up to %sMB of water.
+info.emergingtechnology.energy.capacity=最多可储存%sRF的能量。
+info.emergingtechnology.fluid.capacity=最多可以存储%sMB的液体。
+info.emergingtechnology.water.capacity=最多可以存储%sMB的水。
 
 # Interactions
-info.emergingtechnology.interaction.rightclick=Right click to use.
+info.emergingtechnology.interaction.rightclick=右击使用。
 info.emergingtechnology.interaction.shift=Press SHIFT for more details.
 
 # GUI

@@ -37,9 +37,6 @@ public class SolarGlass extends SimpleMachineBase implements ITileEntityProvider
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    // protected static final AxisAlignedBB EW_AABB = new AxisAlignedBB(0.75D, 0.0D, 0.0D, 0.25D, 1.0D, 1.0D);
-    // protected static final AxisAlignedBB NS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.75D, 1.0D, 1.0D, 0.25D);
-
     public SolarGlass() {
         super(Material.GLASS, "solarglass");
         this.setSoundType(SoundType.METAL);
@@ -48,36 +45,27 @@ public class SolarGlass extends SimpleMachineBase implements ITileEntityProvider
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
-  
+    @SideOnly(Side.CLIENT)
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 
-  @SideOnly(Side.CLIENT)
-  @Override
-  public BlockRenderLayer getBlockLayer() {
-    return BlockRenderLayer.TRANSLUCENT;
-  }
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
-  @Override
-  public boolean isFullCube(IBlockState state) {
-    return false;
-  }
-
-  @SideOnly(Side.CLIENT)
-  @Override
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
+            EnumFacing side) {
         IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
         Block block = iblockstate.getBlock();
 
-            if (blockState != iblockstate)
-            {
-                return true;
-            }
-
-            if (block == this && side != EnumFacing.NORTH)
-            {
-                return false;
-            }
-        
+        if (block == this || block == ModBlocks.clearplasticblock) {
+            return false;
+        }
 
         return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
@@ -94,20 +82,6 @@ public class SolarGlass extends SimpleMachineBase implements ITileEntityProvider
             tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
         }
     }
-
-    // public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-    //     switch ((EnumFacing) state.getValue(FACING)) {
-    //     case NORTH:
-    //         return NS_AABB;
-    //     case SOUTH:
-    //         return NS_AABB;
-    //     case WEST:
-    //         return EW_AABB;
-    //     case EAST:
-    //     default:
-    //         return EW_AABB;
-    //     }
-    // }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {

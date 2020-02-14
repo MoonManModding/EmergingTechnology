@@ -95,7 +95,7 @@ public class SolarGlassTileEntity extends MachineTileBase implements ITickable, 
     }
 
     private void generateEnergy() {
-        if (getWorld().canSeeSky(getFrontPos()) && getWorld().isDaytime()) {
+        if (canReceiveSunlight()) {
             int generated = EmergingTechnologyConfig.ELECTRICS_MODULE.SOLARGLASS.solarEnergyGenerated;
 
             if (getWorld().isThundering() || getWorld().isRaining()) {
@@ -108,29 +108,47 @@ public class SolarGlassTileEntity extends MachineTileBase implements ITickable, 
 
     private void spreadEnergy() {
 
-        EnumFacing[] sides = new EnumFacing[] { EnumFacing.UP, EnumFacing.DOWN };
-
-        for (EnumFacing side : sides) {
+        for (EnumFacing side : EnumFacing.VALUES) {
             TileEntity tileEntity = world.getTileEntity(pos.offset(side));
 
-            if (tileEntity != null) {
-                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-
-                if (otherStorage != null) {
-                    if (otherStorage.canReceive()) {
-                        if (this.getEnergy() > 0) {
-                            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
-                            this.energyHandler.extractEnergy(energySpread, false);
-                        }
-                    }
-                }
+            if (tileEntity == null) {
+                continue;
             }
+
+            IEnergyStorage otherStorage = null;
+
+            if (side == getPushDirection() && tileEntity instanceof SolarGlassTileEntity) {
+                SolarGlassTileEntity solarGlassTile = (SolarGlassTileEntity) tileEntity;
+                otherStorage = solarGlassTile.energyHandler;
+            } else {
+                otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
+            }
+
+            if (otherStorage == null) {
+                continue;
+            }
+            if (!otherStorage.canReceive()) {
+                continue;
+            }
+
+            if (this.getEnergy() == 0) {
+                return;
+            }
+
+            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
+            this.energyHandler.extractEnergy(energySpread, false);
         }
     }
 
-    private BlockPos getFrontPos() {
+    private boolean canReceiveSunlight() {
         EnumFacing facing = this.world.getBlockState(getPos()).getValue(SolarGlass.FACING);
-        return getPos().offset(facing);
+        BlockPos first = getPos().offset(facing);
+        BlockPos second = getPos().offset(facing, 1);
+        return (getWorld().canSeeSky(first) || getWorld().canSeeSky(second)) && getWorld().isDaytime();
+    }
+
+    private EnumFacing getPushDirection() {
+        return EmergingTechnologyConfig.ELECTRICS_MODULE.SOLARGLASS.pushEnergyDown ? EnumFacing.DOWN : EnumFacing.UP;
     }
 
     // Getters
