@@ -28,6 +28,7 @@ import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.scrubber.Scrubber;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import io.moonman.emergingtechnology.machines.solar.Solar;
+import io.moonman.emergingtechnology.machines.solarglass.SolarGlass;
 import io.moonman.emergingtechnology.machines.tidal.TidalGenerator;
 import io.moonman.emergingtechnology.machines.wind.Wind;
 import net.minecraft.block.Block;
@@ -74,6 +75,7 @@ public class ModBlocks {
 	public static final Piezoelectric piezoelectric = null;
 	public static final TidalGenerator tidalgenerator = null;
 	public static final Solar solar = null;
+	public static final SolarGlass solarglass = null;
 	public static final Wind wind = null;
 	public static final Battery battery = null;
 	public static final BiomassGenerator biomassgenerator = null;
@@ -88,7 +90,7 @@ public class ModBlocks {
 		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.scrubber, ModBlocks.diffuser, ModBlocks.light,
 				ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker,
 				ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
-				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.wind, ModBlocks.battery, ModBlocks.ladder,
+				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery, ModBlocks.ladder,
 				ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock, ModBlocks.machinecase,
 				ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock,
 				ModBlocks.biocharblock, ModBlocks.carbondioxideblock };
@@ -100,7 +102,7 @@ public class ModBlocks {
 		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Diffuser(), new Light(), new Frame(), new Processor(),
 				new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(),
 				new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(),
-				new BiomassGenerator(), new Solar(), new Wind(), new Battery(), new BiocharBlock(),
+				new BiomassGenerator(), new Solar(), new SolarGlass(), new Wind(), new Battery(), new BiocharBlock(),
 				new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new Bioreactor(),
 				new Scaffolder(), new CarbonDioxideBlock() };
 

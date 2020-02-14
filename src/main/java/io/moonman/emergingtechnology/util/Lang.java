@@ -38,6 +38,7 @@ public class Lang {
     public static final TextComponentTranslation SHREDDER_DESC = new TextComponentTranslation(
             SOURCE + "shredder" + DESC);
     public static final TextComponentTranslation SOLAR_DESC = new TextComponentTranslation(SOURCE + "solar" + DESC);
+    public static final TextComponentTranslation SOLARGLASS_DESC = new TextComponentTranslation(SOURCE + "solarglass" + DESC);
     public static final TextComponentTranslation TIDAL_DESC = new TextComponentTranslation(SOURCE + "tidal" + DESC);
     public static final TextComponentTranslation WIND_DESC = new TextComponentTranslation(SOURCE + "wind" + DESC);
     public static final TextComponentTranslation BATTERY_DESC = new TextComponentTranslation(SOURCE + "battery" + DESC);

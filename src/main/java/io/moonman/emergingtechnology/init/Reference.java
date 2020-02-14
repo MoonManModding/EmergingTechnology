@@ -43,6 +43,8 @@ public class Reference {
     
     public static final int SOLAR_ENERGY_CAPACITY = 5000;
 
+    public static final int SOLARGLASS_ENERGY_CAPACITY = 2500;
+
     public static final int BATTERY_ENERGY_CAPACITY = 100000;
 
     public static final int TIDAL_ENERGY_CAPACITY = 10000;

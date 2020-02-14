@@ -23,6 +23,7 @@ import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
 import io.moonman.emergingtechnology.machines.scrubber.ScrubberTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
 import io.moonman.emergingtechnology.machines.solar.SolarTileEntity;
+import io.moonman.emergingtechnology.machines.solarglass.SolarGlassTileEntity;
 import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.wind.WindTileEntity;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
@@ -72,6 +73,7 @@ public class RegistrationHandler {
         registerTileEntity(TidalGeneratorTileEntity.class, "tidalgenerator");
         registerTileEntity(BiomassGeneratorTileEntity.class, "biomassgenerator");
         registerTileEntity(SolarTileEntity.class, "solar");
+        registerTileEntity(SolarGlassTileEntity.class, "solarglass");
         registerTileEntity(WindTileEntity.class, "wind");
         registerTileEntity(BatteryTileEntity.class, "battery");
 

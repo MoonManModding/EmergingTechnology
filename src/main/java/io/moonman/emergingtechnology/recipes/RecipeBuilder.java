@@ -84,6 +84,7 @@ public class RecipeBuilder {
         ArrayList<Block> disabledBlocks = new ArrayList<Block>();
 
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.disabled) disabledBlocks.add(ModBlocks.solar);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.SOLARGLASS.disabled) disabledBlocks.add(ModBlocks.solarglass);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.disabled) disabledBlocks.add(ModBlocks.wind);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.BATTERY.disabled) disabledBlocks.add(ModBlocks.battery);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.disabled) disabledBlocks.add(ModBlocks.tidalgenerator);
