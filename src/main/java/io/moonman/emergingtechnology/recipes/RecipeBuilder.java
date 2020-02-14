@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.classes.EmptyRecipe;
+import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.BiomassRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipeBuilder;
 import io.moonman.emergingtechnology.recipes.machines.CollectorRecipeBuilder;
@@ -39,6 +40,7 @@ public class RecipeBuilder {
         FabricatorRecipeBuilder.build();
         BiomassRecipeBuilder.build();
         ScrubberRecipeBuilder.build();
+        AlgaeBioreactorRecipeBuilder.build();
 
         registerFurnaceRecipes();
     }
@@ -50,6 +52,8 @@ public class RecipeBuilder {
                 new ItemStack(ModItems.biomass), 0.1f);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.shreddedstarch),
                 new ItemStack(ModItems.biomass), 0.1f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.algae), new ItemStack(ModItems.biomass),
+                0.1f);
 
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticchickenraw),
                 new ItemStack(ModItems.syntheticchickencooked), 0.2f);
@@ -83,28 +87,47 @@ public class RecipeBuilder {
 
         ArrayList<Block> disabledBlocks = new ArrayList<Block>();
 
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.disabled) disabledBlocks.add(ModBlocks.solar);
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.SOLARGLASS.disabled) disabledBlocks.add(ModBlocks.solarglass);
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.disabled) disabledBlocks.add(ModBlocks.wind);
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.BATTERY.disabled) disabledBlocks.add(ModBlocks.battery);
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.disabled) disabledBlocks.add(ModBlocks.tidalgenerator);
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.disabled) disabledBlocks.add(ModBlocks.piezoelectric);
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.disabled) disabledBlocks.add(ModBlocks.biomassgenerator);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.SOLAR.disabled)
+            disabledBlocks.add(ModBlocks.solar);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.SOLARGLASS.disabled)
+            disabledBlocks.add(ModBlocks.solarglass);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.disabled)
+            disabledBlocks.add(ModBlocks.wind);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.BATTERY.disabled)
+            disabledBlocks.add(ModBlocks.battery);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.disabled)
+            disabledBlocks.add(ModBlocks.tidalgenerator);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.disabled)
+            disabledBlocks.add(ModBlocks.piezoelectric);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.disabled)
+            disabledBlocks.add(ModBlocks.biomassgenerator);
 
-        if (EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.disabled) disabledBlocks.add(ModBlocks.shredder);
-        if (EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.disabled) disabledBlocks.add(ModBlocks.processor);
-        if (EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.disabled) disabledBlocks.add(ModBlocks.collector);
-        if (EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.disabled) disabledBlocks.add(ModBlocks.fabricator);
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.disabled)
+            disabledBlocks.add(ModBlocks.shredder);
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.disabled)
+            disabledBlocks.add(ModBlocks.processor);
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.disabled)
+            disabledBlocks.add(ModBlocks.collector);
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.disabled)
+            disabledBlocks.add(ModBlocks.fabricator);
 
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.disabled) disabledBlocks.add(ModBlocks.cooker);
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.disabled) disabledBlocks.add(ModBlocks.scaffolder);
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.disabled) disabledBlocks.add(ModBlocks.bioreactor);
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.disabled)
+            disabledBlocks.add(ModBlocks.cooker);
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.disabled)
+            disabledBlocks.add(ModBlocks.scaffolder);
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.disabled)
+            disabledBlocks.add(ModBlocks.bioreactor);
 
-        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.disabled) disabledBlocks.add(ModBlocks.cooker);
-        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.disabled) disabledBlocks.add(ModBlocks.light);
-        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.disabled) disabledBlocks.add(ModBlocks.harvester);
-        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.FILLER.disabled) disabledBlocks.add(ModBlocks.filler);
-        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.disabled) disabledBlocks.add(ModBlocks.scrubber);
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.disabled)
+            disabledBlocks.add(ModBlocks.cooker);
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.disabled)
+            disabledBlocks.add(ModBlocks.light);
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.disabled)
+            disabledBlocks.add(ModBlocks.harvester);
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.FILLER.disabled)
+            disabledBlocks.add(ModBlocks.filler);
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.disabled)
+            disabledBlocks.add(ModBlocks.scrubber);
 
         for (Block block : disabledBlocks) {
             removeBlockRecipe(registry, block);

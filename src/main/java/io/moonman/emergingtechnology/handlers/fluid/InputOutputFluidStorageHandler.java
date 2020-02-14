@@ -7,14 +7,14 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 /**
- * A customisable Double FluidTank used in Emerging Technology
+ * A customisable Input/Output FluidTank used in Emerging Technology
  */
-public class DoubleFluidStorageHandler implements IFluidHandler {
+public class InputOutputFluidStorageHandler implements IFluidHandler {
 
     private final FluidTank inputTank;
     private final FluidTank outputTank;
 
-    public DoubleFluidStorageHandler(FluidTank inputTank, FluidTank outputTank) {
+    public InputOutputFluidStorageHandler(FluidTank inputTank, FluidTank outputTank) {
         this.inputTank = inputTank;
         this.outputTank = outputTank;
     }

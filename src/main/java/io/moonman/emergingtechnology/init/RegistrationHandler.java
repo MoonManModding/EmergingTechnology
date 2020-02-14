@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
@@ -70,6 +71,7 @@ public class RegistrationHandler {
         registerTileEntity(PiezoelectricTileEntity.class, "piezoelectric");
         registerTileEntity(BioreactorTileEntity.class, "bioreactor");
         registerTileEntity(ScaffolderTileEntity.class, "scaffolder");
+        registerTileEntity(AlgaeBioreactorTileEntity.class, "algaebioreactor");
         registerTileEntity(TidalGeneratorTileEntity.class, "tidalgenerator");
         registerTileEntity(BiomassGeneratorTileEntity.class, "biomassgenerator");
         registerTileEntity(SolarTileEntity.class, "solar");

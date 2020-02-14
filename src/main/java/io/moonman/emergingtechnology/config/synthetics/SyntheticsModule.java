@@ -15,6 +15,10 @@ public class SyntheticsModule {
 	@LangKey("config.emergingtechnology.synthetics.bioreactor.title")
     public final SyntheticsModuleBioreactor BIOREACTOR = new SyntheticsModuleBioreactor();
 
+    @Name("Algae Bioreactor")
+	@LangKey("config.emergingtechnology.synthetics.algaebioreactor.title")
+    public final SyntheticsModuleAlgaeBioreactor ALGAEBIOREACTOR = new SyntheticsModuleAlgaeBioreactor();
+
     @Name("Tissue Scaffolder")
 	@LangKey("config.emergingtechnology.synthetics.scaffolder.title")
     public final SyntheticsModuleScaffolder SCAFFOLDER = new SyntheticsModuleScaffolder();

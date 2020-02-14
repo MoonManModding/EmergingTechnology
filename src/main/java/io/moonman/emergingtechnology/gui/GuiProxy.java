@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorContainer;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorGui;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.battery.BatteryContainer;
 import io.moonman.emergingtechnology.machines.battery.BatteryGui;
 import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
@@ -96,6 +99,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof DiffuserTileEntity) {
             return new DiffuserContainer(player.inventory, (DiffuserTileEntity) te);
         }
+        if (te instanceof AlgaeBioreactorTileEntity) {
+            return new AlgaeBioreactorContainer(player.inventory, (AlgaeBioreactorTileEntity) te);
+        }
         return null;
     }
 
@@ -172,6 +178,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof DiffuserTileEntity) {
             DiffuserTileEntity containerTileEntity = (DiffuserTileEntity) te;
             return new DiffuserGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof AlgaeBioreactorTileEntity) {
+            AlgaeBioreactorTileEntity containerTileEntity = (AlgaeBioreactorTileEntity) te;
+            return new AlgaeBioreactorGui(player.inventory, containerTileEntity);
         }
 
         return null;

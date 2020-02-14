@@ -1,26 +1,16 @@
-package io.moonman.emergingtechnology.machines.scrubber;
+package io.moonman.emergingtechnology.machines.algaebioreactor;
 
-import com.google.common.collect.ImmutableMap;
-
-import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
-import io.moonman.emergingtechnology.handlers.fluid.InputOutputFluidStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
+import io.moonman.emergingtechnology.handlers.fluid.SplitFluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
-import io.moonman.emergingtechnology.helpers.machines.WindHelper;
-import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
-import io.moonman.emergingtechnology.init.ModBlocks;
+import io.moonman.emergingtechnology.helpers.machines.AlgaeBioreactorHelper;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
-import io.moonman.emergingtechnology.machines.diffuser.Diffuser;
-import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
-import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.ScrubberAnimationPacket;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,16 +18,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.model.animation.CapabilityAnimation;
-import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -45,29 +30,19 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ScrubberTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    private final IAnimationStateMachine asm;
+    private static String[] fluidNames = new String[] { "water" };
+    private static String[] gasNames = new String[] { "carbondioxide" };
 
-    public ScrubberTileEntity() {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            asm = ModelLoaderRegistry.loadASM(
-                    new ResourceLocation(EmergingTechnology.MODID, "asms/block/scrubber.json"), ImmutableMap.of());
-        } else
-            asm = null;
-    }
-
-    private FluidTank fluidHandler = new FluidStorageHandler(Reference.SCRUBBER_FLUID_CAPACITY) {
+    public FluidTank fluidHandler = new FluidStorageHandler(Reference.ALGAEBIOREACTOR_FLUID_CAPACITY) {
         @Override
         protected void onContentsChanged() {
             super.onContentsChanged();
@@ -75,7 +50,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         }
     };
 
-    private FluidTank gasHandler = new FluidStorageHandler(Reference.SCRUBBER_GAS_CAPACITY) {
+    public FluidTank gasHandler = new FluidStorageHandler(Reference.ALGAEBIOREACTOR_GAS_CAPACITY) {
         @Override
         protected void onContentsChanged() {
             super.onContentsChanged();
@@ -95,9 +70,10 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         }
     };
 
-    public InputOutputFluidStorageHandler fluidTanksHandler = new InputOutputFluidStorageHandler(fluidHandler, gasHandler);
+    public SplitFluidStorageHandler automationFluidHandler = new SplitFluidStorageHandler(fluidHandler, gasHandler,
+            fluidNames, gasNames);
 
-    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SCRUBBER_ENERGY_CAPACITY) {
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.ALGAEBIOREACTOR_ENERGY_CAPACITY) {
         @Override
         public void onContentsChanged() {
             super.onContentsChanged();
@@ -112,15 +88,6 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         protected void onContentsChanged(int slot) {
             markDirty();
             super.onContentsChanged(slot);
-        }
-
-        @Override
-        public boolean isItemValid(int slot, ItemStack stack) {
-
-            if (slot == 1)
-                return false;
-
-            return ScrubberHelper.isItemStackValid(stack);
         }
     };
 
@@ -137,7 +104,6 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     private int energy = this.energyHandler.getEnergyStored();
 
     private int progress = 0;
-    private TurbineSpeedEnum speed = TurbineSpeedEnum.OFF;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -147,23 +113,18 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             return true;
         if (capability == CapabilityEnergy.ENERGY)
             return true;
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
-            return true;
 
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.fluidTanksHandler);
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.automationFluidHandler);
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.automationItemHandler);
         if (capability == CapabilityEnergy.ENERGY)
             return CapabilityEnergy.ENERGY.cast(this.consumerEnergyHandler);
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
-            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
         return super.getCapability(capability, facing);
     }
 
@@ -174,14 +135,13 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
         this.setWater(compound.getInteger("GuiWater"));
-        this.setGas(compound.getInteger("GuiGas"));
         this.setEnergy(compound.getInteger("GuiEnergy"));
+        this.setGas(compound.getInteger("GuiGas"));
         this.setProgress(compound.getInteger("GuiProgress"));
-        this.setTurbineState(TurbineSpeedEnum.getById(compound.getInteger("Speed")));
 
-        this.fluidHandler.readFromNBT(compound.getCompoundTag("InputTank"));
-        this.gasHandler.readFromNBT(compound.getCompoundTag("OutputTank"));
-
+        this.fluidHandler.readFromNBT(compound.getCompoundTag("FluidTank"));
+        this.gasHandler.readFromNBT(compound.getCompoundTag("GasTank"));
+        
         this.energyHandler.readFromNBT(compound);
     }
 
@@ -192,10 +152,9 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
 
         compound.setInteger("GuiWater", this.getWater());
-        compound.setInteger("GuiGas", this.getGas());
         compound.setInteger("GuiEnergy", this.getEnergy());
+        compound.setInteger("GuiGas", this.getGas());
         compound.setInteger("GuiProgress", this.getProgress());
-        compound.setInteger("Speed", TurbineSpeedEnum.getId(this.speed));
 
         NBTTagCompound fluidTag = new NBTTagCompound();
         NBTTagCompound gasTag = new NBTTagCompound();
@@ -203,8 +162,8 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.fluidHandler.writeToNBT(fluidTag);
         this.gasHandler.writeToNBT(gasTag);
 
-        compound.setTag("InputTank", fluidTag);
-        compound.setTag("OutputTank", gasTag);
+        compound.setTag("FluidTank", fluidTag);
+        compound.setTag("GasTank", gasTag);
 
         this.energyHandler.writeToNBT(compound);
 
@@ -235,114 +194,98 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.setGas(this.gasHandler.getFluidAmount());
 
         doProcessing();
-        pushToDiffusers();
     }
 
     public void doProcessing() {
 
-        // Gas full
-        if (this.getGas() >= Reference.SCRUBBER_GAS_CAPACITY) {
-            this.setTurbineState(TurbineSpeedEnum.OFF);
+        ItemStack inputStack = getInputStack();
+
+        // Nothing in input stack
+        if (inputStack.getCount() == 0) {
+            this.setProgress(0);
+            System.out.println("1");
+            return;
+        }
+
+        // Can't process this item
+        if (!AlgaeBioreactorHelper.canProcessItemStack(inputStack)) {
+            this.setProgress(0);
+            System.out.println("2");
+            return;
+        }
+
+        ItemStack outputStack = getOutputStack();
+        IMachineRecipe recipe = AlgaeBioreactorHelper.getRecipeFromInputItemStack(inputStack);
+
+        // This is probably unneccessary
+        if (recipe == null) {
+            System.out.println("3");
+            return;
+        }
+
+        // Output stack is full
+        if (outputStack.getCount() == 64) {
+            System.out.println("4");
+            return;
+        }
+
+        // Output stack incompatible/non-empty
+        if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput())
+                && !StackHelper.isItemStackEmpty(outputStack)) {
+                    System.out.println("5");
+            return;
+        }
+
+        // Not enough room in output stack
+        if (outputStack.getCount() + recipe.getOutput().getCount() > recipe.getOutput().getMaxStackSize()) {
+            System.out.println("6");
+            return;
+        }
+
+        // Not enough items in input stack
+        if (inputStack.getCount() < recipe.getInput().getCount()) {
+            System.out.println("7");
             return;
         }
 
         // Not enough water
-        if (this.getWater() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage) {
-            this.setTurbineState(TurbineSpeedEnum.OFF);
+        if (this.getWater() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorWaterUsage) {
+            System.out.println("8");
+            return;
+        }
+
+        // Not enough gas
+        if (this.getGas() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage) {
+            System.out.println("9");
             return;
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage) {
-            this.setTurbineState(TurbineSpeedEnum.OFF);
+        if (this.getEnergy() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorEnergyUsage) {
+            System.out.println("10");
             return;
         }
 
-        this.setTurbineState(TurbineSpeedEnum.FAST);
+        this.energyHandler
+                .extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorEnergyUsage, false);
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage,
-                false);
-
-        this.fluidHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage, true);
+        this.fluidHandler.drain(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorWaterUsage, true);
+        this.gasHandler.drain(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage, true);
 
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());
+        this.setGas(this.gasHandler.getFluidAmount());
 
         // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberBaseTimeTaken) {
+        if (this.getProgress() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorBaseTimeTaken) {
             this.setProgress(this.getProgress() + 1);
             return;
         }
 
-        int gasGenerated = ScrubberHelper.getGasGenerated(getWorld(), getPos());
-
-        if (!StackHelper.isItemStackEmpty(getInputStack())) {
-
-            IMachineRecipe recipe = ScrubberHelper.getRecipeFromInputItemStack(getInputStack());
-
-            if (recipe != null) {
-
-                if (getInputStack().getCount() >= recipe.getInput().getCount()) {
-                    itemHandler.extractItem(0, recipe.getInput().getCount(), false);
-                    gasGenerated += EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.biocharBoostAmount;
-                }
-            }
-        }
-
-        this.gasHandler.fill(new FluidStack(ModFluids.CARBON_DIOXIDE, gasGenerated), true);
-
-        this.setGas(this.gasHandler.getFluidAmount());
+        itemHandler.insertItem(1, recipe.getOutput().copy(), false);
+        itemHandler.extractItem(0, recipe.getInput().getCount(), false);
 
         this.setProgress(0);
-    }
-
-    public void pushToDiffusers() {
-        for (EnumFacing facing : EnumFacing.VALUES) {
-
-            if (this.getGas() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate) {
-
-                BlockPos pos = getPos().offset(facing);
-                IBlockState blockState = world.getBlockState(pos);
-
-                if (blockState.getBlock() == ModBlocks.diffuser) {
-                    TileEntity tileEntity = world.getTileEntity(pos);
-                    if (tileEntity instanceof DiffuserTileEntity) {
-
-                        DiffuserTileEntity diffuserTileEntity = (DiffuserTileEntity) tileEntity;
-
-                        int filled = diffuserTileEntity.gasHandler.fill(
-                                new FluidStack(this.gasHandler.getFluid().getFluid(),
-                                        EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate),
-                                true);
-
-                        if (filled > 0) {
-                            this.gasHandler.drain(filled, true);
-                            this.setGas(this.gasHandler.getFluidAmount());
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setTurbineStateClient(TurbineSpeedEnum speed) {
-
-        String state = this.asm.currentState();
-        String newState = WindHelper.getTurbineStateFromSpeedEnum(speed);
-
-        if (!state.equalsIgnoreCase(newState)) {
-            this.asm.transition(newState);
-        }
-    }
-
-    private void setTurbineState(TurbineSpeedEnum speed) {
-
-        if (speed != this.speed) {
-            PacketHandler.INSTANCE.sendToAll(new ScrubberAnimationPacket(this.getPos(), speed));
-        }
-
-        this.speed = speed;
     }
 
     public ItemStack getInputStack() {
@@ -407,9 +350,9 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         case 1:
             return this.getWater();
         case 2:
-            return this.getProgress();
-        case 3:
             return this.getGas();
+        case 3:
+            return this.getProgress();
         default:
             return 0;
         }
@@ -424,10 +367,10 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             this.setWater(value);
             break;
         case 2:
-            this.setProgress(value);
+            this.setGas(value);
             break;
         case 3:
-            this.setGas(value);
+            this.setProgress(value);
             break;
         }
     }
@@ -437,13 +380,20 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     @Optional.Method(modid = "opencomputers")
     @Override
     public String getComponentName() {
-        return "etech_scrubber";
+        return "etech_algaebioreactor";
     }
 
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] getWaterLevel(Context context, Arguments args) {
         int level = getWater();
+        return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getGasLevel(Context context, Arguments args) {
+        int level = getGas();
         return new Object[] { level };
     }
 
@@ -458,13 +408,6 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     @Optional.Method(modid = "opencomputers")
     public Object[] getProgress(Context context, Arguments args) {
         int value = getProgress();
-        return new Object[] { value };
-    }
-
-    @Callback
-    @Optional.Method(modid = "opencomputers")
-    public Object[] getGas(Context context, Arguments args) {
-        int value = getGas();
         return new Object[] { value };
     }
 }

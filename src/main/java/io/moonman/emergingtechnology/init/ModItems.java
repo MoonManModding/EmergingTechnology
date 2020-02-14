@@ -31,6 +31,7 @@ import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticCowCoo
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticCowRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPigCooked;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticPigRaw;
+import io.moonman.emergingtechnology.item.synthetics.products.Algae;
 import io.moonman.emergingtechnology.item.synthetics.products.SyntheticLeather;
 import io.moonman.emergingtechnology.item.synthetics.products.SyntheticSilk;
 import io.moonman.emergingtechnology.item.synthetics.products.SyntheticSlime;
@@ -106,6 +107,7 @@ public class ModItems {
 	public static final Item cooker = null;
 	public static final Item bioreactor = null;
 	public static final Item scaffolder = null;
+	public static final Item algaebioreactor = null;
 
 	// Items
 
@@ -126,6 +128,8 @@ public class ModItems {
 	public static final Item syntheticleather = null;
 	public static final Item syntheticslime = null;
 	public static final Item syntheticsilk = null;
+
+	public static final Item algae = null;
 
 	// endregion
 
@@ -157,7 +161,7 @@ public class ModItems {
 				ModItems.turbine, ModItems.plasticwaste, ModItems.paperwaste, ModItems.paperpulp, ModItems.emptysyringe,
 				ModItems.syntheticcowraw, ModItems.syntheticchickenraw, ModItems.syntheticpigraw,
 				ModItems.syntheticcowcooked, ModItems.syntheticchickencooked, ModItems.syntheticpigcooked,
-				ModItems.syntheticleather, ModItems.syntheticslime, ModItems.syntheticsilk, ModItems.biomass,
+				ModItems.syntheticleather, ModItems.syntheticslime, ModItems.syntheticsilk, ModItems.algae, ModItems.biomass,
 				ModItems.biochar };
 
 		return items;
@@ -169,7 +173,7 @@ public class ModItems {
 				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
 				new Turbine(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),
 				new SyntheticPigRaw(), new SyntheticPigCooked(), new SyntheticCowCooked(), new SyntheticChickenCooked(),
-				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new Biomass(), new Biochar() };
+				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new Algae(), new Biomass(), new Biochar() };
 
 		return items;
 	}

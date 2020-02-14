@@ -23,6 +23,7 @@ import io.moonman.emergingtechnology.machines.harvester.Harvester;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactor;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.scrubber.Scrubber;
@@ -69,6 +70,7 @@ public class ModBlocks {
 	public static final Cooker cooker = null;
 	public static final Bioreactor bioreactor = null;
 	public static final Scaffolder scaffolder = null;
+	public static final AlgaeBioreactor algaebioreactor = null;
 	// endregion
 
 	// region Electrics Blocks
@@ -87,24 +89,26 @@ public class ModBlocks {
 	// endregion
 
 	public static Block[] getBlocks() {
-		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.scrubber, ModBlocks.diffuser, ModBlocks.light,
-				ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker,
-				ModBlocks.bioreactor, ModBlocks.scaffolder, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
-				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery, ModBlocks.ladder,
-				ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock, ModBlocks.machinecase,
-				ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock,
-				ModBlocks.biocharblock, ModBlocks.carbondioxideblock };
+		Block[] blocks = { ModBlocks.hydroponic, ModBlocks.harvester, ModBlocks.filler, ModBlocks.scrubber,
+				ModBlocks.diffuser, ModBlocks.light, ModBlocks.processor, ModBlocks.shredder, ModBlocks.fabricator,
+				ModBlocks.collector, ModBlocks.cooker, ModBlocks.bioreactor, ModBlocks.scaffolder,
+				ModBlocks.algaebioreactor, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
+				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery,
+				ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock,
+				ModBlocks.machinecase, ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock,
+				ModBlocks.shreddedstarchblock, ModBlocks.biocharblock, ModBlocks.carbondioxideblock };
 
 		return blocks;
 	}
 
 	public static Block[] generateBlocks() {
-		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Diffuser(), new Light(), new Frame(), new Processor(),
-				new Shredder(), new PlasticBlock(), new ClearPlasticBlock(), new MachineCase(), new Fabricator(),
-				new Collector(), new Cooker(), new Ladder(), new Piezoelectric(), new TidalGenerator(),
-				new BiomassGenerator(), new Solar(), new SolarGlass(), new Wind(), new Battery(), new BiocharBlock(),
-				new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new Bioreactor(),
-				new Scaffolder(), new CarbonDioxideBlock() };
+		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Diffuser(), new Light(),
+				new Frame(), new Processor(), new Shredder(), new PlasticBlock(), new ClearPlasticBlock(),
+				new MachineCase(), new Fabricator(), new Collector(), new Cooker(), new Scaffolder(), new Bioreactor(),
+				new AlgaeBioreactor(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(),
+				new Solar(), new SolarGlass(), new Wind(), new Battery(), new BiocharBlock(),
+				new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(),
+				new CarbonDioxideBlock() };
 
 		return blocks;
 	}
