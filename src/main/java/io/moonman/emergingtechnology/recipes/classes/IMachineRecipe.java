@@ -9,4 +9,7 @@ public interface IMachineRecipe {
    
    public String getInputOreName();
    public boolean hasOreDictInput();
+
+   public int getInputCount();
+   public int getOutputCount();
 }

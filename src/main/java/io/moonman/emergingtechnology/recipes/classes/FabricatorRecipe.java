@@ -42,4 +42,16 @@ public class FabricatorRecipe implements IMachineRecipe {
 	public boolean hasOreDictInput() {
 		return oreDictName != null;
 	}
+
+	public int getInputCount() {
+		int count = this.input.getCount();
+
+		return count > 0 ? count : 1;
+	}
+
+	public int getOutputCount() {
+		int count = this.output.getCount();
+
+		return count > 0 ? count : 1;
+	}
 }

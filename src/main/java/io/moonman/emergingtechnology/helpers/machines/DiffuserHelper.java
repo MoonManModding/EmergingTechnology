@@ -125,7 +125,7 @@ public class DiffuserHelper {
                     if (success)
                         plantsBoosted += 1;
 
-                } else if (blockState.getBlock() == Blocks.AIR) {
+                } else if (!blockState.getBlock().isFullBlock(blockState)) {
                     continue;
                 } else {
                     break;

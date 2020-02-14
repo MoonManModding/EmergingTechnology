@@ -203,14 +203,12 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         // Nothing in input stack
         if (inputStack.getCount() == 0) {
             this.setProgress(0);
-            System.out.println("1");
             return;
         }
 
         // Can't process this item
         if (!AlgaeBioreactorHelper.canProcessItemStack(inputStack)) {
             this.setProgress(0);
-            System.out.println("2");
             return;
         }
 
@@ -219,50 +217,42 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
 
         // This is probably unneccessary
         if (recipe == null) {
-            System.out.println("3");
             return;
         }
 
         // Output stack is full
         if (outputStack.getCount() == 64) {
-            System.out.println("4");
             return;
         }
 
         // Output stack incompatible/non-empty
         if (!StackHelper.compareItemStacks(outputStack, recipe.getOutput())
                 && !StackHelper.isItemStackEmpty(outputStack)) {
-                    System.out.println("5");
             return;
         }
 
         // Not enough room in output stack
         if (outputStack.getCount() + recipe.getOutput().getCount() > recipe.getOutput().getMaxStackSize()) {
-            System.out.println("6");
             return;
         }
 
         // Not enough items in input stack
         if (inputStack.getCount() < recipe.getInput().getCount()) {
-            System.out.println("7");
             return;
         }
 
         // Not enough water
         if (this.getWater() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorWaterUsage) {
-            System.out.println("8");
             return;
         }
 
         // Not enough gas
         if (this.getGas() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage) {
-            System.out.println("9");
             return;
         }
 
         // Not enough energy
         if (this.getEnergy() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorEnergyUsage) {
-            System.out.println("10");
             return;
         }
 
@@ -283,7 +273,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         }
 
         itemHandler.insertItem(1, recipe.getOutput().copy(), false);
-        itemHandler.extractItem(0, recipe.getInput().getCount(), false);
+        itemHandler.extractItem(0, recipe.getInputCount(), false);
 
         this.setProgress(0);
     }

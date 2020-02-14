@@ -43,13 +43,23 @@ public class RecipeProvider {
 
     public static ItemStack getOutputForItemStackFromRecipes(ItemStack itemStack, List<IMachineRecipe> recipes) {
 
+        IMachineRecipe recipe = getMatchingRecipe(itemStack, recipes);
+
+        if (recipe != null) {
+            return recipe.getOutput();
+        }
+
+        return null;
+    }
+
+    public static IMachineRecipe getMatchingRecipe(ItemStack itemStack, List<IMachineRecipe> recipes) {
         int[] oreIds = OreDictionary.getOreIDs(itemStack);
 
         for (IMachineRecipe recipe : recipes) {
 
             if (!recipe.hasOreDictInput()) {
                 if (recipe.getInput().isItemEqual(itemStack)) {
-                    return recipe.getOutput();
+                    return recipe;
                 }
             } else {
                 
@@ -57,18 +67,9 @@ public class RecipeProvider {
 
                 for (int id : oreIds) {
                     if (id == oreId) {
-                        return recipe.getOutput();
+                        return recipe;
                     }
                 }
-            }
-        }
-        return null;
-    }
-
-    public static IMachineRecipe getMatchingRecipe(ItemStack itemStack, List<IMachineRecipe> recipes) {
-        for (IMachineRecipe recipe : recipes) {
-            if (recipe.getInput().isItemEqual(itemStack)) {
-                return recipe;
             }
         }
         return null;

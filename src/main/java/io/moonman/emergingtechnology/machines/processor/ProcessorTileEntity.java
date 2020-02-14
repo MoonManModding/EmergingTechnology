@@ -222,7 +222,7 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
 
         itemHandler.insertItem(1, recipe.getOutput().copy(), false);
-        itemHandler.extractItem(0, recipe.getInput().getCount(), false);
+        itemHandler.extractItem(0, recipe.getInputCount(), false);
 
         this.setProgress(0);
     }

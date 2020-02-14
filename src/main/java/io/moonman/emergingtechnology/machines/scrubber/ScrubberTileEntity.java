@@ -17,6 +17,7 @@ import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.diffuser.Diffuser;
 import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
@@ -95,7 +96,8 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         }
     };
 
-    public InputOutputFluidStorageHandler fluidTanksHandler = new InputOutputFluidStorageHandler(fluidHandler, gasHandler);
+    public InputOutputFluidStorageHandler fluidTanksHandler = new InputOutputFluidStorageHandler(fluidHandler,
+            gasHandler);
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SCRUBBER_ENERGY_CAPACITY) {
         @Override
@@ -235,7 +237,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.setGas(this.gasHandler.getFluidAmount());
 
         doProcessing();
-        pushToDiffusers();
+        pushToGasConsumers();
     }
 
     public void doProcessing() {
@@ -283,7 +285,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             if (recipe != null) {
 
                 if (getInputStack().getCount() >= recipe.getInput().getCount()) {
-                    itemHandler.extractItem(0, recipe.getInput().getCount(), false);
+                    itemHandler.extractItem(0, recipe.getInputCount(), false);
                     gasGenerated += EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.biocharBoostAmount;
                 }
             }
@@ -296,32 +298,38 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
         this.setProgress(0);
     }
 
-    public void pushToDiffusers() {
+    public void pushToGasConsumers() {
         for (EnumFacing facing : EnumFacing.VALUES) {
 
-            if (this.getGas() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate) {
-
-                BlockPos pos = getPos().offset(facing);
-                IBlockState blockState = world.getBlockState(pos);
-
-                if (blockState.getBlock() == ModBlocks.diffuser) {
-                    TileEntity tileEntity = world.getTileEntity(pos);
-                    if (tileEntity instanceof DiffuserTileEntity) {
-
-                        DiffuserTileEntity diffuserTileEntity = (DiffuserTileEntity) tileEntity;
-
-                        int filled = diffuserTileEntity.gasHandler.fill(
-                                new FluidStack(this.gasHandler.getFluid().getFluid(),
-                                        EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate),
-                                true);
-
-                        if (filled > 0) {
-                            this.gasHandler.drain(filled, true);
-                            this.setGas(this.gasHandler.getFluidAmount());
-                        }
-                    }
-                }
+            if (this.getGas() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate) {
+                return;
             }
+
+            BlockPos pos = getPos().offset(facing);
+            TileEntity tileEntity = world.getTileEntity(pos);
+            int filled = 0;
+
+            if (tileEntity == null) {
+                continue;
+            }
+
+            if (tileEntity instanceof DiffuserTileEntity) {
+                DiffuserTileEntity diffuserTileEntity = (DiffuserTileEntity) tileEntity;
+                filled = diffuserTileEntity.gasHandler.fill(new FluidStack(this.gasHandler.getFluid().getFluid(),
+                        EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate), true);
+            }
+
+            if (tileEntity instanceof AlgaeBioreactorTileEntity) {
+                AlgaeBioreactorTileEntity bioreactorTileEntity = (AlgaeBioreactorTileEntity) tileEntity;
+                filled = bioreactorTileEntity.gasHandler.fill(new FluidStack(this.gasHandler.getFluid().getFluid(),
+                        EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberGasTransferRate), true);
+            }
+
+            if (filled > 0) {
+                this.gasHandler.drain(filled, true);
+                this.setGas(this.gasHandler.getFluidAmount());
+            }
+
         }
     }
 

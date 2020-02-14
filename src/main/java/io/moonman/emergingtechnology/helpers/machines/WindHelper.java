@@ -56,6 +56,6 @@ public class WindHelper {
 
         Block block = state.getBlock();
 
-        return (block == Blocks.AIR);
+        return (block == Blocks.AIR || block.isFullCube(state));
     }
 }
