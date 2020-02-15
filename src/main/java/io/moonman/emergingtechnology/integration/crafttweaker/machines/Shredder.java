@@ -56,7 +56,7 @@ public class Shredder
 	private static class Remove implements IAction
 	{
 		private final ItemStack output;
-		List<IMachineRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes = new ArrayList<IMachineRecipe>();
 
 		public Remove(ItemStack output)
 		{
@@ -66,7 +66,7 @@ public class Shredder
 		@Override
 		public void apply()
 		{
-			removedRecipes = RecipeProvider.removeRecipesByOutput(RecipeProvider.shredderRecipes, output);
+			ShredderRecipeBuilder.removeByOutput(this.output);
 		}
 
 		@Override

@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.recipes.machines;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomRecipeWrapper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
@@ -14,8 +17,15 @@ public class FabricatorRecipeBuilder {
 
     private static boolean removedAll = false;
 
+    private static List<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+
     public static void removeAll() {
         removedAll = true;
+    }
+
+    public static ItemStack removeByOutput(ItemStack itemStack) {
+        recipesToRemove.add(itemStack);
+        return itemStack;
     }
 
     public static void build() {
@@ -23,6 +33,10 @@ public class FabricatorRecipeBuilder {
         if (EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.disabled || removedAll) return;
 
         buildFabricatorRecipeList();
+
+        for (ItemStack itemStack : recipesToRemove) {
+            RecipeProvider.removeRecipesByOutput(RecipeProvider.fabricatorRecipes, itemStack);
+        }
     }
 
     private static void buildFabricatorRecipeList() {

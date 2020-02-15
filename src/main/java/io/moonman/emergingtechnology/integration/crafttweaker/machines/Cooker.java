@@ -56,7 +56,7 @@ public class Cooker
 	private static class Remove implements IAction
 	{
 		private final ItemStack output;
-		List<IMachineRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes = new ArrayList<IMachineRecipe>();
 
 		public Remove(ItemStack output)
 		{
@@ -66,7 +66,7 @@ public class Cooker
 		@Override
 		public void apply()
 		{
-			removedRecipes = RecipeProvider.removeRecipesByOutput(RecipeProvider.cookerRecipes, output);
+			CookerRecipeBuilder.removeByOutput(this.output);
 		}
 
 		@Override

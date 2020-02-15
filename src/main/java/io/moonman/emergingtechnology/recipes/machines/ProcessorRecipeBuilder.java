@@ -15,8 +15,15 @@ public class ProcessorRecipeBuilder {
 
     private static boolean removedAll = false;
 
+    private static List<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+
     public static void removeAll() {
         removedAll = true;
+    }
+
+    public static ItemStack removeByOutput(ItemStack itemStack) {
+        recipesToRemove.add(itemStack);
+        return itemStack;
     }
 
     public static void build() {
@@ -26,6 +33,10 @@ public class ProcessorRecipeBuilder {
         registerProcessorRecipes(new ItemStack(ModBlocks.plasticblock), getProcessorBlockItems());
         registerProcessorRecipes(new ItemStack(ModBlocks.clearplasticblock), getProcessorClearBlockItems());
         registerProcessorRecipes(new ItemStack(ModItems.paperpulp), getProcessorPaperItems());
+
+        for (ItemStack itemStack : recipesToRemove) {
+            RecipeProvider.removeRecipesByOutput(RecipeProvider.processorRecipes, itemStack);
+        }
     }
 
     private static List<ItemStack> getProcessorBlockItems() {

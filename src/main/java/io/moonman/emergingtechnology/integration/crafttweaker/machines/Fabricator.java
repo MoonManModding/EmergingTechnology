@@ -57,7 +57,7 @@ public class Fabricator
 	private static class Remove implements IAction
 	{
 		private final ItemStack output;
-		List<IMachineRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes = new ArrayList<IMachineRecipe>();
 
 		public Remove(ItemStack output)
 		{
@@ -67,7 +67,7 @@ public class Fabricator
 		@Override
 		public void apply()
 		{
-			removedRecipes = RecipeProvider.removeRecipesByOutput(RecipeProvider.fabricatorRecipes, output);
+			FabricatorRecipeBuilder.removeByOutput(this.output);
 		}
 
 		@Override

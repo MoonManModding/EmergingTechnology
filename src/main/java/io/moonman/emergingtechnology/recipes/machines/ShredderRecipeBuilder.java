@@ -16,8 +16,15 @@ public class ShredderRecipeBuilder {
 
     private static boolean removedAll = false;
 
+    private static List<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+
     public static void removeAll() {
         removedAll = true;
+    }
+
+    public static ItemStack removeByOutput(ItemStack itemStack) {
+        recipesToRemove.add(itemStack);
+        return itemStack;
     }
 
     public static void build() {
@@ -29,6 +36,10 @@ public class ShredderRecipeBuilder {
         registerShredderRecipes(new ItemStack(ModItems.shreddedstarch), getShredderStarchItems());
         registerShredderRecipes(new ItemStack(ModItems.shreddedpaper), getShredderPaperItems());
         registerShredderRecipes(new ItemStack(ModItems.shreddedpaper, 3), getShredderBookItems());
+
+        for (ItemStack itemStack : recipesToRemove) {
+            RecipeProvider.removeRecipesByOutput(RecipeProvider.shredderRecipes, itemStack);
+        }
     }
 
     private static void registerShredderRecipes(ItemStack output, List<ItemStack> inputs) {

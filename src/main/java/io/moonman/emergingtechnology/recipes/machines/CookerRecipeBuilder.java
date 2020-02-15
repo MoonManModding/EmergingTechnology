@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.recipes.machines;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
@@ -13,8 +14,15 @@ public class CookerRecipeBuilder {
 
     private static boolean removedAll = false;
 
+    private static List<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+
     public static void removeAll() {
         removedAll = true;
+    }
+
+    public static ItemStack removeByOutput(ItemStack itemStack) {
+        recipesToRemove.add(itemStack);
+        return itemStack;
     }
 
     public static void build() {
@@ -23,6 +31,10 @@ public class CookerRecipeBuilder {
 
         List<ItemStack> validCookedFoodItems = CookerHelper.getValidCookedFoodItems();
         registerCookerRecipes(validCookedFoodItems);
+
+        for (ItemStack itemStack : recipesToRemove) {
+            RecipeProvider.removeRecipesByOutput(RecipeProvider.cookerRecipes, itemStack);
+        }
     }
 
     private static void registerCookerRecipes(List<ItemStack> inputs) {
