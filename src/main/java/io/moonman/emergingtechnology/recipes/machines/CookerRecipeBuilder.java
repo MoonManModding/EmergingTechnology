@@ -11,9 +11,15 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 
 public class CookerRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
 
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.disabled) return;
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.disabled || removedAll) return;
 
         List<ItemStack> validCookedFoodItems = CookerHelper.getValidCookedFoodItems();
         registerCookerRecipes(validCookedFoodItems);

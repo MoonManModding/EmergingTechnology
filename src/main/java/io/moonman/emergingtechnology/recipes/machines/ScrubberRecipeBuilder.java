@@ -8,9 +8,15 @@ import net.minecraft.item.ItemStack;
 
 public class ScrubberRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
 
-        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.disabled) return;
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.disabled || removedAll) return;
 
         RecipeProvider.scrubberRecipes.add(new SimpleRecipe(ItemStack.EMPTY, new ItemStack(ModItems.biochar)));
     }

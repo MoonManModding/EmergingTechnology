@@ -13,9 +13,15 @@ import net.minecraft.item.ItemStack;
 
 public class ProcessorRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
 
-        if (EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.disabled) return;
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.disabled || removedAll) return;
 
         registerProcessorRecipes(new ItemStack(ModBlocks.plasticblock), getProcessorBlockItems());
         registerProcessorRecipes(new ItemStack(ModBlocks.clearplasticblock), getProcessorClearBlockItems());

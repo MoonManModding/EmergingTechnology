@@ -10,9 +10,15 @@ import net.minecraft.item.ItemStack;
 
 public class ScaffolderRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
 
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.disabled) return;
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.disabled || removedAll) return;
 
         for (ModTissue modTissue: ModTissueProvider.allTissues) {
             ItemStack sample = ModTissueProvider.getSampleItemStackByEntityId(modTissue.entityId);

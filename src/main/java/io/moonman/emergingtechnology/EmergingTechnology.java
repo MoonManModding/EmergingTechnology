@@ -29,8 +29,6 @@ public class EmergingTechnology {
   @SidedProxy(clientSide = "io.moonman.emergingtechnology.proxy.ClientOnlyProxy", serverSide = "io.moonman.emergingtechnology.proxy.DedicatedServerProxy")
   public static CommonProxy proxy;
 
-  // static InteropProxy interopProxy;
-
   static {
     FluidRegistry.enableUniversalBucket();
   }
@@ -46,8 +44,6 @@ public class EmergingTechnology {
     proxy.init(event);
 
     NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxy());
-
-    // interopProxy = ModLoadedCheck.getProxy();
   }
 
   @Mod.EventHandler

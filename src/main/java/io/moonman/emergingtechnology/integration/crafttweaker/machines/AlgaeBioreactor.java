@@ -6,7 +6,8 @@ import crafttweaker.api.item.IItemStack;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
-import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -14,8 +15,8 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.ArrayList;
 import java.util.List;
 
-@ZenClass("mods.emergingtechnology.Scaffolder")
-public class Scaffolder
+@ZenClass("mods.emergingtechnology.AlgaeBioreactor")
+public class AlgaeBioreactor
 {
     @ZenMethod
 	public static void addRecipe(IItemStack output, Object input)
@@ -37,13 +38,13 @@ public class Scaffolder
 		@Override
 		public void apply()
 		{
-			RecipeProvider.scaffolderRecipes.add(recipe);
+			RecipeProvider.algaeBioreactorRecipes.add(recipe);
 		}
 
 		@Override
 		public String describe()
 		{
-			return "Adding Scaffolder Recipe for "+ recipe.getOutput().getDisplayName();
+			return "Adding Algae Bioreactor Recipe for "+ recipe.getOutput().getDisplayName();
 		}
 	}
 
@@ -66,13 +67,13 @@ public class Scaffolder
 		@Override
 		public void apply()
 		{
-			removedRecipes = RecipeProvider.removeRecipesByOutput(RecipeProvider.scaffolderRecipes, output);
+			removedRecipes = RecipeProvider.removeRecipesByOutput(RecipeProvider.algaeBioreactorRecipes, output);
 		}
 
 		@Override
 		public String describe()
 		{
-			return "Removing Scaffolder Recipe for "+ output.getDisplayName();
+			return "Removing Algae Bioreactor Recipe for "+ output.getDisplayName();
 		}
 	}
 
@@ -92,13 +93,13 @@ public class Scaffolder
 		@Override
 		public void apply()
 		{
-            ScaffolderRecipeBuilder.removeAll();
+            AlgaeBioreactorRecipeBuilder.removeAll();
 		}
 
 		@Override
 		public String describe()
 		{
-			return "Removing all Scaffolder Recipes";
+			return "Removing all Algae Bioreactor Recipes";
 		}
 	}
 }

@@ -8,9 +8,15 @@ import net.minecraft.item.ItemStack;
 
 public class AlgaeBioreactorRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
         
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.disabled) return;
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.disabled || removedAll) return;
 
         RecipeProvider.algaeBioreactorRecipes.add(new SimpleRecipe(new ItemStack(ModItems.algae, 8), "slimeball"));
         RecipeProvider.algaeBioreactorRecipes.add(new SimpleRecipe(new ItemStack(ModItems.algae, 2), new ItemStack(ModItems.algae, 1)));

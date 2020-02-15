@@ -19,8 +19,15 @@ import net.minecraft.world.biome.Biome;
  */
 public class CollectorHelper {
 
-    private static ItemStack PAPER = new ItemStack(ModItems.paperwaste);
-    private static ItemStack PLASTIC = new ItemStack(ModItems.plasticwaste);
+    private static ItemStack[] collectorItems = new ItemStack[] {
+        new ItemStack(ModItems.paperwaste),
+        new ItemStack(ModItems.plasticwaste),
+        new ItemStack(ModItems.algae)
+    };
+
+    public static ItemStack[] getCollectorItems() {
+        return collectorItems;
+    }
 
     public static boolean isInValidBiome(Biome biome) {
         return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN;
@@ -55,17 +62,17 @@ public class CollectorHelper {
     }
 
     public static ItemStack getRandomRecoveredItemStack() {
-        int random = new Random().nextInt(101);
-
-        if (random < 50) {
-            return PLASTIC.copy();
-        } else {
-            return PAPER.copy();
-        }
+        return collectorItems[new Random().nextInt(collectorItems.length)];
     }
 
     public static boolean isValidItemStack(ItemStack itemStack) {
-        return StackHelper.compareItemStacks(itemStack, PAPER) || StackHelper.compareItemStacks(itemStack, PLASTIC);
+        for (ItemStack item : collectorItems) {
+            if (!StackHelper.compareItemStacks(item, itemStack)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static boolean isValidNeighbour(IBlockState state) {

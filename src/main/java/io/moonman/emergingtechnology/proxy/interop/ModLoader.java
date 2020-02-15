@@ -15,7 +15,7 @@ public class ModLoader {
 	private static boolean OCLoaded = false;
 	private static boolean CTLoaded = false;
 	
-	public static void init() {
+	public static void preInit() {
 		if (initialized) return;
 		
 		ICLoaded = Loader.isModLoaded("ic2");
@@ -35,15 +35,5 @@ public class ModLoader {
 
 	public static boolean isCraftTweakerLoaded() {
 		return CTLoaded;
-	}
-
-	// Legacy
-	public static InteropProxy getProxy()
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		if (ModLoader.isOpenComputersLoaded()) {
-			return Class.forName("io.moonman.emergingtechnology.proxy.ActiveInteropProxy").asSubclass(InteropProxy.class).newInstance();
-		  } else {
-			return new InactiveInteropProxy();
-		  }
 	}
 }

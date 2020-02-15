@@ -6,6 +6,7 @@ import crafttweaker.api.item.IItemStack;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.ShredderRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -83,7 +84,7 @@ public class Shredder
 
 	private static class RemoveAll implements IAction
 	{
-		List<IMachineRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes = new ArrayList<IMachineRecipe>();
 
 		public RemoveAll(){
 		}
@@ -91,8 +92,7 @@ public class Shredder
 		@Override
 		public void apply()
 		{
-            removedRecipes = new ArrayList<>(RecipeProvider.shredderRecipes);
-            RecipeProvider.shredderRecipes = new ArrayList<IMachineRecipe>();
+            ShredderRecipeBuilder.removeAll();
 		}
 
 		@Override

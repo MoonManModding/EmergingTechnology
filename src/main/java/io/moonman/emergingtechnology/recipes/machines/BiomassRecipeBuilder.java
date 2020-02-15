@@ -7,9 +7,15 @@ import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 
 public class BiomassRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
         
-        if (EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.disabled) return;
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.disabled || removedAll) return;
 
         RecipeProvider.biomassRecipes.add(new SimpleRecipe(ModItems.biochar, ModItems.biomass));
     }

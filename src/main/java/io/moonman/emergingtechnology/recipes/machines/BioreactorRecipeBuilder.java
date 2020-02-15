@@ -10,9 +10,15 @@ import net.minecraft.item.ItemStack;
 
 public class BioreactorRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
 
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.disabled) return;
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.disabled || removedAll) return;
 
         for (ModTissue modTissue: ModTissueProvider.allTissues) {
             ItemStack syringe = ModTissueProvider.getSyringeItemStackByEntityId(modTissue.entityId);

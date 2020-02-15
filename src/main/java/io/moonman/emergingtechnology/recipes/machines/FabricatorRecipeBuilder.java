@@ -12,9 +12,15 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FabricatorRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
 
-        if (EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.disabled) return;
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.disabled || removedAll) return;
 
         buildFabricatorRecipeList();
     }

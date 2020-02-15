@@ -64,6 +64,7 @@ public abstract class CommonProxy {
         RegistrationHandler.registerFluids();
 
         EmergingTechnologyConfig.preInit();
+        ModLoader.preInit();
 
         ModBulbProvider.preInit(e);
         ModMediumProvider.preInit(e);
@@ -80,8 +81,6 @@ public abstract class CommonProxy {
         OreRegistrationHandler.init();
 
         RecipeBuilder.buildMachineRecipes();
-
-        ModLoader.init();
     }
 
     public void postInit(FMLPostInitializationEvent e) {

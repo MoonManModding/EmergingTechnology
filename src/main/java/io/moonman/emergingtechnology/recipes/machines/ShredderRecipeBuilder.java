@@ -14,9 +14,15 @@ import net.minecraft.item.ItemStack;
 
 public class ShredderRecipeBuilder {
 
+    private static boolean removedAll = false;
+
+    public static void removeAll() {
+        removedAll = true;
+    }
+
     public static void build() {
 
-        if (EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.disabled) return;
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.disabled || removedAll) return;
 
         registerShredderRecipes(new ItemStack(ModItems.shreddedplant), getShredderPlantItems());
         registerShredderRecipes(new ItemStack(ModItems.shreddedplastic), getShredderPlasticItems());

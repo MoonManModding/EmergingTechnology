@@ -117,6 +117,8 @@ public class RecipeBuilder {
             disabledBlocks.add(ModBlocks.scaffolder);
         if (EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.disabled)
             disabledBlocks.add(ModBlocks.bioreactor);
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.disabled)
+            disabledBlocks.add(ModBlocks.algaebioreactor);
 
         if (EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.disabled)
             disabledBlocks.add(ModBlocks.cooker);

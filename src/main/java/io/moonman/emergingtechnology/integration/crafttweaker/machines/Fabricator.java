@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -84,7 +85,7 @@ public class Fabricator
 
 	private static class RemoveAll implements IAction
 	{
-		List<IMachineRecipe> removedRecipes;
+		List<IMachineRecipe> removedRecipes = new ArrayList<IMachineRecipe>();
 
 		public RemoveAll(){
 		}
@@ -92,8 +93,7 @@ public class Fabricator
 		@Override
 		public void apply()
 		{
-            removedRecipes = new ArrayList<>(RecipeProvider.fabricatorRecipes);
-            RecipeProvider.fabricatorRecipes = new ArrayList<IMachineRecipe>();
+            FabricatorRecipeBuilder.removeAll();
 		}
 
 		@Override

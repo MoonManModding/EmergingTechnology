@@ -6,6 +6,7 @@ import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.item.IngredientStack;
 import crafttweaker.api.oredict.IOreDictEntry;
 import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.integration.crafttweaker.machines.AlgaeBioreactor;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Biomass;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Bioreactor;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Cooker;
@@ -34,6 +35,7 @@ public class CraftTweakerHelper {
 		EmergingTechnology.logger.info("CraftTweaker initialising...");
 		CraftTweakerAPI.registerClass(Biomass.class);
 		CraftTweakerAPI.registerClass(Bioreactor.class);
+		CraftTweakerAPI.registerClass(AlgaeBioreactor.class);
 		CraftTweakerAPI.registerClass(Cooker.class);
 		CraftTweakerAPI.registerClass(Fabricator.class);
 		CraftTweakerAPI.registerClass(Processor.class);
