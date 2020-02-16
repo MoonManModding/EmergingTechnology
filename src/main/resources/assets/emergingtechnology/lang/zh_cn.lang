@@ -21,6 +21,8 @@ item.emergingtechnology.nozzlelong.name=长喷嘴
 item.emergingtechnology.nozzlesmart.name=智能喷嘴
 item.emergingtechnology.nozzleprecise.name=精确喷嘴
 
+item.emergingtechnology.calcium.name=Calcium Carbonate
+
 #POLYMERS MODULE
 item.emergingtechnology.processor.name=加工机
 item.emergingtechnology.shredder.name=切碎机
@@ -69,6 +71,10 @@ item.emergingtechnology.syntheticleather.name=合成皮革
 
 item.emergingtechnology.bioreactor.name=生物组织反应机
 item.emergingtechnology.scaffolder.name=生物组织合成机
+
+item.emergingtechnology.algae.name=Algae
+item.emergingtechnology.algaebarraw.name=Algae Bar
+item.emergingtechnology.algaebarcooked.name=Cooked Algae Bar
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=压电发电机

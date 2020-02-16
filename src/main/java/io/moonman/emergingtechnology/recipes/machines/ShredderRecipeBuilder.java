@@ -94,6 +94,7 @@ public class ShredderRecipeBuilder {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
 
         itemInputs.add(new ItemStack(Items.REEDS));
+        itemInputs.add(new ItemStack(ModItems.algae));
 
         List<String> oreInputs = new ArrayList<String>();
 

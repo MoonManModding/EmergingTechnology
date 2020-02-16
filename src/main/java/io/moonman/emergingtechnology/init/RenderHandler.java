@@ -30,7 +30,7 @@ public class RenderHandler {
         };
 
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(block), meshDefinition);
-        ModelLoader.setCustomStateMapper(ModBlocks.carbondioxideblock, stateMapper);
+        ModelLoader.setCustomStateMapper(block, stateMapper);
 
     }
 }

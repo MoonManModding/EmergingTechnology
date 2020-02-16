@@ -61,6 +61,8 @@ public class RecipeBuilder {
                 new ItemStack(ModItems.syntheticcowcooked), 0.2f);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.syntheticpigraw),
                 new ItemStack(ModItems.syntheticpigcooked), 0.2f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModItems.algaebarraw),
+                new ItemStack(ModItems.algaebarcooked), 0.2f);
     }
 
     public static List<ItemStack> buildRecipeList(List<ItemStack> itemStacks, List<String> oreNames) {

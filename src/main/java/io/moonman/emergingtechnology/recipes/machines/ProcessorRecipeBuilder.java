@@ -9,6 +9,9 @@ import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ProcessorRecipeBuilder {
@@ -33,6 +36,7 @@ public class ProcessorRecipeBuilder {
         registerProcessorRecipes(new ItemStack(ModBlocks.plasticblock), getProcessorBlockItems());
         registerProcessorRecipes(new ItemStack(ModBlocks.clearplasticblock), getProcessorClearBlockItems());
         registerProcessorRecipes(new ItemStack(ModItems.paperpulp), getProcessorPaperItems());
+        registerProcessorRecipes(new ItemStack(ModItems.calcium), getProcessorCalciumItems());
 
         for (ItemStack itemStack : recipesToRemove) {
             RecipeProvider.removeRecipesByOutput(RecipeProvider.processorRecipes, itemStack);
@@ -64,6 +68,19 @@ public class ProcessorRecipeBuilder {
     private static List<ItemStack> getProcessorPaperItems() {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
         itemInputs.add(new ItemStack(ModItems.shreddedpaper, 1));
+
+        List<String> oreInputs = new ArrayList<String>();
+
+        return RecipeBuilder.buildRecipeList(itemInputs, oreInputs);
+    }
+
+    private static List<ItemStack> getProcessorCalciumItems() {
+        List<ItemStack> itemInputs = new ArrayList<ItemStack>();
+
+        itemInputs.add(new ItemStack(ModItems.algae, 1));
+        itemInputs.add(new ItemStack(Items.EGG, 1));
+        itemInputs.add(new ItemStack(Items.BONE, 1));
+        itemInputs.add(new ItemStack(new ItemBlock(Blocks.SPONGE), 1));
 
         List<String> oreInputs = new ArrayList<String>();
 

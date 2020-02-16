@@ -19,6 +19,8 @@ item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
 item.emergingtechnology.nozzlesmart.name=Smart Spray Nozzle
 item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
 
+item.emergingtechnology.calcium.name=Calcium Carbonate
+
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processeur
 item.emergingtechnology.shredder.name=Déchiqueteuse
@@ -65,6 +67,11 @@ item.emergingtechnology.syntheticleather.name=Synthetic Leather
 
 item.emergingtechnology.bioreactor.name=Bioréacteur cellulaire
 item.emergingtechnology.scaffolder.name=Appareil à morphogenèse
+
+item.emergingtechnology.algae.name=Algae
+
+item.emergingtechnology.algaebarraw.name=Algae Bar
+item.emergingtechnology.algaebarcooked.name=Cooked Algae Bar
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Plaque piézoélectriques

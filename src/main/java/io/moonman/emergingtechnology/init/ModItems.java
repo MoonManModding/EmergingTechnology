@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import io.moonman.emergingtechnology.item.electrics.Biochar;
 import io.moonman.emergingtechnology.item.electrics.Biomass;
+import io.moonman.emergingtechnology.item.hydroponics.Calcium;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.BlueBulb;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.GreenBulb;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.PurpleBulb;
@@ -25,6 +26,8 @@ import io.moonman.emergingtechnology.item.polymers.ShreddedPlant;
 import io.moonman.emergingtechnology.item.polymers.ShreddedPlastic;
 import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
 import io.moonman.emergingtechnology.item.polymers.Turbine;
+import io.moonman.emergingtechnology.item.synthetics.consumables.AlgaeBarCooked;
+import io.moonman.emergingtechnology.item.synthetics.consumables.AlgaeBarRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenCooked;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticCowCooked;
@@ -64,6 +67,8 @@ public class ModItems {
 	public static final Item nozzlesmart = null;
 	public static final Item nozzlelong = null;
 	public static final Item nozzleprecise = null;
+
+	public static final Item calcium = null;
 
 	// endregion
 
@@ -130,6 +135,8 @@ public class ModItems {
 	public static final Item syntheticsilk = null;
 
 	public static final Item algae = null;
+	public static final Item algaebarraw = null;
+	public static final Item algaebarcooked = null;
 
 	// endregion
 
@@ -156,24 +163,26 @@ public class ModItems {
 	public static Item[] getItems() {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,
 				ModItems.nozzlecomponent, ModItems.nozzlesmart, ModItems.nozzlelong, ModItems.nozzleprecise,
-				ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch, ModItems.shreddedpaper,
-				ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament, ModItems.plastictissuescaffold,
-				ModItems.turbine, ModItems.plasticwaste, ModItems.paperwaste, ModItems.paperpulp, ModItems.emptysyringe,
-				ModItems.syntheticcowraw, ModItems.syntheticchickenraw, ModItems.syntheticpigraw,
-				ModItems.syntheticcowcooked, ModItems.syntheticchickencooked, ModItems.syntheticpigcooked,
-				ModItems.syntheticleather, ModItems.syntheticslime, ModItems.syntheticsilk, ModItems.algae, ModItems.biomass,
-				ModItems.biochar };
+				ModItems.calcium, ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch,
+				ModItems.shreddedpaper, ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament,
+				ModItems.plastictissuescaffold, ModItems.turbine, ModItems.plasticwaste, ModItems.paperwaste,
+				ModItems.paperpulp, ModItems.emptysyringe, ModItems.syntheticcowraw, ModItems.syntheticchickenraw,
+				ModItems.syntheticpigraw, ModItems.syntheticcowcooked, ModItems.syntheticchickencooked,
+				ModItems.syntheticpigcooked, ModItems.syntheticleather, ModItems.syntheticslime, ModItems.syntheticsilk,
+				ModItems.algaebarraw, ModItems.algaebarcooked, ModItems.algae, ModItems.biomass, ModItems.biochar };
 
 		return items;
 	}
 
 	public static Item[] generateItems() {
-		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new NozzleComponent(), new NozzleSmart(), new NozzleLong(), new NozzlePrecise(), new ShreddedPlastic(),
+		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new NozzleComponent(),
+				new NozzleSmart(), new NozzleLong(), new NozzlePrecise(), new Calcium(), new ShreddedPlastic(),
 				new ShreddedPlant(), new ShreddedStarch(), new ShreddedPaper(), new PaperWaste(), new PaperPulp(),
 				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
 				new Turbine(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),
 				new SyntheticPigRaw(), new SyntheticPigCooked(), new SyntheticCowCooked(), new SyntheticChickenCooked(),
-				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new Algae(), new Biomass(), new Biochar() };
+				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new AlgaeBarRaw(),
+				new AlgaeBarCooked(), new Algae(), new Biomass(), new Biochar() };
 
 		return items;
 	}

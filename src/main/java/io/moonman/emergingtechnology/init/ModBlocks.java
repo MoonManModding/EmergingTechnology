@@ -11,6 +11,7 @@ import io.moonman.emergingtechnology.block.blocks.ShreddedPlantBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlasticBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedStarchBlock;
 import io.moonman.emergingtechnology.fluid.fluidblocks.CarbonDioxideBlock;
+import io.moonman.emergingtechnology.fluid.fluidblocks.NutrientBlock;
 import io.moonman.emergingtechnology.machines.battery.Battery;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGenerator;
 import io.moonman.emergingtechnology.machines.bioreactor.Bioreactor;
@@ -86,6 +87,7 @@ public class ModBlocks {
 
 	// region Fluid Blocks
 	public static final CarbonDioxideBlock carbondioxideblock = null;
+	public static final NutrientBlock nutrientblock = null;
 	// endregion
 
 	public static Block[] getBlocks() {
@@ -96,7 +98,7 @@ public class ModBlocks {
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery,
 				ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock,
 				ModBlocks.machinecase, ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock,
-				ModBlocks.shreddedstarchblock, ModBlocks.biocharblock, ModBlocks.carbondioxideblock };
+				ModBlocks.shreddedstarchblock, ModBlocks.biocharblock,  ModBlocks.nutrientblock, ModBlocks.carbondioxideblock};
 
 		return blocks;
 	}
@@ -107,7 +109,7 @@ public class ModBlocks {
 				new MachineCase(), new Fabricator(), new Collector(), new Cooker(), new Scaffolder(), new Bioreactor(),
 				new AlgaeBioreactor(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(),
 				new Solar(), new SolarGlass(), new Wind(), new Battery(), new BiocharBlock(),
-				new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(),
+				new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new NutrientBlock(),
 				new CarbonDioxideBlock() };
 
 		return blocks;

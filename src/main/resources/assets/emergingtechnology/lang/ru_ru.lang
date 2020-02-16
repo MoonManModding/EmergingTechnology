@@ -22,6 +22,8 @@ item.emergingtechnology.nozzlelong.name=Длинная форсунка
 item.emergingtechnology.nozzlesmart.name=Умная форсунка
 item.emergingtechnology.nozzleprecise.name=Точная форсунка
 
+item.emergingtechnology.calcium.name=Calcium Carbonate
+
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
@@ -69,6 +71,10 @@ item.emergingtechnology.syntheticleather.name=Синтетическая кож�
 item.emergingtechnology.bioreactor.name=Тканевый Биореактор
 item.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
 item.emergingtechnology.algaebioreactor.name=Биореактор водорослей
+
+item.emergingtechnology.algae.name=Algae
+item.emergingtechnology.algaebarraw.name=Algae Bar
+item.emergingtechnology.algaebarcooked.name=Cooked Algae Bar
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Пьезоэлектрический генератор

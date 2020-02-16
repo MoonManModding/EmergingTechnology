@@ -35,6 +35,10 @@ public class SyntheticsModule {
     @RangeInt(min = 0, max = 15)
     public int beefHunger = 7;
 
+    @Name("Algae Bar Food Points")
+    @RangeInt(min = 0, max = 15)
+    public int algaeHunger = 5;
+
     @Name("Synthetic Chicken Food Saturation")
     @RangeDouble(min = 0, max = 25)
     public double chickenHungerSaturation = 10;
@@ -46,4 +50,8 @@ public class SyntheticsModule {
     @Name("Synthetic Beef Food Saturation")
     @RangeDouble(min = 0, max = 25)
     public double beefHungerSaturation = 12.8;
+
+    @Name("Algae Food Saturation")
+    @RangeDouble(min = 0, max = 25)
+    public double algaeHungerSaturation = 6.4;
 }

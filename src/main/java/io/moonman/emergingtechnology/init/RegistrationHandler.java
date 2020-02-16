@@ -29,19 +29,16 @@ import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.wind.WindTileEntity;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -101,8 +98,13 @@ public class RegistrationHandler {
     }
 
     public static void registerFluids() {
-        FluidRegistry.registerFluid(ModFluids.CARBON_DIOXIDE);
-        FluidRegistry.addBucketForFluid(ModFluids.CARBON_DIOXIDE);
+        registerFluid(ModFluids.CARBON_DIOXIDE);
+        registerFluid(ModFluids.NUTRIENT);
+    }
+
+    public static void registerFluid(Fluid fluid) {
+        FluidRegistry.registerFluid(fluid);
+        FluidRegistry.addBucketForFluid(fluid);
     }
 
     @SideOnly(Side.CLIENT)
@@ -131,6 +133,7 @@ public class RegistrationHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(ScrubberTileEntity.class, new AnimationTESR<ScrubberTileEntity>());
 
         RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.carbondioxideblock);
+        RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.nutrientblock);
     }
 
     private static Item[] generateItemBlocks(Block[] blocks) {
