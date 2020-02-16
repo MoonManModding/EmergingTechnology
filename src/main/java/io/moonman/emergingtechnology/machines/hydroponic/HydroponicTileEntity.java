@@ -373,6 +373,10 @@ public class HydroponicTileEntity extends MachineTileBase implements ITickable, 
         return HydroponicHelper.getSpecificPlantGrowthBoostForId(this.getGrowthMediumId(), aboveBlockState);
     }
 
+    public int getGrowthProbabilityForFluid() {
+        return HydroponicHelper.getGrowthProbabilityForFluid(this.fluidHandler.getFluid());
+    }
+
     public int getSpecificPlantGrowthBoostFromFluid() {
         // Get blockstate of whatever is on top of block
         IBlockState aboveBlockState = this.world.getBlockState(this.pos.add(0, 1, 0));

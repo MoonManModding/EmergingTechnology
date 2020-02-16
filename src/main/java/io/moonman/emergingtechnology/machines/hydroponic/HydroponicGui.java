@@ -86,6 +86,8 @@ public class HydroponicGui extends GuiContainer {
 		}
 
 		growthModifier += this.tileEntity.getTotalGrowthFromAdjacentLight();
+		growthModifier += this.tileEntity.getGrowthProbabilityForFluid();
+		growthModifier += this.tileEntity.getSpecificPlantGrowthBoostFromFluid();
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,

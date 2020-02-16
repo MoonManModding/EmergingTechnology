@@ -11,8 +11,9 @@ public class ModFluidProvider {
 
     public static final int WATER_ID = 1;
     public static final int LAVA_ID = 2;
+    public static final int NUTRIENT_ID = 3;
 
-    public static final int BASE_FLUID_COUNT = 2;
+    public static final int BASE_FLUID_COUNT = 3;
 
     private static ModFluid[] allFluids;
     public static ModFluid[] customFluids;
@@ -40,11 +41,13 @@ public class ModFluidProvider {
 
         ModFluid water = new ModFluid(WATER_ID, "water", 0, waterPlants, 0);
         ModFluid lava = new ModFluid(LAVA_ID, "lava", 0, lavaPlants, 5);
+        ModFluid nutrient = new ModFluid(NUTRIENT_ID, "nutrient", 5, waterPlants, 5);
 
         ArrayList<ModFluid> baseFluids = new ArrayList<ModFluid>();
 
         baseFluids.add(water);
         baseFluids.add(lava);
+        baseFluids.add(nutrient);
 
         return baseFluids;
     }
