@@ -46,7 +46,8 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class HarvesterTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
 
-    public static final GameProfile HARVESTER_PROFILE = new GameProfile(UUID.fromString("36f373ac-29ef-4150-b654-e7e6006efcd8"), "[Harvester]");
+    public static final GameProfile HARVESTER_PROFILE = new GameProfile(
+            UUID.fromString("36f373ac-29ef-4150-b654-e7e6006efcd8"), "[Harvester]");
     private static FakePlayer HARVESTER_PLAYER = null;
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY) {
@@ -151,26 +152,38 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
     public void cycle() {
 
         this.setEnergy(this.getEnergy());
- 
-        if (canHarvest()) {
-            this.setIsActive(true);
-            this.doHarvest();
-        } else {
-            this.setIsActive(false);
+
+        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+            if (canHarvest(facing)) {
+                this.setIsActive(true);
+                this.doHarvest(facing);
+                this.tryPlant(facing);
+            } else {
+                this.setIsActive(false);
+            }
         }
 
-        this.tryPlant();
-
-        if (this.requiresUpdate && !EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterDisableAnimations) {
-            Harvester.setState(this.isActive, getWorld(), getPos());
-            this.requiresUpdate = false;
-        }
+        this.animate();
 
         this.doEnergyTransferProcess();
     }
 
-    public boolean canHarvest() {
-        if (getTargetBlockState() == null) {
+    private void animate() {
+
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterDisableAnimations) {
+            return;
+        }
+
+        if (this.requiresUpdate == false) {
+            return;
+        }
+
+        Harvester.setState(this.isActive, getWorld(), getPos());
+        this.requiresUpdate = false;
+    }
+
+    public boolean canHarvest(EnumFacing facing) {
+        if (getTargetBlockState(facing) == null) {
             return false;
         }
 
@@ -182,15 +195,17 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return false;
         }
 
-        if (HarvesterHelper.isInteractableCrop(getTargetBlockState().getBlock())) {
-            return HarvesterHelper.isInteractableCropReadyForHarvest(getTargetBlockState(), getWorld(), getTarget());
+        if (HarvesterHelper.isInteractableCrop(getTargetBlockState(facing).getBlock())) {
+            return HarvesterHelper.isInteractableCropReadyForHarvest(getTargetBlockState(facing), getWorld(),
+                    getTarget(facing));
         }
 
-        return PlantHelper.isCropAtPositionReadyForHarvest(getWorld(), getTarget());
+        return PlantHelper.isCropAtPositionReadyForHarvest(getWorld(), getTarget(facing));
     }
 
-    private void doHarvest() {
-        if (getTargetBlockState() == null) {
+    private void doHarvest(EnumFacing facing) {
+
+        if (getTargetBlockState(facing) == null) {
             return;
         }
 
@@ -198,29 +213,30 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return;
         }
 
-        if (HarvesterHelper.isInteractableCrop(getTargetBlockState().getBlock())) {
-            doInteractableHarvest();
+        if (HarvesterHelper.isInteractableCrop(getTargetBlockState(facing).getBlock())) {
+            doInteractableHarvest(facing);
         } else {
-            world.destroyBlock(getTarget(), true);
+            world.destroyBlock(getTarget(facing), true);
         }
 
-        pullItems();
+        pullItems(facing);
 
         useEnergy();
     }
 
-    private void doInteractableHarvest() {
-        getTargetBlockState().getBlock().onBlockActivated(world, getTarget(), getTargetBlockState(), getFakePlayer(), EnumHand.MAIN_HAND,
-        getFacing(), 0, 0, 0);
+    private void doInteractableHarvest(EnumFacing facing) {
+        getTargetBlockState(facing).getBlock().onBlockActivated(world, getTarget(facing), getTargetBlockState(facing),
+                getFakePlayer(), EnumHand.MAIN_HAND, getFacing(), 0, 0, 0);
     }
 
-    private boolean pullItems() {
+    private boolean pullItems(EnumFacing facing) {
 
-        if (getTargetBlockState() == null)
+        if (getTargetBlockState(facing) == null) {
             return false;
+        }
 
         // Includes target and directly above target
-        AxisAlignedBB collectionArea = new AxisAlignedBB(getTarget()).expand(0, 1, 0);
+        AxisAlignedBB collectionArea = new AxisAlignedBB(getTarget(facing)).expand(0, 1, 0);
 
         List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, collectionArea);
         insertItems(entityItems);
@@ -284,10 +300,10 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
     }
 
-    private void tryPlant() {
+    private void tryPlant(EnumFacing facing) {
 
         // If non-break-harvest plant, return
-        if (HarvesterHelper.isInteractableCrop(getTargetBlockState().getBlock())) {
+        if (HarvesterHelper.isInteractableCrop(getTargetBlockState(facing).getBlock())) {
             return;
         }
 
@@ -299,16 +315,16 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
 
         // Probably not neccessary
-        if (getTargetBlockState() == null) {
+        if (getTargetBlockState(facing) == null) {
             return;
         }
 
         // If crop space is occupied, return
-        if (getTargetBlockState().getBlock() != Blocks.AIR) {
+        if (getTargetBlockState(facing).getBlock() != Blocks.AIR) {
             return;
         }
 
-        BlockPos soilTarget = getTarget().add(0, -1, 0);
+        BlockPos soilTarget = getTarget(facing).add(0, -1, 0);
         IBlockState soilBlockTarget = getWorld().getBlockState(soilTarget);
 
         if (soilBlockTarget.getBlock() instanceof Hydroponic == false) {
@@ -322,14 +338,14 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
 
         IBlockState blockStateToPlace = PlantHelper.getBlockStateFromItemStackForPlanting(inputStack, getWorld(),
-                getTarget());
+                getTarget(facing));
 
         // No crop block associated with this item, return
         if (blockStateToPlace == null) {
             return;
         }
 
-        world.setBlockState(getTarget(), blockStateToPlace, 3);
+        world.setBlockState(getTarget(facing), blockStateToPlace, 3);
 
         this.itemHandler.extractItem(0, 1, false);
     }
@@ -401,12 +417,12 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
                 .extractEnergy(EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage, false);
     }
 
-    private BlockPos getTarget() {
-        return getPos().offset(getFacing());
+    private BlockPos getTarget(EnumFacing facing) {
+        return getPos().offset(facing);
     }
 
-    private IBlockState getTargetBlockState() {
-        return getWorld().getBlockState(getTarget());
+    private IBlockState getTargetBlockState(EnumFacing facing) {
+        return getWorld().getBlockState(getTarget(facing));
     }
 
     private EnumFacing getFacing() {

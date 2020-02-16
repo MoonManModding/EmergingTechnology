@@ -62,6 +62,6 @@ public class TidalHelper {
 
         Block block = state.getBlock();
 
-        return (block == Blocks.WATER || !block.isFullCube(state));
+        return (block == Blocks.WATER);
     }
 }

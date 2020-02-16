@@ -3,6 +3,8 @@ package io.moonman.emergingtechnology.integration.jei;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.integration.jei.machines.MachineReference;
+import io.moonman.emergingtechnology.integration.jei.machines.algaebioreactor.AlgaeBioreactorCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.algaebioreactor.AlgaeBioreactorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.biomass.BiomassCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.biomass.BiomassRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.bioreactor.BioreactorCategory;
@@ -63,7 +65,8 @@ public class JEIIntegration implements IModPlugin {
 
         registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper),
                 new CookerCategory(helper), new FabricatorCategory(helper), new BioreactorCategory(helper),
-                new ScaffolderCategory(helper), new CollectorCategory(helper), new BiomassCategory(helper), new ScrubberCategory(helper));
+                new ScaffolderCategory(helper), new CollectorCategory(helper), new BiomassCategory(helper),
+                new ScrubberCategory(helper), new AlgaeBioreactorCategory(helper));
     }
 
     @Override
@@ -108,7 +111,11 @@ public class JEIIntegration implements IModPlugin {
         registry.addRecipes(RecipeProvider.scrubberRecipes, MachineReference.SCRUBBER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.scrubber), MachineReference.SCRUBBER_UID);
 
-        EmergingTechnology.logger.info("Registered with JEI.");
+        registry.handleRecipes(SimpleRecipe.class, AlgaeBioreactorRecipeWrapper::new, MachineReference.ALGAEBIOREACTOR_UID);
+        registry.addRecipes(RecipeProvider.algaeBioreactorRecipes, MachineReference.ALGAEBIOREACTOR_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.algaebioreactor), MachineReference.ALGAEBIOREACTOR_UID);
+
+        EmergingTechnology.logger.info("Successfully registered with JEI.");
     }
 
     public static boolean doesOreExist(String key) {

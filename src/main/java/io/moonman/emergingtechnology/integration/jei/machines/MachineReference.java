@@ -31,4 +31,7 @@ public class MachineReference {
 
     public static final String SCRUBBER_NAME = ModBlocks.scrubber.getLocalizedName();
     public static final String SCRUBBER_UID = EmergingTechnology.MODID + ":scrubber";
+    
+    public static final String ALGAEBIOREACTOR_NAME = ModBlocks.algaebioreactor.getLocalizedName();
+    public static final String ALGAEBIOREACTOR_UID = EmergingTechnology.MODID + ":algaebioreactor";
 }

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IbI",
+    "GBG",
+    "GMG"
+  ],
+  "key": {
+    "b": {
+      "item": "emergingtechnology:greenbulb"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    },
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "blockGlass"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:algaebioreactor",
+    "count": 1
+  }
+}
