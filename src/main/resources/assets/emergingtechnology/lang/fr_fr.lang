@@ -19,7 +19,7 @@ item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
 item.emergingtechnology.nozzlesmart.name=Smart Spray Nozzle
 item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
 
-item.emergingtechnology.calcium.name=Calcium Carbonate
+item.emergingtechnology.fertilizer.name=Fertilizer
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processeur

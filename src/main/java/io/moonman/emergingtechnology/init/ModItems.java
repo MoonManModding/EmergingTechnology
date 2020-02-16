@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import io.moonman.emergingtechnology.item.electrics.Biochar;
 import io.moonman.emergingtechnology.item.electrics.Biomass;
-import io.moonman.emergingtechnology.item.hydroponics.Calcium;
+import io.moonman.emergingtechnology.item.hydroponics.Fertilizer;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.BlueBulb;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.GreenBulb;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.PurpleBulb;
@@ -68,7 +68,7 @@ public class ModItems {
 	public static final Item nozzlelong = null;
 	public static final Item nozzleprecise = null;
 
-	public static final Item calcium = null;
+	public static final Item fertilizer = null;
 
 	// endregion
 
@@ -163,7 +163,7 @@ public class ModItems {
 	public static Item[] getItems() {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,
 				ModItems.nozzlecomponent, ModItems.nozzlesmart, ModItems.nozzlelong, ModItems.nozzleprecise,
-				ModItems.calcium, ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch,
+				ModItems.fertilizer, ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch,
 				ModItems.shreddedpaper, ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament,
 				ModItems.plastictissuescaffold, ModItems.turbine, ModItems.plasticwaste, ModItems.paperwaste,
 				ModItems.paperpulp, ModItems.emptysyringe, ModItems.syntheticcowraw, ModItems.syntheticchickenraw,
@@ -176,7 +176,7 @@ public class ModItems {
 
 	public static Item[] generateItems() {
 		Item[] items = { new RedBulb(), new GreenBulb(), new BlueBulb(), new PurpleBulb(), new NozzleComponent(),
-				new NozzleSmart(), new NozzleLong(), new NozzlePrecise(), new Calcium(), new ShreddedPlastic(),
+				new NozzleSmart(), new NozzleLong(), new NozzlePrecise(), new Fertilizer(), new ShreddedPlastic(),
 				new ShreddedPlant(), new ShreddedStarch(), new ShreddedPaper(), new PaperWaste(), new PaperPulp(),
 				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
 				new Turbine(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),

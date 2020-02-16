@@ -36,7 +36,7 @@ public class ProcessorRecipeBuilder {
         registerProcessorRecipes(new ItemStack(ModBlocks.plasticblock), getProcessorBlockItems());
         registerProcessorRecipes(new ItemStack(ModBlocks.clearplasticblock), getProcessorClearBlockItems());
         registerProcessorRecipes(new ItemStack(ModItems.paperpulp), getProcessorPaperItems());
-        registerProcessorRecipes(new ItemStack(ModItems.calcium), getProcessorCalciumItems());
+        registerProcessorRecipes(new ItemStack(ModItems.fertilizer), getProcessorFertilizerItems());
 
         for (ItemStack itemStack : recipesToRemove) {
             RecipeProvider.removeRecipesByOutput(RecipeProvider.processorRecipes, itemStack);
@@ -74,12 +74,13 @@ public class ProcessorRecipeBuilder {
         return RecipeBuilder.buildRecipeList(itemInputs, oreInputs);
     }
 
-    private static List<ItemStack> getProcessorCalciumItems() {
+    private static List<ItemStack> getProcessorFertilizerItems() {
         List<ItemStack> itemInputs = new ArrayList<ItemStack>();
 
         itemInputs.add(new ItemStack(ModItems.algae, 1));
         itemInputs.add(new ItemStack(Items.EGG, 1));
         itemInputs.add(new ItemStack(Items.BONE, 1));
+        itemInputs.add(new ItemStack(Items.LEATHER, 1));
         itemInputs.add(new ItemStack(new ItemBlock(Blocks.SPONGE), 1));
 
         List<String> oreInputs = new ArrayList<String>();

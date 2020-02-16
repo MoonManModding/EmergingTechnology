@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "emergingtechnology:items/calcium"
+        "layer0": "emergingtechnology:items/fertilizer"
     },
   "display": {
     "thirdperson_righthand": {
