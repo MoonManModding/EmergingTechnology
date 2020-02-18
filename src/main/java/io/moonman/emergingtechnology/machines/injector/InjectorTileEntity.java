@@ -170,7 +170,7 @@ public class InjectorTileEntity extends MachineTileBase implements ITickable, Si
         NBTTagCompound nutrientTag = new NBTTagCompound();
 
         this.waterHandler.writeToNBT(fluidTag);
-        this.nutrientFluidHandler.writeToNBT(fluidTag);
+        this.nutrientFluidHandler.writeToNBT(nutrientTag);
 
         compound.setTag("InputTank", fluidTag);
         compound.setTag("OutputTank", nutrientTag);
@@ -201,6 +201,7 @@ public class InjectorTileEntity extends MachineTileBase implements ITickable, Si
     public void cycle() {
         doProcessing();
         pushToFluidConsumers();
+        System.out.println(this.getNutrientFluid());
     }
 
     public void doProcessing() {

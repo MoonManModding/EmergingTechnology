@@ -79,7 +79,7 @@ public class ProcessorRecipeBuilder {
 
         itemInputs.add(new ItemStack(ModItems.algae, 1));
         itemInputs.add(new ItemStack(Items.EGG, 1));
-        itemInputs.add(new ItemStack(Items.BONE, 3));
+        itemInputs.add(new ItemStack(Items.BONE, 1));
         itemInputs.add(new ItemStack(Items.LEATHER, 1));
         itemInputs.add(new ItemStack(Items.DYE, 1, 15));
         itemInputs.add(new ItemStack(new ItemBlock(Blocks.SPONGE), 2));
