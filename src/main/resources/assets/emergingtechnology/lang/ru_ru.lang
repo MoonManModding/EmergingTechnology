@@ -315,6 +315,7 @@ config.emergingtechnology.hydroponics.harvester.title=Сборщик
 config.emergingtechnology.hydroponics.filler.title=Водяной Наполнитель
 config.emergingtechnology.hydroponics.scrubber.title=Газопромыватель СО2
 config.emergingtechnology.hydroponics.diffuser.title=Диффузор CO2
+config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
 
 config.emergingtechnology.polymers.title=Полимеры
 config.emergingtechnology.polymers.title.tooltip=Тут настраивается Измельчитель, Процессор, Конструктор и Сборщик отходов

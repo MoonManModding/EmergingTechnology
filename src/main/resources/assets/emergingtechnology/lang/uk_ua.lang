@@ -315,6 +315,7 @@ config.emergingtechnology.hydroponics.harvester.title=Збирач
 config.emergingtechnology.hydroponics.filler.title=Водяний наповнювач
 config.emergingtechnology.scrubber.name=Газоочисник СО2
 config.emergingtechnology.diffuser.name=Дифузор CO2
+config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
 
 config.emergingtechnology.polymers.title=Полімери
 config.emergingtechnology.polymers.title.tooltip=Тут налаштовується Подрібнювач, Процесор, Конструктор та Збирач відходів

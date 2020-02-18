@@ -306,6 +306,7 @@ config.emergingtechnology.hydroponics.harvester.title=农作机械臂
 config.emergingtechnology.hydroponics.filler.title=注水机
 config.emergingtechnology.hydroponics.scrubber.title=二氧化碳洗涤器
 config.emergingtechnology.hydroponics.diffuser.title=二氧化碳扩散器
+config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
 
 config.emergingtechnology.polymers.title=塑料回收
 config.emergingtechnology.polymers.title.tooltip=在此处配置切碎机、加工机、3D打印机和海洋垃圾收集器

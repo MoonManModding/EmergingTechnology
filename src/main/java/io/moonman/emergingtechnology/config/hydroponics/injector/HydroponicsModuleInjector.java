@@ -19,12 +19,12 @@ public class HydroponicsModuleInjector {
     @Name("Injector - Water Usage")
     @Config.Comment("The amount of water used per cycle (~10 ticks).")
     @RangeInt(min = 1, max = 1000)
-    public int injectorWaterBaseUsage = 50;
+    public int injectorWaterBaseUsage = 300;
     
     @Name("Injector - Nutrient Fluid generated")
     @Config.Comment("The amount of Nutrient Fluid generated per cycle (~10 ticks).")
     @RangeInt(min = 1, max = 1000)
-    public int injectorFluidGenerated = 100;
+    public int injectorFluidGenerated = 300;
 
     @Name("Injector - Operation Time")
     @Config.Comment("The time taken for the Injector to process Fertilizer")
@@ -34,5 +34,5 @@ public class HydroponicsModuleInjector {
     @Name("Injector - Transfer rate")
     @Config.Comment("The amount of Nutrient Fluid transferred per cycle (~10 ticks)")
     @RangeInt(min = 1, max = 1000)
-    public int injectorFluidTransferRate = 100;
+    public int injectorFluidTransferRate = 300;
 }
