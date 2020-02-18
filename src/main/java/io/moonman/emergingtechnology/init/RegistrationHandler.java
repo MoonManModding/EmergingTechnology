@@ -17,6 +17,7 @@ import io.moonman.emergingtechnology.machines.filler.FillerTileEntity;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTESR;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
+import io.moonman.emergingtechnology.machines.injector.InjectorTileEntity;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import io.moonman.emergingtechnology.machines.piezoelectric.PiezoelectricTileEntity;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
@@ -59,6 +60,7 @@ public class RegistrationHandler {
         registerTileEntity(FillerTileEntity.class, "filler");
         registerTileEntity(ScrubberTileEntity.class, "scrubber");
         registerTileEntity(DiffuserTileEntity.class, "diffuser");
+        registerTileEntity(InjectorTileEntity.class, "injector");
         registerTileEntity(LightTileEntity.class, "light");
         registerTileEntity(ProcessorTileEntity.class, "processor");
         registerTileEntity(ShredderTileEntity.class, "shredder");

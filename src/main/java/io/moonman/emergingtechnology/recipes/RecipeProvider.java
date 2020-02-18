@@ -30,6 +30,7 @@ public class RecipeProvider {
     public static List<IMachineRecipe> fabricatorRecipes = new ArrayList<IMachineRecipe>();
     public static List<IMachineRecipe> scrubberRecipes = new ArrayList<IMachineRecipe>();
     public static List<IMachineRecipe> algaeBioreactorRecipes = new ArrayList<IMachineRecipe>();
+    public static List<IMachineRecipe> injectorRecipes = new ArrayList<IMachineRecipe>();
 
     public static CustomRecipesWrapper customRecipes = new CustomRecipesWrapper();
 

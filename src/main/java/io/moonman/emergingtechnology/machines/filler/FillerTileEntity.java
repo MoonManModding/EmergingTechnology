@@ -13,7 +13,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -29,6 +28,11 @@ public class FillerTileEntity extends MachineTileBase implements ITickable {
         protected void onContentsChanged() {
             super.onContentsChanged();
             markDirtyClient();
+        }
+
+        @Override
+        public boolean canFillFluidType(FluidStack fluidStack) {
+            return false;
         }
     };
 
@@ -80,13 +84,12 @@ public class FillerTileEntity extends MachineTileBase implements ITickable {
     @Override
     public void cycle() {
         fillAdjacent();
-        this.fluidHandler.fill(new FluidStack(FluidRegistry.WATER, Reference.FILLER_FLUID_CAPACITY), true);
+        this.fluidHandler.fillInternal(new FluidStack(FluidRegistry.WATER, Reference.FILLER_FLUID_CAPACITY), true);
     }
 
     private void fillAdjacent() {
         for (EnumFacing facing : EnumFacing.VALUES) {
-            Vec3i vector = facing.getDirectionVec();
-            TileEntity neighbour = this.world.getTileEntity(this.pos.add(vector));
+            TileEntity neighbour = this.world.getTileEntity(this.pos.offset(facing));
 
             // Return if no tile entity or another filler
             if (neighbour == null || neighbour instanceof FillerTileEntity) {

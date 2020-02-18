@@ -30,6 +30,9 @@ import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicContainer;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicGui;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
+import io.moonman.emergingtechnology.machines.injector.InjectorContainer;
+import io.moonman.emergingtechnology.machines.injector.InjectorGui;
+import io.moonman.emergingtechnology.machines.injector.InjectorTileEntity;
 import io.moonman.emergingtechnology.machines.light.LightContainer;
 import io.moonman.emergingtechnology.machines.light.LightGui;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
@@ -101,6 +104,9 @@ public class GuiProxy implements IGuiHandler {
         }
         if (te instanceof AlgaeBioreactorTileEntity) {
             return new AlgaeBioreactorContainer(player.inventory, (AlgaeBioreactorTileEntity) te);
+        }
+        if (te instanceof InjectorTileEntity) {
+            return new InjectorContainer(player.inventory, (InjectorTileEntity) te);
         }
         return null;
     }
@@ -183,6 +189,11 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof AlgaeBioreactorTileEntity) {
             AlgaeBioreactorTileEntity containerTileEntity = (AlgaeBioreactorTileEntity) te;
             return new AlgaeBioreactorGui(player.inventory, containerTileEntity);
+        }
+
+        if (te instanceof InjectorTileEntity) {
+            InjectorTileEntity containerTileEntity = (InjectorTileEntity) te;
+            return new InjectorGui(player.inventory, containerTileEntity);
         }
 
         return null;

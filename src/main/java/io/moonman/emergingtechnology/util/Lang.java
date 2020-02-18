@@ -20,6 +20,7 @@ public class Lang {
     public static final TextComponentTranslation FABRICATOR_DESC = new TextComponentTranslation(
             SOURCE + "fabricator" + DESC);
     public static final TextComponentTranslation FILLER_DESC = new TextComponentTranslation(SOURCE + "filler" + DESC);
+    public static final TextComponentTranslation INJECTOR_DESC = new TextComponentTranslation(SOURCE + "injector" + DESC);
     public static final TextComponentTranslation SCRUBBER_DESC = new TextComponentTranslation(
             SOURCE + "scrubber" + DESC);
     public static final TextComponentTranslation DIFFUSER_DESC = new TextComponentTranslation(

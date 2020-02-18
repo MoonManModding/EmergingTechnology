@@ -4,6 +4,7 @@ import io.moonman.emergingtechnology.config.hydroponics.beds.HydroponicsModuleGr
 import io.moonman.emergingtechnology.config.hydroponics.diffuser.HydroponicsModuleDiffuser;
 import io.moonman.emergingtechnology.config.hydroponics.filler.HydroponicsModuleFiller;
 import io.moonman.emergingtechnology.config.hydroponics.harvester.HydroponicsModuleHarvester;
+import io.moonman.emergingtechnology.config.hydroponics.injector.HydroponicsModuleInjector;
 import io.moonman.emergingtechnology.config.hydroponics.lights.HydroponicsModuleGrowLight;
 import io.moonman.emergingtechnology.config.hydroponics.scrubber.HydroponicsModuleScrubber;
 import net.minecraftforge.common.config.Config.LangKey;
@@ -33,5 +34,9 @@ public class HydroponicsModule {
     
     @Name("Diffuser")
 	@LangKey("config.emergingtechnology.hydroponics.diffuser.title")
-	public final HydroponicsModuleDiffuser DIFFUSER = new HydroponicsModuleDiffuser();
+    public final HydroponicsModuleDiffuser DIFFUSER = new HydroponicsModuleDiffuser();
+    
+    @Name("Injector")
+	@LangKey("config.emergingtechnology.hydroponics.injector.title")
+	public final HydroponicsModuleInjector INJECTOR = new HydroponicsModuleInjector();
 }

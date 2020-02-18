@@ -56,6 +56,7 @@ public class ModItems {
 	public static final Item filler = null;
 	public static final Item scrubber = null;
 	public static final Item diffuser = null;
+	public static final Item injector = null;
 
 	// Items
 	public static final Item redbulb = null;
