@@ -325,9 +325,10 @@ config.emergingtechnology.polymers.fabricator.title=Fabricator
 config.emergingtechnology.polymers.collector.title=Waste Collector
 
 config.emergingtechnology.synthetics.title=Synthetics
-config.emergingtechnology.synthetics.title.tooltip=Configure Bioreactor, Scaffolder and Solar Cooker here
+config.emergingtechnology.synthetics.title.tooltip=Configure Bioreactors, Scaffolder and Solar Cooker here
 
 config.emergingtechnology.synthetics.bioreactor.title=Tissue Bioreactor
+config.emergingtechnology.synthetics.algaebioreactor.title=Algae Bioreactor
 config.emergingtechnology.synthetics.scaffolder.title=Tissue Scaffolder
 config.emergingtechnology.synthetics.cooker.title=Solar Cooker
 

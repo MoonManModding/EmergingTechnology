@@ -300,6 +300,7 @@ config.emergingtechnology.synthetics.title.tooltip=Configure Bioreactor, Scaffol
 
 config.emergingtechnology.synthetics.bioreactor.title=Tissue Bioreactor
 config.emergingtechnology.synthetics.scaffolder.title=Tissue Scaffolder
+config.emergingtechnology.synthetics.algaebioreactor.title=Algae Bioreactor
 config.emergingtechnology.synthetics.cooker.title=Solar Cooker
 
 config.emergingtechnology.electrics.title=Electrics

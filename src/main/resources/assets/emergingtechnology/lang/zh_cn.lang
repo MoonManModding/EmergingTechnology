@@ -321,6 +321,7 @@ config.emergingtechnology.synthetics.title.tooltip=在此处配置生物组织�
 
 config.emergingtechnology.synthetics.bioreactor.title=生物组织反应机
 config.emergingtechnology.synthetics.scaffolder.title=生物组织合成机
+config.emergingtechnology.synthetics.algaebioreactor.title=Algae Bioreactor
 config.emergingtechnology.synthetics.cooker.title=太阳能烤箱
 
 config.emergingtechnology.electrics.title=发电机械

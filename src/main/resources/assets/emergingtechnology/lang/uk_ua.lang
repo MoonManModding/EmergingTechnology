@@ -330,6 +330,7 @@ config.emergingtechnology.synthetics.title.tooltip=Тут налаштовуєт
 
 config.emergingtechnology.synthetics.bioreactor.title=Тканинний біраореактор
 config.emergingtechnology.synthetics.scaffolder.title=Структурний складальник тканин
+config.emergingtechnology.synthetics.algaebioreactor.title=Algae Bioreactor
 config.emergingtechnology.synthetics.cooker.title=Сонячна плита
 
 config.emergingtechnology.electrics.title=Електрика
