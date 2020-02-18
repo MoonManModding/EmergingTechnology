@@ -95,7 +95,6 @@ public class InjectorGui extends GuiContainer {
 	}
 
 	private int getNutrientScaled(int scaled) {
-		System.out.println("GUI Nutrient " + tileEntity.getField(3));
 		return (int) (tileEntity.getField(3) * scaled / Reference.INJECTOR_FLUID_CAPACITY);
 	}
 

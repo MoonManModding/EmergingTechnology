@@ -201,7 +201,6 @@ public class InjectorTileEntity extends MachineTileBase implements ITickable, Si
     public void cycle() {
         doProcessing();
         pushToFluidConsumers();
-        System.out.println(this.getNutrientFluid());
     }
 
     public void doProcessing() {
@@ -285,6 +284,11 @@ public class InjectorTileEntity extends MachineTileBase implements ITickable, Si
 
     private void pushToFluidConsumers() {
         for (EnumFacing facing : EnumFacing.VALUES) {
+
+            if (this.getNutrientFluid() < EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorFluidTransferRate) {
+                return;
+            }
+
             TileEntity neighbour = this.world.getTileEntity(this.pos.offset(facing));
 
             // Return if no tile entity
@@ -303,8 +307,6 @@ public class InjectorTileEntity extends MachineTileBase implements ITickable, Si
             // Fill the neighbour
             int filled = neighbourFluidHandler.fill(new FluidStack(ModFluids.NUTRIENT,
                     EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorFluidTransferRate), true);
-
-            System.out.println("Pushed nutrient: " + filled);
 
             this.nutrientFluidHandler.drain(filled, true);
         }
