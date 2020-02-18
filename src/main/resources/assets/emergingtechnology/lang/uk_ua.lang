@@ -22,7 +22,7 @@ item.emergingtechnology.nozzlelong.name=Довга форсунка
 item.emergingtechnology.nozzlesmart.name=Розумна форсунка
 item.emergingtechnology.nozzleprecise.name=Точна форсунка
 
-item.emergingtechnology.fertilizer.name=Fertilizer
+item.emergingtechnology.fertilizer.name=Здобрювач
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процесор
@@ -72,9 +72,10 @@ item.emergingtechnology.bioreactor.name=Тканинний біраореакт�
 item.emergingtechnology.scaffolder.name=Структурний складальник тканин
 item.emergingtechnology.algaebioreactor.name=Біореактор водоростей
 
-item.emergingtechnology.algae.name=Algae
-item.emergingtechnology.algaebarraw.name=Algae Bar
-item.emergingtechnology.algaebarcooked.name=Cooked Algae Bar
+item.emergingtechnology.algae.name=Водорості
+
+item.emergingtechnology.algaebarraw.name=Шматок водоростей
+item.emergingtechnology.algaebarcooked.name=Приготовлений шматок водоростей
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=П'єзоелектричний генератор
@@ -307,7 +308,7 @@ config.emergingtechnology.common.disable.title=Відключити машину
 config.emergingtechnology.common.disable.title.tooltip=Запобіганє створенню і відображенню цієї машини у вкладці креативу
 
 config.emergingtechnology.hydroponics.title=Гідропоніка
-config.emergingtechnology.hydroponics.title.tooltip=Тут налаштовується Гідропонна установка, Фітолампа, Збирач, Наповнювач, Газоочисник та Дифузор
+config.emergingtechnology.hydroponics.title.tooltip=Тут налаштовується Гідропонна установка, Фітолампа, Збирач, Наповнювач, Газоочисник, Дифузор та Інжектор
 
 config.emergingtechnology.hydroponics.growbed.title=Гідропонна установка
 config.emergingtechnology.hydroponics.growlight.title=Фітолампа
@@ -315,7 +316,7 @@ config.emergingtechnology.hydroponics.harvester.title=Збирач
 config.emergingtechnology.hydroponics.filler.title=Водяний наповнювач
 config.emergingtechnology.scrubber.name=Газоочисник СО2
 config.emergingtechnology.diffuser.name=Дифузор CO2
-config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
+config.emergingtechnology.hydroponics.injector.title=Поживний інжектор
 
 config.emergingtechnology.polymers.title=Полімери
 config.emergingtechnology.polymers.title.tooltip=Тут налаштовується Подрібнювач, Процесор, Конструктор та Збирач відходів
@@ -326,11 +327,11 @@ config.emergingtechnology.polymers.fabricator.title=Конструктор
 config.emergingtechnology.polymers.collector.title=Збирач відходів
 
 config.emergingtechnology.synthetics.title=Синтетика
-config.emergingtechnology.synthetics.title.tooltip=Тут налаштовується Біраореактор, Складальник та Сонячна плита
+config.emergingtechnology.synthetics.title.tooltip=Тут налаштовується Біореактор, Складальник та Сонячна плита
 
 config.emergingtechnology.synthetics.bioreactor.title=Тканинний біраореактор
 config.emergingtechnology.synthetics.scaffolder.title=Структурний складальник тканин
-config.emergingtechnology.synthetics.algaebioreactor.title=Algae Bioreactor
+config.emergingtechnology.synthetics.algaebioreactor.title=Біраореактор водоростей
 config.emergingtechnology.synthetics.cooker.title=Сонячна плита
 
 config.emergingtechnology.electrics.title=Електрика
