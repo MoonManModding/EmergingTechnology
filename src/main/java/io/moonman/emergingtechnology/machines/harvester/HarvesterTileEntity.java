@@ -190,16 +190,16 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             if (canHarvest(facing)) {
-                //this.setIsActive(true);
+                // this.setIsActive(true);
                 this.setRotationState(HarvesterHelper.getRotationFromFacing(facing));
                 this.doHarvest(facing);
                 this.tryPlant(facing);
             } else {
-                //this.setIsActive(false);
+                // this.setIsActive(false);
             }
         }
 
-        //this.setRotationState(RotationEnum.NORTH);
+        // this.setRotationState(RotationEnum.NORTH);
 
         this.doEnergyTransferProcess();
     }
@@ -484,21 +484,16 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
     public void setRotationClient(RotationEnum rotation) {
 
         String state = this.asm.currentState();
-        String newState = HarvesterHelper.getRotationFromEnum(rotation);
+        String newState = this.getFacing().getName() + "_" + HarvesterHelper.getRotationFromEnum(rotation);
 
         System.out.println("States: " + state + " to " + newState);
 
-        // if (!state.equalsIgnoreCase(newState)) {
-            System.out.println("Transitioning to " + newState);
-            this.asm.transition(newState);
-        // }
+        this.asm.transition(newState);
     }
 
     private void setRotationState(RotationEnum rotation) {
 
-        // if (rotation != this.rotation) {
-            PacketHandler.INSTANCE.sendToAll(new HarvesterAnimationPacket(this.getPos(), rotation));
-        // }
+        PacketHandler.INSTANCE.sendToAll(new HarvesterAnimationPacket(this.getPos(), rotation));
 
         this.rotation = rotation;
     }

@@ -1,47 +1,138 @@
 {
-  "parameters": {
-    "slowed_anim_time": [
-      "/",
-      4
-    ]
-  },
+  "parameters": {},
   "clips": {
-    "north": "emergingtechnology:block/harvesterarm@north",
-    "east": "emergingtechnology:block/harvesterarm@east",
-    "south": "emergingtechnology:block/harvesterarm@south",
-    "west": "emergingtechnology:block/harvesterarm@west"
+    "north_north": "emergingtechnology:block/harvesterarm@north_north",
+    "north_east": "emergingtechnology:block/harvesterarm@north_east",
+    "north_south": "emergingtechnology:block/harvesterarm@north_south",
+    "north_west": "emergingtechnology:block/harvesterarm@north_west",
+    "south_north": "emergingtechnology:block/harvesterarm@south_north",
+    "south_east": "emergingtechnology:block/harvesterarm@south_east",
+    "south_south": "emergingtechnology:block/harvesterarm@south_south",
+    "south_west": "emergingtechnology:block/harvesterarm@south_west",
+    "east_north": "emergingtechnology:block/harvesterarm@east_north",
+    "east_east": "emergingtechnology:block/harvesterarm@east_east",
+    "east_south": "emergingtechnology:block/harvesterarm@east_south",
+    "east_west": "emergingtechnology:block/harvesterarm@east_west",
+    "west_north": "emergingtechnology:block/harvesterarm@west_north",
+    "west_east": "emergingtechnology:block/harvesterarm@west_east",
+    "west_south": "emergingtechnology:block/harvesterarm@west_south",
+    "west_west": "emergingtechnology:block/harvesterarm@west_west"
   },
   "states": [
-    "north",
-    "east",
-    "south",
-    "west"
+    "north_north",
+    "north_east",
+    "north_south",
+    "north_west",
+    "south_north",
+    "south_east",
+    "south_south",
+    "south_west",
+    "east_north",
+    "east_east",
+    "east_south",
+    "east_west",
+    "west_north",
+    "west_east",
+    "west_south",
+    "west_west"
   ],
   "transitions": {
-    "north": [
-      "north",
-      "east",
-      "south",
-      "west"
+    "north_north": [
+      "north_north",
+      "north_east",
+      "north_south",
+      "north_west"
     ],
-    "east": [
-      "north",
-      "east",
-      "south",
-      "west"
+    "north_east": [
+      "north_north",
+      "north_east",
+      "north_south",
+      "north_west"
     ],
-    "south": [
-      "north",
-      "east",
-      "south",
-      "west"
+    "north_south": [
+      "north_north",
+      "north_east",
+      "north_south",
+      "north_west"
     ],
-    "west": [
-      "north",
-      "east",
-      "south",
-      "west"
+    "north_west": [
+      "north_north",
+      "north_east",
+      "north_south",
+      "north_west"
+    ],
+    "south_north": [
+      "south_north",
+      "south_east",
+      "south_south",
+      "south_west"
+    ],
+    "south_east": [
+      "south_north",
+      "south_east",
+      "south_south",
+      "south_west"
+    ],
+    "south_south": [
+      "south_north",
+      "south_east",
+      "south_south",
+      "south_west"
+    ],
+    "south_west": [
+      "south_north",
+      "south_east",
+      "south_south",
+      "south_west"
+    ],
+    "east_north": [
+      "east_north",
+      "east_east",
+      "east_south",
+      "east_west"
+    ],
+    "east_east": [
+      "east_north",
+      "east_east",
+      "east_south",
+      "east_west"
+    ],
+    "east_south": [
+      "east_north",
+      "east_east",
+      "east_south",
+      "east_west"
+    ],
+    "east_west": [
+      "east_north",
+      "east_east",
+      "east_south",
+      "east_west"
+    ],
+    "west_north": [
+      "north_north",
+      "north_east",
+      "north_south",
+      "north_west"
+    ],
+    "west_east": [
+      "west_north",
+      "west_east",
+      "west_south",
+      "west_west"
+    ],
+    "west_south": [
+      "west_north",
+      "west_east",
+      "west_south",
+      "west_west"
+    ],
+    "west_west": [
+      "west_north",
+      "west_east",
+      "west_south",
+      "west_west"
     ]
   },
-  "start_state": "north"
+  "start_state": "north_north"
 }
