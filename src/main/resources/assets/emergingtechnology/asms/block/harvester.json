@@ -1,0 +1,37 @@
+{
+  "parameters": {
+    "slowed_anim_time": [
+      "/",
+      4
+    ]
+  },
+  "clips": {
+    "north": "emergingtechnology:block/harvesterarm@north",
+    "east": "emergingtechnology:block/harvesterarm@east",
+    "south": "emergingtechnology:block/harvesterarm@south",
+    "west": "emergingtechnology:block/harvesterarm@west"
+  },
+  "states": [
+    "north",
+    "east",
+    "south",
+    "west"
+  ],
+  "transitions": {
+    "north": [
+      "east",
+      "south",
+      "west"
+    ],
+    "east": [
+      "north"
+    ],
+    "south": [
+      "north"
+    ],
+    "west": [
+      "north"
+    ]
+  },
+  "start_state": "north"
+}

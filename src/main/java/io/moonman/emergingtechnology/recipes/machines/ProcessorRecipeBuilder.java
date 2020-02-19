@@ -81,8 +81,8 @@ public class ProcessorRecipeBuilder {
         itemInputs.add(new ItemStack(Items.EGG, 1));
         itemInputs.add(new ItemStack(Items.BONE, 1));
         itemInputs.add(new ItemStack(Items.LEATHER, 1));
+        itemInputs.add(new ItemStack(Items.FISH, 1));
         itemInputs.add(new ItemStack(Items.DYE, 1, 15));
-        itemInputs.add(new ItemStack(new ItemBlock(Blocks.SPONGE), 2));
 
         List<String> oreInputs = new ArrayList<String>();
 

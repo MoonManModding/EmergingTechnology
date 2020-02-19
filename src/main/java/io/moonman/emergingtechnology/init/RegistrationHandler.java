@@ -133,6 +133,7 @@ public class RegistrationHandler {
 
         ClientRegistry.bindTileEntitySpecialRenderer(WindTileEntity.class, new AnimationTESR<WindTileEntity>());
         ClientRegistry.bindTileEntitySpecialRenderer(ScrubberTileEntity.class, new AnimationTESR<ScrubberTileEntity>());
+        ClientRegistry.bindTileEntitySpecialRenderer(HarvesterTileEntity.class, new AnimationTESR<HarvesterTileEntity>());
 
         RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.carbondioxideblock);
         RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.nutrientblock);

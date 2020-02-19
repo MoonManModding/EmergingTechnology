@@ -2,9 +2,11 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import java.util.List;
 
+import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -34,11 +36,41 @@ public class HarvesterHelper {
             itemCount += drop.getCount();
         }
 
-        return  itemCount > 2;
+        return itemCount > 2;
     }
 
     private static List<ItemStack> getCropDrops(IBlockState blockState, World world, BlockPos pos) {
         return blockState.getBlock().getDrops(world, pos, blockState, 1);
     }
 
+    public static String getRotationFromEnum(RotationEnum rotationEnum) {
+        switch (rotationEnum) {
+            case EAST:
+                return "east";
+            case NORTH:
+                return "north";
+            case SOUTH:
+                return "south";
+            case WEST:
+                return "west";
+            default:
+                return "north";
+        }
+    }
+
+    public static RotationEnum getRotationFromFacing(EnumFacing facing) {
+        switch (facing) {
+            case EAST:
+                return RotationEnum.EAST;
+            case NORTH:
+                return RotationEnum.NORTH;
+            case SOUTH:
+                return RotationEnum.SOUTH;
+            case WEST:
+                return RotationEnum.WEST;
+            default:
+                return RotationEnum.NORTH;
+
+        }
+    }
 }

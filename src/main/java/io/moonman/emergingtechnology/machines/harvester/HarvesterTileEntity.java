@@ -3,8 +3,10 @@ package io.moonman.emergingtechnology.machines.harvester;
 import java.util.List;
 import java.util.UUID;
 
+import com.google.common.collect.ImmutableMap;
 import com.mojang.authlib.GameProfile;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
@@ -12,9 +14,13 @@ import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
+import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
+import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
+import io.moonman.emergingtechnology.network.HarvesterAnimationPacket;
+import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -27,28 +33,44 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.model.animation.CapabilityAnimation;
+import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class HarvesterTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class HarvesterTileEntity extends MachineTileBase implements SimpleComponent {
 
     public static final GameProfile HARVESTER_PROFILE = new GameProfile(
             UUID.fromString("36f373ac-29ef-4150-b654-e7e6006efcd8"), "[Harvester]");
     private static FakePlayer HARVESTER_PLAYER = null;
+
+    private final IAnimationStateMachine asm;
+
+    public HarvesterTileEntity() {
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+            asm = ModelLoaderRegistry.loadASM(
+                    new ResourceLocation(EmergingTechnology.MODID, "asms/block/harvester.json"), ImmutableMap.of());
+        } else
+            asm = null;
+    }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY) {
         @Override
@@ -85,16 +107,25 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         }
     };
 
+    @Override
+    public boolean hasFastRenderer() {
+        return true;
+    }
+
     private int energy = this.energyHandler.getEnergyStored();
 
     private boolean isActive = false;
     private boolean requiresUpdate = false;
+
+    private RotationEnum rotation = RotationEnum.NORTH;
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return true;
         if (capability == CapabilityEnergy.ENERGY)
+            return true;
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
             return true;
 
         return super.hasCapability(capability, facing);
@@ -106,6 +137,8 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.automationItemHandler);
         if (capability == CapabilityEnergy.ENERGY)
             return CapabilityEnergy.ENERGY.cast(this.consumerEnergyHandler);
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
         return super.getCapability(capability, facing);
     }
 
@@ -115,6 +148,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
         this.setEnergy(compound.getInteger("GuiEnergy"));
+        this.setRotationState(RotationEnum.getById(compound.getInteger("AnimRotation")));
 
         this.energyHandler.readFromNBT(compound);
     }
@@ -125,6 +159,7 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
 
         compound.setInteger("GuiEnergy", energy);
+        compound.setInteger("AnimRotation", RotationEnum.getId(this.rotation));
 
         this.energyHandler.writeToNBT(compound);
 
@@ -155,31 +190,18 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
 
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             if (canHarvest(facing)) {
-                this.setIsActive(true);
+                //this.setIsActive(true);
+                this.setRotationState(HarvesterHelper.getRotationFromFacing(facing));
                 this.doHarvest(facing);
                 this.tryPlant(facing);
             } else {
-                this.setIsActive(false);
+                //this.setIsActive(false);
             }
         }
 
-        this.animate();
+        //this.setRotationState(RotationEnum.NORTH);
 
         this.doEnergyTransferProcess();
-    }
-
-    private void animate() {
-
-        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterDisableAnimations) {
-            return;
-        }
-
-        if (this.requiresUpdate == false) {
-            return;
-        }
-
-        Harvester.setState(this.isActive, getWorld(), getPos());
-        this.requiresUpdate = false;
     }
 
     public boolean canHarvest(EnumFacing facing) {
@@ -458,6 +480,29 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
         return HARVESTER_PLAYER;
     }
 
+    @SideOnly(Side.CLIENT)
+    public void setRotationClient(RotationEnum rotation) {
+
+        String state = this.asm.currentState();
+        String newState = HarvesterHelper.getRotationFromEnum(rotation);
+
+        System.out.println("States: " + state + " to " + newState);
+
+        if (!state.equalsIgnoreCase(newState)) {
+            System.out.println("Transitioning to " + newState);
+            this.asm.transition(newState);
+        }
+    }
+
+    private void setRotationState(RotationEnum rotation) {
+
+        if (rotation != this.rotation) {
+            PacketHandler.INSTANCE.sendToAll(new HarvesterAnimationPacket(this.getPos(), rotation));
+        }
+
+        this.rotation = rotation;
+    }
+
     // Getters
 
     public int getEnergy() {
@@ -495,18 +540,18 @@ public class HarvesterTileEntity extends MachineTileBase implements ITickable, S
 
     public int getField(int id) {
         switch (id) {
-        case 0:
-            return this.getEnergy();
-        default:
-            return 0;
+            case 0:
+                return this.getEnergy();
+            default:
+                return 0;
         }
     }
 
     public void setField(int id, int value) {
         switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
+            case 0:
+                this.setEnergy(value);
+                break;
         }
     }
 

@@ -25,5 +25,6 @@ public class PacketHandler {
         INSTANCE.registerMessage(TidalGeneratorAnimationPacket.Handler.class, TidalGeneratorAnimationPacket.class, nextID(), Side.CLIENT);
         INSTANCE.registerMessage(WindGeneratorAnimationPacket.Handler.class, WindGeneratorAnimationPacket.class, nextID(), Side.CLIENT);
         INSTANCE.registerMessage(ScrubberAnimationPacket.Handler.class, ScrubberAnimationPacket.class, nextID(), Side.CLIENT);
+        INSTANCE.registerMessage(HarvesterAnimationPacket.Handler.class, HarvesterAnimationPacket.class, nextID(), Side.CLIENT);
     }
 }

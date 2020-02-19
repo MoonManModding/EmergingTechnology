@@ -30,12 +30,12 @@
                 "x": 90
             }
         },
-        "active": {
-            "false": {
-                "model": "emergingtechnology:harvester"
-            },
+        "static": {
             "true": {
-                "model": "emergingtechnology:harvester_active"
+                "model": "emergingtechnology:harvesterframe"
+            },
+            "false": {
+                "model": "emergingtechnology:harvesterarm"
             }
         }
     }
