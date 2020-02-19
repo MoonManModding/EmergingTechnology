@@ -488,17 +488,17 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
         System.out.println("States: " + state + " to " + newState);
 
-        if (!state.equalsIgnoreCase(newState)) {
+        // if (!state.equalsIgnoreCase(newState)) {
             System.out.println("Transitioning to " + newState);
             this.asm.transition(newState);
-        }
+        // }
     }
 
     private void setRotationState(RotationEnum rotation) {
 
-        if (rotation != this.rotation) {
+        // if (rotation != this.rotation) {
             PacketHandler.INSTANCE.sendToAll(new HarvesterAnimationPacket(this.getPos(), rotation));
-        }
+        // }
 
         this.rotation = rotation;
     }

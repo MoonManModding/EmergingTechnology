@@ -50,12 +50,12 @@
     },
     "clips": {
         "north": {
-            "loop": false,
+            "loop": true,
             "joint_clips": {},
             "events": {}
         },
         "east": {
-            "loop": false,
+            "loop": true,
             "joint_clips": {
                 "harvesterarm": [
                     {
@@ -64,8 +64,7 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2,
-                            1
+                            2
                         ]
                     },
                     {
@@ -74,17 +73,17 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            90,
-                            0
+                            90
                         ]
                     }
                 ]
             },
             "events": {
+                "1.0": "!transition:north"
             }
         },
         "south": {
-            "loop": false,
+            "loop": true,
             "joint_clips": {
                 "harvesterarm": [
                     {
@@ -93,8 +92,7 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2,
-                            1
+                            2
                         ]
                     },
                     {
@@ -103,17 +101,17 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            180,
-                            0
+                            180
                         ]
                     }
                 ]
             },
             "events": {
+                "1.0": "!transition:north"
             }
         },
         "west": {
-            "loop": false,
+            "loop": true,
             "joint_clips": {
                 "harvesterarm": [
                     {
@@ -122,8 +120,7 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2,
-                            1
+                            2
                         ]
                     },
                     {
@@ -132,13 +129,13 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            270,
-                            0
+                            270
                         ]
                     }
                 ]
             },
             "events": {
+                "1.0": "!transition:north"
             }
         }
         

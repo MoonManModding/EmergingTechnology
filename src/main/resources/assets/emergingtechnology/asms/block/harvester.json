@@ -19,18 +19,28 @@
   ],
   "transitions": {
     "north": [
+      "north",
       "east",
       "south",
       "west"
     ],
     "east": [
-      "north"
+      "north",
+      "east",
+      "south",
+      "west"
     ],
     "south": [
-      "north"
+      "north",
+      "east",
+      "south",
+      "west"
     ],
     "west": [
-      "north"
+      "north",
+      "east",
+      "south",
+      "west"
     ]
   },
   "start_state": "north"
