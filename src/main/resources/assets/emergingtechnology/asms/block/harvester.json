@@ -143,10 +143,10 @@
     ],
     "west_north": [
       "idle",
-      "north_north",
-      "north_east",
-      "north_south",
-      "north_west"
+      "west_north",
+      "west_east",
+      "west_south",
+      "west_west"
     ],
     "west_east": [
       "idle",

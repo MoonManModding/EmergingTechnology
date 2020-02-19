@@ -146,6 +146,98 @@
             }
         },
 
+        "south_north": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            180
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:south_south"
+            }
+        },
+        "south_east": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            -90
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:south_south"
+            }
+        },
+        "south_south": {
+            "loop": true,
+            "joint_clips": {
+                
+            },
+            "events": {
+            }
+        },
+        "south_west": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            90
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:south_south"
+            }
+        },
 
 
         "east_north": {
@@ -202,7 +294,7 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            270
+                            -90
                         ]
                     }
                 ]
@@ -238,6 +330,99 @@
             },
             "events": {
                 "1.0": "!transition:east_east"
+            }
+        },
+
+        "west_north": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            -90
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:west_west"
+            }
+        },
+        "west_east": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            180
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:west_west"
+            }
+        },
+        "west_south": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            90
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:west_west"
+            }
+        },
+        "west_west": {
+            "loop": true,
+            "joint_clips": {
+                
+            },
+            "events": {
             }
         }
         
