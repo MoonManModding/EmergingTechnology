@@ -49,6 +49,13 @@
         }
     },
     "clips": {
+        "idle": {
+            "loop": true,
+            "joint_clips": {
+            },
+            "events": {
+            }
+        },
         "north_north": {
             "loop": true,
             "joint_clips": {},
@@ -137,7 +144,103 @@
             "events": {
                 "1.0": "!transition:north_north"
             }
+        },
+
+
+
+        "east_north": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            90
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:east_east"
+            }
+        },
+        "east_east": {
+            "loop": true,
+            "joint_clips": {
+            },
+            "events": {
+            }
+        },
+        "east_south": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            270
+                        ]
+                    }
+                ]
+            },
+            "events": {
+                "1.0": "!transition:east_east"
+            }
+        },
+        "east_west": {
+            "loop": true,
+            "joint_clips": {
+                "harvesterarm": [
+                    {
+                        "variable": "axis_y",
+                        "type": "uniform",
+                        "interpolation": "nearest",
+                        "samples": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "variable": "angle",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            180
+                        ]
+                    }
+                ]
+                
+            },
+            "events": {
+                "1.0": "!transition:east_east"
+            }
         }
+        
         
     }
 }
