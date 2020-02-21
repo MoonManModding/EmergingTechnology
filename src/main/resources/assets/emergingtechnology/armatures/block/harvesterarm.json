@@ -193,7 +193,7 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            -90
+                            90
                         ]
                     }
                 ]
@@ -229,7 +229,7 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            90
+                            -90
                         ]
                     }
                 ]

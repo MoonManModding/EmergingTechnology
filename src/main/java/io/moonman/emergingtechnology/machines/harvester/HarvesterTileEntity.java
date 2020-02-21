@@ -76,7 +76,7 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         @Override
         public void onContentsChanged() {
             super.onContentsChanged();
-            markDirtyClient();
+            markDirty();
         }
     };
 
@@ -485,8 +485,6 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
         String state = this.asm.currentState();
         String newState = this.getFacing().getName() + "_" + HarvesterHelper.getRotationFromEnum(rotation);
-
-        System.out.println("States: " + state + " to " + newState);
 
         this.asm.transition(newState);
     }
