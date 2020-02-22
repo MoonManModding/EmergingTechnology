@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 public class InjectorRecipeBuilder {
@@ -28,7 +29,7 @@ public class InjectorRecipeBuilder {
 
         if (EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.disabled || removedAll) return;
 
-        RecipeProvider.injectorRecipes.add(new SimpleRecipe(ItemStack.EMPTY, new ItemStack(ModItems.fertilizer)));
+        RecipeProvider.injectorRecipes.add(new SimpleRecipe(new ItemStack(Blocks.DIRT), new ItemStack(ModItems.fertilizer)));
 
         for (ItemStack itemStack : recipesToRemove) {
             RecipeProvider.removeRecipesByOutput(RecipeProvider.injectorRecipes, itemStack);

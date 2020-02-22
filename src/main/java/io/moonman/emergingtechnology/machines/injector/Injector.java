@@ -54,7 +54,7 @@ public class Injector extends MachineBase implements ITileEntityProvider {
 
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.INJECTOR_DESC));
-            tooltip.add(Lang.getGenerated(fluid, ResourceTypeEnum.WATER));
+            tooltip.add(Lang.getGenerated(fluid, ResourceTypeEnum.FLUID));
             tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
             tooltip.add(Lang.getRequired(water, ResourceTypeEnum.WATER));
         } else {

@@ -15,6 +15,8 @@ import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerCateg
 import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorRecipeWrapper;
+import io.moonman.emergingtechnology.integration.jei.machines.injector.InjectorCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.injector.InjectorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.scaffolder.ScaffolderCategory;
@@ -66,7 +68,7 @@ public class JEIIntegration implements IModPlugin {
         registry.addRecipeCategories(new ProcessorCategory(helper), new ShredderCategory(helper),
                 new CookerCategory(helper), new FabricatorCategory(helper), new BioreactorCategory(helper),
                 new ScaffolderCategory(helper), new CollectorCategory(helper), new BiomassCategory(helper),
-                new ScrubberCategory(helper), new AlgaeBioreactorCategory(helper));
+                new ScrubberCategory(helper), new AlgaeBioreactorCategory(helper), new InjectorCategory(helper));
     }
 
     @Override
@@ -114,6 +116,10 @@ public class JEIIntegration implements IModPlugin {
         registry.handleRecipes(SimpleRecipe.class, AlgaeBioreactorRecipeWrapper::new, MachineReference.ALGAEBIOREACTOR_UID);
         registry.addRecipes(RecipeProvider.algaeBioreactorRecipes, MachineReference.ALGAEBIOREACTOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.algaebioreactor), MachineReference.ALGAEBIOREACTOR_UID);
+
+        registry.handleRecipes(SimpleRecipe.class, InjectorRecipeWrapper::new, MachineReference.INJECTOR_UID);
+        registry.addRecipes(RecipeProvider.injectorRecipes, MachineReference.INJECTOR_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.injector), MachineReference.INJECTOR_UID);
 
         EmergingTechnology.logger.info("Successfully registered with JEI.");
     }
