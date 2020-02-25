@@ -21,7 +21,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
@@ -30,7 +29,7 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class LightTileEntity extends MachineTileBase implements ITickable {
+public class LightTileEntity extends MachineTileBase {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.LIGHT_ENERGY_CAPACITY) {
         @Override
@@ -135,7 +134,6 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
 
         boolean hasPower = this.energyHandler.getEnergyStored() > 0;
 
-        // If lamp has power, try to grow plants below
         if (hasPower) {
             doGrowthMultiplierProcess(this.bulbTypeId);
         }
@@ -162,9 +160,7 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
             this.energyHandler.extractEnergy(this.energy, false);
         }
 
-        this.setEnergy(this.energyHandler.getEnergyStored());
-
-        int transferEnergy = EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.growLightEnergyTransferRate;
+        int transferEnergy = this.getEnergy();
 
         // If enough energy to transfer...
         if (this.energy >= transferEnergy) {
@@ -333,7 +329,7 @@ public class LightTileEntity extends MachineTileBase implements ITickable {
     }
 
     public int getEnergy() {
-        return this.energy;
+        return this.energyHandler.getEnergyStored();
     }
 
     public ItemStack getItemStack() {

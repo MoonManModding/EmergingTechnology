@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.helpers.machines.TidalHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
@@ -64,6 +65,11 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
 
     @Override
     public boolean hasFastRenderer() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnergyGeneratorTile() {
         return true;
     }
 
@@ -147,22 +153,7 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
     }
 
     private void spreadEnergy() {
-        for (EnumFacing side : EnumFacing.VALUES) {
-            TileEntity tileEntity = world.getTileEntity(pos.offset(side));
-
-            if (tileEntity != null) {
-                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-
-                if (otherStorage != null) {
-                    if (otherStorage.canReceive()) {
-                        if (this.getEnergy() > 0) {
-                            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
-                            this.energyHandler.extractEnergy(energySpread, false);
-                        }
-                    }
-                }
-            }
-        }
+        EnergyNetworkHelper.pushEnergy(getWorld(), getPos(), this.generatorEnergyHandler);
     }
 
     @SideOnly(Side.CLIENT)

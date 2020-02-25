@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.machines.piezoelectric;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
@@ -43,6 +44,11 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     private int tick = 0;
     private int cooldown = 0;
     private int energy = 0;
+
+    @Override
+    public boolean isEnergyGeneratorTile() {
+        return true;
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -119,22 +125,7 @@ public class PiezoelectricTileEntity extends MachineTileBase implements ITickabl
     }
 
     private void spreadEnergy() {
-        for (EnumFacing side : EnumFacing.VALUES) {
-            TileEntity tileEntity = world.getTileEntity(pos.offset(side));
-
-            if (tileEntity != null) {
-                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-
-                if (otherStorage != null) {
-                    if (otherStorage.canReceive()) {
-                        if (this.getEnergy() > 0) {
-                            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
-                            this.energyHandler.extractEnergy(energySpread, false);
-                        }
-                    }
-                }
-            }
-        }
+        EnergyNetworkHelper.pushEnergy(getWorld(), getPos(), this.generatorEnergyHandler);
     }
 
     // Getters

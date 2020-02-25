@@ -4,6 +4,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.BiomassHelper;
 import io.moonman.emergingtechnology.init.Reference;
@@ -16,7 +17,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -28,7 +28,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class BiomassGeneratorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class BiomassGeneratorTileEntity extends MachineTileBase implements SimpleComponent {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.BIOMASS_ENERGY_CAPACITY) {
         @Override
@@ -70,6 +70,11 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
 
     private int energy = 0;
     private int progress = 0;
+
+    @Override
+    public boolean isEnergyGeneratorTile() {
+        return true;
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -192,22 +197,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements ITick
     }
 
     private void spreadEnergy() {
-        for (EnumFacing side : EnumFacing.VALUES) {
-            TileEntity tileEntity = world.getTileEntity(pos.offset(side));
-
-            if (tileEntity != null) {
-                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-
-                if (otherStorage != null) {
-                    if (otherStorage.canReceive()) {
-                        if (this.getEnergy() > 0) {
-                            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
-                            this.energyHandler.extractEnergy(energySpread, false);
-                        }
-                    }
-                }
-            }
-        }
+        EnergyNetworkHelper.pushEnergy(getWorld(), getPos(), this.generatorEnergyHandler);
     }
 
     // Getters

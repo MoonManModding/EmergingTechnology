@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.machines.solarglass;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import net.minecraft.block.state.IBlockState;
@@ -37,6 +38,11 @@ public class SolarGlassTileEntity extends MachineTileBase implements ITickable, 
     };
 
     int energy = 0;
+
+    @Override
+    public boolean isEnergyGeneratorTile() {
+        return true;
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -107,37 +113,7 @@ public class SolarGlassTileEntity extends MachineTileBase implements ITickable, 
     }
 
     private void spreadEnergy() {
-
-        for (EnumFacing side : EnumFacing.VALUES) {
-            TileEntity tileEntity = world.getTileEntity(pos.offset(side));
-
-            if (tileEntity == null) {
-                continue;
-            }
-
-            IEnergyStorage otherStorage = null;
-
-            if (side == getPushDirection() && tileEntity instanceof SolarGlassTileEntity) {
-                SolarGlassTileEntity solarGlassTile = (SolarGlassTileEntity) tileEntity;
-                otherStorage = solarGlassTile.energyHandler;
-            } else {
-                otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-            }
-
-            if (otherStorage == null) {
-                continue;
-            }
-            if (!otherStorage.canReceive()) {
-                continue;
-            }
-
-            if (this.getEnergy() == 0) {
-                return;
-            }
-
-            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
-            this.energyHandler.extractEnergy(energySpread, false);
-        }
+        EnergyNetworkHelper.pushEnergy(getWorld(), getPos(), this.generatorEnergyHandler);
     }
 
     private boolean canReceiveSunlight() {
@@ -145,10 +121,6 @@ public class SolarGlassTileEntity extends MachineTileBase implements ITickable, 
         BlockPos first = getPos().offset(facing);
         BlockPos second = getPos().offset(facing, 1);
         return (getWorld().canSeeSky(first) || getWorld().canSeeSky(second)) && getWorld().isDaytime();
-    }
-
-    private EnumFacing getPushDirection() {
-        return EmergingTechnologyConfig.ELECTRICS_MODULE.SOLARGLASS.pushEnergyDown ? EnumFacing.DOWN : EnumFacing.UP;
     }
 
     // Getters

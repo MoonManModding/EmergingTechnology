@@ -47,4 +47,11 @@ public class MachineTileBase extends TileEntity implements ITickable {
     public void cycle() {
 
     }
+
+    /**
+     * Whether this machine produces energy and can channel energy to peripheral machines
+     */
+    public boolean isEnergyGeneratorTile() {
+        return false;
+    }
 }

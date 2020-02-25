@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
@@ -36,7 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class WindTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
     private final IAnimationStateMachine asm;
 
@@ -63,6 +64,11 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
 
     @Override
     public boolean hasFastRenderer() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnergyGeneratorTile() {
         return true;
     }
 
@@ -144,22 +150,7 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
     }
 
     private void spreadEnergy() {
-        for (EnumFacing side : EnumFacing.VALUES) {
-            TileEntity tileEntity = world.getTileEntity(pos.offset(side));
-
-            if (tileEntity != null) {
-                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-
-                if (otherStorage != null) {
-                    if (otherStorage.canReceive()) {
-                        if (this.getEnergy() > 0) {
-                            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
-                            this.energyHandler.extractEnergy(energySpread, false);
-                        }
-                    }
-                }
-            }
-        }
+        EnergyNetworkHelper.pushEnergy(getWorld(), getPos(), this.generatorEnergyHandler);
     }
 
     @SideOnly(Side.CLIENT)

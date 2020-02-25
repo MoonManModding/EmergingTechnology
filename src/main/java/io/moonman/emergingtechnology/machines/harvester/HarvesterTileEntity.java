@@ -76,7 +76,7 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         @Override
         public void onContentsChanged() {
             super.onContentsChanged();
-            markDirty();
+            markDirtyClient();
         }
     };
 
