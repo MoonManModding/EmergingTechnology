@@ -197,7 +197,7 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     }
 
     private void onAction(String action) {
-        AnimationHelper.onHarvesterAction(position, action);
+        AnimationHelper.onHarvesterAction(position, action, currentStateName);
     }
 
     public void setPosition(BlockPos position) {

@@ -51,16 +51,13 @@
     "clips": {
         "idle": {
             "loop": true,
-            "joint_clips": {
-            },
-            "events": {
-            }
+            "joint_clips": {},
+            "events": {}
         },
         "north_north": {
             "loop": true,
             "joint_clips": {},
             "events": {
-                
             }
         },
         "north_east": {
@@ -132,7 +129,9 @@
                         "type": "uniform",
                         "interpolation": "nearest",
                         "samples": [
-                            1
+                            1,
+                            2,
+                            3
                         ]
                     },
                     {
@@ -140,6 +139,7 @@
                         "type": "uniform",
                         "interpolation": "linear",
                         "samples": [
+                            0,
                             -270
                         ]
                     }
@@ -150,7 +150,6 @@
                 "1.0": "!transition:north_north"
             }
         },
-
         "south_north": {
             "loop": true,
             "joint_clips": {
@@ -161,7 +160,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -176,6 +176,7 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:south_south"
             }
         },
@@ -189,7 +190,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -204,14 +206,13 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:south_south"
             }
         },
         "south_south": {
             "loop": true,
-            "joint_clips": {
-                
-            },
+            "joint_clips": {},
             "events": {
             }
         },
@@ -225,7 +226,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -240,11 +242,10 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:south_south"
             }
         },
-
-
         "east_north": {
             "loop": true,
             "joint_clips": {
@@ -255,7 +256,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -270,13 +272,13 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:east_east"
             }
         },
         "east_east": {
             "loop": true,
-            "joint_clips": {
-            },
+            "joint_clips": {},
             "events": {
             }
         },
@@ -290,7 +292,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -305,6 +308,7 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:east_east"
             }
         },
@@ -318,7 +322,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -331,13 +336,12 @@
                         ]
                     }
                 ]
-                
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:east_east"
             }
         },
-
         "west_north": {
             "loop": true,
             "joint_clips": {
@@ -348,7 +352,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -363,6 +368,7 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:west_west"
             }
         },
@@ -376,7 +382,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -391,6 +398,7 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:west_west"
             }
         },
@@ -404,7 +412,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -419,18 +428,15 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:west_west"
             }
         },
         "west_west": {
             "loop": true,
-            "joint_clips": {
-                
-            },
+            "joint_clips": {},
             "events": {
             }
         }
-        
-        
     }
 }

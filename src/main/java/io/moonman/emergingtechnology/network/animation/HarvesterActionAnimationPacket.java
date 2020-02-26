@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.network.animation;
 
+import io.moonman.emergingtechnology.helpers.FacingHelper;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -51,11 +52,9 @@ public class HarvesterActionAnimationPacket implements IMessage {
             EntityPlayerMP player = ctx.getServerHandler().player;
             World world = player.world;
 
-            System.out.println("Handling");
-
             if (world.isBlockLoaded(message.pos)) {
                 HarvesterTileEntity te = (HarvesterTileEntity) world.getTileEntity(message.pos);
-                te.doHarvest(EnumFacing.VALUES[message.integer]);
+                te.doHarvest(FacingHelper.getFacingFromId(message.integer));
             }
         }
     }

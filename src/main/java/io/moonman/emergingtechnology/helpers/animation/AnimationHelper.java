@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.helpers.animation;
 
 import com.google.common.collect.ImmutableMap;
 
+import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.HarvesterActionAnimationPacket;
 import net.minecraft.client.Minecraft;
@@ -21,10 +22,10 @@ public class AnimationHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void onHarvesterAction(BlockPos pos, String action) {
-        int facingId = 5; //Integer.parseInt(action);
+    public static void onHarvesterAction(BlockPos pos, String action, String state) {
+        if (state == "idle") return;
 
-        System.out.println("onHarvesterAction " + pos + " " + action);
+        int facingId = HarvesterHelper.getFacingIdFromAnimationState(state);
 
         PacketHandler.INSTANCE.sendToServer(new HarvesterActionAnimationPacket(pos, facingId));
     }

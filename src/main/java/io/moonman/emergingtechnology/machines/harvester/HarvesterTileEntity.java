@@ -183,9 +183,24 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
         this.setEnergy(this.getEnergy());
 
-        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
-            if (canHarvest(facing)) {
-                this.setRotationState(HarvesterHelper.getRotationFromFacing(facing));
+        EnumFacing blockFacing = this.getFacing();
+
+        // Try harvesting in front without animation
+        if (canHarvest(blockFacing)) {
+            this.doHarvest(blockFacing);
+            this.tryPlant(blockFacing);
+        } else {
+            // Otherwise cycle through directions
+            for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+
+                if (facing == blockFacing) continue;
+
+                tryPlant(facing);
+
+                // If can harvest in this direction, and not currently animating, rotate to direction
+                if (canHarvest(facing) && isIdle()) {
+                    this.setRotationState(RotationEnum.getRotationFromFacing(facing));
+                }
             }
         }
 
@@ -215,8 +230,6 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
     public void doHarvest(EnumFacing facing) {
 
-        System.out.println("Do Harvest! " + facing);
-
         if (!canHarvest(facing)) {
             return;
         }
@@ -238,8 +251,6 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         pullItems(facing);
 
         useEnergy();
-
-        tryPlant(facing);
     }
 
     private void doInteractableHarvest(EnumFacing facing) {
@@ -430,6 +441,12 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         return getEnergy() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage;
     }
 
+    private boolean isIdle() {
+        String stateName = this.getFacing().toString() + "_" + this.getFacing().toString();
+
+        return this.asm.currentState().equalsIgnoreCase(stateName) || this.asm.currentState().equalsIgnoreCase("idle");
+    }
+
     private int useEnergy() {
         return energyHandler
                 .extractEnergy(EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage, false);
@@ -482,7 +499,7 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         this.asm.setPosition(getPos());
 
         String state = this.asm.currentState();
-        String newState = this.getFacing().getName() + "_" + HarvesterHelper.getRotationFromEnum(rotation);
+        String newState = this.getFacing().getName() + "_" + RotationEnum.getRotationFromEnum(rotation);
 
         this.asm.transition(newState);
     }

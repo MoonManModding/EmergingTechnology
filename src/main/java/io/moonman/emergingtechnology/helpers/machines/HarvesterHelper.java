@@ -2,6 +2,8 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import java.util.List;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
+import io.moonman.emergingtechnology.helpers.FacingHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -43,34 +45,17 @@ public class HarvesterHelper {
         return blockState.getBlock().getDrops(world, pos, blockState, 1);
     }
 
-    public static String getRotationFromEnum(RotationEnum rotationEnum) {
-        switch (rotationEnum) {
-            case EAST:
-                return "east";
-            case NORTH:
-                return "north";
-            case SOUTH:
-                return "south";
-            case WEST:
-                return "west";
-            default:
-                return "north";
-        }
-    }
+    public static int getFacingIdFromAnimationState(String state) {
+        String[] splitStrings = state.split("_");
 
-    public static RotationEnum getRotationFromFacing(EnumFacing facing) {
-        switch (facing) {
-            case EAST:
-                return RotationEnum.EAST;
-            case NORTH:
-                return RotationEnum.NORTH;
-            case SOUTH:
-                return RotationEnum.SOUTH;
-            case WEST:
-                return RotationEnum.WEST;
-            default:
-                return RotationEnum.NORTH;
+        EnumFacing facing = EnumFacing.byName(splitStrings[0]);
+        EnumFacing relativeFacing = EnumFacing.byName(splitStrings[1]);
 
+        if (facing == null || relativeFacing == null) {
+            EmergingTechnology.logger.warn("There was a problem parsing facing for animation state " + state);
+            return 0;
         }
+
+        return FacingHelper.getFacingIdFromEnumFacings(facing, relativeFacing);
     }
 }
