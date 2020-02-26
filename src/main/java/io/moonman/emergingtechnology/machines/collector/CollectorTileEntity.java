@@ -106,7 +106,7 @@ public class CollectorTileEntity extends MachineTileBase {
                 return;
             }
 
-            ItemStack recoveredItemStack = CollectorHelper.getRandomRecoveredItemStack();
+            ItemStack recoveredItemStack = CollectorHelper.getRandomRecoveredItemStack().copy();
 
             for (int i = 0; i < 5; i++) {
 

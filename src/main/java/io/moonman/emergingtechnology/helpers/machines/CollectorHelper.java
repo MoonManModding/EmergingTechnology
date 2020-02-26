@@ -27,8 +27,12 @@ public class CollectorHelper {
     }
 
     public static boolean isInValidBiome(Biome biome) {
-        return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN
-                || EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.biomeRequirementDisabled;
+
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.biomeRequirementDisabled) {
+            return true;
+        }
+
+        return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN;
     }
 
     public static boolean isFloatingInWater(World world, BlockPos pos) {
