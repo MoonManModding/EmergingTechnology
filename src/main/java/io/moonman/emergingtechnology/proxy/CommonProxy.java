@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.proxy;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.animation.AnimationHelper;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
@@ -11,7 +12,6 @@ import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.init.OreRegistrationHandler;
 import io.moonman.emergingtechnology.init.RegistrationHandler;
-import io.moonman.emergingtechnology.init.RenderHandler;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.block.Block;
@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -79,7 +78,6 @@ public abstract class CommonProxy {
 
     public void init(FMLInitializationEvent e) {
         OreRegistrationHandler.init();
-
         RecipeBuilder.buildMachineRecipes();
     }
 

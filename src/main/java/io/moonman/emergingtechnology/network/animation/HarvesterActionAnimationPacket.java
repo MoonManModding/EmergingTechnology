@@ -1,8 +1,9 @@
-package io.moonman.emergingtechnology.network;
+package io.moonman.emergingtechnology.network.animation;
 
-import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
+import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class FabricatorStopStartPacket implements IMessage {
+public class HarvesterActionAnimationPacket implements IMessage {
     boolean messageValid;
 
     private BlockPos pos;
@@ -30,29 +31,31 @@ public class FabricatorStopStartPacket implements IMessage {
         buf.writeInt(integer);
     }
 
-    public FabricatorStopStartPacket() {
+    public HarvesterActionAnimationPacket() {
     }
 
-    public FabricatorStopStartPacket(BlockPos pos, int isPrinting) {
-        this.integer = isPrinting;
+    public HarvesterActionAnimationPacket(BlockPos pos, int integer) {
+        this.integer = integer;
         this.pos = pos;
         messageValid = true;
     }
 
-    public static class Handler implements IMessageHandler<FabricatorStopStartPacket, IMessage> {
+    public static class Handler implements IMessageHandler<HarvesterActionAnimationPacket, IMessage> {
         @Override
-        public IMessage onMessage(FabricatorStopStartPacket message, MessageContext ctx) {
+        public IMessage onMessage(HarvesterActionAnimationPacket message, MessageContext ctx) {
             FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> handle(message, ctx));
             return null;
         }
 
-        private void handle(FabricatorStopStartPacket message, MessageContext ctx) {
+        private void handle(HarvesterActionAnimationPacket message, MessageContext ctx) {
             EntityPlayerMP player = ctx.getServerHandler().player;
             World world = player.world;
 
+            System.out.println("Handling");
+
             if (world.isBlockLoaded(message.pos)) {
-                FabricatorTileEntity te = (FabricatorTileEntity) world.getTileEntity(message.pos);
-                te.setField(3, message.integer);
+                HarvesterTileEntity te = (HarvesterTileEntity) world.getTileEntity(message.pos);
+                te.doHarvest(EnumFacing.VALUES[message.integer]);
             }
         }
     }

@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.network;
+package io.moonman.emergingtechnology.network.gui;
 
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
 import io.netty.buffer.ByteBuf;

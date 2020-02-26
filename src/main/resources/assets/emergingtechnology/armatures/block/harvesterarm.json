@@ -59,7 +59,9 @@
         "north_north": {
             "loop": true,
             "joint_clips": {},
-            "events": {}
+            "events": {
+                
+            }
         },
         "north_east": {
             "loop": true,
@@ -71,7 +73,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -86,6 +89,7 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:north_north"
             }
         },
@@ -99,7 +103,8 @@
                         "interpolation": "nearest",
                         "samples": [
                             1,
-                            2
+                            2,
+                            3
                         ]
                     },
                     {
@@ -114,6 +119,7 @@
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:north_north"
             }
         },
@@ -126,8 +132,7 @@
                         "type": "uniform",
                         "interpolation": "nearest",
                         "samples": [
-                            1,
-                            2
+                            1
                         ]
                     },
                     {
@@ -135,13 +140,13 @@
                         "type": "uniform",
                         "interpolation": "linear",
                         "samples": [
-                            0,
                             -270
                         ]
                     }
                 ]
             },
             "events": {
+                "0.5": "!action:ready",
                 "1.0": "!transition:north_north"
             }
         },

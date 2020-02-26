@@ -21,7 +21,7 @@ import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTil
 import io.moonman.emergingtechnology.machines.diffuser.Diffuser;
 import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.ScrubberAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.ScrubberAnimationPacket;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

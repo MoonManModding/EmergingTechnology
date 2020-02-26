@@ -13,15 +13,15 @@ import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandle
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.animation.AnimationHelper;
+import io.moonman.emergingtechnology.helpers.animation.HarvesterAnimationStateMachine;
 import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
-import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
-import io.moonman.emergingtechnology.network.HarvesterAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.HarvesterRotationAnimationPacket;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,10 +38,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
-import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -62,11 +60,11 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
             UUID.fromString("36f373ac-29ef-4150-b654-e7e6006efcd8"), "[Harvester]");
     private static FakePlayer HARVESTER_PLAYER = null;
 
-    private final IAnimationStateMachine asm;
+    private final HarvesterAnimationStateMachine asm;
 
     public HarvesterTileEntity() {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            asm = ModelLoaderRegistry.loadASM(
+            asm = AnimationHelper.loadHarvesterASM(
                     new ResourceLocation(EmergingTechnology.MODID, "asms/block/harvester.json"), ImmutableMap.of());
         } else
             asm = null;
@@ -113,9 +111,6 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
     }
 
     private int energy = this.energyHandler.getEnergyStored();
-
-    private boolean isActive = false;
-    private boolean requiresUpdate = false;
 
     private RotationEnum rotation = RotationEnum.NORTH;
 
@@ -190,16 +185,9 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             if (canHarvest(facing)) {
-                // this.setIsActive(true);
                 this.setRotationState(HarvesterHelper.getRotationFromFacing(facing));
-                this.doHarvest(facing);
-                this.tryPlant(facing);
-            } else {
-                // this.setIsActive(false);
             }
         }
-
-        // this.setRotationState(RotationEnum.NORTH);
 
         this.doEnergyTransferProcess();
     }
@@ -225,7 +213,13 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         return PlantHelper.isCropAtPositionReadyForHarvest(getWorld(), getTarget(facing));
     }
 
-    private void doHarvest(EnumFacing facing) {
+    public void doHarvest(EnumFacing facing) {
+
+        System.out.println("Do Harvest! " + facing);
+
+        if (!canHarvest(facing)) {
+            return;
+        }
 
         if (getTargetBlockState(facing) == null) {
             return;
@@ -244,6 +238,8 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         pullItems(facing);
 
         useEnergy();
+
+        tryPlant(facing);
     }
 
     private void doInteractableHarvest(EnumFacing facing) {
@@ -483,6 +479,8 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
     @SideOnly(Side.CLIENT)
     public void setRotationClient(RotationEnum rotation) {
 
+        this.asm.setPosition(getPos());
+
         String state = this.asm.currentState();
         String newState = this.getFacing().getName() + "_" + HarvesterHelper.getRotationFromEnum(rotation);
 
@@ -491,7 +489,7 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
     private void setRotationState(RotationEnum rotation) {
 
-        PacketHandler.INSTANCE.sendToAll(new HarvesterAnimationPacket(this.getPos(), rotation));
+        PacketHandler.INSTANCE.sendToAll(new HarvesterRotationAnimationPacket(this.getPos(), rotation));
 
         this.rotation = rotation;
     }
@@ -502,19 +500,7 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
         return this.energyHandler.getEnergyStored();
     }
 
-    public boolean getIsActive() {
-        return this.isActive;
-    }
-
     // Setters
-
-    public void setIsActive(boolean active) {
-        if (active != this.isActive) {
-            this.requiresUpdate = true;
-        }
-
-        this.isActive = active;
-    }
 
     private void setEnergy(int quantity) {
         this.energy = quantity;

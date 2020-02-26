@@ -1,8 +1,8 @@
-package io.moonman.emergingtechnology.network;
+package io.moonman.emergingtechnology.network.animation;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
-import io.moonman.emergingtechnology.machines.wind.WindTileEntity;
+import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class WindGeneratorAnimationPacket implements IMessage {
+public class TidalGeneratorAnimationPacket implements IMessage {
     boolean messageValid;
 
     private BlockPos pos;
@@ -31,28 +31,28 @@ public class WindGeneratorAnimationPacket implements IMessage {
         buf.writeInt(speed);
     }
 
-    public WindGeneratorAnimationPacket() {
+    public TidalGeneratorAnimationPacket() {
     }
 
-    public WindGeneratorAnimationPacket(BlockPos pos, TurbineSpeedEnum speed) {
+    public TidalGeneratorAnimationPacket(BlockPos pos, TurbineSpeedEnum speed) {
         this.speed = TurbineSpeedEnum.getId(speed);
         this.pos = pos;
         messageValid = true;
     }
 
-    public static class Handler implements IMessageHandler<WindGeneratorAnimationPacket, IMessage> {
+    public static class Handler implements IMessageHandler<TidalGeneratorAnimationPacket, IMessage> {
         @Override
-        public IMessage onMessage(WindGeneratorAnimationPacket message, MessageContext ctx) {
+        public IMessage onMessage(TidalGeneratorAnimationPacket message, MessageContext ctx) {
             FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> handle(message, ctx));
             return null;
         }
 
-        private void handle(WindGeneratorAnimationPacket message, MessageContext ctx) {
+        private void handle(TidalGeneratorAnimationPacket message, MessageContext ctx) {
 
             World world = EmergingTechnology.proxy.getWorld(ctx);
 
             if (world != null && world.isBlockLoaded(message.pos)) {
-                WindTileEntity tileEntity = (WindTileEntity) world.getTileEntity(message.pos);
+                TidalGeneratorTileEntity tileEntity = (TidalGeneratorTileEntity) world.getTileEntity(message.pos);
                 if (tileEntity != null) {
                     tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
                 }

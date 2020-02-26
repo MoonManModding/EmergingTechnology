@@ -12,7 +12,7 @@ import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.TidalGeneratorAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.TidalGeneratorAnimationPacket;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
