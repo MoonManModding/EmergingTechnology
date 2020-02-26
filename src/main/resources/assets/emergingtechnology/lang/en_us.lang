@@ -182,6 +182,15 @@ fluid.emergingtechnology.carbondioxide=Carbon Dioxide
 tile.emergingtechnology.nutrientblock.name=Nutrient Fluid
 fluid.emergingtechnology.nutrient=Nutrient Fluid
 
+#ORES
+item.emergingtechnology.pollutedgrass.name=Polluted Grass
+block.emergingtechnology.pollutedgrass.name=Polluted Grass
+tile.emergingtechnology.pollutedgrass.name=Polluted Grass
+
+item.emergingtechnology.pollutedsand.name=Polluted Sand
+block.emergingtechnology.pollutedsand.name=Polluted Sand
+tile.emergingtechnology.pollutedsand.name=Polluted Sand
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology

@@ -160,6 +160,10 @@ public class ModItems {
 	public static final Item carbondioxideblock = null;
 	// endregion
 
+	// region Ore block items
+	public static final Item pollutedgrass = null;
+	public static final Item pollutedsand = null;
+
 	// All *non-block* items
 	public static Item[] getItems() {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,

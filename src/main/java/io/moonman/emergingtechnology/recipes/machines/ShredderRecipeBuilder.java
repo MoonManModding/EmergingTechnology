@@ -75,6 +75,9 @@ public class ShredderRecipeBuilder {
         itemInputs.add(new ItemStack(ModItems.purplebulb));
         itemInputs.add(new ItemStack(ModItems.plasticwaste));
 
+        // itemInputs.add(new ItemStack(ModBlocks.pollutedgrass));
+        // itemInputs.add(new ItemStack(ModBlocks.pollutedsand));
+
         List<String> oreInputs = new ArrayList<String>();
 
         oreInputs.add("sheetPlastic");
