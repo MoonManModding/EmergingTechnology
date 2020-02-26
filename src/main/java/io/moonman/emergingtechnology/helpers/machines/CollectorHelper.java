@@ -19,18 +19,16 @@ import net.minecraft.world.biome.Biome;
  */
 public class CollectorHelper {
 
-    private static ItemStack[] collectorItems = new ItemStack[] {
-        new ItemStack(ModItems.paperwaste),
-        new ItemStack(ModItems.plasticwaste),
-        new ItemStack(ModItems.algae)
-    };
+    private static ItemStack[] collectorItems = new ItemStack[] { new ItemStack(ModItems.paperwaste),
+            new ItemStack(ModItems.plasticwaste), new ItemStack(ModItems.algae) };
 
     public static ItemStack[] getCollectorItems() {
         return collectorItems;
     }
 
     public static boolean isInValidBiome(Biome biome) {
-        return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN;
+        return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN
+                || EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.biomeRequirementDisabled;
     }
 
     public static boolean isFloatingInWater(World world, BlockPos pos) {
@@ -46,7 +44,7 @@ public class CollectorHelper {
 
         int waterBlockCount = 0;
 
-        for (int x = 0; x < 5; x ++) {
+        for (int x = 0; x < 5; x++) {
             for (int z = 0; z < 5; z++) {
                 boolean isValidNeighbour = isValidNeighbour(world.getBlockState(startPos.add(x, 0, z)));
                 if (isValidNeighbour) {

@@ -54,7 +54,9 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
             tooltip.add(Lang.get(Lang.TIDAL_DESC));
             tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY) + " " + Lang.getDepthBoost(min, max));
             tooltip.add(Lang.getWaterBlocksRequired(surround));
-            tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
+            if (!EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.biomeRequirementDisabled) {
+                tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
+            }
         } else {
             tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
         }

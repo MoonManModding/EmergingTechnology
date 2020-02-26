@@ -40,10 +40,12 @@ public class Collector extends MachineBase implements ITileEntityProvider {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         int count = EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.minimumWaterBlocks;
-        
+
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.COLLECTOR_DESC));
-            tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
+            if (!EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.biomeRequirementDisabled) {
+                tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
+            }
             tooltip.add(Lang.getWaterBlocksRequired(count));
             tooltip.add(Lang.get(Lang.WATER_SURFACE_REQUIREMENT));
         } else {
