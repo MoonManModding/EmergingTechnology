@@ -45,20 +45,29 @@ public class OreGenerator implements IWorldGenerator {
 
                 if (EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GENERATE_DIRT) {
                     addOreSpawn(ModBlocks.polluteddirt, (byte) 0, Blocks.DIRT, world, random, chunkX * 16, chunkZ * 16,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MIN_VEIN_SIZE,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MAX_VEIN_SIZE,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.CHANCES_TO_SPAWN,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MIN_Y,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MAX_Y);
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.DIRT_MIN_VEIN_SIZE,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.DIRT_MAX_VEIN_SIZE,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.DIRT_CHANCES_TO_SPAWN,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.DIRT_MIN_Y,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.DIRT_MAX_Y);
                 }
 
                 if (EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GENERATE_SAND) {
                     addOreSpawn(ModBlocks.pollutedsand, (byte) 0, Blocks.SAND, world, random, chunkX * 16, chunkZ * 16,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MIN_VEIN_SIZE,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MAX_VEIN_SIZE,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.CHANCES_TO_SPAWN,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MIN_Y,
-                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.MAX_Y);
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.SAND_MIN_VEIN_SIZE,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.SAND_MAX_VEIN_SIZE,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.SAND_CHANCES_TO_SPAWN,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.SAND_MIN_Y,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.SAND_MAX_Y);
+                }
+
+                if (EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GENERATE_GRAVEL) {
+                    addOreSpawn(ModBlocks.pollutedgravel, (byte) 0, Blocks.GRAVEL, world, random, chunkX * 16, chunkZ * 16,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GRAVEL_MIN_VEIN_SIZE,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GRAVEL_MAX_VEIN_SIZE,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GRAVEL_CHANCES_TO_SPAWN,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GRAVEL_MIN_Y,
+                            EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GRAVEL_MAX_Y);
                 }
             }
         }

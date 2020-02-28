@@ -21,6 +21,6 @@ public class BlockStateMatcher implements Predicate<IBlockState>
 
     public boolean apply(@Nullable IBlockState state)
     {
-        return state != null && state.getBlock().getStateFromMeta(0) == this.block.getStateFromMeta(0);
+        return state != null && state == this.block.getStateFromMeta(0);
     }
 }

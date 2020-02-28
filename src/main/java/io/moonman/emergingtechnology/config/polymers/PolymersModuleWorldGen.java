@@ -25,23 +25,85 @@ public class PolymersModuleWorldGen {
     @Config.Comment(value = "Generate Polluted Dirt Blocks")
     public boolean GENERATE_DIRT = true;
 
-    @Name("Minimum Vein Size")
-    @Config.Comment(value = "Minimum size of every ore vein")
-    public int MIN_VEIN_SIZE = 4;
+    @Name("Generate Polluted Gravel")
+    @Config.Comment(value = "Generate Polluted Gravel Blocks")
+    public boolean GENERATE_GRAVEL = true;
 
-    @Name("Maximum Vein Size")
-    @Config.Comment(value = "Maximum size of every ore vein")
-    public int MAX_VEIN_SIZE = 8;
+    // Sand
 
-    @Name("Chance to spawn")
-    @Config.Comment(value = "Maximum veins per chunk")
-    public int CHANCES_TO_SPAWN = 9;
+    @Name("Sand Biome Restriction")
+    @Config.Comment(value = "Restrict Polluted Sand to specific Biomes")
+    public boolean SAND_BIOME_RESTRICTION = false;
 
-    @Name("Minimum spawn height")
-    @Config.Comment(value = "Minimum height for the ore")
-    public int MIN_Y = 60;
+    @Name("Minimum Sand Vein Size")
+    @Config.Comment(value = "Minimum size of every sand vein")
+    public int SAND_MIN_VEIN_SIZE = 4;
 
-    @Name("Maximum spawn height")
-    @Config.Comment(value = "Maximum height for the ore")
-    public int MAX_Y = 100;
+    @Name("Maximum Sand Vein Size")
+    @Config.Comment(value = "Maximum size of every sand vein")
+    public int SAND_MAX_VEIN_SIZE = 8;
+
+    @Name("Chance to spawn sand")
+    @Config.Comment(value = "Maximum sand veins per chunk")
+    public int SAND_CHANCES_TO_SPAWN = 9;
+
+    @Name("Sand Minimum spawn height")
+    @Config.Comment(value = "Minimum height for Polluted Sand")
+    public int SAND_MIN_Y = 60;
+
+    @Name("Sand Maximum spawn height")
+    @Config.Comment(value = "Maximum height for Polluted Sand")
+    public int SAND_MAX_Y = 100;
+
+    // Dirt
+
+    @Name("Dirt Biome Restriction")
+    @Config.Comment(value = "Restrict Polluted Dirt to specific Biomes")
+    public boolean DIRT_BIOME_RESTRICTION = false;
+
+    @Name("Minimum Dirt Vein Size")
+    @Config.Comment(value = "Minimum size of every Dirt vein")
+    public int DIRT_MIN_VEIN_SIZE = 3;
+
+    @Name("Maximum Dirt Vein Size")
+    @Config.Comment(value = "Maximum size of every Dirt vein")
+    public int DIRT_MAX_VEIN_SIZE = 5;
+
+    @Name("Chance to spawn Dirt")
+    @Config.Comment(value = "Maximum Dirt veins per chunk")
+    public int DIRT_CHANCES_TO_SPAWN = 9;
+
+    @Name("Dirt Minimum spawn height")
+    @Config.Comment(value = "Minimum height for Polluted Dirt")
+    public int DIRT_MIN_Y = 60;
+
+    @Name("Dirt Maximum spawn height")
+    @Config.Comment(value = "Maximum height for Polluted Dirt")
+    public int DIRT_MAX_Y = 100;
+
+    // Gravel
+
+    @Name("Gravel Biome Restriction")
+    @Config.Comment(value = "Restrict Polluted Gravel to specific Biomes")
+    public boolean GRAVEL_BIOME_RESTRICTION = false;
+
+    @Name("Minimum Gravel Vein Size")
+    @Config.Comment(value = "Minimum size of every Gravel vein")
+    public int GRAVEL_MIN_VEIN_SIZE = 5;
+
+    @Name("Maximum Gravel Vein Size")
+    @Config.Comment(value = "Maximum size of every Gravel vein")
+    public int GRAVEL_MAX_VEIN_SIZE = 10;
+
+    @Name("Chance to spawn Gravel")
+    @Config.Comment(value = "Maximum Gravel veins per chunk")
+    public int GRAVEL_CHANCES_TO_SPAWN = 9;
+
+    @Name("Gravel Minimum spawn height")
+    @Config.Comment(value = "Minimum height for Polluted Gravel")
+    public int GRAVEL_MIN_Y = 25;
+
+    @Name("Gravel Maximum spawn height")
+    @Config.Comment(value = "Maximum height for Polluted Gravel")
+    public int GRAVEL_MAX_Y = 60;
 }

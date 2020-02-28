@@ -163,6 +163,7 @@ public class ModItems {
 	// region Ore block items
 	public static final Item polluteddirt = null;
 	public static final Item pollutedsand = null;
+	public static final Item pollutedgravel = null;
 
 	// All *non-block* items
 	public static Item[] getItems() {

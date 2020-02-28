@@ -191,6 +191,10 @@ item.emergingtechnology.pollutedsand.name=Polluted Sand
 block.emergingtechnology.pollutedsand.name=Polluted Sand
 tile.emergingtechnology.pollutedsand.name=Polluted Sand
 
+item.emergingtechnology.pollutedgravel.name=Polluted Gravel
+block.emergingtechnology.pollutedgravel.name=Polluted Gravel
+tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
