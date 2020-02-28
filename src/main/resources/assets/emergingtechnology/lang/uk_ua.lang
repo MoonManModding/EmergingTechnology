@@ -184,6 +184,19 @@ fluid.emergingtechnology.carbondioxide=Вуглекислота
 tile.emergingtechnology.nutrientblock.name=Поживна рідина
 fluid.emergingtechnology.nutrient=Поживна рідина
 
+#ORES
+item.emergingtechnology.polluteddirt.name=Polluted Dirt
+block.emergingtechnology.polluteddirt.name=Polluted Dirt
+tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+
+item.emergingtechnology.pollutedsand.name=Polluted Sand
+block.emergingtechnology.pollutedsand.name=Polluted Sand
+tile.emergingtechnology.pollutedsand.name=Polluted Sand
+
+item.emergingtechnology.pollutedgravel.name=Polluted Gravel
+block.emergingtechnology.pollutedgravel.name=Polluted Gravel
+tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
@@ -300,6 +313,9 @@ gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Вимагає 
+
+gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
 
 # Configuration
 config.emergingtechnology.title=Налаштування Emerging Technology

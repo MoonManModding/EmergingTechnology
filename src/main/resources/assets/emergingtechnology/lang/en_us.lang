@@ -205,8 +205,8 @@ itemGroup.technologytab=Emerging Technology
 # Machine descriptions
 info.emergingtechnology.biomass.description=Burns Biomass to produce energy.
 info.emergingtechnology.bioreactor.description=Processes animal tissues into usable samples.
-info.emergingtechnology.algaebioreactor.description=Uses CO2 to produce Algae.
-info.emergingtechnology.collector.description=Slowly collects waste plastic when placed in water.
+info.emergingtechnology.algaebioreactor.description=Uses CO2 to produce Algae. Produces faster with Grow Light and bulb above.
+info.emergingtechnology.collector.description=Slowly collects waste plastic and other items when placed in water.
 info.emergingtechnology.cooker.description=Uses direct sunlight to cook food items.
 info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
 info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.

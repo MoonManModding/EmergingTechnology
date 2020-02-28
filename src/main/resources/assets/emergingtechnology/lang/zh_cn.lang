@@ -184,6 +184,19 @@ fluid.emergingtechnology.carbondioxide=二氧化碳
 tile.emergingtechnology.nutrientblock.name=营养液
 fluid.emergingtechnology.nutrient=营养液
 
+#ORES
+item.emergingtechnology.polluteddirt.name=Polluted Dirt
+block.emergingtechnology.polluteddirt.name=Polluted Dirt
+tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+
+item.emergingtechnology.pollutedsand.name=Polluted Sand
+block.emergingtechnology.pollutedsand.name=Polluted Sand
+tile.emergingtechnology.pollutedsand.name=Polluted Sand
+
+item.emergingtechnology.pollutedgravel.name=Polluted Gravel
+block.emergingtechnology.pollutedgravel.name=Polluted Gravel
+tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+
 #ItemGroup
 
 itemGroup.technologytab=新兴技术
@@ -292,6 +305,9 @@ gui.emergingtechnology.label.gas=气体存储
 gui.emergingtechnology.label.heat=温度
 gui.emergingtechnology.label.growth=生长调节
 gui.emergingtechnology.label.error=错误
+
+gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
 
 gui.emergingtechnology.fabricator.error=无法制造项目
 gui.emergingtechnology.fabricator.noenergy=能量不足

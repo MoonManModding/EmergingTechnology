@@ -170,6 +170,22 @@ tile.emergingtechnology.biocharblock.name=Biochar Block
 tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
 fluid.emergingtechnology.carbondioxide=Carbon Dioxide
 
+tile.emergingtechnology.nutrientblock.name=Nutrient Fluid
+fluid.emergingtechnology.nutrient=Nutrient Fluid
+
+#ORES
+item.emergingtechnology.polluteddirt.name=Polluted Dirt
+block.emergingtechnology.polluteddirt.name=Polluted Dirt
+tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+
+item.emergingtechnology.pollutedsand.name=Polluted Sand
+block.emergingtechnology.pollutedsand.name=Polluted Sand
+tile.emergingtechnology.pollutedsand.name=Polluted Sand
+
+item.emergingtechnology.pollutedgravel.name=Polluted Gravel
+block.emergingtechnology.pollutedgravel.name=Polluted Gravel
+tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+
 #ItemGroup
 
 itemGroup.technologytab=Technologies Émergentes
@@ -269,6 +285,9 @@ gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Requires 
+
+gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
 
 # Configuration
 config.emergingtechnology.title=Emerging Technology - Configuration

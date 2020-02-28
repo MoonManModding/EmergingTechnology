@@ -184,6 +184,19 @@ fluid.emergingtechnology.carbondioxide=Углекислота
 tile.emergingtechnology.nutrientblock.name=Питательная жидкость
 fluid.emergingtechnology.nutrient=Питательная жидкость
 
+#ORES
+item.emergingtechnology.polluteddirt.name=Polluted Dirt
+block.emergingtechnology.polluteddirt.name=Polluted Dirt
+tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+
+item.emergingtechnology.pollutedsand.name=Polluted Sand
+block.emergingtechnology.pollutedsand.name=Polluted Sand
+tile.emergingtechnology.pollutedsand.name=Polluted Sand
+
+item.emergingtechnology.pollutedgravel.name=Polluted Gravel
+block.emergingtechnology.pollutedgravel.name=Polluted Gravel
+tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
@@ -291,6 +304,9 @@ gui.emergingtechnology.label.gas=Запас газа
 gui.emergingtechnology.label.heat=Температура
 gui.emergingtechnology.label.growth=Модификаторы роста
 gui.emergingtechnology.label.error=Ошибка
+
+gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
 
 gui.emergingtechnology.fabricator.error=Невозможно изготовить предмет
 gui.emergingtechnology.fabricator.noenergy=Недостаточно энергии

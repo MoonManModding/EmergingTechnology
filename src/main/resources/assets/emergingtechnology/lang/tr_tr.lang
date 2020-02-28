@@ -182,6 +182,19 @@ fluid.emergingtechnology.carbondioxide=Carbon Dioxide
 tile.emergingtechnology.nutrientblock.name=Nutrient Fluid
 fluid.emergingtechnology.nutrient=Nutrient Fluid
 
+#ORES
+item.emergingtechnology.polluteddirt.name=Polluted Dirt
+block.emergingtechnology.polluteddirt.name=Polluted Dirt
+tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+
+item.emergingtechnology.pollutedsand.name=Polluted Sand
+block.emergingtechnology.pollutedsand.name=Polluted Sand
+tile.emergingtechnology.pollutedsand.name=Polluted Sand
+
+item.emergingtechnology.pollutedgravel.name=Polluted Gravel
+block.emergingtechnology.pollutedgravel.name=Polluted Gravel
+tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
@@ -192,8 +205,8 @@ itemGroup.technologytab=Emerging Technology
 # Machine descriptions
 info.emergingtechnology.biomass.description=Burns Biomass to produce energy.
 info.emergingtechnology.bioreactor.description=Processes animal tissues into usable samples.
-info.emergingtechnology.algaebioreactor.description=Uses CO2 to produce Algae.
-info.emergingtechnology.collector.description=Slowly collects waste plastic when placed in water.
+info.emergingtechnology.algaebioreactor.description=Uses CO2 to produce Algae. Produces faster with Grow Light and bulb above.
+info.emergingtechnology.collector.description=Slowly collects waste plastic and other items when placed in water.
 info.emergingtechnology.cooker.description=Uses direct sunlight to cook food items.
 info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
 info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.
@@ -283,6 +296,9 @@ gui.emergingtechnology.label.boost=Boost:
 gui.emergingtechnology.label.maxrange=Max range: 
 gui.emergingtechnology.label.affectedplants=Affected Plants: 
 
+gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
+
 gui.emergingtechnology.label.energy=Energy Storage
 gui.emergingtechnology.label.fluid=Fluid Storage
 gui.emergingtechnology.label.gas=Gas Storage
@@ -317,12 +333,13 @@ config.emergingtechnology.hydroponics.diffuser.title=CO2 Diffuser
 config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
 
 config.emergingtechnology.polymers.title=Polymers
-config.emergingtechnology.polymers.title.tooltip=Configure Shredder, Processor, Fabricator and Collector here
+config.emergingtechnology.polymers.title.tooltip=Configure World Generation, Shredder, Processor, Fabricator and Collector here
 
 config.emergingtechnology.polymers.shredder.title=Shredder
 config.emergingtechnology.polymers.processor.title=Processor
 config.emergingtechnology.polymers.fabricator.title=Fabricator
 config.emergingtechnology.polymers.collector.title=Waste Collector
+config.emergingtechnology.polymers.worldgen.title=World Generation
 
 config.emergingtechnology.synthetics.title=Synthetics
 config.emergingtechnology.synthetics.title.tooltip=Configure Bioreactors, Scaffolder and Solar Cooker here
