@@ -19,7 +19,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -37,7 +36,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class AlgaeBioreactorTileEntity extends MachineTileBase implements SimpleComponent {
 
     private static String[] fluidNames = new String[] { "water" };
     private static String[] gasNames = new String[] { "carbondioxide" };
@@ -102,6 +101,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
     private int water = this.fluidHandler.getFluidAmount();
     private int gas = this.gasHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
+    private int lightBoost = this.getLightBoost();
 
     private int progress = 0;
 
@@ -138,6 +138,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         this.setEnergy(compound.getInteger("GuiEnergy"));
         this.setGas(compound.getInteger("GuiGas"));
         this.setProgress(compound.getInteger("GuiProgress"));
+        this.setLightBoost(compound.getInteger("GuiLightBoost"));
 
         this.fluidHandler.readFromNBT(compound.getCompoundTag("FluidTank"));
         this.gasHandler.readFromNBT(compound.getCompoundTag("GasTank"));
@@ -155,6 +156,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         compound.setInteger("GuiEnergy", this.getEnergy());
         compound.setInteger("GuiGas", this.getGas());
         compound.setInteger("GuiProgress", this.getProgress());
+        compound.setInteger("GuiLightBoost", this.getLightBoost());
 
         NBTTagCompound fluidTag = new NBTTagCompound();
         NBTTagCompound gasTag = new NBTTagCompound();
@@ -192,6 +194,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());
         this.setGas(this.gasHandler.getFluidAmount());
+        this.setLightBoost(this.getLightBoost());
 
         doProcessing();
     }
@@ -267,7 +270,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         this.setGas(this.gasHandler.getFluidAmount());
 
         // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorBaseTimeTaken) {
+        if (this.getProgress() < AlgaeBioreactorHelper.getTimeTaken(this.getLightBoost())) {
             this.setProgress(this.getProgress() + 1);
             return;
         }
@@ -276,6 +279,10 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         itemHandler.extractItem(0, recipe.getInputCount(), false);
 
         this.setProgress(0);
+    }
+
+    public int getLightBoost() {
+        return AlgaeBioreactorHelper.getLightBoost(getWorld(), getPos());
     }
 
     public ItemStack getInputStack() {
@@ -304,6 +311,10 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
         return this.progress;
     }
 
+    public int getBoost() {
+        return this.getLightBoost();
+    }
+
     // Setters
 
     private void setWater(int quantity) {
@@ -320,6 +331,10 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
 
     private void setProgress(int quantity) {
         this.progress = quantity;
+    }
+
+    private void setLightBoost(int quantity) {
+        this.lightBoost = quantity;
     }
 
     @Override
@@ -343,6 +358,8 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
             return this.getGas();
         case 3:
             return this.getProgress();
+        case 4:
+            return this.getLightBoost();
         default:
             return 0;
         }
@@ -361,6 +378,9 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements ITicka
             break;
         case 3:
             this.setProgress(value);
+            break;
+        case 4:
+            this.setLightBoost(value);
             break;
         }
     }

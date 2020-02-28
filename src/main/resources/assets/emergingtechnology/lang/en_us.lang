@@ -296,6 +296,9 @@ gui.emergingtechnology.label.boost=Boost:
 gui.emergingtechnology.label.maxrange=Max range: 
 gui.emergingtechnology.label.affectedplants=Affected Plants: 
 
+gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
+
 gui.emergingtechnology.label.energy=Energy Storage
 gui.emergingtechnology.label.fluid=Fluid Storage
 gui.emergingtechnology.label.gas=Gas Storage

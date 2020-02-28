@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.helpers.machines.AlgaeBioreactorHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -69,7 +70,8 @@ public class AlgaeBioreactorGui extends GuiContainer {
 		this.drawTexturedModalRect(MIDDLE_LOWER_POS.x, MIDDLE_LOWER_POS.y, 176, 29, gas, 7);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
-		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y,
+				GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
 	}
@@ -94,8 +96,11 @@ public class AlgaeBioreactorGui extends GuiContainer {
 	}
 
 	private int getProgressScaled(int scaled) {
-		return (int) (tileEntity.getField(3) * scaled
-				/ EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorBaseTimeTaken);
+		return (int) (tileEntity.getField(3) * scaled / AlgaeBioreactorHelper.getTimeTaken(getBoost()));
+	}
+
+	private int getBoost() {
+		return tileEntity.getField(4);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
@@ -118,6 +123,9 @@ public class AlgaeBioreactorGui extends GuiContainer {
 		GuiIndicatorData gasIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.GAS,
 				IndicatorPositionEnum.LOWER, mouseX, mouseY, gas, maxGas);
 
+		GuiIndicatorData boostIndicator = GuiTooltipHelper.getAlgaeBioreactorGrowthData(guiLeft, guiTop, mouseX, mouseY,
+				getBoost());
+
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);
 		}
@@ -128,6 +136,10 @@ public class AlgaeBioreactorGui extends GuiContainer {
 
 		if (gasIndicator.isHovered) {
 			this.drawHoveringText(gasIndicator.list, mouseX, mouseY, fontRenderer);
+		}
+
+		if (boostIndicator.isHovered) {
+			this.drawHoveringText(boostIndicator.list, mouseX, mouseY, fontRenderer);
 		}
 	}
 }

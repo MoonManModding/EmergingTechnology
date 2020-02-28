@@ -19,6 +19,7 @@ public class AlgaeBioreactorContainer extends Container {
 	private int energy;
 	private int gas;
 	private int progress;
+	private int boost;
 
 	public AlgaeBioreactorContainer(InventoryPlayer player, AlgaeBioreactorTileEntity tileEntity) {
 		this.tileEntity = tileEntity;
@@ -59,12 +60,14 @@ public class AlgaeBioreactorContainer extends Container {
 			if(this.water != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
 			if(this.gas != this.tileEntity.getField(2)) listener.sendWindowProperty(this, 2, this.tileEntity.getField(2));
 			if(this.progress != this.tileEntity.getField(3)) listener.sendWindowProperty(this, 3, this.tileEntity.getField(3));
+			if(this.boost != this.tileEntity.getField(4)) listener.sendWindowProperty(this, 4, this.tileEntity.getField(4));
 		}
         
 		this.energy = this.tileEntity.getField(0);
 		this.water = this.tileEntity.getField(1);
 		this.gas = this.tileEntity.getField(2);
 		this.progress = this.tileEntity.getField(3);
+		this.boost = this.tileEntity.getField(4);
 	}
 
 	@Override

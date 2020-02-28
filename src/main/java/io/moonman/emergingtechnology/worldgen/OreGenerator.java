@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.worldgen;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +15,6 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.apache.logging.log4j.Level;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
@@ -121,9 +119,6 @@ public class OreGenerator implements IWorldGenerator {
     public void handleChunkSaveEvent(ChunkDataEvent.Save event) {
         NBTTagCompound genTag = event.getData().getCompoundTag(RETRO_NAME);
         if (!genTag.hasKey("generated")) {
-            // If we did not have this key then this is a new chunk and we will have proper
-            // ores generated.
-            // Otherwise we are saving a chunk for which ores are not yet generated.
             genTag.setBoolean("generated", true);
         }
         event.getData().setTag(RETRO_NAME, genTag);
