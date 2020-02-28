@@ -117,6 +117,7 @@ public class ProcessorRecipeBuilder {
             fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:slop_rand")));
             fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:mold_bread")));
             fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:mold_stew")));
+            paperInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:scrap_wooddust")));
         }
 
         registerProcessorRecipes(new ItemStack(ModItems.plasticblock), plasticInputs);

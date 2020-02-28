@@ -162,12 +162,11 @@ public class ShredderRecipeBuilder {
             plasticInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:scrap_plastic")));
             plasticInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:scrap_rubber")));
             paperInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:scrap_paper")));
-            paperInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:scrap_wooddust")));
         }
 
-        registerShredderRecipes(new ItemStack(ModItems.shreddedplastic), plasticInputs);
-        registerShredderRecipes(new ItemStack(ModItems.shreddedpaper), paperInputs);
-        registerShredderRecipes(new ItemStack(ModItems.shreddedplant), plantInputs);
+        registerShredderRecipes(new ItemStack(ModItems.shreddedplastic, 4), plasticInputs);
+        registerShredderRecipes(new ItemStack(ModItems.shreddedpaper, 4), paperInputs);
+        registerShredderRecipes(new ItemStack(ModItems.shreddedplant, 4), plantInputs);
     }
 
 }

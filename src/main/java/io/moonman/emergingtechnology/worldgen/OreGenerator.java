@@ -55,6 +55,7 @@ public class OreGenerator implements IWorldGenerator {
                 validBiomes.add(Biomes.FROZEN_OCEAN);
                 validBiomes.add(Biomes.RIVER);
                 validBiomes.add(Biomes.FROZEN_RIVER);
+                validBiomes.add(Biomes.SWAMPLAND);
 
                 if (EmergingTechnologyConfig.POLYMERS_MODULE.WORLDGEN.GENERATE_DIRT) {
                     addOreSpawn(ModBlocks.polluteddirt, (byte) 0, Blocks.DIRT, world, random, chunkX * 16, chunkZ * 16,
