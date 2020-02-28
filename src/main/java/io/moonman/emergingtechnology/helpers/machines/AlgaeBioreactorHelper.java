@@ -32,8 +32,6 @@ public class AlgaeBioreactorHelper {
     public static int getLightBoost(World world, BlockPos pos) {
 
         if (world == null || pos == null) {
-            System.out.println(world);
-            System.out.println(pos);
             return 0;
         }
 
