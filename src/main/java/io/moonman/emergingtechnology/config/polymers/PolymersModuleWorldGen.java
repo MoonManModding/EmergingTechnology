@@ -32,8 +32,8 @@ public class PolymersModuleWorldGen {
     // Sand
 
     @Name("Sand Biome Restriction")
-    @Config.Comment(value = "Restrict Polluted Sand to specific Biomes")
-    public boolean SAND_BIOME_RESTRICTION = false;
+    @Config.Comment(value = "Restrict Polluted Sand to Ocean, Beach and River Biomes")
+    public boolean SAND_BIOME_RESTRICTION = true;
 
     @Name("Minimum Sand Vein Size")
     @Config.Comment(value = "Minimum size of every sand vein")
@@ -58,8 +58,8 @@ public class PolymersModuleWorldGen {
     // Dirt
 
     @Name("Dirt Biome Restriction")
-    @Config.Comment(value = "Restrict Polluted Dirt to specific Biomes")
-    public boolean DIRT_BIOME_RESTRICTION = false;
+    @Config.Comment(value = "Restrict Polluted Dirt to Ocean, Beach and River Biomes")
+    public boolean DIRT_BIOME_RESTRICTION = true;
 
     @Name("Minimum Dirt Vein Size")
     @Config.Comment(value = "Minimum size of every Dirt vein")
@@ -84,8 +84,8 @@ public class PolymersModuleWorldGen {
     // Gravel
 
     @Name("Gravel Biome Restriction")
-    @Config.Comment(value = "Restrict Polluted Gravel to specific Biomes")
-    public boolean GRAVEL_BIOME_RESTRICTION = false;
+    @Config.Comment(value = "Restrict Polluted Gravel to Ocean, Beach and River Biomes")
+    public boolean GRAVEL_BIOME_RESTRICTION = true;
 
     @Name("Minimum Gravel Vein Size")
     @Config.Comment(value = "Minimum size of every Gravel vein")
