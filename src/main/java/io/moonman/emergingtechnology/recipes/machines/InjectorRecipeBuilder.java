@@ -2,9 +2,11 @@ package io.moonman.emergingtechnology.recipes.machines;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.init.Blocks;
@@ -29,10 +31,31 @@ public class InjectorRecipeBuilder {
 
         if (EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.disabled || removedAll) return;
 
-        RecipeProvider.injectorRecipes.add(new SimpleRecipe(new ItemStack(Blocks.DIRT), new ItemStack(ModItems.fertilizer)));
+        List<ItemStack> itemInputs = new ArrayList<ItemStack>();
+        itemInputs.add(new ItemStack(ModItems.fertilizer));
+
+        List<String> oreInputs = new ArrayList<String>();
+        oreInputs.add("fertilizer");
+
+        List<ItemStack> inputs = RecipeBuilder.buildRecipeList(itemInputs, oreInputs);
+
+        registerFertilizerRecipes(new ItemStack(Blocks.DIRT), inputs);
 
         for (ItemStack itemStack : recipesToRemove) {
             RecipeProvider.removeRecipesByOutput(RecipeProvider.injectorRecipes, itemStack);
         }
     }
+
+    private static void registerFertilizerRecipes(ItemStack output, List<ItemStack> inputs) {
+        for (ItemStack input : inputs) {
+            if (RecipeProvider.getOutputForItemStackFromRecipes(input, RecipeProvider.injectorRecipes) == null) {
+                SimpleRecipe recipe = new SimpleRecipe(output, input);
+                RecipeProvider.injectorRecipes.add(recipe);
+            }
+        }
+
+        RecipeProvider.injectorRecipes = RecipeProvider.injectorRecipes.stream().distinct()
+                .collect(Collectors.toList());
+    }
+    
 }

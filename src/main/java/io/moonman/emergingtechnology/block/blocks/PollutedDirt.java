@@ -15,12 +15,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class PollutedGrass extends Block {
+public class PollutedDirt extends Block {
 
-private final String _name = "pollutedgrass";
+private final String _name = "polluteddirt";
 
-  public PollutedGrass() {
-    super(Material.GRASS);
+  public PollutedDirt() {
+    super(Material.GROUND);
     this.setHardness(1.0f);
     this.setRegistryName(EmergingTechnology.MODID, _name);
     this.setUnlocalizedName(EmergingTechnology.MODID + "." + _name);

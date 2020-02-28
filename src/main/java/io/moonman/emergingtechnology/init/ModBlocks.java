@@ -7,7 +7,7 @@ import io.moonman.emergingtechnology.block.blocks.Frame;
 import io.moonman.emergingtechnology.block.blocks.Ladder;
 import io.moonman.emergingtechnology.block.blocks.MachineCase;
 import io.moonman.emergingtechnology.block.blocks.PlasticBlock;
-import io.moonman.emergingtechnology.block.blocks.PollutedGrass;
+import io.moonman.emergingtechnology.block.blocks.PollutedDirt;
 import io.moonman.emergingtechnology.block.blocks.PollutedSand;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlantBlock;
 import io.moonman.emergingtechnology.block.blocks.ShreddedPlasticBlock;
@@ -95,7 +95,7 @@ public class ModBlocks {
 	// endregion
 
 	// region Ore Blocks
-	public static final PollutedGrass pollutedgrass = null;
+	public static final PollutedDirt polluteddirt = null;
 	public static final PollutedSand pollutedsand = null;
 	// endregion
 
@@ -107,7 +107,7 @@ public class ModBlocks {
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery,
 				ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame, ModBlocks.clearplasticblock,
 				ModBlocks.machinecase, ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock,
-				ModBlocks.shreddedstarchblock, ModBlocks.biocharblock, ModBlocks.pollutedgrass, ModBlocks.pollutedsand,  ModBlocks.nutrientblock, ModBlocks.carbondioxideblock};
+				ModBlocks.shreddedstarchblock, ModBlocks.biocharblock, ModBlocks.polluteddirt, ModBlocks.pollutedsand,  ModBlocks.nutrientblock, ModBlocks.carbondioxideblock};
 
 		return blocks;
 	}
@@ -118,7 +118,7 @@ public class ModBlocks {
 				new MachineCase(), new Fabricator(), new Collector(), new Cooker(), new Scaffolder(), new Bioreactor(),
 				new AlgaeBioreactor(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(),
 				new Solar(), new SolarGlass(), new Wind(), new Battery(), new BiocharBlock(),
-				new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new PollutedGrass(), new PollutedSand(), new NutrientBlock(),
+				new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(), new PollutedDirt(), new PollutedSand(), new NutrientBlock(),
 				new CarbonDioxideBlock() };
 
 		return blocks;

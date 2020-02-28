@@ -6,7 +6,7 @@ import crafttweaker.api.item.IItemStack;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
-import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.InjectorRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -14,8 +14,8 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.ArrayList;
 import java.util.List;
 
-@ZenClass("mods.emergingtechnology.AlgaeBioreactor")
-public class AlgaeBioreactor
+@ZenClass("mods.emergingtechnology.Injector")
+public class Injector
 {
     @ZenMethod
 	public static void addRecipe(IItemStack output, Object input)
@@ -37,13 +37,13 @@ public class AlgaeBioreactor
 		@Override
 		public void apply()
 		{
-			RecipeProvider.algaeBioreactorRecipes.add(recipe);
+			RecipeProvider.injectorRecipes.add(recipe);
 		}
 
 		@Override
 		public String describe()
 		{
-			return "Adding Algae Bioreactor Recipe for "+ recipe.getOutput().getDisplayName();
+			return "Adding Injector Recipe for "+ recipe.getOutput().getDisplayName();
 		}
 	}
 
@@ -66,13 +66,13 @@ public class AlgaeBioreactor
 		@Override
 		public void apply()
 		{
-			AlgaeBioreactorRecipeBuilder.removeByOutput(this.output);
+			InjectorRecipeBuilder.removeByOutput(this.output);
 		}
 
 		@Override
 		public String describe()
 		{
-			return "Removing Algae Bioreactor Recipe for "+ output.getDisplayName();
+			return "Removing Injector Recipe for "+ output.getDisplayName();
 		}
 	}
 
@@ -92,13 +92,13 @@ public class AlgaeBioreactor
 		@Override
 		public void apply()
 		{
-            AlgaeBioreactorRecipeBuilder.removeAll();
+            InjectorRecipeBuilder.removeAll();
 		}
 
 		@Override
 		public String describe()
 		{
-			return "Removing all Algae Bioreactor Recipes";
+			return "Removing all Injector Recipes";
 		}
 	}
 }

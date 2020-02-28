@@ -161,7 +161,7 @@ public class ModItems {
 	// endregion
 
 	// region Ore block items
-	public static final Item pollutedgrass = null;
+	public static final Item polluteddirt = null;
 	public static final Item pollutedsand = null;
 
 	// All *non-block* items

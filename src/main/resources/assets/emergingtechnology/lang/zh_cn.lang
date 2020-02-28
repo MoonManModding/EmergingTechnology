@@ -8,6 +8,7 @@ item.emergingtechnology.harvester.name=农作机械臂
 item.emergingtechnology.filler.name=注水机
 item.emergingtechnology.scrubber.name=二氧化碳洗涤器
 item.emergingtechnology.diffuser.name=二氧化碳扩散器
+item.emergingtechnology.injector.name=营养注射器
 item.emergingtechnology.light.name=水培生长灯
 item.emergingtechnology.frame.name=塑料板
 
@@ -59,8 +60,6 @@ item.emergingtechnology.syntheticcowraw.name=生合成牛肉
 item.emergingtechnology.syntheticchickenraw.name=生合成鸡肉
 item.emergingtechnology.syntheticpigraw.name=生合成猪肉
 
-
-
 item.emergingtechnology.syntheticcowcooked.name=熟合成牛肉
 item.emergingtechnology.syntheticchickencooked.name=熟合成鸡肉
 item.emergingtechnology.syntheticpigcooked.name=熟合成牛肉
@@ -69,29 +68,27 @@ item.emergingtechnology.syntheticsilk.name=合成线
 item.emergingtechnology.syntheticslime.name=合成粘液球
 item.emergingtechnology.syntheticleather.name=合成皮革
 
+item.emergingtechnology.algae.name=藻
+
+item.emergingtechnology.algaebarraw.name=藻条
+item.emergingtechnology.algaebarcooked.name=熟藻条
+
 item.emergingtechnology.bioreactor.name=生物组织反应机
 item.emergingtechnology.scaffolder.name=生物组织合成机
-
-item.emergingtechnology.algae.name=Algae
-item.emergingtechnology.algaebarraw.name=Algae Bar
-item.emergingtechnology.algaebarcooked.name=Cooked Algae Bar
+item.emergingtechnology.algaebioreactor.name=藻类生物反应机
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=压电发电机
 item.emergingtechnology.solar.name=太阳能电池板
-
+item.emergingtechnology.solarglass.name=太阳能玻璃
 item.emergingtechnology.battery.name=电池
-
 item.emergingtechnology.biomass.name=生物质
-
 item.emergingtechnology.biochar.name=生物碳
-
 item.emergingtechnology.biomassgenerator.name=生物质发电机
 item.emergingtechnology.tidalgenerator.name=潮汐发电机
-
 item.emergingtechnology.wind.name=风力发电机
-
 item.emergingtechnology.biocharblock.name=生物碳块
+
 
 #Blocks
 
@@ -101,6 +98,7 @@ blocks.emergingtechnology.harvester.name=农作机械臂
 blocks.emergingtechnology.filler.name=注水机
 blocks.emergingtechnology.scrubber.name=二氧化碳洗涤器
 blocks.emergingtechnology.diffuser.name=二氧化碳扩散器
+blocks.emergingtechnology.injector.name=营养注射器
 blocks.emergingtechnology.light.name=水培生长灯
 blocks.emergingtechnology.frame.name=塑料板
 
@@ -122,10 +120,12 @@ blocks.emergingtechnology.shreddedstarchblock.name=淀粉块
 blocks.emergingtechnology.cooker.name=太阳能烤箱
 blocks.emergingtechnology.bioreactor.name=生物组织反应机
 blocks.emergingtechnology.scaffolder.name=生物组织合成机
+blocks.emergingtechnology.algaebioreactor.name=藻类生物反应机
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=压电发电机
 blocks.emergingtechnology.solar.name=太阳能电池板
+blocks.emergingtechnology.solarglass.name=太阳能玻璃
 blocks.emergingtechnology.battery.name=电池
 blocks.emergingtechnology.biomassgenerator.name=生物质发电机
 blocks.emergingtechnology.tidalgenerator.name=潮汐发电机
@@ -133,6 +133,7 @@ blocks.emergingtechnology.wind.name=风力发电机
 blocks.emergingtechnology.biocharblock.name=生物炭块
 
 #Containers
+
 
 #Tiles
 
@@ -142,6 +143,7 @@ tile.emergingtechnology.harvester.name=农作机械臂
 tile.emergingtechnology.filler.name=注水机
 tile.emergingtechnology.scrubber.name=二氧化碳洗涤器
 tile.emergingtechnology.diffuser.name=二氧化碳扩散器
+tile.emergingtechnology.injector.name=营养注射器
 tile.emergingtechnology.light.name=水培生长灯
 tile.emergingtechnology.frame.name=塑料板
 
@@ -163,10 +165,12 @@ tile.emergingtechnology.shreddedstarchblock.name=淀粉块
 tile.emergingtechnology.cooker.name=太阳能烤箱
 tile.emergingtechnology.bioreactor.name=生物组织反应机
 tile.emergingtechnology.scaffolder.name=生物组织合成机
+tile.emergingtechnology.algaebioreactor.name=藻类生物反应机
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=压电发电机
 tile.emergingtechnology.solar.name=太阳能电池板
+tile.emergingtechnology.solarglass.name=太阳能玻璃
 tile.emergingtechnology.battery.name=电池
 tile.emergingtechnology.biomassgenerator.name=生物质发电机
 tile.emergingtechnology.tidalgenerator.name=潮汐发电机
@@ -176,6 +180,9 @@ tile.emergingtechnology.biocharblock.name=生物炭块
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=二氧化碳
 fluid.emergingtechnology.carbondioxide=二氧化碳
+
+tile.emergingtechnology.nutrientblock.name=营养液
+fluid.emergingtechnology.nutrient=营养液
 
 #ItemGroup
 
@@ -187,6 +194,7 @@ itemGroup.technologytab=新兴技术
 # Machine descriptions
 info.emergingtechnology.biomass.description=燃烧生物质产生能量。
 info.emergingtechnology.bioreactor.description=将动物组织加工成可用样本。
+info.emergingtechnology.algaebioreactor.description=利用二氧化碳繁殖出藻类。
 info.emergingtechnology.collector.description=缓慢地收集水中的废塑料。
 info.emergingtechnology.cooker.description=利用太阳能烹调食物。
 info.emergingtechnology.fabricator.description=自动打印塑料部件。
@@ -194,16 +202,19 @@ info.emergingtechnology.filler.description=为相邻的机器的注入水。
 info.emergingtechnology.harvester.description=自动收割和种植（需要种子）农作物并储存。
 info.emergingtechnology.scrubber.description=从周围大空气中获取二氧化碳。
 info.emergingtechnology.diffuser.description=扩散二氧化碳以促进植物的生长。
+info.emergingtechnology.injector.description=将营养物质注入水中产生营养液。
 info.emergingtechnology.hydroponic.description=在这个方块上种植植物可以促进其生长。
 info.emergingtechnology.light.description=为下方的植物提供生长动力。
 info.emergingtechnology.piezoelectric.description=踩上去会产生少量的能量。
 info.emergingtechnology.processor.description=把原材料加工成可用的塑料。
 info.emergingtechnology.scaffolder.description=将组织样本制成人工合成的生物产品。
 info.emergingtechnology.shredder.description=把植物和废塑料加工成原料，供加工机使用。
+info.emergingtechnology.solar.description=在阳光下产生能量。
+info.emergingtechnology.solarglass.description=透明的太阳能电池板，如果前面两块电池板中的一块在阳光下，就会产生能量。
+info.emergingtechnology.wind.description=利用风能产生能量。
 info.emergingtechnology.tidal.description=利用潮汐运动产生能量。
 info.emergingtechnology.solar.description=利用光能产生能量。
 info.emergingtechnology.battery.description=储存能量以备日后使用。红色输入，黄色输出。
-info.emergingtechnology.wind.description=利用风能产生能量。
 
 info.emergingtechnology.frame.description=具有装饰性的塑料板
 
@@ -306,7 +317,7 @@ config.emergingtechnology.hydroponics.harvester.title=农作机械臂
 config.emergingtechnology.hydroponics.filler.title=注水机
 config.emergingtechnology.hydroponics.scrubber.title=二氧化碳洗涤器
 config.emergingtechnology.hydroponics.diffuser.title=二氧化碳扩散器
-config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
+config.emergingtechnology.hydroponics.injector.title=营养注射器
 
 config.emergingtechnology.polymers.title=塑料回收
 config.emergingtechnology.polymers.title.tooltip=在此处配置切碎机、加工机、3D打印机和海洋垃圾收集器
@@ -321,7 +332,7 @@ config.emergingtechnology.synthetics.title.tooltip=在此处配置生物组织�
 
 config.emergingtechnology.synthetics.bioreactor.title=生物组织反应机
 config.emergingtechnology.synthetics.scaffolder.title=生物组织合成机
-config.emergingtechnology.synthetics.algaebioreactor.title=Algae Bioreactor
+config.emergingtechnology.synthetics.algaebioreactor.title=藻类生物反应机
 config.emergingtechnology.synthetics.cooker.title=太阳能烤箱
 
 config.emergingtechnology.electrics.title=发电机械

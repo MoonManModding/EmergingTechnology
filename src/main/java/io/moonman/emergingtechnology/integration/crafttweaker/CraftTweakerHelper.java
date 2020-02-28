@@ -11,6 +11,7 @@ import io.moonman.emergingtechnology.integration.crafttweaker.machines.Biomass;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Bioreactor;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Cooker;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Fabricator;
+import io.moonman.emergingtechnology.integration.crafttweaker.machines.Injector;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Processor;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Scaffolder;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Shredder;
@@ -41,6 +42,7 @@ public class CraftTweakerHelper {
 		CraftTweakerAPI.registerClass(Processor.class);
 		CraftTweakerAPI.registerClass(Scaffolder.class);
 		CraftTweakerAPI.registerClass(Shredder.class);
+		CraftTweakerAPI.registerClass(Injector.class);
 		EmergingTechnology.logger.info("CraftTweaker initialised.");
 	}
 

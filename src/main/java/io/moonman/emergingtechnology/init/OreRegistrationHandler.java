@@ -101,6 +101,10 @@ public class OreRegistrationHandler {
         Item[] slimeball = new Item[] {
             ModItems.syntheticslime
         };
+        
+        Item[] fertilizer = new Item[] {
+            ModItems.fertilizer
+        };
 
         Item[] listAllmeat = new Item[] {
             ModItems.syntheticchickencooked,
@@ -140,6 +144,7 @@ public class OreRegistrationHandler {
         registerItems(slimeball, "slimeball");
         registerItems(string, "string");
         registerItems(leather, "leather");
+        registerItems(fertilizer, "fertilizer");
 
         registerItems(listAllmeat, "listAllmeat");
         registerItems(rawMeat, "rawMeat");

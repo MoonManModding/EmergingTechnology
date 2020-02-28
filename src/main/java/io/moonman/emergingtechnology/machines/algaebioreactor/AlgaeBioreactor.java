@@ -48,7 +48,7 @@ public class AlgaeBioreactor extends MachineBase implements ITileEntityProvider 
         int gas = EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage;
 
         if (KeyBindings.showExtendedTooltips()) {
-            tooltip.add(Lang.get(Lang.PROCESSOR_DESC));
+            tooltip.add(Lang.get(Lang.ALGAEBIOREACTOR_DESC));
             tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
             tooltip.add(Lang.getRequired(water, ResourceTypeEnum.WATER));
             tooltip.add(Lang.getRequired(gas, ResourceTypeEnum.GAS));
