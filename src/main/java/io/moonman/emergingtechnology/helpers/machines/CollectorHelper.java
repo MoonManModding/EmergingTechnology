@@ -1,10 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
-import java.util.Random;
-
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.recipes.machines.CollectorRecipeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -18,13 +15,6 @@ import net.minecraft.world.biome.Biome;
  * Provides useful methods for the Collector
  */
 public class CollectorHelper {
-
-    private static ItemStack[] collectorItems = new ItemStack[] { new ItemStack(ModItems.paperwaste),
-            new ItemStack(ModItems.plasticwaste), new ItemStack(ModItems.algae) };
-
-    public static ItemStack[] getCollectorItems() {
-        return collectorItems;
-    }
 
     public static boolean isInValidBiome(Biome biome) {
 
@@ -64,17 +54,11 @@ public class CollectorHelper {
     }
 
     public static ItemStack getRandomRecoveredItemStack() {
-        return collectorItems[new Random().nextInt(collectorItems.length)];
+        return CollectorRecipeBuilder.getRandomRecoveredItemStack();
     }
 
     public static boolean isValidItemStack(ItemStack itemStack) {
-        for (ItemStack item : collectorItems) {
-            if (!StackHelper.compareItemStacks(item, itemStack)) {
-                return false;
-            }
-        }
-
-        return true;
+        return CollectorRecipeBuilder.isValidItemStack(itemStack);
     }
 
     private static boolean isValidNeighbour(IBlockState state) {

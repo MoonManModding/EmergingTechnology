@@ -1,7 +1,5 @@
-package io.moonman.emergingtechnology.proxy.interop;
+package io.moonman.emergingtechnology.integration;
 
-import io.moonman.emergingtechnology.proxy.interop.InactiveInteropProxy;
-import io.moonman.emergingtechnology.proxy.interop.InteropProxy;
 import net.minecraftforge.fml.common.Loader;
 
 /**
@@ -14,6 +12,8 @@ public class ModLoader {
 	private static boolean ICLoaded = false;
 	private static boolean OCLoaded = false;
 	private static boolean CTLoaded = false;
+	private static boolean DDLoaded = false;
+	private static boolean ACLoaded = false;
 	
 	public static void preInit() {
 		if (initialized) return;
@@ -21,6 +21,8 @@ public class ModLoader {
 		ICLoaded = Loader.isModLoaded("ic2");
 		OCLoaded = Loader.isModLoaded("opencomputers");
 		CTLoaded = Loader.isModLoaded("crafttweaker");
+		DDLoaded = Loader.isModLoaded("dumpsterdiving");
+		ACLoaded = Loader.isModLoaded("alchemistry");
 		
 		initialized = true;
 	}
@@ -35,5 +37,13 @@ public class ModLoader {
 
 	public static boolean isCraftTweakerLoaded() {
 		return CTLoaded;
+	}
+
+	public static boolean isDumpsterDivingLoaded() {
+		return DDLoaded;
+	}
+
+	public static boolean isAlchemistryLoaded() {
+		return ACLoaded;
 	}
 }

@@ -6,11 +6,13 @@ import java.util.List;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.integration.ModLoader;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -37,6 +39,8 @@ public class ProcessorRecipeBuilder {
         registerProcessorRecipes(new ItemStack(ModBlocks.clearplasticblock), getProcessorClearBlockItems());
         registerProcessorRecipes(new ItemStack(ModItems.paperpulp), getProcessorPaperItems());
         registerProcessorRecipes(new ItemStack(ModItems.fertilizer), getProcessorFertilizerItems());
+
+        registerThirdPartyRecipes();
 
         for (ItemStack itemStack : recipesToRemove) {
             RecipeProvider.removeRecipesByOutput(RecipeProvider.processorRecipes, itemStack);
@@ -98,6 +102,27 @@ public class ProcessorRecipeBuilder {
                 RecipeProvider.processorRecipes.add(recipe);
             }
         }
+    }
+
+    private static void registerThirdPartyRecipes() {
+
+        List<ItemStack> plasticInputs = new ArrayList<ItemStack>();
+        List<ItemStack> clearPlasticInputs = new ArrayList<ItemStack>();
+        List<ItemStack> paperInputs = new ArrayList<ItemStack>();
+        List<ItemStack> fertilizerInputs = new ArrayList<ItemStack>();
+
+        if (ModLoader.isDumpsterDivingLoaded()) {
+            fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:mold_apple")));
+            fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:mold_pumpkin")));
+            fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:slop_rand")));
+            fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:mold_bread")));
+            fertilizerInputs.add(new ItemStack(Item.getByNameOrId("dumpsterdiving:mold_stew")));
+        }
+
+        registerProcessorRecipes(new ItemStack(ModItems.plasticblock), plasticInputs);
+        registerProcessorRecipes(new ItemStack(ModItems.clearplasticblock), clearPlasticInputs);
+        registerProcessorRecipes(new ItemStack(ModItems.paperpulp), paperInputs);
+        registerProcessorRecipes(new ItemStack(ModItems.fertilizer), fertilizerInputs);
     }
 
 }

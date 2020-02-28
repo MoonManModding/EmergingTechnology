@@ -2,12 +2,11 @@ package io.moonman.emergingtechnology.proxy;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.animation.AnimationHelper;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
-import io.moonman.emergingtechnology.proxy.interop.ModLoader;
+import io.moonman.emergingtechnology.integration.ModLoader;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.worldgen.OreGenerator;
