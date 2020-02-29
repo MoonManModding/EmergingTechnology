@@ -3,19 +3,19 @@
 # Item
 
 # HYDROPONICS MODULE
-item.emergingtechnology.hydroponic.name=Гидропонная Установка
+item.emergingtechnology.hydroponic.name=Гидропонная установка
 item.emergingtechnology.harvester.name=Сборщик
-item.emergingtechnology.filler.name=Водяной Наполнитель
+item.emergingtechnology.filler.name=Водяной наполнитель
 item.emergingtechnology.scrubber.name=Газопромыватель СО2
 item.emergingtechnology.diffuser.name=Диффузор CO2
 item.emergingtechnology.injector.name=Питательный инжектор
 item.emergingtechnology.light.name=Фитолампа
 item.emergingtechnology.frame.name=Гидропонная рама
 
-item.emergingtechnology.redbulb.name=Красный Светодиод
-item.emergingtechnology.greenbulb.name=Зеленый Светодиод
-item.emergingtechnology.bluebulb.name=Синий Светодиод
-item.emergingtechnology.purplebulb.name=Ультрафиолетовый Светодиод
+item.emergingtechnology.redbulb.name=Красный светодиод
+item.emergingtechnology.greenbulb.name=Зеленый светодиод
+item.emergingtechnology.bluebulb.name=Синий светодиод
+item.emergingtechnology.purplebulb.name=Ультрафиолетовый светодиод
 
 item.emergingtechnology.nozzlecomponent.name=Компонент форсунки
 item.emergingtechnology.nozzlelong.name=Длинная форсунка
@@ -28,16 +28,16 @@ item.emergingtechnology.fertilizer.name=Удобритель
 item.emergingtechnology.processor.name=Процессор
 item.emergingtechnology.shredder.name=Измельчитель
 item.emergingtechnology.collector.name=Сборщик отходов
-item.emergingtechnology.shreddedplastic.name=Измельченный Пластик
-item.emergingtechnology.shreddedplant.name=Измельченные Растения
-item.emergingtechnology.shreddedstarch.name=Измельченный Крахмал
+item.emergingtechnology.shreddedplastic.name=Измельченный пластик
+item.emergingtechnology.shreddedplant.name=Измельченные растения
+item.emergingtechnology.shreddedstarch.name=Измельченный крахмал
 item.emergingtechnology.plasticwaste.name=Пластиковые отходы
 item.emergingtechnology.filament.name=Волокно
 item.emergingtechnology.plasticblock.name=Блок биопластика
 item.emergingtechnology.clearplasticblock.name=Блок прозрачного биопластика
 item.emergingtechnology.plasticrod.name=Биопластиковый стержень
 item.emergingtechnology.plasticsheet.name=Биопластиковый лист
-item.emergingtechnology.machinecase.name=Простой Корпус Механизма
+item.emergingtechnology.machinecase.name=Простой корпус механизма
 item.emergingtechnology.fabricator.name=Конструктор
 item.emergingtechnology.ladder.name=Биопластиковая лестница
 item.emergingtechnology.plastictissuescaffold.name=Биопластиковая основа ткани
@@ -47,14 +47,14 @@ item.emergingtechnology.paperwaste.name=Бумажные отходы
 item.emergingtechnology.paperpulp.name=Бумажная пульпа
 item.emergingtechnology.shreddedpaper.name=Измельченная бумага
 
-item.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
-item.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
-item.emergingtechnology.shreddedstarchblock.name=Блок Измельченного Крахмала
+item.emergingtechnology.shreddedplasticblock.name=Блок измельченного пластика
+item.emergingtechnology.shreddedplantblock.name=Блок измельченных растений
+item.emergingtechnology.shreddedstarchblock.name=Блок измельченного крахмала
 
 #SYNTHETICS MODULE
-item.emergingtechnology.cooker.name=Солнечная Плита
+item.emergingtechnology.cooker.name=Солнечная плита
 
-item.emergingtechnology.emptysyringe.name=Пустой Шприц
+item.emergingtechnology.emptysyringe.name=Пустой шприц
 
 item.emergingtechnology.syntheticcowraw.name=Сырая синтетическая говядина
 item.emergingtechnology.syntheticchickenraw.name=Сырая синтетическая курятина
@@ -68,8 +68,8 @@ item.emergingtechnology.syntheticsilk.name=Синтетический шёлк
 item.emergingtechnology.syntheticslime.name=Синтетический сгусток слизи
 item.emergingtechnology.syntheticleather.name=Синтетическая кожа
 
-item.emergingtechnology.bioreactor.name=Тканевый Биореактор
-item.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
+item.emergingtechnology.bioreactor.name=Тканевый биореактор
+item.emergingtechnology.scaffolder.name=Структурный сборщик тканей
 item.emergingtechnology.algaebioreactor.name=Биореактор водорослей
 
 item.emergingtechnology.algae.name=Водоросли
@@ -93,9 +93,9 @@ item.emergingtechnology.biocharblock.name=Блок биоугля
 #Blocks
 
 # HYDROPONICS MODULE
-blocks.emergingtechnology.hydroponic.name=Гидропонная Установка
+blocks.emergingtechnology.hydroponic.name=Гидропонная установка
 blocks.emergingtechnology.harvester.name=Сборщик
-blocks.emergingtechnology.filler.name=Водяной Наполнитель
+blocks.emergingtechnology.filler.name=Водяной наполнитель
 blocks.emergingtechnology.scrubber.name=Газопромыватель СО2
 blocks.emergingtechnology.diffuser.name=Диффузор CO2
 blocks.emergingtechnology.injector.name=Питательный инжектор
@@ -108,18 +108,18 @@ blocks.emergingtechnology.shredder.name=Измельчитель
 blocks.emergingtechnology.collector.name=Сборщик отходов
 blocks.emergingtechnology.plasticblock.name=Блок биопластика
 blocks.emergingtechnology.clearplasticblock.name=Блок прозрачного биопластика
-blocks.emergingtechnology.machinecase.name=Простой Корпус Механизма
+blocks.emergingtechnology.machinecase.name=Простой корпус механизма
 blocks.emergingtechnology.fabricator.name=Конструктор
 blocks.emergingtechnology.ladder.name=Биопластиковая лестница
 
-blocks.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
-blocks.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
-blocks.emergingtechnology.shreddedstarchblock.name=Блок Измельченного Крахмала
+blocks.emergingtechnology.shreddedplasticblock.name=Блок измельченного пластика
+blocks.emergingtechnology.shreddedplantblock.name=Блок измельченных растений
+blocks.emergingtechnology.shreddedstarchblock.name=Блок измельченного крахмала
 
 #SYNTHETICS MODULE
-blocks.emergingtechnology.cooker.name=Солнечная Плита
-blocks.emergingtechnology.bioreactor.name=Тканевый Биореактор
-blocks.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
+blocks.emergingtechnology.cooker.name=Солнечная плита
+blocks.emergingtechnology.bioreactor.name=Тканевый биореактор
+blocks.emergingtechnology.scaffolder.name=Структурный сборщик тканей
 blocks.emergingtechnology.algaebioreactor.name=Биореактор водорослей
 
 #ELECTRICS MODULE
@@ -138,9 +138,9 @@ blocks.emergingtechnology.biocharblock.name=Блок биоугля
 #Tiles
 
 # HYDROPONICS MODULE
-tile.emergingtechnology.hydroponic.name=Гидропонная Установка
+tile.emergingtechnology.hydroponic.name=Гидропонная установка
 tile.emergingtechnology.harvester.name=Сборщик
-tile.emergingtechnology.filler.name=Водяной Наполнитель
+tile.emergingtechnology.filler.name=Водяной наполнитель
 tile.emergingtechnology.scrubber.name=Газопромыватель СО2
 tile.emergingtechnology.diffuser.name=Диффузор CO2
 tile.emergingtechnology.injector.name=Питательный инжектор
@@ -153,18 +153,18 @@ tile.emergingtechnology.shredder.name=Измельчитель
 tile.emergingtechnology.collector.name=Сборщик отходов
 tile.emergingtechnology.plasticblock.name=Блок биопластика
 tile.emergingtechnology.clearplasticblock.name=Блок прозрачного биопластика
-tile.emergingtechnology.machinecase.name=Простой Корпус Механизма
+tile.emergingtechnology.machinecase.name=Простой корпус механизма
 tile.emergingtechnology.fabricator.name=Конструктор
 tile.emergingtechnology.ladder.name=Биопластиковая лестница
 
-tile.emergingtechnology.shreddedplasticblock.name=Блок Измельченного Пластика
-tile.emergingtechnology.shreddedplantblock.name=Блок Измельченных Растений
-tile.emergingtechnology.shreddedstarchblock.name=Блок Измельченного Крахмала
+tile.emergingtechnology.shreddedplasticblock.name=Блок измельченного пластика
+tile.emergingtechnology.shreddedplantblock.name=Блок измельченных растений
+tile.emergingtechnology.shreddedstarchblock.name=Блок измельченного крахмала
 
 #SYNTHETICS MODULE
-tile.emergingtechnology.cooker.name=Солнечная Плита
-tile.emergingtechnology.bioreactor.name=Тканевый Биореактор
-tile.emergingtechnology.scaffolder.name=Структурный Сборщик Тканей
+tile.emergingtechnology.cooker.name=Солнечная плита
+tile.emergingtechnology.bioreactor.name=Тканевый биореактор
+tile.emergingtechnology.scaffolder.name=Структурный сборщик тканей
 tile.emergingtechnology.algaebioreactor.name=Биореактор водорослей
 
 #ELECTRICS MODULE
@@ -185,17 +185,17 @@ tile.emergingtechnology.nutrientblock.name=Питательная жидкост
 fluid.emergingtechnology.nutrient=Питательная жидкость
 
 #ORES
-item.emergingtechnology.polluteddirt.name=Polluted Dirt
-block.emergingtechnology.polluteddirt.name=Polluted Dirt
-tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+item.emergingtechnology.polluteddirt.name=Загрязнённая земля
+block.emergingtechnology.polluteddirt.name=Загрязнённая земля
+tile.emergingtechnology.polluteddirt.name=Загрязнённая земля
 
-item.emergingtechnology.pollutedsand.name=Polluted Sand
-block.emergingtechnology.pollutedsand.name=Polluted Sand
-tile.emergingtechnology.pollutedsand.name=Polluted Sand
+item.emergingtechnology.pollutedsand.name=Загрязнённый песок
+block.emergingtechnology.pollutedsand.name=Загрязнённый песок
+tile.emergingtechnology.pollutedsand.name=Загрязнённый песок
 
-item.emergingtechnology.pollutedgravel.name=Polluted Gravel
-block.emergingtechnology.pollutedgravel.name=Polluted Gravel
-tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+item.emergingtechnology.pollutedgravel.name=Загрязнённый гравий
+block.emergingtechnology.pollutedgravel.name=Загрязнённый гравий
+tile.emergingtechnology.pollutedgravel.name=Загрязнённый гравий
 
 #ItemGroup
 
@@ -207,8 +207,8 @@ itemGroup.technologytab=Emerging Technology
 # Machine descriptions
 info.emergingtechnology.biomass.description=Сжигает биомассу для производства энергии.
 info.emergingtechnology.bioreactor.description=Перерабатывает ткани животных в полезные образцы.
-info.emergingtechnology.algaebioreactor.description=Использует углекислый газ для выращивания водорослей.
-info.emergingtechnology.collector.description=Медленно собирает отходы пластика при помещении в воду.
+info.emergingtechnology.algaebioreactor.description=Использует углекислый газ для выращивания водорослей. Производит быстрее с Фитолампой и Светодиодом выше.
+info.emergingtechnology.collector.description=Медленно собирает отходы пластика и другие предметы когда помещён в воду.
 info.emergingtechnology.cooker.description=Использует прямой солнечный свет для приготовления пищи.
 info.emergingtechnology.fabricator.description=Автоматизирует печать пластиковых компонентов.
 info.emergingtechnology.filler.description=Заполняет смежные баки водой.
@@ -305,8 +305,8 @@ gui.emergingtechnology.label.heat=Температура
 gui.emergingtechnology.label.growth=Модификаторы роста
 gui.emergingtechnology.label.error=Ошибка
 
-gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
-gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
+gui.emergingtechnology.label.speedmultiplier=Усиление роста от Светодиода: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Фитолампа или Светодиод отсутствуют.
 
 gui.emergingtechnology.fabricator.error=Невозможно изготовить предмет
 gui.emergingtechnology.fabricator.noenergy=Недостаточно энергии
@@ -329,26 +329,27 @@ config.emergingtechnology.hydroponics.title.tooltip=Тут настраивае�
 config.emergingtechnology.hydroponics.growbed.title=Гидропонная установка
 config.emergingtechnology.hydroponics.growlight.title=Фитолампа
 config.emergingtechnology.hydroponics.harvester.title=Сборщик
-config.emergingtechnology.hydroponics.filler.title=Водяной Наполнитель
+config.emergingtechnology.hydroponics.filler.title=Водяной наполнитель
 config.emergingtechnology.hydroponics.scrubber.title=Газопромыватель СО2
 config.emergingtechnology.hydroponics.diffuser.title=Диффузор CO2
 config.emergingtechnology.hydroponics.injector.title=Питательный Инжектор
 
 config.emergingtechnology.polymers.title=Полимеры
-config.emergingtechnology.polymers.title.tooltip=Тут настраивается Измельчитель, Процессор, Конструктор и Сборщик отходов
+config.emergingtechnology.polymers.title.tooltip=Тут настраивается Генерация мира, Измельчитель, Процессор, Конструктор и Сборщик отходов
 
 config.emergingtechnology.polymers.shredder.title=Измельчитель
 config.emergingtechnology.polymers.processor.title=Процессор
 config.emergingtechnology.polymers.fabricator.title=Конструктор
 config.emergingtechnology.polymers.collector.title=Сборщик отходов
+config.emergingtechnology.polymers.worldgen.title=Генерация мира
 
 config.emergingtechnology.synthetics.title=Синтетика
-config.emergingtechnology.synthetics.title.tooltip=Тут настраивается Биореактор, Сборщик Тканей и Солнечная Плита
+config.emergingtechnology.synthetics.title.tooltip=Тут настраивается Биореактор, Сборщик тканей и Солнечная плита
 
-config.emergingtechnology.synthetics.bioreactor.title=Тканевый Биореактор
-config.emergingtechnology.synthetics.scaffolder.title=Структурный Сборщик Тканей
+config.emergingtechnology.synthetics.bioreactor.title=Тканевый биореактор
+config.emergingtechnology.synthetics.scaffolder.title=Структурный сборщик тканей
 config.emergingtechnology.synthetics.algaebioreactor.title=Биореактор водорослей
-config.emergingtechnology.synthetics.cooker.title=Солнечная Плита
+config.emergingtechnology.synthetics.cooker.title=Солнечная плита
 
 config.emergingtechnology.electrics.title=Электроника
 config.emergingtechnology.electrics.title.tooltip=Тут настраивается Солнечная панель, Солнечное стекло, Приливный генератор, Генератор на биомассе, Пьезоэлектрический генератор и Аккумулятор
