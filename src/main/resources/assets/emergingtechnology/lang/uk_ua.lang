@@ -3,19 +3,19 @@
 # Items
 
 # HYDROPONICS MODULE
-item.emergingtechnology.hydroponic.name=Гідропонна Установка
+item.emergingtechnology.hydroponic.name=Гідропонна установка
 item.emergingtechnology.harvester.name=Збирач
 item.emergingtechnology.filler.name=Водяний наповнювач
 item.emergingtechnology.scrubber.name=Газоочисник СО2
 item.emergingtechnology.diffuser.name=Дифузор CO2
 item.emergingtechnology.injector.name=Поживний інжектор
 item.emergingtechnology.light.name=Фітолампа
-item.emergingtechnology.frame.name=Гідропонная Рама
+item.emergingtechnology.frame.name=Гідропонная рама
 
-item.emergingtechnology.redbulb.name=Червоний Світлодіод
-item.emergingtechnology.greenbulb.name=Зелений Світлодіод
-item.emergingtechnology.bluebulb.name=Синій Світлодіод
-item.emergingtechnology.purplebulb.name=Ультрафіолетовий Світлодіод
+item.emergingtechnology.redbulb.name=Червоний світлодіод
+item.emergingtechnology.greenbulb.name=Зелений світлодіод
+item.emergingtechnology.bluebulb.name=Синій світлодіод
+item.emergingtechnology.purplebulb.name=Ультрафіолетовий світлодіод
 
 item.emergingtechnology.nozzlecomponent.name=Компонент форсунки
 item.emergingtechnology.nozzlelong.name=Довга форсунка
@@ -93,14 +93,14 @@ item.emergingtechnology.biocharblock.name=Блок біовугілля
 #Blocks
 
 # HYDROPONICS MODULE
-blocks.emergingtechnology.hydroponic.name=Гідропонна Установка
+blocks.emergingtechnology.hydroponic.name=Гідропонна установка
 blocks.emergingtechnology.harvester.name=Збирач
 blocks.emergingtechnology.filler.name=Водяний наповнювач
 blocks.emergingtechnology.scrubber.name=Газоочисник СО2
 blocks.emergingtechnology.diffuser.name=Дифузор CO2
 blocks.emergingtechnology.injector.name=Поживний інжектор
 blocks.emergingtechnology.light.name=Фітолампа
-blocks.emergingtechnology.frame.name=Гідропонна Рама
+blocks.emergingtechnology.frame.name=Гідропонна рама
 
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процесор
@@ -138,14 +138,14 @@ blocks.emergingtechnology.biocharblock.name=Блок біовугілля
 #Tiles
 
 # HYDROPONICS MODULE
-tile.emergingtechnology.hydroponic.name=Гідропонна Установка
+tile.emergingtechnology.hydroponic.name=Гідропонна установка
 tile.emergingtechnology.harvester.name=Збирач
 tile.emergingtechnology.filler.name=Водяний наповнювач
 tile.emergingtechnology.scrubber.name=Газоочисник СО2
 tile.emergingtechnology.diffuser.name=Дифузор CO2
 tile.emergingtechnology.injector.name=Поживний інжектор
 tile.emergingtechnology.light.name=Фітолампа
-tile.emergingtechnology.frame.name=Гідропонна Рама
+tile.emergingtechnology.frame.name=Гідропонна рама
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Процесор
@@ -185,17 +185,17 @@ tile.emergingtechnology.nutrientblock.name=Поживна рідина
 fluid.emergingtechnology.nutrient=Поживна рідина
 
 #ORES
-item.emergingtechnology.polluteddirt.name=Polluted Dirt
-block.emergingtechnology.polluteddirt.name=Polluted Dirt
-tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+item.emergingtechnology.polluteddirt.name=Забруднена земля
+block.emergingtechnology.polluteddirt.name=Забруднена земля
+tile.emergingtechnology.polluteddirt.name=Забруднена земля
 
-item.emergingtechnology.pollutedsand.name=Polluted Sand
-block.emergingtechnology.pollutedsand.name=Polluted Sand
-tile.emergingtechnology.pollutedsand.name=Polluted Sand
+item.emergingtechnology.pollutedsand.name=Забруднений пісок
+block.emergingtechnology.pollutedsand.name=Забруднений пісок
+tile.emergingtechnology.pollutedsand.name=Забруднений пісок
 
-item.emergingtechnology.pollutedgravel.name=Polluted Gravel
-block.emergingtechnology.pollutedgravel.name=Polluted Gravel
-tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+item.emergingtechnology.pollutedgravel.name=Забруднений гравій
+block.emergingtechnology.pollutedgravel.name=Забруднений гравій
+tile.emergingtechnology.pollutedgravel.name=Забруднений гравій
 
 #ItemGroup
 
@@ -207,8 +207,8 @@ itemGroup.technologytab=Emerging Technology
 # Machine descriptions
 info.emergingtechnology.biomass.description=Спалює біомасу для виробництва енергії.
 info.emergingtechnology.bioreactor.description=Переробляє тваринні тканини в корисні зразки.
-info.emergingtechnology.algaebioreactor.description=Використовує вуглекислий газ для вирощування водоростей.
-info.emergingtechnology.collector.description=Повільно збирає відходи пластика коли поміщений в воду.
+info.emergingtechnology.algaebioreactor.description=Використовує вуглекислий газ для вирощування водоростей. Виробляє швидше з Фітолампою і Світлодіодом вище.
+info.emergingtechnology.collector.description=Повільно збирає відходи пластика та інші предмети коли поміщений в воду.
 info.emergingtechnology.cooker.description=Використовує прямі сонячні промені для приготування Їжі.
 info.emergingtechnology.fabricator.description=Автоматизує друк пластикових компонентів.
 info.emergingtechnology.filler.description=Заповнює суміжні баки водою.
@@ -314,8 +314,8 @@ gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Вимагає 
 
-gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
-gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
+gui.emergingtechnology.label.speedmultiplier=Посилення зростання від Світлодіода: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Фітолампа або Світлодіод відсутні.
 
 # Configuration
 config.emergingtechnology.title=Налаштування Emerging Technology
@@ -335,12 +335,13 @@ config.emergingtechnology.diffuser.name=Дифузор CO2
 config.emergingtechnology.hydroponics.injector.title=Поживний інжектор
 
 config.emergingtechnology.polymers.title=Полімери
-config.emergingtechnology.polymers.title.tooltip=Тут налаштовується Подрібнювач, Процесор, Конструктор та Збирач відходів
+config.emergingtechnology.polymers.title.tooltip=Тут налаштовується Генерація світу, Подрібнювач, Процесор, Конструктор та Збирач відходів
 
 config.emergingtechnology.polymers.shredder.title=Подрібнювач
 config.emergingtechnology.polymers.processor.title=Процесор
 config.emergingtechnology.polymers.fabricator.title=Конструктор
 config.emergingtechnology.polymers.collector.title=Збирач відходів
+config.emergingtechnology.polymers.worldgen.title=Генерація світу
 
 config.emergingtechnology.synthetics.title=Синтетика
 config.emergingtechnology.synthetics.title.tooltip=Тут налаштовується Біореактор, Складальник та Сонячна плита
