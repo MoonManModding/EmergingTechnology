@@ -10,8 +10,8 @@ import io.moonman.emergingtechnology.integration.ModLoader;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
-import li.cil.oc.common.block.Item;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ShredderRecipeBuilder {
