@@ -38,6 +38,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
 import net.minecraftforge.common.util.FakePlayer;
@@ -46,6 +48,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.machine.Arguments;
@@ -506,7 +509,9 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
     private void setRotationState(RotationEnum rotation) {
 
-        PacketHandler.INSTANCE.sendToAll(new HarvesterRotationAnimationPacket(this.getPos(), rotation));
+        TargetPoint targetPoint = new TargetPoint(0, getPos().getX(), getPos().getY(), getPos().getZ(), 0);
+
+        PacketHandler.INSTANCE.sendToAllTracking(new HarvesterRotationAnimationPacket(this.getPos(), rotation), targetPoint);
 
         this.rotation = rotation;
     }
