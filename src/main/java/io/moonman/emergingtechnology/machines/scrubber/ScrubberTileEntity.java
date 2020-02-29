@@ -48,6 +48,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.machine.Arguments;
@@ -347,7 +348,10 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
     private void setTurbineState(TurbineSpeedEnum speed) {
 
         if (speed != this.speed) {
-            PacketHandler.INSTANCE.sendToAll(new ScrubberAnimationPacket(this.getPos(), speed));
+            TargetPoint targetPoint = new TargetPoint(getWorld().provider.getDimension(), getPos().getX(),
+                    getPos().getY(), getPos().getZ(), 0);
+
+            PacketHandler.INSTANCE.sendToAllTracking(new ScrubberAnimationPacket(this.getPos(), speed), targetPoint);
         }
 
         this.speed = speed;
@@ -410,33 +414,33 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
 
     public int getField(int id) {
         switch (id) {
-        case 0:
-            return this.getEnergy();
-        case 1:
-            return this.getWater();
-        case 2:
-            return this.getProgress();
-        case 3:
-            return this.getGas();
-        default:
-            return 0;
+            case 0:
+                return this.getEnergy();
+            case 1:
+                return this.getWater();
+            case 2:
+                return this.getProgress();
+            case 3:
+                return this.getGas();
+            default:
+                return 0;
         }
     }
 
     public void setField(int id, int value) {
         switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
-        case 1:
-            this.setWater(value);
-            break;
-        case 2:
-            this.setProgress(value);
-            break;
-        case 3:
-            this.setGas(value);
-            break;
+            case 0:
+                this.setEnergy(value);
+                break;
+            case 1:
+                this.setWater(value);
+                break;
+            case 2:
+                this.setProgress(value);
+                break;
+            case 3:
+                this.setGas(value);
+                break;
         }
     }
 

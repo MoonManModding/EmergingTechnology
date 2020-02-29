@@ -29,6 +29,7 @@ import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import li.cil.oc.api.network.SimpleComponent;
@@ -40,8 +41,10 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
     public WindTileEntity() {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-			asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/wind.json"), ImmutableMap.of());
-        } else asm = null;
+            asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/wind.json"),
+                    ImmutableMap.of());
+        } else
+            asm = null;
     }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.WIND_ENERGY_CAPACITY) {
@@ -71,16 +74,20 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) return true;
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) return true;
+        if (capability == CapabilityEnergy.ENERGY)
+            return true;
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+            return true;
 
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
+        if (capability == CapabilityEnergy.ENERGY)
+            return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
         return super.getCapability(capability, facing);
     }
 
@@ -157,14 +164,18 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
         String newState = WindHelper.getTurbineStateFromSpeedEnum(speed);
 
         if (!state.equalsIgnoreCase(newState)) {
-			this.asm.transition(newState);
+            this.asm.transition(newState);
         }
     }
-    
+
     private void setTurbineState(TurbineSpeedEnum speed) {
 
         if (speed != this.speed) {
-            PacketHandler.INSTANCE.sendToAll(new WindGeneratorAnimationPacket(this.getPos(), speed));
+            TargetPoint targetPoint = new TargetPoint(getWorld().provider.getDimension(), getPos().getX(),
+                    getPos().getY(), getPos().getZ(), 0);
+
+            PacketHandler.INSTANCE.sendToAllTracking(new WindGeneratorAnimationPacket(this.getPos(), speed),
+                    targetPoint);
         }
 
         this.speed = speed;
@@ -195,18 +206,18 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
     public int getField(int id) {
         switch (id) {
-        case 0:
-            return this.getEnergy();
-        default:
-            return 0;
+            case 0:
+                return this.getEnergy();
+            default:
+                return 0;
         }
     }
 
     public void setField(int id, int value) {
         switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
+            case 0:
+                this.setEnergy(value);
+                break;
 
         }
     }
