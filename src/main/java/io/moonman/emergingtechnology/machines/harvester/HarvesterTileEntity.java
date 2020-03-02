@@ -38,6 +38,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.capabilities.Capability;
@@ -196,11 +197,13 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
             // Otherwise cycle through directions
             for (EnumFacing facing : EnumFacing.HORIZONTALS) {
 
-                if (facing == blockFacing) continue;
+                if (facing == blockFacing)
+                    continue;
 
                 tryPlant(facing);
 
-                // If can harvest in this direction, and not currently animating, rotate to direction
+                // If can harvest in this direction, and not currently animating, rotate to
+                // direction
                 if (canHarvest(facing) && isIdle()) {
                     this.setRotationState(RotationEnum.getRotationFromFacing(facing));
                 }
@@ -509,9 +512,19 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
     private void setRotationState(RotationEnum rotation) {
 
-        TargetPoint targetPoint = new TargetPoint(getWorld().provider.getDimension(), getPos().getX(), getPos().getY(), getPos().getZ(), 0);
+        World world = getWorld();
 
-        PacketHandler.INSTANCE.sendToAllTracking(new HarvesterRotationAnimationPacket(this.getPos(), rotation), targetPoint);
+        if (world == null)
+            return;
+
+        WorldProvider provider = world.provider;
+
+        int dimension = provider.getDimension();
+
+        TargetPoint targetPoint = new TargetPoint(dimension, getPos().getX(), getPos().getY(), getPos().getZ(), 0);
+
+        PacketHandler.INSTANCE.sendToAllTracking(new HarvesterRotationAnimationPacket(this.getPos(), rotation),
+                targetPoint);
 
         this.rotation = rotation;
     }

@@ -24,6 +24,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
@@ -175,7 +176,16 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
     private void setTurbineState(TurbineSpeedEnum speed) {
 
         if (speed != this.speed) {
-            TargetPoint targetPoint = new TargetPoint(getWorld().provider.getDimension(), getPos().getX(),
+            
+            World world = getWorld();
+
+            if (world == null) return;
+
+            WorldProvider provider = world.provider;
+
+            int dimension = provider.getDimension();
+
+            TargetPoint targetPoint = new TargetPoint(dimension, getPos().getX(),
                     getPos().getY(), getPos().getZ(), 0);
 
             PacketHandler.INSTANCE.sendToAllTracking(new TidalGeneratorAnimationPacket(this.getPos(), speed),

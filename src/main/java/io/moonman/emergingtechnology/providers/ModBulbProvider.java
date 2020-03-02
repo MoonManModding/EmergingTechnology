@@ -72,6 +72,14 @@ public class ModBulbProvider {
         CustomBulbLoader.preInit(event);
     }
 
+    public static void addBulb(ModBulb bulb) {
+        allBulbs[allBulbs.length + 1] = bulb;
+    }
+    
+    public static void removeBulbByItemName(String name) {
+        
+    }
+
     public static boolean bulbExists(ItemStack itemStack) {
         if (itemStack == null) return false;
         if (itemStack.getItem() == null) return false;

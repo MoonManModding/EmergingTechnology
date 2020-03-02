@@ -78,9 +78,9 @@ public class ModMediumProvider {
 
         String name = itemStack.getItem().getRegistryName().toString();
 
-        ModMedium bulb = getMediumByName(name);
+        ModMedium medium = getMediumByName(name);
 
-        if (bulb == null) return false;
+        if (medium == null) return false;
 
         return true;
     }
