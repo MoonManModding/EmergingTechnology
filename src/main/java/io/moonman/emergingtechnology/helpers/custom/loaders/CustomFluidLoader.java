@@ -16,10 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CustomFluidLoader {
 
     public static void preInit(FMLPreInitializationEvent e) {
-
-        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID
-                + "\\custom-fluids.json";
-                loadCustomFluids(path);
+        loadCustomFluids(JsonHelper.getPathForFile(e, "custom-fluids.json"));
     }
 
     public static void loadCustomFluids(String filePath) {

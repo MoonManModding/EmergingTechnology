@@ -15,10 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CustomRecipeLoader {
 
     public static void preInit(FMLPreInitializationEvent e) {
-
-        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID
-                + "\\custom-recipes.json";
-        loadCustomRecipes(path);
+        loadCustomRecipes(JsonHelper.getPathForFile(e, "custom-recipes.json"));
     }
 
     public static void loadCustomRecipes(String filePath) {

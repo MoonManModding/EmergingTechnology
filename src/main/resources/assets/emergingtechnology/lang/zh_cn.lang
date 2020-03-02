@@ -22,7 +22,7 @@ item.emergingtechnology.nozzlelong.name=长喷嘴
 item.emergingtechnology.nozzlesmart.name=智能喷嘴
 item.emergingtechnology.nozzleprecise.name=精确喷嘴
 
-item.emergingtechnology.fertilizer.name=Fertilizer
+item.emergingtechnology.fertilizer.name=肥料
 
 #POLYMERS MODULE
 item.emergingtechnology.processor.name=加工机
@@ -185,17 +185,17 @@ tile.emergingtechnology.nutrientblock.name=营养液
 fluid.emergingtechnology.nutrient=营养液
 
 #ORES
-item.emergingtechnology.polluteddirt.name=Polluted Dirt
-block.emergingtechnology.polluteddirt.name=Polluted Dirt
-tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+item.emergingtechnology.polluteddirt.name=被污染的泥土
+block.emergingtechnology.polluteddirt.name=被污染的泥土
+tile.emergingtechnology.polluteddirt.name=被污染的泥土
 
-item.emergingtechnology.pollutedsand.name=Polluted Sand
-block.emergingtechnology.pollutedsand.name=Polluted Sand
-tile.emergingtechnology.pollutedsand.name=Polluted Sand
+item.emergingtechnology.pollutedsand.name=被污染的沙子
+block.emergingtechnology.pollutedsand.name=被污染的沙子
+tile.emergingtechnology.pollutedsand.name=被污染的沙子
 
-item.emergingtechnology.pollutedgravel.name=Polluted Gravel
-block.emergingtechnology.pollutedgravel.name=Polluted Gravel
-tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+item.emergingtechnology.pollutedgravel.name=被污染的沙砾
+block.emergingtechnology.pollutedgravel.name=被污染的沙砾
+tile.emergingtechnology.pollutedgravel.name=被污染的沙砾
 
 #ItemGroup
 
@@ -306,8 +306,8 @@ gui.emergingtechnology.label.heat=温度
 gui.emergingtechnology.label.growth=生长调节
 gui.emergingtechnology.label.error=错误
 
-gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
-gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
+gui.emergingtechnology.label.speedmultiplier=灯泡促进生长： x%s
+gui.emergingtechnology.label.nospeedmultiplier=找不到生长灯或灯泡。
 
 gui.emergingtechnology.fabricator.error=无法制造项目
 gui.emergingtechnology.fabricator.noenergy=能量不足

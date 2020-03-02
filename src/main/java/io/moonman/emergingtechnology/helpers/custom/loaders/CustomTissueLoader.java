@@ -16,10 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CustomTissueLoader {
 
     public static void preInit(FMLPreInitializationEvent e) {
-
-        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID
-                + "\\custom-tissues.json";
-        loadCustomTissues(path);
+        loadCustomTissues(JsonHelper.getPathForFile(e, "custom-tissues.json"));
     }
 
     public static void loadCustomTissues(String path) {

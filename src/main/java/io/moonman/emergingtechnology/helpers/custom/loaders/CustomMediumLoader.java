@@ -16,10 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CustomMediumLoader {
 
     public static void preInit(FMLPreInitializationEvent e) {
-
-        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID
-                + "\\custom-media.json";
-        loadCustomGrowthMedia(path);
+        loadCustomGrowthMedia(JsonHelper.getPathForFile(e, "custom-media.json"));
     }
 
     public static void loadCustomGrowthMedia(String customGrowthMediaFilePath) {

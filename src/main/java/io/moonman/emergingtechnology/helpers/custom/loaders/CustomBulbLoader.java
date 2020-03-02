@@ -16,23 +16,20 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CustomBulbLoader {
 
     public static void preInit(FMLPreInitializationEvent e) {
-
-        String path = e.getModConfigurationDirectory().getAbsolutePath() + "\\" + EmergingTechnology.MODID
-                + "\\custom-bulbs.json";
-                loadCustomBulbs(path);
+        loadCustomBulbs(JsonHelper.getPathForFile(e, "custom-bulbs.json"));
     }
 
     public static void loadCustomBulbs(String filePath) {
         EmergingTechnology.logger.info("EmergingTechnology - Loading custom bulbs...");
         try {
             ModBulbProvider.customBulbs = readFromJson(filePath);
-            EmergingTechnology.logger.info("EmergingTechnology - Loaded "
-                    + ModBulbProvider.customBulbs.length + " custom bulbs.");
+            EmergingTechnology.logger
+                    .info("EmergingTechnology - Loaded " + ModBulbProvider.customBulbs.length + " custom bulbs.");
 
         } catch (FileNotFoundException ex) {
             EmergingTechnology.logger.warn("Bulb file not found.");
             ModBulbProvider.customBulbs = new ModBulb[] {};
-        }  catch (Exception ex) {
+        } catch (Exception ex) {
             EmergingTechnology.logger.warn("Warning! There was a problem loading custom bulbs:");
             EmergingTechnology.logger.warn(ex);
             ModBulbProvider.customBulbs = new ModBulb[] {};
@@ -41,7 +38,8 @@ public class CustomBulbLoader {
 
     private static ModBulb[] readFromJson(String filePath) throws IOException {
 
-        CustomBulbWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath), CustomBulbWrapper[].class);
+        CustomBulbWrapper[] wrappers = JsonHelper.GSON_INSTANCE.fromJson(JsonHelper.readFromJson(filePath),
+                CustomBulbWrapper[].class);
 
         return generateModBulbsFromWrappers(wrappers);
     }
