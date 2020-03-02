@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.helpers.custom.wrappers;
+package io.moonman.emergingtechnology.providers.wrappers;
 
 /**
 Simple wrapper for JSON objects in custom fluid file

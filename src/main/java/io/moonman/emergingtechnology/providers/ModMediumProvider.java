@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.providers.classes.ModMedium;
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomMediumLoader;
+import io.moonman.emergingtechnology.providers.loaders.CustomMediumLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

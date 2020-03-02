@@ -75,7 +75,6 @@ public abstract class CommonProxy {
         ModMediumProvider.preInit(e);
         ModFluidProvider.preInit(e);
         ModTissueProvider.preInit(e);
-        RecipeProvider.preInit(e);
 
         CraftTweakerHelper.preInit();
 

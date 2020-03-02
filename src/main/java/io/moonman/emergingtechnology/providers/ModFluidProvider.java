@@ -3,7 +3,7 @@ package io.moonman.emergingtechnology.providers;
 import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.providers.classes.ModFluid;
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomFluidLoader;
+import io.moonman.emergingtechnology.providers.loaders.CustomFluidLoader;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

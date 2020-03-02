@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.helpers.custom.loaders;
+package io.moonman.emergingtechnology.providers.loaders;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.io.IOException;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.providers.classes.ModBulb;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
-import io.moonman.emergingtechnology.helpers.custom.system.JsonHelper;
-import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomBulbWrapper;
+import io.moonman.emergingtechnology.providers.system.JsonHelper;
+import io.moonman.emergingtechnology.providers.wrappers.CustomBulbWrapper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomRecipeLoader;
-import io.moonman.emergingtechnology.helpers.custom.wrappers.CustomRecipesWrapper;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -29,12 +27,6 @@ public class RecipeProvider {
     public static List<IMachineRecipe> scrubberRecipes = new ArrayList<IMachineRecipe>();
     public static List<IMachineRecipe> algaeBioreactorRecipes = new ArrayList<IMachineRecipe>();
     public static List<IMachineRecipe> injectorRecipes = new ArrayList<IMachineRecipe>();
-
-    public static CustomRecipesWrapper customRecipes = new CustomRecipesWrapper();
-
-    public static void preInit(FMLPreInitializationEvent e) {
-        CustomRecipeLoader.preInit(e);
-    }
 
     public static ItemStack getFabricatorOutputForItemStack(ItemStack itemStack) {
         return getOutputForItemStackFromRecipes(itemStack, fabricatorRecipes);

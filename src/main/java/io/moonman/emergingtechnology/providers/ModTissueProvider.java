@@ -2,7 +2,7 @@ package io.moonman.emergingtechnology.providers;
 
 import java.util.ArrayList;
 
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomTissueLoader;
+import io.moonman.emergingtechnology.providers.loaders.CustomTissueLoader;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.providers.classes.ModTissue;

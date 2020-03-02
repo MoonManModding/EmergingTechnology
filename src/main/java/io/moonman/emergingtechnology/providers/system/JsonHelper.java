@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.helpers.custom.system;
+package io.moonman.emergingtechnology.providers.system;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
