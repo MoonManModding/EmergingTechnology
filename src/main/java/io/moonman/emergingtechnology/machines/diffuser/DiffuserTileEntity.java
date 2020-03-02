@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.helpers.machines.DiffuserHelper;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class DiffuserTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class DiffuserTileEntity extends MachineTileBase implements SimpleComponent {
 
     public FluidTank gasHandler = new FluidStorageHandler(Reference.DIFFUSER_GAS_CAPACITY) {
         @Override
@@ -47,7 +48,7 @@ public class DiffuserTileEntity extends MachineTileBase implements ITickable, Si
 
             Fluid fluid = fluidStack.getFluid();
 
-            return fluid == ModFluids.CARBON_DIOXIDE || fluid.getName() == "carbondioxide";
+            return ScrubberRecipeBuilder.isValidGas(fluid);
         }
     };
 

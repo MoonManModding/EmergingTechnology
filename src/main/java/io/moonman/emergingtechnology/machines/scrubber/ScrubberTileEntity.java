@@ -23,6 +23,7 @@ import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.ScrubberAnimationPacket;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -93,7 +94,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
                 return false;
             }
 
-            return fluid == ModFluids.CARBON_DIOXIDE || fluid.getName() == "carbondioxide";
+            return ScrubberRecipeBuilder.isValidGas(fluid);
         }
     };
 

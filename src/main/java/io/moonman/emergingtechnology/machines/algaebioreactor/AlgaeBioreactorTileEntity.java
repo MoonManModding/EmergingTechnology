@@ -1,5 +1,7 @@
 package io.moonman.emergingtechnology.machines.algaebioreactor;
 
+import java.util.List;
+
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
@@ -12,6 +14,7 @@ import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -38,8 +41,8 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class AlgaeBioreactorTileEntity extends MachineTileBase implements SimpleComponent {
 
-    private static String[] fluidNames = new String[] { "water" };
-    private static String[] gasNames = new String[] { "carbondioxide" };
+    private static List<String> fluidNames = AlgaeBioreactorRecipeBuilder.getValidFluidNames();
+    private static List<String> gasNames = AlgaeBioreactorRecipeBuilder.getValidGasNames();
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.ALGAEBIOREACTOR_FLUID_CAPACITY) {
         @Override
@@ -65,7 +68,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
                 return false;
             }
 
-            return fluid == ModFluids.CARBON_DIOXIDE || fluid.getName() == "carbondioxide";
+            return AlgaeBioreactorRecipeBuilder.isValidGas(fluid);
         }
     };
 

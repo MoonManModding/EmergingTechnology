@@ -1,5 +1,7 @@
 package io.moonman.emergingtechnology.handlers.fluid;
 
+import java.util.List;
+
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -17,10 +19,10 @@ public class SplitFluidStorageHandler implements IFluidHandler {
     private final FluidTank gasTank;
     private final FluidTank fluidTank;
 
-    private final String[] gasNames;
-    private final String[] fluidNames;
+    private final List<String> gasNames;
+    private final List<String> fluidNames;
 
-    public SplitFluidStorageHandler(FluidTank fluidTank, FluidTank gasTank, String[] fluidNames, String[] gasNames) {
+    public SplitFluidStorageHandler(FluidTank fluidTank, FluidTank gasTank, List<String> fluidNames, List<String> gasNames) {
         this.fluidTank = fluidTank;
         this.gasTank = gasTank;
         this.fluidNames = fluidNames;
