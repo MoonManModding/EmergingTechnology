@@ -173,16 +173,9 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
         if (speed != this.speed) {
 
-            World world = getWorld();
+            TargetPoint targetPoint = PacketHandler.getTargetPoint(getWorld(), getPos());
 
-            if (world == null) return;
-
-            WorldProvider provider = world.provider;
-
-            int dimension = provider.getDimension();
-
-            TargetPoint targetPoint = new TargetPoint(dimension, getPos().getX(),
-                    getPos().getY(), getPos().getZ(), 0);
+            if (targetPoint == null) return;
 
             PacketHandler.INSTANCE.sendToAllTracking(new WindGeneratorAnimationPacket(this.getPos(), speed),
                     targetPoint);

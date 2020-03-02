@@ -177,16 +177,9 @@ public class TidalGeneratorTileEntity extends MachineTileBase implements ITickab
 
         if (speed != this.speed) {
             
-            World world = getWorld();
+            TargetPoint targetPoint = PacketHandler.getTargetPoint(getWorld(), getPos());
 
-            if (world == null) return;
-
-            WorldProvider provider = world.provider;
-
-            int dimension = provider.getDimension();
-
-            TargetPoint targetPoint = new TargetPoint(dimension, getPos().getX(),
-                    getPos().getY(), getPos().getZ(), 0);
+            if (targetPoint == null) return;
 
             PacketHandler.INSTANCE.sendToAllTracking(new TidalGeneratorAnimationPacket(this.getPos(), speed),
                     targetPoint);

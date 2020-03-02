@@ -2,11 +2,8 @@ package io.moonman.emergingtechnology.integration.crafttweaker.providers;
 
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
-import crafttweaker.api.item.IItemStack;
-import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.classes.ModBulb;
-import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 

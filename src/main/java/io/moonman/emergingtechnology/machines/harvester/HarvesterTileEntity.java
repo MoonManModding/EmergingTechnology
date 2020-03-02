@@ -512,16 +512,10 @@ public class HarvesterTileEntity extends MachineTileBase implements SimpleCompon
 
     private void setRotationState(RotationEnum rotation) {
 
-        World world = getWorld();
+        TargetPoint targetPoint = PacketHandler.getTargetPoint(getWorld(), getPos());
 
-        if (world == null)
+        if (targetPoint == null)
             return;
-
-        WorldProvider provider = world.provider;
-
-        int dimension = provider.getDimension();
-
-        TargetPoint targetPoint = new TargetPoint(dimension, getPos().getX(), getPos().getY(), getPos().getZ(), 0);
 
         PacketHandler.INSTANCE.sendToAllTracking(new HarvesterRotationAnimationPacket(this.getPos(), rotation),
                 targetPoint);

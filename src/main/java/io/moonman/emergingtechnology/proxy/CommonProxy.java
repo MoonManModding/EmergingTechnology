@@ -8,7 +8,6 @@ import io.moonman.emergingtechnology.providers.ModMediumProvider;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
 import io.moonman.emergingtechnology.integration.ModLoader;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.worldgen.OreGenerator;
 import io.moonman.emergingtechnology.worldgen.WorldTickHandler;
 import io.moonman.emergingtechnology.init.OreRegistrationHandler;
