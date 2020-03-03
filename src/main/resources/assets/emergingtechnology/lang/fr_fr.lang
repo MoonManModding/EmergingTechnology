@@ -6,12 +6,20 @@
 item.emergingtechnology.hydroponic.name=Tables à marées hydroponique
 item.emergingtechnology.harvester.name=Harvester
 item.emergingtechnology.filler.name=Water Filler
+item.emergingtechnology.scrubber.name=CO2 Scrubber
 item.emergingtechnology.light.name=Ampoule de croissance hydroponique
 item.emergingtechnology.frame.name=Chassis de table hydroponique
 item.emergingtechnology.redbulb.name=Ampoule rouge
 item.emergingtechnology.greenbulb.name=Ampoule verte
 item.emergingtechnology.bluebulb.name=Ampoule bleue
 item.emergingtechnology.purplebulb.name=Ampoule à UV
+
+item.emergingtechnology.nozzlecomponent.name=Nozzle Component
+item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
+item.emergingtechnology.nozzlesmart.name=Smart Spray Nozzle
+item.emergingtechnology.nozzleprecise.name=Precision Spray Nozzle
+
+item.emergingtechnology.fertilizer.name=Fertilizer
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Processeur
@@ -30,6 +38,7 @@ item.emergingtechnology.machinecase.name=Boîtier de machine basique
 item.emergingtechnology.fabricator.name=Fabricateur
 item.emergingtechnology.ladder.name=Échelle en plastique
 item.emergingtechnology.plastictissuescaffold.name=Plastic Tissue Scaffold
+item.emergingtechnology.turbine.name=Turbine
 
 item.emergingtechnology.paperwaste.name=Paper Waste
 item.emergingtechnology.paperpulp.name=Paper Pulp
@@ -59,6 +68,11 @@ item.emergingtechnology.syntheticleather.name=Synthetic Leather
 item.emergingtechnology.bioreactor.name=Bioréacteur cellulaire
 item.emergingtechnology.scaffolder.name=Appareil à morphogenèse
 
+item.emergingtechnology.algae.name=Algae
+
+item.emergingtechnology.algaebarraw.name=Algae Bar
+item.emergingtechnology.algaebarcooked.name=Cooked Algae Bar
+
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Plaque piézoélectriques
 item.emergingtechnology.biomass.name=Biomass
@@ -76,6 +90,7 @@ item.emergingtechnology.biocharblock.name=Biochar Block
 # HYDROPONICS MODULE
 blocks.emergingtechnology.hydroponic.name=Tables à marées hydroponique
 blocks.emergingtechnology.harvester.name=Harvester
+blocks.emergingtechnology.scrubber.name=CO2 Scrubber
 blocks.emergingtechnology.filler.name=Water Filler
 blocks.emergingtechnology.light.name=Ampoule de croissance hydroponique
 blocks.emergingtechnology.frame.name=Chassis de table hydroponique
@@ -116,6 +131,7 @@ blocks.emergingtechnology.biocharblock.name=Biochar Block
 # HYDROPONICS MODULE
 tile.emergingtechnology.hydroponic.name=Tables à marées hydroponique
 tile.emergingtechnology.harvester.name=Harvester
+tile.emergingtechnology.scrubber.name=CO2 Scrubber
 tile.emergingtechnology.filler.name=Water Filler
 tile.emergingtechnology.light.name=Ampoule de croissance hydroponique
 tile.emergingtechnology.frame.name=Chassis de table hydroponique
@@ -150,6 +166,26 @@ tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
 
+#FLUIDS
+tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
+fluid.emergingtechnology.carbondioxide=Carbon Dioxide
+
+tile.emergingtechnology.nutrientblock.name=Nutrient Fluid
+fluid.emergingtechnology.nutrient=Nutrient Fluid
+
+#ORES
+item.emergingtechnology.polluteddirt.name=Polluted Dirt
+block.emergingtechnology.polluteddirt.name=Polluted Dirt
+tile.emergingtechnology.polluteddirt.name=Polluted Dirt
+
+item.emergingtechnology.pollutedsand.name=Polluted Sand
+block.emergingtechnology.pollutedsand.name=Polluted Sand
+tile.emergingtechnology.pollutedsand.name=Polluted Sand
+
+item.emergingtechnology.pollutedgravel.name=Polluted Gravel
+block.emergingtechnology.pollutedgravel.name=Polluted Gravel
+tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
+
 #ItemGroup
 
 itemGroup.technologytab=Technologies Émergentes
@@ -164,6 +200,7 @@ info.emergingtechnology.collector.description=Slowly collects waste plastic when
 info.emergingtechnology.cooker.description=Uses direct sunlight to cook food items.
 info.emergingtechnology.fabricator.description=Automates the printing of plastic components.
 info.emergingtechnology.filler.description=Fills adjacent fluid tanks with water.
+info.emergingtechnology.scrubber.description=Captures CO2 from the surrounding atmosphere.
 info.emergingtechnology.harvester.description=Harvests crops automatically.
 info.emergingtechnology.hydroponic.description=Plants grown on this block can receive a growth boost.
 info.emergingtechnology.light.description=Provides a growth boost to plants grown below.
@@ -221,6 +258,7 @@ info.emergingtechnology.water.capacity=Can store up to %sMB of water.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=Right click to use.
+info.emergingtechnology.interaction.shift=Press SHIFT for more details.
 
 # GUI
 gui.emergingtechnology.label.basemedium=Base (Medium): 
@@ -248,6 +286,9 @@ gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Requires 
 
+gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
+
 # Configuration
 config.emergingtechnology.title=Emerging Technology - Configuration
 
@@ -261,6 +302,9 @@ config.emergingtechnology.hydroponics.growbed.title=Hydroponic Grow Bed
 config.emergingtechnology.hydroponics.growlight.title=Hydroponic Grow Light
 config.emergingtechnology.hydroponics.harvester.title=Harvester
 config.emergingtechnology.hydroponics.filler.title=Water Filler
+config.emergingtechnology.hydroponics.diffuser.title=CO2 Diffuser
+config.emergingtechnology.hydroponics.scrubber.title=CO2 Scrubber
+config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
 
 config.emergingtechnology.polymers.title=Polymers
 config.emergingtechnology.polymers.title.tooltip=Configure Shredder, Processor, Fabricator and Collector here
@@ -275,6 +319,7 @@ config.emergingtechnology.synthetics.title.tooltip=Configure Bioreactor, Scaffol
 
 config.emergingtechnology.synthetics.bioreactor.title=Tissue Bioreactor
 config.emergingtechnology.synthetics.scaffolder.title=Tissue Scaffolder
+config.emergingtechnology.synthetics.algaebioreactor.title=Algae Bioreactor
 config.emergingtechnology.synthetics.cooker.title=Solar Cooker
 
 config.emergingtechnology.electrics.title=Electrics

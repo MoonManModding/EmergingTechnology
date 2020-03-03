@@ -21,6 +21,10 @@ public class ElectricsModule {
 	@LangKey("config.emergingtechnology.electrics.solar.title")
     public final ElectricsModuleSolar SOLAR = new ElectricsModuleSolar();
 
+    @Name("Solar Glass")
+	@LangKey("config.emergingtechnology.electrics.solarglass.title")
+    public final ElectricsModuleSolarGlass SOLARGLASS = new ElectricsModuleSolarGlass();
+
     @Name("Biomass Generator")
 	@LangKey("config.emergingtechnology.electrics.biomass.title")
     public final ElectricsModuleBiomassGenerator BIOMASSGENERATOR = new ElectricsModuleBiomassGenerator();

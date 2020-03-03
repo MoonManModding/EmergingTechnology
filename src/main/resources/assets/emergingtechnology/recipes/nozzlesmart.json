@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " l ",
+    " c ",
+    " p "
+  ],
+  "key": {
+    "c": {
+      "item": "emergingtechnology:nozzlecomponent"
+    },
+    "l": {
+      "item": "emergingtechnology:nozzlelong"
+    },
+    "p": {
+      "item": "emergingtechnology:nozzleprecise"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:nozzlesmart",
+    "count": 1
+  }
+}

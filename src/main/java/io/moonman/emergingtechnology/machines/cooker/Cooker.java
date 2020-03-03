@@ -4,9 +4,10 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -48,9 +49,13 @@ public class Cooker extends MachineBase implements ITileEntityProvider {
         int gain = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseHeatGain;
         int heat = EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerRequiredCookingHeat;
 
-        tooltip.add(Lang.get(Lang.COOKER_DESC));
-        tooltip.add(Lang.getHeatGainLoss(gain, loss));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.COOKER_DESC));
+            tooltip.add(Lang.getHeatGainLoss(gain, loss));
         tooltip.add(Lang.getRequired(heat, ResourceTypeEnum.HEAT));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override

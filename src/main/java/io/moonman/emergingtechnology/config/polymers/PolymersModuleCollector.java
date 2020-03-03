@@ -20,4 +20,8 @@ public class PolymersModuleCollector {
     @Config.Comment("Minimum required surrounding water blocks for Collector to function in a 5 x 5 grid (not including self)")
     @RangeInt(min = 0, max = 100)
     public int minimumWaterBlocks = 15;
+
+    @Name("Disable Collector Biome Requirement")
+    @Config.Comment("Set this to true and the Collector will work in all Biomes")
+    public boolean biomeRequirementDisabled = false;
 }

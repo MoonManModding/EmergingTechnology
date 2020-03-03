@@ -4,52 +4,57 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
-import io.moonman.emergingtechnology.init.ModBlocks;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraft.block.ITileEntityProvider;
 
 public class Harvester extends MachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
-    public static final PropertyBool ACTIVE = PropertyBool.create("active");
 
     public Harvester() {
         super(Material.IRON, "harvester");
         this.setSoundType(SoundType.METAL);
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
-    {
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage;
 
-        tooltip.add(Lang.get(Lang.HARVESTER_DESC));
-        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.HARVESTER_DESC));
+            tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override
@@ -72,8 +77,9 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { FACING, ACTIVE });
+    public ExtendedBlockState createBlockState() {
+        return new ExtendedBlockState(this, new IProperty[] { FACING, Properties.StaticProperty },
+                new IUnlistedProperty[] { Properties.AnimationProperty });
     }
 
     @Override
@@ -123,21 +129,33 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
         return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
     }
 
-    public static void setState(boolean active, World worldIn, BlockPos pos) {
-        IBlockState state = worldIn.getBlockState(pos);
+    // Required for animation (?)
 
-        worldIn.setBlockState(pos, ModBlocks.harvester.getDefaultState().withProperty(FACING, state.getValue(FACING))
-                .withProperty(ACTIVE, active), 3);
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
     }
 
     @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return state.withProperty(Properties.StaticProperty, true);
+    }
+
+    // End required for animation
+
+    @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(ACTIVE,
-                (meta & 8) != 0);
+        EnumFacing facing = EnumFacing.getHorizontal(meta);
+        return this.getDefaultState().withProperty(FACING, facing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex() + (state.getValue(ACTIVE) ? 8 : 0);
+        return state.getValue(FACING).getIndex();
     }
 }

@@ -16,7 +16,8 @@ import net.minecraft.world.biome.Biome;
 public class TidalHelper {
 
     public static boolean isInValidBiome(Biome biome) {
-        return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN;
+        return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN
+                || EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.biomeRequirementDisabled;
     }
 
     public static boolean isGeneratorInWater(World world, BlockPos pos) {
@@ -25,7 +26,7 @@ public class TidalHelper {
 
         int waterBlockCount = 0;
 
-        for (int x = 0; x < 5; x ++) {
+        for (int x = 0; x < 5; x++) {
             for (int z = 0; z < 5; z++) {
                 boolean isValidNeighbour = isValidNeighbour(world.getBlockState(startPos.add(x, 0, z)));
                 if (isValidNeighbour) {
@@ -50,11 +51,15 @@ public class TidalHelper {
     }
 
     public static String getTurbineStateFromSpeedEnum(TurbineSpeedEnum speed) {
-        switch(speed) {
-            case OFF: return "default";
-            case SLOW: return "slow";
-            case FAST: return "fast";
-            default: return "default";
+        switch (speed) {
+            case OFF:
+                return "default";
+            case SLOW:
+                return "slow";
+            case FAST:
+                return "fast";
+            default:
+                return "default";
         }
     }
 

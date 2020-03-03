@@ -2,6 +2,8 @@ package io.moonman.emergingtechnology.config.synthetics;
 
 import net.minecraftforge.common.config.Config.LangKey;
 import net.minecraftforge.common.config.Config.Name;
+import net.minecraftforge.common.config.Config.RangeDouble;
+import net.minecraftforge.common.config.Config.RangeInt;
 
 public class SyntheticsModule {
 
@@ -13,7 +15,43 @@ public class SyntheticsModule {
 	@LangKey("config.emergingtechnology.synthetics.bioreactor.title")
     public final SyntheticsModuleBioreactor BIOREACTOR = new SyntheticsModuleBioreactor();
 
+    @Name("Algae Bioreactor")
+	@LangKey("config.emergingtechnology.synthetics.algaebioreactor.title")
+    public final SyntheticsModuleAlgaeBioreactor ALGAEBIOREACTOR = new SyntheticsModuleAlgaeBioreactor();
+
     @Name("Tissue Scaffolder")
 	@LangKey("config.emergingtechnology.synthetics.scaffolder.title")
     public final SyntheticsModuleScaffolder SCAFFOLDER = new SyntheticsModuleScaffolder();
+
+    @Name("Synthetic Chicken Food Points")
+    @RangeInt(min = 0, max = 15)
+    public int chickenHunger = 6;
+
+    @Name("Synthetic Porkchop Food Points")
+    @RangeInt(min = 0, max = 15)
+    public int porkchopHunger = 7;
+
+    @Name("Synthetic Beef Food Points")
+    @RangeInt(min = 0, max = 15)
+    public int beefHunger = 7;
+
+    @Name("Algae Bar Food Points")
+    @RangeInt(min = 0, max = 15)
+    public int algaeHunger = 5;
+
+    @Name("Synthetic Chicken Food Saturation")
+    @RangeDouble(min = 0, max = 25)
+    public double chickenHungerSaturation = 10;
+
+    @Name("Synthetic Porkchop Food Saturation")
+    @RangeDouble(min = 0, max = 25)
+    public double porkchopHungerSaturation = 12.8;
+
+    @Name("Synthetic Beef Food Saturation")
+    @RangeDouble(min = 0, max = 25)
+    public double beefHungerSaturation = 12.8;
+
+    @Name("Algae Food Saturation")
+    @RangeDouble(min = 0, max = 25)
+    public double algaeHungerSaturation = 6.4;
 }

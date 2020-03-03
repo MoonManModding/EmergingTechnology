@@ -3,8 +3,9 @@ package io.moonman.emergingtechnology.machines.wind;
 import java.util.List;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.machines.SimpleMachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -49,9 +50,13 @@ public class Wind extends SimpleMachineBase implements ITileEntityProvider {
         int max = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.maxOptimalHeight;
         int surround = EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.minimumAirBlocks;
 
-        tooltip.add(Lang.get(Lang.WIND_DESC));
-        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY) + " " + Lang.getDepthBoost(min, max));
-        tooltip.add(Lang.getAirBlocksRequired(surround));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.WIND_DESC));
+            tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY) + " " + Lang.getDepthBoost(min, max));
+            tooltip.add(Lang.getAirBlocksRequired(surround));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override

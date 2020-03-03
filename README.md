@@ -1,7 +1,7 @@
 # <img src="images/Logo.png" alt="Emerging Technology" height="42" width="42"> Emerging Technology
 <p>A Minecraft mod exploring emerging technologies by MoonManModding</p>
 
-If you enjoyed this mod and want to support its development, please consider <a href="https://www.buymeacoffee.com/6KXahpF">buying me a coffee!</a>
+If you enjoyed this mod and want to support its development, please consider <a href="https://www.patreon.com/moonmanmodding">supporting me on Patreon!</a>
 
 # Requirements
 - Minecraft Version <b>1.12.2</b>
@@ -35,6 +35,9 @@ Currently incompatible with power/crops:
 The mod should be compatible with any mods whose plants implement IGrowable and IPlantable, but there are bound to be exceptions. If you are using a mod which does not appear to work with Grow Beds, please create a new Issue above.
 
 Most machines can also be integrated into OpenComputers. Take a look at the <a href="https://github.com/MoonManModding/EmergingTechnology/blob/master/examples/open-computers-example.lua">example program</a> for more details. 
+
+# Discord
+<a href="https://discord.gg/Nm3sMXF">Join and discuss!</a>
 
 # About 🔬
 

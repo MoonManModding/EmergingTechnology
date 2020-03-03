@@ -6,20 +6,20 @@ import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.WindGeneratorAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.WindGeneratorAnimationPacket;
+import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -28,22 +28,23 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class WindTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
     private final IAnimationStateMachine asm;
 
     public WindTileEntity() {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-			asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/wind.json"), ImmutableMap.of());
-        } else asm = null;
+            asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/wind.json"),
+                    ImmutableMap.of());
+        } else
+            asm = null;
     }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.WIND_ENERGY_CAPACITY) {
@@ -67,17 +68,26 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
     }
 
     @Override
+    public boolean isEnergyGeneratorTile() {
+        return true;
+    }
+
+    @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) return true;
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) return true;
+        if (capability == CapabilityEnergy.ENERGY)
+            return true;
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+            return true;
 
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
+        if (capability == CapabilityEnergy.ENERGY)
+            return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
+        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
         return super.getCapability(capability, facing);
     }
 
@@ -144,22 +154,7 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
     }
 
     private void spreadEnergy() {
-        for (EnumFacing side : EnumFacing.VALUES) {
-            TileEntity tileEntity = world.getTileEntity(pos.offset(side));
-
-            if (tileEntity != null) {
-                IEnergyStorage otherStorage = tileEntity.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-
-                if (otherStorage != null) {
-                    if (otherStorage.canReceive()) {
-                        if (this.getEnergy() > 0) {
-                            int energySpread = otherStorage.receiveEnergy(this.getEnergy(), false);
-                            this.energyHandler.extractEnergy(energySpread, false);
-                        }
-                    }
-                }
-            }
-        }
+        EnergyNetworkHelper.pushEnergy(getWorld(), getPos(), this.generatorEnergyHandler);
     }
 
     @SideOnly(Side.CLIENT)
@@ -169,14 +164,20 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
         String newState = WindHelper.getTurbineStateFromSpeedEnum(speed);
 
         if (!state.equalsIgnoreCase(newState)) {
-			this.asm.transition(newState);
+            this.asm.transition(newState);
         }
     }
-    
+
     private void setTurbineState(TurbineSpeedEnum speed) {
 
         if (speed != this.speed) {
-            PacketHandler.INSTANCE.sendToAll(new WindGeneratorAnimationPacket(this.getPos(), speed));
+
+            TargetPoint targetPoint = PacketHandler.getTargetPoint(getWorld(), getPos());
+
+            if (targetPoint == null) return;
+
+            PacketHandler.INSTANCE.sendToAllTracking(new WindGeneratorAnimationPacket(this.getPos(), speed),
+                    targetPoint);
         }
 
         this.speed = speed;
@@ -207,18 +208,18 @@ public class WindTileEntity extends MachineTileBase implements ITickable, Simple
 
     public int getField(int id) {
         switch (id) {
-        case 0:
-            return this.getEnergy();
-        default:
-            return 0;
+            case 0:
+                return this.getEnergy();
+            default:
+                return 0;
         }
     }
 
     public void setField(int id, int value) {
         switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
+            case 0:
+                this.setEnergy(value);
+                break;
 
         }
     }

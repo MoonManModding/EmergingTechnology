@@ -12,15 +12,16 @@ import io.moonman.emergingtechnology.gui.classes.GuiImageButton;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.network.FabricatorSelectionPacket;
-import io.moonman.emergingtechnology.network.FabricatorStopStartPacket;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.network.gui.FabricatorSelectionPacket;
+import io.moonman.emergingtechnology.network.gui.FabricatorStopStartPacket;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -126,10 +127,10 @@ public class FabricatorGui extends GuiContainer {
 		int buttonWidth = 15;
 		int buttonHeight = 15;
 
-		List<FabricatorRecipe> recipes = RecipeProvider.fabricatorRecipes;
+		List<IMachineRecipe> recipes = FabricatorRecipes.getRecipes();
 
 		for (int i = 0; i < recipes.size(); i++) {
-			FabricatorRecipe recipe = recipes.get(i);
+			FabricatorRecipe recipe = (FabricatorRecipe) recipes.get(i);
 			ItemStack itemStackToRender = recipe.getOutput().copy();
 			String inputName = recipe.getInput().getDisplayName();
 
@@ -216,7 +217,7 @@ public class FabricatorGui extends GuiContainer {
 	}
 
 	private void nextPage() {
-		if (selection < RecipeProvider.fabricatorRecipes.size() - 1) {
+		if (selection < FabricatorRecipes.getRecipes().size() - 1) {
 			selection++;
 		} else {
 			selection = 0;
@@ -228,7 +229,7 @@ public class FabricatorGui extends GuiContainer {
 		if (selection > 0) {
 			selection--;
 		} else {
-			selection = RecipeProvider.fabricatorRecipes.size() - 1;
+			selection = FabricatorRecipes.getRecipes().size() - 1;
 		}
 		updateFabricatorSelection(selection);
 	}

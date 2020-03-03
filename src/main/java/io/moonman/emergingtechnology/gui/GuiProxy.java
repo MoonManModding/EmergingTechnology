@@ -1,5 +1,8 @@
 package io.moonman.emergingtechnology.gui;
 
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorContainer;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorGui;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.battery.BatteryContainer;
 import io.moonman.emergingtechnology.machines.battery.BatteryGui;
 import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
@@ -15,6 +18,9 @@ import io.moonman.emergingtechnology.machines.collector.CollectorTileEntity;
 import io.moonman.emergingtechnology.machines.cooker.CookerContainer;
 import io.moonman.emergingtechnology.machines.cooker.CookerGui;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserContainer;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserGui;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorContainer;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorGui;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
@@ -24,6 +30,9 @@ import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicContainer;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicGui;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
+import io.moonman.emergingtechnology.machines.injector.InjectorContainer;
+import io.moonman.emergingtechnology.machines.injector.InjectorGui;
+import io.moonman.emergingtechnology.machines.injector.InjectorTileEntity;
 import io.moonman.emergingtechnology.machines.light.LightContainer;
 import io.moonman.emergingtechnology.machines.light.LightGui;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
@@ -33,6 +42,9 @@ import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderContainer;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderGui;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberContainer;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberGui;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.ShredderContainer;
 import io.moonman.emergingtechnology.machines.shredder.ShredderGui;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
@@ -84,72 +96,88 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof BatteryTileEntity) {
             return new BatteryContainer(player.inventory, (BatteryTileEntity) te);
         }
+        if (te instanceof ScrubberTileEntity) {
+            return new ScrubberContainer(player.inventory, (ScrubberTileEntity) te);
+        }
+        if (te instanceof DiffuserTileEntity) {
+            return new DiffuserContainer(player.inventory, (DiffuserTileEntity) te);
+        }
+        if (te instanceof AlgaeBioreactorTileEntity) {
+            return new AlgaeBioreactorContainer(player.inventory, (AlgaeBioreactorTileEntity) te);
+        }
+        if (te instanceof InjectorTileEntity) {
+            return new InjectorContainer(player.inventory, (InjectorTileEntity) te);
+        }
         return null;
     }
 
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity te = world.getTileEntity(pos);
 
         if (te instanceof HydroponicTileEntity) {
-            HydroponicTileEntity containerTileEntity = (HydroponicTileEntity) te;
-            return new HydroponicGui(player.inventory, containerTileEntity);
+            return new HydroponicGui(player.inventory, (HydroponicTileEntity) te);
         }
 
         if (te instanceof LightTileEntity) {
-            LightTileEntity containerTileEntity = (LightTileEntity) te;
-            return new LightGui(player.inventory, containerTileEntity);
+            return new LightGui(player.inventory, (LightTileEntity) te);
         }
 
         if (te instanceof ProcessorTileEntity) {
-            ProcessorTileEntity containerTileEntity = (ProcessorTileEntity) te;
-            return new ProcessorGui(player.inventory, containerTileEntity);
+            return new ProcessorGui(player.inventory, (ProcessorTileEntity) te);
         }
 
         if (te instanceof ShredderTileEntity) {
-            ShredderTileEntity containerTileEntity = (ShredderTileEntity) te;
-            return new ShredderGui(player.inventory, containerTileEntity);
+            return new ShredderGui(player.inventory, (ShredderTileEntity) te);
         }
 
         if (te instanceof FabricatorTileEntity) {
-            FabricatorTileEntity containerTileEntity = (FabricatorTileEntity) te;
-            return new FabricatorGui(player.inventory, containerTileEntity);
+            return new FabricatorGui(player.inventory, (FabricatorTileEntity) te);
         }
 
         if (te instanceof CookerTileEntity) {
-            CookerTileEntity containerTileEntity = (CookerTileEntity) te;
-            return new CookerGui(player.inventory, containerTileEntity);
+            return new CookerGui(player.inventory, (CookerTileEntity) te);
         }
 
         if (te instanceof BioreactorTileEntity) {
-            BioreactorTileEntity containerTileEntity = (BioreactorTileEntity) te;
-            return new BioreactorGui(player.inventory, containerTileEntity);
+            return new BioreactorGui(player.inventory, (BioreactorTileEntity) te);
         }
 
         if (te instanceof ScaffolderTileEntity) {
-            ScaffolderTileEntity containerTileEntity = (ScaffolderTileEntity) te;
-            return new ScaffolderGui(player.inventory, containerTileEntity);
+            return new ScaffolderGui(player.inventory, (ScaffolderTileEntity) te);
         }
 
         if (te instanceof HarvesterTileEntity) {
-            HarvesterTileEntity containerTileEntity = (HarvesterTileEntity) te;
-            return new HarvesterGui(player.inventory, containerTileEntity);
+            return new HarvesterGui(player.inventory, (HarvesterTileEntity) te);
         }
 
         if (te instanceof CollectorTileEntity) {
-            CollectorTileEntity containerTileEntity = (CollectorTileEntity) te;
-            return new CollectorGui(player.inventory, containerTileEntity);
+            return new CollectorGui(player.inventory, (CollectorTileEntity) te);
         }
 
         if (te instanceof BiomassGeneratorTileEntity) {
-            BiomassGeneratorTileEntity containerTileEntity = (BiomassGeneratorTileEntity) te;
-            return new BiomassGeneratorGui(player.inventory, containerTileEntity);
+            return new BiomassGeneratorGui(player.inventory, (BiomassGeneratorTileEntity) te);
         }
 
         if (te instanceof BatteryTileEntity) {
-            BatteryTileEntity containerTileEntity = (BatteryTileEntity) te;
-            return new BatteryGui(player.inventory, containerTileEntity);
+            return new BatteryGui(player.inventory, (BatteryTileEntity) te);
+        }
+
+        if (te instanceof ScrubberTileEntity) {
+            return new ScrubberGui(player.inventory, (ScrubberTileEntity) te);
+        }
+
+        if (te instanceof DiffuserTileEntity) {
+            return new DiffuserGui(player.inventory, (DiffuserTileEntity) te);
+        }
+
+        if (te instanceof AlgaeBioreactorTileEntity) {
+            return new AlgaeBioreactorGui(player.inventory, (AlgaeBioreactorTileEntity) te);
+        }
+
+        if (te instanceof InjectorTileEntity) {
+            return new InjectorGui(player.inventory, (InjectorTileEntity) te);
         }
 
         return null;

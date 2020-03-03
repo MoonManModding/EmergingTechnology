@@ -14,8 +14,7 @@
       "ore": "sheetPlastic"
     },
     "r": {
-      "type": "forge:ore_dict",
-      "ore": "rodPlastic"
+      "item": "emergingtechnology:turbine"
     },
     "M": {
       "item": "emergingtechnology:machinecase"

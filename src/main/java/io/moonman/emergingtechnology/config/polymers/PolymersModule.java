@@ -20,4 +20,8 @@ public class PolymersModule {
     @Name("Collector")
 	@LangKey("config.emergingtechnology.polymers.collector.title")
     public final PolymersModuleCollector COLLECTOR = new PolymersModuleCollector();
+
+    @Name("World Generation")
+	@LangKey("config.emergingtechnology.polymers.worldgen.title")
+    public final PolymersModuleWorldGen WORLDGEN = new PolymersModuleWorldGen();
 }

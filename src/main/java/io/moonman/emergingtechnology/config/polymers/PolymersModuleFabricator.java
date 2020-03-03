@@ -19,5 +19,5 @@ public class PolymersModuleFabricator {
     @Name("Fabricator Operation Time")
     @Config.Comment("How long the Fabricator takes to fabricate items.")
     @RangeInt(min = 0, max = 100)
-    public int fabricatorBaseTimeTaken = 75;
+    public int fabricatorBaseTimeTaken = 50;
 }

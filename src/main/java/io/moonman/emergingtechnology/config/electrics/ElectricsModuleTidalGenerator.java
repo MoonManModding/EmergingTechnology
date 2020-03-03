@@ -30,4 +30,8 @@ public class ElectricsModuleTidalGenerator {
     @Config.Comment("The deepest point of the Tidal Generator's optimal depth")
     @RangeInt(min = 0, max = 100)
     public int minOptimalDepth = 45;
+
+    @Name("Disable Turbine Biome Requirement")
+    @Config.Comment("Set this to true and the Turbine will work in all Biomes")
+    public boolean biomeRequirementDisabled = false;
 }

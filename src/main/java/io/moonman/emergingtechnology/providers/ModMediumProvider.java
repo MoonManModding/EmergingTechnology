@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.providers.classes.ModMedium;
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomMediumLoader;
+import io.moonman.emergingtechnology.providers.loaders.CustomMediumLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -78,9 +78,9 @@ public class ModMediumProvider {
 
         String name = itemStack.getItem().getRegistryName().toString();
 
-        ModMedium bulb = getMediumByName(name);
+        ModMedium medium = getMediumByName(name);
 
-        if (bulb == null) return false;
+        if (medium == null) return false;
 
         return true;
     }

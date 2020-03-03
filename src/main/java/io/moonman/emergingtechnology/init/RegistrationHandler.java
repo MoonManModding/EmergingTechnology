@@ -5,22 +5,27 @@ import java.util.ArrayList;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.collector.CollectorTileEntity;
 import io.moonman.emergingtechnology.machines.cooker.CookerTileEntity;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
 import io.moonman.emergingtechnology.machines.filler.FillerTileEntity;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTESR;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
+import io.moonman.emergingtechnology.machines.injector.InjectorTileEntity;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import io.moonman.emergingtechnology.machines.piezoelectric.PiezoelectricTileEntity;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberTileEntity;
 import io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity;
 import io.moonman.emergingtechnology.machines.solar.SolarTileEntity;
+import io.moonman.emergingtechnology.machines.solarglass.SolarGlassTileEntity;
 import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.wind.WindTileEntity;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
@@ -34,6 +39,8 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.animation.AnimationTESR;
 import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,6 +58,9 @@ public class RegistrationHandler {
         registerTileEntity(HydroponicTileEntity.class, "hydroponic");
         registerTileEntity(HarvesterTileEntity.class, "harvester");
         registerTileEntity(FillerTileEntity.class, "filler");
+        registerTileEntity(ScrubberTileEntity.class, "scrubber");
+        registerTileEntity(DiffuserTileEntity.class, "diffuser");
+        registerTileEntity(InjectorTileEntity.class, "injector");
         registerTileEntity(LightTileEntity.class, "light");
         registerTileEntity(ProcessorTileEntity.class, "processor");
         registerTileEntity(ShredderTileEntity.class, "shredder");
@@ -60,9 +70,11 @@ public class RegistrationHandler {
         registerTileEntity(PiezoelectricTileEntity.class, "piezoelectric");
         registerTileEntity(BioreactorTileEntity.class, "bioreactor");
         registerTileEntity(ScaffolderTileEntity.class, "scaffolder");
+        registerTileEntity(AlgaeBioreactorTileEntity.class, "algaebioreactor");
         registerTileEntity(TidalGeneratorTileEntity.class, "tidalgenerator");
         registerTileEntity(BiomassGeneratorTileEntity.class, "biomassgenerator");
         registerTileEntity(SolarTileEntity.class, "solar");
+        registerTileEntity(SolarGlassTileEntity.class, "solarglass");
         registerTileEntity(WindTileEntity.class, "wind");
         registerTileEntity(BatteryTileEntity.class, "battery");
 
@@ -87,14 +99,24 @@ public class RegistrationHandler {
         event.getRegistry().registerAll(items);
     }
 
+    public static void registerFluids() {
+        registerFluid(ModFluids.CARBON_DIOXIDE);
+        registerFluid(ModFluids.NUTRIENT);
+    }
+
+    public static void registerFluid(Fluid fluid) {
+        FluidRegistry.registerFluid(fluid);
+        FluidRegistry.addBucketForFluid(fluid);
+    }
+
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
 
-        for (Block block: ModBlocks.getBlocks()) {
+        for (Block block : ModBlocks.getBlocks()) {
             registerModel(Item.getItemFromBlock(block));
         }
 
-        for (Item item: ModItems.getItems()) {
+        for (Item item : ModItems.getItems()) {
             registerModel(item);
         }
 
@@ -105,8 +127,16 @@ public class RegistrationHandler {
                 new ModelResourceLocation(ModBlocks.hydroponic.getRegistryName(), "inventory"));
 
         ClientRegistry.bindTileEntitySpecialRenderer(HydroponicTileEntity.class, new HydroponicTESR());
-        ClientRegistry.bindTileEntitySpecialRenderer(TidalGeneratorTileEntity.class, new AnimationTESR<TidalGeneratorTileEntity>());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TidalGeneratorTileEntity.class,
+                new AnimationTESR<TidalGeneratorTileEntity>());
+
         ClientRegistry.bindTileEntitySpecialRenderer(WindTileEntity.class, new AnimationTESR<WindTileEntity>());
+        ClientRegistry.bindTileEntitySpecialRenderer(ScrubberTileEntity.class, new AnimationTESR<ScrubberTileEntity>());
+        ClientRegistry.bindTileEntitySpecialRenderer(HarvesterTileEntity.class, new AnimationTESR<HarvesterTileEntity>());
+
+        RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.carbondioxideblock);
+        RenderHandler.registerMeshesAndStatesForBlock(ModBlocks.nutrientblock);
     }
 
     private static Item[] generateItemBlocks(Block[] blocks) {

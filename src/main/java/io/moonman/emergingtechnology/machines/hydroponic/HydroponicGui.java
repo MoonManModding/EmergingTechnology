@@ -8,7 +8,7 @@ import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -86,6 +86,8 @@ public class HydroponicGui extends GuiContainer {
 		}
 
 		growthModifier += this.tileEntity.getTotalGrowthFromAdjacentLight();
+		growthModifier += this.tileEntity.getGrowthProbabilityForFluid();
+		growthModifier += this.tileEntity.getSpecificPlantGrowthBoostFromFluid();
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,

@@ -10,7 +10,7 @@ public class MachineTileBase extends TileEntity implements ITickable {
     private int tick = 0;
 
     public boolean isClient() {
-        return world.isRemote;
+        return getWorld().isRemote;
     }
 
     public void markDirtyClient() {
@@ -20,8 +20,8 @@ public class MachineTileBase extends TileEntity implements ITickable {
             return;
         }
 
-        IBlockState state = world.getBlockState(getPos());
-        world.notifyBlockUpdate(getPos(), state, state, 3);
+        IBlockState state = getWorld().getBlockState(getPos());
+        getWorld().notifyBlockUpdate(getPos(), state, state, 3);
     }
 
     @Override
@@ -46,5 +46,12 @@ public class MachineTileBase extends TileEntity implements ITickable {
      */
     public void cycle() {
 
+    }
+
+    /**
+     * Whether this machine produces energy and can channel energy to peripheral machines
+     */
+    public boolean isEnergyGeneratorTile() {
+        return false;
     }
 }

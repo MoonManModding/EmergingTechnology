@@ -4,11 +4,11 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
-import io.moonman.emergingtechnology.handlers.FluidStorageHandler;
+import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.machines.BioreactorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -32,7 +31,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class BioreactorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class BioreactorTileEntity extends MachineTileBase implements SimpleComponent {
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.BIOREACTOR_FLUID_CAPACITY) {
         @Override
@@ -61,7 +60,7 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return BioreactorHelper.isItemStackValid(itemStack);
+            return BioreactorRecipes.isValidInput(itemStack);
         }
     };
 
@@ -74,7 +73,7 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return BioreactorHelper.isItemStackValid(itemStack);
+            return BioreactorRecipes.isValidInput(itemStack);
         }
     };
 
@@ -173,13 +172,13 @@ public class BioreactorTileEntity extends MachineTileBase implements ITickable, 
         }
 
         // Can't process this item
-        if (!BioreactorHelper.isItemStackValid(inputStack)) {
+        if (!BioreactorRecipes.isValidInput(inputStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = BioreactorHelper.getPlannedStackFromItemStack(inputStack);
+        ItemStack plannedStack = BioreactorRecipes.getOutputByItemStack(inputStack);
 
         // This is probably unneccessary
         if (plannedStack == null) {

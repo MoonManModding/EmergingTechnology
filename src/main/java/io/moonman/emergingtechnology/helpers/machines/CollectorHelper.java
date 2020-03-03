@@ -1,10 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
-import java.util.Random;
-
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -19,10 +16,12 @@ import net.minecraft.world.biome.Biome;
  */
 public class CollectorHelper {
 
-    private static ItemStack PAPER = new ItemStack(ModItems.paperwaste);
-    private static ItemStack PLASTIC = new ItemStack(ModItems.plasticwaste);
-
     public static boolean isInValidBiome(Biome biome) {
+
+        if (EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.biomeRequirementDisabled) {
+            return true;
+        }
+
         return biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN;
     }
 
@@ -39,7 +38,7 @@ public class CollectorHelper {
 
         int waterBlockCount = 0;
 
-        for (int x = 0; x < 5; x ++) {
+        for (int x = 0; x < 5; x++) {
             for (int z = 0; z < 5; z++) {
                 boolean isValidNeighbour = isValidNeighbour(world.getBlockState(startPos.add(x, 0, z)));
                 if (isValidNeighbour) {
@@ -55,17 +54,7 @@ public class CollectorHelper {
     }
 
     public static ItemStack getRandomRecoveredItemStack() {
-        int random = new Random().nextInt(101);
-
-        if (random < 50) {
-            return PLASTIC.copy();
-        } else {
-            return PAPER.copy();
-        }
-    }
-
-    public static boolean isValidItemStack(ItemStack itemStack) {
-        return StackHelper.compareItemStacks(itemStack, PAPER) || StackHelper.compareItemStacks(itemStack, PLASTIC);
+        return CollectorRecipes.getRandomRecoveredItemStack();
     }
 
     private static boolean isValidNeighbour(IBlockState state) {

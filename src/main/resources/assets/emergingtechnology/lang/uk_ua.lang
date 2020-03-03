@@ -1,18 +1,28 @@
-# Thanks to TigrKill for these translations!
+# Thanks to TigrKill and Smollet777 for these translations!
 
 # Items
 
 # HYDROPONICS MODULE
-item.emergingtechnology.hydroponic.name=Гідропонна Установка
+item.emergingtechnology.hydroponic.name=Гідропонна установка
 item.emergingtechnology.harvester.name=Збирач
 item.emergingtechnology.filler.name=Водяний наповнювач
+item.emergingtechnology.scrubber.name=Газоочисник СО2
+item.emergingtechnology.diffuser.name=Дифузор CO2
+item.emergingtechnology.injector.name=Поживний інжектор
 item.emergingtechnology.light.name=Фітолампа
-item.emergingtechnology.frame.name=Гідропонная Рама
+item.emergingtechnology.frame.name=Гідропонная рама
 
-item.emergingtechnology.redbulb.name=Червоний Світлодіод
-item.emergingtechnology.greenbulb.name=Зелений Світлодіод
-item.emergingtechnology.bluebulb.name=Синій Світлодіод
-item.emergingtechnology.purplebulb.name=Ультрафіолетовий Світлодіод
+item.emergingtechnology.redbulb.name=Червоний світлодіод
+item.emergingtechnology.greenbulb.name=Зелений світлодіод
+item.emergingtechnology.bluebulb.name=Синій світлодіод
+item.emergingtechnology.purplebulb.name=Ультрафіолетовий світлодіод
+
+item.emergingtechnology.nozzlecomponent.name=Компонент форсунки
+item.emergingtechnology.nozzlelong.name=Довга форсунка
+item.emergingtechnology.nozzlesmart.name=Розумна форсунка
+item.emergingtechnology.nozzleprecise.name=Точна форсунка
+
+item.emergingtechnology.fertilizer.name=Здобрювач
 
 # POLYMERS MODULE
 item.emergingtechnology.processor.name=Процесор
@@ -24,12 +34,14 @@ item.emergingtechnology.shreddedstarch.name=Подрібнений крохма�
 item.emergingtechnology.plasticwaste.name=Пластикові відходи
 item.emergingtechnology.filament.name=Волокнина
 item.emergingtechnology.plasticblock.name=Блок біопластику
+item.emergingtechnology.clearplasticblock.name=Блок прозорого біопластику
 item.emergingtechnology.plasticrod.name=Біопластіковий стрижень
 item.emergingtechnology.plasticsheet.name=Біопластиковый лист
 item.emergingtechnology.machinecase.name=Простий корпус механізму
 item.emergingtechnology.fabricator.name=Конструктор
 item.emergingtechnology.ladder.name=Драбина з біопластику
 item.emergingtechnology.plastictissuescaffold.name=Біопластикова основа тканини
+item.emergingtechnology.turbine.name=Турбіна
 
 item.emergingtechnology.paperwaste.name=Паперові відходи
 item.emergingtechnology.paperpulp.name=Паперова м’якоть
@@ -58,12 +70,19 @@ item.emergingtechnology.syntheticleather.name=Синтетична шкіра
 
 item.emergingtechnology.bioreactor.name=Тканинний біраореактор
 item.emergingtechnology.scaffolder.name=Структурний складальник тканин
+item.emergingtechnology.algaebioreactor.name=Біореактор водоростей
+
+item.emergingtechnology.algae.name=Водорості
+
+item.emergingtechnology.algaebarraw.name=Шматок водоростей
+item.emergingtechnology.algaebarcooked.name=Приготовлений шматок водоростей
 
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=П'єзоелектричний генератор
 item.emergingtechnology.biomass.name=Біомаса
 item.emergingtechnology.biochar.name=Біовугілля
 item.emergingtechnology.solar.name=Сонячна панель
+item.emergingtechnology.solarglass.name=Сонячне скло
 item.emergingtechnology.battery.name=Акумулятор
 item.emergingtechnology.biomassgenerator.name=Генератор на біомасі
 item.emergingtechnology.tidalgenerator.name=Припливний генератор
@@ -74,11 +93,14 @@ item.emergingtechnology.biocharblock.name=Блок біовугілля
 #Blocks
 
 # HYDROPONICS MODULE
-blocks.emergingtechnology.hydroponic.name=Гідропонна Установка
+blocks.emergingtechnology.hydroponic.name=Гідропонна установка
 blocks.emergingtechnology.harvester.name=Збирач
 blocks.emergingtechnology.filler.name=Водяний наповнювач
+blocks.emergingtechnology.scrubber.name=Газоочисник СО2
+blocks.emergingtechnology.diffuser.name=Дифузор CO2
+blocks.emergingtechnology.injector.name=Поживний інжектор
 blocks.emergingtechnology.light.name=Фітолампа
-blocks.emergingtechnology.frame.name=Гідропонна Рама
+blocks.emergingtechnology.frame.name=Гідропонна рама
 
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Процесор
@@ -98,10 +120,12 @@ blocks.emergingtechnology.shreddedstarchblock.name=Блок подрібнено
 blocks.emergingtechnology.cooker.name=Сонячна плита
 blocks.emergingtechnology.bioreactor.name=Тканинний біраореактор
 blocks.emergingtechnology.scaffolder.name=Структурний складальник тканин
+blocks.emergingtechnology.algaebioreactor.name=Біореактор водоростей
 
 #ELECTRICS MODULE
 blocks.emergingtechnology.piezoelectric.name=П'єзоелектричний генератор
 blocks.emergingtechnology.solar.name=Сонячна панель
+blocks.emergingtechnology.solarglass.name=Сонячне скло
 blocks.emergingtechnology.battery.name=Акумулятор
 blocks.emergingtechnology.biomassgenerator.name=Генератор на біомасі
 blocks.emergingtechnology.tidalgenerator.name=Припливний генератор
@@ -114,39 +138,64 @@ blocks.emergingtechnology.biocharblock.name=Блок біовугілля
 #Tiles
 
 # HYDROPONICS MODULE
-tile.emergingtechnology.hydroponic.name=Гідропонна Установка
+tile.emergingtechnology.hydroponic.name=Гідропонна установка
 tile.emergingtechnology.harvester.name=Збирач
 tile.emergingtechnology.filler.name=Водяний наповнювач
+tile.emergingtechnology.scrubber.name=Газоочисник СО2
+tile.emergingtechnology.diffuser.name=Дифузор CO2
+tile.emergingtechnology.injector.name=Поживний інжектор
 tile.emergingtechnology.light.name=Фітолампа
-tile.emergingtechnology.frame.name=Гідропонна Рама
+tile.emergingtechnology.frame.name=Гідропонна рама
 
 # POLYMERS MODULE
-tile.emergingtechnology.plasticblock.name=Блок біопластику
-tile.emergingtechnology.collector.name=Збирач відходів
-tile.emergingtechnology.machinecase.name=Простий корпус механізму
-tile.emergingtechnology.ladder.name=Драбина з біопластику
 tile.emergingtechnology.processor.name=Процесор
 tile.emergingtechnology.shredder.name=Подрібнювач
+tile.emergingtechnology.collector.name=Збирач відходів
+tile.emergingtechnology.plasticblock.name=Блок біопластику
+tile.emergingtechnology.clearplasticblock.name=Блок прозорого біопластику
+tile.emergingtechnology.machinecase.name=Простий корпус механізму
+tile.emergingtechnology.fabricator.name=Конструктор
+tile.emergingtechnology.ladder.name=Драбина з біопластику
 
 tile.emergingtechnology.shreddedplasticblock.name=Блок подрібненого пластику
 tile.emergingtechnology.shreddedplantblock.name=Блок подрібненої рослини
 tile.emergingtechnology.shreddedstarchblock.name=Блок подрібненого крохмалю
 
 #SYNTHETICS MODULE
-
 tile.emergingtechnology.cooker.name=Сонячна плита
 tile.emergingtechnology.bioreactor.name=Тканинний біраореактор
 tile.emergingtechnology.scaffolder.name=Структурний складальник тканин
+tile.emergingtechnology.algaebioreactor.name=Біореактор водоростей
 
 #ELECTRICS MODULE
 tile.emergingtechnology.piezoelectric.name=П'єзоелектричний генератор
 tile.emergingtechnology.solar.name=Сонячна панель
+tile.emergingtechnology.solarglass.name=Сонячне скло
 tile.emergingtechnology.battery.name=Акумулятор
-tile.emergingtechnology.biomass.name=Біомаса
 tile.emergingtechnology.biomassgenerator.name=Генератор на біомасі
 tile.emergingtechnology.tidalgenerator.name=Припливний генератор
 tile.emergingtechnology.wind.name=Вітрогенератор
 tile.emergingtechnology.biocharblock.name=Блок біовугілля
+
+#FLUIDS
+tile.emergingtechnology.carbondioxideblock.name=Вуглекислота
+fluid.emergingtechnology.carbondioxide=Вуглекислота
+
+tile.emergingtechnology.nutrientblock.name=Поживна рідина
+fluid.emergingtechnology.nutrient=Поживна рідина
+
+#ORES
+item.emergingtechnology.polluteddirt.name=Забруднена земля
+block.emergingtechnology.polluteddirt.name=Забруднена земля
+tile.emergingtechnology.polluteddirt.name=Забруднена земля
+
+item.emergingtechnology.pollutedsand.name=Забруднений пісок
+block.emergingtechnology.pollutedsand.name=Забруднений пісок
+tile.emergingtechnology.pollutedsand.name=Забруднений пісок
+
+item.emergingtechnology.pollutedgravel.name=Забруднений гравій
+block.emergingtechnology.pollutedgravel.name=Забруднений гравій
+tile.emergingtechnology.pollutedgravel.name=Забруднений гравій
 
 #ItemGroup
 
@@ -158,11 +207,15 @@ itemGroup.technologytab=Emerging Technology
 # Machine descriptions
 info.emergingtechnology.biomass.description=Спалює біомасу для виробництва енергії.
 info.emergingtechnology.bioreactor.description=Переробляє тваринні тканини в корисні зразки.
-info.emergingtechnology.collector.description=Повільно збирає відходи пластика коли поміщений в воду.
+info.emergingtechnology.algaebioreactor.description=Використовує вуглекислий газ для вирощування водоростей. Виробляє швидше з Фітолампою і Світлодіодом вище.
+info.emergingtechnology.collector.description=Повільно збирає відходи пластика та інші предмети коли поміщений в воду.
 info.emergingtechnology.cooker.description=Використовує прямі сонячні промені для приготування Їжі.
 info.emergingtechnology.fabricator.description=Автоматизує друк пластикових компонентів.
 info.emergingtechnology.filler.description=Заповнює суміжні баки водою.
 info.emergingtechnology.harvester.description=Автоматично збирає врожай.
+info.emergingtechnology.scrubber.description=Збирає вуглекислый газ з навколишньої атмосфери.
+info.emergingtechnology.diffuser.description=Розсіює вуглекислый газ для прискорення росту оточуючих рослин.
+info.emergingtechnology.injector.description=Вводить поживні речовини в воду для виробництва Поживної рідини.
 info.emergingtechnology.hydroponic.description=Рослини, вирощені на цьому блоці, можуть отримати імпульс зростання.
 info.emergingtechnology.light.description=Забезпечує імпульс зростання рослинам, вирощеним нижче.
 info.emergingtechnology.piezoelectric.description=Генерує невелику кількість енергії при наступанні на нього.
@@ -171,10 +224,17 @@ info.emergingtechnology.scaffolder.description=Формує зразки тка�
 info.emergingtechnology.shredder.description=Подрібнює рослини і пластикові вироби в сировину для процесору.
 info.emergingtechnology.tidal.description=Генерує енергію використовуючи рух припливів.
 info.emergingtechnology.solar.description=Генерує енергію коли на сонці.
+info.emergingtechnology.solarglass.description=Прозора сонячна панель, яка генерує енергію, якщо один з двох блоків попереду знаходиться на сонці.
 info.emergingtechnology.battery.description=Зберігає енергію на потім. Введення на червоній стороні, виведення на жовтій.
 info.emergingtechnology.wind.description=Генерує енергію використовуючи рух вітру.
 
 info.emergingtechnology.frame.description=Декоративна пластикова рамка
+
+info.emergingtechnology.nozzle.description=Насадка, яка використовується Дифузором.
+info.emergingtechnology.nozzlecomponent.description=Крафт інгредієнт, використовуваний для створення форсунок.
+info.emergingtechnology.nozzlesmart.description=Примножує дальність і ефективність Дифузора на %1$s та %2$s відповідно.
+info.emergingtechnology.nozzlelong.description=Примножує дальність Дифузора на %s.
+info.emergingtechnology.nozzleprecise.description=Примножує ефективність Дифузора на %s.
 
 # Item descriptions
 info.emergingtechnology.bulb.description=Світлодіод, який використовується у гідропоніці.
@@ -194,6 +254,7 @@ info.emergingtechnology.syringe.description=Шприц, що містить %s �
 info.emergingtechnology.energy.required=Вимагає %sRF за цикл.
 info.emergingtechnology.fluid.required=Вимагає %sMB рідини за цикл.
 info.emergingtechnology.water.required=Вимагає %sMB води за цикл.
+info.emergingtechnology.gas.required=Вимагає %sMB вуглекислого газу за цикл.
 info.emergingtechnology.heat.required=Вимагає %sC тепла за цикл.
 info.emergingtechnology.growth.required=Забезпечує %s відсотковий імпульс зростання за цикл;
 
@@ -207,19 +268,23 @@ info.emergingtechnology.waterdepth.required=(x2 коли на глибині м�
 info.emergingtechnology.energy.generated=Генерує %sRF за цикл.
 info.emergingtechnology.fluid.generated=Забезпечує %sMB рідини за цикл.
 info.emergingtechnology.water.generated=Забезпечує %sMB води за цикл.
+info.emergingtechnology.gas.generated=Забезпечує %sMB вуглекислого газу за цикл.
 info.emergingtechnology.heat.generated=Генерує %sC тепла за цикл.
 info.emergingtechnology.growth.generated=Забезпечує %s процентну ймовірність імпульсу зростання за цикл.
 
 info.emergingtechnology.cookerheat.generated=Отримує %1$sC на сонці та втрачає %2$sC у темряві.
 info.emergingtechnology.lightrange.generated=Збільшує ріст рослин до %s блоків нижче.
+info.emergingtechnology.gasrange.generated=Збільшує ріст рослин до %s блоків на Північ, Схід, Південь чи Захід.
 
 # Capacity
 info.emergingtechnology.energy.capacity=Може зберігати до %sRF енергії.
 info.emergingtechnology.fluid.capacity=Може зберігати до %sMB рідини.
+info.emergingtechnology.gas.capacity=Може зберігати до %sMB вуглекислого газу.
 info.emergingtechnology.water.capacity=Може зберігати до %sMB води.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=ПКМ для використання.
+info.emergingtechnology.interaction.shift=Затисніть SHIFT для деталей.
 
 # GUI
 gui.emergingtechnology.label.basemedium=Base (Medium): 
@@ -228,14 +293,16 @@ gui.emergingtechnology.label.boostmedium=Boost (Medium):
 gui.emergingtechnology.label.boostfluid=Boost (Fluid): 
 gui.emergingtechnology.label.boostlight=Light Total: 
 
-gui.emergingtechnology.label.base=Base: 
-gui.emergingtechnology.label.boost=Boost: 
-gui.emergingtechnology.label.maxrange=Max range: 
+gui.emergingtechnology.label.base=База: 
+gui.emergingtechnology.label.boost=Підвищення: 
+gui.emergingtechnology.label.maxrange=Макс. діапазон:
+gui.emergingtechnology.label.affectedplants=Рослини під впливом:
 
 gui.emergingtechnology.label.energy=Запас енергії
 gui.emergingtechnology.label.fluid=Запас рідини
+gui.emergingtechnology.label.gas=Запас газу
 gui.emergingtechnology.label.heat=Температура
-gui.emergingtechnology.label.growth=модифікатори зростання
+gui.emergingtechnology.label.growth=Модифікатори зростання
 gui.emergingtechnology.label.error=Помилка
 
 gui.emergingtechnology.fabricator.error=Неможливо виготовити предмет
@@ -247,6 +314,9 @@ gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Вимагає 
 
+gui.emergingtechnology.label.speedmultiplier=Посилення зростання від Світлодіода: x%s
+gui.emergingtechnology.label.nospeedmultiplier=Фітолампа або Світлодіод відсутні.
+
 # Configuration
 config.emergingtechnology.title=Налаштування Emerging Technology
 
@@ -254,32 +324,38 @@ config.emergingtechnology.common.disable.title=Відключити машину
 config.emergingtechnology.common.disable.title.tooltip=Запобіганє створенню і відображенню цієї машини у вкладці креативу
 
 config.emergingtechnology.hydroponics.title=Гідропоніка
-config.emergingtechnology.hydroponics.title.tooltip=Тут налаштовується Гідропонна установка, Фітолампа, Збирач та Водяний наповнювач
+config.emergingtechnology.hydroponics.title.tooltip=Тут налаштовується Гідропонна установка, Фітолампа, Збирач, Наповнювач, Газоочисник, Дифузор та Інжектор
 
 config.emergingtechnology.hydroponics.growbed.title=Гідропонна установка
 config.emergingtechnology.hydroponics.growlight.title=Фітолампа
 config.emergingtechnology.hydroponics.harvester.title=Збирач
 config.emergingtechnology.hydroponics.filler.title=Водяний наповнювач
+config.emergingtechnology.scrubber.name=Газоочисник СО2
+config.emergingtechnology.diffuser.name=Дифузор CO2
+config.emergingtechnology.hydroponics.injector.title=Поживний інжектор
 
 config.emergingtechnology.polymers.title=Полімери
-config.emergingtechnology.polymers.title.tooltip=Тут налаштовується Подрібнювач, Процесор, Конструктор та Збирач відходів
+config.emergingtechnology.polymers.title.tooltip=Тут налаштовується Генерація світу, Подрібнювач, Процесор, Конструктор та Збирач відходів
 
 config.emergingtechnology.polymers.shredder.title=Подрібнювач
 config.emergingtechnology.polymers.processor.title=Процесор
 config.emergingtechnology.polymers.fabricator.title=Конструктор
 config.emergingtechnology.polymers.collector.title=Збирач відходів
+config.emergingtechnology.polymers.worldgen.title=Генерація світу
 
 config.emergingtechnology.synthetics.title=Синтетика
-config.emergingtechnology.synthetics.title.tooltip=Тут налаштовується Біраореактор, Складальник та Сонячна плита
+config.emergingtechnology.synthetics.title.tooltip=Тут налаштовується Біореактор, Складальник та Сонячна плита
 
 config.emergingtechnology.synthetics.bioreactor.title=Тканинний біраореактор
 config.emergingtechnology.synthetics.scaffolder.title=Структурний складальник тканин
+config.emergingtechnology.synthetics.algaebioreactor.title=Біраореактор водоростей
 config.emergingtechnology.synthetics.cooker.title=Сонячна плита
 
 config.emergingtechnology.electrics.title=Електрика
-config.emergingtechnology.electrics.title.tooltip=Тут налаштовується Сонячна панель, Припливний генератор, Генератор на біомасі, П'єзоелектричний генератор та Акумулятор
+config.emergingtechnology.electrics.title.tooltip=Тут налаштовується Сонячна панель, Сонячне скло, Припливний генератор, Генератор на біомасі, П'єзоелектричний генератор та Акумулятор
 
 config.emergingtechnology.electrics.solar.title=Сонячна панель
+config.emergingtechnology.electrics.solarglass.title=Сонячне скло
 config.emergingtechnology.electrics.tidal.title=Припливний генератор
 config.emergingtechnology.electrics.biomass.title=Генератор на біомасі
 config.emergingtechnology.electrics.piezoelectric.title=П'єзоелектричний генератор

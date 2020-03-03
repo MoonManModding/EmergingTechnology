@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NTN",
+    "IBI",
+    "NMN"
+  ],
+  "key": {
+    "T": {
+      "item": "emergingtechnology:turbine"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    },
+    "N": {
+      "item": "emergingtechnology:nozzlecomponent"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:diffuser",
+    "count": 1
+  }
+}

@@ -3,8 +3,9 @@ package io.moonman.emergingtechnology.machines.tidal;
 import java.util.List;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.machines.SimpleMachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -49,10 +50,16 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
         int max = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.maxOptimalDepth;
         int surround = EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.minimumWaterBlocks;
 
-        tooltip.add(Lang.get(Lang.TIDAL_DESC));
-        tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY) + " " + Lang.getDepthBoost(min, max));
-        tooltip.add(Lang.getWaterBlocksRequired(surround));
-        tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.TIDAL_DESC));
+            tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY) + " " + Lang.getDepthBoost(min, max));
+            tooltip.add(Lang.getWaterBlocksRequired(surround));
+            if (!EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.biomeRequirementDisabled) {
+                tooltip.add(Lang.get(Lang.BIOME_REQUIREMENT));
+            }
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
     }
 
     @Override
@@ -62,7 +69,8 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
 
     @Override
     public ExtendedBlockState createBlockState() {
-        return new ExtendedBlockState(this, new IProperty[] { FACING, Properties.StaticProperty }, new IUnlistedProperty[]{ Properties.AnimationProperty });
+        return new ExtendedBlockState(this, new IProperty[] { FACING, Properties.StaticProperty },
+                new IUnlistedProperty[] { Properties.AnimationProperty });
     }
 
     @Override
@@ -125,13 +133,12 @@ public class TidalGenerator extends SimpleMachineBase implements ITileEntityProv
         return true;
     }
 
-	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		return state.withProperty(Properties.StaticProperty, true);
-	}
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return state.withProperty(Properties.StaticProperty, true);
+    }
 
     // End required for animation
-
 
     @Override
     public IBlockState getStateFromMeta(int meta) {

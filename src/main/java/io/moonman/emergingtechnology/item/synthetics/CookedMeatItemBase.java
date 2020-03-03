@@ -15,8 +15,8 @@ public class CookedMeatItemBase extends ItemFoodBase {
     private String _name = "";
     public String entityId = "";
 
-    public CookedMeatItemBase(String name, String entityId, int healAmount) {
-        super("synthetic" + name + "cooked", healAmount, (float) 0.6);
+    public CookedMeatItemBase(String name, String entityId, int healAmount, float saturation) {
+        super("synthetic" + name + "cooked", healAmount, saturation);
         this._name = name;
         this.entityId = entityId;
     }

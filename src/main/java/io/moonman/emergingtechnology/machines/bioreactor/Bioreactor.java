@@ -4,9 +4,10 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
+import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -41,14 +42,18 @@ public class Bioreactor extends MachineBase implements ITileEntityProvider {
     }
 
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
-    {
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         int energy = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorEnergyBaseUsage;
         int fluid = EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorWaterBaseUsage;
 
-        tooltip.add(Lang.get(Lang.BIOREACTOR_DESC));
-        tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
-        tooltip.add(Lang.getRequired(fluid, ResourceTypeEnum.WATER));
+        if (KeyBindings.showExtendedTooltips()) {
+            tooltip.add(Lang.get(Lang.BIOREACTOR_DESC));
+            tooltip.add(Lang.getCapacity(energy, ResourceTypeEnum.ENERGY));
+            tooltip.add(Lang.getRequired(fluid, ResourceTypeEnum.WATER));
+        } else {
+            tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
+
     }
 
     @Override
@@ -132,5 +137,4 @@ public class Bioreactor extends MachineBase implements ITileEntityProvider {
     public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getIndex();
     }
-
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "r r",
+    " S ",
+    "r r"
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "sheetPlastic"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:turbine",
+    "count": 1
+  }
+}

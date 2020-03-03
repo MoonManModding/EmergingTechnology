@@ -70,9 +70,4 @@ public class HydroponicsModuleGrowLight {
     @Config.Comment("Energy Modifier of UV Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
     @RangeInt(min = 0, max = 100)
     public int energyPurpleBulbModifier = 5;
-
-    @Name("Grow Light - Energy Transfer Rate")
-    @Config.Comment("The amount of energy transferred to other lights by a grow light per cycle (~10 ticks).")
-    @RangeInt(min = 1, max = 1000)
-    public int growLightEnergyTransferRate = 200;
 }

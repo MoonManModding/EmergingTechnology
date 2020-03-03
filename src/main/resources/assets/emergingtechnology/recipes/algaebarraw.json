@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "emergingtechnology:algae"
+  }
+  },
+  "result": {
+    "item": "emergingtechnology:algaebarraw",
+    "count": 1
+  }
+}

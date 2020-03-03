@@ -46,7 +46,7 @@ public class ClientOnlyProxy extends CommonProxy {
     @Override
     public World getWorld(MessageContext ctx) {
 		return Minecraft.getMinecraft().world;
-	}
+    }
 
     @Override
     public boolean isDedicatedServer() {

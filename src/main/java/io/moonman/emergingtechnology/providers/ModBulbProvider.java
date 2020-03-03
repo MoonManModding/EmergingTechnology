@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.providers.classes.ModBulb;
-import io.moonman.emergingtechnology.helpers.custom.loaders.CustomBulbLoader;
+import io.moonman.emergingtechnology.providers.loaders.CustomBulbLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -70,6 +70,14 @@ public class ModBulbProvider {
 
     private static void readFromFile(FMLPreInitializationEvent event) {
         CustomBulbLoader.preInit(event);
+    }
+
+    public static void addBulb(ModBulb bulb) {
+        allBulbs[allBulbs.length + 1] = bulb;
+    }
+    
+    public static void removeBulbByItemName(String name) {
+        
     }
 
     public static boolean bulbExists(ItemStack itemStack) {

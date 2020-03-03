@@ -21,6 +21,10 @@ public class Reference {
     public static final int GUI_COLLECTOR = 9;
     public static final int GUI_BIOMASS = 10;
     public static final int GUI_BATTERY = 11;
+    public static final int GUI_SCRUBBER = 12;
+    public static final int GUI_DIFFUSER = 13;
+    public static final int GUI_ALGAEBIOREACTOR = 14;
+    public static final int GUI_INJECTOR = 15;
 
     // STORAGE SIZES
     public static final int HYDROPONIC_FLUID_CAPACITY = 5000;
@@ -41,6 +45,8 @@ public class Reference {
     
     public static final int SOLAR_ENERGY_CAPACITY = 5000;
 
+    public static final int SOLARGLASS_ENERGY_CAPACITY = 2500;
+
     public static final int BATTERY_ENERGY_CAPACITY = 100000;
 
     public static final int TIDAL_ENERGY_CAPACITY = 10000;
@@ -57,4 +63,18 @@ public class Reference {
     public static final int HARVESTER_ENERGY_CAPACITY = 5000;
 
     public static final int FILLER_FLUID_CAPACITY = 5000;
+
+    public static final int SCRUBBER_FLUID_CAPACITY = 5000;
+    public static final int SCRUBBER_GAS_CAPACITY = 5000;
+    public static final int SCRUBBER_ENERGY_CAPACITY = 5000;
+
+    public static final int DIFFUSER_GAS_CAPACITY = 10000;
+    public static final int DIFFUSER_ENERGY_CAPACITY = 5000;
+
+    public static final int ALGAEBIOREACTOR_FLUID_CAPACITY = 5000;
+    public static final int ALGAEBIOREACTOR_GAS_CAPACITY = 5000;
+    public static final int ALGAEBIOREACTOR_ENERGY_CAPACITY = 5000;
+
+    public static final int INJECTOR_FLUID_CAPACITY = 10000;
+    public static final int INJECTOR_ENERGY_CAPACITY = 10000;
 }

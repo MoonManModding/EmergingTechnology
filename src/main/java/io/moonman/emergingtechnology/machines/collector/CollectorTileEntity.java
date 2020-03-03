@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.CollectorHelper;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,14 +14,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class CollectorTileEntity extends MachineTileBase implements ITickable {
+public class CollectorTileEntity extends MachineTileBase {
 
     private boolean requiresUpdate = false;
     private boolean hasInventory = false;
@@ -34,7 +34,7 @@ public class CollectorTileEntity extends MachineTileBase implements ITickable {
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return CollectorHelper.isValidItemStack(itemStack);
+            return CollectorRecipes.isValidInput(itemStack);
         }
     };
 
@@ -107,7 +107,7 @@ public class CollectorTileEntity extends MachineTileBase implements ITickable {
                 return;
             }
 
-            ItemStack recoveredItemStack = CollectorHelper.getRandomRecoveredItemStack();
+            ItemStack recoveredItemStack = CollectorHelper.getRandomRecoveredItemStack().copy();
 
             for (int i = 0; i < 5; i++) {
 
