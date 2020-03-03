@@ -25,7 +25,6 @@ import io.moonman.emergingtechnology.integration.jei.machines.scrubber.ScrubberC
 import io.moonman.emergingtechnology.integration.jei.machines.scrubber.ScrubberRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderRecipeWrapper;
-import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipes;

@@ -14,7 +14,6 @@ import io.moonman.emergingtechnology.integration.crafttweaker.machines.Scaffolde
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Shredder;
 import io.moonman.emergingtechnology.integration.crafttweaker.providers.Bulbs;
 import io.moonman.emergingtechnology.integration.ModLoader;
-import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
