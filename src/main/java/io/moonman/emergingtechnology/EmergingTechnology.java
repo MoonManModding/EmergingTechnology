@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class EmergingTechnology {
   public static final String MODID = "emergingtechnology";
   public static final String NAME = "Emerging Technology";
-  public static final String VERSION = "TEST";
+  public static final String VERSION = "0.0.0-alpha";
 
   public static final TechnologyTab TECHNOLOGYTAB = new TechnologyTab("technologytab");
 
