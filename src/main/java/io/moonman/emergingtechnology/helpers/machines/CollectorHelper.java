@@ -57,10 +57,6 @@ public class CollectorHelper {
         return CollectorRecipes.getRandomRecoveredItemStack();
     }
 
-    public static boolean isValidItemStack(ItemStack itemStack) {
-        return CollectorRecipes.isValidItemStack(itemStack);
-    }
-
     private static boolean isValidNeighbour(IBlockState state) {
 
         Block block = state.getBlock();

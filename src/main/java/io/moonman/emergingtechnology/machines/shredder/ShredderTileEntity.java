@@ -5,9 +5,9 @@ import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.machines.ShredderHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.machines.ShredderRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -29,7 +28,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ShredderTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class ShredderTileEntity extends MachineTileBase implements SimpleComponent {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SHREDDER_ENERGY_CAPACITY) {
         @Override
@@ -50,7 +49,7 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return ShredderHelper.canShredItemStack(itemStack);
+            return ShredderRecipes.isValidInput(itemStack);
         }
     };
 
@@ -63,7 +62,7 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return ShredderHelper.canShredItemStack(itemStack);
+            return ShredderRecipes.isValidInput(itemStack);
         }
     };
 
@@ -149,13 +148,13 @@ public class ShredderTileEntity extends MachineTileBase implements ITickable, Si
         }
 
         // Can't shred this item
-        if (!ShredderHelper.canShredItemStack(inputStack)) {
+        if (!ShredderRecipes.isValidInput(inputStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = ShredderHelper.getPlannedStackFromItemStack(inputStack);
+        ItemStack plannedStack = ShredderRecipes.getOutputByItemStack(inputStack);
 
         // This is probably unneccessary
         if (plannedStack == null) {

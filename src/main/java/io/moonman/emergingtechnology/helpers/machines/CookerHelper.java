@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -19,7 +19,7 @@ public class CookerHelper {
     }
 
     public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return RecipeProvider.getCookerOutputForItemStack(itemStack);
+        return RecipeBuilder.getCookerOutputForItemStack(itemStack);
     }
 
     public static List<ItemStack> getValidCookedFoodItems() {

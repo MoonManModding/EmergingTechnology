@@ -9,8 +9,8 @@ import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -32,7 +31,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class FabricatorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class FabricatorTileEntity extends MachineTileBase implements SimpleComponent {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.FABRICATOR_ENERGY_CAPACITY) {
         @Override
@@ -421,7 +420,7 @@ public class FabricatorTileEntity extends MachineTileBase implements ITickable, 
 
         try {
 
-            int max = RecipeProvider.fabricatorRecipes.size() - 1;
+            int max = FabricatorRecipes.getRecipes().size() - 1;
 
             Object[] arguments = args.toArray();
 

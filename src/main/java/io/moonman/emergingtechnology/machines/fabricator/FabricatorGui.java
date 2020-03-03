@@ -19,9 +19,10 @@ import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.network.gui.FabricatorSelectionPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorStopStartPacket;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -127,7 +128,7 @@ public class FabricatorGui extends GuiContainer {
 		int buttonWidth = 15;
 		int buttonHeight = 15;
 
-		List<IMachineRecipe> recipes = RecipeProvider.fabricatorRecipes;
+		List<IMachineRecipe> recipes = FabricatorRecipes.getRecipes();
 
 		for (int i = 0; i < recipes.size(); i++) {
 			FabricatorRecipe recipe = (FabricatorRecipe) recipes.get(i);
@@ -217,7 +218,7 @@ public class FabricatorGui extends GuiContainer {
 	}
 
 	private void nextPage() {
-		if (selection < RecipeProvider.fabricatorRecipes.size() - 1) {
+		if (selection < FabricatorRecipes.getRecipes().size() - 1) {
 			selection++;
 		} else {
 			selection = 0;
@@ -229,7 +230,7 @@ public class FabricatorGui extends GuiContainer {
 		if (selection > 0) {
 			selection--;
 		} else {
-			selection = RecipeProvider.fabricatorRecipes.size() - 1;
+			selection = FabricatorRecipes.getRecipes().size() - 1;
 		}
 		updateFabricatorSelection(selection);
 	}

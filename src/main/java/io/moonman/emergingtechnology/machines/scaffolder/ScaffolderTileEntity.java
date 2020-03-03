@@ -5,9 +5,9 @@ import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.machines.ScaffolderHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -29,7 +28,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ScaffolderTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class ScaffolderTileEntity extends MachineTileBase implements SimpleComponent {
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SCAFFOLDER_ENERGY_CAPACITY) {
         @Override
@@ -60,11 +59,11 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
             if (slot == 0) {
-                return ScaffolderHelper.isItemStackValidScaffold(itemStack);
+                return ScaffolderRecipes.isItemStackValidScaffold(itemStack);
             }
 
             if (slot == 2) {
-                return ScaffolderHelper.isItemStackValidSample(itemStack);
+                return ScaffolderRecipes.isValidInput(itemStack);
             }
 
             return false;
@@ -90,11 +89,11 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
             if (slot == 0) {
-                return ScaffolderHelper.isItemStackValidScaffold(itemStack);
+                return ScaffolderRecipes.isItemStackValidScaffold(itemStack);
             }
 
             if (slot == 2) {
-                return ScaffolderHelper.isItemStackValidSample(itemStack);
+                return ScaffolderRecipes.isValidInput(itemStack);
             }
 
             return false;
@@ -183,14 +182,14 @@ public class ScaffolderTileEntity extends MachineTileBase implements ITickable, 
         }
 
         // Can't scaffold this item
-        if (!ScaffolderHelper.isItemStackValidScaffold(scaffoldStack)
-                || !ScaffolderHelper.isItemStackValidSample(sampleStack)) {
+        if (!ScaffolderRecipes.isItemStackValidScaffold(scaffoldStack)
+                || !ScaffolderRecipes.isValidInput(sampleStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = ScaffolderHelper.getPlannedStackFromItemStack(sampleStack);
+        ItemStack plannedStack = ScaffolderRecipes.getOutputByItemStack(sampleStack);
 
         // This is probably unneccessary
         if (plannedStack == null) {

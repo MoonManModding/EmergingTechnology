@@ -4,10 +4,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.config.hydroponics.enums.BulbTypeEnum;
 import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
-import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -16,18 +13,6 @@ import net.minecraft.world.World;
  * Provides useful methods for the Algae Bioreactor
  */
 public class AlgaeBioreactorHelper {
-
-    public static boolean canProcessItemStack(ItemStack itemStack) {
-        return getPlannedStackFromItemStack(itemStack) != null;
-    }
-
-    public static ItemStack getPlannedStackFromItemStack(ItemStack itemStack) {
-        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.algaeBioreactorRecipes);
-    }
-
-    public static IMachineRecipe getRecipeFromInputItemStack(ItemStack itemStack) {
-        return RecipeProvider.getMatchingRecipe(itemStack, RecipeProvider.algaeBioreactorRecipes);
-    }
 
     public static int getLightBoost(World world, BlockPos pos) {
 

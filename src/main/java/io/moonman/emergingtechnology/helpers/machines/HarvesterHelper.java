@@ -4,7 +4,6 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.FacingHelper;
-import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;

@@ -7,7 +7,8 @@ import java.util.Random;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.integration.ModLoader;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -15,9 +16,19 @@ import net.minecraft.item.ItemStack;
 
 public class CollectorRecipes {
 
+    private static List<IMachineRecipe> collectorRecipes = new ArrayList<IMachineRecipe>();
+
     private static boolean removedAll = false;
 
     private static List<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+
+    public static List<IMachineRecipe> getRecipes() {
+        return collectorRecipes;
+    }
+
+    public static void add(IMachineRecipe recipe) {
+        collectorRecipes.add(recipe);
+    }
 
     public static void removeAll() {
         removedAll = true;
@@ -28,16 +39,28 @@ public class CollectorRecipes {
         return itemStack;
     }
 
+    public static ItemStack getOutputByItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, getRecipes());
+    }
+
+    public static boolean isValidInput(ItemStack itemStack) {
+        return getOutputByItemStack(itemStack) != null;
+    }
+
+    public static IMachineRecipe getRecipeByInputItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getMatchingRecipe(itemStack, getRecipes());
+    }
+
     public static void build() {
         
         if (EmergingTechnologyConfig.POLYMERS_MODULE.COLLECTOR.disabled || removedAll) return;
 
         for (ItemStack itemStack : getCollectorItemStacks()) {
-            RecipeProvider.collectorRecipes.add(new SimpleRecipe(itemStack.getItem(), Items.AIR));
+            add(new SimpleRecipe(itemStack.getItem(), Items.AIR));
         }
 
         for (ItemStack itemStack : recipesToRemove) {
-            RecipeProvider.removeRecipesByOutput(RecipeProvider.collectorRecipes, itemStack);
+            RecipeBuilder.removeRecipesByOutput(collectorRecipes, itemStack);
         }
     }
 
@@ -67,10 +90,10 @@ public class CollectorRecipes {
     }
 
     public static ItemStack getRandomRecoveredItemStack() {
-        return RecipeProvider.collectorRecipes.get(new Random().nextInt(RecipeProvider.collectorRecipes.size())).getOutput();
+        return collectorRecipes.get(new Random().nextInt(collectorRecipes.size())).getOutput();
     }
 
     public static boolean isValidItemStack(ItemStack itemStack) {
-        return RecipeProvider.getOutputForItemStackFromRecipes(itemStack, RecipeProvider.collectorRecipes) != null;
+        return RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, collectorRecipes) != null;
     }
 }

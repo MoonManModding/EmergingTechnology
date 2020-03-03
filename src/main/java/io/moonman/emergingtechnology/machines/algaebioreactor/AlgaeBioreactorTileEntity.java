@@ -212,13 +212,13 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
         }
 
         // Can't process this item
-        if (!AlgaeBioreactorHelper.canProcessItemStack(inputStack)) {
+        if (!AlgaeBioreactorRecipes.isValidInput(inputStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        IMachineRecipe recipe = AlgaeBioreactorHelper.getRecipeFromInputItemStack(inputStack);
+        IMachineRecipe recipe = AlgaeBioreactorRecipes.getRecipeByInputItemStack(inputStack);
 
         // This is probably unneccessary
         if (recipe == null) {

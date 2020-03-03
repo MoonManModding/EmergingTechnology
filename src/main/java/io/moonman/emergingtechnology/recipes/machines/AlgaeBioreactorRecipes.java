@@ -6,12 +6,14 @@ import java.util.List;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
 public class AlgaeBioreactorRecipes {
+
+    private static List<IMachineRecipe> algaeBioreactorRecipes = new ArrayList<IMachineRecipe>();
 
     private static boolean removedAll = false;
 
@@ -20,6 +22,22 @@ public class AlgaeBioreactorRecipes {
     private static List<String> gasNames = new ArrayList<String>();
     private static List<String> fluidNames = new ArrayList<String>();
 
+    public static List<IMachineRecipe> getRecipes() {
+        return algaeBioreactorRecipes;
+    }
+
+    public static void add(IMachineRecipe recipe) {
+        algaeBioreactorRecipes.add(recipe);
+    }
+
+    public static void addGas(String gasName) {
+        gasNames.add(gasName);
+    }
+
+    public static void addFluid(String fluidName) {
+        fluidNames.add(fluidName);
+    }
+
     public static void removeAll() {
         removedAll = true;
     }
@@ -27,6 +45,18 @@ public class AlgaeBioreactorRecipes {
     public static ItemStack removeByOutput(ItemStack itemStack) {
         recipesToRemove.add(itemStack);
         return itemStack;
+    }
+
+    public static ItemStack getOutputByItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, getRecipes());
+    }
+
+    public static boolean isValidInput(ItemStack itemStack) {
+        return getOutputByItemStack(itemStack) != null;
+    }
+
+    public static IMachineRecipe getRecipeByInputItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getMatchingRecipe(itemStack, getRecipes());
     }
 
     public static void build() {
@@ -40,14 +70,14 @@ public class AlgaeBioreactorRecipes {
         fluidNames.add("water");
         fluidNames.add("nutrient");
         
-        RecipeProvider.algaeBioreactorRecipes.add(new SimpleRecipe(new ItemStack(ModItems.algae, 2), new ItemStack(ModItems.algae, 1)));
+        add(new SimpleRecipe(new ItemStack(ModItems.algae, 2), new ItemStack(ModItems.algae, 1)));
 
         for (ItemStack itemStack : getSlimeItems()) {
-            RecipeProvider.algaeBioreactorRecipes.add(new SimpleRecipe(new ItemStack(ModItems.algae, 4), itemStack));
+            add(new SimpleRecipe(new ItemStack(ModItems.algae, 4), itemStack));
         }
 
         for (ItemStack itemStack : recipesToRemove) {
-            RecipeProvider.removeRecipesByOutput(RecipeProvider.algaeBioreactorRecipes, itemStack);
+            RecipeBuilder.removeRecipesByOutput(algaeBioreactorRecipes, itemStack);
         }
     }
 

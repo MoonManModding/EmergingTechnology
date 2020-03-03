@@ -4,7 +4,7 @@ import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IItemStack;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
 import net.minecraft.item.ItemStack;
@@ -37,7 +37,7 @@ public class Bioreactor
 		@Override
 		public void apply()
 		{
-			RecipeProvider.bioreactorRecipes.add(recipe);
+			BioreactorRecipes.add(recipe);
 		}
 
 		@Override

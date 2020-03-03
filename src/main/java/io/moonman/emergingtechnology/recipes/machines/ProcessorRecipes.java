@@ -8,19 +8,27 @@ import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.integration.ModLoader;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ProcessorRecipes {
 
+    private static List<IMachineRecipe> processorRecipes = new ArrayList<IMachineRecipe>();
+
     private static boolean removedAll = false;
 
     private static List<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+
+    public static List<IMachineRecipe> getRecipes() {
+        return processorRecipes;
+    }
+
+    public static void add(IMachineRecipe recipe) {
+        processorRecipes.add(recipe);
+    }
 
     public static void removeAll() {
         removedAll = true;
@@ -29,6 +37,18 @@ public class ProcessorRecipes {
     public static ItemStack removeByOutput(ItemStack itemStack) {
         recipesToRemove.add(itemStack);
         return itemStack;
+    }
+
+    public static ItemStack getOutputByItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, getRecipes());
+    }
+
+    public static boolean isValidInput(ItemStack itemStack) {
+        return getOutputByItemStack(itemStack) != null;
+    }
+
+    public static IMachineRecipe getRecipeByInputItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getMatchingRecipe(itemStack, getRecipes());
     }
 
     public static void build() {
@@ -43,7 +63,7 @@ public class ProcessorRecipes {
         registerThirdPartyRecipes();
 
         for (ItemStack itemStack : recipesToRemove) {
-            RecipeProvider.removeRecipesByOutput(RecipeProvider.processorRecipes, itemStack);
+            RecipeBuilder.removeRecipesByOutput(processorRecipes, itemStack);
         }
     }
 
@@ -97,9 +117,9 @@ public class ProcessorRecipes {
 
     private static void registerProcessorRecipes(ItemStack output, List<ItemStack> inputs) {
         for (ItemStack input : inputs) {
-            if (RecipeProvider.getOutputForItemStackFromRecipes(input, RecipeProvider.processorRecipes) == null) {
+            if (RecipeBuilder.getOutputForItemStackFromRecipes(input, processorRecipes) == null) {
                 SimpleRecipe recipe = new SimpleRecipe(output, input);
-                RecipeProvider.processorRecipes.add(recipe);
+                add(recipe);
             }
         }
     }

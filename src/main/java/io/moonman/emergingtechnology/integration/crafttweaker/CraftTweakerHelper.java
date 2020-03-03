@@ -14,10 +14,11 @@ import io.moonman.emergingtechnology.integration.crafttweaker.machines.Scaffolde
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Shredder;
 import io.moonman.emergingtechnology.integration.crafttweaker.providers.Bulbs;
 import io.moonman.emergingtechnology.integration.ModLoader;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
+import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
 import net.minecraft.item.ItemStack;
 
 // Gratefully borrowed from BluSunrize's ImmersiveEngineering. Thanks folks!
@@ -64,9 +65,9 @@ public class CraftTweakerHelper {
 
 	public static FabricatorRecipe getFabricatorRecipe(IItemStack output, Object input, int count) {
 		if (input instanceof String) {
-			return new FabricatorRecipe(RecipeProvider.fabricatorRecipes.size() + 1, CraftTweakerHelper.toStack(output), (String) input, count);
+			return new FabricatorRecipe(FabricatorRecipes.getRecipes().size() + 1, CraftTweakerHelper.toStack(output), (String) input, count);
 		} else {
-			return new FabricatorRecipe(RecipeProvider.fabricatorRecipes.size() + 1, CraftTweakerHelper.toStack(output), CraftTweakerHelper.toStack((IItemStack)input));
+			return new FabricatorRecipe(FabricatorRecipes.getRecipes().size() + 1, CraftTweakerHelper.toStack(output), CraftTweakerHelper.toStack((IItemStack)input));
 		}
 	}
 

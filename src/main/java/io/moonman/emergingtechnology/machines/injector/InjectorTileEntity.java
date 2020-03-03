@@ -7,11 +7,11 @@ import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.InputOutputFluidStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.machines.InjectorHelper;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.InjectorRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -96,7 +96,7 @@ public class InjectorTileEntity extends MachineTileBase implements ITickable, Si
             if (slot == 1)
                 return false;
 
-            return InjectorHelper.canProcessItemStack(stack);
+            return InjectorRecipes.isValidInput(stack);
         }
     };
 
@@ -214,13 +214,13 @@ public class InjectorTileEntity extends MachineTileBase implements ITickable, Si
         }
 
         // Can't process this item
-        if (!InjectorHelper.canProcessItemStack(inputStack)) {
+        if (!InjectorRecipes.isValidInput(inputStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        IMachineRecipe recipe = InjectorHelper.getRecipeFromInputItemStack(inputStack);
+        IMachineRecipe recipe = InjectorRecipes.getRecipeByInputItemStack(inputStack);
 
         // This is probably unneccessary
         if (recipe == null) {

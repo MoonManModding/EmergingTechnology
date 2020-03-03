@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.helpers.machines.ProcessorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
+import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ProcessorTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class ProcessorTileEntity extends MachineTileBase implements SimpleComponent {
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.PROCESSOR_FLUID_CAPACITY) {
         @Override
@@ -163,13 +164,13 @@ public class ProcessorTileEntity extends MachineTileBase implements ITickable, S
         }
 
         // Can't process this item
-        if (!ProcessorHelper.canProcessItemStack(inputStack)) {
+        if (!ProcessorRecipes.isValidInput(inputStack)) {
             this.setProgress(0);
             return;
         }
 
         ItemStack outputStack = getOutputStack();
-        IMachineRecipe recipe = ProcessorHelper.getRecipeFromInputItemStack(inputStack);
+        IMachineRecipe recipe = ProcessorRecipes.getRecipeByInputItemStack(inputStack);
 
         // This is probably unneccessary
         if (recipe == null) {

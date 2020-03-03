@@ -7,15 +7,26 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
-import io.moonman.emergingtechnology.recipes.RecipeProvider;
+import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import net.minecraft.item.ItemStack;
 
 public class FabricatorRecipes {
 
+    private static List<IMachineRecipe> fabricatorRecipes = new ArrayList<IMachineRecipe>();
+
     private static boolean removedAll = false;
 
     private static List<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+
+    public static List<IMachineRecipe> getRecipes() {
+        return fabricatorRecipes;
+    }
+
+    public static void add(IMachineRecipe recipe) {
+        fabricatorRecipes.add(recipe);
+    }
 
     public static void removeAll() {
         removedAll = true;
@@ -26,6 +37,18 @@ public class FabricatorRecipes {
         return itemStack;
     }
 
+    public static ItemStack getOutputByItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, getRecipes());
+    }
+
+    public static boolean isValidInput(ItemStack itemStack) {
+        return getOutputByItemStack(itemStack) != null;
+    }
+
+    public static IMachineRecipe getRecipeByInputItemStack(ItemStack itemStack) {
+        return RecipeBuilder.getMatchingRecipe(itemStack, getRecipes());
+    }
+
     public static void build() {
 
         if (EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.disabled || removedAll) return;
@@ -33,7 +56,7 @@ public class FabricatorRecipes {
         buildFabricatorRecipeList();
 
         for (ItemStack itemStack : recipesToRemove) {
-            RecipeProvider.removeRecipesByOutput(RecipeProvider.fabricatorRecipes, itemStack);
+            RecipeBuilder.removeRecipesByOutput(fabricatorRecipes, itemStack);
         }
     }
 
@@ -50,16 +73,16 @@ public class FabricatorRecipes {
         FabricatorRecipe recipe9 = new FabricatorRecipe(9, new ItemStack(ModItems.emptysyringe, 3), FabricatorHelper.getFilamentWithAmount(2));
         FabricatorRecipe recipe10 = new FabricatorRecipe(10, new ItemStack(ModItems.turbine, 3), FabricatorHelper.getFilamentWithAmount(2));
         FabricatorRecipe recipe11 = new FabricatorRecipe(11, new ItemStack(ModItems.nozzlecomponent, 1), FabricatorHelper.getFilamentWithAmount(1));
-        RecipeProvider.fabricatorRecipes.add(recipe);
-        RecipeProvider.fabricatorRecipes.add(recipe2);
-        RecipeProvider.fabricatorRecipes.add(recipe3);
-        RecipeProvider.fabricatorRecipes.add(recipe4);
-        RecipeProvider.fabricatorRecipes.add(recipe5);
-        RecipeProvider.fabricatorRecipes.add(recipe6);
-        RecipeProvider.fabricatorRecipes.add(recipe7);
-        RecipeProvider.fabricatorRecipes.add(recipe8);
-        RecipeProvider.fabricatorRecipes.add(recipe9);
-        RecipeProvider.fabricatorRecipes.add(recipe10);
-        RecipeProvider.fabricatorRecipes.add(recipe11);
+        add(recipe);
+        add(recipe2);
+        add(recipe3);
+        add(recipe4);
+        add(recipe5);
+        add(recipe6);
+        add(recipe7);
+        add(recipe8);
+        add(recipe9);
+        add(recipe10);
+        add(recipe11);
     }
 }

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.classes.EmptyRecipe;
+import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.BiomassRecipes;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
@@ -19,6 +21,7 @@ import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ShredderRecipes;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
@@ -82,6 +85,92 @@ public class RecipeBuilder {
         }
 
         return result;
+    }
+
+    public static ItemStack getFabricatorOutputForItemStack(ItemStack itemStack) {
+        return getOutputForItemStackFromRecipes(itemStack, FabricatorRecipes.getRecipes());
+    }
+
+    public static ItemStack getOutputForItemStackFromRecipes(ItemStack itemStack, List<IMachineRecipe> recipes) {
+
+        IMachineRecipe recipe = getMatchingRecipe(itemStack, recipes);
+
+        if (recipe != null) {
+            return recipe.getOutput();
+        }
+
+        return null;
+    }
+
+    public static IMachineRecipe getMatchingRecipe(ItemStack itemStack, List<IMachineRecipe> recipes) {
+        int[] oreIds = OreDictionary.getOreIDs(itemStack);
+
+        for (IMachineRecipe recipe : recipes) {
+
+            if (!recipe.hasOreDictInput()) {
+                if (recipe.getInput().isItemEqual(itemStack)) {
+                    return recipe;
+                }
+            } else {
+                
+                int oreId = OreDictionary.getOreID(recipe.getInputOreName());
+
+                for (int id : oreIds) {
+                    if (id == oreId) {
+                        return recipe;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static IMachineRecipe getFabricatorRecipeByIndex(int index) {
+        return FabricatorRecipes.getRecipes().get(index);
+    }
+
+    public static List<List<IMachineRecipe>> getSplitRecipes(int slots) {
+        return splitList(FabricatorRecipes.getRecipes(), slots);
+    }
+
+    public static int getRecipePagesCount(int slots) {
+        return getSplitRecipes(slots).size();
+    }
+
+    public static ItemStack getCookerOutputForItemStack(ItemStack itemStack) {
+        ItemStack resultStack = FurnaceRecipes.instance().getSmeltingResult(itemStack);
+
+        if (resultStack == null) {
+            return null;
+        }
+
+        if (resultStack.getItem() instanceof ItemFood) {
+            return resultStack;
+        }
+
+        return null;
+    }
+
+    public static List<IMachineRecipe> removeRecipesByOutput(List<IMachineRecipe> recipeList, ItemStack outputStack) {
+
+        List<IMachineRecipe> removedRecipes = new ArrayList<IMachineRecipe>();
+
+        recipeList.removeIf(x -> {
+            boolean match = StackHelper.compareItemStacks(x.getOutput(), outputStack);
+            removedRecipes.add(x);
+            return match;
+        });
+
+        return removedRecipes;
+    }
+
+    private static <T> List<List<T>> splitList(List<T> list, final int L) {
+        List<List<T>> parts = new ArrayList<List<T>>();
+        final int N = list.size();
+        for (int i = 0; i < N; i += L) {
+            parts.add(new ArrayList<T>(list.subList(i, Math.min(N, i + L))));
+        }
+        return parts;
     }
 
     /**

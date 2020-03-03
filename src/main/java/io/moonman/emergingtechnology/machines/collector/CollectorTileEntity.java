@@ -6,6 +6,7 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.CollectorHelper;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ public class CollectorTileEntity extends MachineTileBase {
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return CollectorHelper.isValidItemStack(itemStack);
+            return CollectorRecipes.isValidInput(itemStack);
         }
     };
 

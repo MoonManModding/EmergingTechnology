@@ -13,12 +13,10 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
-import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
-import io.moonman.emergingtechnology.machines.diffuser.Diffuser;
 import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.ScrubberAnimationPacket;
@@ -32,11 +30,9 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
@@ -59,7 +55,7 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ScrubberTileEntity extends MachineTileBase implements ITickable, SimpleComponent {
+public class ScrubberTileEntity extends MachineTileBase implements SimpleComponent {
 
     private final IAnimationStateMachine asm;
 
@@ -125,7 +121,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
             if (slot == 1)
                 return false;
 
-            return ScrubberHelper.isItemStackValid(stack);
+            return ScrubberRecipes.isValidInput(stack);
         }
     };
 
@@ -283,7 +279,7 @@ public class ScrubberTileEntity extends MachineTileBase implements ITickable, Si
 
         if (!StackHelper.isItemStackEmpty(getInputStack())) {
 
-            IMachineRecipe recipe = ScrubberHelper.getRecipeFromInputItemStack(getInputStack());
+            IMachineRecipe recipe = ScrubberRecipes.getRecipeByInputItemStack(getInputStack());
 
             if (recipe != null) {
 
