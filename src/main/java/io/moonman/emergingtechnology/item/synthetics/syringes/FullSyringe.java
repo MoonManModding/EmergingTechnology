@@ -7,6 +7,6 @@ public class FullSyringe extends SyringeItemBase {
     private static final String _name = "full";
 
     public FullSyringe() {
-        super(_name, "");
+        super(_name, _name, "");
     }
 }
