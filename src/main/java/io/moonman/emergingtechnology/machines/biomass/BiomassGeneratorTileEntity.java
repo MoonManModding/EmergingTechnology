@@ -9,6 +9,7 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.BiomassHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.recipes.machines.BiomassRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -51,7 +52,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
 
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
-            return BiomassHelper.isItemStackValid(itemStack);
+            return BiomassRecipes.isValidInput(itemStack);
         }
     };
 
@@ -63,8 +64,8 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
         }
 
         @Override
-        public boolean isItemValid(int slot, ItemStack stack) {
-            return BiomassHelper.isItemStackValid(stack);
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return BiomassRecipes.isValidInput(itemStack);
         }
     };
 
@@ -158,7 +159,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
                 return;
             }
 
-            if (!BiomassHelper.isItemStackValid(inputStack)) {
+            if (!BiomassRecipes.isValidInput(inputStack)) {
                 return;
             }
 
@@ -166,7 +167,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = BiomassHelper.getPlannedStackFromItemStack(inputStack);
+        ItemStack plannedStack = BiomassRecipes.getOutputByItemStack(inputStack);
 
         // This is probably unneccessary
         if (plannedStack == null) {
