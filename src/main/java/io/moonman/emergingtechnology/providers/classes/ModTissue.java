@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.providers.classes;
 public class ModTissue {
 
     public String displayName;
+    public String registryName;
     public String entityId;
     public String result;
 
@@ -11,5 +12,6 @@ public class ModTissue {
         this.displayName = displayName;
         this.entityId = entityId;
         this.result = result;
+        this.registryName = this.entityId.replace(":", "_");
     }
 }

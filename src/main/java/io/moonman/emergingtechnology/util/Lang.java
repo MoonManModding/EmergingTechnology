@@ -121,7 +121,7 @@ public class Lang {
                         GUI_SOURCE + "fabricator.buttonprogram");
         public static final TextComponentTranslation GUI_FABRICATOR_BUTTON_REQUIRES = new TextComponentTranslation(
                         GUI_SOURCE + "fabricator.buttonrequires");
-                        
+
         public static final TextComponentTranslation GUI_NO_SPEED_MULTIPLIER = new TextComponentTranslation(
                         GUI_SOURCE + "label.nospeedmultiplier");
 

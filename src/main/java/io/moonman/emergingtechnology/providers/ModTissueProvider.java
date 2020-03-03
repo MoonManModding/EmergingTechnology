@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.providers;
 import java.util.ArrayList;
 
 import io.moonman.emergingtechnology.providers.loaders.CustomTissueLoader;
+import io.moonman.emergingtechnology.util.Lang;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.providers.classes.ModTissue;
@@ -123,7 +124,7 @@ public class ModTissueProvider {
         ArrayList<SyringeItemBase> modTissueItems = new ArrayList<SyringeItemBase>();
 
         for (ModTissue modTissue: allTissues) {
-            modTissueItems.add(new SyringeItemBase(modTissue.displayName, modTissue.entityId));
+            modTissueItems.add(new SyringeItemBase(modTissue.registryName, modTissue.displayName, modTissue.entityId));
         }
 
         return modTissueItems;
@@ -133,7 +134,7 @@ public class ModTissueProvider {
         ArrayList<SampleItemBase> modTissueItems = new ArrayList<SampleItemBase>();
 
         for (ModTissue modTissue: allTissues) {
-            modTissueItems.add(new SampleItemBase(modTissue.displayName, modTissue.entityId));
+            modTissueItems.add(new SampleItemBase(modTissue.registryName, modTissue.displayName, modTissue.entityId));
         }
 
         return modTissueItems;

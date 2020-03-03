@@ -21,7 +21,7 @@ public class EmptySyringe extends SyringeItemBase {
     private static final String _name = "empty";
 
     public EmptySyringe() {
-        super(_name, "");
+        super(_name, _name, "");
     }
 
     @SideOnly(Side.CLIENT)

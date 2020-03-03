@@ -12,23 +12,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SampleItemBase extends ItemBase {
 
-    private String _name = "";
+    private String _displayName = "";
     public String entityId = "";
 
-    public SampleItemBase(String name, String entityId) {
-        super(name + "sample");
-        this._name = name;
+    public SampleItemBase(String registryName, String displayName, String entityId) {
+        super(registryName + "sample");
+        this._displayName = displayName;
         this.entityId = entityId;
     }
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add(Lang.getTissueDescription(Lang.capitaliseName(this._name), true));
+        tooltip.add(Lang.getTissueDescription(Lang.capitaliseName(this._displayName), true));
     }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return Lang.getTissueName(Lang.capitaliseName(this._name), true);
+        return Lang.getTissueName(Lang.capitaliseName(this._displayName), true);
     }
 }
