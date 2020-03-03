@@ -1,7 +1,7 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.recipes.machines.CollectorRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -54,11 +54,11 @@ public class CollectorHelper {
     }
 
     public static ItemStack getRandomRecoveredItemStack() {
-        return CollectorRecipeBuilder.getRandomRecoveredItemStack();
+        return CollectorRecipes.getRandomRecoveredItemStack();
     }
 
     public static boolean isValidItemStack(ItemStack itemStack) {
-        return CollectorRecipeBuilder.isValidItemStack(itemStack);
+        return CollectorRecipes.isValidItemStack(itemStack);
     }
 
     private static boolean isValidNeighbour(IBlockState state) {

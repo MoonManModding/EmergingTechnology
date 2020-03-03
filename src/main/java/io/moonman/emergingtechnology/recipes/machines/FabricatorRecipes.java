@@ -11,7 +11,7 @@ import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import net.minecraft.item.ItemStack;
 
-public class FabricatorRecipeBuilder {
+public class FabricatorRecipes {
 
     private static boolean removedAll = false;
 

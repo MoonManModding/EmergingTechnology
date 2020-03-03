@@ -10,7 +10,7 @@ import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class CookerRecipeBuilder {
+public class CookerRecipes {
 
     private static boolean removedAll = false;
 

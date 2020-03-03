@@ -9,7 +9,7 @@ import io.moonman.emergingtechnology.gui.classes.GuiLabel;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.util.Lang;
 
 public class GuiTooltipHelper {

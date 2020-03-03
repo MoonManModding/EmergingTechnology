@@ -6,7 +6,7 @@ import crafttweaker.api.item.IItemStack;
 import io.moonman.emergingtechnology.integration.crafttweaker.CraftTweakerHelper;
 import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
-import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -66,7 +66,7 @@ public class Bioreactor
 		@Override
 		public void apply()
 		{
-			BioreactorRecipeBuilder.removeByOutput(this.output);
+			BioreactorRecipes.removeByOutput(this.output);
 		}
 
 		@Override
@@ -92,7 +92,7 @@ public class Bioreactor
 		@Override
 		public void apply()
 		{
-            BioreactorRecipeBuilder.removeAll();
+            BioreactorRecipes.removeAll();
 		}
 
 		@Override

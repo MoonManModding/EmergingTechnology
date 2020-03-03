@@ -14,7 +14,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ShredderRecipeBuilder {
+public class ShredderRecipes {
 
     private static boolean removedAll = false;
 

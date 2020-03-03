@@ -13,7 +13,7 @@ import io.moonman.emergingtechnology.helpers.machines.AlgaeBioreactorHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
-import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,8 +40,8 @@ import li.cil.oc.api.network.SimpleComponent;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class AlgaeBioreactorTileEntity extends MachineTileBase implements SimpleComponent {
 
-    private static List<String> fluidNames = AlgaeBioreactorRecipeBuilder.getValidFluidNames();
-    private static List<String> gasNames = AlgaeBioreactorRecipeBuilder.getValidGasNames();
+    private static List<String> fluidNames = AlgaeBioreactorRecipes.getValidFluidNames();
+    private static List<String> gasNames = AlgaeBioreactorRecipes.getValidGasNames();
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.ALGAEBIOREACTOR_FLUID_CAPACITY) {
         @Override
@@ -67,7 +67,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
                 return false;
             }
 
-            return AlgaeBioreactorRecipeBuilder.isValidGas(fluid);
+            return AlgaeBioreactorRecipes.isValidGas(fluid);
         }
     };
 

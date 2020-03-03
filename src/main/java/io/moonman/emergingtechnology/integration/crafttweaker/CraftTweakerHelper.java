@@ -1,10 +1,7 @@
 package io.moonman.emergingtechnology.integration.crafttweaker;
 
 import crafttweaker.CraftTweakerAPI;
-import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
-import crafttweaker.api.item.IngredientStack;
-import crafttweaker.api.oredict.IOreDictEntry;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.AlgaeBioreactor;
 import io.moonman.emergingtechnology.integration.crafttweaker.machines.Biomass;
@@ -22,7 +19,6 @@ import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 // Gratefully borrowed from BluSunrize's ImmersiveEngineering. Thanks folks!
 
@@ -81,24 +77,5 @@ public class CraftTweakerHelper {
 		if (iStack == null)
 			return ItemStack.EMPTY;
 		return (ItemStack) iStack.getInternal();
-	}
-
-	public static Object toObject(IIngredient iStack) {
-		if (iStack == null)
-			return null;
-		else {
-			if (iStack instanceof IOreDictEntry)
-				return ((IOreDictEntry) iStack).getName();
-			else if (iStack instanceof IItemStack)
-				return toStack((IItemStack) iStack);
-			else if (iStack instanceof IngredientStack) {
-				IIngredient ingredient = ReflectionHelper.getPrivateValue(IngredientStack.class,
-						(IngredientStack) iStack, "ingredient");
-				Object o = toObject(ingredient);
-
-				return o;
-			} else
-				return null;
-		}
 	}
 }

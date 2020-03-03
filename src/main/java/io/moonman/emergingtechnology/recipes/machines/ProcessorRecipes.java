@@ -16,7 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ProcessorRecipeBuilder {
+public class ProcessorRecipes {
 
     private static boolean removedAll = false;
 

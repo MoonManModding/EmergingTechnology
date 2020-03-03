@@ -11,7 +11,7 @@ import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
-public class AlgaeBioreactorRecipeBuilder {
+public class AlgaeBioreactorRecipes {
 
     private static boolean removedAll = false;
 

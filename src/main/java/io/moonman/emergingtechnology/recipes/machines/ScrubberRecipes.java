@@ -10,7 +10,7 @@ import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
-public class ScrubberRecipeBuilder {
+public class ScrubberRecipes {
 
     private static boolean removedAll = false;
 

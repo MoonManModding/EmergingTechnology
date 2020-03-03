@@ -11,7 +11,7 @@ import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 
-public class ScaffolderRecipeBuilder {
+public class BioreactorRecipes {
 
     private static boolean removedAll = false;
 
@@ -28,21 +28,21 @@ public class ScaffolderRecipeBuilder {
 
     public static void build() {
 
-        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.disabled || removedAll) return;
+        if (EmergingTechnologyConfig.SYNTHETICS_MODULE.BIOREACTOR.disabled || removedAll) return;
 
         for (ModTissue modTissue: ModTissueProvider.allTissues) {
+            ItemStack syringe = ModTissueProvider.getSyringeItemStackByEntityId(modTissue.entityId);
             ItemStack sample = ModTissueProvider.getSampleItemStackByEntityId(modTissue.entityId);
-            ItemStack result = ModTissueProvider.getResultItemStackByEntityId(modTissue.entityId);
 
-            if (StackHelper.isItemStackEmpty(sample) || StackHelper.isItemStackEmpty(result)) {
+            if (StackHelper.isItemStackEmpty(syringe) || StackHelper.isItemStackEmpty(sample)) {
                 continue;
             }
 
-            RecipeProvider.scaffolderRecipes.add(new SimpleRecipe(result.copy(), sample.copy()));
+            RecipeProvider.bioreactorRecipes.add(new SimpleRecipe(sample.getItem(), syringe.getItem()));
         }
 
         for (ItemStack itemStack : recipesToRemove) {
-            RecipeProvider.removeRecipesByOutput(RecipeProvider.scaffolderRecipes, itemStack);
+            RecipeProvider.removeRecipesByOutput(RecipeProvider.bioreactorRecipes, itemStack);
         }
     }
 

@@ -1,7 +1,7 @@
 package io.moonman.emergingtechnology.util;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import net.minecraft.util.text.TextComponentTranslation;
 
 public class Lang {

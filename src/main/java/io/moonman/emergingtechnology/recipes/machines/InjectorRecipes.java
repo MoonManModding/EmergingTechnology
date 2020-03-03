@@ -14,7 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class InjectorRecipeBuilder {
+public class InjectorRecipes {
 
     private static boolean removedAll = false;
 

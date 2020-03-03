@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.helpers.enums;
+package io.moonman.emergingtechnology.gui.enums;
 
 public enum ResourceTypeEnum {
     ENERGY,

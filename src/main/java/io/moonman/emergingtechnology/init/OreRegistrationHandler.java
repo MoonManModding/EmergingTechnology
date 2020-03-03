@@ -1,6 +1,5 @@
 package io.moonman.emergingtechnology.init;
 
-import io.moonman.emergingtechnology.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
@@ -9,8 +8,6 @@ import net.minecraftforge.oredict.OreDictionary;
  * Registers OreDicts for Emerging Technology
  */
 public class OreRegistrationHandler {
-
-    public static int[] PLASTIC_ORE_IDS;
 
     public static void init() {
         registerItems();

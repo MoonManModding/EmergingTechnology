@@ -8,7 +8,7 @@ import io.moonman.emergingtechnology.helpers.machines.DiffuserHelper;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
-import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipes;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -48,7 +48,7 @@ public class DiffuserTileEntity extends MachineTileBase implements SimpleCompone
 
             Fluid fluid = fluidStack.getFluid();
 
-            return ScrubberRecipeBuilder.isValidGas(fluid);
+            return ScrubberRecipes.isValidGas(fluid);
         }
     };
 

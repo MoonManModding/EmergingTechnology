@@ -7,17 +7,17 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.classes.EmptyRecipe;
-import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.BiomassRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.CollectorRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.CookerRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.InjectorRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipeBuilder;
-import io.moonman.emergingtechnology.recipes.machines.ShredderRecipeBuilder;
+import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.BiomassRecipes;
+import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.CookerRecipes;
+import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.InjectorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipes;
+import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipes;
+import io.moonman.emergingtechnology.recipes.machines.ShredderRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -32,17 +32,17 @@ public class RecipeBuilder {
 
     public static void buildMachineRecipes() {
 
-        BioreactorRecipeBuilder.build();
-        CollectorRecipeBuilder.build();
-        CookerRecipeBuilder.build();
-        ShredderRecipeBuilder.build();
-        ScaffolderRecipeBuilder.build();
-        ProcessorRecipeBuilder.build();
-        FabricatorRecipeBuilder.build();
-        BiomassRecipeBuilder.build();
-        ScrubberRecipeBuilder.build();
-        AlgaeBioreactorRecipeBuilder.build();
-        InjectorRecipeBuilder.build();
+        BioreactorRecipes.build();
+        CollectorRecipes.build();
+        CookerRecipes.build();
+        ShredderRecipes.build();
+        ScaffolderRecipes.build();
+        ProcessorRecipes.build();
+        FabricatorRecipes.build();
+        BiomassRecipes.build();
+        ScrubberRecipes.build();
+        AlgaeBioreactorRecipes.build();
+        InjectorRecipes.build();
 
         registerFurnaceRecipes();
     }

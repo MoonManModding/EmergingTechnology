@@ -9,7 +9,7 @@ import io.moonman.emergingtechnology.recipes.RecipeProvider;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import net.minecraft.item.ItemStack;
 
-public class BiomassRecipeBuilder {
+public class BiomassRecipes {
 
     private static boolean removedAll = false;
 

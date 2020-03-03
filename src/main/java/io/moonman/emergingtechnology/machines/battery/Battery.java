@@ -3,7 +3,7 @@ package io.moonman.emergingtechnology.machines.battery;
 import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.SimpleMachineBase;
 import io.moonman.emergingtechnology.util.KeyBindings;
