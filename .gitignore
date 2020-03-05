@@ -10,3 +10,4 @@
 !/textures/
 !/gradle.properties
 !.gitattributes
+.gradle/*
