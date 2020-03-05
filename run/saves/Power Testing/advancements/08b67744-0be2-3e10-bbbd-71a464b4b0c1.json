@@ -1,0 +1,38 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-01-13 11:30:19 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:devices/lithium_ion_battery_basic": {
+    "criteria": {
+      "has_item": "2020-01-13 11:30:18 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2020-01-13 11:30:18 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cake": {
+    "criteria": {
+      "has_egg": "2020-01-13 11:30:18 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:fusion/fusion_core": {
+    "criteria": {
+      "has_item": "2020-01-13 11:30:18 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "extreme_hills": "2020-01-13 11:30:19 +0000"
+    },
+    "done": false
+  }
+}

@@ -1,0 +1,99 @@
+---- Minecraft Crash Report ----
+
+WARNING: coremods are present:
+  MicdoodlePlugin (MicdoodleCore-1.12.2-4.0.2.237.jar)
+Contact their authors BEFORE contacting forge
+
+// You should try our sister game, Minceraft!
+
+Time: 12/3/19 2:53 PM
+Description: Ticking block entity
+
+java.lang.IllegalArgumentException: Cannot set property PropertyBool{name=powered, clazz=class java.lang.Boolean, values=[true, false]} as it does not exist in BlockStateContainer{block=emergingtechnology:hydroponic, properties=[facing, haswater, medium]}
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.withProperty(BlockStateContainer.java:221)
+	at io.moonman.emergingtechnology.block.blocks.Light.setState(Light.java:78)
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.update(LightTileEntity.java:91)
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.withProperty(BlockStateContainer.java:221)
+	at io.moonman.emergingtechnology.block.blocks.Light.setState(Light.java:78)
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.update(LightTileEntity.java:91)
+
+-- Block entity being ticked --
+Details:
+	Name: emergingtechnology:light // io.moonman.emergingtechnology.tile.tiles.LightTileEntity
+	Block type: ID #717 (tile.emergingtechnology.light // io.moonman.emergingtechnology.block.blocks.Light // emergingtechnology:light)
+	Block data value: 1 / 0x1 / 0b0001
+	Block location: World: (-420,6,-485), Chunk: (at 12,0,11 in -27,-31; contains blocks -432,0,-496 to -417,255,-481), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Actual block type: ID #717 (tile.emergingtechnology.light // io.moonman.emergingtechnology.block.blocks.Light // emergingtechnology:light)
+	Actual block data value: 1 / 0x1 / 0b0001
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+
+-- Affected level --
+Details:
+	Level name: Emerging Technology
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: 4976730068574095315
+	Level generator: ID 01 - flat, ver 0. Features enabled: true
+	Level generator options: 
+	Level spawn location: World: (-389,4,-502), Chunk: (at 11,0,10 in -25,-32; contains blocks -400,0,-512 to -385,255,-497), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Level time: 230467 game time, 328467 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 1 (now: false), thunder time: 1 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 538702688 bytes (513 MB) / 1300758528 bytes (1240 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2768 9 mods loaded, 9 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State     | ID                  | Version      | Source                                    | Signature |
+	|:--------- |:------------------- |:------------ |:----------------------------------------- |:--------- |
+	| UCHIJAAAA | minecraft           | 1.12.2       | minecraft.jar                             | None      |
+	| UCHIJAAAA | mcp                 | 9.42         | minecraft.jar                             | None      |
+	| UCHIJAAAA | FML                 | 8.0.99.99    | forgeSrc-1.12.2-14.23.5.2768.jar          | None      |
+	| UCHIJAAAA | forge               | 14.23.5.2768 | forgeSrc-1.12.2-14.23.5.2768.jar          | None      |
+	| UCHIJAAAA | micdoodlecore       |              | minecraft.jar                             | None      |
+	| UCHIJAAAA | emergingtechnology  | 1.0.1        | moonman-1.0.jar                           | None      |
+	| UCHIJAAAA | galacticraftcore    | 4.0.2.237    | GalacticraftCore-1.12.2-4.0.2.237.jar     | None      |
+	| UCHIJAAAA | galacticraftplanets | 4.0.2.237    | Galacticraft-Planets-1.12.2-4.0.2.237.jar | None      |
+	| UCHIJAAAA | nuclearcraft        | 2.18k        | NuclearCraft-2.18k-1.12.2.jar             | None      |
+
+	Loaded coremods (and transformers): 
+MicdoodlePlugin (MicdoodleCore-1.12.2-4.0.2.237.jar)
+  micdoodle8.mods.miccore.MicdoodleTransformer
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

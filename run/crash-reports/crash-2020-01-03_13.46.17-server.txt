@@ -1,0 +1,113 @@
+---- Minecraft Crash Report ----
+// Daisy, daisy...
+
+Time: 1/3/20 1:46 PM
+Description: Ticking player
+
+java.lang.RuntimeException: Slot 2 not in valid range - [0,2)
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:214)
+	at net.minecraftforge.items.ItemStackHandler.getStackInSlot(ItemStackHandler.java:73)
+	at net.minecraftforge.items.SlotItemHandler.getStack(SlotItemHandler.java:79)
+	at net.minecraft.inventory.Container.detectAndSendChanges(Container.java:97)
+	at io.moonman.emergingtechnology.machines.collector.CollectorContainer.detectAndSendChanges(CollectorContainer.java:41)
+	at net.minecraft.entity.player.EntityPlayerMP.onUpdate(EntityPlayerMP.java:365)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2171)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:871)
+	at net.minecraft.world.World.updateEntity(World.java:2130)
+	at net.minecraft.world.WorldServer.tickPlayers(WorldServer.java:672)
+	at net.minecraft.world.World.updateEntities(World.java:1906)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:214)
+	at net.minecraftforge.items.ItemStackHandler.getStackInSlot(ItemStackHandler.java:73)
+	at net.minecraftforge.items.SlotItemHandler.getStack(SlotItemHandler.java:79)
+	at net.minecraft.inventory.Container.detectAndSendChanges(Container.java:97)
+	at io.moonman.emergingtechnology.machines.collector.CollectorContainer.detectAndSendChanges(CollectorContainer.java:41)
+	at net.minecraft.entity.player.EntityPlayerMP.onUpdate(EntityPlayerMP.java:365)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2171)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:871)
+	at net.minecraft.world.World.updateEntity(World.java:2130)
+
+-- Player being ticked --
+Details:
+	Entity Type: null (net.minecraft.entity.player.EntityPlayerMP)
+	Entity ID: 223
+	Entity Name: Player234
+	Entity's Exact location: 134.74, 65.00, -60.84
+	Entity's Block location: World: (134,65,-61), Chunk: (at 6,4,3 in 8,-4; contains blocks 128,0,-64 to 143,255,-49), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.WorldServer.tickPlayers(WorldServer.java:672)
+	at net.minecraft.world.World.updateEntities(World.java:1906)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+
+-- Affected level --
+Details:
+	Level name: Biome Test
+	All players: 1 total; [EntityPlayerMP['Player234'/223, l='Biome Test', x=134.74, y=65.00, z=-60.84]]
+	Chunk stats: ServerChunkCache: 414 Drop: 0
+	Level seed: -1545709085425313784
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (142,64,139), Chunk: (at 14,4,11 in 8,8; contains blocks 128,0,128 to 143,255,143), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 22529 game time, 22529 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 13030 (now: false), thunder time: 91320 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 271012520 bytes (258 MB) / 1372061696 bytes (1308 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	FML: MCP 9.42 Powered by Forge 14.23.5.2816 12 mods loaded, 12 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID                 | Version          | Source                               | Signature |
+	|:------ |:------------------ |:---------------- |:------------------------------------ |:--------- |
+	| LCHIJA | minecraft          | 1.12.2           | minecraft.jar                        | None      |
+	| LCHIJA | mcp                | 9.42             | minecraft.jar                        | None      |
+	| LCHIJA | FML                | 8.0.99.99        | forgeSrc-1.12.2-14.23.5.2816.jar     | None      |
+	| LCHIJA | forge              | 14.23.5.2816     | forgeSrc-1.12.2-14.23.5.2816.jar     | None      |
+	| LCHIJA | opencomputers|core | 1.7.5.192        | minecraft.jar                        | None      |
+	| LCHIJA | opencomputers      | 1.7.5.192        | OpenComputers-MC1.12.2-1.7.5.192.jar | None      |
+	| LCHIJA | jei                | 4.15.0.292       | jei_1.12.2-4.15.0.292.jar            | None      |
+	| LCHIJA | emergingtechnology | 1.2.13-beta      | moonman-1.2.13-beta.jar              | None      |
+	| LCHIJA | infinitylib        | 1.12.2-1.12.0    | infinitylib-1.12.0.jar               | None      |
+	| LCHIJA | agricraft          | 2.12.0-1.12.0-a6 | AgriCraft-2.12.0-1.12.0-a6.jar       | None      |
+	| LCHIJA | cucumber           | 1.1.3            | Cucumber-1.12.2-1.1.3.jar            | None      |
+	| LCHIJA | nuclearcraft       | 2.18k            | NuclearCraft-2.18k-1.12.2.jar        | None      |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.5.192.jar)
+  li.cil.oc.common.asm.ClassTransformer
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 1 / 8; [EntityPlayerMP['Player234'/223, l='Biome Test', x=134.74, y=65.00, z=-60.84]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

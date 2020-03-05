@@ -1,0 +1,18 @@
+{
+  "path": "vanilla/soils/hydroponic_soil.json",
+  "enabled": true,
+  "id": "hydroponic_soil",
+  "name": "Hydroponic Grow Bed",
+  "varients": [
+    {
+      "item": "emergingtechnology:hydroponic",
+      "meta": 0,
+      "tags": "",
+      "ignoreMeta": true,
+      "ignoreTags": [
+        "*"
+      ],
+      "useOreDict": true
+    }
+  ]
+}

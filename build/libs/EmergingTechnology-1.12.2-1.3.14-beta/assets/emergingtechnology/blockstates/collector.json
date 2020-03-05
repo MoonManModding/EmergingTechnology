@@ -1,0 +1,20 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:collector_empty"
+    },
+    "variants": {
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {
+                "model": "emergingtechnology:collector_empty"
+            }
+        ],
+        "hasitems": {
+            "false": {"model": "emergingtechnology:collector_empty"},
+            "true": {"model": "emergingtechnology:collector"}
+        }
+    }
+}

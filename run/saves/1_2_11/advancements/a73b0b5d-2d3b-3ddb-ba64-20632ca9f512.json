@@ -1,0 +1,20 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-01-01 22:31:41 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:fission/rtg_plutonium": {
+    "criteria": {
+      "has_item": "2020-01-01 22:31:40 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "desert": "2020-01-01 22:31:41 +0000"
+    },
+    "done": false
+  }
+}

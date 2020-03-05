@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p",
+    "p"
+  ],
+  "key": {
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "blockPlastic"
+  }
+  },
+  "result": {
+    "item": "emergingtechnology:plasticrod",
+    "count": 4
+  }
+}

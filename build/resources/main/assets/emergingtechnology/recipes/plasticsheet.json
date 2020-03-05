@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pp"
+  ],
+  "key": {
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "blockPlastic"
+  }
+  },
+  "result": {
+    "item": "emergingtechnology:plasticsheet",
+    "count": 2
+  }
+}

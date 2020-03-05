@@ -1,0 +1,20 @@
+[
+    {
+        "name": "minecraft:glowstone",
+        "color": 2,
+        "growthModifier": "2",
+        "energyUsage": "10",
+        "boostModifier": "0",
+        "plants": []
+    },
+    {
+        "name": "minecraft:redstone",
+        "color": 1,
+        "growthModifier": "2",
+        "energyUsage": "10",
+        "boostModifier": "15",
+        "plants": [
+            "minecraft:nether_wart"
+        ]
+    }
+]

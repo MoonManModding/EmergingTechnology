@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  R",
+    " G ",
+    "P  "
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "blockGlass"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "blockPlastic"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "stickPlastic"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:emptysyringe",
+    "count": 3
+  }
+}

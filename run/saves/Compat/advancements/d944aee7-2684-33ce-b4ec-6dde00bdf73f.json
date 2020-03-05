@@ -1,0 +1,32 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-01-06 01:57:39 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:fission/rtg_plutonium": {
+    "criteria": {
+      "has_item": "2020-01-06 01:57:39 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2020-01-06 01:57:39 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cake": {
+    "criteria": {
+      "has_egg": "2020-01-06 01:57:39 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2020-01-06 01:57:39 +0000"
+    },
+    "done": false
+  }
+}

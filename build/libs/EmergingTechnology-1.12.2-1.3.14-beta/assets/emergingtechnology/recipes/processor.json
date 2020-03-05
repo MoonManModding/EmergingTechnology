@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "IBI",
+      "IPI",
+      "IMI"
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:iron_block"
+      },
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "M": {
+        "item": "emergingtechnology:machinecase"
+      },
+      "B": {
+        "item": "minecraft:iron_bars"
+      }
+    },
+    "result": {
+      "item": "emergingtechnology:processor",
+      "count": 1
+    }
+  }

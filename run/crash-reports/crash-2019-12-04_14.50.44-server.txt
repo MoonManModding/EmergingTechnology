@@ -1,0 +1,104 @@
+---- Minecraft Crash Report ----
+// Surprise! Haha. Well, this is awkward.
+
+Time: 12/4/19 2:50 PM
+Description: Ticking block entity
+
+java.lang.NullPointerException: Ticking block entity
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.<init>(LightTileEntity.java:28)
+	at io.moonman.emergingtechnology.block.blocks.Light.createNewTileEntity(Light.java:129)
+	at net.minecraft.block.Block.createTileEntity(Block.java:1517)
+	at net.minecraft.world.chunk.Chunk.createNewTileEntity(Chunk.java:839)
+	at net.minecraft.world.chunk.Chunk.getTileEntity(Chunk.java:857)
+	at net.minecraft.world.World.getTileEntity(World.java:2613)
+	at nc.tile.energy.ITileEnergy.pushEnergyToSide(ITileEnergy.java:145)
+	at nc.tile.energy.ITileEnergy.pushEnergy(ITileEnergy.java:130)
+	at nc.tile.generator.TilePassiveGenerator.update(TilePassiveGenerator.java:24)
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.<init>(LightTileEntity.java:28)
+	at io.moonman.emergingtechnology.block.blocks.Light.createNewTileEntity(Light.java:129)
+	at net.minecraft.block.Block.createTileEntity(Block.java:1517)
+	at net.minecraft.world.chunk.Chunk.createNewTileEntity(Chunk.java:839)
+	at net.minecraft.world.chunk.Chunk.getTileEntity(Chunk.java:857)
+	at net.minecraft.world.World.getTileEntity(World.java:2613)
+	at nc.tile.energy.ITileEnergy.pushEnergyToSide(ITileEnergy.java:145)
+	at nc.tile.energy.ITileEnergy.pushEnergy(ITileEnergy.java:130)
+	at nc.tile.generator.TilePassiveGenerator.update(TilePassiveGenerator.java:24)
+
+-- Block entity being ticked --
+Details:
+	Name: nuclearcraft:rtg_plutonium // nc.tile.generator.TileRTG.Plutonium
+	Block type: ID #323 (tile.nuclearcraft.rtg_plutonium // nc.block.tile.BlockSimpleTile // nuclearcraft:rtg_plutonium)
+	Block data value: 0 / 0x0 / 0b0000
+	Block location: World: (1087,6,431), Chunk: (at 15,0,15 in 67,26; contains blocks 1072,0,416 to 1087,255,431), Region: (2,0; contains chunks 64,0 to 95,31, blocks 1024,0,0 to 1535,255,511)
+	Actual block type: ID #323 (tile.nuclearcraft.rtg_plutonium // nc.block.tile.BlockSimpleTile // nuclearcraft:rtg_plutonium)
+	Actual block data value: 0 / 0x0 / 0b0000
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+
+-- Affected level --
+Details:
+	Level name: HOLODECK
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: 5212542972153329378
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 3;minecraft:bedrock,2*minecraft:dirt,minecraft:grass;1;village
+	Level spawn location: World: (1085,4,432), Chunk: (at 13,0,0 in 67,27; contains blocks 1072,0,432 to 1087,255,447), Region: (2,0; contains chunks 64,0 to 95,31, blocks 1024,0,0 to 1535,255,511)
+	Level time: 94273 game time, 99773 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 1 (now: false), thunder time: 1 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 453070512 bytes (432 MB) / 1310195712 bytes (1249 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2768 9 mods loaded, 9 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State     | ID                 | Version          | Source                           | Signature |
+	|:--------- |:------------------ |:---------------- |:-------------------------------- |:--------- |
+	| UCHIJAAAA | minecraft          | 1.12.2           | minecraft.jar                    | None      |
+	| UCHIJAAAA | mcp                | 9.42             | minecraft.jar                    | None      |
+	| UCHIJAAAA | FML                | 8.0.99.99        | forgeSrc-1.12.2-14.23.5.2768.jar | None      |
+	| UCHIJAAAA | forge              | 14.23.5.2768     | forgeSrc-1.12.2-14.23.5.2768.jar | None      |
+	| UCHIJAAAA | emergingtechnology | 1.0.1            | moonman-1.0.jar                  | None      |
+	| UCHIJAAAA | infinitylib        | 1.12.2-1.12.0    | infinitylib-1.12.0.jar           | None      |
+	| UCHIJAAAA | agricraft          | 2.12.0-1.12.0-a6 | AgriCraft-2.12.0-1.12.0-a6.jar   | None      |
+	| UCHIJAAAA | cucumber           | 1.1.3            | Cucumber-1.12.2-1.1.3.jar        | None      |
+	| UCHIJAAAA | nuclearcraft       | 2.18k            | NuclearCraft-2.18k-1.12.2.jar    | None      |
+
+	Loaded coremods (and transformers): 
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

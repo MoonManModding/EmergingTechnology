@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "emergingtechnology:biochar"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:biocharblock",
+    "count": 1
+  }
+}

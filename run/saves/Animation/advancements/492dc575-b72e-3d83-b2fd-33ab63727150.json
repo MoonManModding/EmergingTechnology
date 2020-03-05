@@ -1,0 +1,26 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-01-16 20:46:23 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2020-01-16 20:46:22 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2020-01-16 20:46:23 +0000"
+    },
+    "done": false
+  },
+  "minecraft:recipes/decorations/armor_stand": {
+    "criteria": {
+      "has_stone_slab": "2020-01-16 20:46:22 +0000"
+    },
+    "done": true
+  }
+}

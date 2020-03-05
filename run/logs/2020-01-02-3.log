@@ -1,0 +1,544 @@
+[20:15:56] [main/INFO] [GradleStart]: Extra: []
+[20:15:57] [main/INFO] [GradleStart]: Found and added coremod: li.cil.oc.common.launch.TransformerLoader
+[20:15:57] [main/INFO] [GradleStart]: Running with arguments: [--tweakClass, net.minecraftforge.fml.common.launcher.FMLServerTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
+[20:15:57] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLServerTweaker
+[20:15:57] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLServerTweaker
+[20:15:57] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
+[20:15:57] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLServerTweaker
+[20:15:58] [main/INFO] [FML]: Forge Mod Loader version 14.23.5.2816 for Minecraft 1.12.2 loading
+[20:15:58] [main/INFO] [FML]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_161, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_161\jre
+[20:15:58] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
+[20:15:58] [main/ERROR] [FML]: Full: C:\Users\Alex\.gradle\caches\modules-2\files-2.1\org.apache.maven\maven-artifact\3.5.3\7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4\maven-artifact-3.5.3.jar
+[20:15:58] [main/ERROR] [FML]: Trimmed: c:/users/alex/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
+[20:15:59] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[20:15:59] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
+[20:15:59] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
+[20:15:59] [main/INFO] [FML]: Found a command line coremod : li.cil.oc.common.launch.TransformerLoader
+[20:15:59] [main/WARN] [FML]: The coremod li.cil.oc.common.launch.TransformerLoader does not have a MCVersion annotation, it may cause issues with this version of Minecraft
+[20:15:59] [main/INFO] [FML]: Ignoring missing certificate for coremod TransformerLoader (li.cil.oc.common.launch.TransformerLoader), as this is probably a dev workspace
+[20:15:59] [main/INFO] [FML]: Searching C:\Users\Alex\Documents\GitHub\EmergingTechnology\run\.\mods for mods
+[20:15:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
+[20:15:59] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[20:15:59] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[20:15:59] [main/INFO] [GradleStart]: Injecting location in coremod li.cil.oc.common.launch.TransformerLoader
+[20:15:59] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:15:59] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[20:15:59] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[20:15:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:15:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:15:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[20:16:00] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
+[20:16:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[20:16:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[20:16:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[20:16:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[20:16:01] [main/INFO] [GradleStart]: Remapping AccessTransformer rules...
+[20:16:01] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[20:16:01] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[20:16:01] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.server.MinecraftServer}
+[20:16:03] [main/INFO] [OpenComputers]: Successfully patched net/minecraft/entity/EntityLiving.recreateLeash.
+[20:16:06] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer]: Starting minecraft server version 1.12.2
+[20:16:06] [Server thread/INFO] [FML]: MinecraftForge v14.23.5.2816 Initialized
+[20:16:06] [Server thread/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
+[20:16:06] [Server thread/INFO] [FML]: Replaced 1036 ore ingredients
+[20:16:07] [Server thread/INFO] [FML]: Searching C:\Users\Alex\Documents\GitHub\EmergingTechnology\run\.\mods for mods
+[20:16:10] [Server thread/INFO] [FML]: Forge Mod Loader has identified 12 mods to load
+[20:16:10] [Server thread/WARN] [FML]: Missing English translation for FML: assets/fml/lang/en_us.lang
+[20:16:10] [Server thread/WARN] [FML]: Missing English translation for infinitylib: assets/infinitylib/lang/en_us.lang
+[20:16:10] [Server thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, opencomputers|core, opencomputers, jei, emergingtechnology, agricraft, cucumber, infinitylib, nuclearcraft] at CLIENT
+[20:16:10] [Server thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, opencomputers|core, opencomputers, jei, emergingtechnology, agricraft, cucumber, infinitylib, nuclearcraft] at SERVER
+[20:16:12] [Server thread/INFO] [FML]: Processing ObjectHolder annotations
+[20:16:13] [Server thread/INFO] [FML]: Found 1230 ObjectHolder annotations
+[20:16:13] [Server thread/INFO] [FML]: Identifying ItemStackHolder annotations
+[20:16:13] [Server thread/INFO] [FML]: Found 0 ItemStackHolder annotations
+[20:16:13] [Server thread/INFO] [FML]: Configured a dormant chunk cache size of 0
+[20:16:13] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[20:16:13] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: OUTDATED Target: 14.23.5.2847
+[20:16:13] [Forge Version Check/INFO] [forge.VersionCheck]: [agricraft] Starting version check at https://agricraft.github.io/versions/1.12/update.json
+[20:16:14] [Forge Version Check/INFO] [forge.VersionCheck]: [agricraft] Found status: BETA Target: null
+[20:16:14] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `adapter`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:14] [Server thread/INFO] [OpenComputers]: Skipping interface ic2.api.energy.tile.IEnergySink from missing mod ic2.
+[20:16:14] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `assembler`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `cable`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `capacitor`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `carpetedcapacitor`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `case`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `charger`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `diskdrive`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `disassembler`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `keyboard`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `hologram`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `geolyzer`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `microcontroller`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `motionsensor`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `netsplitter`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `powerconverter`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `powerdistributor`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `print`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `printer`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `raid`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `redstone`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `relay`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `robot`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `screen`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `rack`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `transposer`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/WARN] [FML]: Potentially Dangerous alternative prefix `oc` for name `waypoint`, expected `opencomputers`. This could be a intended override, but in most cases indicates a broken mod.
+[20:16:15] [Server thread/INFO] [OpenComputers]: Skipping interface ic2.api.item.IBoxable from missing mod ic2.
+[20:16:15] [Server thread/INFO] [OpenComputers]: Skipping interface ic2.api.item.ISpecialElectricItem from missing mod ic2.
+[20:16:16] [Server thread/INFO] [opencomputers]: Initializing OpenComputers API.
+[20:16:25] [Server thread/INFO] [opencomputers]: Found a compatible native library: 'OpenComputersMod-1.7.4.191-lua52-native.64.dll'.
+[20:16:25] [Server thread/INFO] [opencomputers]: Found a compatible native library: 'OpenComputersMod-1.7.4.191-lua53-native.64.dll'.
+[20:16:25] [Server thread/INFO] [opencomputers]: Done with pre init phase.
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loading custom bulbs...
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loaded 2 custom bulbs.
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loading custom growth media...
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loaded 2 custom growth media.
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loading custom fluids...
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loaded 1 custom fluids.
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loading custom recipes...
+[20:16:25] [Server thread/INFO] [emergingtechnology]: EmergingTechnology - Loaded custom recipes.
+[20:16:25] [Server thread/INFO] [agricore]: Initializing core!
+[20:16:25] [Server thread/INFO] [agricore]: Loading config!
+[20:16:25] [Server thread/INFO] [agricore]: Loaded config!
+[20:16:25] [Server thread/INFO] [agricore]: Configuring modules!
+[20:16:25] [Server thread/INFO] [agricore]: Configured modules!
+[20:16:25] [Server thread/INFO] [agricore]: Saving config!
+[20:16:25] [Server thread/INFO] [agricore]: Saved config!
+[20:16:25] [Server thread/INFO] [agricore]: Initialized core!
+[20:16:30] [Server thread/INFO] [agricraft]: Attempting to read AgriCraft JSONs!
+[20:16:31] [Server thread/INFO] [agricraft]: Finished trying to read AgriCraft JSONs!
+[20:16:32] [Server thread/INFO] [agricraft]: 
+Found AgriCraft Plugin:
+	- Id: thaumcraft
+	- Name: Thaumcraft Integration
+	- Status: Disabled
+[20:16:32] [Server thread/INFO] [agricraft]: 
+Found AgriCraft Plugin:
+	- Id: vanilla
+	- Name: Vanilla Minecraft Integration
+	- Status: Enabled
+[20:16:32] [Server thread/INFO] [agricraft]: 
+Found AgriCraft Plugin:
+	- Id: theoneprobe
+	- Name: The One Probe Integration
+	- Status: Enabled
+[20:16:32] [Server thread/INFO] [agricraft]: 
+Found AgriCraft Plugin:
+	- Id: enderio
+	- Name: EnderIO Integration
+	- Status: Disabled
+[20:16:32] [Server thread/INFO] [agricraft]: 
+Found AgriCraft Plugin:
+	- Id: computer
+	- Name: Computer Integration
+	- Status: Enabled
+[20:16:32] [Server thread/INFO] [nuclearcraft]: Pre Initializing...
+[20:16:33] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.tile.generator.TileFissionController.
+[20:16:34] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.tile.dummy.TileFissionPort.
+[20:16:34] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.tile.radiation.TileRadiationScrubber.
+[20:16:34] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.tile.radiation.TileGeigerCounter.
+[20:16:34] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.tile.generator.TileFusionCore.
+[20:16:36] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.multiblock.saltFission.tile.TileSaltFissionComputerPort.
+[20:16:40] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.multiblock.heatExchanger.tile.TileHeatExchangerComputerPort.
+[20:16:40] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class nc.multiblock.turbine.tile.TileTurbineComputerPort.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.shredder.ShredderTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.cooker.CookerTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.piezoelectric.PiezoelectricTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity.
+[20:16:42] [Server thread/INFO] [OpenComputers]: Successfully injected component logic into class io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity.
+[20:16:43] [Server thread/INFO] [FML]: Applying holder lookups
+[20:16:43] [Server thread/INFO] [FML]: Holder lookups applied
+[20:16:43] [Server thread/INFO] [FML]: Applying holder lookups
+[20:16:43] [Server thread/INFO] [FML]: Holder lookups applied
+[20:16:43] [Server thread/INFO] [FML]: Applying holder lookups
+[20:16:43] [Server thread/INFO] [FML]: Holder lookups applied
+[20:16:43] [Server thread/INFO] [FML]: Applying holder lookups
+[20:16:43] [Server thread/INFO] [FML]: Holder lookups applied
+[20:16:43] [Server thread/INFO] [FML]: Injecting itemstacks
+[20:16:43] [Server thread/INFO] [FML]: Itemstack injection complete
+[20:16:43] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer]: Loading properties
+[20:16:43] [Server thread/WARN] [net.minecraft.server.dedicated.PropertyManager]: server.properties does not exist
+[20:16:43] [Server thread/INFO] [net.minecraft.server.dedicated.PropertyManager]: Generating new properties file
+[20:16:43] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer]: Default game type: SURVIVAL
+[20:16:43] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer]: Generating keypair
+[20:16:44] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer]: Starting Minecraft server on *:25565
+[20:16:44] [Server thread/INFO] [net.minecraft.network.NetworkSystem]: Using default channel type
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetEmerald
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetEmerald into one gemEmerald
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_emerald!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetDiamond
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetDiamond into one gemDiamond
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_diamond!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetQuartz
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetQuartz into one gemQuartz
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_quartz!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetIron
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetIron into one ingotIron
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_iron!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetCopper
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetCopper into one ingotCopper
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_copper!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetTin
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetTin into one ingotTin
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_tin!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetLead
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetLead into one ingotLead
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_lead!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetSilver
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetSilver into one ingotSilver
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_silver!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetAluminum
+[20:16:44] [Server thread/INFO] [agricraft]: Adding a recipe to convert nine nuggetAluminum into one ingotAluminum
+[20:16:44] [Server thread/INFO] [agricraft]: Registering nugget recipe: agricraft:combine_nugget_aluminum!
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetNickel
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetPlatinum
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetOsmium
+[20:16:44] [Server thread/INFO] [agricraft]: Registering in Ore Dictionary: nuggetUnknown
+[20:16:45] [Server thread/INFO] [FML]: Ignored smelting recipe with conflicting input: 1xitem.nuclearcraft.ingot_oxide@3 = 1xitem.nuclearcraft.ingot_oxide@3
+[20:16:45] [Server thread/INFO] [FML]: Applying holder lookups
+[20:16:45] [Server thread/INFO] [FML]: Holder lookups applied
+[20:16:47] [Server thread/INFO] [opencomputers]: Found extended redstone mods, enabling tier two redstone card.
+[20:16:48] [Server thread/INFO] [opencomputers]: Initializing capabilities.
+[20:16:48] [Server thread/INFO] [opencomputers]: Done with init phase.
+[20:16:48] [Server thread/INFO] [agricraft]: Registering Soils!
+[20:16:48] [Server thread/INFO] [agricraft-api-v1]: The AgriCraft APIv1 successfully connected to AgriCraft! Thank you for including AgriCraft in your modpack!
+[20:16:48] [Server thread/INFO] [agricraft]: Registered Soils (8/8):
+[20:16:48] [Server thread/INFO] [agricraft]:  - Stone
+[20:16:48] [Server thread/INFO] [agricraft]:  - Mycelium
+[20:16:48] [Server thread/INFO] [agricraft]:  - Gravel
+[20:16:48] [Server thread/INFO] [agricraft]:  - Sand
+[20:16:48] [Server thread/INFO] [agricraft]:  - Farmland
+[20:16:48] [Server thread/INFO] [agricraft]:  - Grass
+[20:16:48] [Server thread/INFO] [agricraft]:  - Hydroponic Grow Bed
+[20:16:48] [Server thread/INFO] [agricraft]:  - Soul Sand
+[20:16:49] [Server thread/INFO] [agricraft]: Registering Plants!
+[20:16:49] [Server thread/ERROR] [agricraft]: Unable to resolve Ore Dictionary Entry: "oredict:oreOsmium".
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Condition: Invalid Item: oredict:oreOsmium!
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Requirement: Invalid Condition!
+[20:16:49] [Server thread/ERROR] [agricraft]: Unable to resolve Ore Dictionary Entry: "oredict:orePlatinum".
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Condition: Invalid Item: oredict:orePlatinum!
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Requirement: Invalid Condition!
+[20:16:49] [Server thread/ERROR] [agricraft]: Unable to resolve Ore Dictionary Entry: "oredict:oreNickel".
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Condition: Invalid Item: oredict:oreNickel!
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Requirement: Invalid Condition!
+[20:16:49] [Server thread/ERROR] [agricraft]: Unable to resolve Ore Dictionary Entry: "oredict:oreAluminum".
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Condition: Invalid Item: oredict:oreAluminum!
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Requirement: Invalid Condition!
+[20:16:49] [Server thread/INFO] [agricraft]: Registered Plants (32/36):
+[20:16:49] [Server thread/INFO] [agricraft]:  - Blue Orchid
+[20:16:49] [Server thread/INFO] [agricraft]:  - Pumpkin
+[20:16:49] [Server thread/INFO] [agricraft]:  - Carrot
+[20:16:49] [Server thread/INFO] [agricraft]:  - Melon
+[20:16:49] [Server thread/INFO] [agricraft]:  - Daisy
+[20:16:49] [Server thread/INFO] [agricraft]:  - Poppy
+[20:16:49] [Server thread/INFO] [agricraft]:  - Nether Wart
+[20:16:49] [Server thread/INFO] [agricraft]:  - Cactus
+[20:16:49] [Server thread/INFO] [agricraft]:  - Nitorwart
+[20:16:49] [Server thread/INFO] [agricraft]:  - Sugarcane
+[20:16:49] [Server thread/INFO] [agricraft]:  - Allium
+[20:16:49] [Server thread/INFO] [agricraft]:  - Emeryllis
+[20:16:49] [Server thread/INFO] [agricraft]:  - Brown Mushroom
+[20:16:49] [Server thread/INFO] [agricraft]:  - Redstodendron
+[20:16:49] [Server thread/INFO] [agricraft]:  - Red Mushroom
+[20:16:49] [Server thread/INFO] [agricraft]:  - Ferranium
+[20:16:49] [Server thread/INFO] [agricraft]:  - Red Tulip
+[20:16:49] [Server thread/INFO] [agricraft]:  - Weed
+[20:16:49] [Server thread/INFO] [agricraft]:  - Aurigold
+[20:16:49] [Server thread/INFO] [agricraft]:  - Dandelion
+[20:16:49] [Server thread/INFO] [agricraft]:  - Quartzanthemum
+[20:16:49] [Server thread/INFO] [agricraft]:  - Lapender
+[20:16:49] [Server thread/INFO] [agricraft]:  - White Tulip
+[20:16:49] [Server thread/INFO] [agricraft]:  - Cuprosia
+[20:16:49] [Server thread/INFO] [agricraft]:  - Beets
+[20:16:49] [Server thread/INFO] [agricraft]:  - Orange Tulip
+[20:16:49] [Server thread/INFO] [agricraft]:  - Plombean
+[20:16:49] [Server thread/INFO] [agricraft]:  - Potato
+[20:16:49] [Server thread/INFO] [agricraft]:  - Diamahlia
+[20:16:49] [Server thread/INFO] [agricraft]:  - Petinia
+[20:16:49] [Server thread/INFO] [agricraft]:  - Wheat
+[20:16:49] [Server thread/INFO] [agricraft]:  - Pink Tulip
+[20:16:49] [Server thread/INFO] [agricraft]: Registering Mutations!
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Mutation: Invalid Child: "resource:osmonium_plant"!
+
+Mutation:
+	- Parents:
+		- Parent 1: resource:ferranium_plant
+		- Parent 2: resource:quartzanthemum_plant
+	- Child: resource:osmonium_plant
+	- Chance: 0.25
+
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Mutation: Invalid Child: "resource:jaslumine_plant"!
+
+Mutation:
+	- Parents:
+		- Parent 1: resource:ferranium_plant
+		- Parent 2: vanilla:potato_plant
+	- Child: resource:jaslumine_plant
+	- Chance: 0.25
+
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Mutation: Invalid Child: "resource:niccissus_plant"!
+
+Mutation:
+	- Parents:
+		- Parent 1: resource:ferranium_plant
+		- Parent 2: vanilla:white_tulip_plant
+	- Child: resource:niccissus_plant
+	- Chance: 0.25
+
+[20:16:49] [Server thread/INFO] [agricore]: Invalid Mutation: Invalid Child: "resource:platiolus_plant"!
+
+Mutation:
+	- Parents:
+		- Parent 1: resource:ferranium_plant
+		- Parent 2: resource:aurigold_plant
+	- Child: resource:platiolus_plant
+	- Chance: 0.25
+
+[20:16:49] [Server thread/INFO] [agricraft]: Registered Mutations (27/31):
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:lapender_mutation: Ferranium + Potato = Lapender
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:emeryllis_mutation: Aurigold + Quartzanthemum = Emeryllis
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:poppy_mutation: Sugarcane + Melon = Poppy
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:petinia_mutation: Ferranium + Wheat = Petinia
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:dandelion_mutation: Pumpkin + Wheat = Dandelion
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:aurigold_mutation: Ferranium + Redstodendron = Aurigold
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:allium_mutation: Poppy + Blue Orchid = Allium
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:plombean_mutation: Ferranium + Brown Mushroom = Plombean
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:pink_tulip_mutation: Allium + Dandelion = Pink Tulip
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:nitorwart_mutation: Redstodendron + Carrot = Nitorwart
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:cuprosia_mutation: Ferranium + Carrot = Cuprosia
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:carrot_mutation: Wheat + Potato = Carrot
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:orange_tulip_mutation: Daisy + Blue Orchid = Orange Tulip
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:redstodendron_mutation: Ferranium + Lapender = Redstodendron
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:red_tulip_mutation: Poppy + Allium = Red Tulip
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:brown_mushroom_mutation: Potato + Carrot = Brown Mushroom
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:white_tulip_mutation: Daisy + Dandelion = White Tulip
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:melon_mutation: Sugarcane + Pumpkin = Melon
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:sugarcane_mutation: Wheat + Beets = Sugarcane
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:ferranium_mutation: Melon + Pumpkin = Ferranium
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:pumpkin_mutation: Carrot + Potato = Pumpkin
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:quartzanthemum_mutation: Redstodendron + Nitorwart = Quartzanthemum
+[20:16:49] [Server thread/INFO] [agricraft]:  - resource:diamahlia_mutation: Aurigold + Nitorwart = Diamahlia
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:cactus_mutation: Sugarcane + Potato = Cactus
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:orchid_mutation: Poppy + Dandelion = Blue Orchid
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:daisy_mutation: Dandelion + Blue Orchid = Daisy
+[20:16:49] [Server thread/INFO] [agricraft]:  - vanilla:red_mushroom_mutation: Potato + Carrot = Red Mushroom
+[20:16:49] [Server thread/INFO] [nuclearcraft]: Initializing...
+[20:16:49] [Server thread/INFO] [FML]: Injecting itemstacks
+[20:16:49] [Server thread/INFO] [FML]: Itemstack injection complete
+[20:16:49] [Server thread/INFO] [opencomputers]: Done with post init phase.
+[20:16:49] [Server thread/INFO] [nuclearcraft]: Post Initializing...
+[20:16:51] [Server thread/INFO] [FML]: Forge Mod Loader has successfully loaded 12 mods
+[20:16:51] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer]: Preparing level "world"
+[20:16:51] [Server thread/INFO] [FML]: Injecting existing registry data into this server instance
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating12
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating11
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:beam_receiver
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating10
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:creeper_egg
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:fluid_pipe_pull
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating19
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating18
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating17
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating16
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating15
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating14
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating13
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:boss_spawner
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:dense_ice
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:venus_rock_scorched
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating34
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating33
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating32
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating31
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating30
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:platform
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:glowstone_torch
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating39
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating38
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating37
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:wall_gc
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating36
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating35
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating23
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating22
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating21
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating20
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:landing_pad
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating29
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating28
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating27
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating26
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating25
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating24
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:telepad_fake
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:cavern_vines
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:boss_spawner_venus
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:collector
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:telemetry
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:geothermal_generator
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:basic_block_core
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:space_glass_clear_tin
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:refinery
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:spin_thruster
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:crashed_probe
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:concealed_redstone
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:telepad_short
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:sludge
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating90
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating89
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating88
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating87
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating86
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:laser_turret
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating85
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating84
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating83
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating82
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating81
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating80
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:spout
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:cheese
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:concealed_repeater_pow
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:view_screen
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:web_torch
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:slab_gc_double
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:block_multi
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:spacewart
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:air_lock_frame
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating56
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:mars
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating55
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating54
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating53
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating52
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:treasure_t2
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating51
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:treasure_t3
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating50
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:crude_oil_still
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:boss_spawner_mars
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating59
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:solar_array_module
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating58
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating57
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating45
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating44
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating43
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:basic_block_moon
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating42
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating41
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating40
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:mars_stairs_cobblestone
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:concealed_repeater
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:oxygen_detector
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:unlit_torch
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating49
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating48
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating47
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating46
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating78
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating77
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating76
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating75
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating74
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:panel_lighting
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating73
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:mars_machine
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating72
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating71
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating70
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:walkway
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:machine_tiered
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating79
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating67
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating66
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating65
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating64
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating63
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating62
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating61
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating60
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:emergency_box
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:distributor
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating69
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating68
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:oxygen_compressor
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:dishbase
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:bright_breathable_air
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:magnetic_table
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:slimeling_egg
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:space_station_base
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:parachest
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:air_lock_seal
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:mars_stairs_brick
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:landing_pad_full
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:concealed_detector
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:sulphuric_acid
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:moon_stairs_stone
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:space_glass_vanilla_tin
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:solar_array_controller
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:solar
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:aluminum_wire
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:miner_base_full
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:arclamp
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:space_glass_strong
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:mars_machine_t2
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:fallen_meteor
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:bright_air
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:space_glass_vanilla
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:beam_reflector
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:machine2
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:machine3
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:moon_stairs_brick
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating1
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating2
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating3
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating4
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating5
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:fluid_tank
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating6
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating7
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating8
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating9
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:treasure_chest
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:fuel
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:space_glass_clear
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:sealer
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:fluid_pipe
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:space_glass_strong_tin
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:asteroids_block
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:enclosed
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:rocket_workbench
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:unlit_torch_lit
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:miner_base
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:cargo
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:breatheable_air
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:tin_stairs_2
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:tin_stairs_1
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:grating
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:slab_gc_half
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:fuel_loader
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftplanets:venus
+[20:16:51] [Server thread/INFO] [FML]: Registry Block: Found a missing id from the world galacticraftcore:machine
+[20:16:52] [Server thread/INFO] [FML]: Applying holder lookups
+[20:16:52] [Server thread/INFO] [FML]: Holder lookups applied
+[20:16:52] [Server thread/INFO] [FML]: Loading dimension 0 (world) (net.minecraft.server.dedicated.DedicatedServer@1f127a86)
+[20:16:53] [Server thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 542 advancements
+[20:16:53] [Server thread/INFO] [FML]: Loading dimension -1 (world) (net.minecraft.server.dedicated.DedicatedServer@1f127a86)
+[20:16:54] [Server thread/INFO] [FML]: Loading dimension 1 (world) (net.minecraft.server.dedicated.DedicatedServer@1f127a86)
+[20:16:54] [Server thread/INFO] [FML]: Loading dimension 4598 (world) (net.minecraft.server.dedicated.DedicatedServer@1f127a86)
+[20:16:54] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing start region for level 0
+[20:16:55] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 1%
+[20:16:56] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 20%
+[20:16:57] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 59%
+[20:16:58] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 86%
+[20:16:59] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer]: Done (8.490s)! For help, type "help" or "?"
+[20:16:59] [Server thread/INFO] [nuclearcraft]: Server Loading...
+[20:17:00] [Server thread/INFO] [FML]: Unloading dimension -1
+[20:17:00] [Server thread/INFO] [FML]: Unloading dimension 1
+[20:17:00] [Server thread/INFO] [FML]: Unloading dimension 4598

@@ -1,0 +1,97 @@
+---- Minecraft Crash Report ----
+// I let you down. Sorry :(
+
+Time: 12/11/19 12:33 AM
+Description: Ticking block entity
+
+java.lang.RuntimeException: Slot 1 not in valid range - [0,1)
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:214)
+	at net.minecraftforge.items.ItemStackHandler.getStackInSlot(ItemStackHandler.java:73)
+	at io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity.getOutputStack(ProcessorTileEntity.java:233)
+	at io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity.doProcessing(ProcessorTileEntity.java:185)
+	at io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity.update(ProcessorTileEntity.java:163)
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:214)
+	at net.minecraftforge.items.ItemStackHandler.getStackInSlot(ItemStackHandler.java:73)
+	at io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity.getOutputStack(ProcessorTileEntity.java:233)
+	at io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity.doProcessing(ProcessorTileEntity.java:185)
+	at io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity.update(ProcessorTileEntity.java:163)
+
+-- Block entity being ticked --
+Details:
+	Name: emergingtechnology:processor // io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity
+	Block type: ID #529 (tile.emergingtechnology.processor // io.moonman.emergingtechnology.machines.processor.Processor // emergingtechnology:processor)
+	Block data value: 0 / 0x0 / 0b0000
+	Block location: World: (507,65,527), Chunk: (at 11,4,15 in 31,32; contains blocks 496,0,512 to 511,255,527), Region: (0,1; contains chunks 0,32 to 31,63, blocks 0,0,512 to 511,255,1023)
+	Actual block type: ID #529 (tile.emergingtechnology.processor // io.moonman.emergingtechnology.machines.processor.Processor // emergingtechnology:processor)
+	Actual block data value: 0 / 0x0 / 0b0000
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+
+-- Affected level --
+Details:
+	Level name: New World
+	All players: 1 total; [EntityPlayerMP['Player166'/5, l='New World', x=504.29, y=64.00, z=528.45]]
+	Chunk stats: ServerChunkCache: 425 Drop: 165
+	Level seed: -2348142960190205796
+	Level generator: ID 01 - flat, ver 0. Features enabled: true
+	Level generator options: 3;minecraft:bedrock,3*minecraft:stone,52*minecraft:sandstone,8*minecraft:sand;2;village,biome_1,decoration,stronghold,mineshaft,dungeon
+	Level spawn location: World: (494,4,537), Chunk: (at 14,0,9 in 30,33; contains blocks 480,0,528 to 495,255,543), Region: (0,1; contains chunks 0,32 to 31,63, blocks 0,0,512 to 511,255,1023)
+	Level time: 94072 game time, 99072 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 10120 (now: true), thunder time: 23161 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 588691336 bytes (561 MB) / 1296564224 bytes (1236 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2768 8 mods loaded, 8 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State     | ID                 | Version      | Source                               | Signature |
+	|:--------- |:------------------ |:------------ |:------------------------------------ |:--------- |
+	| UCHIJAAAA | minecraft          | 1.12.2       | minecraft.jar                        | None      |
+	| UCHIJAAAA | mcp                | 9.42         | minecraft.jar                        | None      |
+	| UCHIJAAAA | FML                | 8.0.99.99    | forgeSrc-1.12.2-14.23.5.2768.jar     | None      |
+	| UCHIJAAAA | forge              | 14.23.5.2768 | forgeSrc-1.12.2-14.23.5.2768.jar     | None      |
+	| UCHIJAAAA | opencomputers|core | 1.7.4.191    | minecraft.jar                        | None      |
+	| UCHIJAAAA | opencomputers      | 1.7.4.191    | OpenComputers-MC1.12.2-1.7.4.191.jar | None      |
+	| UCHIJAAAA | emergingtechnology | 1.1.8-beta   | moonman-1.1.8-beta.jar               | None      |
+	| UCHIJAAAA | nuclearcraft       | 2.18k        | NuclearCraft-2.18k-1.12.2.jar        | None      |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.4.191.jar)
+  li.cil.oc.common.asm.ClassTransformer
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 1 / 8; [EntityPlayerMP['Player166'/5, l='New World', x=504.29, y=64.00, z=528.45]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PrP",
+    "PBP",
+    "PMP"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "sheetPlastic"
+    },
+    "r": {
+      "item": "emergingtechnology:turbine"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:wind",
+    "count": 1
+  }
+}

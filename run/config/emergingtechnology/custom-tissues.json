@@ -1,0 +1,422 @@
+[
+    {
+        "name": "Peeper",
+        "entityId": "better_diving:pepper",
+        "result": "better_diving:peeper"
+    },
+    {
+        "name": "Bladderfish",
+        "entityId": "better_diving:bladderfish",
+        "result": "better_diving:bladderfish"
+    },
+    {
+        "name": "Holefish",
+        "entityId": "better_diving:holefish",
+        "result": "better_diving:holefish"
+    },
+    {
+        "name": "Garryfish",
+        "entityId": "better_diving:garryfish",
+        "result": "better_diving:garryfish"
+    },
+    {
+        "name": "Boomerang",
+        "entityId": "better_diving:boomerang",
+        "result": "better_diving:boomerang"
+    },
+    {
+        "name": "Triceratops",
+        "entityId": "fossil:fossil.triceratops",
+        "result": "fossil:triceratops_meat"
+    },
+    {
+        "name": "Velociraptor",
+        "entityId": "fossil:fossil.velociraptor",
+        "result": "fossil:velociraptor_meat"
+    },
+    {
+        "name": "Tyrannosaurus",
+        "entityId": "fossil:fossil.tyrannosaurus",
+        "result": "fossil:tyrannosaurus_meat"
+    },
+    {
+        "name": "Pterosaur",
+        "entityId": "fossil:fossil.pterosaur",
+        "result": "fossil:pterosaur_meat"
+    },
+    {
+        "name": "Plesiosaur",
+        "entityId": "fossil:fossil.plesiosaur",
+        "result": "fossil:plesiosaur_meat"
+    },
+    {
+        "name": "Mosasaurus",
+        "entityId": "fossil:fossil.mosasaurus",
+        "result": "fossil:mosasaurus_meat"
+    },
+    {
+        "name": "Stegosaurus",
+        "entityId": "fossil:fossil.stegosaurus",
+        "result": "fossil:stegosaurus_meat"
+    },
+    {
+        "name": "Dilophosaurus",
+        "entityId": "fossil:fossil.dilophosaurus",
+        "result": "fossil:dilophosaurus_meat"
+    },
+    {
+        "name": "Brachiosaurus",
+        "entityId": "fossil:fossil.brachiosaurus",
+        "result": "fossil:brachiosaurus_meat"
+    },
+    {
+        "name": "Spinosaurus",
+        "entityId": "fossil:fossil.spinosaurus",
+        "result": "fossil:spinosaurus_meat"
+    },
+    {
+        "name": "Compsognathus",
+        "entityId": "fossil:fossil.compsognathus",
+        "result": "fossil:compsognathus_meat"
+    },
+    {
+        "name": "Ankylosaurus",
+        "entityId": "fossil:fossil.ankylosaurus",
+        "result": "fossil:ankylosaurus_meat"
+    },
+    {
+        "name": "Pachycephalosaurus",
+        "entityId": "fossil:fossil.pachycephalosaurus",
+        "result": "fossil:pachycephalosaurus_meat"
+    },
+    {
+        "name": "Deinonychus",
+        "entityId": "fossil:fossil.deinonychus",
+        "result": "fossil:deinonychus_meat"
+    },
+    {
+        "name": "Gallimimus",
+        "entityId": "fossil:fossil.gallimimus",
+        "result": "fossil:gallimimus_meat"
+    },
+    {
+        "name": "Liopleurodon",
+        "entityId": "fossil:fossil.liopleurodon",
+        "result": "fossil:liopleurodon_meat"
+    },
+    {
+        "name": "Allosaurus",
+        "entityId": "fossil:fossil.allosaurus",
+        "result": "fossil:allosaurus_meat"
+    },
+    {
+        "name": "Sarcosuchus",
+        "entityId": "fossil:fossil.sarcosuchus",
+        "result": "fossil:sarcosuchus_meat"
+    },
+    {
+        "name": "Ceratosaurus",
+        "entityId": "fossil:fossil.ceratosaurus",
+        "result": "fossil:ceratosaurus_meat"
+    },
+    {
+        "name": "Dryosaurus",
+        "entityId": "fossil:fossil.dryosaurus",
+        "result": "fossil:dryosaurus_meat"
+    },
+    {
+        "name": "Therizinosaurus",
+        "entityId": "fossil:fossil.therizinosaurus",
+        "result": "fossil:therizinosaurus_meat"
+    },
+    {
+        "name": "Parasaurolophus",
+        "entityId": "fossil:fossil.parasaurolophus",
+        "result": "fossil:parasaurolophus_meat"
+    },
+    {
+        "name": "Citipati",
+        "entityId": "fossil:fossil.citipati",
+        "result": "fossil:citipati_meat"
+    },
+    {
+        "name": "Henodus",
+        "entityId": "fossil:fossil.henodus",
+        "result": "fossil:henodus_meat"
+    },
+    {
+        "name": "Icthyosaurus",
+        "entityId": "fossil:fossil.icthyosaurus",
+        "result": "fossil:icthyosaurus_meat"
+    },
+    {
+        "name": "Meganeura",
+        "entityId": "fossil:fossil.meganeura",
+        "result": "fossil:meganeura_meat"
+    },
+    {
+        "name": "Megalograptus",
+        "entityId": "fossil:fossil.megalograptus",
+        "result": "fossil:megalograptus_meat"
+    },
+    {
+        "name": "Confuciusornis",
+        "entityId": "fossil:fossil.confuciusornis",
+        "result": "fossil:confuciusornis_meat"
+    },
+    {
+        "name": "Dodo",
+        "entityId": "fossil:fossil.dodo",
+        "result": "fossil:dodo_meat"
+    },
+    {
+        "name": "Gastornis",
+        "entityId": "fossil:fossil.gastornis",
+        "result": "fossil:gastornis_meat"
+    },
+    {
+        "name": "Kelenken",
+        "entityId": "fossil:fossil.kelenken",
+        "result": "fossil:kelenken_meat"
+    },
+    {
+        "name": "Phorusrhacos",
+        "entityId": "fossil:fossil.phorusrhacos",
+        "result": "fossil:phorusrhacos_meat"
+    },
+    {
+        "name": "Titanis",
+        "entityId": "fossil:fossil.titanis",
+        "result": "fossil:titanis_meat"
+    },
+    {
+        "name": "Mammoth",
+        "entityId": "fossil:fossil.mammoth",
+        "result": "fossil:mammoth_meat"
+    },
+    {
+        "name": "Smilodon",
+        "entityId": "fossil:fossil.smilodon",
+        "result": "fossil:smilodon_meat"
+    },
+    {
+        "name": "Quagga",
+        "entityId": "fossil:fossil.quagga",
+        "result": "fossil:quagga_meat"
+    },
+    {
+        "name": "Elasmotherium",
+        "entityId": "fossil:fossil.elasmotherium",
+        "result": "fossil:elasmotherium_meat"
+    },
+    {
+        "name": "Megaloceros",
+        "entityId": "fossil:fossil.megaloceros",
+        "result": "fossil:megaloceros_meat"
+    },
+    {
+        "name": "Megalania",
+        "entityId": "fossil:fossil.megalania",
+        "result": "fossil:megalania_meat"
+    },
+    {
+        "name": "Megalodon",
+        "entityId": "fossil:fossil.megalodon",
+        "result": "fossil:megalodon_meat"
+    },
+    {
+        "name": "Platybelodon",
+        "entityId": "fossil:fossil.platybelodon",
+        "result": "fossil:platybelodon_meat"
+    },
+    {
+        "name": "Tiktaalik",
+        "entityId": "fossil:fossil.tiktaalik",
+        "result": "fossil:tiktaalik_meat"
+    },
+    {
+        "name": "Crassigyrinus",
+        "entityId": "fossil:fossil.crassigyrinus",
+        "result": "fossil:crassigyrinus_meat"
+    },
+    {
+        "name": "Diplocaulus",
+        "entityId": "fossil:fossil.diplocaulus",
+        "result": "fossil:diplocaulus_meat"
+    },
+    {
+        "name": "Edaphosaurus",
+        "entityId": "fossil:fossil.edaphosaurus",
+        "result": "fossil:edaphosaurus_meat"
+    },
+    {
+        "name": "Arthropleura",
+        "entityId": "fossil:fossil.arthropleura",
+        "result": "fossil:arthropleura_meat"
+    },
+    {
+        "name": "Frog",
+        "entityId": "quark:frog",
+        "result": "quark:frog_leg"
+    },
+    {
+        "name": "Albatross",
+        "entityId": "zawa:albatross",
+        "result": "zawa:bird_meat"
+    }, 
+    {
+        "name": "Andean Condor",
+        "entityId": "zawa:andeancondor",
+        "result": "zawa:bird_meat"
+    }, 
+    {
+        "name": "Cockatoo",
+        "entityId": "zawa:cockatoo",
+        "result": "zawa:bird_meat"
+    }, 
+    {
+        "name": "Macaw",
+        "entityId": "zawa:macaw",
+        "result": "zawa:bird_meat"
+    }, 
+    {
+        "name": "Toucan",
+        "entityId": "zawa:toucan",
+        "result": "zawa:bird_meat"
+    }, 
+    {
+        "name": "African Lion",
+        "entityId": "zawa:africanlion",
+        "result": "zawa:carnivore_meat_raw"
+    }, 
+    {
+        "name": "Amur Leopard",
+        "entityId": "zawa:amurleopard",
+        "result": "zawa:carnivore_meat_raw"
+    }, 
+    {
+        "name": "Bengal Tiger",
+        "entityId": "zawa:bengaltiger",
+        "result": "zawa:carnivore_meat_raw"
+    }, 
+    {
+        "name": "Polar Bear",
+        "entityId": "zawa:polarbear",
+        "result": "zawa:carnivore_meat_raw"
+    }, 
+    {
+        "name": "Asian Elephant",
+        "entityId": "zawa:asianelephant",
+        "result": "zawa:large_meat_raw"
+    }, 
+    {
+        "name": "Black Rhinoceros",
+        "entityId": "zawa:blackrhinoceros",
+        "result": "zawa:large_meat_raw"
+    }, 
+    {
+        "name": "Gaur",
+        "entityId": "zawa:gaur",
+        "result": "zawa:large_meat_raw"
+    }, 
+    {
+        "name": "Nile Hippopotamus",
+        "entityId": "zawa:nilehippopotamus",
+        "result": "zawa:large_meat_raw"
+    }, 
+    {
+        "name": "Okapi",
+        "entityId": "zawa:okapi",
+        "result": "zawa:large_meat_raw"
+    }, 
+    {
+        "name": "Black Spider Monkey",
+        "entityId": "zawa:blackspidermonkey",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Grévy's Zebra",
+        "entityId": "zawa:grevyszebra",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Indian Pangolin",
+        "entityId": "zawa:indianpangolin",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Koala",
+        "entityId": "zawa:koala",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Western Lowland Gorilla",
+        "entityId": "zawa:westernlowlandgorilla",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Meerkat",
+        "entityId": "zawa:meerkat",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Red Kangaroo",
+        "entityId": "zawa:redkangaroo",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Red Panda",
+        "entityId": "zawa:redpanda",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Reticulated Giraffe",
+        "entityId": "zawa:reticulatedgiraffe",
+        "result": "zawa:bush_meat_raw"
+    }, 
+    {
+        "name": "Fiji Banded Iguana",
+        "entityId": "zawa:fijibandediguana",
+        "result": "zawa:reptile_meat_raw"
+    }, 
+    {
+        "name": "Green Anaconda",
+        "entityId": "zawa:greenanaconda",
+        "result": "zawa:reptile_meat_raw"
+    }, 
+    {
+        "name": "Indian Gharial",
+        "entityId": "zawa:indiangharial",
+        "result": "zawa:reptile_meat_raw"
+    }, 
+    {
+        "name": "Hawksbill Sea Turtle",
+        "entityId": "zawa:hawksbillseaturtle",
+        "result": "zawa:reptile_meat_raw"
+    }, 
+    {
+        "name": "Japanese Giant Salamander",
+        "entityId": "zawa:japanesegiantsalamander",
+        "result": "zawa:reptile_meat_raw"
+    },
+	{
+        "name": "Tree frog",
+        "entityId": "zawa:treefrog",
+        "result": "zawa:raw_frog_leg"
+    },
+	{
+        "name": "Bottlenose Dolphin",
+        "entityId": "zawa:bottlenosedolphin",
+        "result": "zawa:cetacean_meat_raw"
+    },
+	{
+        "name": "Orca",
+        "entityId": "zawa:orca",
+        "result": "zawa:cetacean_meat_raw"
+    },
+	{
+        "name": "Pacific Walrus",
+        "entityId": "zawa:pacificwalrus",
+        "result": "zawa:blubber"
+    }
+]

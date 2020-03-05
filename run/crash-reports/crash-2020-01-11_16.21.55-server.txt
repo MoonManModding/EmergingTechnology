@@ -1,0 +1,112 @@
+---- Minecraft Crash Report ----
+// Don't do that.
+
+Time: 1/11/20 4:21 PM
+Description: Ticking block entity
+
+java.lang.RuntimeException: Slot 2 not in valid range - [0,2)
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:214)
+	at net.minecraftforge.items.ItemStackHandler.getStackInSlot(ItemStackHandler.java:73)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.getOutputStacks(HarvesterTileEntity.java:367)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.outputsFull(HarvesterTileEntity.java:320)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.canHarvest(HarvesterTileEntity.java:181)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.update(HarvesterTileEntity.java:151)
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:214)
+	at net.minecraftforge.items.ItemStackHandler.getStackInSlot(ItemStackHandler.java:73)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.getOutputStacks(HarvesterTileEntity.java:367)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.outputsFull(HarvesterTileEntity.java:320)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.canHarvest(HarvesterTileEntity.java:181)
+	at io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity.update(HarvesterTileEntity.java:151)
+
+-- Block entity being ticked --
+Details:
+	Name: emergingtechnology:harvester // io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity
+	Block type: ID #527 (tile.emergingtechnology.harvester // io.moonman.emergingtechnology.machines.harvester.Harvester // emergingtechnology:harvester)
+	Block data value: 4 / 0x4 / 0b0100
+	Block location: World: (76,65,209), Chunk: (at 12,4,1 in 4,13; contains blocks 64,0,208 to 79,255,223), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Actual block type: ID #527 (tile.emergingtechnology.harvester // io.moonman.emergingtechnology.machines.harvester.Harvester // emergingtechnology:harvester)
+	Actual block data value: 4 / 0x4 / 0b0100
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+
+-- Affected level --
+Details:
+	Level name: Biome Test
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: -1545709085425313784
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (142,64,139), Chunk: (at 14,4,11 in 8,8; contains blocks 128,0,128 to 143,255,143), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 483621 game time, 207959 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 1 (now: false), thunder time: 1 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 628301184 bytes (599 MB) / 1659371520 bytes (1582 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2816 19 mods loaded, 19 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID                  | Version          | Source                                          | Signature                                |
+	|:------ |:------------------- |:---------------- |:----------------------------------------------- |:---------------------------------------- |
+	| LCHIJA | minecraft           | 1.12.2           | minecraft.jar                                   | None                                     |
+	| LCHIJA | mcp                 | 9.42             | minecraft.jar                                   | None                                     |
+	| LCHIJA | FML                 | 8.0.99.99        | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | forge               | 14.23.5.2816     | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | opencomputers|core  | 1.7.5.192        | minecraft.jar                                   | None                                     |
+	| LCHIJA | opencomputers       | 1.7.5.192        | OpenComputers-MC1.12.2-1.7.5.192.jar            | None                                     |
+	| LCHIJA | jei                 | 4.15.0.292       | jei_1.12.2-4.15.0.292.jar                       | None                                     |
+	| LCHIJA | emergingtechnology  | 1.2.17-beta      | moonman-1.2.17-beta.jar                         | None                                     |
+	| LCHIJA | infinitylib         | 1.12.2-1.12.0    | infinitylib-1.12.0.jar                          | None                                     |
+	| LCHIJA | agricraft           | 2.12.0-1.12.0-a6 | AgriCraft-2.12.0-1.12.0-a6.jar                  | None                                     |
+	| LCHIJA | appliedenergistics2 | rv6-stable-7     | appliedenergistics2-rv6-stable-7.jar            | dfa4d3ac143316c6f32aa1a1beda1e34d42132e5 |
+	| LCHIJA | codechickenlib      | 3.2.3.358        | CodeChickenLib-1.12.2-3.2.3.358-universal.jar   | f1850c39b2516232a2108a7bd84d1cb5df93b261 |
+	| LCHIJA | redstoneflux        | 2.1.0            | RedstoneFlux-1.12-2.1.0.6-universal.jar         | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cofhcore            | 4.6.3            | CoFHCore-1.12.2-4.6.3.27-universal.jar          | None                                     |
+	| LCHIJA | cofhworld           | 1.3.1            | CoFHWorld-1.12.2-1.3.1.7-universal.jar          | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cucumber            | 1.1.3            | Cucumber-1.12.2-1.1.3.jar                       | None                                     |
+	| LCHIJA | nuclearcraft        | 2.18k            | NuclearCraft-2.18k-1.12.2.jar                   | None                                     |
+	| LCHIJA | thermalfoundation   | 2.6.3            | ThermalFoundation-1.12.2-2.6.3.27-universal.jar | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | thermaldynamics     | 2.5.5            | ThermalDynamics-1.12.2-2.5.5.21-universal.jar   | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.5.192.jar)
+  li.cil.oc.common.asm.ClassTransformer
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	AE2 Version: stable rv6-stable-7 for Forge 14.23.5.2768
+	AE2 Integration: IC2:OFF, RC:OFF, MFR:OFF, Waila:OFF, InvTweaks:OFF, JEI:ON, Mekanism:OFF, OpenComputers:ON, THE_ONE_PROBE:OFF, TESLA:OFF, CRAFTTWEAKER:OFF
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

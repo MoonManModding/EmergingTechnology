@@ -1,0 +1,117 @@
+---- Minecraft Crash Report ----
+
+WARNING: coremods are present:
+  TransformerLoader (OpenComputers-MC1.12.2-1.7.4.191.jar)
+  MicdoodlePlugin (MicdoodleCore-1.12.2-4.0.2.237.jar)
+Contact their authors BEFORE contacting forge
+
+// Hey, that tickles! Hehehe!
+
+Time: 12/7/19 1:22 PM
+Description: Ticking block entity
+
+java.lang.AbstractMethodError
+	at li.cil.oc.common.asm.template.StaticSimpleEnvironment.node(StaticSimpleEnvironment.java:33)
+	at li.cil.oc.common.asm.template.StaticSimpleEnvironment.invalidate(StaticSimpleEnvironment.java:57)
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.invalidate(LightTileEntity.java:42)
+	at net.minecraft.world.World.removeTileEntity(World.java:2684)
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:617)
+	at net.minecraft.world.World.setBlockState(World.java:401)
+	at io.moonman.emergingtechnology.block.blocks.Light.setState(Light.java:88)
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.update(LightTileEntity.java:145)
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at li.cil.oc.common.asm.template.StaticSimpleEnvironment.node(StaticSimpleEnvironment.java:33)
+	at li.cil.oc.common.asm.template.StaticSimpleEnvironment.invalidate(StaticSimpleEnvironment.java:57)
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.invalidate(LightTileEntity.java:42)
+	at net.minecraft.world.World.removeTileEntity(World.java:2684)
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:617)
+	at net.minecraft.world.World.setBlockState(World.java:401)
+	at io.moonman.emergingtechnology.block.blocks.Light.setState(Light.java:88)
+	at io.moonman.emergingtechnology.tile.tiles.LightTileEntity.update(LightTileEntity.java:145)
+
+-- Block entity being ticked --
+Details:
+	Name: emergingtechnology:light // io.moonman.emergingtechnology.tile.tiles.LightTileEntity
+	Block type: ID #527 (tile.emergingtechnology.light // io.moonman.emergingtechnology.block.blocks.Light // emergingtechnology:light)
+	Block data value: 3 / 0x3 / 0b0011
+	Block location: World: (-1957,4,-1046), Chunk: (at 11,0,10 in -123,-66; contains blocks -1968,0,-1056 to -1953,255,-1041), Region: (-4,-3; contains chunks -128,-96 to -97,-65, blocks -2048,0,-1536 to -1537,255,-1025)
+	Actual block type: ID #527 (tile.emergingtechnology.light // io.moonman.emergingtechnology.block.blocks.Light // emergingtechnology:light)
+	Actual block data value: 3 / 0x3 / 0b0011
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:2007)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:643)
+
+-- Affected level --
+Details:
+	Level name: OPENCOMPUTERS
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: -2804298319741425181
+	Level generator: ID 01 - flat, ver 0. Features enabled: true
+	Level generator options: 
+	Level spawn location: World: (-1959,4,-1052), Chunk: (at 9,0,4 in -123,-66; contains blocks -1968,0,-1056 to -1953,255,-1041), Region: (-4,-3; contains chunks -128,-96 to -97,-65, blocks -2048,0,-1536 to -1537,255,-1025)
+	Level time: 11872 game time, 11872 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 139172 (now: false), thunder time: 112041 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:842)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:743)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:592)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 581002096 bytes (554 MB) / 1411907584 bytes (1346 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2768 14 mods loaded, 14 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State     | ID                  | Version          | Source                                    | Signature |
+	|:--------- |:------------------- |:---------------- |:----------------------------------------- |:--------- |
+	| UCHIJAAAA | minecraft           | 1.12.2           | minecraft.jar                             | None      |
+	| UCHIJAAAA | mcp                 | 9.42             | minecraft.jar                             | None      |
+	| UCHIJAAAA | FML                 | 8.0.99.99        | forgeSrc-1.12.2-14.23.5.2768.jar          | None      |
+	| UCHIJAAAA | forge               | 14.23.5.2768     | forgeSrc-1.12.2-14.23.5.2768.jar          | None      |
+	| UCHIJAAAA | micdoodlecore       |                  | minecraft.jar                             | None      |
+	| UCHIJAAAA | opencomputers|core  | 1.7.4.191        | minecraft.jar                             | None      |
+	| UCHIJAAAA | opencomputers       | 1.7.4.191        | OpenComputers-MC1.12.2-1.7.4.191.jar      | None      |
+	| UCHIJAAAA | emergingtechnology  | 1.1.3-beta       | moonman-1.1.3-beta.jar                    | None      |
+	| UCHIJAAAA | infinitylib         | 1.12.2-1.12.0    | infinitylib-1.12.0.jar                    | None      |
+	| UCHIJAAAA | agricraft           | 2.12.0-1.12.0-a6 | AgriCraft-2.12.0-1.12.0-a6.jar            | None      |
+	| UCHIJAAAA | cucumber            | 1.1.3            | Cucumber-1.12.2-1.1.3.jar                 | None      |
+	| UCHIJAAAA | galacticraftcore    | 4.0.2.237        | GalacticraftCore-1.12.2-4.0.2.237.jar     | None      |
+	| UCHIJAAAA | galacticraftplanets | 4.0.2.237        | Galacticraft-Planets-1.12.2-4.0.2.237.jar | None      |
+	| UCHIJAAAA | nuclearcraft        | 2.18k            | NuclearCraft-2.18k-1.12.2.jar             | None      |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.4.191.jar)
+  li.cil.oc.common.asm.ClassTransformer
+MicdoodlePlugin (MicdoodleCore-1.12.2-4.0.2.237.jar)
+  micdoodle8.mods.miccore.MicdoodleTransformer
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

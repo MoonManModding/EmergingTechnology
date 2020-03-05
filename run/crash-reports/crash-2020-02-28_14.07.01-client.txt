@@ -1,0 +1,153 @@
+---- Minecraft Crash Report ----
+// My bad.
+
+Time: 2/28/20 2:07 PM
+Description: Unexpected error
+
+java.lang.NullPointerException: Unexpected error
+	at io.moonman.emergingtechnology.helpers.machines.AlgaeBioreactorHelper.getLightBoost(AlgaeBioreactorHelper.java:34)
+	at io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity.getLightBoost(AlgaeBioreactorTileEntity.java:285)
+	at io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity.<init>(AlgaeBioreactorTileEntity.java:104)
+	at io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactor.createNewTileEntity(AlgaeBioreactor.java:76)
+	at net.minecraft.block.Block.createTileEntity(Block.java:1517)
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:671)
+	at net.minecraft.world.World.setBlockState(World.java:401)
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:199)
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:57)
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:201)
+	at net.minecraft.client.multiplayer.PlayerControllerMP.processRightClickBlock(PlayerControllerMP.java:499)
+	at net.minecraft.client.Minecraft.rightClickMouse(Minecraft.java:1694)
+	at net.minecraft.client.Minecraft.processKeyBinds(Minecraft.java:2381)
+	at net.minecraft.client.Minecraft.runTickKeyboard(Minecraft.java:2147)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1935)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1188)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:442)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at io.moonman.emergingtechnology.helpers.machines.AlgaeBioreactorHelper.getLightBoost(AlgaeBioreactorHelper.java:34)
+	at io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity.getLightBoost(AlgaeBioreactorTileEntity.java:285)
+	at io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity.<init>(AlgaeBioreactorTileEntity.java:104)
+	at io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactor.createNewTileEntity(AlgaeBioreactor.java:76)
+	at net.minecraft.block.Block.createTileEntity(Block.java:1517)
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:671)
+	at net.minecraft.world.World.setBlockState(World.java:401)
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:199)
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:57)
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:201)
+	at net.minecraft.client.multiplayer.PlayerControllerMP.processRightClickBlock(PlayerControllerMP.java:499)
+	at net.minecraft.client.Minecraft.rightClickMouse(Minecraft.java:1694)
+	at net.minecraft.client.Minecraft.processKeyBinds(Minecraft.java:2381)
+	at net.minecraft.client.Minecraft.runTickKeyboard(Minecraft.java:2147)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player12'/210, l='MpServer', x=683.44, y=65.00, z=496.69]]
+	Chunk stats: MultiplayerChunkCache: 152, 152
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (236,64,248), Chunk: (at 12,4,8 in 14,15; contains blocks 224,0,240 to 239,255,255), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 69134 game time, 10687 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 27 total; [EntitySquid['Squid'/1421, l='MpServer', x=716.07, y=61.47, z=498.39], EntitySquid['Squid'/1424, l='MpServer', x=712.90, y=59.65, z=442.03], EntitySquid['Squid'/284, l='MpServer', x=738.65, y=61.18, z=547.56], EntityItem['item.item.seeds'/1565, l='MpServer', x=674.13, y=66.00, z=556.09], EntitySquid['Squid'/1444, l='MpServer', x=715.68, y=50.21, z=526.01], EntitySquid['Squid'/1445, l='MpServer', x=708.59, y=49.00, z=520.53], EntityBat['Bat'/1578, l='MpServer', x=675.83, y=20.03, z=460.26], EntityBat['Bat'/1461, l='MpServer', x=688.97, y=15.97, z=489.41], EntitySquid['Squid'/313, l='MpServer', x=730.08, y=55.27, z=549.82], EntitySquid['Squid'/698, l='MpServer', x=737.12, y=58.70, z=511.60], EntityBat['Bat'/1861, l='MpServer', x=633.13, y=27.64, z=525.77], EntityBat['Bat'/1862, l='MpServer', x=630.80, y=28.17, z=535.42], EntitySquid['Squid'/1479, l='MpServer', x=701.63, y=58.70, z=461.05], EntityBat['Bat'/717, l='MpServer', x=722.25, y=20.10, z=485.25], EntityRabbit['Rabbit'/1620, l='MpServer', x=659.50, y=67.00, z=565.50], EntityRabbit['Rabbit'/1621, l='MpServer', x=661.50, y=67.00, z=562.50], EntityBat['Bat'/342, l='MpServer', x=740.25, y=17.10, z=469.60], EntitySquid['Squid'/343, l='MpServer', x=734.97, y=61.02, z=469.98], EntityBat['Bat'/1499, l='MpServer', x=704.61, y=34.14, z=466.95], EntitySquid['Squid'/1500, l='MpServer', x=691.08, y=61.06, z=468.33], EntityMinecartChest['Minecart with Chest'/222, l='MpServer', x=751.50, y=22.06, z=445.50], EntityBat['Bat'/366, l='MpServer', x=750.90, y=13.03, z=448.53], EntitySquid['Squid'/367, l='MpServer', x=731.28, y=58.98, z=444.93], EntityBat['Bat'/1654, l='MpServer', x=657.21, y=16.03, z=485.34], EntityPlayerSP['Player12'/210, l='MpServer', x=683.44, y=65.00, z=496.69], EntityBat['Bat'/1405, l='MpServer', x=707.47, y=19.00, z=441.47], EntityBat['Bat'/1406, l='MpServer', x=714.27, y=20.32, z=459.88]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:461)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2889)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:471)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 455228472 bytes (434 MB) / 1513619456 bytes (1443 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 6, tcache: 1, allocated: 12, tallocated: 94
+	FML: MCP 9.42 Powered by Forge 14.23.5.2816 22 mods loaded, 22 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID                 | Version          | Source                                          | Signature                                |
+	|:------ |:------------------ |:---------------- |:----------------------------------------------- |:---------------------------------------- |
+	| LCHIJA | minecraft          | 1.12.2           | minecraft.jar                                   | None                                     |
+	| LCHIJA | mcp                | 9.42             | minecraft.jar                                   | None                                     |
+	| LCHIJA | FML                | 8.0.99.99        | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | forge              | 14.23.5.2816     | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | opencomputers|core | 1.7.5.198        | minecraft.jar                                   | None                                     |
+	| LCHIJA | opencomputers      | 1.7.5.198        | OpenComputers-MC1.12.2-1.7.5.198.jar            | None                                     |
+	| LCHIJA | crafttweaker       | 4.1.8            | CraftTweaker2-MC1120-Main-1.12-4.1.8.468.jar    | None                                     |
+	| LCHIJA | ctgui              | 1.0.0            | CraftTweaker2-MC1120-Main-1.12-4.1.8.468.jar    | None                                     |
+	| LCHIJA | jei                | 4.15.0.292       | jei_1.12.2-4.15.0.292.jar                       | None                                     |
+	| LCHIJA | emergingtechnology | 1.3.9-beta       | moonman-1.3.9-beta.jar                          | None                                     |
+	| LCHIJA | infinitylib        | 1.12.2-1.12.0    | infinitylib-1.12.0.jar                          | None                                     |
+	| LCHIJA | agricraft          | 2.12.0-1.12.0-a6 | AgriCraft-2.12.0-1.12.0-a6.jar                  | None                                     |
+	| LCHIJA | codechickenlib     | 3.2.3.358        | CodeChickenLib-1.12.2-3.2.3.358-universal.jar   | f1850c39b2516232a2108a7bd84d1cb5df93b261 |
+	| LCHIJA | redstoneflux       | 2.1.0            | RedstoneFlux-1.12-2.1.0.6-universal.jar         | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cofhcore           | 4.6.3            | CoFHCore-1.12.2-4.6.3.27-universal.jar          | None                                     |
+	| LCHIJA | cofhworld          | 1.3.1            | CoFHWorld-1.12.2-1.3.1.7-universal.jar          | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cucumber           | 1.1.3            | Cucumber-1.12.2-1.1.3.jar                       | None                                     |
+	| LCHIJA | dumpsterdiving     | 1.0 - 1.12.2     | Dumpster+Diving+1.5.1+-+1.12.2.jar              | None                                     |
+	| LCHIJA | nuclearcraft       | 2.18k            | NuclearCraft-2.18k-1.12.2.jar                   | None                                     |
+	| LCHIJA | theoneprobe        | 1.4.28           | theoneprobe-1.12-1.4.28.jar                     | None                                     |
+	| LCHIJA | thermalfoundation  | 2.6.3            | ThermalFoundation-1.12.2-2.6.3.27-universal.jar | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | thermaldynamics    | 2.5.5            | ThermalDynamics-1.12.2-2.5.5.21-universal.jar   | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.5.198.jar)
+  li.cil.oc.common.asm.ClassTransformer
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 432.00' Renderer: 'GeForce GTX 750 Ti/PCIe/SSE2'
+	Launched Version: 1.12.2
+	LWJGL: 2.9.4
+	OpenGL: GeForce GTX 750 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 432.00, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: emergingtechnology
+	Current Language: English (United Kingdom)
+	Profiler Position: N/A (disabled)
+	CPU: 6x AMD FX(tm)-6300 Six-Core Processor 

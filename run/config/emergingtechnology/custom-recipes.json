@@ -1,0 +1,10 @@
+{
+    "fabricator": [
+        {
+            "input": "minecraft:glowstone",
+            "output": "minecraft:glowstone",
+            "inputCount": "1",
+            "outputCount": "2"
+        }
+    ]
+}

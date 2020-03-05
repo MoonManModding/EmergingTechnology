@@ -1,0 +1,18 @@
+{
+  "path": "mod_dumpsterdiving/soils/landfill_soil.json",
+  "enabled": true,
+  "id": "landfill_soil",
+  "name": "Contaminated Dirt",
+  "varients": [
+    {
+      "item": "dumpsterdiving:lf_dirt",
+      "meta": 0,
+      "tags": "",
+      "ignoreMeta": true,
+      "ignoreTags": [
+        "*"
+      ],
+      "useOreDict": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "minecraft:recipes/decorations/torch": {
+    "criteria": {
+      "has_stone_pickaxe": "2020-01-08 10:25:49 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-01-08 10:25:49 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2020-01-08 10:25:49 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_by_something": "2020-01-08 10:26:22 +0000"
+    },
+    "done": true
+  },
+  "minecraft:story/upgrade_tools": {
+    "criteria": {
+      "stone_pickaxe": "2020-01-08 10:25:49 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "forest": "2020-01-08 10:26:24 +0000",
+      "deep_ocean": "2020-01-08 10:26:53 +0000",
+      "beaches": "2020-01-08 10:25:49 +0000",
+      "plains": "2020-01-08 10:26:34 +0000",
+      "ocean": "2020-01-08 10:26:39 +0000",
+      "roofed_forest": "2020-01-08 10:27:01 +0000",
+      "river": "2020-01-08 10:26:54 +0000"
+    },
+    "done": false
+  }
+}

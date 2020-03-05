@@ -1,0 +1,33 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-01-02 20:40:24 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2020-01-02 20:48:34 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/kill_a_mob": {
+    "criteria": {
+      "zombie": "2020-01-02 20:48:34 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/kill_all_mobs": {
+    "criteria": {
+      "zombie": "2020-01-02 20:48:34 +0000"
+    },
+    "done": false
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "taiga": "2020-01-02 20:40:24 +0000",
+      "extreme_hills": "2020-01-02 20:40:52 +0000"
+    },
+    "done": false
+  }
+}

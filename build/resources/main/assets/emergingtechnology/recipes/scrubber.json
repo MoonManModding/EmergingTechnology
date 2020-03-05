@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PbP",
+    "rBr",
+    "WMW"
+  ],
+  "key": {
+    "b": {
+      "item": "emergingtechnology:turbine"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "P": {
+      "item": "minecraft:iron_bars"
+    },
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "rodPlastic"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "blockWool"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:scrubber",
+    "count": 1
+  }
+}

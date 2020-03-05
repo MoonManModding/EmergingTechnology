@@ -1,0 +1,14 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2019-12-06 14:00:10 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2019-12-06 14:00:10 +0000"
+    },
+    "done": false
+  }
+}

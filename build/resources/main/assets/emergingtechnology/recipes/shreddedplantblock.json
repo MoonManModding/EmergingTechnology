@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "emergingtechnology:shreddedplant"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:shreddedplantblock",
+    "count": 1
+  }
+}

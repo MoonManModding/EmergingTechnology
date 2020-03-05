@@ -1,0 +1,41 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:hydroponic_empty",
+        "textures": {
+            "mediumtype": "emergingtechnology:blocks/grey"
+        }
+    },
+    "variants": {
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {
+                "model": "emergingtechnology:hydroponic"
+            }
+        ],
+        "facing": {
+            "north": {},
+            "south": {
+                "y": 180
+            },
+            "west": {
+                "y": 270
+            },
+            "east": {
+                "y": 90
+            },
+            "up": {
+                "x": -90
+            },
+            "down": {
+                "x": 90
+            }
+        },
+        "haswater": {
+            "false": {"model": "emergingtechnology:hydroponic_empty"},
+            "true": {"model": "emergingtechnology:hydroponic_empty"}
+        }
+    }
+}

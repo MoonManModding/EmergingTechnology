@@ -1,0 +1,10 @@
+[
+    {
+        "name": "minecraft:redstone",
+	"color": 1,
+        "growthModifier": "1",
+        "energyUsage": "10",
+	"boostModifier": "100",
+	"plants" : ["minecraft:nether_wart"]
+    }
+]

@@ -1,0 +1,64 @@
+{
+  "minecraft:recipes/transportation/acacia_boat": {
+    "criteria": {
+      "entered_water": "2020-02-28 21:17:15 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-02-28 21:14:54 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "entered_water": "2020-02-28 21:17:15 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2020-02-28 21:14:54 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "entered_water": "2020-02-28 21:17:15 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/boat": {
+    "criteria": {
+      "entered_water": "2020-02-28 21:17:15 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "entered_water": "2020-02-28 21:17:15 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "entered_water": "2020-02-28 21:17:15 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "forest": "2020-02-28 21:16:52 +0000",
+      "swampland": "2020-02-28 21:17:07 +0000",
+      "birch_forest": "2020-02-28 21:21:15 +0000",
+      "extreme_hills_with_trees": "2020-02-28 21:16:41 +0000",
+      "forest_hills": "2020-02-28 21:16:55 +0000",
+      "plains": "2020-02-28 21:17:36 +0000",
+      "extreme_hills": "2020-02-28 21:16:35 +0000",
+      "river": "2020-02-28 21:16:32 +0000",
+      "desert": "2020-02-28 21:17:39 +0000"
+    },
+    "done": false
+  }
+}

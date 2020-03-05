@@ -1,0 +1,20 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-01-12 23:08:45 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:devices/lithium_ion_battery_basic": {
+    "criteria": {
+      "has_item": "2020-01-12 23:08:44 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "extreme_hills": "2020-01-12 23:08:45 +0000"
+    },
+    "done": false
+  }
+}

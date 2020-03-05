@@ -1,0 +1,133 @@
+---- Minecraft Crash Report ----
+// You're mean.
+
+Time: 1/6/20 1:01 AM
+Description: Initializing game
+
+java.lang.NullPointerException: Can't use a null-name for the registry, object null.
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:864)
+	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:294)
+	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+	at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+	at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+	at io.moonman.emergingtechnology.init.RegistrationHandler.registerItems(RegistrationHandler.java:128)
+	at io.moonman.emergingtechnology.proxy.CommonProxy.registerItems(CommonProxy.java:35)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_7_CommonProxy_registerItems_Register.invoke(.dynamic)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
+	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)
+	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)
+	at net.minecraftforge.registries.GameData.fireRegistryEvents(GameData.java:809)
+	at net.minecraftforge.fml.common.Loader.preinitializeMods(Loader.java:628)
+	at net.minecraftforge.fml.client.FMLClientHandler.beginMinecraftLoading(FMLClientHandler.java:252)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:514)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:422)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:864)
+	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:294)
+	at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+	at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+	at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+	at io.moonman.emergingtechnology.init.RegistrationHandler.registerItems(RegistrationHandler.java:128)
+	at io.moonman.emergingtechnology.proxy.CommonProxy.registerItems(CommonProxy.java:35)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_7_CommonProxy_registerItems_Register.invoke(.dynamic)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
+	at net.minecraftforge.fml.common.eventhandler.EventBus$1.invoke(EventBus.java:144)
+	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)
+	at net.minecraftforge.registries.GameData.fireRegistryEvents(GameData.java:809)
+	at net.minecraftforge.fml.common.Loader.preinitializeMods(Loader.java:628)
+	at net.minecraftforge.fml.client.FMLClientHandler.beginMinecraftLoading(FMLClientHandler.java:252)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:514)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.Minecraft.run(Minecraft.java:422)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 346646552 bytes (330 MB) / 879755264 bytes (839 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2816 19 mods loaded, 19 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State | ID                  | Version          | Source                                          | Signature                                |
+	|:----- |:------------------- |:---------------- |:----------------------------------------------- |:---------------------------------------- |
+	| LCH   | minecraft           | 1.12.2           | minecraft.jar                                   | None                                     |
+	| LCH   | mcp                 | 9.42             | minecraft.jar                                   | None                                     |
+	| LCH   | FML                 | 8.0.99.99        | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCH   | forge               | 14.23.5.2816     | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCH   | opencomputers|core  | 1.7.5.192        | minecraft.jar                                   | None                                     |
+	| LCH   | opencomputers       | 1.7.5.192        | OpenComputers-MC1.12.2-1.7.5.192.jar            | None                                     |
+	| LCH   | jei                 | 4.15.0.292       | jei_1.12.2-4.15.0.292.jar                       | None                                     |
+	| LCH   | emergingtechnology  | 1.2.14-beta      | moonman-1.2.14-beta.jar                         | None                                     |
+	| LCH   | infinitylib         | 1.12.2-1.12.0    | infinitylib-1.12.0.jar                          | None                                     |
+	| LCH   | agricraft           | 2.12.0-1.12.0-a6 | AgriCraft-2.12.0-1.12.0-a6.jar                  | None                                     |
+	| LCH   | appliedenergistics2 | rv6-stable-7     | appliedenergistics2-rv6-stable-7.jar            | dfa4d3ac143316c6f32aa1a1beda1e34d42132e5 |
+	| LCH   | codechickenlib      | 3.2.3.358        | CodeChickenLib-1.12.2-3.2.3.358-universal.jar   | f1850c39b2516232a2108a7bd84d1cb5df93b261 |
+	| LCH   | redstoneflux        | 2.1.0            | RedstoneFlux-1.12-2.1.0.6-universal.jar         | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCH   | cofhcore            | 4.6.3            | CoFHCore-1.12.2-4.6.3.27-universal.jar          | None                                     |
+	| LCH   | cofhworld           | 1.3.1            | CoFHWorld-1.12.2-1.3.1.7-universal.jar          | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCH   | cucumber            | 1.1.3            | Cucumber-1.12.2-1.1.3.jar                       | None                                     |
+	| LCH   | nuclearcraft        | 2.18k            | NuclearCraft-2.18k-1.12.2.jar                   | None                                     |
+	| LCH   | thermalfoundation   | 2.6.3            | ThermalFoundation-1.12.2-2.6.3.27-universal.jar | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCH   | thermaldynamics     | 2.5.5            | ThermalDynamics-1.12.2-2.5.5.21-universal.jar   | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.5.192.jar)
+  li.cil.oc.common.asm.ClassTransformer
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 432.00' Renderer: 'GeForce GTX 750 Ti/PCIe/SSE2'
+	AE2 Version: stable rv6-stable-7 for Forge 14.23.5.2768
+	Launched Version: 1.12.2
+	LWJGL: 2.9.4
+	OpenGL: GeForce GTX 750 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 432.00, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: emergingtechnology
+	Current Language: English (United Kingdom)
+	Profiler Position: N/A (disabled)
+	CPU: 6x AMD FX(tm)-6300 Six-Core Processor 

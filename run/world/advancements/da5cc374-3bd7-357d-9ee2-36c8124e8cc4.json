@@ -1,0 +1,15 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2019-12-06 11:34:01 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "taiga": "2019-12-06 11:34:01 +0000",
+      "extreme_hills": "2019-12-06 11:34:24 +0000"
+    },
+    "done": false
+  }
+}

@@ -1,0 +1,188 @@
+---- Minecraft Crash Report ----
+// There are four lights!
+
+Time: 2/25/20 11:10 PM
+Description: Tesselating block model
+
+com.google.common.util.concurrent.UncheckedExecutionException: java.lang.ArrayIndexOutOfBoundsException: -1
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2217)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4154)
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158)
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147)
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153)
+	at net.minecraftforge.client.model.ModelLoader$VanillaModelWrapper.bake(ModelLoader.java:419)
+	at net.minecraftforge.client.model.ModelLoader$VanillaModelWrapper$1.getQuads(ModelLoader.java:503)
+	at net.minecraftforge.client.model.pipeline.ForgeBlockModelRenderer.render(ForgeBlockModelRenderer.java:99)
+	at net.minecraftforge.client.model.pipeline.ForgeBlockModelRenderer.renderModelSmooth(ForgeBlockModelRenderer.java:85)
+	at net.minecraft.client.renderer.BlockModelRenderer.renderModel(BlockModelRenderer.java:47)
+	at net.minecraft.client.renderer.BlockModelRenderer.renderModel(BlockModelRenderer.java:38)
+	at net.minecraftforge.client.model.animation.AnimationTESR.renderTileEntityFast(AnimationTESR.java:81)
+	at net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.render(TileEntityRendererDispatcher.java:159)
+	at net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.render(TileEntityRendererDispatcher.java:133)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:732)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1400)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1312)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1115)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1209)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:442)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: -1
+	at net.minecraftforge.client.model.animation.ModelBlockAnimation$MBClip$MBJointClip.apply(ModelBlockAnimation.java:347)
+	at net.minecraftforge.common.model.animation.Clips$2.apply(Clips.java:315)
+	at net.minecraftforge.client.model.ModelStateComposition.apply(ModelStateComposition.java:43)
+	at net.minecraftforge.client.model.animation.ModelBlockAnimation.getPartTransform(ModelBlockAnimation.java:529)
+	at net.minecraftforge.client.model.ModelLoader$VanillaModelWrapper.bakeImpl(ModelLoader.java:435)
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader$1.load(ModelLoader.java:822)
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader$1.load(ModelLoader.java:818)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3716)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2424)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2298)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2211)
+	... 32 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2217)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4154)
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158)
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147)
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153)
+	at net.minecraftforge.client.model.ModelLoader$VanillaModelWrapper.bake(ModelLoader.java:419)
+	at net.minecraftforge.client.model.ModelLoader$VanillaModelWrapper$1.getQuads(ModelLoader.java:503)
+	at net.minecraftforge.client.model.pipeline.ForgeBlockModelRenderer.render(ForgeBlockModelRenderer.java:99)
+	at net.minecraftforge.client.model.pipeline.ForgeBlockModelRenderer.renderModelSmooth(ForgeBlockModelRenderer.java:85)
+
+-- Block model being tesselated --
+Details:
+	Block: emergingtechnology:harvester[facing=north,static=false]
+	Block location: World: (804,5,864), Chunk: (at 4,0,0 in 50,54; contains blocks 800,0,864 to 815,255,879), Region: (1,1; contains chunks 32,32 to 63,63, blocks 512,0,512 to 1023,255,1023)
+	Using AO: true
+Stacktrace:
+	at net.minecraft.client.renderer.BlockModelRenderer.renderModel(BlockModelRenderer.java:47)
+	at net.minecraft.client.renderer.BlockModelRenderer.renderModel(BlockModelRenderer.java:38)
+	at net.minecraftforge.client.model.animation.AnimationTESR.renderTileEntityFast(AnimationTESR.java:81)
+
+-- Block Entity Details --
+Details:
+	Name: emergingtechnology:harvester // io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity
+	Block type: ID #547 (tile.emergingtechnology.harvester // io.moonman.emergingtechnology.machines.harvester.Harvester // emergingtechnology:harvester)
+	Block data value: 2 / 0x2 / 0b0010
+	Block location: World: (804,5,864), Chunk: (at 4,0,0 in 50,54; contains blocks 800,0,864 to 815,255,879), Region: (1,1; contains chunks 32,32 to 63,63, blocks 512,0,512 to 1023,255,1023)
+	Actual block type: ID #547 (tile.emergingtechnology.harvester // io.moonman.emergingtechnology.machines.harvester.Harvester // emergingtechnology:harvester)
+	Actual block data value: 2 / 0x2 / 0b0010
+Stacktrace:
+	at net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.render(TileEntityRendererDispatcher.java:159)
+	at net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.render(TileEntityRendererDispatcher.java:133)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:732)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1400)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1312)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player287'/59, l='MpServer', x=804.96, y=4.00, z=862.20]]
+	Chunk stats: MultiplayerChunkCache: 169, 169
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (839,4,888), Chunk: (at 7,0,8 in 52,55; contains blocks 832,0,880 to 847,255,895), Region: (1,1; contains chunks 32,32 to 63,63, blocks 512,0,512 to 1023,255,1023)
+	Level time: 753058 game time, 10927 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 17 total; [EntitySheep['Sheep'/32, l='MpServer', x=869.45, y=4.00, z=920.81], EntityChicken['Chicken'/4, l='MpServer', x=733.17, y=4.00, z=913.42], EntityPig['Pig'/6, l='MpServer', x=740.26, y=4.00, z=824.78], EntityItem['item.item.egg'/7, l='MpServer', x=741.89, y=4.00, z=896.20], EntitySheep['Sheep'/10, l='MpServer', x=759.54, y=4.00, z=887.77], EntityHorse['Horse'/11, l='MpServer', x=764.45, y=4.00, z=906.86], EntityPig['Pig'/12, l='MpServer', x=761.33, y=4.00, z=923.48], EntityPlayerSP['Player287'/59, l='MpServer', x=804.96, y=4.00, z=862.20], EntityChicken['Chicken'/16, l='MpServer', x=779.69, y=4.00, z=850.87], EntityPig['Pig'/17, l='MpServer', x=774.74, y=4.00, z=893.53], EntityPig['Pig'/22, l='MpServer', x=831.44, y=4.00, z=849.27], EntityChicken['Chicken'/23, l='MpServer', x=827.17, y=4.00, z=867.67], EntityPig['Pig'/24, l='MpServer', x=820.30, y=4.00, z=872.59], EntityPig['Pig'/25, l='MpServer', x=820.50, y=2.00, z=922.34], EntityChicken['Chicken'/28, l='MpServer', x=850.11, y=4.00, z=820.30], EntityItem['item.item.egg'/29, l='MpServer', x=850.97, y=4.00, z=821.23], EntityCow['Cow'/31, l='MpServer', x=878.72, y=4.00, z=845.20]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:461)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2889)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:463)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 378745968 bytes (361 MB) / 1347944448 bytes (1285 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2816 21 mods loaded, 21 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID                 | Version          | Source                                          | Signature                                |
+	|:------ |:------------------ |:---------------- |:----------------------------------------------- |:---------------------------------------- |
+	| LCHIJA | minecraft          | 1.12.2           | minecraft.jar                                   | None                                     |
+	| LCHIJA | mcp                | 9.42             | minecraft.jar                                   | None                                     |
+	| LCHIJA | FML                | 8.0.99.99        | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | forge              | 14.23.5.2816     | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | opencomputers|core | 1.7.5.198        | minecraft.jar                                   | None                                     |
+	| LCHIJA | opencomputers      | 1.7.5.198        | OpenComputers-MC1.12.2-1.7.5.198.jar            | None                                     |
+	| LCHIJA | crafttweaker       | 4.1.8            | CraftTweaker2-MC1120-Main-1.12-4.1.8.468.jar    | None                                     |
+	| LCHIJA | ctgui              | 1.0.0            | CraftTweaker2-MC1120-Main-1.12-4.1.8.468.jar    | None                                     |
+	| LCHIJA | jei                | 4.15.0.292       | jei_1.12.2-4.15.0.292.jar                       | None                                     |
+	| LCHIJA | emergingtechnology | 1.3.8-beta       | moonman-1.3.8-beta.jar                          | None                                     |
+	| LCHIJA | infinitylib        | 1.12.2-1.12.0    | infinitylib-1.12.0.jar                          | None                                     |
+	| LCHIJA | agricraft          | 2.12.0-1.12.0-a6 | AgriCraft-2.12.0-1.12.0-a6.jar                  | None                                     |
+	| LCHIJA | codechickenlib     | 3.2.3.358        | CodeChickenLib-1.12.2-3.2.3.358-universal.jar   | f1850c39b2516232a2108a7bd84d1cb5df93b261 |
+	| LCHIJA | redstoneflux       | 2.1.0            | RedstoneFlux-1.12-2.1.0.6-universal.jar         | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cofhcore           | 4.6.3            | CoFHCore-1.12.2-4.6.3.27-universal.jar          | None                                     |
+	| LCHIJA | cofhworld          | 1.3.1            | CoFHWorld-1.12.2-1.3.1.7-universal.jar          | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cucumber           | 1.1.3            | Cucumber-1.12.2-1.1.3.jar                       | None                                     |
+	| LCHIJA | nuclearcraft       | 2.18k            | NuclearCraft-2.18k-1.12.2.jar                   | None                                     |
+	| LCHIJA | theoneprobe        | 1.4.28           | theoneprobe-1.12-1.4.28.jar                     | None                                     |
+	| LCHIJA | thermalfoundation  | 2.6.3            | ThermalFoundation-1.12.2-2.6.3.27-universal.jar | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | thermaldynamics    | 2.5.5            | ThermalDynamics-1.12.2-2.5.5.21-universal.jar   | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.5.198.jar)
+  li.cil.oc.common.asm.ClassTransformer
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 432.00' Renderer: 'GeForce GTX 750 Ti/PCIe/SSE2'
+	Launched Version: 1.12.2
+	LWJGL: 2.9.4
+	OpenGL: GeForce GTX 750 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 432.00, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: emergingtechnology
+	Current Language: English (United Kingdom)
+	Profiler Position: N/A (disabled)
+	CPU: 6x AMD FX(tm)-6300 Six-Core Processor 

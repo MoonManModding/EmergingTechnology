@@ -1,0 +1,27 @@
+local component = require "component"
+local event = require "event"
+local term = require "term"
+local computer = require "computer"
+
+growbed = component.etech_grow_bed
+
+repeat
+  term.clear()
+  local name = growbed.getPlantName()
+  local light = growbed.getLightLevel()
+  local growth = growbed.getPlantGrowth()
+  local water = growbed.getWaterLevel()
+
+  print("- Hydroponic Grow Bed - ")
+  print("")
+  print("Crop: " .. name)
+  print("Light: " .. light)
+  print("Growth: " .. growth)
+  print("Water: " .. water)
+  print("")
+  
+  if growth == 7 then
+    print("Crop is ready for harvest!")
+  end  
+
+until event.pull(1) == "interrupted"

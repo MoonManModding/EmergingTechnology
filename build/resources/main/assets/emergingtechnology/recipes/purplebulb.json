@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pIp",
+    "gBg",
+    "pIp"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:gold_ingot"
+    },
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "sheetPlastic"
+    },
+    "g": {
+      "type": "forge:ore_dict",
+      "ore": "blockGlass"
+    },
+    "B": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:purplebulb",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2019-12-07 14:34:11 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2019-12-07 14:34:11 +0000"
+    },
+    "done": false
+  },
+  "nuclearcraft:fission/rtg_californium": {
+    "criteria": {
+      "has_item": "2019-12-07 14:34:10 +0000"
+    },
+    "done": true
+  }
+}

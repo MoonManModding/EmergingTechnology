@@ -1,0 +1,42 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:wind"
+    },
+    "variants": {
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {
+                "model": "emergingtechnology:wind"
+            }
+        ],
+        "facing": {
+            "north": {},
+            "south": {
+                "y": 180
+            },
+            "west": {
+                "y": 270
+            },
+            "east": {
+                "y": 90
+            },
+            "up": {
+                "x": -90
+            },
+            "down": {
+                "x": 90
+            }
+        },
+        "static": {
+            "true": {
+                "model": "emergingtechnology:windframe"
+            },
+            "false": {
+                "model": "emergingtechnology:windturbine"
+            }
+        }
+    }
+}

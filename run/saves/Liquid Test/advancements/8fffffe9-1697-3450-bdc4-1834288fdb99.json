@@ -1,0 +1,26 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2020-02-13 21:50:01 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:fission/rtg_plutonium": {
+    "criteria": {
+      "has_item": "2020-02-13 21:50:01 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2020-02-13 21:50:01 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2020-02-13 21:50:01 +0000"
+    },
+    "done": false
+  }
+}

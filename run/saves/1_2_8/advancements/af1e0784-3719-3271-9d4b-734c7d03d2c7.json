@@ -1,0 +1,50 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2019-12-29 19:07:50 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:fission/rtg_plutonium": {
+    "criteria": {
+      "has_item": "2019-12-29 19:07:50 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/coal": {
+    "criteria": {
+      "has_the_recipe": "2019-12-29 19:12:02 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2019-12-29 19:07:50 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/coal_block": {
+    "criteria": {
+      "has_at_least_9_coal": "2019-12-29 19:12:02 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_lamp": {
+    "criteria": {
+      "has_glowstone": "2019-12-29 19:07:50 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "extreme_hills": "2019-12-29 19:07:50 +0000"
+    },
+    "done": false
+  },
+  "nuclearcraft:processors/nuclear_furnace": {
+    "criteria": {
+      "has_item": "2019-12-29 19:11:23 +0000"
+    },
+    "done": true
+  }
+}

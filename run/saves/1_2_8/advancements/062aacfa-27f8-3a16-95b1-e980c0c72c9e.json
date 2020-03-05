@@ -1,0 +1,32 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2019-12-29 19:17:00 +0000"
+    },
+    "done": true
+  },
+  "nuclearcraft:fission/rtg_plutonium": {
+    "criteria": {
+      "has_item": "2019-12-29 19:16:59 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2019-12-29 19:17:20 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_lamp": {
+    "criteria": {
+      "has_glowstone": "2019-12-29 19:16:59 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "extreme_hills": "2019-12-29 19:17:00 +0000"
+    },
+    "done": false
+  }
+}

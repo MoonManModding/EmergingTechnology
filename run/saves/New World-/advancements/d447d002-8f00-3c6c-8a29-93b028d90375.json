@@ -1,0 +1,32 @@
+{
+  "nuclearcraft:root": {
+    "criteria": {
+      "location": "2019-12-10 22:56:46 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2019-12-10 22:56:46 +0000"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_lamp": {
+    "criteria": {
+      "has_glowstone": "2019-12-10 22:56:46 +0000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "desert": "2019-12-10 22:56:46 +0000"
+    },
+    "done": false
+  },
+  "nuclearcraft:fission/rtg_californium": {
+    "criteria": {
+      "has_item": "2019-12-10 22:56:46 +0000"
+    },
+    "done": true
+  }
+}

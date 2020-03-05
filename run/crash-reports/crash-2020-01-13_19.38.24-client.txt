@@ -1,0 +1,154 @@
+---- Minecraft Crash Report ----
+// This doesn't make any sense!
+
+Time: 1/13/20 7:38 PM
+Description: Unexpected error
+
+java.lang.IllegalStateException: unknown state: null
+	at net.minecraftforge.common.model.animation.AnimationStateMachine.initialize(AnimationStateMachine.java:136)
+	at net.minecraftforge.common.model.animation.AnimationStateMachine.load(AnimationStateMachine.java:228)
+	at net.minecraftforge.client.model.ModelLoaderRegistry.loadASM(ModelLoaderRegistry.java:277)
+	at io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity.<init>(TidalGeneratorTileEntity.java:41)
+	at io.moonman.emergingtechnology.machines.tidal.TidalGenerator.createNewTileEntity(TidalGenerator.java:60)
+	at net.minecraft.block.Block.createTileEntity(Block.java:1517)
+	at net.minecraft.world.chunk.Chunk.createNewTileEntity(Chunk.java:839)
+	at net.minecraft.world.chunk.Chunk.getTileEntity(Chunk.java:857)
+	at net.minecraft.world.World.getTileEntity(World.java:2613)
+	at cofh.thermaldynamics.proxy.EventHandlerClient.doDuctHighlight(EventHandlerClient.java:88)
+	at cofh.thermaldynamics.proxy.EventHandlerClient.onBlockHighlight(EventHandlerClient.java:56)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_110_EventHandlerClient_onBlockHighlight_DrawBlockHighlightEvent.invoke(.dynamic)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
+	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)
+	at net.minecraftforge.client.ForgeHooksClient.onDrawBlockHighlight(ForgeHooksClient.java:191)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1414)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1312)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1115)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1209)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:442)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at net.minecraftforge.common.model.animation.AnimationStateMachine.initialize(AnimationStateMachine.java:136)
+	at net.minecraftforge.common.model.animation.AnimationStateMachine.load(AnimationStateMachine.java:228)
+	at net.minecraftforge.client.model.ModelLoaderRegistry.loadASM(ModelLoaderRegistry.java:277)
+	at io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity.<init>(TidalGeneratorTileEntity.java:41)
+	at io.moonman.emergingtechnology.machines.tidal.TidalGenerator.createNewTileEntity(TidalGenerator.java:60)
+	at net.minecraft.block.Block.createTileEntity(Block.java:1517)
+	at net.minecraft.world.chunk.Chunk.createNewTileEntity(Chunk.java:839)
+	at net.minecraft.world.chunk.Chunk.getTileEntity(Chunk.java:857)
+	at net.minecraft.world.World.getTileEntity(World.java:2613)
+	at cofh.thermaldynamics.proxy.EventHandlerClient.doDuctHighlight(EventHandlerClient.java:88)
+	at cofh.thermaldynamics.proxy.EventHandlerClient.onBlockHighlight(EventHandlerClient.java:56)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_110_EventHandlerClient_onBlockHighlight_DrawBlockHighlightEvent.invoke(.dynamic)
+	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
+	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)
+	at net.minecraftforge.client.ForgeHooksClient.onDrawBlockHighlight(ForgeHooksClient.java:191)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1414)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1312)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player947'/6, l='MpServer', x=-1382.30, y=63.00, z=-909.90]]
+	Chunk stats: MultiplayerChunkCache: 169, 169
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (-1374,4,-903), Chunk: (at 2,0,9 in -86,-57; contains blocks -1376,0,-912 to -1361,255,-897), Region: (-3,-2; contains chunks -96,-64 to -65,-33, blocks -1536,0,-1024 to -1025,255,-513)
+	Level time: 71906 game time, 71906 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 1 total; [EntityPlayerSP['Player947'/6, l='MpServer', x=-1382.30, y=63.00, z=-909.90]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:461)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2889)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:471)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:25)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_161, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 534998840 bytes (510 MB) / 1371013120 bytes (1307 MB) up to 1905262592 bytes (1817 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.42 Powered by Forge 14.23.5.2816 17 mods loaded, 17 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID                 | Version       | Source                                          | Signature                                |
+	|:------ |:------------------ |:------------- |:----------------------------------------------- |:---------------------------------------- |
+	| LCHIJA | minecraft          | 1.12.2        | minecraft.jar                                   | None                                     |
+	| LCHIJA | mcp                | 9.42          | minecraft.jar                                   | None                                     |
+	| LCHIJA | FML                | 8.0.99.99     | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | forge              | 14.23.5.2816  | forgeSrc-1.12.2-14.23.5.2816.jar                | None                                     |
+	| LCHIJA | opencomputers|core | 1.7.5.192     | minecraft.jar                                   | None                                     |
+	| LCHIJA | opencomputers      | 1.7.5.192     | OpenComputers-MC1.12.2-1.7.5.192.jar            | None                                     |
+	| LCHIJA | jei                | 4.15.0.292    | jei_1.12.2-4.15.0.292.jar                       | None                                     |
+	| LCHIJA | emergingtechnology | 1.2.19-beta   | moonman-1.2.19-beta.jar                         | None                                     |
+	| LCHIJA | codechickenlib     | 3.2.3.358     | CodeChickenLib-1.12.2-3.2.3.358-universal.jar   | f1850c39b2516232a2108a7bd84d1cb5df93b261 |
+	| LCHIJA | redstoneflux       | 2.1.0         | RedstoneFlux-1.12-2.1.0.6-universal.jar         | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cofhcore           | 4.6.3         | CoFHCore-1.12.2-4.6.3.27-universal.jar          | None                                     |
+	| LCHIJA | cofhworld          | 1.3.1         | CoFHWorld-1.12.2-1.3.1.7-universal.jar          | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | cucumber           | 1.1.3         | Cucumber-1.12.2-1.1.3.jar                       | None                                     |
+	| LCHIJA | infinitylib        | 1.12.2-1.12.0 | infinitylib-1.12.0.jar                          | None                                     |
+	| LCHIJA | nuclearcraft       | 2.18k         | NuclearCraft-2.18k-1.12.2.jar                   | None                                     |
+	| LCHIJA | thermalfoundation  | 2.6.3         | ThermalFoundation-1.12.2-2.6.3.27-universal.jar | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+	| LCHIJA | thermaldynamics    | 2.5.5         | ThermalDynamics-1.12.2-2.5.5.21-universal.jar   | 8a6abf2cb9e141b866580d369ba6548732eff25f |
+
+	Loaded coremods (and transformers): 
+TransformerLoader (OpenComputers-MC1.12.2-1.7.5.192.jar)
+  li.cil.oc.common.asm.ClassTransformer
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 432.00' Renderer: 'GeForce GTX 750 Ti/PCIe/SSE2'
+	Launched Version: 1.12.2
+	LWJGL: 2.9.4
+	OpenGL: GeForce GTX 750 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 432.00, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: emergingtechnology
+	Current Language: English (United Kingdom)
+	Profiler Position: N/A (disabled)
+	CPU: 6x AMD FX(tm)-6300 Six-Core Processor 

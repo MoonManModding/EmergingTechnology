@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RpR"
+  ],
+  "key": {
+    "p": {
+      "item": "emergingtechnology:nozzlecomponent"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:nozzleprecise",
+    "count": 1
+  }
+}
