@@ -3,6 +3,7 @@ package io.moonman.emergingtechnology.init;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.blocks.BiocharBlock;
 import io.moonman.emergingtechnology.blocks.ClearPlasticBlock;
+import io.moonman.emergingtechnology.blocks.MachineCase;
 import io.moonman.emergingtechnology.blocks.PlasticBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -18,21 +19,25 @@ public class ModBlocks {
     public static PlasticBlock PLASTICBLOCK;
 
     @ObjectHolder(EmergingTechnology.MODID + ":" + ClearPlasticBlock.name)
-    public static ClearPlasticBlock CLEARPLASTICBLOCK;
+    public static ClearPlasticBlock CLEAR_PLASTICBLOCK;
 
     @ObjectHolder(EmergingTechnology.MODID + ":" + BiocharBlock.name)
     public static BiocharBlock BIOCHARBLOCK;
 
+    @ObjectHolder(EmergingTechnology.MODID + ":" + MachineCase.name)
+    public static MachineCase MACHINECASE;
+
     // Registration
 
     public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
-        registerBlocks(event, new PlasticBlock(), new BiocharBlock(), new ClearPlasticBlock());
+        registerBlocks(event, new PlasticBlock(), new BiocharBlock(), new MachineCase(), new ClearPlasticBlock());
     }
 
     public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
         registerBlockItems(event, createBlockItem(PLASTICBLOCK, PlasticBlock.name),
                 createBlockItem(BIOCHARBLOCK, BiocharBlock.name),
-                createBlockItem(CLEARPLASTICBLOCK, ClearPlasticBlock.name));
+                createBlockItem(MACHINECASE, MachineCase.name),
+                createBlockItem(CLEAR_PLASTICBLOCK, ClearPlasticBlock.name));
     }
 
     // Helpers
