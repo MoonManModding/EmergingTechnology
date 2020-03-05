@@ -1,0 +1,27 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "emergingtechnology:block/solar"
+        },
+        "facing=south": {
+            "model": "emergingtechnology:block/solar",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "emergingtechnology:block/solar",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "emergingtechnology:block/solar",
+            "y": 90
+        },
+        "facing=up": {
+            "model": "emergingtechnology:block/solar",
+            "x": -90
+        },
+        "facing=down": {
+            "model": "emergingtechnology:block/solar",
+            "x": 90
+        }
+    }
+}

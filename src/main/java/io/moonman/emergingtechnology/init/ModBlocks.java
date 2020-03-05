@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.blocks.BiocharBlock;
 import io.moonman.emergingtechnology.blocks.ClearPlasticBlock;
 import io.moonman.emergingtechnology.blocks.MachineCase;
 import io.moonman.emergingtechnology.blocks.PlasticBlock;
+import io.moonman.emergingtechnology.machines.solar.Solar;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -13,13 +14,17 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class ModBlocks {
 
+    // Machines
+    @ObjectHolder(EmergingTechnology.MODID + ":" + Solar.name)
+    public static Solar SOLAR;
+
     // Blocks
 
     @ObjectHolder(EmergingTechnology.MODID + ":" + PlasticBlock.name)
     public static PlasticBlock PLASTICBLOCK;
 
     @ObjectHolder(EmergingTechnology.MODID + ":" + ClearPlasticBlock.name)
-    public static ClearPlasticBlock CLEAR_PLASTICBLOCK;
+    public static ClearPlasticBlock CLEARPLASTICBLOCK;
 
     @ObjectHolder(EmergingTechnology.MODID + ":" + BiocharBlock.name)
     public static BiocharBlock BIOCHARBLOCK;
@@ -30,14 +35,14 @@ public class ModBlocks {
     // Registration
 
     public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
-        registerBlocks(event, new PlasticBlock(), new BiocharBlock(), new MachineCase(), new ClearPlasticBlock());
+        registerBlocks(event, new PlasticBlock(), new BiocharBlock(), new MachineCase(), new ClearPlasticBlock(),
+                new Solar());
     }
 
     public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
         registerBlockItems(event, createBlockItem(PLASTICBLOCK, PlasticBlock.name),
-                createBlockItem(BIOCHARBLOCK, BiocharBlock.name),
-                createBlockItem(MACHINECASE, MachineCase.name),
-                createBlockItem(CLEAR_PLASTICBLOCK, ClearPlasticBlock.name));
+                createBlockItem(BIOCHARBLOCK, BiocharBlock.name), createBlockItem(MACHINECASE, MachineCase.name),
+                createBlockItem(SOLAR, Solar.name), createBlockItem(CLEARPLASTICBLOCK, ClearPlasticBlock.name));
     }
 
     // Helpers

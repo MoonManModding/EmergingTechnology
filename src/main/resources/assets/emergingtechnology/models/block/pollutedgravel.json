@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"down": "emergingtechnology:block/gravel",
+		"up": "emergingtechnology:block/pollutedgravel",
+		"north": "emergingtechnology:block/gravel",
+		"south": "emergingtechnology:block/gravel",
+		"west": "emergingtechnology:block/gravel",
+		"east": "emergingtechnology:block/gravel",
+		"particle": "emergingtechnology:block/gravel"
+	}
+}

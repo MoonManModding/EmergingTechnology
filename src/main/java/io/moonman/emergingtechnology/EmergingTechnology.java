@@ -5,12 +5,15 @@ import org.apache.logging.log4j.Logger;
 
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.ModItemGroup;
+import io.moonman.emergingtechnology.init.ModItems;
+import io.moonman.emergingtechnology.init.ModTiles;
 import io.moonman.emergingtechnology.proxy.ClientProxy;
 import io.moonman.emergingtechnology.proxy.IProxy;
 import io.moonman.emergingtechnology.proxy.ServerProxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -63,6 +66,12 @@ public class EmergingTechnology {
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
             ModBlocks.onItemsRegistry(event);
+            ModItems.onItemsRegistry(event);
+        }
+
+        @SubscribeEvent
+        public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
+            ModTiles.onTileEntityRegistry(event);
         }
     }
 }

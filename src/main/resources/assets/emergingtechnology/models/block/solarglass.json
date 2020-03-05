@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"down": "emergingtechnology:block/yellowportfull",
+		"up": "emergingtechnology:block/yellowportfull",
+		"north": "emergingtechnology:block/solarglass",
+		"south": "emergingtechnology:block/clear",
+		"west": "emergingtechnology:block/clear",
+		"east": "emergingtechnology:block/clear",
+		"particle": "emergingtechnology:block/clear"
+	}
+}
