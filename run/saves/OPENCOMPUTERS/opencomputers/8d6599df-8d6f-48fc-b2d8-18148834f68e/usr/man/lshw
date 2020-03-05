@@ -1,8 +1,0 @@
-NAME
-  lshw - hardware viewer
-
-SYNOPSIS
-  lshw
-
-DESCRIPTION
-  'lshw' shows you the device information of your PC.

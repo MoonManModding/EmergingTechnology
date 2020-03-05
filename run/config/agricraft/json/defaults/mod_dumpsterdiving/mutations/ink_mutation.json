@@ -1,8 +1,0 @@
-{
-  "path": "mod_dumpsterdiving/mutations/ink_mutation.json",
-  "enabled": true,
-  "chance": 0.75,
-  "child": "ink_plant",
-  "parent1": "weed_plant",
-  "parent2": "weed_plant"
-}
