@@ -1,12 +1,13 @@
 package io.moonman.emergingtechnology.handlers.energy;
 
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.EnergyStorage;
 
 /**
  * A customisable EnergyStorage used in Emerging Technology
  */
-public class EnergyStorageHandler extends EnergyStorage {
+public class EnergyStorageHandler extends EnergyStorage implements INBTSerializable<CompoundNBT> {
     public EnergyStorageHandler(int capacity) {
         super(capacity, capacity, capacity, 0);
     }
@@ -15,52 +16,26 @@ public class EnergyStorageHandler extends EnergyStorage {
         super(capacity, maxTransfer, maxTransfer, 0);
     }
 
-    public EnergyStorageHandler(int capacity, int maxReceive, int maxExtract) {
-        super(capacity, maxReceive, maxExtract, 0);
+    public void setEnergy(int energy) {
+        this.energy = energy;
     }
 
-    public EnergyStorageHandler(int capacity, int maxReceive, int maxExtract, int energy) {
-        super(capacity, maxReceive, maxExtract, energy);
+    public void addEnergy(int energy) {
+        this.energy += energy;
+        if (this.energy > getMaxEnergyStored()) {
+            this.energy = getEnergyStored();
+        }
+
+        this.onContentsChanged();
     }
 
-    @Override
-    public int receiveEnergy(int maxReceive, boolean simulate) {
-        int energy = super.receiveEnergy(maxReceive, simulate);
+    public void consumeEnergy(int energy) {
+        this.energy -= energy;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
 
-        if (energy > 0)
-            onContentsChanged();
-
-        return energy;
-    }
-
-    @Override
-    public int extractEnergy(int maxExtract, boolean simulate) {
-        int energy = super.extractEnergy(maxExtract, simulate);
-
-        if (energy > 0)
-            onContentsChanged();
-
-        return energy;
-    }
-
-    @Override
-    public int getEnergyStored() {
-        return super.getEnergyStored();
-    }
-
-    @Override
-    public int getMaxEnergyStored() {
-        return super.getMaxEnergyStored();
-    }
-
-    @Override
-    public boolean canExtract() {
-        return super.canExtract();
-    }
-
-    @Override
-    public boolean canReceive() {
-        return super.canReceive();
+        this.onContentsChanged();
     }
 
     /**
@@ -70,17 +45,15 @@ public class EnergyStorageHandler extends EnergyStorage {
 
     }
 
-    public void readFromNBT(CompoundNBT compound) {
-        this.energy = compound.getInt("Energy");
-        this.capacity = compound.getInt("Capacity");
-        this.maxReceive = compound.getInt("MaxReceive");
-        this.maxExtract = compound.getInt("MaxExtract");
+    @Override
+    public CompoundNBT serializeNBT() {
+        CompoundNBT tag = new CompoundNBT();
+        tag.putInt("energy", getEnergyStored());
+        return tag;
     }
 
-    public void writeToNBT(CompoundNBT compound) {
-        compound.putInt("Energy", this.energy);
-        compound.putInt("Capacity", this.capacity);
-        compound.putInt("MaxReceive", this.maxReceive);
-        compound.putInt("MaxExtract", this.maxExtract);
+    @Override
+    public void deserializeNBT(CompoundNBT nbt) {
+        setEnergy(nbt.getInt("energy"));
     }
 }
