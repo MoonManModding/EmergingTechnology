@@ -2,16 +2,19 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class SolarHelper {
+public class SolarGlassHelper {
 
-    public static void generateAndPushEnergy(World world, BlockPos pos,
+    public static void generateAndPushEnergy(World world, BlockPos pos, Direction facing,
             LazyOptional<EnergyStorageHandler> energyHandler) {
 
-        if (world.canBlockSeeSky(pos) && world.isDaytime()) {
+        boolean frontClear = world.canBlockSeeSky(pos.offset(facing, 1)) || world.canBlockSeeSky(pos.offset(facing, 2));
+
+        if (frontClear && world.isDaytime()) {
 
             energyHandler.ifPresent(e -> {
 

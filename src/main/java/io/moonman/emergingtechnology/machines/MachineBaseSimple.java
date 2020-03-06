@@ -26,6 +26,11 @@ public class MachineBaseSimple extends Block {
         setRegistryName(name);
     }
 
+    public MachineBaseSimple(String name, Material material, SoundType sound) {
+        super(Properties.create(material).sound(sound).hardnessAndResistance(2.0f));
+        setRegistryName(name);
+    }
+
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;

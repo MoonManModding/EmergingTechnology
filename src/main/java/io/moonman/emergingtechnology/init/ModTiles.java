@@ -1,8 +1,14 @@
 package io.moonman.emergingtechnology.init;
 
+import java.util.function.Supplier;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.machines.solar.Solar;
 import io.moonman.emergingtechnology.machines.solar.SolarTile;
+import io.moonman.emergingtechnology.machines.solarglass.SolarGlass;
+import io.moonman.emergingtechnology.machines.solarglass.SolarGlassTile;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ObjectHolder;
@@ -12,8 +18,16 @@ public class ModTiles {
     @ObjectHolder(EmergingTechnology.MODID + ":" + Solar.name)
     public static TileEntityType<SolarTile> SOLAR;
 
+    @ObjectHolder(EmergingTechnology.MODID + ":" + SolarGlass.name)
+    public static TileEntityType<SolarGlassTile> SOLARGLASS;
+
     public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
-        event.getRegistry().register(TileEntityType.Builder.create(SolarTile::new, ModBlocks.SOLAR).build(null).setRegistryName(Solar.name));
+        registerTile(event, SolarTile::new, ModBlocks.SOLAR, Solar.name);
+        registerTile(event, SolarGlassTile::new, ModBlocks.SOLARGLASS, SolarGlass.name);
+    }
+
+    private static void registerTile(final RegistryEvent.Register<TileEntityType<?>> event, Supplier<? extends TileEntity> factoryIn, Block block, String name) {
+        event.getRegistry().register(TileEntityType.Builder.create(factoryIn, block).build(null).setRegistryName(name));
     }
 
 }

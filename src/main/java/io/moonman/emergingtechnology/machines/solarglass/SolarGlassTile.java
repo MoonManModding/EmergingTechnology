@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines.solar;
+package io.moonman.emergingtechnology.machines.solarglass;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -14,9 +14,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 
-public class SolarTile extends MachineTileBase {
+public class SolarGlassTile extends MachineTileBase {
 
-    public SolarTile() {
+    public SolarGlassTile() {
         super(ModTiles.SOLAR);
     }
 
@@ -65,6 +65,5 @@ public class SolarTile extends MachineTileBase {
     @Override
     public void cycle() {
         SolarHelper.generateAndPushEnergy(getWorld(), getPos(), this.energyHandler);
-        
     }
 }
