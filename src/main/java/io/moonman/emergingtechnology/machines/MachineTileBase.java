@@ -17,7 +17,7 @@ public class MachineTileBase extends TileEntity implements ITickableTileEntity {
     private int tick = 0;
 
     public boolean isClient() {
-        IWorld world = getWorld();
+        IWorld world = this.getWorld();
 
         return world.isRemote();
     }
@@ -29,8 +29,8 @@ public class MachineTileBase extends TileEntity implements ITickableTileEntity {
             return;
         }
 
-        BlockState state = getWorld().getBlockState(getPos());
-        getWorld().notifyBlockUpdate(getPos(), state, state,
+        BlockState state = this.getWorld().getBlockState(this.getPos());
+        this.getWorld().notifyBlockUpdate(this.getPos(), state, state,
                 Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
     }
 

@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
+import io.moonman.emergingtechnology.config.hydroponics.filler.FillerConfiguration;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.filler.FillerTile;
@@ -17,6 +18,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 public class FillerHelper {
 
     public static void fillAdjacent(World world, BlockPos pos, LazyOptional<FluidStorageHandler> fluidStorageHandler) {
+
         for (Direction facing : Direction.values()) {
             TileEntity neighbour = world.getTileEntity(pos.offset(facing));
 
@@ -28,7 +30,7 @@ public class FillerHelper {
                     .getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing.getOpposite());
 
             neighbourFluidHandler.ifPresent(f -> {
-                f.fill(new FluidStack(Fluids.WATER, Reference.FILLER_FLUID_CAPACITY), FluidAction.EXECUTE);
+                f.fill(new FluidStack(Fluids.WATER, FillerConfiguration.WATER_TRANSFER.get()), FluidAction.EXECUTE);
             });
         }
         fluidStorageHandler.ifPresent(f -> f.setFluid(new FluidStack(Fluids.WATER, Reference.FILLER_FLUID_CAPACITY)));

@@ -51,6 +51,6 @@ public class FillerTile extends MachineTileBase {
 
     @Override
     public void cycle() {
-        FillerHelper.fillAdjacent(getWorld(), getPos(), this.fluidHandler);
+        FillerHelper.fillAdjacent(this.getWorld(), this.getPos(), this.fluidHandler);
     }
 }

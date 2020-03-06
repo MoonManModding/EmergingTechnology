@@ -64,7 +64,7 @@ public class SolarTile extends MachineTileBase {
 
     @Override
     public void cycle() {
-        SolarHelper.generateAndPushEnergy(getWorld(), getPos(), this.energyHandler);
+        SolarHelper.generateAndPushEnergy(this.getWorld(), this.getPos(), this.energyHandler);
         
     }
 }
