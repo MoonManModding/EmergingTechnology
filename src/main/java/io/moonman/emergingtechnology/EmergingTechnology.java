@@ -36,7 +36,7 @@ public class EmergingTechnology {
 
     public EmergingTechnology() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -45,7 +45,7 @@ public class EmergingTechnology {
 
     }
 
-    private void doClientStuff(final FMLClientSetupEvent event) {
+    private void setupClient(final FMLClientSetupEvent event) {
 
     }
 

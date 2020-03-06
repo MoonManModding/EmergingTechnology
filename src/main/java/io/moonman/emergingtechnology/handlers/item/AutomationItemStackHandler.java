@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.handlers;
+package io.moonman.emergingtechnology.handlers.item;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;

@@ -19,13 +19,6 @@ public class FluidStorageHandler extends FluidTank implements INBTSerializable<C
             return fluidStack.getFluid() == Fluids.WATER;
         }
 
-    // /**
-    //  * Called when energy extracted/received
-    //  */
-    // public void onContentsChanged() {
-
-    // }
-
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT tag = new CompoundNBT();
