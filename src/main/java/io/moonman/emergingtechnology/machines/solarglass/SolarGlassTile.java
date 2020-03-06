@@ -20,9 +20,9 @@ public class SolarGlassTile extends MachineTileBase {
         super(ModTiles.SOLAR);
     }
 
-    public LazyOptional<EnergyStorageHandler> energyHandler = LazyOptional.of(this::createEnergy);
+    public LazyOptional<EnergyStorageHandler> energyHandler = LazyOptional.of(this::getEnergy);
 
-    private EnergyStorageHandler createEnergy() {
+    private EnergyStorageHandler getEnergy() {
         return new EnergyStorageHandler(Reference.SOLAR_ENERGY_CAPACITY){
             @Override
             public void onContentsChanged() {

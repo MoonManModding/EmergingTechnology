@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.blocks.BiocharBlock;
 import io.moonman.emergingtechnology.blocks.ClearPlasticBlock;
 import io.moonman.emergingtechnology.blocks.MachineCase;
 import io.moonman.emergingtechnology.blocks.PlasticBlock;
+import io.moonman.emergingtechnology.machines.filler.Filler;
 import io.moonman.emergingtechnology.machines.solar.Solar;
 import io.moonman.emergingtechnology.machines.solarglass.SolarGlass;
 import net.minecraft.block.Block;
@@ -21,6 +22,9 @@ public class ModBlocks {
 
     @ObjectHolder(EmergingTechnology.MODID + ":" + SolarGlass.name)
     public static SolarGlass SOLARGLASS;
+
+    @ObjectHolder(EmergingTechnology.MODID + ":" + Filler.name)
+    public static Filler FILLER;
 
     // Blocks
 
@@ -40,14 +44,14 @@ public class ModBlocks {
 
     public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
         registerBlocks(event, new PlasticBlock(), new BiocharBlock(), new MachineCase(), new ClearPlasticBlock(),
-                new Solar(), new SolarGlass());
+                new Solar(), new SolarGlass(), new Filler());
     }
 
     public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
         registerBlockItems(event, createBlockItem(PLASTICBLOCK, PlasticBlock.name),
                 createBlockItem(BIOCHARBLOCK, BiocharBlock.name), createBlockItem(MACHINECASE, MachineCase.name),
                 createBlockItem(SOLAR, Solar.name), createBlockItem(SOLARGLASS, SolarGlass.name),
-                createBlockItem(CLEARPLASTICBLOCK, ClearPlasticBlock.name));
+                createBlockItem(FILLER, Filler.name), createBlockItem(CLEARPLASTICBLOCK, ClearPlasticBlock.name));
     }
 
     // Helpers

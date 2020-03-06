@@ -15,34 +15,41 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ClearPlasticBlock extends SimpleBlock implements ISidedTransparentBlock {
 
-    public static final String name = "clearplasticblock";
+   public static final String name = "clearplasticblock";
 
-    public ClearPlasticBlock() {
-        super(name, Material.GLASS, SoundType.STONE);
-    }
+   public ClearPlasticBlock() {
+      super(name, Material.GLASS, SoundType.STONE);
+   }
 
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
-     }
+   @Override
+   public BlockRenderLayer getRenderLayer() {
+      return BlockRenderLayer.TRANSLUCENT;
+   }
 
-     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
-        return true;
-     }
-  
-     public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return false;
-     }
-  
-     public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return false;
-     }
-  
-     public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {
-        return false;
-     }
+   @Override
+   public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+      return true;
+   }
 
-    @OnlyIn(Dist.CLIENT)
+   @Override
+   public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
+      return false;
+   }
+
+   @Override
+   public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
+      return false;
+   }
+
+   @Override
+   public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {
+      return false;
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   @Override
    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-      return adjacentBlockState.getBlock() instanceof ISidedTransparentBlock ? true : super.isSideInvisible(state, adjacentBlockState, side);
+      return adjacentBlockState.getBlock() instanceof ISidedTransparentBlock ? true
+            : super.isSideInvisible(state, adjacentBlockState, side);
    }
 }

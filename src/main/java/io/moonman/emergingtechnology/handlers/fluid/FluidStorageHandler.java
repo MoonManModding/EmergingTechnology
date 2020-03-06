@@ -1,20 +1,41 @@
-// package io.moonman.emergingtechnology.handlers.fluid;
+package io.moonman.emergingtechnology.handlers.fluid;
 
-// import net.minecraftforge.fluids.FluidRegistry;
-// import net.minecraftforge.fluids.FluidStack;
-// import net.minecraftforge.fluids.FluidTank;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-// /**
-//  * A customisable FluidTank used in Emerging Technology for use with Water
-//  */
-// public class FluidStorageHandler extends FluidTank {
-//     public FluidStorageHandler(int capacity) {
-//         super(capacity);
-//     }
+/**
+ * A customisable FluidTank used in Emerging Technology for use with Water
+ */
+public class FluidStorageHandler extends FluidTank implements INBTSerializable<CompoundNBT> {
+    public FluidStorageHandler(int capacity) {
+        super(capacity);
+    }
 
-//     @Override
-//     public boolean canFillFluidType(FluidStack fluid) {
+    @Override
+        public boolean isFluidValid(FluidStack fluidStack) {
+            return fluidStack.getFluid() == Fluids.WATER;
+        }
 
-//         return fluid.getFluid() == FluidRegistry.WATER;
-//     }
-// }
+    // /**
+    //  * Called when energy extracted/received
+    //  */
+    // public void onContentsChanged() {
+
+    // }
+
+    @Override
+    public CompoundNBT serializeNBT() {
+        CompoundNBT tag = new CompoundNBT();
+        tag.putInt("fluid", getFluidAmount());
+        return tag;
+    }
+
+    @Override
+    public void deserializeNBT(CompoundNBT nbt) {
+        FluidStack fluidStack = new FluidStack(Fluids.WATER, nbt.getInt("fluid"));
+        setFluid(fluidStack);
+    }
+}

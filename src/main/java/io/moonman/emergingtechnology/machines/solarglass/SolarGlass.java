@@ -30,29 +30,35 @@ public class SolarGlass extends MachineBaseSimple implements ISidedTransparentBl
         return new SolarGlassTile();
     }
 
+    @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
-     }
+    }
 
-     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;
-     }
-  
-     public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    }
+
+    @Override
+    public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return false;
-     }
-  
-     public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    }
+
+    @Override
+    public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return false;
-     }
-  
-     public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {
+    }
+
+    @Override
+    public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {
         return false;
-     }
+    }
 
     @OnlyIn(Dist.CLIENT)
-   public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-      return adjacentBlockState.getBlock() instanceof ISidedTransparentBlock ? true : super.isSideInvisible(state, adjacentBlockState, side);
-   }
-
+    @Override
+    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
+        return adjacentBlockState.getBlock() instanceof ISidedTransparentBlock ? true
+                : super.isSideInvisible(state, adjacentBlockState, side);
+    }
 }
