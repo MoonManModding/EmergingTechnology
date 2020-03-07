@@ -18,7 +18,7 @@ public class FillerConfiguration {
         DISABLED = ConfigHelper.getMachineDisabled(COMMON_BUILDER);
 
         WATER_TRANSFER = COMMON_BUILDER.comment("Water Transfer Rate")
-                .defineInRange("transferRate", 1000, 0, Integer.MAX_VALUE);
+                .defineInRange("transferRate", 1000, 1, Integer.MAX_VALUE);
 
         COMMON_BUILDER.pop();
     }

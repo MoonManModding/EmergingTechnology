@@ -14,12 +14,13 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.extensions.IForgeBlockState;
 
 /**
 A basic Emerging Technology machine
 */
 
-public class MachineBaseSimple extends Block {
+public class MachineBaseSimple extends Block implements IForgeBlockState {
 
     public MachineBaseSimple(String name, Material material) {
         super(Properties.create(material).sound(SoundType.METAL).hardnessAndResistance(2.0f));

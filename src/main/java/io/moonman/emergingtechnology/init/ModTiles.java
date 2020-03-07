@@ -5,6 +5,8 @@ import java.util.function.Supplier;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.machines.filler.Filler;
 import io.moonman.emergingtechnology.machines.filler.FillerTile;
+import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
+import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTile;
 import io.moonman.emergingtechnology.machines.solar.Solar;
 import io.moonman.emergingtechnology.machines.solar.SolarTile;
 import io.moonman.emergingtechnology.machines.solarglass.SolarGlass;
@@ -26,10 +28,14 @@ public class ModTiles {
     @ObjectHolder(EmergingTechnology.MODID + ":" + Filler.name)
     public static TileEntityType<FillerTile> FILLER;
 
+    @ObjectHolder(EmergingTechnology.MODID + ":" + Hydroponic.name)
+    public static TileEntityType<HydroponicTile> HYDROPONIC;
+
     public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
         registerTile(event, SolarTile::new, ModBlocks.SOLAR, Solar.name);
         registerTile(event, SolarGlassTile::new, ModBlocks.SOLARGLASS, SolarGlass.name);
         registerTile(event, FillerTile::new, ModBlocks.FILLER, Filler.name);
+        registerTile(event, HydroponicTile::new, ModBlocks.HYDROPONIC, Hydroponic.name);
     }
 
     private static void registerTile(final RegistryEvent.Register<TileEntityType<?>> event, Supplier<? extends TileEntity> factoryIn, Block block, String name) {

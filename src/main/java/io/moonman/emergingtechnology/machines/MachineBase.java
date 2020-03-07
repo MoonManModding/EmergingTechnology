@@ -22,6 +22,8 @@ public class MachineBase extends MachineBaseSimple {
     public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
         TileEntity te = worldIn.getTileEntity(pos);
 
+        if (te == null) return;
+
         LazyOptional<IItemHandler> capability = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
         capability.ifPresent(x -> {
