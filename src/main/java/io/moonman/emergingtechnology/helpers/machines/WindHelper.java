@@ -21,7 +21,7 @@ public class WindHelper {
 
         for (int x = 0; x < 5; x ++) {
             for (int z = 0; z < 5; z++) {
-                boolean isValidNeighbour = isValidNeighbour(world.getBlockState(startPos.add(x, 0, z)));
+                boolean isValidNeighbour = isValidNeighbour(world, startPos.add(x, 0, z));
                 if (isValidNeighbour) {
                     waterBlockCount++;
                     if (waterBlockCount >= EmergingTechnologyConfig.ELECTRICS_MODULE.WIND.minimumAirBlocks) {
@@ -52,10 +52,12 @@ public class WindHelper {
         }
     }
 
-    private static boolean isValidNeighbour(IBlockState state) {
+    private static boolean isValidNeighbour(World world, BlockPos pos) {
+
+        IBlockState state = world.getBlockState(pos);
 
         Block block = state.getBlock();
 
-        return (block == Blocks.AIR || block.isFullCube(state));
+        return (block == Blocks.AIR || block.isPassable(world, pos));
     }
 }

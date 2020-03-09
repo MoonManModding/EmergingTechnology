@@ -12,12 +12,12 @@ public class SyntheticsModuleBioreactor {
     public boolean disabled = false;
 
     @Name("Tissue Bioreactor Energy Usage")
-    @Config.Comment("How much energy the Tissue Bioreactor uses per cycle (~10 ticks).")
+    @Config.Comment("How much energy the Tissue Bioreactor uses per tick.")
     @RangeInt(min = 0, max = 1000)
     public int bioreactorEnergyUsage = 250;
     
     @Name("Tissue Bioreactor Water Usage")
-    @Config.Comment("How much water the Tissue Bioreactor uses per cycle (~10 ticks).")
+    @Config.Comment("How much water the Tissue Bioreactor uses per tick.")
     @RangeInt(min = 0, max = 1000)
     public int bioreactorWaterUsage = 150;
 

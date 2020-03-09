@@ -12,17 +12,17 @@ public class HydroponicsModuleInjector {
     public boolean disabled = false;
 
     @Name("Injector - Energy Usage")
-    @Config.Comment("The amount of energy used per cycle (~10 ticks).")
+    @Config.Comment("The amount of energy used per tick.")
     @RangeInt(min = 1, max = 1000)
     public int injectorEnergyBaseUsage = 350;
 
     @Name("Injector - Water Usage")
-    @Config.Comment("The amount of water used per cycle (~10 ticks).")
+    @Config.Comment("The amount of water used per tick.")
     @RangeInt(min = 1, max = 1000)
     public int injectorWaterBaseUsage = 600;
     
     @Name("Injector - Nutrient Fluid generated")
-    @Config.Comment("The amount of Nutrient Fluid generated per cycle (~10 ticks).")
+    @Config.Comment("The amount of Nutrient Fluid generated per tick.")
     @RangeInt(min = 1, max = 1000)
     public int injectorFluidGenerated = 600;
 

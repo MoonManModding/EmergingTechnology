@@ -6,7 +6,7 @@ Useful constant values for Emerging Technology
 public class Reference {
 
     // GLOBALS
-    public static final int TICK_RATE = 10;
+    public static final int TICK_RATE = 1;
 
     // GUI
     public static final int GUI_HYDROPONIC = 0;

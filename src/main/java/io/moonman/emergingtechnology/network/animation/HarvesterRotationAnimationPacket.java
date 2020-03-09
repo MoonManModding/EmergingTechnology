@@ -49,14 +49,26 @@ public class HarvesterRotationAnimationPacket implements IMessage {
 
         private void handle(HarvesterRotationAnimationPacket message, MessageContext ctx) {
 
-            World world = EmergingTechnology.proxy.getWorld(ctx);
+            HarvesterTileEntity tileEntity = getTileEntity(EmergingTechnology.proxy.getWorld(ctx), message.pos);
 
-            if (world != null && world.isBlockLoaded(message.pos)) {
-                HarvesterTileEntity tileEntity = (HarvesterTileEntity) world.getTileEntity(message.pos);
-                if (tileEntity != null) {
-                    tileEntity.setRotationClient(RotationEnum.getById(message.rotation));
-                }
-            }
+            if (tileEntity == null)
+                return;
+            tileEntity.setRotationClient(RotationEnum.getById(message.rotation));
+
+        }
+
+        private HarvesterTileEntity getTileEntity(World world, BlockPos pos) {
+
+            if (world == null)
+                return null;
+            if (!world.isBlockLoaded(pos))
+                return null;
+            if (world.getTileEntity(pos) == null)
+                return null;
+            if (world.getTileEntity(pos) instanceof HarvesterTileEntity == false)
+                return null;
+
+            return (HarvesterTileEntity) world.getTileEntity(pos);
         }
     }
 }

@@ -12,17 +12,17 @@ public class HydroponicsModuleScrubber {
     public boolean disabled = false;
 
     @Name("Scrubber - Energy Usage")
-    @Config.Comment("The amount of energy used per cycle (~10 ticks).")
+    @Config.Comment("The amount of energy used per tick.")
     @RangeInt(min = 1, max = 1000)
     public int scrubberEnergyBaseUsage = 100;
 
     @Name("Scrubber - Water Usage")
-    @Config.Comment("The amount of water used per cycle (~10 ticks).")
+    @Config.Comment("The amount of water used per tick.")
     @RangeInt(min = 1, max = 1000)
     public int scrubberWaterBaseUsage = 50;
     
     @Name("Scrubber - CO2 capture rate")
-    @Config.Comment("The amount of CO2 captured per cycle (~10 ticks).")
+    @Config.Comment("The amount of CO2 captured per tick.")
     @RangeInt(min = 1, max = 1000)
     public int scrubberGasGenerated = 160;
 

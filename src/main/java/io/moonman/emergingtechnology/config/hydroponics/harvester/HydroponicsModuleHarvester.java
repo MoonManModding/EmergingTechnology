@@ -12,12 +12,12 @@ public class HydroponicsModuleHarvester {
     public boolean disabled = false;
 
     @Name("Harvester Operation Energy Cost")
-    @Config.Comment("How much energy the Harvester uses when harvesting per cycle (~10 ticks).")
+    @Config.Comment("How much energy the Harvester uses when harvesting per tick.")
     @RangeInt(min = 0, max = 1000)
     public int harvesterEnergyBaseUsage = 150;
 
     @Name("Harvester Energy Transfer Rate")
-    @Config.Comment("How much energy the Harvester uses when harvesting per cycle (~10 ticks).")
+    @Config.Comment("How much energy the Harvester uses when harvesting per tick.")
     @RangeInt(min = 0, max = 1000)
     public int harvesterEnergyTransferRate = 450;
 

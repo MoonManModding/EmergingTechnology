@@ -28,7 +28,7 @@ public class TidalHelper {
 
         for (int x = 0; x < 5; x++) {
             for (int z = 0; z < 5; z++) {
-                boolean isValidNeighbour = isValidNeighbour(world.getBlockState(startPos.add(x, 0, z)));
+                boolean isValidNeighbour = isValidNeighbour(world, startPos.add(x, 0, z));
                 if (isValidNeighbour) {
                     waterBlockCount++;
                     if (waterBlockCount >= EmergingTechnologyConfig.ELECTRICS_MODULE.TIDALGENERATOR.minimumWaterBlocks) {
@@ -63,10 +63,12 @@ public class TidalHelper {
         }
     }
 
-    private static boolean isValidNeighbour(IBlockState state) {
+    private static boolean isValidNeighbour(World world, BlockPos pos) {
+
+        IBlockState state = world.getBlockState(pos);
 
         Block block = state.getBlock();
 
-        return (block == Blocks.WATER);
+        return (block == Blocks.WATER || block.getMaterial(state).isLiquid());
     }
 }

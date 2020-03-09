@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.network.animation.TidalGeneratorAnimationPa
 import io.moonman.emergingtechnology.network.animation.WindGeneratorAnimationPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorSelectionPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorStopStartPacket;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -57,6 +58,6 @@ public class PacketHandler {
 
         int dimension = provider.getDimension();
 
-        return new TargetPoint(dimension, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0);
+        return new TargetPoint(dimension, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 5);
     }
 }

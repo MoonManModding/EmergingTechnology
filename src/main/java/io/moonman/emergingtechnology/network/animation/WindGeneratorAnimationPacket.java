@@ -49,14 +49,21 @@ public class WindGeneratorAnimationPacket implements IMessage {
 
         private void handle(WindGeneratorAnimationPacket message, MessageContext ctx) {
 
-            World world = EmergingTechnology.proxy.getWorld(ctx);
+            WindTileEntity tileEntity = getTileEntity(EmergingTechnology.proxy.getWorld(ctx), message.pos);
 
-            if (world != null && world.isBlockLoaded(message.pos)) {
-                WindTileEntity tileEntity = (WindTileEntity) world.getTileEntity(message.pos);
-                if (tileEntity != null) {
-                    tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
-                }
-            }
+            if (tileEntity == null) return;
+
+            tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
+        }
+
+        private WindTileEntity getTileEntity(World world, BlockPos pos) {
+
+            if (world == null) return null;
+            if (!world.isBlockLoaded(pos)) return null;
+            if (world.getTileEntity(pos) == null) return null;
+            if (world.getTileEntity(pos) instanceof WindTileEntity == false) return null;
+           
+            return (WindTileEntity) world.getTileEntity(pos);
         }
     }
 }

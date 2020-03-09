@@ -15,12 +15,12 @@ public class HydroponicsModuleDiffuser {
     public boolean disabled = false;
 
     @Name("Diffuser - Energy Usage")
-    @Config.Comment("The amount of energy used per cycle (~10 ticks).")
+    @Config.Comment("The amount of energy used per tick.")
     @RangeInt(min = 1, max = 1000)
     public int diffuserEnergyBaseUsage = 100;
 
     @Name("Diffuser - Gas Usage")
-    @Config.Comment("The amount of gas used per cycle (~10 ticks).")
+    @Config.Comment("The amount of gas used per tick.")
     @RangeInt(min = 1, max = 1000)
     public int diffuserGasBaseUsage = 10;
 

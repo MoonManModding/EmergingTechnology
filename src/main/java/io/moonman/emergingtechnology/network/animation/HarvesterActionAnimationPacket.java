@@ -49,12 +49,29 @@ public class HarvesterActionAnimationPacket implements IMessage {
 
         private void handle(HarvesterActionAnimationPacket message, MessageContext ctx) {
             EntityPlayerMP player = ctx.getServerHandler().player;
-            World world = player.world;
 
-            if (world.isBlockLoaded(message.pos)) {
-                HarvesterTileEntity te = (HarvesterTileEntity) world.getTileEntity(message.pos);
-                te.doHarvest(FacingHelper.getFacingFromId(message.integer));
-            }
+            if (player == null)
+                return;
+
+            HarvesterTileEntity tileEntity = getTileEntity(player.world, message.pos);
+            if (tileEntity == null)
+                return;
+
+            tileEntity.doHarvest(FacingHelper.getFacingFromId(message.integer));
+        }
+
+        private HarvesterTileEntity getTileEntity(World world, BlockPos pos) {
+
+            if (world == null)
+                return null;
+            if (!world.isBlockLoaded(pos))
+                return null;
+            if (world.getTileEntity(pos) == null)
+                return null;
+            if (world.getTileEntity(pos) instanceof HarvesterTileEntity == false)
+                return null;
+
+            return (HarvesterTileEntity) world.getTileEntity(pos);
         }
     }
 }
