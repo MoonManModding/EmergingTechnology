@@ -19,6 +19,7 @@ import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTESR;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicTileEntity;
 import io.moonman.emergingtechnology.machines.injector.InjectorTileEntity;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
+import io.moonman.emergingtechnology.machines.optimiser.OptimiserTileEntity;
 import io.moonman.emergingtechnology.machines.piezoelectric.PiezoelectricTileEntity;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderTileEntity;
@@ -77,6 +78,7 @@ public class RegistrationHandler {
         registerTileEntity(SolarGlassTileEntity.class, "solarglass");
         registerTileEntity(WindTileEntity.class, "wind");
         registerTileEntity(BatteryTileEntity.class, "battery");
+        registerTileEntity(OptimiserTileEntity.class, "optimiser");
 
         event.getRegistry().registerAll(blocks);
     }
