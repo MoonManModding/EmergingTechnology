@@ -1,8 +1,5 @@
 package io.moonman.emergingtechnology.machines.wind;
 
-import com.google.common.collect.ImmutableMap;
-
-import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
@@ -10,41 +7,32 @@ import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.AnimatedMachineTileBase;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.WindGeneratorAnimationPacket;
 import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
-import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class WindTileEntity extends MachineTileBase implements SimpleComponent {
-
-    private final IAnimationStateMachine asm;
+public class WindTileEntity extends AnimatedMachineTileBase implements SimpleComponent {
 
     public WindTileEntity() {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            asm = ModelLoaderRegistry.loadASM(new ResourceLocation(EmergingTechnology.MODID, "asms/block/wind.json"),
-                    ImmutableMap.of());
-        } else
-            asm = null;
+        initialiseAnimator(this, "wind");
     }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.WIND_ENERGY_CAPACITY) {
@@ -61,11 +49,6 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
     private int energy = 0;
     private TurbineSpeedEnum speed = TurbineSpeedEnum.OFF;
-
-    @Override
-    public boolean hasFastRenderer() {
-        return true;
-    }
 
     @Override
     public boolean isEnergyGeneratorTile() {
@@ -87,7 +70,7 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
         if (capability == CapabilityEnergy.ENERGY)
             return CapabilityEnergy.ENERGY.cast(this.generatorEnergyHandler);
         if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
-            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
+            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(getAnimator());
         return super.getCapability(capability, facing);
     }
 
@@ -160,11 +143,11 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
     @SideOnly(Side.CLIENT)
     public void setTurbineStateClient(TurbineSpeedEnum speed) {
 
-        String state = this.asm.currentState();
+        String state = this.getAnimator().currentState();
         String newState = WindHelper.getTurbineStateFromSpeedEnum(speed);
 
         if (!state.equalsIgnoreCase(newState)) {
-            this.asm.transition(newState);
+            this.getAnimator().transition(newState);
         }
     }
 
@@ -172,7 +155,7 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
 
         if (speed != this.speed) {
 
-            TargetPoint targetPoint = PacketHandler.getTargetPoint(getWorld(), getPos());
+            TargetPoint targetPoint = this.getTargetPoint();
 
             if (targetPoint == null) return;
 
@@ -181,6 +164,11 @@ public class WindTileEntity extends MachineTileBase implements SimpleComponent {
         }
 
         this.speed = speed;
+    }
+
+    @Override
+    public void notifyPlayer(EntityPlayerMP player) {
+            PacketHandler.INSTANCE.sendTo(new WindGeneratorAnimationPacket(this.getPos(), speed), player);
     }
 
     // Getters

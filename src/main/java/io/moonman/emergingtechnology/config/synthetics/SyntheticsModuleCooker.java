@@ -12,12 +12,12 @@ public class SyntheticsModuleCooker {
     public boolean disabled = false;
 
     @Name("Solar Cooker Operation Heat Loss")
-    @Config.Comment("How much heat the Solar Cooker loses when not in sunlight per cycle (~10 ticks).")
+    @Config.Comment("How much heat the Solar Cooker loses when not in sunlight per tick.")
     @RangeInt(min = 0, max = 100)
     public int cookerBaseHeatLoss = 1;
     
     @Name("Solar Cooker Operation Heat Gain")
-    @Config.Comment("How much heat the Solar Cooker gains when in sunlight per cycle (~10 ticks).")
+    @Config.Comment("How much heat the Solar Cooker gains when in sunlight per tick.")
     @RangeInt(min = 0, max = 100)
     public int cookerBaseHeatGain = 3;
 

@@ -12,17 +12,17 @@ public class SyntheticsModuleAlgaeBioreactor {
     public boolean disabled = false;
 
     @Name("Algae Bioreactor Energy Usage")
-    @Config.Comment("How much energy the Algae Bioreactor uses per cycle (~10 ticks).")
+    @Config.Comment("How much energy the Algae Bioreactor uses per tick.")
     @RangeInt(min = 0, max = 1000)
     public int bioreactorEnergyUsage = 25;
     
     @Name("Algae Bioreactor Water Usage")
-    @Config.Comment("How much water the Algae Bioreactor uses per cycle (~10 ticks).")
+    @Config.Comment("How much water the Algae Bioreactor uses per tick.")
     @RangeInt(min = 0, max = 1000)
     public int bioreactorWaterUsage = 10;
 
     @Name("Algae Bioreactor CO2 Usage")
-    @Config.Comment("How much CO2 the Algae Bioreactor uses per cycle (~10 ticks).")
+    @Config.Comment("How much CO2 the Algae Bioreactor uses per tick.")
     @RangeInt(min = 0, max = 1000)
     public int bioreactorGasUsage = 5;
 

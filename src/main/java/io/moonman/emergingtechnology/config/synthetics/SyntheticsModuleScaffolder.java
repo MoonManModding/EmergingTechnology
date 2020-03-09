@@ -12,7 +12,7 @@ public class SyntheticsModuleScaffolder {
     public boolean disabled = false;
 
     @Name("Tissue Scaffolder Energy Usage")
-    @Config.Comment("How much energy the Tissue Scaffolder uses per cycle (~10 ticks).")
+    @Config.Comment("How much energy the Tissue Scaffolder uses per tick.")
     @RangeInt(min = 0, max = 1000)
     public int scaffolderEnergyUsage = 150;
 

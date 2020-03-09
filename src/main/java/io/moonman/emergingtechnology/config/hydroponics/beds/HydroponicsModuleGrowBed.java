@@ -46,17 +46,17 @@ public class HydroponicsModuleGrowBed {
     public boolean growBedsRequireEnergy = false;
 
     @Name("Grow Bed - Energy Usage")
-    @Config.Comment("If 'Energy Required for Transfer' is true, a grow bed will use this amount of energy per cycle (~10 ticks).")
+    @Config.Comment("If 'Energy Required for Transfer' is true, a grow bed will use this amount of energy per tick.")
     @RangeInt(min = 1, max = 1000)
     public int growBedsEnergyUsePerCycle = 10;
     
     @Name("Grow Bed - Water Usage")
-    @Config.Comment("The amount of water used by a grow bed per cycle (~10 ticks).")
+    @Config.Comment("The amount of water used by a grow bed per tick.")
     @RangeInt(min = 1, max = 1000)
     public int growBedWaterUsePerCycle = 10;
 
     @Name("Grow Bed - Water Transfer Rate")
-    @Config.Comment("The amount of water transferred to other beds by a grow bed per cycle (~10 ticks).")
+    @Config.Comment("The amount of water transferred to other beds by a grow bed per tick.")
     @RangeInt(min = 1, max = 1000)
     public int growBedWaterTransferRate = 100;
 
@@ -65,7 +65,7 @@ public class HydroponicsModuleGrowBed {
     public boolean growBedDestroyMedia = false;
     
     @Name("Netherwart on Lava Modifier %")
-    @Config.Comment("Probability of growth for Netherwart when grow bed contains lava per cycle (~10 ticks).")
+    @Config.Comment("Probability of growth for Netherwart when grow bed contains lava per tick.")
     @RangeInt(min = 0, max = 100)
     public int lavaGrowthBoost = 50;
 }

@@ -1,70 +1,58 @@
 package io.moonman.emergingtechnology.machines.scrubber;
 
-import com.google.common.collect.ImmutableMap;
-
-import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
-import io.moonman.emergingtechnology.handlers.fluid.InputOutputFluidStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
+import io.moonman.emergingtechnology.handlers.fluid.InputOutputFluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.AnimatedMachineTileBase;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.ScrubberAnimationPacket;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipes;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
-import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import li.cil.oc.api.machine.Arguments;
-import li.cil.oc.api.machine.Callback;
-import li.cil.oc.api.machine.Context;
-import li.cil.oc.api.network.SimpleComponent;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ScrubberTileEntity extends MachineTileBase implements SimpleComponent {
-
-    private final IAnimationStateMachine asm;
+public class ScrubberTileEntity extends AnimatedMachineTileBase implements SimpleComponent {
 
     public ScrubberTileEntity() {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            asm = ModelLoaderRegistry.loadASM(
-                    new ResourceLocation(EmergingTechnology.MODID, "asms/block/scrubber.json"), ImmutableMap.of());
-        } else
-            asm = null;
+        initialiseAnimator(this, "scrubber");
     }
 
     private FluidTank fluidHandler = new FluidStorageHandler(Reference.SCRUBBER_FLUID_CAPACITY) {
@@ -164,7 +152,7 @@ public class ScrubberTileEntity extends MachineTileBase implements SimpleCompone
         if (capability == CapabilityEnergy.ENERGY)
             return CapabilityEnergy.ENERGY.cast(this.consumerEnergyHandler);
         if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
-            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
+            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(getAnimator());
         return super.getCapability(capability, facing);
     }
 
@@ -335,11 +323,11 @@ public class ScrubberTileEntity extends MachineTileBase implements SimpleCompone
     @SideOnly(Side.CLIENT)
     public void setTurbineStateClient(TurbineSpeedEnum speed) {
 
-        String state = this.asm.currentState();
+        String state = this.getAnimator().currentState();
         String newState = WindHelper.getTurbineStateFromSpeedEnum(speed);
 
         if (!state.equalsIgnoreCase(newState)) {
-            this.asm.transition(newState);
+            this.getAnimator().transition(newState);
         }
     }
 
@@ -347,14 +335,20 @@ public class ScrubberTileEntity extends MachineTileBase implements SimpleCompone
 
         if (speed != this.speed) {
 
-            TargetPoint targetPoint = PacketHandler.getTargetPoint(getWorld(), getPos());
+            TargetPoint targetPoint = getTargetPoint();
 
-            if (targetPoint == null) return;
+            if (targetPoint == null)
+                return;
 
             PacketHandler.INSTANCE.sendToAllTracking(new ScrubberAnimationPacket(this.getPos(), speed), targetPoint);
         }
 
         this.speed = speed;
+    }
+
+    @Override
+    public void notifyPlayer(EntityPlayerMP player) {
+        PacketHandler.INSTANCE.sendTo(new ScrubberAnimationPacket(this.getPos(), speed), player);
     }
 
     public ItemStack getInputStack() {

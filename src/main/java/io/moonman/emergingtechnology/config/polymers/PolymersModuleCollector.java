@@ -12,7 +12,7 @@ public class PolymersModuleCollector {
     public boolean disabled = false;
 
     @Name("Collector Plastic Recovered Probability")
-    @Config.Comment("The probability of recovering waste items out of 1000 (1 = 0.1%) per cycle (~10 ticks)")
+    @Config.Comment("The probability of recovering waste items out of 1000 (1 = 0.1%) per tick.")
     @RangeInt(min = 0, max = 1000)
     public int plasticRecoveryProbability = 1;
 

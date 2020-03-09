@@ -49,14 +49,26 @@ public class TidalGeneratorAnimationPacket implements IMessage {
 
         private void handle(TidalGeneratorAnimationPacket message, MessageContext ctx) {
 
-            World world = EmergingTechnology.proxy.getWorld(ctx);
+            TidalGeneratorTileEntity tileEntity = getTileEntity(EmergingTechnology.proxy.getWorld(ctx), message.pos);
 
-            if (world != null && world.isBlockLoaded(message.pos)) {
-                TidalGeneratorTileEntity tileEntity = (TidalGeneratorTileEntity) world.getTileEntity(message.pos);
-                if (tileEntity != null) {
-                    tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
-                }
-            }
+            if (tileEntity == null)
+                return;
+            tileEntity.setTurbineStateClient(TurbineSpeedEnum.getById(message.speed));
+
+        }
+
+        private TidalGeneratorTileEntity getTileEntity(World world, BlockPos pos) {
+
+            if (world == null)
+                return null;
+            if (!world.isBlockLoaded(pos))
+                return null;
+            if (world.getTileEntity(pos) == null)
+                return null;
+            if (world.getTileEntity(pos) instanceof TidalGeneratorTileEntity == false)
+                return null;
+
+            return (TidalGeneratorTileEntity) world.getTileEntity(pos);
         }
     }
 }

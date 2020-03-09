@@ -12,7 +12,7 @@ public class PolymersModuleShredder {
     public boolean disabled = false;
 
     @Name("Shredder Operation Energy Cost")
-    @Config.Comment("How much energy the Shredder uses when shredding per cycle (~10 ticks).")
+    @Config.Comment("How much energy the Shredder uses when shredding per tick.")
     @RangeInt(min = 0, max = 1000)
     public int shredderEnergyBaseUsage = 25;
 
