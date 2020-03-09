@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
+
 public class RenderHandler {
 
     public static void registerMeshesAndStatesForBlock(Block block) {

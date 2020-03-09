@@ -52,22 +52,22 @@ public class HydroponicsModuleGrowLight {
     public int lightEnergyBaseUsage = 100;
 
     @Name("Red Bulb Energy Modifier")
-    @Config.Comment("Energy Modifier of Red Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
+    @Config.Comment("Energy Modifier of Red Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
     @RangeInt(min = 0, max = 100)
     public int energyRedBulbModifier = 2;
 
     @Name("Green Bulb Energy Modifier")
-    @Config.Comment("Energy Modifier of Green Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
+    @Config.Comment("Energy Modifier of Green Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
     @RangeInt(min = 0, max = 100)
     public int energyGreenBulbModifier = 3;
 
     @Name("Blue Bulb Energy Modifier")
-    @Config.Comment("Energy Modifier of Blue Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
+    @Config.Comment("Energy Modifier of Blue Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
     @RangeInt(min = 0, max = 100)
     public int energyBlueBulbModifier = 4;
 
     @Name("UV Bulb Energy Modifier")
-    @Config.Comment("Energy Modifier of UV Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per cycle (~10 ticks)")
+    @Config.Comment("Energy Modifier of UV Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
     @RangeInt(min = 0, max = 100)
     public int energyPurpleBulbModifier = 5;
 }

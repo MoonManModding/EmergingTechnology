@@ -32,7 +32,7 @@ public class HydroponicsModuleScrubber {
     public int scrubberBaseTimeTaken = 10;
     
     @Name("Scrubber - Transfer rate")
-    @Config.Comment("The amount of Carbon Dioxide transferred to adjacent Diffusers per cycle (~10 ticks)")
+    @Config.Comment("The amount of Carbon Dioxide transferred to adjacent Diffusers per tick.")
     @RangeInt(min = 1, max = 1000)
     public int scrubberGasTransferRate = 160;
     

@@ -32,7 +32,7 @@ public class HydroponicsModuleInjector {
     public int injectorBaseTimeTaken = 10;
     
     @Name("Injector - Transfer rate")
-    @Config.Comment("The amount of Nutrient Fluid transferred per cycle (~10 ticks)")
+    @Config.Comment("The amount of Nutrient Fluid transferred per tick.")
     @RangeInt(min = 1, max = 1000)
     public int injectorFluidTransferRate = 600;
 }
