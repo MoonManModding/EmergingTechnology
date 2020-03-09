@@ -251,12 +251,12 @@ info.emergingtechnology.sample.description=Образец содержащий %
 info.emergingtechnology.syringe.description=Шприц содержащий %s ткань.
 
 # Required
-info.emergingtechnology.energy.required=Требует %sRF за цикл.
-info.emergingtechnology.fluid.required=Требует %sMB жидкости за цикл.
-info.emergingtechnology.water.required=Требует %sMB воды за цикл.
-info.emergingtechnology.gas.required=Требует %sMB углекислого газа за цикл.
-info.emergingtechnology.heat.required=Требует %sC тепла за цикл.
-info.emergingtechnology.growth.required=Обеспечивает %s процентный импульс роста за цикл;
+info.emergingtechnology.energy.required=Требует %sRF за тик.
+info.emergingtechnology.fluid.required=Требует %sMB жидкости за тик.
+info.emergingtechnology.water.required=Требует %sMB воды за тик.
+info.emergingtechnology.gas.required=Требует %sMB углекислого газа за тик.
+info.emergingtechnology.heat.required=Требует %sC тепла за тик.
+info.emergingtechnology.growth.required=Обеспечивает %s процентный импульс роста за тик;
 
 info.emergingtechnology.biome.required=Работает только в биомах Ocean, Deep Ocean и Beach.
 info.emergingtechnology.waterblocks.required=Требует по крайней мере %s окружающих блоков воды.
@@ -265,12 +265,12 @@ info.emergingtechnology.watersurface.required=Должен быть размещ
 info.emergingtechnology.waterdepth.required=(x2 когда на уровне между Y%1$s и Y%2$s)
 
 # Generated
-info.emergingtechnology.energy.generated=Генерирует %sRF за цикл.
-info.emergingtechnology.fluid.generated=Обеспечивает %sMB жидкости за цикл.
-info.emergingtechnology.water.generated=Обеспечивает %sMB воды за цикл.
-info.emergingtechnology.gas.generated=Обеспечивает %sMB углекислого газа за цикл.
-info.emergingtechnology.heat.generated=Генерирует %sC тепла за цикл.
-info.emergingtechnology.growth.generated=Обеспечивает %s процентную вероятность импульса роста.
+info.emergingtechnology.energy.generated=Генерирует %sRF за тик.
+info.emergingtechnology.fluid.generated=Обеспечивает %sMB жидкости за тик.
+info.emergingtechnology.water.generated=Обеспечивает %sMB воды за тик.
+info.emergingtechnology.gas.generated=Обеспечивает %sMB углекислого газа за тик.
+info.emergingtechnology.heat.generated=Генерирует %sC тепла за тик.
+info.emergingtechnology.growth.generated=Обеспечивает %s процентную вероятность импульса роста за тик.
 
 info.emergingtechnology.cookerheat.generated=Получает %1$sC на сонце и теряет %2$sC в темноте.
 info.emergingtechnology.lightrange.generated=Увеличивает рост растений до %s блоков ниже.
