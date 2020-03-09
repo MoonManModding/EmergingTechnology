@@ -3,23 +3,19 @@ package io.moonman.emergingtechnology.machines.harvester;
 import java.util.List;
 import java.util.UUID;
 
-import com.google.common.collect.ImmutableMap;
 import com.mojang.authlib.GameProfile;
 
-import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
-import io.moonman.emergingtechnology.helpers.animation.AnimationHelper;
 import io.moonman.emergingtechnology.helpers.animation.HarvesterAnimationStateMachine;
 import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
 import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.AnimatedMachineTileBase;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.HarvesterRotationAnimationPacket;
@@ -39,20 +35,15 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -503,6 +494,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
         animator.setPosition(getPos());
 
+        String state = animator.currentState();
         String newState = this.getFacing().getName() + "_" + RotationEnum.getRotationFromEnum(rotation);
 
         this.getAnimator().transition(newState);
@@ -523,8 +515,8 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     @Override
     public void notifyPlayer(EntityPlayerMP player) {
-        PacketHandler.INSTANCE.sendTo(new HarvesterRotationAnimationPacket(this.getPos(), rotation),
-                player);
+        // PacketHandler.INSTANCE.sendTo(new
+        // HarvesterRotationAnimationPacket(this.getPos(), rotation), player);
     }
 
     // Getters
