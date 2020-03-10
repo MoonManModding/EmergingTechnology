@@ -86,7 +86,7 @@ item.emergingtechnology.biomassgenerator.name=Biomass Generator
 item.emergingtechnology.tidalgenerator.name=Tidal Generator
 item.emergingtechnology.wind.name=Wind Generator
 item.emergingtechnology.biocharblock.name=Biochar Block
-item.emergingtechnology.optimiser.name=ML Optimiser
+item.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 
 #Blocks
@@ -130,7 +130,7 @@ blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 blocks.emergingtechnology.wind.name=Wind Generator
 blocks.emergingtechnology.biocharblock.name=Biochar Block
-blocks.emergingtechnology.optimiser.name=ML Optimiser
+blocks.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #Containers
 
@@ -176,7 +176,7 @@ tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
-tile.emergingtechnology.optimiser.name=ML Optimiser
+tile.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
@@ -271,10 +271,10 @@ info.emergingtechnology.energy.generated=Generates %sRF per tick.
 info.emergingtechnology.fluid.generated=Provides %smB of fluid per tick.
 info.emergingtechnology.water.generated=Provides %smB of water per tick.
 info.emergingtechnology.gas.generated=Provides %smB of CO2 per tick.
-info.emergingtechnology.heat.generated=Generates %sC heat per tick.
+info.emergingtechnology.heat.generated=Generates %sK heat per tick.
 info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per tick.
 
-info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
+info.emergingtechnology.cookerheat.generated=Gains %1$sK in sunlight and loses %2$sK in darkness.
 info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
 info.emergingtechnology.gasrange.generated=Boosts plant growth up to %s blocks to the North, East, South or West sides.
 
@@ -363,4 +363,4 @@ config.emergingtechnology.electrics.biomass.title=Biomass Generator
 config.emergingtechnology.electrics.piezoelectric.title=Piezoelectric Generator
 config.emergingtechnology.electrics.battery.title=Battery
 config.emergingtechnology.electrics.wind.title=Wind Generator
-config.emergingtechnology.electrics.optimiser.title=ML Optimiser
+config.emergingtechnology.electrics.optimiser.title=Algorithmic Optimiser

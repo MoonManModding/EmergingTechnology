@@ -33,7 +33,7 @@ public class ElectricsModule {
 	@LangKey("config.emergingtechnology.electrics.battery.title")
     public final ElectricsModuleBattery BATTERY = new ElectricsModuleBattery();
 
-    @Name("ML Optimiser")
+    @Name("Algorithmic Optimiser")
 	@LangKey("config.emergingtechnology.electrics.optimiser.title")
     public final ElectricsModuleOptimiser OPTIMISER = new ElectricsModuleOptimiser();
 }

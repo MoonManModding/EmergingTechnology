@@ -88,7 +88,7 @@ item.emergingtechnology.biomassgenerator.name=生物质发电机
 item.emergingtechnology.tidalgenerator.name=潮汐发电机
 item.emergingtechnology.wind.name=风力发电机
 item.emergingtechnology.biocharblock.name=生物碳块
-item.emergingtechnology.optimiser.name=ML Optimiser
+item.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #Blocks
 
@@ -131,7 +131,7 @@ blocks.emergingtechnology.biomassgenerator.name=生物质发电机
 blocks.emergingtechnology.tidalgenerator.name=潮汐发电机
 blocks.emergingtechnology.wind.name=风力发电机
 blocks.emergingtechnology.biocharblock.name=生物炭块
-blocks.emergingtechnology.optimiser.name=ML Optimiser
+blocks.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #Containers
 
@@ -177,7 +177,7 @@ tile.emergingtechnology.biomassgenerator.name=生物质发电机
 tile.emergingtechnology.tidalgenerator.name=潮汐发电机
 tile.emergingtechnology.wind.name=风力发电机
 tile.emergingtechnology.biocharblock.name=生物炭块
-tile.emergingtechnology.optimiser.name=ML Optimiser
+tile.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=二氧化碳
@@ -363,4 +363,4 @@ config.emergingtechnology.electrics.biomass.title=生物质发电机
 config.emergingtechnology.electrics.piezoelectric.title=压电发电机
 config.emergingtechnology.electrics.battery.title=电池
 config.emergingtechnology.electrics.wind.title=风力发电机
-config.emergingtechnology.electrics.optimiser.title=ML Optimiser
+config.emergingtechnology.electrics.optimiser.title=Algorithmic Optimiser

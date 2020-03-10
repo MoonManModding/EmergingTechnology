@@ -105,10 +105,10 @@ public class AlgaeBioreactorGui extends GuiContainer {
 	private void renderTooltips(int mouseX, int mouseY) {
 
 		int energy = this.tileEntity.getField(0);
-		int maxEnergy = Reference.PROCESSOR_ENERGY_CAPACITY;
+		int maxEnergy = Reference.ALGAEBIOREACTOR_ENERGY_CAPACITY;
 
 		int fluid = this.tileEntity.getField(1);
-		int maxFluid = Reference.PROCESSOR_FLUID_CAPACITY;
+		int maxFluid = Reference.ALGAEBIOREACTOR_FLUID_CAPACITY;
 
 		int gas = this.tileEntity.getField(2);
 		int maxGas = Reference.ALGAEBIOREACTOR_GAS_CAPACITY;

@@ -123,7 +123,7 @@ public class GuiTooltipHelper {
             case FLUID:
                 return new GuiLabel(Lang.get(Lang.GUI_STORAGE_FLUID), "mB");
             case HEAT:
-                return new GuiLabel(Lang.get(Lang.GUI_STORAGE_HEAT), "C");
+                return new GuiLabel(Lang.get(Lang.GUI_STORAGE_HEAT), "K");
             case GROWTH:
                 return new GuiLabel(Lang.get(Lang.GUI_GROWTH), "%");
             case GAS:
