@@ -271,6 +271,7 @@ public class DiffuserTileEntity extends MachineTileBase implements SimpleCompone
             break;
         case 2:
             this.setPlants(value);
+            break;
         case 3:
             this.setNozzle(value);
             break;

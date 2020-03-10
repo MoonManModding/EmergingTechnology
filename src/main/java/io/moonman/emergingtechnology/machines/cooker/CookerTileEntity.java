@@ -149,7 +149,7 @@ public class CookerTileEntity extends MachineTileBase implements SimpleComponent
         ItemStack plannedStack = CookerHelper.getPlannedStackFromItemStack(inputStack);
 
         // This is probably unneccessary
-        if (plannedStack == null) {
+        if (plannedStack == null || plannedStack.isEmpty()) {
             return;
         }
 

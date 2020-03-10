@@ -157,7 +157,7 @@ public class ShredderTileEntity extends MachineTileBase implements SimpleCompone
         ItemStack plannedStack = ShredderRecipes.getOutputByItemStack(inputStack);
 
         // This is probably unneccessary
-        if (plannedStack == null) {
+        if (plannedStack == null || plannedStack.isEmpty()) {
             return;
         }
 

@@ -49,7 +49,7 @@ public class HydroponicsModuleGrowLight {
     @Name("Light Base Energy Usage")
     @Config.Comment("Base power usage of light per tick.")
     @RangeInt(min = 0, max = 1000)
-    public int lightEnergyBaseUsage = 100;
+    public int lightEnergyBaseUsage = 10;
 
     @Name("Red Bulb Energy Modifier")
     @Config.Comment("Energy Modifier of Red Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")

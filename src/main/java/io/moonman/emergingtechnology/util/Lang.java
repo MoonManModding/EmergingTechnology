@@ -51,6 +51,8 @@ public class Lang {
         public static final TextComponentTranslation WIND_DESC = new TextComponentTranslation(SOURCE + "wind" + DESC);
         public static final TextComponentTranslation BATTERY_DESC = new TextComponentTranslation(
                         SOURCE + "battery" + DESC);
+        public static final TextComponentTranslation OPTIMISER_DESC = new TextComponentTranslation(
+                        SOURCE + "optimiser" + DESC);
 
         // Block descriptions for tooltips
         public static final TextComponentTranslation FRAME_DESC = new TextComponentTranslation(

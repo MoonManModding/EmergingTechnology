@@ -104,7 +104,8 @@ public class RecipeBuilder {
 
     public static IMachineRecipe getMatchingRecipe(ItemStack itemStack, List<IMachineRecipe> recipes) {
 
-        if (itemStack == null) return null;
+        if (itemStack == null || itemStack.isEmpty())
+            return null;
 
         int[] oreIds = OreDictionary.getOreIDs(itemStack);
 
@@ -115,7 +116,7 @@ public class RecipeBuilder {
                     return recipe;
                 }
             } else {
-                
+
                 int oreId = OreDictionary.getOreID(recipe.getInputOreName());
 
                 for (int id : oreIds) {
@@ -197,6 +198,8 @@ public class RecipeBuilder {
             disabledBlocks.add(ModBlocks.piezoelectric);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.disabled)
             disabledBlocks.add(ModBlocks.biomassgenerator);
+        // if (EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.disabled)
+        //     disabledBlocks.add(ModBlocks.optimiser);
 
         if (EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.disabled)
             disabledBlocks.add(ModBlocks.shredder);

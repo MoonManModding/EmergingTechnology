@@ -143,7 +143,7 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
 
             int waterFilled = tileEntity.fluidHandler.fill(new FluidStack(fluid, 1000), true);
             
-            if (waterFilled > 0) {
+            if (waterFilled > 0 && !playerIn.isCreative()) {
                 playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Items.BUCKET));
             }
 
@@ -159,9 +159,11 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
 
         } else if (HydroponicHelper.isItemStackValid(itemStackHeld) && tileEntity.itemHandler.getStackInSlot(0).isEmpty()) {
 
-            ItemStack remainder = tileEntity.itemHandler.insertItem(0, itemStackHeld, false);
+            ItemStack remainder = tileEntity.itemHandler.insertItem(0, itemStackHeld.copy(), false);
 
-            playerIn.setHeldItem(EnumHand.MAIN_HAND, remainder);
+            if (!playerIn.isCreative()) {
+                playerIn.setHeldItem(EnumHand.MAIN_HAND, remainder);
+            }
 
             return true;
 

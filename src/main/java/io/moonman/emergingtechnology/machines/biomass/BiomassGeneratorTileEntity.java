@@ -167,7 +167,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
         ItemStack plannedStack = BiomassRecipes.getOutputByItemStack(inputStack);
 
         // This is probably unneccessary
-        if (plannedStack == null) {
+        if (plannedStack == null || plannedStack.isEmpty()) {
             return;
         }
 

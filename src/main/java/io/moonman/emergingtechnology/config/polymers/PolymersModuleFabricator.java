@@ -14,7 +14,7 @@ public class PolymersModuleFabricator {
     @Name("Fabricator Operation Energy Cost")
     @Config.Comment("How much energy the Fabricator uses when fabricating per tick.")
     @RangeInt(min = 0, max = 1000)
-    public int fabricatorEnergyBaseUsage = 250;
+    public int fabricatorEnergyBaseUsage = 25;
 
     @Name("Fabricator Operation Time")
     @Config.Comment("How long the Fabricator takes to fabricate items.")

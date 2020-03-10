@@ -36,6 +36,9 @@ import io.moonman.emergingtechnology.machines.injector.InjectorTileEntity;
 import io.moonman.emergingtechnology.machines.light.LightContainer;
 import io.moonman.emergingtechnology.machines.light.LightGui;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
+import io.moonman.emergingtechnology.machines.optimiser.OptimiserContainer;
+import io.moonman.emergingtechnology.machines.optimiser.OptimiserGui;
+import io.moonman.emergingtechnology.machines.optimiser.OptimiserTileEntity;
 import io.moonman.emergingtechnology.machines.processor.ProcessorContainer;
 import io.moonman.emergingtechnology.machines.processor.ProcessorGui;
 import io.moonman.emergingtechnology.machines.processor.ProcessorTileEntity;
@@ -108,6 +111,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof InjectorTileEntity) {
             return new InjectorContainer(player.inventory, (InjectorTileEntity) te);
         }
+        if (te instanceof OptimiserTileEntity) {
+            return new OptimiserContainer(player.inventory, (OptimiserTileEntity) te);
+        }
         return null;
     }
 
@@ -178,6 +184,10 @@ public class GuiProxy implements IGuiHandler {
 
         if (te instanceof InjectorTileEntity) {
             return new InjectorGui(player.inventory, (InjectorTileEntity) te);
+        }
+
+        if (te instanceof OptimiserTileEntity) {
+            return new OptimiserGui(player.inventory, (OptimiserTileEntity) te);
         }
 
         return null;

@@ -97,9 +97,11 @@ public class Light extends MachineBase implements ITileEntityProvider {
             if (LightHelper.isItemStackValidBulb(itemStackHeld)
                     && lightTileEntity.itemHandler.getStackInSlot(0).isEmpty()) {
 
-                ItemStack remainder = lightTileEntity.itemHandler.insertItem(0, itemStackHeld, false);
+                ItemStack remainder = lightTileEntity.itemHandler.insertItem(0, itemStackHeld.copy(), false);
 
-                playerIn.setHeldItem(EnumHand.MAIN_HAND, remainder);
+                if (!playerIn.isCreative()) {
+                    playerIn.setHeldItem(EnumHand.MAIN_HAND, remainder);
+                }
 
                 return true;
             }

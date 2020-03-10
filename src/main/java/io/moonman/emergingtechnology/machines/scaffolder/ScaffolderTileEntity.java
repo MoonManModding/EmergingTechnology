@@ -192,7 +192,7 @@ public class ScaffolderTileEntity extends MachineTileBase implements SimpleCompo
         ItemStack plannedStack = ScaffolderRecipes.getOutputByItemStack(sampleStack);
 
         // This is probably unneccessary
-        if (plannedStack == null) {
+        if (plannedStack == null || plannedStack.isEmpty()) {
             return;
         }
 

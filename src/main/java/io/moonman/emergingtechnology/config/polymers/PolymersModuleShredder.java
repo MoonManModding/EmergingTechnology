@@ -14,7 +14,7 @@ public class PolymersModuleShredder {
     @Name("Shredder Operation Energy Cost")
     @Config.Comment("How much energy the Shredder uses when shredding per tick.")
     @RangeInt(min = 0, max = 1000)
-    public int shredderEnergyBaseUsage = 25;
+    public int shredderEnergyBaseUsage = 15;
 
     @Name("Shredder Operation Time")
     @Config.Comment("How long the Shredder takes to shred items.")

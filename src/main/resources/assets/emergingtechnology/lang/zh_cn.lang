@@ -88,7 +88,7 @@ item.emergingtechnology.biomassgenerator.name=生物质发电机
 item.emergingtechnology.tidalgenerator.name=潮汐发电机
 item.emergingtechnology.wind.name=风力发电机
 item.emergingtechnology.biocharblock.name=生物碳块
-
+item.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #Blocks
 
@@ -131,6 +131,7 @@ blocks.emergingtechnology.biomassgenerator.name=生物质发电机
 blocks.emergingtechnology.tidalgenerator.name=潮汐发电机
 blocks.emergingtechnology.wind.name=风力发电机
 blocks.emergingtechnology.biocharblock.name=生物炭块
+blocks.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #Containers
 
@@ -176,6 +177,7 @@ tile.emergingtechnology.biomassgenerator.name=生物质发电机
 tile.emergingtechnology.tidalgenerator.name=潮汐发电机
 tile.emergingtechnology.wind.name=风力发电机
 tile.emergingtechnology.biocharblock.name=生物炭块
+tile.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=二氧化碳
@@ -228,6 +230,7 @@ info.emergingtechnology.wind.description=利用风能产生能量。
 info.emergingtechnology.tidal.description=利用潮汐运动产生能量。
 info.emergingtechnology.solar.description=利用光能产生能量。
 info.emergingtechnology.battery.description=储存能量以备日后使用。红色输入，黄色输出。
+info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
 
 info.emergingtechnology.frame.description=具有装饰性的塑料板
 
@@ -253,9 +256,9 @@ info.emergingtechnology.syringe.description=里面装着%s组织
 
 # Required
 info.emergingtechnology.energy.required=每个周期需要%sRF的能量。
-info.emergingtechnology.fluid.required=每个周期需要%sMB的液体。
-info.emergingtechnology.water.required=每个周期需要%sMB的水。
-info.emergingtechnology.gas.required=每个周期需要%sMB的二氧化碳。
+info.emergingtechnology.fluid.required=每个周期需要%smB的液体。
+info.emergingtechnology.water.required=每个周期需要%smB的水。
+info.emergingtechnology.gas.required=每个周期需要%smB的二氧化碳。
 info.emergingtechnology.heat.required=每个周期需要%sC的热量。
 info.emergingtechnology.growth.required=每个周期提供%s的增长率；
 
@@ -267,9 +270,9 @@ info.emergingtechnology.waterdepth.required=(当高度介于Y%1$s和Y%2$s之间�
 
 # Generated
 info.emergingtechnology.energy.generated=每个周期产生%sRF的能量。
-info.emergingtechnology.fluid.generated=每个周期提供%sMB的液体。
-info.emergingtechnology.water.generated=每个周期提供%sMB的水。
-info.emergingtechnology.gas.generated=每个周期提供%sMB的二氧化碳。
+info.emergingtechnology.fluid.generated=每个周期提供%smB的液体。
+info.emergingtechnology.water.generated=每个周期提供%smB的水。
+info.emergingtechnology.gas.generated=每个周期提供%smB的二氧化碳。
 info.emergingtechnology.heat.generated=每个周期产生%sC的热量。
 info.emergingtechnology.growth.generated=每个周期提供%s的增长率。
 
@@ -279,9 +282,9 @@ info.emergingtechnology.gasrange.generated=促进北面、东面、南面或西�
 
 # Capacity
 info.emergingtechnology.energy.capacity=最多可以储存%sRF的能量。
-info.emergingtechnology.fluid.capacity=最多可以存储%sMB的液体。
-info.emergingtechnology.gas.capacity=最多可以存储%sMB的二氧化碳。
-info.emergingtechnology.water.capacity=最多可以存储%sMB的水。
+info.emergingtechnology.fluid.capacity=最多可以存储%smB的液体。
+info.emergingtechnology.gas.capacity=最多可以存储%smB的二氧化碳。
+info.emergingtechnology.water.capacity=最多可以存储%smB的水。
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=右击使用。
@@ -360,3 +363,4 @@ config.emergingtechnology.electrics.biomass.title=生物质发电机
 config.emergingtechnology.electrics.piezoelectric.title=压电发电机
 config.emergingtechnology.electrics.battery.title=电池
 config.emergingtechnology.electrics.wind.title=风力发电机
+config.emergingtechnology.electrics.optimiser.title=Algorithmic Optimiser

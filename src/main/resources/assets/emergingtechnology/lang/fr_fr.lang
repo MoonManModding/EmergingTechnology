@@ -83,7 +83,7 @@ item.emergingtechnology.biomassgenerator.name=Biomass Generator
 item.emergingtechnology.tidalgenerator.name=Tidal Generator
 item.emergingtechnology.wind.name=Wind Generator
 item.emergingtechnology.biocharblock.name=Biochar Block
-
+item.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #Blocks
 
@@ -122,6 +122,7 @@ blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 blocks.emergingtechnology.wind.name=Wind Generator
 blocks.emergingtechnology.biocharblock.name=Biochar Block
+blocks.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #Containers
 
@@ -165,6 +166,7 @@ tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
+tile.emergingtechnology.optimiser.name=Algorithmic Optimiser
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
@@ -212,6 +214,7 @@ info.emergingtechnology.tidal.description=Generates energy using the movement of
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
 info.emergingtechnology.wind.description=Generates energy using the movement of wind.
+info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 
@@ -231,8 +234,8 @@ info.emergingtechnology.syringe.description=A syringe containing %s tissue.
 
 # Required
 info.emergingtechnology.energy.required=Requires %sRF per tick.
-info.emergingtechnology.fluid.required=Requires %sMB of fluid per tick.
-info.emergingtechnology.water.required=Requires %sMB of water per tick.
+info.emergingtechnology.fluid.required=Requires %smB of fluid per tick.
+info.emergingtechnology.water.required=Requires %smB of water per tick.
 info.emergingtechnology.heat.required=Requires %sC heat per tick.
 info.emergingtechnology.growth.required=Provides a %s percent growth boost per tick;
 
@@ -243,8 +246,8 @@ info.emergingtechnology.waterdepth.required=(x2 when at depth between Y%1$s and 
 
 # Generated
 info.emergingtechnology.energy.generated=Generates %sRF per tick.
-info.emergingtechnology.fluid.generated=Provides %sMB of fluid per tick.
-info.emergingtechnology.water.generated=Provides %sMB of water per tick.
+info.emergingtechnology.fluid.generated=Provides %smB of fluid per tick.
+info.emergingtechnology.water.generated=Provides %smB of water per tick.
 info.emergingtechnology.heat.generated=Generates %sC heat per tick.
 info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per tick.
 
@@ -253,8 +256,8 @@ info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks
 
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
-info.emergingtechnology.fluid.capacity=Can store up to %sMB of fluid.
-info.emergingtechnology.water.capacity=Can store up to %sMB of water.
+info.emergingtechnology.fluid.capacity=Can store up to %smB of fluid.
+info.emergingtechnology.water.capacity=Can store up to %smB of water.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=Right click to use.
@@ -330,3 +333,4 @@ config.emergingtechnology.electrics.tidal.title=Tidal Generator
 config.emergingtechnology.electrics.biomass.title=Biomass Generator
 config.emergingtechnology.electrics.piezoelectric.title=Piezoelectric Generator
 config.emergingtechnology.electrics.battery.title=Battery
+config.emergingtechnology.electrics.optimiser.title=Algorithmic Optimiser

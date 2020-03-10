@@ -151,6 +151,7 @@ public class ModItems {
 	public static final Item battery = null;
 	public static final Item biomassgenerator = null;
 	public static final Item biocharblock = null;
+	public static final Item optimiser = null;
 	// Items
 	public static final Item biomass = null;
 	public static final Item biochar = null;

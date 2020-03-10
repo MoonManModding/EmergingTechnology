@@ -14,12 +14,12 @@ public class PolymersModuleProcessor {
     @Name("Processor Operation Energy Cost")
     @Config.Comment("How much energy the Processor uses when processing per tick.")
     @RangeInt(min = 0, max = 1000)
-    public int processorEnergyBaseUsage = 50;
+    public int processorEnergyBaseUsage = 15;
 
     @Name("Processor Operation Water Cost")
     @Config.Comment("How much water the Processor uses when processing per tick.")
     @RangeInt(min = 0, max = 1000)
-    public int processorWaterBaseUsage = 50;
+    public int processorWaterBaseUsage = 15;
 
     @Name("Processor Operation Time")
     @Config.Comment("How long the Processor takes to process items.")

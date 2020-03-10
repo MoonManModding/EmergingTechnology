@@ -14,7 +14,7 @@ public class SyntheticsModuleAlgaeBioreactor {
     @Name("Algae Bioreactor Energy Usage")
     @Config.Comment("How much energy the Algae Bioreactor uses per tick.")
     @RangeInt(min = 0, max = 1000)
-    public int bioreactorEnergyUsage = 25;
+    public int bioreactorEnergyUsage = 15;
     
     @Name("Algae Bioreactor Water Usage")
     @Config.Comment("How much water the Algae Bioreactor uses per tick.")
