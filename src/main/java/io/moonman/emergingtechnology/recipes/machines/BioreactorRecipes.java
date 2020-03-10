@@ -38,7 +38,13 @@ public class BioreactorRecipes {
     }
 
     public static ItemStack getOutputByItemStack(ItemStack itemStack) {
-        return RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, getRecipes());
+        ItemStack stack = RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, getRecipes());
+
+        if (stack == null) {
+            return ItemStack.EMPTY;
+        }
+
+        return stack.copy();
     }
 
     public static boolean isValidInput(ItemStack itemStack) {

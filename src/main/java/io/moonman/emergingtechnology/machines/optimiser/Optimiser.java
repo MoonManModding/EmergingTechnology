@@ -43,8 +43,8 @@ public class Optimiser extends MachineBase implements ITileEntityProvider {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-        int energy = 100; //EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.optimiserEnergyBaseUsage;
-        int water = 100; //EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.optimiserWaterBaseUsage;
+        int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.energyUsage;
+        int water = EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.waterUsage;
 
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.OPTIMISER_DESC));

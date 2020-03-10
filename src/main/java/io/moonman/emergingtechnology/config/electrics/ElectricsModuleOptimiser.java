@@ -14,10 +14,10 @@ public class ElectricsModuleOptimiser {
     @Name("Energy usage")
     @Config.Comment("How much energy the Optimiser uses per tick.")
     @RangeInt(min = 0, max = 10000)
-    public int energyUsage = 750;
+    public int energyUsage = 25;
 
     @Name("Water usage")
     @Config.Comment("How much water the Optimiser uses per tick.")
     @RangeInt(min = 0, max = 10000)
-    public int waterUsage = 150;
+    public int waterUsage = 15;
 }

@@ -104,7 +104,7 @@ public class RecipeBuilder {
 
     public static IMachineRecipe getMatchingRecipe(ItemStack itemStack, List<IMachineRecipe> recipes) {
 
-        if (itemStack == null)
+        if (itemStack == null || itemStack.isEmpty())
             return null;
 
         int[] oreIds = OreDictionary.getOreIDs(itemStack);

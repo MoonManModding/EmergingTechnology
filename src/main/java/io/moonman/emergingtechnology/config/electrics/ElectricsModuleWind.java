@@ -14,7 +14,7 @@ public class ElectricsModuleWind {
     @Name("Energy Generated")
     @Config.Comment("How much energy the Wind Generator generates when in wind.")
     @RangeInt(min = 0, max = 10000)
-    public int energyGenerated = 150;
+    public int energyGenerated = 35;
     
     @Name("Minimum Required Surrounding Air")
     @Config.Comment("Minimum required surrounding air blocks for Wind Generator to function in a 5 x 5 grid (not including self)")

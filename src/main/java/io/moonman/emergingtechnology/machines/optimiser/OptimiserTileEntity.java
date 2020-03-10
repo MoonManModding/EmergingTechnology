@@ -1,8 +1,10 @@
 package io.moonman.emergingtechnology.machines.optimiser;
 
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
+import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineTileBase;
 import li.cil.oc.api.machine.Arguments;
@@ -136,6 +138,26 @@ public class OptimiserTileEntity extends MachineTileBase implements SimpleCompon
     public void cycle() {
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());
+
+        this.fluidHandler.drain(EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.waterUsage, true);
+        this.energyHandler.extractEnergy(EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.energyUsage, false);
+    }
+
+    public OptimiserPacket getPacket() {
+        return generatePacket();
+    }
+
+    private OptimiserPacket generatePacket() {
+
+        int progress = 1;
+
+        if (this.energyHandler.getEnergyStored() >= EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.energyUsage) {
+            progress = 2;
+        }
+
+        OptimiserPacket packet = new OptimiserPacket(1, 1, progress);
+
+        return packet;
     }
 
     public ItemStack getInputStack() {

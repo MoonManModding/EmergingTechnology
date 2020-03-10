@@ -14,7 +14,7 @@ public class ElectricsModuleTidalGenerator {
     @Name("Energy Generated")
     @Config.Comment("How much energy the Tidal Generator generates when underwater.")
     @RangeInt(min = 0, max = 10000)
-    public int tidalEnergyGenerated = 450;
+    public int tidalEnergyGenerated = 55;
     
     @Name("Minimum Required Surrounding Water")
     @Config.Comment("Minimum required surrounding water blocks for Tidal Generator to function in a 5 x 5 grid (not including self)")

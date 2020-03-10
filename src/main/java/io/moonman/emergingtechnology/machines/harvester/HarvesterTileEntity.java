@@ -494,7 +494,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
         animator.setPosition(getPos());
 
-        String state = animator.currentState();
+        //String state = animator.currentState();
         String newState = this.getFacing().getName() + "_" + RotationEnum.getRotationFromEnum(rotation);
 
         this.getAnimator().transition(newState);

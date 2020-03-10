@@ -181,7 +181,7 @@ public class BioreactorTileEntity extends MachineTileBase implements SimpleCompo
         ItemStack plannedStack = BioreactorRecipes.getOutputByItemStack(inputStack);
 
         // This is probably unneccessary
-        if (plannedStack == null) {
+        if (plannedStack == null || plannedStack.isEmpty()) {
             return;
         }
 

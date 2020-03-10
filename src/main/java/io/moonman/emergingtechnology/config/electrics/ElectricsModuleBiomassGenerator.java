@@ -12,7 +12,7 @@ public class ElectricsModuleBiomassGenerator {
     public boolean disabled = false;
 
     @Name("Biomass Generator Energy Generated")
-    @Config.Comment("How much energy the Biomass Generator generates per biomass item.")
+    @Config.Comment("How much energy the Biomass Generator generates per tick.")
     @RangeInt(min = 0, max = 10000)
     public int biomassEnergyGenerated = 250;
 
