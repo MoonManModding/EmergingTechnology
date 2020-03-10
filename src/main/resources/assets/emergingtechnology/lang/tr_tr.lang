@@ -86,6 +86,7 @@ item.emergingtechnology.biomassgenerator.name=Biomass Generator
 item.emergingtechnology.tidalgenerator.name=Tidal Generator
 item.emergingtechnology.wind.name=Wind Generator
 item.emergingtechnology.biocharblock.name=Biochar Block
+item.emergingtechnology.optimiser.name=ML Optimiser
 
 
 #Blocks
@@ -129,6 +130,7 @@ blocks.emergingtechnology.biomassgenerator.name=Biomass Generator
 blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 blocks.emergingtechnology.wind.name=Wind Generator
 blocks.emergingtechnology.biocharblock.name=Biochar Block
+blocks.emergingtechnology.optimiser.name=ML Optimiser
 
 #Containers
 
@@ -174,6 +176,7 @@ tile.emergingtechnology.biomassgenerator.name=Biomass Generator
 tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
+tile.emergingtechnology.optimiser.name=ML Optimiser
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide
@@ -225,6 +228,7 @@ info.emergingtechnology.solarglass.description=Transparent Solar Panel which gen
 info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
+info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 
@@ -359,3 +363,4 @@ config.emergingtechnology.electrics.biomass.title=Biomass Generator
 config.emergingtechnology.electrics.piezoelectric.title=Piezoelectric Generator
 config.emergingtechnology.electrics.battery.title=Battery
 config.emergingtechnology.electrics.wind.title=Wind Generator
+config.emergingtechnology.electrics.optimiser.title=ML Optimiser

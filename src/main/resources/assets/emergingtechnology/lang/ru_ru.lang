@@ -88,7 +88,7 @@ item.emergingtechnology.biomassgenerator.name=Генератор на биома
 item.emergingtechnology.tidalgenerator.name=Приливный генератор
 item.emergingtechnology.wind.name=Ветрогенератор
 item.emergingtechnology.biocharblock.name=Блок биоугля
-
+item.emergingtechnology.optimiser.name=ML Optimiser
 
 #Blocks
 
@@ -131,6 +131,7 @@ blocks.emergingtechnology.biomassgenerator.name=Генератор на биом
 blocks.emergingtechnology.tidalgenerator.name=Приливный генератор
 blocks.emergingtechnology.wind.name=Ветрогенератор
 blocks.emergingtechnology.biocharblock.name=Блок биоугля
+blocks.emergingtechnology.optimiser.name=ML Optimiser
 
 #Containers
 
@@ -176,6 +177,7 @@ tile.emergingtechnology.biomassgenerator.name=Генератор на биома
 tile.emergingtechnology.tidalgenerator.name=Приливный генератор
 tile.emergingtechnology.wind.name=Ветрогенератор
 tile.emergingtechnology.biocharblock.name=Блок биоугля
+tile.emergingtechnology.optimiser.name=ML Optimiser
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Углекислота
@@ -227,6 +229,7 @@ info.emergingtechnology.solar.description=Вырабатывает энерги�
 info.emergingtechnology.solarglass.description=Прозрачная солнечная панель, которая генерирует энергию, если один из двух блоков впереди находится на солнце.
 info.emergingtechnology.battery.description=Накапливает энергию для последующего использования. Вход с красной стороны, выход с желтой.
 info.emergingtechnology.wind.description=Генерирует энергию, используя движение ветра.
+info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
 
 info.emergingtechnology.frame.description=Декоративная пластиковая рамка
 
@@ -361,3 +364,4 @@ config.emergingtechnology.electrics.biomass.title=Генератор на био
 config.emergingtechnology.electrics.piezoelectric.title=Пьезоэлектрический генератор
 config.emergingtechnology.electrics.battery.title=Аккумулятор
 config.emergingtechnology.electrics.wind.title=Ветрогенератор
+config.emergingtechnology.electrics.optimiser.title=ML Optimiser
