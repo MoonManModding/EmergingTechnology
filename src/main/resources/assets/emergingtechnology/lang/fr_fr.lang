@@ -231,8 +231,8 @@ info.emergingtechnology.syringe.description=A syringe containing %s tissue.
 
 # Required
 info.emergingtechnology.energy.required=Requires %sRF per tick.
-info.emergingtechnology.fluid.required=Requires %sMB of fluid per tick.
-info.emergingtechnology.water.required=Requires %sMB of water per tick.
+info.emergingtechnology.fluid.required=Requires %smB of fluid per tick.
+info.emergingtechnology.water.required=Requires %smB of water per tick.
 info.emergingtechnology.heat.required=Requires %sC heat per tick.
 info.emergingtechnology.growth.required=Provides a %s percent growth boost per tick;
 
@@ -243,8 +243,8 @@ info.emergingtechnology.waterdepth.required=(x2 when at depth between Y%1$s and 
 
 # Generated
 info.emergingtechnology.energy.generated=Generates %sRF per tick.
-info.emergingtechnology.fluid.generated=Provides %sMB of fluid per tick.
-info.emergingtechnology.water.generated=Provides %sMB of water per tick.
+info.emergingtechnology.fluid.generated=Provides %smB of fluid per tick.
+info.emergingtechnology.water.generated=Provides %smB of water per tick.
 info.emergingtechnology.heat.generated=Generates %sC heat per tick.
 info.emergingtechnology.growth.generated=Provides a %s percent chance of growth boost per tick.
 
@@ -253,8 +253,8 @@ info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks
 
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
-info.emergingtechnology.fluid.capacity=Can store up to %sMB of fluid.
-info.emergingtechnology.water.capacity=Can store up to %sMB of water.
+info.emergingtechnology.fluid.capacity=Can store up to %smB of fluid.
+info.emergingtechnology.water.capacity=Can store up to %smB of water.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=Right click to use.

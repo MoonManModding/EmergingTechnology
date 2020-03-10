@@ -253,9 +253,9 @@ info.emergingtechnology.syringe.description=里面装着%s组织
 
 # Required
 info.emergingtechnology.energy.required=每个周期需要%sRF的能量。
-info.emergingtechnology.fluid.required=每个周期需要%sMB的液体。
-info.emergingtechnology.water.required=每个周期需要%sMB的水。
-info.emergingtechnology.gas.required=每个周期需要%sMB的二氧化碳。
+info.emergingtechnology.fluid.required=每个周期需要%smB的液体。
+info.emergingtechnology.water.required=每个周期需要%smB的水。
+info.emergingtechnology.gas.required=每个周期需要%smB的二氧化碳。
 info.emergingtechnology.heat.required=每个周期需要%sC的热量。
 info.emergingtechnology.growth.required=每个周期提供%s的增长率；
 
@@ -267,9 +267,9 @@ info.emergingtechnology.waterdepth.required=(当高度介于Y%1$s和Y%2$s之间�
 
 # Generated
 info.emergingtechnology.energy.generated=每个周期产生%sRF的能量。
-info.emergingtechnology.fluid.generated=每个周期提供%sMB的液体。
-info.emergingtechnology.water.generated=每个周期提供%sMB的水。
-info.emergingtechnology.gas.generated=每个周期提供%sMB的二氧化碳。
+info.emergingtechnology.fluid.generated=每个周期提供%smB的液体。
+info.emergingtechnology.water.generated=每个周期提供%smB的水。
+info.emergingtechnology.gas.generated=每个周期提供%smB的二氧化碳。
 info.emergingtechnology.heat.generated=每个周期产生%sC的热量。
 info.emergingtechnology.growth.generated=每个周期提供%s的增长率。
 
@@ -279,9 +279,9 @@ info.emergingtechnology.gasrange.generated=促进北面、东面、南面或西�
 
 # Capacity
 info.emergingtechnology.energy.capacity=最多可以储存%sRF的能量。
-info.emergingtechnology.fluid.capacity=最多可以存储%sMB的液体。
-info.emergingtechnology.gas.capacity=最多可以存储%sMB的二氧化碳。
-info.emergingtechnology.water.capacity=最多可以存储%sMB的水。
+info.emergingtechnology.fluid.capacity=最多可以存储%smB的液体。
+info.emergingtechnology.gas.capacity=最多可以存储%smB的二氧化碳。
+info.emergingtechnology.water.capacity=最多可以存储%smB的水。
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=右击使用。

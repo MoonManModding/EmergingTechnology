@@ -296,16 +296,18 @@ public class ScrubberTileEntity extends AnimatedMachineTileBase implements Simpl
                 continue;
             }
 
+            FluidStack fluidStack = this.gasHandler.getFluid();
+
+            if (fluidStack == null) return;
+
             if (tileEntity instanceof DiffuserTileEntity) {
                 DiffuserTileEntity diffuserTileEntity = (DiffuserTileEntity) tileEntity;
-                filled = diffuserTileEntity.gasHandler.fill(new FluidStack(this.gasHandler.getFluid().getFluid(),
-                        this.gasHandler.getFluidAmount()), true);
+                filled = diffuserTileEntity.gasHandler.fill(fluidStack, true);
             }
 
             if (tileEntity instanceof AlgaeBioreactorTileEntity) {
                 AlgaeBioreactorTileEntity bioreactorTileEntity = (AlgaeBioreactorTileEntity) tileEntity;
-                filled = bioreactorTileEntity.gasHandler.fill(new FluidStack(this.gasHandler.getFluid().getFluid(),
-                this.gasHandler.getFluidAmount()), true);
+                filled = bioreactorTileEntity.gasHandler.fill(fluidStack, true);
             }
 
             if (filled > 0) {

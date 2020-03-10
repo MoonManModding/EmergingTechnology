@@ -252,9 +252,9 @@ info.emergingtechnology.syringe.description=Шприц содержащий %s �
 
 # Required
 info.emergingtechnology.energy.required=Требует %sRF за тик.
-info.emergingtechnology.fluid.required=Требует %sMB жидкости за тик.
-info.emergingtechnology.water.required=Требует %sMB воды за тик.
-info.emergingtechnology.gas.required=Требует %sMB углекислого газа за тик.
+info.emergingtechnology.fluid.required=Требует %smB жидкости за тик.
+info.emergingtechnology.water.required=Требует %smB воды за тик.
+info.emergingtechnology.gas.required=Требует %smB углекислого газа за тик.
 info.emergingtechnology.heat.required=Требует %sC тепла за тик.
 info.emergingtechnology.growth.required=Обеспечивает %s процентный импульс роста за тик;
 
@@ -266,9 +266,9 @@ info.emergingtechnology.waterdepth.required=(x2 когда на уровне м�
 
 # Generated
 info.emergingtechnology.energy.generated=Генерирует %sRF за тик.
-info.emergingtechnology.fluid.generated=Обеспечивает %sMB жидкости за тик.
-info.emergingtechnology.water.generated=Обеспечивает %sMB воды за тик.
-info.emergingtechnology.gas.generated=Обеспечивает %sMB углекислого газа за тик.
+info.emergingtechnology.fluid.generated=Обеспечивает %smB жидкости за тик.
+info.emergingtechnology.water.generated=Обеспечивает %smB воды за тик.
+info.emergingtechnology.gas.generated=Обеспечивает %smB углекислого газа за тик.
 info.emergingtechnology.heat.generated=Генерирует %sC тепла за тик.
 info.emergingtechnology.growth.generated=Обеспечивает %s процентную вероятность импульса роста за тик.
 
@@ -278,9 +278,9 @@ info.emergingtechnology.gasrange.generated=Увеличивает рост ра�
 
 # Capacity
 info.emergingtechnology.energy.capacity=Может хранить до %sRF энергии.
-info.emergingtechnology.fluid.capacity=Может хранить до %sMB жидкости.
-info.emergingtechnology.gas.capacity=Может хранить до %sMB углекислого газа.
-info.emergingtechnology.water.capacity=Может хранить до %sMB воды.
+info.emergingtechnology.fluid.capacity=Может хранить до %smB жидкости.
+info.emergingtechnology.gas.capacity=Может хранить до %smB углекислого газа.
+info.emergingtechnology.water.capacity=Может хранить до %smB воды.
 
 # Interactions
 info.emergingtechnology.interaction.rightclick=ПКМ для использования.
