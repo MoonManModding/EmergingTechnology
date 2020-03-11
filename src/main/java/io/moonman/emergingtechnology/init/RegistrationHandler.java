@@ -30,6 +30,8 @@ import io.moonman.emergingtechnology.machines.solarglass.SolarGlassTileEntity;
 import io.moonman.emergingtechnology.machines.tidal.TidalGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.wind.WindTileEntity;
 import io.moonman.emergingtechnology.providers.ModTissueProvider;
+import io.moonman.emergingtechnology.util.Console;
+import net.minecraftforge.common.animation.Event;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

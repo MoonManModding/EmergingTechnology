@@ -8,7 +8,9 @@ import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.model.animation.AnimationStateMachine;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -26,7 +28,7 @@ public class AnimatedMachineTileBase extends MachineTileBase {
     public void initialiseAnimator(MachineTileBase target, String name) {
 
         subscribe(target);
-        asm = isClientForAnimator() ? AnimationHelper.loadHarvesterASM(getResourceLocation(name), ImmutableMap.of()) : null;
+        asm = isClientForAnimator() ? ModelLoaderRegistry.loadASM(getResourceLocation(name), ImmutableMap.of()) : null;
     }
 
     public void initialiseHarvesterAnimator(HarvesterTileEntity target) {

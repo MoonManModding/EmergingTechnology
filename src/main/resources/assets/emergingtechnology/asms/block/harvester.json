@@ -41,22 +41,13 @@
       "180"
     ],
     "90": [
-      "default",
-      "90",
-      "n90",
-      "180"
+      "default"
     ],
     "n90": [
-      "default",
-      "90",
-      "n90",
-      "180"
+      "default"
     ],
     "180": [
-      "default",
-      "n90",
-      "90",
-      "180"
+      "default"
     ]
   },
   "start_state": "default"

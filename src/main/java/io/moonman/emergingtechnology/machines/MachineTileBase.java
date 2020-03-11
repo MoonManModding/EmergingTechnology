@@ -8,6 +8,7 @@ import net.minecraft.util.ITickable;
 public class MachineTileBase extends TileEntity implements ITickable {
 
     private int tick = 0;
+    private int maxTick = Reference.TICK_RATE;
 
     public boolean isClient() {
         return getWorld().isRemote;
@@ -24,13 +25,17 @@ public class MachineTileBase extends TileEntity implements ITickable {
         getWorld().notifyBlockUpdate(getPos(), state, state, 3);
     }
 
+    public void setMaxTick(int max) {
+        this.maxTick = max;
+    }
+
     @Override
     public void update() {
         if (this.isClient()) {
             return;
         }
 
-        if (tick < Reference.TICK_RATE) {
+        if (tick < maxTick) {
             tick++;
             return;
         } else {

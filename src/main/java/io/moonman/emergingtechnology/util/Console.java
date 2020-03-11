@@ -1,7 +1,7 @@
 package io.moonman.emergingtechnology.util;
 
 public class Console {
-    public static void debug(Object object) {
+    public static void log(Object object) {
         System.out.println(object.toString());
     }
 

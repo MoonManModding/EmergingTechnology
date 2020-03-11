@@ -25,6 +25,8 @@ public class AnimationHelper {
     @SideOnly(Side.CLIENT)
     public static void onHarvesterAction(BlockPos pos, EnumFacing baseFacing, EnumFacing cropFacing, String action, String state) {
         
+        if (cropFacing == null) return;
+
         PacketHandler.INSTANCE.sendToServer(new HarvesterActionAnimationPacket(pos, FacingHelper.facingToInt(cropFacing)));
     }
 }

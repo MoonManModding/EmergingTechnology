@@ -53,8 +53,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-public final class HarvesterAnimationStateMachine implements IAnimationStateMachine
-{
+public final class HarvesterAnimationStateMachine implements IAnimationStateMachine {
     private final ImmutableMap<String, ITimeValue> parameters;
     private final ImmutableMap<String, IClip> clips;
     private final ImmutableList<String> states;
@@ -62,7 +61,7 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     @SerializedName("start_state")
     private final String startState;
 
-    private transient boolean shouldHandleSpecialEvents = true;
+    private transient boolean shouldHandleSpecialEvents;
     private transient String currentStateName;
     private transient IClip currentState;
     private transient float lastPollTime;
@@ -71,26 +70,28 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     private transient EnumFacing baseFacing;
     private transient EnumFacing cropFacing;
 
-    private static final LoadingCache<Triple<? extends IClip, Float, Float>, Pair<IModelState, Iterable<Event>>> clipCache = CacheBuilder.newBuilder()
-        .maximumSize(100)
-        .expireAfterWrite(100, TimeUnit.MILLISECONDS)
-        .build(new CacheLoader<Triple<? extends IClip, Float, Float>, Pair<IModelState, Iterable<Event>>>()
-        {
-            @Override
-            public Pair<IModelState, Iterable<Event>> load(Triple<? extends IClip, Float, Float> key) throws Exception
-            {
-                return Clips.apply(key.getLeft(), key.getMiddle(), key.getRight());
-            }
-        });
+    private static final LoadingCache<Triple<? extends IClip, Float, Float>, Pair<IModelState, Iterable<Event>>> clipCache = CacheBuilder
+            .newBuilder().maximumSize(100).expireAfterWrite(100, TimeUnit.MILLISECONDS)
+            .build(new CacheLoader<Triple<? extends IClip, Float, Float>, Pair<IModelState, Iterable<Event>>>() {
+                @Override
+                public Pair<IModelState, Iterable<Event>> load(Triple<? extends IClip, Float, Float> key)
+                        throws Exception {
+                    return Clips.apply(key.getLeft(), key.getMiddle(), key.getRight());
+                }
+            });
 
     @Deprecated
-    public HarvesterAnimationStateMachine(ImmutableMap<String, ITimeValue> parameters, ImmutableMap<String, IClip> clips, ImmutableList<String> states, ImmutableMap<String, String> transitions, String startState)
-    {
-        this(parameters, clips, states, ImmutableMultimap.copyOf(Multimaps.newSetMultimap(Maps.transformValues(transitions, ImmutableSet::of), Sets::newHashSet)), startState);
+    public HarvesterAnimationStateMachine(ImmutableMap<String, ITimeValue> parameters,
+            ImmutableMap<String, IClip> clips, ImmutableList<String> states, ImmutableMap<String, String> transitions,
+            String startState) {
+        this(parameters, clips, states, ImmutableMultimap.copyOf(
+                Multimaps.newSetMultimap(Maps.transformValues(transitions, ImmutableSet::of), Sets::newHashSet)),
+                startState);
     }
 
-    public HarvesterAnimationStateMachine(ImmutableMap<String, ITimeValue> parameters, ImmutableMap<String, IClip> clips, ImmutableList<String> states, ImmutableMultimap<String, String> transitions, String startState)
-    {
+    public HarvesterAnimationStateMachine(ImmutableMap<String, ITimeValue> parameters,
+            ImmutableMap<String, IClip> clips, ImmutableList<String> states,
+            ImmutableMultimap<String, String> transitions, String startState) {
         this.parameters = parameters;
         this.clips = clips;
         this.states = states;
@@ -101,30 +102,24 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     /**
      * post-loading initialization hook.
      */
-    void initialize()
-    {
-        if(parameters == null)
-        {
+    void initialize() {
+        if (parameters == null) {
             throw new JsonParseException("Animation State Machine should contain \"parameters\" key.");
         }
-        if(clips == null)
-        {
+        if (clips == null) {
             throw new JsonParseException("Animation State Machine should contain \"clips\" key.");
         }
-        if(states == null)
-        {
+        if (states == null) {
             throw new JsonParseException("Animation State Machine should contain \"states\" key.");
         }
-        if(transitions == null)
-        {
+        if (transitions == null) {
             throw new JsonParseException("Animation State Machine should contain \"transitions\" key.");
         }
         shouldHandleSpecialEvents = true;
         lastPollTime = Float.NEGATIVE_INFINITY;
         // setting the starting state
         IClip state = clips.get(startState);
-        if(!clips.containsKey(startState) || !states.contains(startState))
-        {
+        if (!clips.containsKey(startState) || !states.contains(startState)) {
             throw new IllegalStateException("unknown state: " + startState);
         }
         currentStateName = startState;
@@ -139,9 +134,9 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
             lastPollTime = time;
         }
         Pair<IModelState, Iterable<Event>> pair = clipCache.getUnchecked(Triple.of(currentState, lastPollTime, time));
+
         lastPollTime = time;
         boolean shouldFilter = false;
-
         if(shouldHandleSpecialEvents)
         {
             for(Event event : ImmutableList.copyOf(pair.getRight()).reverse())
@@ -153,12 +148,10 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
                     {
                         String newState = event.event().substring("!transition:".length());
                         transition(newState);
-                    }
-                    else if(event.event().startsWith("!action:"))
-                    {
+                    } else if (event.event().startsWith("!action:")) {
                         String action = event.event().substring("!action:".length());
                         onAction(action);
-                    }
+                    } 
                     else
                     {
                         FMLLog.log.error("Unknown special event \"{}\", ignoring.", event.event());
@@ -180,63 +173,63 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
         }));
     }
 
-    public void harvesterTransition(EnumFacing baseFacing, BlockPos position, EnumFacing cropFacing)
-    {
+    public void harvesterTransition(EnumFacing baseFacing, BlockPos position, EnumFacing cropFacing) {
         this.setBaseFacing(baseFacing);
         this.setCropFacing(cropFacing);
         this.setPosition(position);
 
-        String transition = "error";
+        String newTransition = "error";
 
         if (baseFacing == cropFacing) {
-            transition = "default";
+            newTransition = "default";
         }
 
         if (baseFacing.getOpposite() == cropFacing) {
-            transition = "180";
+            newTransition = "180";
         }
 
         if (baseFacing.rotateY() == cropFacing) {
-            transition = "n90";
+            newTransition = "n90";
         }
 
         if (baseFacing.rotateYCCW() == cropFacing) {
-            transition = "90";
+            newTransition = "90";
         }
 
-        transition(transition);
+        if (newTransition.equalsIgnoreCase(currentStateName)) {
+            return;
+        }
+
+        transition(newTransition);
     }
 
     @Override
-    public void transition(String newState)
-    {
-        System.out.println("t:" + newState);
+    public void transition(String newState) {
 
         IClip nc = clips.get(newState);
-        if(!clips.containsKey(newState) || !states.contains(newState))
-        {
+
+        if (!clips.containsKey(newState) || !states.contains(newState)) {
             throw new IllegalStateException("unknown state: " + newState);
         }
-        if(!transitions.containsEntry(currentStateName, newState))
-        {
-            throw new IllegalArgumentException("no transition from current clip \"" + currentStateName + "\" to the clip \"" + newState + "\" found.");
+        if (!transitions.containsEntry(currentStateName, newState)) {
+            throw new IllegalArgumentException("no transition from current clip \"" + currentStateName
+                    + "\" to the clip \"" + newState + "\" found.");
         }
         currentStateName = newState;
         currentState = nc;
     }
 
     @Override
-    public String currentState()
-    {
+    public String currentState() {
         return currentStateName;
     }
 
-    public boolean isIdle()
-    {
+    public boolean isIdle() {
         return currentStateName.equalsIgnoreCase("default");
     }
 
     private void onAction(String action) {
+        Console.log("OnAction " + action);
         AnimationHelper.onHarvesterAction(position, baseFacing, cropFacing, action, currentStateName);
     }
 
@@ -249,89 +242,75 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     }
 
     private void setCropFacing(EnumFacing facing) {
-        this.baseFacing = facing;
+        this.cropFacing = facing;
     }
 
     @Override
-    public void shouldHandleSpecialEvents(boolean value)
-    {
+    public void shouldHandleSpecialEvents(boolean value) {
         shouldHandleSpecialEvents = true;
     }
 
     /**
-     * Load a new instance of HarvesterAnimationStateMachine at specified location, with specified custom parameters.
+     * Load a new instance of HarvesterAnimationStateMachine at specified location,
+     * with specified custom parameters.
      */
     @SideOnly(Side.CLIENT)
-    public static HarvesterAnimationStateMachine load(IResourceManager manager, ResourceLocation location, ImmutableMap<String, ITimeValue> customParameters)
-    {
-        try (IResource resource = manager.getResource(location))
-        {
+    public static HarvesterAnimationStateMachine load(IResourceManager manager, ResourceLocation location,
+            ImmutableMap<String, ITimeValue> customParameters) {
+        try (IResource resource = manager.getResource(location)) {
             ClipResolver clipResolver = new ClipResolver();
             ParameterResolver parameterResolver = new ParameterResolver(customParameters);
             Clips.CommonClipTypeAdapterFactory.INSTANCE.setClipResolver(clipResolver);
             TimeValues.CommonTimeValueTypeAdapterFactory.INSTANCE.setValueResolver(parameterResolver);
-            HarvesterAnimationStateMachine asm = asmGson.fromJson(new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8), HarvesterAnimationStateMachine.class);
+            HarvesterAnimationStateMachine asm = asmGson.fromJson(
+                    new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8),
+                    HarvesterAnimationStateMachine.class);
             clipResolver.asm = asm;
             parameterResolver.asm = asm;
             asm.initialize();
 
             return asm;
-        }
-        catch(IOException | JsonParseException e)
-        {
+        } catch (IOException | JsonParseException e) {
             FMLLog.log.error("Exception loading Animation State Machine {}, skipping", location, e);
             return missing;
-        }
-        finally
-        {
+        } finally {
             Clips.CommonClipTypeAdapterFactory.INSTANCE.setClipResolver(null);
             TimeValues.CommonTimeValueTypeAdapterFactory.INSTANCE.setValueResolver(null);
         }
     }
 
     private static final HarvesterAnimationStateMachine missing = new HarvesterAnimationStateMachine(
-        ImmutableMap.<String, ITimeValue>of(),
-        ImmutableMap.of("missingno", (IClip)Clips.IdentityClip.INSTANCE),
-        ImmutableList.of("missingno"),
-        ImmutableMultimap.<String, String>of(),
-        "missingno");
+            ImmutableMap.<String, ITimeValue>of(), ImmutableMap.of("missingno", (IClip) Clips.IdentityClip.INSTANCE),
+            ImmutableList.of("missingno"), ImmutableMultimap.<String, String>of(), "missingno");
 
-    static
-    {
+    static {
         missing.initialize();
     }
 
-    public static HarvesterAnimationStateMachine getMissing()
-    {
+    public static HarvesterAnimationStateMachine getMissing() {
         return missing;
     }
 
-    private static final class ClipResolver implements Function<String, IClip>
-    {
+    private static final class ClipResolver implements Function<String, IClip> {
         private HarvesterAnimationStateMachine asm;
 
         @Override
-        public IClip apply(String name)
-        {
+        public IClip apply(String name) {
             return asm.clips.get(name);
         }
     }
 
-    private static final class ParameterResolver implements Function<String, ITimeValue>
-    {
+    private static final class ParameterResolver implements Function<String, ITimeValue> {
         private final ImmutableMap<String, ITimeValue> customParameters;
         private HarvesterAnimationStateMachine asm;
 
-        public ParameterResolver(ImmutableMap<String, ITimeValue> customParameters)
-        {
+        public ParameterResolver(ImmutableMap<String, ITimeValue> customParameters) {
             this.customParameters = customParameters;
         }
 
         @Override
-        public ITimeValue apply(String name)
-        {
-            if(asm.parameters.containsKey(name))
-            {
+        public ITimeValue apply(String name) {
+            if (asm.parameters.containsKey(name)) {
                 return asm.parameters.get(name);
             }
             return customParameters.get(name);
@@ -339,55 +318,47 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     }
 
     private static final Gson asmGson = new GsonBuilder()
-        .registerTypeAdapter(ImmutableList.class, JsonUtils.ImmutableListTypeAdapter.INSTANCE)
-        .registerTypeAdapter(ImmutableMap.class, JsonUtils.ImmutableMapTypeAdapter.INSTANCE)
-        .registerTypeAdapterFactory(Clips.CommonClipTypeAdapterFactory.INSTANCE)
-        //.registerTypeAdapterFactory(ClipProviders.CommonClipProviderTypeAdapterFactory.INSTANCE)
-        .registerTypeAdapterFactory(TimeValues.CommonTimeValueTypeAdapterFactory.INSTANCE)
-        .registerTypeAdapterFactory(TransitionsAdapterFactory.INSTANCE)
-        .setPrettyPrinting()
-        .enableComplexMapKeySerialization()
-        .disableHtmlEscaping()
-        .create();
+            .registerTypeAdapter(ImmutableList.class, JsonUtils.ImmutableListTypeAdapter.INSTANCE)
+            .registerTypeAdapter(ImmutableMap.class, JsonUtils.ImmutableMapTypeAdapter.INSTANCE)
+            .registerTypeAdapterFactory(Clips.CommonClipTypeAdapterFactory.INSTANCE)
+            // .registerTypeAdapterFactory(ClipProviders.CommonClipProviderTypeAdapterFactory.INSTANCE)
+            .registerTypeAdapterFactory(TimeValues.CommonTimeValueTypeAdapterFactory.INSTANCE)
+            .registerTypeAdapterFactory(TransitionsAdapterFactory.INSTANCE).setPrettyPrinting()
+            .enableComplexMapKeySerialization().disableHtmlEscaping().create();
 
-    private enum TransitionsAdapterFactory implements TypeAdapterFactory
-    {
+    private enum TransitionsAdapterFactory implements TypeAdapterFactory {
         INSTANCE;
 
         @Override
         @SuppressWarnings("unchecked")
         @Nullable
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type)
-        {
-            if(type.getRawType() != ImmutableMultimap.class || !(type.getType() instanceof ParameterizedType))
-            {
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (type.getRawType() != ImmutableMultimap.class || !(type.getType() instanceof ParameterizedType)) {
                 return null;
             }
             final Type[] typeArguments = ((ParameterizedType) type.getType()).getActualTypeArguments();
-            if(typeArguments.length != 2 || typeArguments[0] != String.class || typeArguments[1] != String.class)
-            {
+            if (typeArguments.length != 2 || typeArguments[0] != String.class || typeArguments[1] != String.class) {
                 return null;
             }
-            final TypeAdapter<Map<String, Collection<String>>> mapAdapter = gson.getAdapter(new TypeToken<Map<String, Collection<String>>>(){});
-            final TypeAdapter<Collection<String>> collectionAdapter = gson.getAdapter(new TypeToken<Collection<String>>(){});
-            return (TypeAdapter<T>)new TypeAdapter<ImmutableMultimap<String, String>>()
-            {
+            final TypeAdapter<Map<String, Collection<String>>> mapAdapter = gson
+                    .getAdapter(new TypeToken<Map<String, Collection<String>>>() {
+                    });
+            final TypeAdapter<Collection<String>> collectionAdapter = gson
+                    .getAdapter(new TypeToken<Collection<String>>() {
+                    });
+            return (TypeAdapter<T>) new TypeAdapter<ImmutableMultimap<String, String>>() {
                 @Override
-                public void write(JsonWriter out, ImmutableMultimap<String, String> value) throws IOException
-                {
+                public void write(JsonWriter out, ImmutableMultimap<String, String> value) throws IOException {
                     mapAdapter.write(out, value.asMap());
                 }
 
                 @Override
-                public ImmutableMultimap<String, String> read(JsonReader in) throws IOException
-                {
+                public ImmutableMultimap<String, String> read(JsonReader in) throws IOException {
                     ImmutableMultimap.Builder<String, String> builder = ImmutableMultimap.builder();
                     in.beginObject();
-                    while(in.hasNext())
-                    {
+                    while (in.hasNext()) {
                         String key = in.nextName();
-                        switch(in.peek())
-                        {
+                        switch (in.peek()) {
                             case STRING:
                                 builder.put(key, in.nextString());
                                 break;

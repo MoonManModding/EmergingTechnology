@@ -62,17 +62,40 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         initialiseHarvesterAnimator(this);
     }
 
-    public EnergyStorageHandler energyHandler=new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY){@Override public void onContentsChanged(){super.onContentsChanged();markDirtyClient();}};
+    public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY) {
+        @Override
+        public void onContentsChanged() {
+            super.onContentsChanged();
+            markDirtyClient();
+        }
+    };
 
     public ConsumerEnergyStorageHandler consumerEnergyHandler = new ConsumerEnergyStorageHandler(energyHandler);
 
-    public ItemStackHandler itemHandler=new ItemStackHandler(4){@Override protected void onContentsChanged(int slot){markDirty();super.onContentsChanged(slot);}};
+    public ItemStackHandler itemHandler = new ItemStackHandler(4) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+            super.onContentsChanged(slot);
+        }
+    };
 
-    public ItemStackHandler automationItemHandler=new AutomationItemStackHandler(itemHandler,0,1){@Override protected void onContentsChanged(int slot){markDirty();super.onContentsChanged(slot);}
+    public ItemStackHandler automationItemHandler = new AutomationItemStackHandler(itemHandler, 0, 1) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+            super.onContentsChanged(slot);
+        }
 
-    @Override public ItemStack extractItem(int slot,int amount,boolean simulate){if(slot==0){return ItemStack.EMPTY;}
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot == 0) {
+                return ItemStack.EMPTY;
+            }
 
-    return itemHandler.extractItem(slot,amount,simulate);}};
+            return itemHandler.extractItem(slot, amount, simulate);
+        }
+    };
 
     @Override
     public boolean hasFastRenderer() {
@@ -150,14 +173,14 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
         this.setEnergy(this.getEnergy());
 
-            for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
 
-                tryPlant(facing);
+            tryPlant(facing);
 
-                if (canHarvest(facing) && getHarvesterAnimator().isIdle()) {
-                    this.animateRotationByAngle(HarvesterHelper.getAnimationAngleFromFacings(getFacing(), facing));
-                }
+            if (canHarvest(facing) && getHarvesterAnimator().isIdle()) {
+                this.animateRotationByAngle(HarvesterHelper.getAnimationAngleFromFacings(getFacing(), facing));
             }
+        }
 
         this.doEnergyTransferProcess();
     }
@@ -185,17 +208,14 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
     public void doHarvest(EnumFacing facing) {
 
         if (!canHarvest(facing)) {
-            Console.log("1");
             return;
         }
 
         if (getTargetBlockState(facing) == null) {
-            Console.log("2");
             return;
         }
 
         if (!sufficientEnergy()) {
-            Console.log("3");
             return;
         }
 
@@ -209,8 +229,8 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
         useEnergy();
 
-        Console.log("4");
-        getHarvesterAnimator().transition("default");
+        Console.log("Returning to default");
+        getHarvesterAnimator().harvesterTransition(getFacing(), getPos(), getFacing());
     }
 
     private void doInteractableHarvest(EnumFacing facing) {
