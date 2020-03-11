@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.animation.Event;
@@ -38,6 +39,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
+
+import io.moonman.emergingtechnology.util.Console;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -59,12 +62,14 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     @SerializedName("start_state")
     private final String startState;
 
-    private transient boolean shouldHandleSpecialEvents;
+    private transient boolean shouldHandleSpecialEvents = true;
     private transient String currentStateName;
     private transient IClip currentState;
     private transient float lastPollTime;
 
     private transient BlockPos position;
+    private transient EnumFacing baseFacing;
+    private transient EnumFacing cropFacing;
 
     private static final LoadingCache<Triple<? extends IClip, Float, Float>, Pair<IModelState, Iterable<Event>>> clipCache = CacheBuilder.newBuilder()
         .maximumSize(100)
@@ -136,6 +141,7 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
         Pair<IModelState, Iterable<Event>> pair = clipCache.getUnchecked(Triple.of(currentState, lastPollTime, time));
         lastPollTime = time;
         boolean shouldFilter = false;
+
         if(shouldHandleSpecialEvents)
         {
             for(Event event : ImmutableList.copyOf(pair.getRight()).reverse())
@@ -174,9 +180,38 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
         }));
     }
 
+    public void harvesterTransition(EnumFacing baseFacing, BlockPos position, EnumFacing cropFacing)
+    {
+        this.setBaseFacing(baseFacing);
+        this.setCropFacing(cropFacing);
+        this.setPosition(position);
+
+        String transition = "error";
+
+        if (baseFacing == cropFacing) {
+            transition = "default";
+        }
+
+        if (baseFacing.getOpposite() == cropFacing) {
+            transition = "180";
+        }
+
+        if (baseFacing.rotateY() == cropFacing) {
+            transition = "n90";
+        }
+
+        if (baseFacing.rotateYCCW() == cropFacing) {
+            transition = "90";
+        }
+
+        transition(transition);
+    }
+
     @Override
     public void transition(String newState)
     {
+        System.out.println("t:" + newState);
+
         IClip nc = clips.get(newState);
         if(!clips.containsKey(newState) || !states.contains(newState))
         {
@@ -196,12 +231,25 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
         return currentStateName;
     }
 
-    private void onAction(String action) {
-        AnimationHelper.onHarvesterAction(position, action, currentStateName);
+    public boolean isIdle()
+    {
+        return currentStateName.equalsIgnoreCase("default");
     }
 
-    public void setPosition(BlockPos position) {
+    private void onAction(String action) {
+        AnimationHelper.onHarvesterAction(position, baseFacing, cropFacing, action, currentStateName);
+    }
+
+    private void setPosition(BlockPos position) {
         this.position = position;
+    }
+
+    private void setBaseFacing(EnumFacing facing) {
+        this.baseFacing = facing;
+    }
+
+    private void setCropFacing(EnumFacing facing) {
+        this.baseFacing = facing;
     }
 
     @Override
@@ -211,7 +259,7 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     }
 
     /**
-     * Load a new instance if HarvesterAnimationStateMachine at specified location, with specified custom parameters.
+     * Load a new instance of HarvesterAnimationStateMachine at specified location, with specified custom parameters.
      */
     @SideOnly(Side.CLIENT)
     public static HarvesterAnimationStateMachine load(IResourceManager manager, ResourceLocation location, ImmutableMap<String, ITimeValue> customParameters)

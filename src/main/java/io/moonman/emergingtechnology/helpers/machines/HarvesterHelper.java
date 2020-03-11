@@ -44,17 +44,31 @@ public class HarvesterHelper {
         return blockState.getBlock().getDrops(world, pos, blockState, 1);
     }
 
-    public static int getFacingIdFromAnimationState(String state) {
-        String[] splitStrings = state.split("_");
+    public static int getAnimationAngleFromFacings(EnumFacing baseFacing, EnumFacing harvestFacing) {
+       
+        if (baseFacing == harvestFacing) return 0;
+        if (baseFacing.rotateY() == harvestFacing) return 90;
+        if (baseFacing.rotateYCCW() == harvestFacing) return -90;
+        if (baseFacing.getOpposite() == harvestFacing) return 180;
 
-        EnumFacing facing = EnumFacing.byName(splitStrings[0]);
-        EnumFacing relativeFacing = EnumFacing.byName(splitStrings[1]);
+        return 0;
+    }
+    
+    public static EnumFacing getFacingFromAngle(EnumFacing baseFacing, int angle) {
+        EnumFacing newFacing = baseFacing;
 
-        if (facing == null || relativeFacing == null) {
-            EmergingTechnology.logger.warn("There was a problem parsing facing for animation state " + state);
-            return 0;
+        if (angle == 90) {
+            newFacing = baseFacing.rotateY();
         }
 
-        return FacingHelper.getFacingIdFromEnumFacings(facing, relativeFacing);
+        if (angle == -90) {
+            newFacing = baseFacing.rotateYCCW();
+        }
+
+        if (angle == 180) {
+            newFacing = baseFacing.getOpposite();
+        }
+
+        return newFacing;
     }
 }

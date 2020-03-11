@@ -4,12 +4,10 @@ import com.google.common.collect.ImmutableMap;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.animation.AnimationHelper;
-import io.moonman.emergingtechnology.helpers.animation.HarvesterAnimationStateMachine;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.event.entity.player.PlayerEvent;

@@ -1,6 +1,7 @@
 package io.moonman.emergingtechnology.network.animation;
 
 import io.moonman.emergingtechnology.helpers.FacingHelper;
+import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -15,12 +16,12 @@ public class HarvesterActionAnimationPacket implements IMessage {
     boolean messageValid;
 
     private BlockPos pos;
-    private int integer;
+    private int facingIdToHarvest;
 
     @Override
     public void fromBytes(ByteBuf buf) {
         pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-        integer = buf.readInt();
+        facingIdToHarvest = buf.readInt();
     }
 
     @Override
@@ -28,14 +29,14 @@ public class HarvesterActionAnimationPacket implements IMessage {
         buf.writeInt(pos.getX());
         buf.writeInt(pos.getY());
         buf.writeInt(pos.getZ());
-        buf.writeInt(integer);
+        buf.writeInt(facingIdToHarvest);
     }
 
     public HarvesterActionAnimationPacket() {
     }
 
-    public HarvesterActionAnimationPacket(BlockPos pos, int integer) {
-        this.integer = integer;
+    public HarvesterActionAnimationPacket(BlockPos pos, int facingIdToHarvest) {
+        this.facingIdToHarvest = facingIdToHarvest;
         this.pos = pos;
         messageValid = true;
     }
@@ -57,7 +58,7 @@ public class HarvesterActionAnimationPacket implements IMessage {
             if (tileEntity == null)
                 return;
 
-            tileEntity.doHarvest(FacingHelper.getFacingFromId(message.integer));
+            tileEntity.doHarvest(FacingHelper.intToFacing(message.facingIdToHarvest));
         }
 
         private HarvesterTileEntity getTileEntity(World world, BlockPos pos) {

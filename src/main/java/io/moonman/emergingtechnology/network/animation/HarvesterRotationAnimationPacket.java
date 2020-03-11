@@ -15,12 +15,12 @@ public class HarvesterRotationAnimationPacket implements IMessage {
     boolean messageValid;
 
     private BlockPos pos;
-    private int rotation;
+    private int angle;
 
     @Override
     public void fromBytes(ByteBuf buf) {
         pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-        rotation = buf.readInt();
+        angle = buf.readInt();
     }
 
     @Override
@@ -28,14 +28,14 @@ public class HarvesterRotationAnimationPacket implements IMessage {
         buf.writeInt(pos.getX());
         buf.writeInt(pos.getY());
         buf.writeInt(pos.getZ());
-        buf.writeInt(rotation);
+        buf.writeInt(angle);
     }
 
     public HarvesterRotationAnimationPacket() {
     }
 
-    public HarvesterRotationAnimationPacket(BlockPos pos, RotationEnum rotation) {
-        this.rotation = RotationEnum.getId(rotation);
+    public HarvesterRotationAnimationPacket(BlockPos pos, int angle) {
+        this.angle = angle;
         this.pos = pos;
         messageValid = true;
     }
@@ -53,8 +53,8 @@ public class HarvesterRotationAnimationPacket implements IMessage {
 
             if (tileEntity == null)
                 return;
-            tileEntity.setRotationClient(RotationEnum.getById(message.rotation));
 
+            tileEntity.animateClientRotationByAngle(message.angle);
         }
 
         private HarvesterTileEntity getTileEntity(World world, BlockPos pos) {

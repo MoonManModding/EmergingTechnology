@@ -55,6 +55,21 @@ public enum RotationEnum {
         }
     }
 
+    public static EnumFacing getFacingFromRotation(RotationEnum rotation) {
+        switch (rotation) {
+            case EAST:
+                return EnumFacing.EAST;
+            case NORTH:
+                return EnumFacing.NORTH;
+            case SOUTH:
+                return EnumFacing.SOUTH;
+            case WEST:
+                return EnumFacing.WEST;
+            default:
+                return EnumFacing.NORTH;
+        }
+    }
+
     private static void checkValues() {
         if (RotationEnum.values == null) {
             RotationEnum.values = RotationEnum.values();
