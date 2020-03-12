@@ -2,12 +2,10 @@ package io.moonman.emergingtechnology.helpers.animation;
 
 import com.google.common.collect.ImmutableMap;
 
-import io.moonman.emergingtechnology.helpers.FacingHelper;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.HarvesterStopAnimationPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.animation.ITimeValue;
@@ -23,10 +21,10 @@ public class AnimationHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void onHarvesterAction(BlockPos pos, EnumFacing facing) {
+    public static void onHarvesterAction(BlockPos pos) {
         
-        if (facing == null) return;
+        if (pos == null) return;
 
-        PacketHandler.INSTANCE.sendToServer(new HarvesterStopAnimationPacket(pos, FacingHelper.facingToInt(facing)));
+        PacketHandler.INSTANCE.sendToServer(new HarvesterStopAnimationPacket(pos));
     }
 }

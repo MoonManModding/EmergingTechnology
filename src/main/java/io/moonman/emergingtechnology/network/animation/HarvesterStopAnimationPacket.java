@@ -16,7 +16,6 @@ public class HarvesterStopAnimationPacket implements IMessage {
     boolean messageValid;
 
     private BlockPos pos;
-    private int facingIdToHarvest;
 
     @Override
     public void fromBytes(ByteBuf buf) {
@@ -28,14 +27,12 @@ public class HarvesterStopAnimationPacket implements IMessage {
         buf.writeInt(pos.getX());
         buf.writeInt(pos.getY());
         buf.writeInt(pos.getZ());
-        buf.writeInt(facingIdToHarvest);
     }
 
     public HarvesterStopAnimationPacket() {
     }
 
-    public HarvesterStopAnimationPacket(BlockPos pos, int facingIdToHarvest) {
-        this.facingIdToHarvest = facingIdToHarvest;
+    public HarvesterStopAnimationPacket(BlockPos pos) {
         this.pos = pos;
         messageValid = true;
     }
@@ -57,7 +54,7 @@ public class HarvesterStopAnimationPacket implements IMessage {
             if (tileEntity == null)
                 return;
 
-            tileEntity.doHarvest(FacingHelper.intToFacing(message.facingIdToHarvest));
+            tileEntity.doHarvest();
         }
 
         private HarvesterTileEntity getTileEntity(World world, BlockPos pos) {

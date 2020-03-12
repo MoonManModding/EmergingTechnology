@@ -68,7 +68,6 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     private transient float lastPollTime;
 
     private transient BlockPos position;
-    private transient EnumFacing facing;
 
     private static final LoadingCache<Triple<? extends IClip, Float, Float>, Pair<IModelState, Iterable<Event>>> clipCache = CacheBuilder
             .newBuilder().maximumSize(100).expireAfterWrite(100, TimeUnit.MILLISECONDS)
@@ -162,9 +161,8 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
         }));
     }
 
-    public void harvesterTransition(EnumFacing facing, BlockPos position) {
+    public void harvesterTransition(BlockPos position) {
         this.setPosition(position);
-        this.setFacing(facing);
 
         transition("harvest");
     }
@@ -191,16 +189,12 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     }
 
     private void onAction(String action) {
-        AnimationHelper.onHarvesterAction(position, facing);
+        AnimationHelper.onHarvesterAction(position);
         transition("default");
     }
 
     private void setPosition(BlockPos position) {
         this.position = position;
-    }
-
-    private void setFacing(EnumFacing facing) {
-        this.facing = facing;
     }
 
     @Override
