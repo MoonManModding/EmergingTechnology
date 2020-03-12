@@ -1,8 +1,6 @@
 package io.moonman.emergingtechnology.network.animation;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.FacingHelper;
-import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;

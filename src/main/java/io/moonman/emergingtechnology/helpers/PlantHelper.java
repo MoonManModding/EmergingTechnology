@@ -256,6 +256,13 @@ public class PlantHelper {
             }
         };
 
+        if (block.getRegistryName().toString().equalsIgnoreCase("immersiveengineering:hemp")) {
+            Block aboveBlock = world.getBlockState(pos.add(0, 1, 0)).getBlock();
+            if (aboveBlock.getRegistryName().toString().equalsIgnoreCase("immersiveengineering:hemp")) {
+                return true;
+            }
+        }
+
         return false;
     }
 

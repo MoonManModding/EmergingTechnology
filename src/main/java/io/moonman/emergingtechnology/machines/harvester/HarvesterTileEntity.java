@@ -344,15 +344,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         BlockPos soilTarget = getTarget(facing).add(0, -1, 0);
         IBlockState soilBlockTarget = getWorld().getBlockState(soilTarget);
 
-        if (soilBlockTarget.getBlock() instanceof Hydroponic == false) {
-            return;
-        }
-
-        Hydroponic hydroponic = (Hydroponic) soilBlockTarget.getBlock();
-
-        if (!hydroponic.getActualState(soilBlockTarget, getWorld(), soilTarget).getValue(Hydroponic.HAS_WATER)) {
-            return;
-        }
+        if (!soilBlockTarget.getBlock().isFertile(getWorld(), soilTarget)) return;
 
         IBlockState blockStateToPlace = PlantHelper.getBlockStateFromItemStackForPlanting(inputStack, getWorld(),
                 getTarget(facing));
@@ -486,12 +478,6 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         return (HarvesterAnimationStateMachine) this.getAnimator();
     }
 
-    @Override
-    public void notifyPlayer(EntityPlayerMP player) {
-        // PacketHandler.INSTANCE.sendTo(new
-        // HarvesterRotationAnimationPacket(this.getPos(), rotation), player);
-    }
-
     // Getters
 
     public int getEnergy() {
@@ -506,9 +492,8 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return !(oldState.getBlock() instanceof Harvester && newState.getBlock() instanceof Harvester);
+        return oldState.getBlock() != newState.getBlock();
     }
-
     public boolean isUsableByPlayer(EntityPlayer player) {
         return this.world.getTileEntity(this.pos) != this ? false
                 : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
