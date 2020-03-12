@@ -342,10 +342,11 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         }
 
         BlockPos soilTarget = getTarget(facing).add(0, -1, 0);
-        IBlockState soilBlockTarget = getWorld().getBlockState(soilTarget);
 
-        if (!soilBlockTarget.getBlock().isFertile(getWorld(), soilTarget)) return;
-
+        if (!PlantHelper.isValidSoil(getWorld(), soilTarget)) {
+            return;
+        }
+    
         IBlockState blockStateToPlace = PlantHelper.getBlockStateFromItemStackForPlanting(inputStack, getWorld(),
                 getTarget(facing));
 

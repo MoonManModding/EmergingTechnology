@@ -8,10 +8,14 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.config.hydroponics.enums.BulbTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.enums.CropTypeEnum;
 import io.moonman.emergingtechnology.config.hydroponics.interfaces.IIdealBoostsConfiguration;
+import io.moonman.emergingtechnology.init.ModBlocks;
+import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.config.hydroponics.enums.MediumTypeEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
@@ -120,6 +124,30 @@ public class PlantHelper {
             return "Nothing";
 
         return state.getBlock().getRegistryName().getResourcePath();
+    }
+
+    public static boolean isValidSoil(World world, BlockPos pos) {
+        IBlockState soilBlockTarget = world.getBlockState(pos);
+        Block block = soilBlockTarget.getBlock();
+
+
+        if (block.isFertile(world, pos)) {
+            return true;
+        }
+
+        if (block == ModBlocks.hydroponic) {
+            if (soilBlockTarget.getActualState(world, pos).getValue(Hydroponic.HAS_WATER)) {
+                return true;
+            }
+        }
+
+        if (block == Blocks.FARMLAND) {
+            if (soilBlockTarget.getActualState(world, pos).getValue(BlockFarmland.MOISTURE) > 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static boolean isItemInOverride(Item item) {
