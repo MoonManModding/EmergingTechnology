@@ -198,8 +198,8 @@ public class RecipeBuilder {
             disabledBlocks.add(ModBlocks.piezoelectric);
         if (EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.disabled)
             disabledBlocks.add(ModBlocks.biomassgenerator);
-        // if (EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.disabled)
-        //     disabledBlocks.add(ModBlocks.optimiser);
+        if (EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.disabled)
+            disabledBlocks.add(ModBlocks.optimiser);
 
         if (EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.disabled)
             disabledBlocks.add(ModBlocks.shredder);
