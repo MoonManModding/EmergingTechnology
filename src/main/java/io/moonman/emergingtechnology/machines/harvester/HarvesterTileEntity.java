@@ -9,17 +9,16 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.FacingHelper;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.animation.HarvesterAnimationStateMachine;
 import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
-import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.AnimatedMachineTileBase;
 import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.animation.HarvesterRotationAnimationPacket;
-import io.moonman.emergingtechnology.util.Console;
+import io.moonman.emergingtechnology.network.animation.HarvesterStartAnimationPacket;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
@@ -60,6 +59,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     public HarvesterTileEntity() {
         initialiseHarvesterAnimator(this);
+        setMaxTick(10);
     }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY) {
@@ -177,8 +177,9 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
             tryPlant(facing);
 
-            if (canHarvest(facing) && getHarvesterAnimator().isIdle()) {
-                this.animateRotationByAngle(HarvesterHelper.getAnimationAngleFromFacings(getFacing(), facing));
+            if (canHarvest(facing)) {
+                Harvester.rotateFacing(facing, world, pos);
+                animateHarvestForFacing(facing);
             }
         }
 
@@ -207,6 +208,8 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     public void doHarvest(EnumFacing facing) {
 
+        facing = getFacing();
+
         if (!canHarvest(facing)) {
             return;
         }
@@ -228,9 +231,6 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         pullItems(facing);
 
         useEnergy();
-
-        Console.log("Returning to default");
-        getHarvesterAnimator().harvesterTransition(getFacing(), getPos(), getFacing());
     }
 
     private void doInteractableHarvest(EnumFacing facing) {
@@ -468,22 +468,24 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
     }
 
     @SideOnly(Side.CLIENT)
-    public void animateClientRotationByAngle(int angle) {
+    public void animateHarvestForFacingClient(EnumFacing facing) {
 
-        EnumFacing newFacing = HarvesterHelper.getFacingFromAngle(getFacing(), angle);
+        if (!isClient()) {
+            return;
+        }
 
-        getHarvesterAnimator().harvesterTransition(getFacing(), getPos(), newFacing);
+        getHarvesterAnimator().harvesterTransition(facing, getPos());
     }
 
-    private void animateRotationByAngle(int angle) {
+    private void animateHarvestForFacing(EnumFacing facing) {
 
         TargetPoint targetPoint = getTargetPoint();
 
         if (targetPoint == null)
             return;
 
-        PacketHandler.INSTANCE.sendToAllTracking(new HarvesterRotationAnimationPacket(this.getPos(), angle),
-                targetPoint);
+        PacketHandler.INSTANCE.sendToAllTracking(
+                new HarvesterStartAnimationPacket(this.getPos(), FacingHelper.facingToInt(facing)), targetPoint);
     }
 
     private HarvesterAnimationStateMachine getHarvesterAnimator() {

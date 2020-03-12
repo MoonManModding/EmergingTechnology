@@ -211,13 +211,9 @@ public class PlantHelper {
 
         Block block = state.getBlock();
 
-        if (block instanceof BlockReed || block instanceof BlockCactus) {
-            Block aboveBlock = world.getBlockState(position.add(0, 1, 0)).getBlock();
-
-            if (aboveBlock instanceof BlockReed || block instanceof BlockCactus) {
-                return true;
-            }
-        };
+        if (isStackableCropReady(world, block, position)) {
+            return true;
+        }
 
         if (block instanceof BlockCrops) {
 
@@ -247,6 +243,18 @@ public class PlantHelper {
                 return true;
             }
         }
+
+        return false;
+    }
+
+    public static boolean isStackableCropReady(World world, Block block, BlockPos pos) {
+        if (block instanceof BlockReed || block instanceof BlockCactus) {
+            Block aboveBlock = world.getBlockState(pos.add(0, 1, 0)).getBlock();
+
+            if (aboveBlock instanceof BlockReed || block instanceof BlockCactus) {
+                return true;
+            }
+        };
 
         return false;
     }

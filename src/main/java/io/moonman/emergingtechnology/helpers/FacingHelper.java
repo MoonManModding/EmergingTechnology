@@ -12,9 +12,6 @@ public class FacingHelper {
     // }
 
     public static int facingToInt(EnumFacing facing) {
-
-        System.out.println("Facing was " + facing);
-
         switch(facing) {
             case NORTH:
                 return 1;

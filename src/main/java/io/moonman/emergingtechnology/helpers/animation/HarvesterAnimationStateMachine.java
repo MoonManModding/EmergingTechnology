@@ -1,5 +1,17 @@
 package io.moonman.emergingtechnology.helpers.animation;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -21,6 +33,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
+
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.EnumFacing;
@@ -37,21 +53,6 @@ import net.minecraftforge.common.util.JsonUtils;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
-
-import io.moonman.emergingtechnology.util.Console;
-
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 
 public final class HarvesterAnimationStateMachine implements IAnimationStateMachine {
     private final ImmutableMap<String, ITimeValue> parameters;
@@ -67,8 +68,7 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     private transient float lastPollTime;
 
     private transient BlockPos position;
-    private transient EnumFacing baseFacing;
-    private transient EnumFacing cropFacing;
+    private transient EnumFacing facing;
 
     private static final LoadingCache<Triple<? extends IClip, Float, Float>, Pair<IModelState, Iterable<Event>>> clipCache = CacheBuilder
             .newBuilder().maximumSize(100).expireAfterWrite(100, TimeUnit.MILLISECONDS)
@@ -127,80 +127,46 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
     }
 
     @Override
-    public Pair<IModelState, Iterable<Event>> apply(float time)
-    {
-        if(lastPollTime == Float.NEGATIVE_INFINITY)
-        {
+    public Pair<IModelState, Iterable<Event>> apply(float time) {
+        if (lastPollTime == Float.NEGATIVE_INFINITY) {
             lastPollTime = time;
         }
         Pair<IModelState, Iterable<Event>> pair = clipCache.getUnchecked(Triple.of(currentState, lastPollTime, time));
 
         lastPollTime = time;
         boolean shouldFilter = false;
-        if(shouldHandleSpecialEvents)
-        {
-            for(Event event : ImmutableList.copyOf(pair.getRight()).reverse())
-            {
-                if(event.event().startsWith("!"))
-                {
+        if (shouldHandleSpecialEvents) {
+            for (Event event : ImmutableList.copyOf(pair.getRight()).reverse()) {
+                if (event.event().startsWith("!")) {
                     shouldFilter = true;
-                    if(event.event().startsWith("!transition:"))
-                    {
+                    if (event.event().startsWith("!transition:")) {
                         String newState = event.event().substring("!transition:".length());
                         transition(newState);
                     } else if (event.event().startsWith("!action:")) {
                         String action = event.event().substring("!action:".length());
                         onAction(action);
-                    } 
-                    else
-                    {
+                    } else {
                         FMLLog.log.error("Unknown special event \"{}\", ignoring.", event.event());
                     }
                 }
             }
         }
-        if(!shouldFilter)
-        {
+        if (!shouldFilter) {
             return pair;
         }
-        return Pair.of(pair.getLeft(), Iterables.filter(pair.getRight(), new Predicate<Event>()
-        {
+        return Pair.of(pair.getLeft(), Iterables.filter(pair.getRight(), new Predicate<Event>() {
             @Override
-            public boolean apply(Event event)
-            {
+            public boolean apply(Event event) {
                 return !event.event().startsWith("!");
             }
         }));
     }
 
-    public void harvesterTransition(EnumFacing baseFacing, BlockPos position, EnumFacing cropFacing) {
-        this.setBaseFacing(baseFacing);
-        this.setCropFacing(cropFacing);
+    public void harvesterTransition(EnumFacing facing, BlockPos position) {
         this.setPosition(position);
+        this.setFacing(facing);
 
-        String newTransition = "error";
-
-        if (baseFacing == cropFacing) {
-            newTransition = "default";
-        }
-
-        if (baseFacing.getOpposite() == cropFacing) {
-            newTransition = "180";
-        }
-
-        if (baseFacing.rotateY() == cropFacing) {
-            newTransition = "n90";
-        }
-
-        if (baseFacing.rotateYCCW() == cropFacing) {
-            newTransition = "90";
-        }
-
-        if (newTransition.equalsIgnoreCase(currentStateName)) {
-            return;
-        }
-
-        transition(newTransition);
+        transition("harvest");
     }
 
     @Override
@@ -224,25 +190,17 @@ public final class HarvesterAnimationStateMachine implements IAnimationStateMach
         return currentStateName;
     }
 
-    public boolean isIdle() {
-        return currentStateName.equalsIgnoreCase("default");
-    }
-
     private void onAction(String action) {
-        Console.log("OnAction " + action);
-        AnimationHelper.onHarvesterAction(position, baseFacing, cropFacing, action, currentStateName);
+        AnimationHelper.onHarvesterAction(position, facing);
+        transition("default");
     }
 
     private void setPosition(BlockPos position) {
         this.position = position;
     }
 
-    private void setBaseFacing(EnumFacing facing) {
-        this.baseFacing = facing;
-    }
-
-    private void setCropFacing(EnumFacing facing) {
-        this.cropFacing = facing;
+    private void setFacing(EnumFacing facing) {
+        this.facing = facing;
     }
 
     @Override

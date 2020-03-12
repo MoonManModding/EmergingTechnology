@@ -1,21 +1,6 @@
 {
     "joints": {
         "harvesterarm": {
-            "0": [
-                1.0
-            ],
-            "1": [
-                1.0
-            ],
-            "2": [
-                1.0
-            ],
-            "3": [
-                1.0
-            ],
-            "4": [
-                1.0
-            ],
             "5": [
                 1.0
             ],
@@ -24,7 +9,9 @@
             ],
             "7": [
                 1.0
-            ],
+            ]
+        },
+        "harvesterclaw": {
             "8": [
                 1.0
             ],
@@ -51,39 +38,15 @@
     "clips": {
         "default": {
             "loop": false,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            0
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.9": "!action:default"
-            }
+            "joint_clips": {},
+            "events": {}
         },
-        "n90": {
+        "harvest": {
             "loop": false,
             "joint_clips": {
                 "harvesterarm": [
                     {
-                        "variable": "axis_y",
+                        "variable": "axis_x",
                         "type": "uniform",
                         "interpolation": "nearest",
                         "samples": [
@@ -98,21 +61,24 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            -90
+                            -20
                         ]
                     }
-                ]
-            },
-            "events": {
-                "0.9": "!action:n90"
-            }
-        },
-        "180": {
-            "loop": false,
-            "joint_clips": {
-                "harvesterarm": [
+                ],
+                "harvesterclaw": [
                     {
-                        "variable": "axis_y",
+                        "variable": "offset_z",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            -0.033,
+                            -0.066,
+                            -0.099
+                        ]
+                    },
+                    {
+                        "variable": "axis_x",
                         "type": "uniform",
                         "interpolation": "nearest",
                         "samples": [
@@ -127,42 +93,13 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            180
+                            -10
                         ]
                     }
                 ]
             },
             "events": {
-                "0.9": "!action:180"
-            }
-        },
-        "90": {
-            "loop": false,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            90
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.9": "!action:90"
+                "0.9": "!action:harvest"
             }
         }
     }

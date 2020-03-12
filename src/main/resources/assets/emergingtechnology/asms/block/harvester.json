@@ -11,43 +11,24 @@
       "emergingtechnology:block/harvesterarm@default",
       "#slowed_anim_time"
     ],
-    "90": [
+    "harvest": [
       "apply",
-      "emergingtechnology:block/harvesterarm@90",
-      "#slowed_anim_time"
-    ],
-    "n90": [
-      "apply",
-      "emergingtechnology:block/harvesterarm@n90",
-      "#slowed_anim_time"
-    ],
-    "180": [
-      "apply",
-      "emergingtechnology:block/harvesterarm@180",
+      "emergingtechnology:block/harvesterarm@harvest",
       "#slowed_anim_time"
     ]
   },
   "states": [
     "default",
-    "90",
-    "n90",
-    "180"
+    "harvest"
   ],
   "transitions": {
     "default": [
       "default",
-      "90",
-      "n90",
-      "180"
+      "harvest"
     ],
-    "90": [
-      "default"
-    ],
-    "n90": [
-      "default"
-    ],
-    "180": [
-      "default"
+    "harvest": [
+      "default",
+      "harvest"
     ]
   },
   "start_state": "default"

@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.MachineBase;
 import io.moonman.emergingtechnology.util.KeyBindings;
@@ -176,6 +177,23 @@ public class Harvester extends MachineBase implements ITileEntityProvider {
     }
 
     // End required for animation
+
+    public static void rotateFacing(EnumFacing facing, World worldIn, BlockPos pos) {
+        
+        if (!worldIn.isBlockLoaded(pos)) {
+            return;
+        }
+
+        IBlockState state = worldIn.getBlockState(pos);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+
+        worldIn.setBlockState(pos, state.withProperty(FACING, facing), 3);
+
+        if (tileEntity != null) {
+            tileEntity.validate();
+            worldIn.setTileEntity(pos, tileEntity);
+        }
+    }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {

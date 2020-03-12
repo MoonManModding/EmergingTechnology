@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 
 import io.moonman.emergingtechnology.helpers.FacingHelper;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.animation.HarvesterActionAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.HarvesterStopAnimationPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.EnumFacing;
@@ -23,10 +23,10 @@ public class AnimationHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void onHarvesterAction(BlockPos pos, EnumFacing baseFacing, EnumFacing cropFacing, String action, String state) {
+    public static void onHarvesterAction(BlockPos pos, EnumFacing facing) {
         
-        if (cropFacing == null) return;
+        if (facing == null) return;
 
-        PacketHandler.INSTANCE.sendToServer(new HarvesterActionAnimationPacket(pos, FacingHelper.facingToInt(cropFacing)));
+        PacketHandler.INSTANCE.sendToServer(new HarvesterStopAnimationPacket(pos, FacingHelper.facingToInt(facing)));
     }
 }
