@@ -76,15 +76,17 @@ public class PlantHelper {
                     growth++;
                 } else {
                     return growth;
-                };
+                }
+                ;
             }
 
             return growth;
-        };
+        }
+        ;
 
         if (block instanceof BlockCrops) {
 
-            //int maxAge = 0;
+            // int maxAge = 0;
             int age = 0;
 
             // tnx draco
@@ -97,7 +99,7 @@ public class PlantHelper {
 
                     PropertyInteger ageProperty = (PropertyInteger) p;
 
-                    //maxAge = Iterables.getLast(ageProperty.getAllowedValues());
+                    // maxAge = Iterables.getLast(ageProperty.getAllowedValues());
                     age = state.getValue(ageProperty);
                 }
             }
@@ -129,7 +131,6 @@ public class PlantHelper {
     public static boolean isValidSoil(World world, BlockPos pos) {
         IBlockState soilBlockTarget = world.getBlockState(pos);
         Block block = soilBlockTarget.getBlock();
-
 
         if (block.isFertile(world, pos)) {
             return true;
@@ -198,31 +199,31 @@ public class PlantHelper {
 
     public static IIdealBoostsConfiguration getConfigurationForMediumType(MediumTypeEnum mediumType) {
         switch (mediumType) {
-        case DIRT:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.DIRT;
-        case SAND:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.SAND;
-        case GRAVEL:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.GRAVEL;
-        case CLAY:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.CLAY;
-        default:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.DIRT;
+            case DIRT:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.DIRT;
+            case SAND:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.SAND;
+            case GRAVEL:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.GRAVEL;
+            case CLAY:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.CLAY;
+            default:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWBED.BOOSTS.DIRT;
         }
     }
 
     public static IIdealBoostsConfiguration getConfigurationForBulbType(BulbTypeEnum bulbType) {
         switch (bulbType) {
-        case RED:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.RED;
-        case GREEN:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.GREEN;
-        case BLUE:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.BLUE;
-        case UV:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.UV;
-        default:
-            return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.RED;
+            case RED:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.RED;
+            case GREEN:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.GREEN;
+            case BLUE:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.BLUE;
+            case UV:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.UV;
+            default:
+                return EmergingTechnologyConfig.HYDROPONICS_MODULE.GROWLIGHT.BOOSTS.RED;
         }
     }
 
@@ -276,17 +277,21 @@ public class PlantHelper {
     }
 
     public static boolean isStackableCropReady(World world, Block block, BlockPos pos) {
+
         if (block instanceof BlockReed || block instanceof BlockCactus) {
             Block aboveBlock = world.getBlockState(pos.add(0, 1, 0)).getBlock();
 
             if (aboveBlock instanceof BlockReed || block instanceof BlockCactus) {
                 return true;
             }
-        };
+        }
+        ;
 
         if (block.getRegistryName().toString().equalsIgnoreCase("immersiveengineering:hemp")) {
-            Block aboveBlock = world.getBlockState(pos.add(0, 1, 0)).getBlock();
-            if (aboveBlock.getRegistryName().toString().equalsIgnoreCase("immersiveengineering:hemp")) {
+
+            IBlockState state = world.getBlockState(pos);
+
+            if (state.getBlock().getMetaFromState(state) > 3) {
                 return true;
             }
         }
