@@ -1,9 +1,10 @@
 package io.moonman.emergingtechnology.network.animation;
 
-import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
+import io.moonman.emergingtechnology.helpers.FacingHelper;
+import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -11,16 +12,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class HarvesterRotationAnimationPacket implements IMessage {
+public class HarvesterStopAnimationPacket implements IMessage {
     boolean messageValid;
 
     private BlockPos pos;
-    private int rotation;
 
     @Override
     public void fromBytes(ByteBuf buf) {
         pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-        rotation = buf.readInt();
     }
 
     @Override
@@ -28,33 +27,34 @@ public class HarvesterRotationAnimationPacket implements IMessage {
         buf.writeInt(pos.getX());
         buf.writeInt(pos.getY());
         buf.writeInt(pos.getZ());
-        buf.writeInt(rotation);
     }
 
-    public HarvesterRotationAnimationPacket() {
+    public HarvesterStopAnimationPacket() {
     }
 
-    public HarvesterRotationAnimationPacket(BlockPos pos, RotationEnum rotation) {
-        this.rotation = RotationEnum.getId(rotation);
+    public HarvesterStopAnimationPacket(BlockPos pos) {
         this.pos = pos;
         messageValid = true;
     }
 
-    public static class Handler implements IMessageHandler<HarvesterRotationAnimationPacket, IMessage> {
+    public static class Handler implements IMessageHandler<HarvesterStopAnimationPacket, IMessage> {
         @Override
-        public IMessage onMessage(HarvesterRotationAnimationPacket message, MessageContext ctx) {
+        public IMessage onMessage(HarvesterStopAnimationPacket message, MessageContext ctx) {
             FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> handle(message, ctx));
             return null;
         }
 
-        private void handle(HarvesterRotationAnimationPacket message, MessageContext ctx) {
+        private void handle(HarvesterStopAnimationPacket message, MessageContext ctx) {
+            EntityPlayerMP player = ctx.getServerHandler().player;
 
-            HarvesterTileEntity tileEntity = getTileEntity(EmergingTechnology.proxy.getWorld(ctx), message.pos);
+            if (player == null)
+                return;
 
+            HarvesterTileEntity tileEntity = getTileEntity(player.world, message.pos);
             if (tileEntity == null)
                 return;
-            tileEntity.setRotationClient(RotationEnum.getById(message.rotation));
 
+            tileEntity.doHarvest();
         }
 
         private HarvesterTileEntity getTileEntity(World world, BlockPos pos) {

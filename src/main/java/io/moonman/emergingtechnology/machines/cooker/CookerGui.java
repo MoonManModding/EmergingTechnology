@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -82,17 +83,17 @@ public class CookerGui extends GuiContainer {
 
 	private int getHeatScaled(int scaled)
     {
-		return (int) (tileEntity.getField(0) * scaled / Reference.COOKER_HEAT_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.HEAT) * scaled / Reference.COOKER_HEAT_CAPACITY);
 	}
 
 	private int getProgressScaled(int scaled)
     {
-		return (int) (tileEntity.getField(1) * scaled / EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseTimeTaken);
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled / EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseTimeTaken);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int heat = this.tileEntity.getField(0);
+		int heat = this.tileEntity.getField(EnumTileField.HEAT);
 		int maxHeat = Reference.COOKER_HEAT_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.HEAT,

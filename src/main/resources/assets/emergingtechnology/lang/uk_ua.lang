@@ -88,7 +88,7 @@ item.emergingtechnology.biomassgenerator.name=Генератор на біома
 item.emergingtechnology.tidalgenerator.name=Припливний генератор
 item.emergingtechnology.wind.name=Вітрогенератор
 item.emergingtechnology.biocharblock.name=Блок біовугілля
-item.emergingtechnology.optimiser.name=Algorithmic Optimiser
+item.emergingtechnology.optimiser.name=Algorithmic Optimizer
 
 #Blocks
 
@@ -131,7 +131,7 @@ blocks.emergingtechnology.biomassgenerator.name=Генератор на біом
 blocks.emergingtechnology.tidalgenerator.name=Припливний генератор
 blocks.emergingtechnology.wind.name=Вітрогенератор
 blocks.emergingtechnology.biocharblock.name=Блок біовугілля
-blocks.emergingtechnology.optimiser.name=Algorithmic Optimiser
+blocks.emergingtechnology.optimiser.name=Algorithmic Optimizer
 
 #Containers
 
@@ -177,7 +177,7 @@ tile.emergingtechnology.biomassgenerator.name=Генератор на біома
 tile.emergingtechnology.tidalgenerator.name=Припливний генератор
 tile.emergingtechnology.wind.name=Вітрогенератор
 tile.emergingtechnology.biocharblock.name=Блок біовугілля
-tile.emergingtechnology.optimiser.name=Algorithmic Optimiser
+tile.emergingtechnology.optimiser.name=Algorithmic Optimizer
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Вуглекислота
@@ -364,4 +364,4 @@ config.emergingtechnology.electrics.biomass.title=Генератор на біо
 config.emergingtechnology.electrics.piezoelectric.title=П'єзоелектричний генератор
 config.emergingtechnology.electrics.battery.title=Акумулятор
 config.emergingtechnology.electrics.wind.title=Вітрогенератор
-config.emergingtechnology.electrics.optimiser.title=Algorithmic Optimiser
+config.emergingtechnology.electrics.optimiser.title=Algorithmic Optimizer

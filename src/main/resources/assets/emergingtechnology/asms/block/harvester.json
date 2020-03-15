@@ -6,174 +6,30 @@
     ]
   },
   "clips": {
-    "idle": [ "apply", "emergingtechnology:block/harvesterarm@idle", "#slowed_anim_time" ],
-    "north_north": [ "apply", "emergingtechnology:block/harvesterarm@north_north", "#slowed_anim_time" ],
-    "north_east": [ "apply", "emergingtechnology:block/harvesterarm@north_east", "#slowed_anim_time" ],
-    "north_south": [ "apply", "emergingtechnology:block/harvesterarm@north_south", "#slowed_anim_time" ],
-    "north_west": [ "apply", "emergingtechnology:block/harvesterarm@north_west", "#slowed_anim_time" ],
-    "south_north": [ "apply", "emergingtechnology:block/harvesterarm@south_north", "#slowed_anim_time" ],
-    "south_east": [ "apply", "emergingtechnology:block/harvesterarm@south_east", "#slowed_anim_time" ],
-    "south_south": [ "apply", "emergingtechnology:block/harvesterarm@south_south", "#slowed_anim_time" ],
-    "south_west": [ "apply", "emergingtechnology:block/harvesterarm@south_west", "#slowed_anim_time" ],
-    "east_north": [ "apply", "emergingtechnology:block/harvesterarm@east_north", "#slowed_anim_time" ],
-    "east_east": [ "apply", "emergingtechnology:block/harvesterarm@east_east", "#slowed_anim_time" ],
-    "east_south": [ "apply", "emergingtechnology:block/harvesterarm@east_south", "#slowed_anim_time" ],
-    "east_west": [ "apply", "emergingtechnology:block/harvesterarm@east_west", "#slowed_anim_time" ],
-    "west_north": [ "apply", "emergingtechnology:block/harvesterarm@west_north", "#slowed_anim_time" ],
-    "west_east": [ "apply", "emergingtechnology:block/harvesterarm@west_east", "#slowed_anim_time" ],
-    "west_south": [ "apply", "emergingtechnology:block/harvesterarm@west_south", "#slowed_anim_time" ],
-    "west_west": [ "apply", "emergingtechnology:block/harvesterarm@west_west", "#slowed_anim_time" ]
-  },
-  "states": [
-    "idle",
-    "north_north",
-    "north_east",
-    "north_south",
-    "north_west",
-    "south_north",
-    "south_east",
-    "south_south",
-    "south_west",
-    "east_north",
-    "east_east",
-    "east_south",
-    "east_west",
-    "west_north",
-    "west_east",
-    "west_south",
-    "west_west"
-  ],
-  "transitions": {
-    "idle": [
-      "north_north",
-      "north_east",
-      "north_south",
-      "north_west",
-      "south_north",
-      "south_east",
-      "south_south",
-      "south_west",
-      "east_north",
-      "east_east",
-      "east_south",
-      "east_west",
-      "west_north",
-      "west_east",
-      "west_south",
-      "west_west"
+    "default": [
+      "apply",
+      "emergingtechnology:block/harvesterarm@default",
+      "#slowed_anim_time"
     ],
-    "north_north": [
-      "idle",
-      "north_north",
-      "north_east",
-      "north_south",
-      "north_west"
-    ],
-    "north_east": [
-      "idle",
-      "north_north",
-      "north_east",
-      "north_south",
-      "north_west"
-    ],
-    "north_south": [
-      "idle",
-      "north_north",
-      "north_east",
-      "north_south",
-      "north_west"
-    ],
-    "north_west": [
-      "idle",
-      "north_north",
-      "north_east",
-      "north_south",
-      "north_west"
-    ],
-    "south_north": [
-      "idle",
-      "south_north",
-      "south_east",
-      "south_south",
-      "south_west"
-    ],
-    "south_east": [
-      "idle",
-      "south_north",
-      "south_east",
-      "south_south",
-      "south_west"
-    ],
-    "south_south": [
-      "idle",
-      "south_north",
-      "south_east",
-      "south_south",
-      "south_west"
-    ],
-    "south_west": [
-      "idle",
-      "south_north",
-      "south_east",
-      "south_south",
-      "south_west"
-    ],
-    "east_north": [
-      "idle",
-      "east_north",
-      "east_east",
-      "east_south",
-      "east_west"
-    ],
-    "east_east": [
-      "idle",
-      "east_north",
-      "east_east",
-      "east_south",
-      "east_west"
-    ],
-    "east_south": [
-      "idle",
-      "east_north",
-      "east_east",
-      "east_south",
-      "east_west"
-    ],
-    "east_west": [
-      "idle",
-      "east_north",
-      "east_east",
-      "east_south",
-      "east_west"
-    ],
-    "west_north": [
-      "idle",
-      "west_north",
-      "west_east",
-      "west_south",
-      "west_west"
-    ],
-    "west_east": [
-      "idle",
-      "west_north",
-      "west_east",
-      "west_south",
-      "west_west"
-    ],
-    "west_south": [
-      "idle",
-      "west_north",
-      "west_east",
-      "west_south",
-      "west_west"
-    ],
-    "west_west": [
-      "idle",
-      "west_north",
-      "west_east",
-      "west_south",
-      "west_west"
+    "harvest": [
+      "apply",
+      "emergingtechnology:block/harvesterarm@harvest",
+      "#slowed_anim_time"
     ]
   },
-  "start_state": "idle"
+  "states": [
+    "default",
+    "harvest"
+  ],
+  "transitions": {
+    "default": [
+      "default",
+      "harvest"
+    ],
+    "harvest": [
+      "default",
+      "harvest"
+    ]
+  },
+  "start_state": "default"
 }

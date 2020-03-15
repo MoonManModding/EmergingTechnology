@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines;
+package io.moonman.emergingtechnology.machines.classes.block;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import net.minecraft.block.Block;

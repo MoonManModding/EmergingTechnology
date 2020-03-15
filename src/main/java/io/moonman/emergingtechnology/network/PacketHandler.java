@@ -1,13 +1,12 @@
 package io.moonman.emergingtechnology.network;
 
-import io.moonman.emergingtechnology.network.animation.HarvesterActionAnimationPacket;
-import io.moonman.emergingtechnology.network.animation.HarvesterRotationAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.HarvesterStartAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.HarvesterStopAnimationPacket;
 import io.moonman.emergingtechnology.network.animation.ScrubberAnimationPacket;
 import io.moonman.emergingtechnology.network.animation.TidalGeneratorAnimationPacket;
 import io.moonman.emergingtechnology.network.animation.WindGeneratorAnimationPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorSelectionPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorStopStartPacket;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -35,7 +34,7 @@ public class PacketHandler {
                 Side.SERVER);
         INSTANCE.registerMessage(FabricatorStopStartPacket.Handler.class, FabricatorStopStartPacket.class, nextID(),
                 Side.SERVER);
-        INSTANCE.registerMessage(HarvesterActionAnimationPacket.Handler.class, HarvesterActionAnimationPacket.class,
+        INSTANCE.registerMessage(HarvesterStopAnimationPacket.Handler.class, HarvesterStopAnimationPacket.class,
                 nextID(), Side.SERVER);
     }
 
@@ -46,7 +45,7 @@ public class PacketHandler {
                 nextID(), Side.CLIENT);
         INSTANCE.registerMessage(ScrubberAnimationPacket.Handler.class, ScrubberAnimationPacket.class, nextID(),
                 Side.CLIENT);
-        INSTANCE.registerMessage(HarvesterRotationAnimationPacket.Handler.class, HarvesterRotationAnimationPacket.class,
+        INSTANCE.registerMessage(HarvesterStartAnimationPacket.Handler.class, HarvesterStartAnimationPacket.class,
                 nextID(), Side.CLIENT);
     }
 

@@ -7,18 +7,15 @@ import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandl
 import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.machines.BiomassRecipes;
 import li.cil.oc.api.network.SimpleComponent;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fml.common.Optional;
@@ -230,36 +227,27 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
         this.progress = quantity;
     }
 
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    public int getField(int id) {
-        switch (id) {
-        case 0:
-            return this.getEnergy();
-        case 1:
-            return this.getProgress();
-        default:
-            return 0;
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case ENERGY:
+                return this.getEnergy();
+            case PROGRESS:
+                return this.getProgress();
+            default:
+                return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-        case 0:
-            this.setEnergy(value);
-        break;
-        case 1:
-            this.setProgress(value);
-        break;
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case ENERGY:
+                this.setEnergy(value);
+                break;
+            case PROGRESS:
+                this.setProgress(value);
+                break;
+            default:
+                break;
         }
     }
 

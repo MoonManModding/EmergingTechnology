@@ -1,11 +1,8 @@
 package io.moonman.emergingtechnology.helpers.machines;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
-import io.moonman.emergingtechnology.machines.optimiser.OptimiserTileEntity;
+import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -13,43 +10,23 @@ import net.minecraft.world.World;
 
 public class OptimiserHelper {
 
-    public static OptimiserPacket getAdjacentOptimisersPacket(World world, BlockPos pos) {
-
-        List<OptimiserPacket> packets = new ArrayList<OptimiserPacket>();
+    public static void pushPacketsToAdjacentMachines(World world, BlockPos pos, OptimiserPacket packet) {
 
         for (EnumFacing facing : EnumFacing.VALUES) {
 
-            TileEntity tile = world.getTileEntity(pos.offset(facing));
+            for (int i = 1; i < EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.range; i++) {
 
-            if (tile == null) continue;
-            if (tile instanceof OptimiserTileEntity == false) continue;
+                TileEntity tile = world.getTileEntity(pos.offset(facing, i));
 
-            OptimiserTileEntity optimiser = (OptimiserTileEntity) tile;
+                if (tile == null)
+                    continue;
+                if (tile instanceof IOptimisableTile == false)
+                    continue;
 
-            packets.add(optimiser.getPacket());
+                IOptimisableTile machine = (IOptimisableTile) tile;
+
+                machine.setPacket(packet);
+            }
         }
-
-        return merge(packets);
-    }
-
-    private static OptimiserPacket merge(List<OptimiserPacket> packets) {
-
-        List<Integer> energy = new ArrayList<Integer>();
-        List<Integer> fluid = new ArrayList<Integer>();
-        List<Integer> progress = new ArrayList<Integer>();
-
-        energy.add(1);
-        fluid.add(1);
-        progress.add(1);
-
-        for (OptimiserPacket packet : packets) {
-            energy.add(packet.energyModifier);
-            fluid.add(packet.fluidModifier);
-            progress.add(packet.progressModifier);
-        }
-
-        OptimiserPacket finalPacket = new OptimiserPacket(Collections.max(energy), Collections.max(fluid), Collections.max(progress));
-
-        return finalPacket;
     }
 }

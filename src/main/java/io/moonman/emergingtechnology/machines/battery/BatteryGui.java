@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -70,8 +71,8 @@ public class BatteryGui extends GuiContainer
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
 
-		int totalInput = this.tileEntity.getField(1);
-		int totalOutput = this.tileEntity.getField(2);
+		int totalInput = this.tileEntity.getField(EnumTileField.BATTERYINPUT);
+		int totalOutput = this.tileEntity.getField(EnumTileField.BATTERYOUTPUT);
 
 		// Bulb Name
 		this.fontRenderer.drawString("Input", FIRST_FIELD_POS.x, FIRST_FIELD_POS.y, GuiHelper.LABEL_COLOUR);
@@ -93,12 +94,12 @@ public class BatteryGui extends GuiContainer
 
 	private int getEnergyScaled(int scaled)
     {
-		return (int) (tileEntity.getField(0) * scaled / Reference.BATTERY_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.BATTERY_ENERGY_CAPACITY);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
+		int energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		int maxEnergy = Reference.BATTERY_ENERGY_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,

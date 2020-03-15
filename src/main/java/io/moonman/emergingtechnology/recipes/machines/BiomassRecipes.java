@@ -50,7 +50,7 @@ public class BiomassRecipes {
     }
 
     public static boolean isValidInput(ItemStack itemStack) {
-        return getOutputByItemStack(itemStack) != null;
+        return getOutputByItemStack(itemStack) != ItemStack.EMPTY;
     }
 
     public static IMachineRecipe getRecipeByInputItemStack(ItemStack itemStack) {

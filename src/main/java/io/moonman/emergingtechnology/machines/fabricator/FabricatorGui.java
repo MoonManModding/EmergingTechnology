@@ -16,6 +16,7 @@ import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.gui.FabricatorSelectionPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorStopStartPacket;
@@ -63,9 +64,9 @@ public class FabricatorGui extends GuiContainer {
 		this.player = player;
 		this.tileEntity = tileEntity;
 		
-		this.selection = this.tileEntity.getField(2);
-		this.printing = this.tileEntity.getField(3) > 0;
-		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(4));
+		this.selection = this.tileEntity.getField(EnumTileField.FABRICATORSELECTION);
+		this.printing = this.tileEntity.getField(EnumTileField.FABRICATORISPRINTING) > 0;
+		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(EnumTileField.FABRICATORSTATUS));
 
 		this.xSize = XSIZE;
 		this.ySize = YSIZE;
@@ -100,7 +101,7 @@ public class FabricatorGui extends GuiContainer {
 			this.drawTexturedModalRect(68, 52, 176, 51, progress, 1);
 		}
 
-		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(4));
+		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(EnumTileField.FABRICATORSTATUS));
 
 		if (statusWarning()) {
 			this.drawTexturedModalRect(90, 32, 176, 53, 5, 7);
@@ -244,17 +245,17 @@ public class FabricatorGui extends GuiContainer {
 	}
 
 	private int getEnergyScaled(int scaled) {
-		return (int) (tileEntity.getField(0) * scaled / Reference.FABRICATOR_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.FABRICATOR_ENERGY_CAPACITY);
 	}
 
 	private int getProgressScaled(int scaled) {
-		return (int) (tileEntity.getField(1) * scaled
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
 				/ EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorBaseTimeTaken);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
+		int energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		int maxEnergy = Reference.FABRICATOR_ENERGY_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,

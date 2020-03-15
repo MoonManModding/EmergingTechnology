@@ -1,21 +1,6 @@
 {
     "joints": {
         "harvesterarm": {
-            "0": [
-                1.0
-            ],
-            "1": [
-                1.0
-            ],
-            "2": [
-                1.0
-            ],
-            "3": [
-                1.0
-            ],
-            "4": [
-                1.0
-            ],
             "5": [
                 1.0
             ],
@@ -24,7 +9,9 @@
             ],
             "7": [
                 1.0
-            ],
+            ]
+        },
+        "harvesterclaw": {
             "8": [
                 1.0
             ],
@@ -49,23 +36,17 @@
         }
     },
     "clips": {
-        "idle": {
-            "loop": true,
+        "default": {
+            "loop": false,
             "joint_clips": {},
             "events": {}
         },
-        "north_north": {
-            "loop": true,
-            "joint_clips": {},
-            "events": {
-            }
-        },
-        "north_east": {
-            "loop": true,
+        "harvest": {
+            "loop": false,
             "joint_clips": {
                 "harvesterarm": [
                     {
-                        "variable": "axis_y",
+                        "variable": "axis_x",
                         "type": "uniform",
                         "interpolation": "nearest",
                         "samples": [
@@ -80,22 +61,24 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            -90
+                            -20
                         ]
                     }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:north_north"
-            }
-        },
-        "north_south": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
+                ],
+                "harvesterclaw": [
                     {
-                        "variable": "axis_y",
+                        "variable": "offset_z",
+                        "type": "uniform",
+                        "interpolation": "linear",
+                        "samples": [
+                            0,
+                            -0.033,
+                            -0.066,
+                            -0.099
+                        ]
+                    },
+                    {
+                        "variable": "axis_x",
                         "type": "uniform",
                         "interpolation": "nearest",
                         "samples": [
@@ -110,332 +93,13 @@
                         "interpolation": "linear",
                         "samples": [
                             0,
-                            180
+                            -10
                         ]
                     }
                 ]
             },
             "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:north_north"
-            }
-        },
-        "north_west": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            -270
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:north_north"
-            }
-        },
-        "south_north": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            180
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:south_south"
-            }
-        },
-        "south_east": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            90
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:south_south"
-            }
-        },
-        "south_south": {
-            "loop": true,
-            "joint_clips": {},
-            "events": {
-            }
-        },
-        "south_west": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            -90
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:south_south"
-            }
-        },
-        "east_north": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            90
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:east_east"
-            }
-        },
-        "east_east": {
-            "loop": true,
-            "joint_clips": {},
-            "events": {
-            }
-        },
-        "east_south": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            -90
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:east_east"
-            }
-        },
-        "east_west": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            180
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:east_east"
-            }
-        },
-        "west_north": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            -90
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:west_west"
-            }
-        },
-        "west_east": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            180
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:west_west"
-            }
-        },
-        "west_south": {
-            "loop": true,
-            "joint_clips": {
-                "harvesterarm": [
-                    {
-                        "variable": "axis_y",
-                        "type": "uniform",
-                        "interpolation": "nearest",
-                        "samples": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    {
-                        "variable": "angle",
-                        "type": "uniform",
-                        "interpolation": "linear",
-                        "samples": [
-                            0,
-                            90
-                        ]
-                    }
-                ]
-            },
-            "events": {
-                "0.5": "!action:ready",
-                "1.0": "!transition:west_west"
-            }
-        },
-        "west_west": {
-            "loop": true,
-            "joint_clips": {},
-            "events": {
+                "0.9": "!action:harvest"
             }
         }
     }

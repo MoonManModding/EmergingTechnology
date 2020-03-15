@@ -2,11 +2,10 @@ package io.moonman.emergingtechnology.providers;
 
 import java.util.ArrayList;
 
-import io.moonman.emergingtechnology.providers.loaders.CustomTissueLoader;
-import io.moonman.emergingtechnology.util.Lang;
 import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.providers.classes.ModTissue;
+import io.moonman.emergingtechnology.providers.loaders.CustomTissueLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

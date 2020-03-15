@@ -5,7 +5,7 @@ import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.EnergyNetworkHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -123,35 +123,6 @@ public class SolarTileEntity extends MachineTileBase implements SimpleComponent 
 
     private void setEnergy(int quantity) {
         this.energy = quantity;
-    }
-
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    public int getField(int id) {
-        switch (id) {
-        case 0:
-            return this.getEnergy();
-        default:
-            return 0;
-        }
-    }
-
-    public void setField(int id, int value) {
-        switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
-
-        }
     }
 
     // OpenComputers

@@ -1,10 +1,9 @@
-package io.moonman.emergingtechnology.machines;
+package io.moonman.emergingtechnology.machines.classes.tile;
 
 import com.google.common.collect.ImmutableMap;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.helpers.animation.AnimationHelper;
-import io.moonman.emergingtechnology.helpers.animation.HarvesterAnimationStateMachine;
 import io.moonman.emergingtechnology.machines.harvester.HarvesterTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,7 +27,7 @@ public class AnimatedMachineTileBase extends MachineTileBase {
     public void initialiseAnimator(MachineTileBase target, String name) {
 
         subscribe(target);
-        asm = isClientForAnimator() ? AnimationHelper.loadHarvesterASM(getResourceLocation(name), ImmutableMap.of()) : null;
+        asm = isClientForAnimator() ? ModelLoaderRegistry.loadASM(getResourceLocation(name), ImmutableMap.of()) : null;
     }
 
     public void initialiseHarvesterAnimator(HarvesterTileEntity target) {

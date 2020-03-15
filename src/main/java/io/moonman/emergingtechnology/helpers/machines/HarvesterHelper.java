@@ -2,12 +2,9 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import java.util.List;
 
-import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.helpers.FacingHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -42,19 +39,5 @@ public class HarvesterHelper {
 
     private static List<ItemStack> getCropDrops(IBlockState blockState, World world, BlockPos pos) {
         return blockState.getBlock().getDrops(world, pos, blockState, 1);
-    }
-
-    public static int getFacingIdFromAnimationState(String state) {
-        String[] splitStrings = state.split("_");
-
-        EnumFacing facing = EnumFacing.byName(splitStrings[0]);
-        EnumFacing relativeFacing = EnumFacing.byName(splitStrings[1]);
-
-        if (facing == null || relativeFacing == null) {
-            EmergingTechnology.logger.warn("There was a problem parsing facing for animation state " + state);
-            return 0;
-        }
-
-        return FacingHelper.getFacingIdFromEnumFacings(facing, relativeFacing);
     }
 }

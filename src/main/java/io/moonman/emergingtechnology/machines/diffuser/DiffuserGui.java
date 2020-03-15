@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.DiffuserHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -91,27 +92,27 @@ public class DiffuserGui extends GuiContainer {
 	}
 
 	private int getEnergyScaled(int scaled) {
-		return (int) (tileEntity.getField(0) * scaled / Reference.DIFFUSER_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.DIFFUSER_ENERGY_CAPACITY);
 	}
 
 	private int getGasScaled(int scaled) {
-		return (int) (tileEntity.getField(1) * scaled / Reference.DIFFUSER_GAS_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.GAS) * scaled / Reference.DIFFUSER_GAS_CAPACITY);
 	}
 
 	private int getPlants() {
-		return tileEntity.getField(2);
+		return tileEntity.getField(EnumTileField.PLANTS);
 	}
 
 	private int getNozzleId() {
-		return tileEntity.getField(3);
+		return tileEntity.getField(EnumTileField.NOZZLE);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
+		int energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		int maxEnergy = Reference.DIFFUSER_ENERGY_CAPACITY;
 
-		int gas = this.tileEntity.getField(1);
+		int gas = this.tileEntity.getField(EnumTileField.GAS);
 		int maxGas = Reference.DIFFUSER_GAS_CAPACITY;
 
 		int growth = DiffuserHelper.getBaseBoost();

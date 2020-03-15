@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -82,17 +83,17 @@ public class BiomassGeneratorGui extends GuiContainer
 
 	private int getEnergyScaled(int scaled)
     {
-		return (int) (tileEntity.getField(0) * scaled / Reference.BIOMASS_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.BIOMASS_ENERGY_CAPACITY);
 	}
 
 	private int getProgressScaled(int scaled) {
-		return (int) (tileEntity.getField(1) * scaled
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
 				/ EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.baseTimeTaken);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
+		int energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		int maxEnergy = Reference.BIOMASS_ENERGY_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,

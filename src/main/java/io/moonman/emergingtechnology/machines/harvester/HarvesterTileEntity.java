@@ -13,12 +13,11 @@ import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.animation.HarvesterAnimationStateMachine;
 import io.moonman.emergingtechnology.helpers.machines.HarvesterHelper;
-import io.moonman.emergingtechnology.helpers.machines.enums.RotationEnum;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.AnimatedMachineTileBase;
-import io.moonman.emergingtechnology.machines.hydroponic.Hydroponic;
+import io.moonman.emergingtechnology.machines.classes.tile.AnimatedMachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import io.moonman.emergingtechnology.network.PacketHandler;
-import io.moonman.emergingtechnology.network.animation.HarvesterRotationAnimationPacket;
+import io.moonman.emergingtechnology.network.animation.HarvesterStartAnimationPacket;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
@@ -26,7 +25,6 @@ import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,7 +35,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
@@ -59,6 +56,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     public HarvesterTileEntity() {
         initialiseHarvesterAnimator(this);
+        setMaxTick(10);
     }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.HARVESTER_ENERGY_CAPACITY) {
@@ -103,8 +101,6 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     private int energy = this.energyHandler.getEnergyStored();
 
-    private RotationEnum rotation = RotationEnum.NORTH;
-
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
@@ -134,7 +130,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         this.itemHandler.deserializeNBT(compound.getCompoundTag("Inventory"));
 
         this.setEnergy(compound.getInteger("GuiEnergy"));
-        this.setRotationState(RotationEnum.getById(compound.getInteger("AnimRotation")));
+        // this.setRotation(compound.getInteger("AnimRotation"));
 
         this.energyHandler.readFromNBT(compound);
     }
@@ -145,7 +141,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
 
         compound.setInteger("GuiEnergy", energy);
-        compound.setInteger("AnimRotation", RotationEnum.getId(this.rotation));
+        // compound.setInteger("AnimRotation", RotationEnum.getId(this.rotation));
 
         this.energyHandler.writeToNBT(compound);
 
@@ -174,35 +170,21 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
         this.setEnergy(this.getEnergy());
 
-        EnumFacing blockFacing = this.getFacing();
+        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
 
-        // Try harvesting in front without animation
-        if (canHarvest(blockFacing)) {
-            this.doHarvest(blockFacing);
-            this.tryPlant(blockFacing);
-        } else {
-            // Otherwise cycle through directions
-            for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+            tryPlant(facing);
 
-                if (facing == blockFacing)
-                    continue;
-
-                tryPlant(facing);
-
-                // If can harvest in this direction, and not currently animating, rotate to
-                // direction
-                if (canHarvest(facing) && isIdle()) {
-                    this.setRotationState(RotationEnum.getRotationFromFacing(facing));
-                }
+            if (canHarvest(facing)) {
+                Harvester.rotateFacing(facing, world, pos);
+                animateHarvest();
             }
         }
 
-        this.doEnergyTransferProcess();
+        doEnergyTransferProcess();
     }
 
     public boolean canHarvest(EnumFacing facing) {
         if (getTargetBlockState(facing) == null) {
-            return false;
         }
 
         if (!sufficientEnergy()) {
@@ -221,7 +203,13 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         return PlantHelper.isCropAtPositionReadyForHarvest(getWorld(), getTarget(facing));
     }
 
-    public void doHarvest(EnumFacing facing) {
+    public void doHarvest() {
+
+        EnumFacing facing = getFacing();
+
+        if (facing == EnumFacing.UP || facing == EnumFacing.DOWN) {
+            return;
+        }
 
         if (!canHarvest(facing)) {
             return;
@@ -324,6 +312,10 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     private void tryPlant(EnumFacing facing) {
 
+        if (facing == EnumFacing.UP || facing == EnumFacing.DOWN) {
+            return;
+        }
+
         // If non-break-harvest plant, return
         if (HarvesterHelper.isInteractableCrop(getTargetBlockState(facing).getBlock())) {
             return;
@@ -347,18 +339,11 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         }
 
         BlockPos soilTarget = getTarget(facing).add(0, -1, 0);
-        IBlockState soilBlockTarget = getWorld().getBlockState(soilTarget);
 
-        if (soilBlockTarget.getBlock() instanceof Hydroponic == false) {
+        if (!PlantHelper.isValidSoil(getWorld(), soilTarget)) {
             return;
         }
-
-        Hydroponic hydroponic = (Hydroponic) soilBlockTarget.getBlock();
-
-        if (!hydroponic.getActualState(soilBlockTarget, getWorld(), soilTarget).getValue(Hydroponic.HAS_WATER)) {
-            return;
-        }
-
+    
         IBlockState blockStateToPlace = PlantHelper.getBlockStateFromItemStackForPlanting(inputStack, getWorld(),
                 getTarget(facing));
 
@@ -375,39 +360,25 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
     public void doEnergyTransferProcess() {
         int transferEnergy = EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyTransferRate;
 
-        // If enough energy to transfer...
-        if (this.energy >= transferEnergy) {
+        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
 
-            // Get the direction this harvester is facing
-            EnumFacing facing = this.world.getBlockState(this.pos).getValue(Harvester.FACING);
-
-            // Abort if facing up or down
-            if (facing == EnumFacing.UP || facing == EnumFacing.DOWN) {
-                return;
+            if (this.getEnergy() < transferEnergy) {
+                break;
             }
 
-            // Get the left side of the harvester
-            EnumFacing left = facing.rotateYCCW();
+            TileEntity neighbour = this.world.getTileEntity(this.pos.offset(facing));
 
-            // Grab the vector
-            Vec3i vector = left.getDirectionVec();
-
-            // Get neighbour based on facing vector
-            TileEntity neighbour = this.world.getTileEntity(this.pos.add(vector));
-
-            // Is neighbour a grow light?
             if (neighbour instanceof HarvesterTileEntity) {
                 HarvesterTileEntity targetTileEntity = (HarvesterTileEntity) neighbour;
 
-                // Send energy to the neighbour and get amount accepted
                 int accepted = targetTileEntity.energyHandler.receiveEnergy(transferEnergy, false);
 
                 if (accepted > 0) {
-                    // Drain self from amount
                     this.energyHandler.extractEnergy(accepted, true);
                     this.setEnergy(this.energyHandler.getEnergyStored());
                 }
             }
+
         }
     }
 
@@ -432,13 +403,6 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
 
     private boolean sufficientEnergy() {
         return getEnergy() >= EmergingTechnologyConfig.HYDROPONICS_MODULE.HARVESTER.harvesterEnergyBaseUsage;
-    }
-
-    private boolean isIdle() {
-        String stateName = this.getFacing().toString() + "_" + this.getFacing().toString();
-
-        return this.getAnimator().currentState().equalsIgnoreCase(stateName)
-                || this.getAnimator().currentState().equalsIgnoreCase("idle");
     }
 
     private int useEnergy() {
@@ -488,35 +452,28 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
     }
 
     @SideOnly(Side.CLIENT)
-    public void setRotationClient(RotationEnum rotation) {
+    public void animateHarvestClient() {
 
-        HarvesterAnimationStateMachine animator = (HarvesterAnimationStateMachine) this.getAnimator();
+        if (!isClient()) {
+            return;
+        }
 
-        animator.setPosition(getPos());
-
-        //String state = animator.currentState();
-        String newState = this.getFacing().getName() + "_" + RotationEnum.getRotationFromEnum(rotation);
-
-        this.getAnimator().transition(newState);
+        getHarvesterAnimator().harvesterTransition(getPos());
     }
 
-    private void setRotationState(RotationEnum rotation) {
+    private void animateHarvest() {
 
         TargetPoint targetPoint = getTargetPoint();
 
         if (targetPoint == null)
             return;
 
-        PacketHandler.INSTANCE.sendToAllTracking(new HarvesterRotationAnimationPacket(this.getPos(), rotation),
-                targetPoint);
-
-        this.rotation = rotation;
+        PacketHandler.INSTANCE.sendToAllTracking(
+                new HarvesterStartAnimationPacket(this.getPos()), targetPoint);
     }
 
-    @Override
-    public void notifyPlayer(EntityPlayerMP player) {
-        // PacketHandler.INSTANCE.sendTo(new
-        // HarvesterRotationAnimationPacket(this.getPos(), rotation), player);
+    private HarvesterAnimationStateMachine getHarvesterAnimator() {
+        return (HarvesterAnimationStateMachine) this.getAnimator();
     }
 
     // Getters
@@ -531,30 +488,21 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
         this.energy = quantity;
     }
 
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return !(oldState.getBlock() instanceof Harvester && newState.getBlock() instanceof Harvester);
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    public int getField(int id) {
-        switch (id) {
-            case 0:
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case ENERGY:
                 return this.getEnergy();
             default:
                 return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-            case 0:
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case ENERGY:
                 this.setEnergy(value);
+                break;
+            default:
                 break;
         }
     }

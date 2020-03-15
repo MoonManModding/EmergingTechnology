@@ -20,4 +20,9 @@ public class ElectricsModuleOptimiser {
     @Config.Comment("How much water the Optimiser uses per tick.")
     @RangeInt(min = 0, max = 10000)
     public int waterUsage = 15;
+
+    @Name("Range")
+    @Config.Comment("How many blocks adjacent are affected by the Optimiser")
+    @RangeInt(min = 0, max = 10000)
+    public int range = 15;
 }

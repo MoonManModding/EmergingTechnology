@@ -7,11 +7,11 @@ import net.minecraft.util.EnumFacing;
  */
 public class FacingHelper {
 
-    public static int getFacingIdFromEnumFacings(EnumFacing facing, EnumFacing relativeFacing) {
-        return getIdFromFacing(relativeFacing);
-    }
+    // public static int getFacingIdFromEnumFacings(EnumFacing facing, EnumFacing relativeFacing) {
+    //     return getIdFromFacing(relativeFacing);
+    // }
 
-    public static int getIdFromFacing(EnumFacing facing) {
+    public static int facingToInt(EnumFacing facing) {
         switch(facing) {
             case NORTH:
                 return 1;
@@ -22,11 +22,11 @@ public class FacingHelper {
             case WEST:
                 return 4;
             default:
-                return 0;
+                return 5;
         }
     }
 
-    public static EnumFacing getFacingFromId(int id) {
+    public static EnumFacing intToFacing(int id) {
         switch(id) {
             case 1:
                 return EnumFacing.NORTH;
@@ -37,7 +37,7 @@ public class FacingHelper {
             case 4:
                 return EnumFacing.WEST;
             default:
-                return EnumFacing.UP;
+                return EnumFacing.NORTH;
         }
     }
 }

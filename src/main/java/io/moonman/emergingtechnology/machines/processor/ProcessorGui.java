@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.machines.processor;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
@@ -10,6 +9,7 @@ import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -79,24 +79,24 @@ public class ProcessorGui extends GuiContainer {
 	}
 
 	private int getEnergyScaled(int scaled) {
-		return (int) (tileEntity.getField(0) * scaled / Reference.PROCESSOR_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.PROCESSOR_ENERGY_CAPACITY);
 	}
 
 	private int getFluidScaled(int scaled) {
-		return (int) (tileEntity.getField(1) * scaled / Reference.PROCESSOR_FLUID_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.FLUID) * scaled / Reference.PROCESSOR_FLUID_CAPACITY);
 	}
 
 	private int getProgressScaled(int scaled) {
-		return (int) (tileEntity.getField(2) * scaled
-				/ EmergingTechnologyConfig.POLYMERS_MODULE.PROCESSOR.processorBaseTimeTaken);
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
+				/ tileEntity.getField(EnumTileField.MAXPROGRESS));
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
+		int energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		int maxEnergy = Reference.PROCESSOR_ENERGY_CAPACITY;
 
-		int fluid = this.tileEntity.getField(1);
+		int fluid = this.tileEntity.getField(EnumTileField.FLUID);
 		int maxFluid = Reference.PROCESSOR_FLUID_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
