@@ -10,7 +10,8 @@ import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -336,31 +337,22 @@ public class LightTileEntity extends MachineTileBase {
         return itemHandler.getStackInSlot(0);
     }
 
-    public int getField(int id) {
-        switch (id) {
-        case 0:
-            return this.energy;
-        default:
-            return 0;
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case ENERGY:
+                return this.getEnergy();
+            default:
+                return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-        case 0:
-            this.energy = value;
-            break;
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case ENERGY:
+                this.setEnergy(value);
+                break;
+            default:
+                break;
         }
-    }
-
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 }

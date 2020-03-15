@@ -1,96 +1,38 @@
 package io.moonman.emergingtechnology.machines.hydroponic;
 
-import net.minecraft.entity.player.EntityPlayer;
+import io.moonman.emergingtechnology.machines.classes.container.MachineContainer;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-// Handles inventory and slots
-public class HydroponicContainer extends Container {
-	private final HydroponicTileEntity tileEntity;
-
+public class HydroponicContainer extends MachineContainer {
 	private int water;
-	private int mediumId;
+	private int medium;
 
 	public HydroponicContainer(InventoryPlayer player, HydroponicTileEntity tileEntity) {
-		this.tileEntity = tileEntity;
-		IItemHandler handler = tileEntity.itemHandler;
-
-		this.addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
-
-		// Inventory
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 9; x++) {
-				this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
-			}
-		}
-
-		// Hotbar
-		for (int x = 0; x < 9; x++) {
-			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
-		}
+		super(tileEntity, player, tileEntity.itemHandler, 1, 1);
 	}
-	
-	@SideOnly(Side.CLIENT)
+
 	@Override
-	public void updateProgressBar(int id, int data) 
-	{
-		this.tileEntity.setField(id, data);
+	public void addMachineSlots(IItemHandler handler) {
+		addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
 	}
-	
+
 	@Override
-	public void detectAndSendChanges() 
-	{
+	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		
-		for(int i = 0; i < this.listeners.size(); ++i) 
-		{
-			IContainerListener listener = (IContainerListener)this.listeners.get(i);
-			if(this.water != this.tileEntity.getField(0)) listener.sendWindowProperty(this, 0, this.tileEntity.getField(0));
-			if(this.mediumId != this.tileEntity.getField(1)) listener.sendWindowProperty(this, 1, this.tileEntity.getField(1));
+
+		for (int i = 0; i < this.listeners.size(); ++i) {
+
+			IContainerListener listener = (IContainerListener) this.listeners.get(i);
+
+			checkField(listener, EnumTileField.FLUID, this.water);
+			checkField(listener, EnumTileField.MEDIUM, this.medium);
 		}
-		
-		this.water = this.tileEntity.getField(0);
-		this.mediumId = this.tileEntity.getField(1);
-	}
 
-	@Override
-	public boolean canInteractWith(EntityPlayer playerIn) {
-		return this.tileEntity.isUsableByPlayer(playerIn);
-	}
-
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-
-		ItemStack stack = ItemStack.EMPTY;
-		Slot fromSlot = (Slot) this.inventorySlots.get(index);
-
-		if (fromSlot != null && fromSlot.getHasStack()) {
-			ItemStack fromStack = fromSlot.getStack();
-			stack = fromStack.copy();
-
-			if (index < 1) {
-				if (!this.mergeItemStack(fromStack, 1, 37, false)) {
-					return ItemStack.EMPTY;
-				} else {
-					fromSlot.onSlotChanged();
-				}
-			} else {
-				if (!this.mergeItemStack(fromStack, 0, 1, false)) {
-					return ItemStack.EMPTY;
-				} else {
-					fromSlot.onSlotChanged();
-				}
-			}
-
-			fromSlot.onTake(playerIn, fromStack);
-		}
-		return stack;
+		this.water = this.tileEntity.getField(EnumTileField.FLUID);
+		this.medium = this.tileEntity.getField(EnumTileField.MEDIUM);
 	}
 }

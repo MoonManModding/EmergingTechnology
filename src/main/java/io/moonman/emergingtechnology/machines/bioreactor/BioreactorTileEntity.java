@@ -6,32 +6,43 @@ import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandle
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.fml.common.Optional;
-import li.cil.oc.api.machine.Arguments;
-import li.cil.oc.api.machine.Callback;
-import li.cil.oc.api.machine.Context;
-import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class BioreactorTileEntity extends MachineTileBase implements SimpleComponent {
+public class BioreactorTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
+
+    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    
+    @Override
+    public OptimiserPacket getPacket() {
+        return this.packet;
+    }
+
+    @Override
+    public void setPacket(OptimiserPacket packet) {
+        this.packet = packet;
+    }
+
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.BIOREACTOR_FLUID_CAPACITY) {
         @Override
@@ -259,17 +270,6 @@ public class BioreactorTileEntity extends MachineTileBase implements SimpleCompo
 
     private void setProgress(int quantity) {
         this.progress = quantity;
-    }
-
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     public int getField(int id) {

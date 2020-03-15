@@ -1,7 +1,7 @@
 package io.moonman.emergingtechnology.helpers;
 
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

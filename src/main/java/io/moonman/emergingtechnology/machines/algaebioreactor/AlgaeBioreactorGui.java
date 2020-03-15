@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.AlgaeBioreactorHelper;
 import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -83,34 +84,34 @@ public class AlgaeBioreactorGui extends GuiContainer {
 	}
 
 	private int getEnergyScaled(int scaled) {
-		return (int) (tileEntity.getField(0) * scaled / Reference.ALGAEBIOREACTOR_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.ALGAEBIOREACTOR_ENERGY_CAPACITY);
 	}
 
 	private int getFluidScaled(int scaled) {
-		return (int) (tileEntity.getField(1) * scaled / Reference.ALGAEBIOREACTOR_FLUID_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.FLUID) * scaled / Reference.ALGAEBIOREACTOR_FLUID_CAPACITY);
 	}
 
 	private int getGasScaled(int scaled) {
-		return (int) (tileEntity.getField(2) * scaled / Reference.ALGAEBIOREACTOR_GAS_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.GAS) * scaled / Reference.ALGAEBIOREACTOR_GAS_CAPACITY);
 	}
 
 	private int getProgressScaled(int scaled) {
-		return (int) (tileEntity.getField(3) * scaled / AlgaeBioreactorHelper.getTimeTaken(getBoost()));
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled / AlgaeBioreactorHelper.getTimeTaken(getBoost()));
 	}
 
 	private int getBoost() {
-		return tileEntity.getField(4);
+		return tileEntity.getField(EnumTileField.LIGHTBOOST);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
+		int energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		int maxEnergy = Reference.ALGAEBIOREACTOR_ENERGY_CAPACITY;
 
-		int fluid = this.tileEntity.getField(1);
+		int fluid = this.tileEntity.getField(EnumTileField.FLUID);
 		int maxFluid = Reference.ALGAEBIOREACTOR_FLUID_CAPACITY;
 
-		int gas = this.tileEntity.getField(2);
+		int gas = this.tileEntity.getField(EnumTileField.GAS);
 		int maxGas = Reference.ALGAEBIOREACTOR_GAS_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,

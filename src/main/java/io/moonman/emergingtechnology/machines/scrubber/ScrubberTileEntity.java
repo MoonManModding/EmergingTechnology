@@ -9,11 +9,14 @@ import io.moonman.emergingtechnology.handlers.fluid.InputOutputFluidStorageHandl
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.ScrubberHelper;
 import io.moonman.emergingtechnology.helpers.machines.WindHelper;
+import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.helpers.machines.enums.TurbineSpeedEnum;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.AnimatedMachineTileBase;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
+import io.moonman.emergingtechnology.machines.classes.tile.AnimatedMachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
+import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
 import io.moonman.emergingtechnology.machines.diffuser.DiffuserTileEntity;
 import io.moonman.emergingtechnology.network.PacketHandler;
 import io.moonman.emergingtechnology.network.animation.ScrubberAnimationPacket;
@@ -23,8 +26,6 @@ import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,7 +34,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.CapabilityAnimation;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -49,7 +49,19 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ScrubberTileEntity extends AnimatedMachineTileBase implements SimpleComponent {
+public class ScrubberTileEntity extends AnimatedMachineTileBase implements SimpleComponent, IOptimisableTile {
+
+    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+
+    @Override
+    public OptimiserPacket getPacket() {
+        return this.packet;
+    }
+
+    @Override
+    public void setPacket(OptimiserPacket packet) {
+        this.packet = packet;
+    }
 
     public ScrubberTileEntity() {
         initialiseAnimator(this, "scrubber");
@@ -298,7 +310,8 @@ public class ScrubberTileEntity extends AnimatedMachineTileBase implements Simpl
 
             FluidStack fluidStack = this.gasHandler.getFluid();
 
-            if (fluidStack == null) return;
+            if (fluidStack == null)
+                return;
 
             if (tileEntity instanceof DiffuserTileEntity) {
                 DiffuserTileEntity diffuserTileEntity = (DiffuserTileEntity) tileEntity;
@@ -393,45 +406,36 @@ public class ScrubberTileEntity extends AnimatedMachineTileBase implements Simpl
         this.progress = quantity;
     }
 
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    public int getField(int id) {
-        switch (id) {
-            case 0:
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case ENERGY:
                 return this.getEnergy();
-            case 1:
-                return this.getWater();
-            case 2:
+            case PROGRESS:
                 return this.getProgress();
-            case 3:
+            case GAS:
                 return this.getGas();
+            case FLUID:
+                return this.getWater();
             default:
                 return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-            case 0:
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case ENERGY:
                 this.setEnergy(value);
                 break;
-            case 1:
-                this.setWater(value);
-                break;
-            case 2:
+            case PROGRESS:
                 this.setProgress(value);
                 break;
-            case 3:
+            case GAS:
                 this.setGas(value);
+                break;
+            case FLUID:
+                this.setWater(value);
+                break;
+            default:
                 break;
         }
     }

@@ -12,6 +12,7 @@ import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.helpers.machines.LightHelper;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -129,12 +130,12 @@ public class LightGui extends GuiContainer
 
 	private int getEnergyScaled(int scaled)
     {
-		return (int) (tileEntity.getField(0) * scaled / Reference.LIGHT_ENERGY_CAPACITY);
+		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.LIGHT_ENERGY_CAPACITY);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
 
-		int energy = this.tileEntity.getField(0);
+		int energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		int maxEnergy = Reference.LIGHT_ENERGY_CAPACITY;
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,

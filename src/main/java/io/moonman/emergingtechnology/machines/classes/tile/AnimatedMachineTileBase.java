@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.machines;
+package io.moonman.emergingtechnology.machines.classes.tile;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.model.animation.AnimationStateMachine;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;

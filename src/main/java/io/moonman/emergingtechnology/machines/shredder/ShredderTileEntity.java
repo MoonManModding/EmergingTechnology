@@ -4,31 +4,43 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
-import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.ShredderHelper;
+import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
+import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.machines.ShredderRecipes;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.fml.common.Optional;
-import li.cil.oc.api.machine.Arguments;
-import li.cil.oc.api.machine.Callback;
-import li.cil.oc.api.machine.Context;
-import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class ShredderTileEntity extends MachineTileBase implements SimpleComponent {
+public class ShredderTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
+
+    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    
+    @Override
+    public OptimiserPacket getPacket() {
+        return this.packet;
+    }
+
+    @Override
+    public void setPacket(OptimiserPacket packet) {
+        this.packet = packet;
+    }
+
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.SHREDDER_ENERGY_CAPACITY) {
         @Override
@@ -104,7 +116,7 @@ public class ShredderTileEntity extends MachineTileBase implements SimpleCompone
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setTag("Inventory", this.itemHandler.serializeNBT());
-        
+
         compound.setInteger("GuiEnergy", energy);
         compound.setInteger("GuiProgress", progress);
 
@@ -134,66 +146,11 @@ public class ShredderTileEntity extends MachineTileBase implements SimpleCompone
     public void cycle() {
         this.setEnergy(this.getEnergy());
 
-        doShreddingProcess();
-    }
+        int newProgress = ShredderHelper.doShreddingProcess(getWorld(), getPos(), itemHandler, energyHandler,
+                getInputStack(), getOutputStack(), getPacket(), getProgress());
 
-    public void doShreddingProcess() {
-
-        ItemStack inputStack = getInputStack();
-
-        // Nothing in input stack
-        if (inputStack.getCount() == 0) {
-            this.setProgress(0);
-            return;
-        }
-
-        // Can't shred this item
-        if (!ShredderRecipes.isValidInput(inputStack)) {
-            this.setProgress(0);
-            return;
-        }
-
-        ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = ShredderRecipes.getOutputByItemStack(inputStack);
-
-        // This is probably unneccessary
-        if (plannedStack == null || plannedStack.isEmpty()) {
-            return;
-        }
-
-        // Output stack is full
-        if (outputStack.getCount() == 64) {
-            return;
-        }
-
-        // Output stack incompatible/non-empty
-        if (!StackHelper.compareItemStacks(outputStack, plannedStack) && !StackHelper.isItemStackEmpty(outputStack)) {
-            return;
-        }
-
-        // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage) {
-            return;
-        }
-
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
-                false);
-
-        // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken) {
-            this.setProgress(this.getProgress() + 1);
-            return;
-        }
-
-        
-        itemHandler.insertItem(1, plannedStack.copy(), false);
-        itemHandler.extractItem(0, 1, false);
-        
-
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderEnergyBaseUsage,
-                false);
-
-        this.setProgress(0);
+        this.setProgress(newProgress);
+        getPacket().reset();
     }
 
     public ItemStack getInputStack() {
@@ -215,7 +172,7 @@ public class ShredderTileEntity extends MachineTileBase implements SimpleCompone
     }
 
     public int getMaxProgress() {
-        return EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken;
+        return getPacket().calculateProgress(EmergingTechnologyConfig.POLYMERS_MODULE.SHREDDER.shredderBaseTimeTaken);
     }
 
     // Setters
@@ -228,36 +185,29 @@ public class ShredderTileEntity extends MachineTileBase implements SimpleCompone
         this.progress = quantity;
     }
 
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    public int getField(int id) {
-        switch (id) {
-        case 0:
-            return this.getEnergy();
-        case 1:
-            return this.getProgress();
-        default:
-            return 0;
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case ENERGY:
+                return this.getEnergy();
+            case PROGRESS:
+                return this.getProgress();
+            case MAXPROGRESS:
+                return this.getMaxProgress();
+            default:
+                return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
-        case 1:
-            this.setProgress(value);
-            break;
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case ENERGY:
+                this.setEnergy(value);
+                break;
+            case PROGRESS:
+                this.setProgress(value);
+                break;
+            default:
+                break;
         }
     }
 

@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.network.gui;
 
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -55,7 +56,7 @@ public class FabricatorSelectionPacket implements IMessage {
             
             if (world.isBlockLoaded(message.pos)) {
                 FabricatorTileEntity te = (FabricatorTileEntity) world.getTileEntity(message.pos);
-                te.setField(2, message.integer);
+                te.setField(EnumTileField.FABRICATORSELECTION, message.integer);
             }
         }
     }

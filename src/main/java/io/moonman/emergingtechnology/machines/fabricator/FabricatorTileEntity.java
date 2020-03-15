@@ -6,32 +6,43 @@ import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandle
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.FabricatorHelper;
+import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.helpers.machines.enums.FabricatorStatusEnum;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
+import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.fml.common.Optional;
-import li.cil.oc.api.machine.Arguments;
-import li.cil.oc.api.machine.Callback;
-import li.cil.oc.api.machine.Context;
-import li.cil.oc.api.network.SimpleComponent;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
-public class FabricatorTileEntity extends MachineTileBase implements SimpleComponent {
+public class FabricatorTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
+
+    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+
+    @Override
+    public OptimiserPacket getPacket() {
+        return this.packet;
+    }
+
+    @Override
+    public void setPacket(OptimiserPacket packet) {
+        this.packet = packet;
+    }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.FABRICATOR_ENERGY_CAPACITY) {
         @Override
@@ -295,51 +306,42 @@ public class FabricatorTileEntity extends MachineTileBase implements SimpleCompo
         this.status = FabricatorStatusEnum.getById(id);
     }
 
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    public int getField(int id) {
-        switch (id) {
-        case 0:
-            return this.getEnergy();
-        case 1:
-            return this.getProgress();
-        case 2:
-            return this.getSelection();
-        case 3:
-            return this.getIsPrinting();
-        case 4:
-            return this.getStatus();
-        default:
-            return 0;
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case ENERGY:
+                return this.getEnergy();
+            case PROGRESS:
+                return this.getProgress();
+            case FABRICATORSELECTION:
+                return this.getSelection();
+            case FABRICATORISPRINTING:
+                return this.getIsPrinting();
+            case FABRICATORSTATUS:
+                return this.getStatus();
+            default:
+                return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
-        case 1:
-            this.setProgress(value);
-            break;
-        case 2:
-            this.setSelection(value);
-            break;
-        case 3:
-            this.setIsPrinting(value);
-            break;
-        case 4:
-            this.setStatus(value);
-            break;
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case ENERGY:
+                this.setEnergy(value);
+                break;
+            case PROGRESS:
+                this.setProgress(value);
+                break;
+            case FABRICATORSELECTION:
+                this.setSelection(value);
+                break;
+            case FABRICATORISPRINTING:
+                this.setIsPrinting(value);
+                break;
+            case FABRICATORSTATUS:
+                this.setStatus(value);
+                break;
+            default:
+                break;
         }
     }
 

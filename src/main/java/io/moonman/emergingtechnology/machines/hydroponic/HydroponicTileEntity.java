@@ -10,7 +10,8 @@ import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.MachineTileBase;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
+import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.light.LightTileEntity;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
@@ -481,25 +482,27 @@ public class HydroponicTileEntity extends MachineTileBase implements SimpleCompo
         this.energy = quantity;
     }
 
-    public int getField(int id) {
-        switch (id) {
-        case 0:
-            return this.getWater();
-        case 1:
-            return this.getGrowthMediumId();
-        default:
-            return 0;
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case FLUID:
+                return this.getWater();
+            case MEDIUM:
+                return this.getGrowthMediumId();
+            default:
+                return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-        case 0:
-            this.setWater(value);
-            break;
-        case 1:
-            this.setGrowthMediumId(value);
-            break;
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case FLUID:
+                this.setWater(value);
+                break;
+            case MEDIUM:
+                this.setGrowthMediumId(value);
+                break;
+            default:
+                break;
         }
     }
 
@@ -511,17 +514,6 @@ public class HydroponicTileEntity extends MachineTileBase implements SimpleCompo
         if (oldValue > 0 && newValue == 0) {
             this.markDirtyClient();
         }
-    }
-
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return this.world.getTileEntity(this.pos) != this ? false
-                : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-                        (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     // OpenComputers
