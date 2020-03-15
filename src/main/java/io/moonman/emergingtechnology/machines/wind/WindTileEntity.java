@@ -183,24 +183,6 @@ public class WindTileEntity extends AnimatedMachineTileBase implements SimpleCom
         this.energy = quantity;
     }
 
-    public int getField(int id) {
-        switch (id) {
-            case 0:
-                return this.getEnergy();
-            default:
-                return 0;
-        }
-    }
-
-    public void setField(int id, int value) {
-        switch (id) {
-            case 0:
-                this.setEnergy(value);
-                break;
-
-        }
-    }
-
     // OpenComputers
 
     @Optional.Method(modid = "opencomputers")

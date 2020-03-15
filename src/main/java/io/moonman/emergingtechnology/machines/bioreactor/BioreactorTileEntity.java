@@ -8,6 +8,7 @@ import io.moonman.emergingtechnology.handlers.fluid.FluidStorageHandler;
 import io.moonman.emergingtechnology.helpers.StackHelper;
 import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
 import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
@@ -272,30 +273,32 @@ public class BioreactorTileEntity extends MachineTileBase implements SimpleCompo
         this.progress = quantity;
     }
 
-    public int getField(int id) {
-        switch (id) {
-        case 0:
-            return this.getEnergy();
-        case 1:
-            return this.getWater();
-        case 2:
-            return this.getProgress();
-        default:
-            return 0;
+    public int getField(EnumTileField field) {
+        switch (field) {
+            case ENERGY:
+                return this.getEnergy();
+            case PROGRESS:
+                return this.getProgress();
+            case FLUID:
+                return this.getWater();
+            default:
+                return 0;
         }
     }
 
-    public void setField(int id, int value) {
-        switch (id) {
-        case 0:
-            this.setEnergy(value);
-            break;
-        case 1:
-            this.setWater(value);
-            break;
-        case 2:
-            this.setProgress(value);
-            break;
+    public void setField(EnumTileField field, int value) {
+        switch (field) {
+            case ENERGY:
+                this.setEnergy(value);
+                break;
+            case PROGRESS:
+                this.setProgress(value);
+                break;
+            case FLUID:
+                this.setWater(value);
+                break;
+            default:
+                break;
         }
     }
 
