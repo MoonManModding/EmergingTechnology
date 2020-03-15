@@ -20,8 +20,6 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -32,7 +30,7 @@ import net.minecraftforge.items.ItemStackHandler;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class FabricatorTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
 
-    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    private OptimiserPacket packet = new OptimiserPacket();
 
     @Override
     public OptimiserPacket getPacket() {
@@ -140,26 +138,10 @@ public class FabricatorTileEntity extends MachineTileBase implements SimpleCompo
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
-
-    @Override
     public void cycle() {
         this.setEnergy(this.getEnergy());
         this.doPrinting();
+        getPacket().reset();
     }
 
     public void doPrinting() {
@@ -220,18 +202,18 @@ public class FabricatorTileEntity extends MachineTileBase implements SimpleCompo
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage) {
+        if (this.getEnergy() < getPacket().calculateEnergyUse(EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage)) {
             status = FabricatorStatusEnum.INSUFFICIENT_ENERGY;
             return;
         }
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage,
+        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorEnergyBaseUsage),
                 false);
 
         this.setEnergy(this.energyHandler.getEnergyStored());
 
         // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorBaseTimeTaken) {
+        if (this.getProgress() < getPacket().calculateProgress(EmergingTechnologyConfig.POLYMERS_MODULE.FABRICATOR.fabricatorBaseTimeTaken)) {
             this.setProgress(this.getProgress() + 1);
             status = FabricatorStatusEnum.RUNNING;
             return;

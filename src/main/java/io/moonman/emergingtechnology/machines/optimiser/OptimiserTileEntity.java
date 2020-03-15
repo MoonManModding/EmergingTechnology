@@ -15,8 +15,6 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -115,22 +113,7 @@ public class OptimiserTileEntity extends MachineTileBase implements SimpleCompon
         return compound;
     }
 
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
 
     @Override
     public void cycle() {
@@ -148,14 +131,16 @@ public class OptimiserTileEntity extends MachineTileBase implements SimpleCompon
         int progress = 1;
         int energy = 1;
         int fluid = 1;
+        int gas = 1;
 
         if (this.energyHandler.getEnergyStored() >= EmergingTechnologyConfig.ELECTRICS_MODULE.OPTIMISER.energyUsage) {
             progress = 2;
             energy = 2;
             fluid = 2;
+            gas = 2;
         }
 
-        return new OptimiserPacket(energy, fluid, progress);
+        return new OptimiserPacket(energy, fluid, gas, progress);
     }
 
     public ItemStack getInputStack() {

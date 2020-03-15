@@ -29,7 +29,7 @@ import net.minecraftforge.items.ItemStackHandler;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class ShredderTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
 
-    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    private OptimiserPacket packet = new OptimiserPacket();
     
     @Override
     public OptimiserPacket getPacket() {
@@ -125,22 +125,7 @@ public class ShredderTileEntity extends MachineTileBase implements SimpleCompone
         return compound;
     }
 
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
 
     @Override
     public void cycle() {
