@@ -52,12 +52,30 @@ public class FabricatorSelectionPacket implements IMessage {
 
         private void handle(FabricatorSelectionPacket message, MessageContext ctx) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
-            World world = player.world;
             
-            if (world.isBlockLoaded(message.pos)) {
-                FabricatorTileEntity te = (FabricatorTileEntity) world.getTileEntity(message.pos);
-                te.setField(EnumTileField.FABRICATORSELECTION, message.integer);
-            }
+            if (player == null)
+                return;
+
+            FabricatorTileEntity tileEntity = getTileEntity(player.world, message.pos);
+
+            if (tileEntity == null)
+                return;
+
+            tileEntity.setField(EnumTileField.FABRICATORSELECTION, message.integer);
+        }
+
+        private FabricatorTileEntity getTileEntity(World world, BlockPos pos) {
+
+            if (world == null)
+                return null;
+            if (!world.isBlockLoaded(pos))
+                return null;
+            if (world.getTileEntity(pos) == null)
+                return null;
+            if (world.getTileEntity(pos) instanceof FabricatorTileEntity == false)
+                return null;
+
+            return (FabricatorTileEntity) world.getTileEntity(pos);
         }
     }
 }

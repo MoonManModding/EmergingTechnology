@@ -89,6 +89,10 @@ item.emergingtechnology.tidalgenerator.name=Приливный генерато�
 item.emergingtechnology.wind.name=Ветрогенератор
 item.emergingtechnology.biocharblock.name=Блок биоугля
 item.emergingtechnology.optimiser.name=Algorithmic Optimizer
+item.emergingtechnology.circuit.name=Blank Circuit Board
+item.emergingtechnology.circuitbasic.name=Basic Circuit Board
+item.emergingtechnology.circuitadvanced.name=Advanced Circuit Board
+item.emergingtechnology.circuitsuperior.name=Superior Circuit Board
 
 #Blocks
 
@@ -278,6 +282,7 @@ info.emergingtechnology.growth.generated=Обеспечивает %s проце�
 info.emergingtechnology.cookerheat.generated=Получает %1$sC на сонце и теряет %2$sC в темноте.
 info.emergingtechnology.lightrange.generated=Увеличивает рост растений до %s блоков ниже.
 info.emergingtechnology.gasrange.generated=Увеличивает рост растений до %s блоков на Север, Восток, Юг или Запад.
+info.emergingtechnology.optimiserrange.generated=Boosts machine efficiency up to %s blocks to the North, East, South or West sides.
 
 # Capacity
 info.emergingtechnology.energy.capacity=Может хранить до %sRF энергии.

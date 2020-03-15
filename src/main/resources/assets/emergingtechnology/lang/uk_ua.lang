@@ -89,6 +89,10 @@ item.emergingtechnology.tidalgenerator.name=Припливний генерат�
 item.emergingtechnology.wind.name=Вітрогенератор
 item.emergingtechnology.biocharblock.name=Блок біовугілля
 item.emergingtechnology.optimiser.name=Algorithmic Optimizer
+item.emergingtechnology.circuit.name=Blank Circuit Board
+item.emergingtechnology.circuitbasic.name=Basic Circuit Board
+item.emergingtechnology.circuitadvanced.name=Advanced Circuit Board
+item.emergingtechnology.circuitsuperior.name=Superior Circuit Board
 
 #Blocks
 
@@ -278,6 +282,7 @@ info.emergingtechnology.growth.generated=Забезпечує %s процент�
 info.emergingtechnology.cookerheat.generated=Отримує %1$sC на сонці та втрачає %2$sC у темряві.
 info.emergingtechnology.lightrange.generated=Збільшує ріст рослин до %s блоків нижче.
 info.emergingtechnology.gasrange.generated=Збільшує ріст рослин до %s блоків на Північ, Схід, Південь чи Захід.
+info.emergingtechnology.optimiserrange.generated=Boosts machine efficiency up to %s blocks to the North, East, South or West sides.
 
 # Capacity
 info.emergingtechnology.energy.capacity=Може зберігати до %sRF енергії.

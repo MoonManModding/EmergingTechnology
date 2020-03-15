@@ -5,6 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import io.moonman.emergingtechnology.item.electrics.Biochar;
 import io.moonman.emergingtechnology.item.electrics.Biomass;
+import io.moonman.emergingtechnology.item.electrics.Circuit;
+import io.moonman.emergingtechnology.item.electrics.CircuitAdvanced;
+import io.moonman.emergingtechnology.item.electrics.CircuitBasic;
+import io.moonman.emergingtechnology.item.electrics.CircuitSuperior;
 import io.moonman.emergingtechnology.item.hydroponics.Fertilizer;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.BlueBulb;
 import io.moonman.emergingtechnology.item.hydroponics.bulbs.GreenBulb;
@@ -155,6 +159,11 @@ public class ModItems {
 	// Items
 	public static final Item biomass = null;
 	public static final Item biochar = null;
+
+	public static final Item circuit = null;
+	public static final Item circuitbasic = null;
+	public static final Item circuitadvanced = null;
+	public static final Item circuitsuperior = null;
 	// endregion
 
 	// region Fluid block items
@@ -176,7 +185,8 @@ public class ModItems {
 				ModItems.paperpulp, ModItems.emptysyringe, ModItems.syntheticcowraw, ModItems.syntheticchickenraw,
 				ModItems.syntheticpigraw, ModItems.syntheticcowcooked, ModItems.syntheticchickencooked,
 				ModItems.syntheticpigcooked, ModItems.syntheticleather, ModItems.syntheticslime, ModItems.syntheticsilk,
-				ModItems.algaebarraw, ModItems.algaebarcooked, ModItems.algae, ModItems.biomass, ModItems.biochar };
+				ModItems.algaebarraw, ModItems.algaebarcooked, ModItems.algae, ModItems.biomass, ModItems.biochar,
+				ModItems.circuit, ModItems.circuitbasic, ModItems.circuitadvanced, ModItems.circuitsuperior };
 
 		return items;
 	}
@@ -189,7 +199,8 @@ public class ModItems {
 				new Turbine(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),
 				new SyntheticPigRaw(), new SyntheticPigCooked(), new SyntheticCowCooked(), new SyntheticChickenCooked(),
 				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new AlgaeBarRaw(),
-				new AlgaeBarCooked(), new Algae(), new Biomass(), new Biochar() };
+				new AlgaeBarCooked(), new Algae(), new Biomass(), new Biochar(), new Circuit(), new CircuitBasic(),
+				new CircuitAdvanced(), new CircuitSuperior() };
 
 		return items;
 	}

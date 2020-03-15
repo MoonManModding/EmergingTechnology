@@ -203,6 +203,10 @@ public class Lang {
         public static String getGasRange(int range) {
                 return new TextComponentTranslation(SOURCE + "gasrange.generated", range).getFormattedText();
         }
+        
+        public static String getOptimiserRange(int range) {
+                return new TextComponentTranslation(SOURCE + "optimiserrange.generated", range).getFormattedText();
+        }
 
         // Resource
         public static String getRequired(int required, ResourceTypeEnum type) {

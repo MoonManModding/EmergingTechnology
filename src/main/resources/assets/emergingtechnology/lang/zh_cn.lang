@@ -89,6 +89,10 @@ item.emergingtechnology.tidalgenerator.name=潮汐发电机
 item.emergingtechnology.wind.name=风力发电机
 item.emergingtechnology.biocharblock.name=生物碳块
 item.emergingtechnology.optimiser.name=Algorithmic Optimizer
+item.emergingtechnology.circuit.name=Blank Circuit Board
+item.emergingtechnology.circuitbasic.name=Basic Circuit Board
+item.emergingtechnology.circuitadvanced.name=Advanced Circuit Board
+item.emergingtechnology.circuitsuperior.name=Superior Circuit Board
 
 #Blocks
 
@@ -279,6 +283,7 @@ info.emergingtechnology.growth.generated=每个周期提供%s的增长率。
 info.emergingtechnology.cookerheat.generated=在阳光下获得%1$sC，在黑暗中失去%2$sC。
 info.emergingtechnology.lightrange.generated=促进植物生长至以下%s个方块。
 info.emergingtechnology.gasrange.generated=促进北面、东面、南面或西面%s格方块植物的生长。
+info.emergingtechnology.optimiserrange.generated=Boosts machine efficiency up to %s blocks to the North, East, South or West sides.
 
 # Capacity
 info.emergingtechnology.energy.capacity=最多可以储存%sRF的能量。
