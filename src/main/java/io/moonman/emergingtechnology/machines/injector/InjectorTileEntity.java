@@ -45,8 +45,8 @@ public class InjectorTileEntity extends MachineTileBase implements SimpleCompone
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
     private FluidTank waterHandler = new FluidStorageHandler(Reference.INJECTOR_FLUID_CAPACITY) {

@@ -45,8 +45,8 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
 

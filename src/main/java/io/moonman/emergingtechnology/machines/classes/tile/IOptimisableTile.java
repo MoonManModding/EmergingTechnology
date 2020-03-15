@@ -8,6 +8,6 @@ import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 public interface IOptimisableTile {
 
     public OptimiserPacket getPacket();
-    public void setPacket(OptimiserPacket packet);
+    public void addPacket(OptimiserPacket packet);
 
 }

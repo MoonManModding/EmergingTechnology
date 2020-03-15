@@ -25,7 +25,7 @@ public class OptimiserHelper {
 
                 IOptimisableTile machine = (IOptimisableTile) tile;
 
-                machine.setPacket(packet);
+                machine.getPacket().merge(packet);
             }
         }
     }

@@ -39,8 +39,8 @@ public class ProcessorTileEntity extends MachineTileBase implements SimpleCompon
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
     public FluidTank fluidHandler = new FluidStorageHandler(Reference.PROCESSOR_FLUID_CAPACITY) {

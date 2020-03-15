@@ -38,8 +38,8 @@ public class FabricatorTileEntity extends MachineTileBase implements SimpleCompo
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.FABRICATOR_ENERGY_CAPACITY) {
