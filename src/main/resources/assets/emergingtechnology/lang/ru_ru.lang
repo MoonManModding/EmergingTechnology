@@ -88,11 +88,12 @@ item.emergingtechnology.biomassgenerator.name=Генератор на биома
 item.emergingtechnology.tidalgenerator.name=Приливный генератор
 item.emergingtechnology.wind.name=Ветрогенератор
 item.emergingtechnology.biocharblock.name=Блок биоугля
-item.emergingtechnology.optimiser.name=Algorithmic Optimizer
-item.emergingtechnology.circuit.name=Blank Circuit Board
-item.emergingtechnology.circuitbasic.name=Basic Circuit Board
-item.emergingtechnology.circuitadvanced.name=Advanced Circuit Board
-item.emergingtechnology.circuitsuperior.name=Superior Circuit Board
+item.emergingtechnology.optimiser.name=Алгоритмический оптимизатор
+item.emergingtechnology.circuit.name=Пустая печатная плата
+item.emergingtechnology.circuitbasic.name=Базовая печатная плата
+item.emergingtechnology.circuitadvanced.name=Продвинутая печатная плата
+item.emergingtechnology.circuitsuperior.name=Превосходная печатная плата
+
 
 #Blocks
 
@@ -135,7 +136,7 @@ blocks.emergingtechnology.biomassgenerator.name=Генератор на биом
 blocks.emergingtechnology.tidalgenerator.name=Приливный генератор
 blocks.emergingtechnology.wind.name=Ветрогенератор
 blocks.emergingtechnology.biocharblock.name=Блок биоугля
-blocks.emergingtechnology.optimiser.name=Algorithmic Optimizer
+blocks.emergingtechnology.optimiser.name=Алгоритмический оптимизатор
 
 #Containers
 
@@ -181,7 +182,7 @@ tile.emergingtechnology.biomassgenerator.name=Генератор на биома
 tile.emergingtechnology.tidalgenerator.name=Приливный генератор
 tile.emergingtechnology.wind.name=Ветрогенератор
 tile.emergingtechnology.biocharblock.name=Блок биоугля
-tile.emergingtechnology.optimiser.name=Algorithmic Optimizer
+tile.emergingtechnology.optimiser.name=Алгоритмический оптимизатор
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Углекислота
@@ -233,7 +234,7 @@ info.emergingtechnology.solar.description=Вырабатывает энерги�
 info.emergingtechnology.solarglass.description=Прозрачная солнечная панель, которая генерирует энергию, если один из двух блоков впереди находится на солнце.
 info.emergingtechnology.battery.description=Накапливает энергию для последующего использования. Вход с красной стороны, выход с желтой.
 info.emergingtechnology.wind.description=Генерирует энергию, используя движение ветра.
-info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
+info.emergingtechnology.optimiser.description=Увеличивает эффективность прилегающих машин.
 
 info.emergingtechnology.frame.description=Декоративная пластиковая рамка
 
@@ -282,7 +283,7 @@ info.emergingtechnology.growth.generated=Обеспечивает %s проце�
 info.emergingtechnology.cookerheat.generated=Получает %1$sC на сонце и теряет %2$sC в темноте.
 info.emergingtechnology.lightrange.generated=Увеличивает рост растений до %s блоков ниже.
 info.emergingtechnology.gasrange.generated=Увеличивает рост растений до %s блоков на Север, Восток, Юг или Запад.
-info.emergingtechnology.optimiserrange.generated=Boosts machine efficiency up to %s blocks to the North, East, South or West sides.
+info.emergingtechnology.optimiserrange.generated=Увеличивает эффективность машины до %s блоков на Север, Восток, Юг или Запад.
 
 # Capacity
 info.emergingtechnology.energy.capacity=Может хранить до %sRF энергии.
@@ -360,7 +361,7 @@ config.emergingtechnology.synthetics.algaebioreactor.title=Биореактор 
 config.emergingtechnology.synthetics.cooker.title=Солнечная плита
 
 config.emergingtechnology.electrics.title=Электроника
-config.emergingtechnology.electrics.title.tooltip=Тут настраивается Солнечная панель, Солнечное стекло, Приливный генератор, Генератор на биомассе, Пьезоэлектрический генератор и Аккумулятор
+config.emergingtechnology.electrics.title.tooltip=Тут настраивается Солнечная панель, Солнечное стекло, Приливный генератор, Генератор на биомассе, Пьезоэлектрический генератор, Аккумулятор, Ветрогенератор и Алгоритмический оптимизатор
 
 config.emergingtechnology.electrics.solar.title=Солнечная панель
 config.emergingtechnology.electrics.solarglass.title=Солнечное стекло
@@ -369,4 +370,4 @@ config.emergingtechnology.electrics.biomass.title=Генератор на био
 config.emergingtechnology.electrics.piezoelectric.title=Пьезоэлектрический генератор
 config.emergingtechnology.electrics.battery.title=Аккумулятор
 config.emergingtechnology.electrics.wind.title=Ветрогенератор
-config.emergingtechnology.electrics.optimiser.title=Algorithmic Optimizer
+config.emergingtechnology.electrics.optimiser.title=Алгоритмический оптимизатор
