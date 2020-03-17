@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.network.animation.TidalGeneratorAnimationPa
 import io.moonman.emergingtechnology.network.animation.WindGeneratorAnimationPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorSelectionPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorStopStartPacket;
+import io.moonman.emergingtechnology.network.gui.OptimiserUpdatePacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -36,6 +37,8 @@ public class PacketHandler {
                 Side.SERVER);
         INSTANCE.registerMessage(HarvesterStopAnimationPacket.Handler.class, HarvesterStopAnimationPacket.class,
                 nextID(), Side.SERVER);
+        INSTANCE.registerMessage(OptimiserUpdatePacket.Handler.class, OptimiserUpdatePacket.class, nextID(),
+                Side.SERVER);
     }
 
     private static void registerClientMessages() {

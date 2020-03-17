@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "P"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "P": {
+      "item": "emergingtechnology:circuitbasic"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:circuitadvanced",
+    "count": 1
+  }
+}

@@ -51,7 +51,7 @@ import net.minecraftforge.items.ItemStackHandler;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class ScrubberTileEntity extends AnimatedMachineTileBase implements SimpleComponent, IOptimisableTile {
 
-    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    private OptimiserPacket packet = new OptimiserPacket();
 
     @Override
     public OptimiserPacket getPacket() {
@@ -59,8 +59,8 @@ public class ScrubberTileEntity extends AnimatedMachineTileBase implements Simpl
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
     public ScrubberTileEntity() {
@@ -212,22 +212,7 @@ public class ScrubberTileEntity extends AnimatedMachineTileBase implements Simpl
         return compound;
     }
 
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
 
     @Override
     public void cycle() {
@@ -237,6 +222,7 @@ public class ScrubberTileEntity extends AnimatedMachineTileBase implements Simpl
 
         doProcessing();
         pushToGasConsumers();
+        getPacket().reset();
     }
 
     public void doProcessing() {
@@ -248,23 +234,23 @@ public class ScrubberTileEntity extends AnimatedMachineTileBase implements Simpl
         }
 
         // Not enough water
-        if (this.getWater() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage) {
+        if (this.getWater() < getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage)) {
             this.setTurbineState(TurbineSpeedEnum.OFF);
             return;
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage) {
+        if (this.getEnergy() < getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage)) {
             this.setTurbineState(TurbineSpeedEnum.OFF);
             return;
         }
 
         this.setTurbineState(TurbineSpeedEnum.FAST);
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage,
+        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberEnergyBaseUsage),
                 false);
 
-        this.fluidHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage, true);
+        this.fluidHandler.drain(getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.SCRUBBER.scrubberWaterBaseUsage), true);
 
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());

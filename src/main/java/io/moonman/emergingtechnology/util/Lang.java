@@ -127,6 +127,23 @@ public class Lang {
         public static final TextComponentTranslation GUI_NO_SPEED_MULTIPLIER = new TextComponentTranslation(
                         GUI_SOURCE + "label.nospeedmultiplier");
 
+        public static final TextComponentTranslation GUI_OPTIMISER_BUTTON_ADD = new TextComponentTranslation(
+                        GUI_SOURCE + "optimiser.buttonadd");
+        public static final TextComponentTranslation GUI_OPTIMISER_BUTTON_REMOVE = new TextComponentTranslation(
+                        GUI_SOURCE + "optimiser.buttonremove");
+
+        public static String getOptimiserRemaining(int amount) {
+                return new TextComponentTranslation(GUI_SOURCE + "optimiser.remaining", amount).getFormattedText();
+        }
+
+        public static String getOptimiserResourceBoost(int amount) {
+                return new TextComponentTranslation(GUI_SOURCE + "optimiser.resource", amount).getFormattedText();
+        }
+
+        public static String getOptimiserProgressBoost(int amount) {
+                return new TextComponentTranslation(GUI_SOURCE + "optimiser.progress", amount).getFormattedText();
+        }
+
         public static String getSpeedMultiplier(int amount) {
                 return new TextComponentTranslation(GUI_SOURCE + "label.speedmultiplier", amount).getFormattedText();
         }
@@ -172,6 +189,10 @@ public class Lang {
                                                 .getFormattedText();
         }
 
+        public static String getCircuitDescription(int value) {
+                return new TextComponentTranslation(SOURCE + "circuit.description", value).getFormattedText();
+        }
+
         // Special requirements
         public static final TextComponentTranslation BIOME_REQUIREMENT = new TextComponentTranslation(
                         SOURCE + "biome.required");
@@ -202,6 +223,10 @@ public class Lang {
 
         public static String getGasRange(int range) {
                 return new TextComponentTranslation(SOURCE + "gasrange.generated", range).getFormattedText();
+        }
+
+        public static String getOptimiserRange(int range) {
+                return new TextComponentTranslation(SOURCE + "optimiserrange.generated", range).getFormattedText();
         }
 
         // Resource

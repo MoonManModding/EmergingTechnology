@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D",
+    "P"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "P": {
+      "item": "emergingtechnology:circuitadvanced"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:circuitsuperior",
+    "count": 1
+  }
+}

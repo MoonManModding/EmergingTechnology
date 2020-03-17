@@ -16,4 +16,8 @@ public class GuiRegion {
     public boolean isPositionInRegion(GuiPosition position) {
         return position.x >= topLeftX && position.x <= bottomRightX && position.y >= topLeftY && position.y <= bottomRightY;
     }
+
+    public boolean isPositionInRegion(int x, int y) {
+        return x >= topLeftX && x <= bottomRightX && y >= topLeftY && y <= bottomRightY;
+    }
 }

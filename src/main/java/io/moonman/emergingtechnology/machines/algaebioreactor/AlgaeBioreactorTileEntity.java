@@ -23,8 +23,6 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -39,7 +37,7 @@ import net.minecraftforge.items.ItemStackHandler;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class AlgaeBioreactorTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
 
-    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    private OptimiserPacket packet = new OptimiserPacket();
     
     @Override
     public OptimiserPacket getPacket() {
@@ -47,8 +45,8 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
 
@@ -186,22 +184,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
         return compound;
     }
 
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
 
     @Override
     public void cycle() {
@@ -211,6 +194,7 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
         this.setLightBoost(this.getLightBoost());
 
         doProcessing();
+        getPacket().reset();
     }
 
     public void doProcessing() {
@@ -259,32 +243,32 @@ public class AlgaeBioreactorTileEntity extends MachineTileBase implements Simple
         }
 
         // Not enough water
-        if (this.getWater() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorWaterUsage) {
+        if (this.getWater() < getPacket().calculateFluidUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorWaterUsage)) {
             return;
         }
 
         // Not enough gas
-        if (this.getGas() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage) {
+        if (this.getGas() < getPacket().calculateGasUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage)) {
             return;
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorEnergyUsage) {
+        if (this.getEnergy() < getPacket().calculateEnergyUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorEnergyUsage)) {
             return;
         }
 
         this.energyHandler
-                .extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorEnergyUsage, false);
+                .extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorEnergyUsage), false);
 
-        this.fluidHandler.drain(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorWaterUsage, true);
-        this.gasHandler.drain(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage, true);
+        this.fluidHandler.drain(getPacket().calculateFluidUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorWaterUsage), true);
+        this.gasHandler.drain(getPacket().calculateGasUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.ALGAEBIOREACTOR.bioreactorGasUsage), true);
 
         this.setEnergy(this.energyHandler.getEnergyStored());
         this.setWater(this.fluidHandler.getFluidAmount());
         this.setGas(this.gasHandler.getFluidAmount());
 
         // Not enough operations performed
-        if (this.getProgress() < AlgaeBioreactorHelper.getTimeTaken(this.getLightBoost())) {
+        if (this.getProgress() < getPacket().calculateProgress(AlgaeBioreactorHelper.getTimeTaken(this.getLightBoost()))) {
             this.setProgress(this.getProgress() + 1);
             return;
         }

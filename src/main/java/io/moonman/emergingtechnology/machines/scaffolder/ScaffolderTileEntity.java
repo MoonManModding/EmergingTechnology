@@ -29,7 +29,7 @@ import net.minecraftforge.items.ItemStackHandler;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class ScaffolderTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
 
-    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    private OptimiserPacket packet = new OptimiserPacket();
     
     @Override
     public OptimiserPacket getPacket() {
@@ -37,8 +37,8 @@ public class ScaffolderTileEntity extends MachineTileBase implements SimpleCompo
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
 
@@ -160,26 +160,10 @@ public class ScaffolderTileEntity extends MachineTileBase implements SimpleCompo
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
-
-    @Override
     public void cycle() {
-        this.setEnergy(this.getEnergy());
+        setEnergy(getEnergy());
         doScaffoldingProcess();
+        getPacket().reset();
     }
 
     public void doScaffoldingProcess() {
@@ -219,15 +203,15 @@ public class ScaffolderTileEntity extends MachineTileBase implements SimpleCompo
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage) {
+        if (this.getEnergy() < getPacket().calculateEnergyUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage)) {
             return;
         }
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage,
+        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage),
                 false);
 
         // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken) {
+        if (this.getProgress() < getPacket().calculateProgress(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken)) {
             this.setProgress(this.getProgress() + 1);
             return;
         }
@@ -235,7 +219,7 @@ public class ScaffolderTileEntity extends MachineTileBase implements SimpleCompo
         itemHandler.insertItem(1, plannedStack.copy(), false);
         itemHandler.extractItem(0, 1, false);
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage,
+        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderEnergyUsage),
                 false);
 
         this.setProgress(0);
@@ -264,7 +248,7 @@ public class ScaffolderTileEntity extends MachineTileBase implements SimpleCompo
     }
 
     public int getMaxProgress() {
-        return EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken;
+        return getPacket().calculateProgress(EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken);
     }
 
     // Setters

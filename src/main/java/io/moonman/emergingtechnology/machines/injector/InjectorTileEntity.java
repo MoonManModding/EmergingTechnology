@@ -21,8 +21,6 @@ import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -39,7 +37,7 @@ import net.minecraftforge.items.ItemStackHandler;
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class InjectorTileEntity extends MachineTileBase implements SimpleComponent, IOptimisableTile {
 
-    private OptimiserPacket packet = new OptimiserPacket(1, 1, 1);
+    private OptimiserPacket packet = new OptimiserPacket();
 
     @Override
     public OptimiserPacket getPacket() {
@@ -47,8 +45,8 @@ public class InjectorTileEntity extends MachineTileBase implements SimpleCompone
     }
 
     @Override
-    public void setPacket(OptimiserPacket packet) {
-        this.packet = packet;
+    public void addPacket(OptimiserPacket packet) {
+        getPacket().merge(packet);
     }
 
     private FluidTank waterHandler = new FluidStorageHandler(Reference.INJECTOR_FLUID_CAPACITY) {
@@ -190,27 +188,13 @@ public class InjectorTileEntity extends MachineTileBase implements SimpleCompone
         return compound;
     }
 
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
 
     @Override
     public void cycle() {
         doProcessing();
         pushToFluidConsumers();
+        getPacket().reset();
     }
 
     public void doProcessing() {
@@ -264,25 +248,25 @@ public class InjectorTileEntity extends MachineTileBase implements SimpleCompone
         }
 
         // Not enough water
-        if (this.getWater() < EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorWaterBaseUsage) {
+        if (this.getWater() < getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorWaterBaseUsage)) {
             return;
         }
 
         // Not enough energy
-        if (this.getEnergy() < EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorEnergyBaseUsage) {
+        if (this.getEnergy() < getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorEnergyBaseUsage)) {
             return;
         }
 
-        this.energyHandler.extractEnergy(EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorEnergyBaseUsage,
+        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorEnergyBaseUsage),
                 false);
 
         // Not enough operations performed
-        if (this.getProgress() < EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorBaseTimeTaken) {
+        if (this.getProgress() < getPacket().calculateProgress(EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorBaseTimeTaken)) {
             this.setProgress(this.getProgress() + 1);
             return;
         }
 
-        this.waterHandler.drain(EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorWaterBaseUsage, true);
+        this.waterHandler.drain(getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorWaterBaseUsage), true);
         this.nutrientFluidHandler.fill(new FluidStack(ModFluids.NUTRIENT,
                 EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorFluidGenerated), true);
 

@@ -84,6 +84,10 @@ item.emergingtechnology.tidalgenerator.name=Tidal Generator
 item.emergingtechnology.wind.name=Wind Generator
 item.emergingtechnology.biocharblock.name=Biochar Block
 item.emergingtechnology.optimiser.name=Algorithmic Optimizer
+item.emergingtechnology.circuit.name=Blank Circuit Board
+item.emergingtechnology.circuitbasic.name=Basic Circuit Board
+item.emergingtechnology.circuitadvanced.name=Advanced Circuit Board
+item.emergingtechnology.circuitsuperior.name=Superior Circuit Board
 
 #Blocks
 
@@ -218,6 +222,14 @@ info.emergingtechnology.optimiser.description=Increases the efficiency of adjace
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 
+info.emergingtechnology.nozzle.description=A nozzle used by the Diffuser.
+info.emergingtechnology.nozzlecomponent.description=A crafting ingredient used to create nozzles.
+info.emergingtechnology.nozzlesmart.description=Multiplies the range and effectiveness of the Diffuser by %1$s and %2$s respectively.
+info.emergingtechnology.nozzlelong.description=Multiplies the range of the Diffuser by %s.
+info.emergingtechnology.nozzleprecise.description=Multiplies the effectiveness of the Diffuser by %s.
+
+info.emergingtechnology.circuit.description=Used in the Optimiser. Provides %s Cores.
+
 # Item descriptions
 info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.
 info.emergingtechnology.emptysyringe.description=An empty syringe used for collecting tissue samples from animals.
@@ -253,6 +265,8 @@ info.emergingtechnology.growth.generated=Provides a %s percent chance of growth 
 
 info.emergingtechnology.cookerheat.generated=Gains %1$sC in sunlight and loses %2$sC in darkness.
 info.emergingtechnology.lightrange.generated=Boosts plant growth up to %s blocks below.
+info.emergingtechnology.gasrange.generated=Boosts plant growth up to %s blocks to the North, East, South or West sides.
+info.emergingtechnology.optimiserrange.generated=Boosts machine efficiency up to %s blocks to the North, East, South or West sides.
 
 # Capacity
 info.emergingtechnology.energy.capacity=Can store up to %sRF of energy.
@@ -288,6 +302,12 @@ gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Requires 
+
+gui.emergingtechnology.optimiser.buttonadd=Assign a Core to this boost.
+gui.emergingtechnology.optimiser.buttonremove=Unassign a Core from this boost.
+gui.emergingtechnology.optimiser.remaining=%s Cores remaining.
+gui.emergingtechnology.optimiser.resource=Reduces resource usage by %s percent.
+gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
 
 gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
 gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.

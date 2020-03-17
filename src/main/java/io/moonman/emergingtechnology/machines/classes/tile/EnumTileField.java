@@ -21,7 +21,12 @@ public enum EnumTileField {
     PLANTS,
     NOZZLE,
     LIGHTBOOST,
-    NUTRIENT;
+    NUTRIENT,
+    OPTIMISERENERGY,
+    OPTIMISERFLUID,
+    OPTIMISERGAS,
+    OPTIMISERPROGRESS,
+    OPTIMISERCORES;
 
     private static EnumTileField[] values = null;
 
