@@ -2,7 +2,10 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
+import io.moonman.emergingtechnology.item.electrics.circuits.CircuitBase;
 import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -28,5 +31,18 @@ public class OptimiserHelper {
                 machine.getPacket().merge(packet);
             }
         }
+    }
+
+    public static int getCoresFromItemStack(ItemStack itemStack) {
+
+        if (itemStack == null || itemStack.isEmpty()) return 0;
+
+        Item item = itemStack.getItem();
+
+        if (item instanceof CircuitBase == false) return 0;
+
+        CircuitBase circuit = (CircuitBase) item;
+
+        return circuit.getCores();
     }
 }

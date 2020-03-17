@@ -1,4 +1,4 @@
-package io.moonman.emergingtechnology.item.electrics;
+package io.moonman.emergingtechnology.item.electrics.circuits;
 
 import io.moonman.emergingtechnology.item.ItemBase;
 

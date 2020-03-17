@@ -5,7 +5,7 @@ package io.moonman.emergingtechnology.helpers.machines.classes;
  */
 public class OptimiserPacket {
 
-    private final int DEFAULT_VALUE = 1;
+    private final int DEFAULT_VALUE = 0;
 
     public int energyModifier;
     public int fluidModifier;
@@ -24,19 +24,19 @@ public class OptimiserPacket {
     }
 
     public int calculateEnergyUse(int value) {
-        return value / energyModifier;
+        return energyModifier > 0 ? value / energyModifier : value;
     }
 
     public int calculateFluidUse(int value) {
-        return value / fluidModifier;
+        return fluidModifier > 0 ? value / fluidModifier : value;
     }
 
     public int calculateProgress(int value) {
-        return value / progressModifier;
+        return progressModifier > 0 ? value / progressModifier : value;
     }
 
     public int calculateGasUse(int value) {
-        return value / gasModifier;
+        return gasModifier > 0 ? value / gasModifier : value;
     }
 
     public void reset() {

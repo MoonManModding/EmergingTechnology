@@ -18,6 +18,7 @@ public class GuiHelper {
     public static final int INVALID_COLOUR = 14567989;
 
     public static final int DARK_COLOUR = 2631720;
+    public static final int LIGHT_COLOUR = 16777215;
 
     public static final int WARNING_COLOUR = 16738816;
 
@@ -29,6 +30,9 @@ public class GuiHelper {
     public static final ResourceLocation LEFT_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/left.png");
     public static final ResourceLocation RIGHT_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/right.png");
     public static final ResourceLocation OVERLAY_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/overlay.png");
+    
+    public static final ResourceLocation UP_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/up.png");
+    public static final ResourceLocation DOWN_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/down.png");
 
     // Gui locations
     public static GuiPosition getTopLeft() {
