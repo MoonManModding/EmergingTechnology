@@ -244,6 +244,8 @@ info.emergingtechnology.nozzlesmart.description=Примножує дальні�
 info.emergingtechnology.nozzlelong.description=Примножує дальність Дифузора на %s.
 info.emergingtechnology.nozzleprecise.description=Примножує ефективність Дифузора на %s.
 
+info.emergingtechnology.circuit.description=Used in the Optimiser. Provides %s Cores.
+
 # Item descriptions
 info.emergingtechnology.bulb.description=Світлодіод, який використовується у гідропоніці.
 info.emergingtechnology.emptysyringe.description=Порожній шприц, який використовується для збору зразків тканин у тварин.
@@ -322,6 +324,12 @@ gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Вимагає 
+
+gui.emergingtechnology.optimiser.buttonadd=Assign a Core to this boost.
+gui.emergingtechnology.optimiser.buttonremove=Unassign a Core from this boost.
+gui.emergingtechnology.optimiser.remaining=%s Cores remaining.
+gui.emergingtechnology.optimiser.resource=Reduces resource usage by %s percent.
+gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
 
 gui.emergingtechnology.label.speedmultiplier=Посилення зростання від Світлодіода: x%s
 gui.emergingtechnology.label.nospeedmultiplier=Фітолампа або Світлодіод відсутні.

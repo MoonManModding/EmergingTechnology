@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RBR",
+    "CCC",
+    "IMI"
+  ],
+  "key": {
+    "C": {
+      "item": "emergingtechnology:circuit"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "rodPlastic"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:optimiser",
+    "count": 1
+  }
+}

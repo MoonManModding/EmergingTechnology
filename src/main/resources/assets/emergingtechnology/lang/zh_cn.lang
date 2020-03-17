@@ -244,6 +244,8 @@ info.emergingtechnology.nozzlesmart.description=将扩散器的范围和效果�
 info.emergingtechnology.nozzlelong.description=将扩散器的范围乘以%s。
 info.emergingtechnology.nozzleprecise.description=将扩散器的效果乘以%s。
 
+info.emergingtechnology.circuit.description=Used in the Optimiser. Provides %s Cores.
+
 # Item descriptions
 info.emergingtechnology.bulb.description=放置在水培生长灯内的灯泡。
 info.emergingtechnology.emptysyringe.description=可以从动物身上采集组织样本的空的注射器。
@@ -325,6 +327,12 @@ gui.emergingtechnology.fabricator.invalidoutput=输出项无效
 gui.emergingtechnology.fabricator.invalidinput=输入项无效
 gui.emergingtechnology.fabricator.buttonprogram=程序
 gui.emergingtechnology.fabricator.buttonrequires=需要
+
+gui.emergingtechnology.optimiser.buttonadd=Assign a Core to this boost.
+gui.emergingtechnology.optimiser.buttonremove=Unassign a Core from this boost.
+gui.emergingtechnology.optimiser.remaining=%s Cores remaining.
+gui.emergingtechnology.optimiser.resource=Reduces resource usage by %s percent.
+gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
 
 # Configuration
 config.emergingtechnology.title=新兴技术 - 配置

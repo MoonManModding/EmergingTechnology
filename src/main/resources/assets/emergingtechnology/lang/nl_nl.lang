@@ -242,6 +242,8 @@ info.emergingtechnology.nozzlesmart.description=Multiplies the range and effecti
 info.emergingtechnology.nozzlelong.description=Multiplies the range of the Diffuser by %s.
 info.emergingtechnology.nozzleprecise.description=Multiplies the effectiveness of the Diffuser by %s.
 
+info.emergingtechnology.circuit.description=Used in the Optimiser. Provides %s Cores.
+
 # Item descriptions
 info.emergingtechnology.bulb.description=A bulb used in a Hydroponic Grow Light.
 info.emergingtechnology.emptysyringe.description=An empty syringe used for collecting tissue samples from animals.
@@ -323,6 +325,12 @@ gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Requires 
+
+gui.emergingtechnology.optimiser.buttonadd=Assign a Core to this boost.
+gui.emergingtechnology.optimiser.buttonremove=Unassign a Core from this boost.
+gui.emergingtechnology.optimiser.remaining=%s Cores remaining.
+gui.emergingtechnology.optimiser.resource=Reduces resource usage by %s percent.
+gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
 
 # Configuration
 config.emergingtechnology.title=Emerging Technology - Configuration

@@ -244,6 +244,8 @@ info.emergingtechnology.nozzlesmart.description=Умножает дальнос�
 info.emergingtechnology.nozzlelong.description=Умножает дальность Диффузора на %s.
 info.emergingtechnology.nozzleprecise.description=Умножает эффективность Диффузора на %s.
 
+info.emergingtechnology.circuit.description=Used in the Optimiser. Provides %s Cores.
+
 # Item descriptions
 info.emergingtechnology.bulb.description=Светодиод, используемый в гидропонике.
 info.emergingtechnology.emptysyringe.description=Пустой шприц, используемый для сбора образцов ткани у животных.
@@ -325,6 +327,12 @@ gui.emergingtechnology.fabricator.invalidoutput=Invalid output item
 gui.emergingtechnology.fabricator.invalidinput=Invalid input item
 gui.emergingtechnology.fabricator.buttonprogram=Program 
 gui.emergingtechnology.fabricator.buttonrequires=Требует 
+
+gui.emergingtechnology.optimiser.buttonadd=Assign a Core to this boost.
+gui.emergingtechnology.optimiser.buttonremove=Unassign a Core from this boost.
+gui.emergingtechnology.optimiser.remaining=%s Cores remaining.
+gui.emergingtechnology.optimiser.resource=Reduces resource usage by %s percent.
+gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
 
 # Configuration
 config.emergingtechnology.title=Конфигурация Emerging Technology
