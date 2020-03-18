@@ -18,30 +18,30 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModBlocks {
 
     // Machines
-    @ObjectHolder(EmergingTechnology.MODID + ":" + Solar.name)
+    @ObjectHolder(Solar.registryName)
     public static Solar SOLAR;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + SolarGlass.name)
+    @ObjectHolder(SolarGlass.registryName)
     public static SolarGlass SOLARGLASS;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + Filler.name)
+    @ObjectHolder(Filler.registryName)
     public static Filler FILLER;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + Hydroponic.name)
+    @ObjectHolder(Hydroponic.registryName)
     public static Hydroponic HYDROPONIC;
 
     // Blocks
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + PlasticBlock.name)
+    @ObjectHolder(PlasticBlock.registryName)
     public static PlasticBlock PLASTICBLOCK;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + ClearPlasticBlock.name)
+    @ObjectHolder(ClearPlasticBlock.registryName)
     public static ClearPlasticBlock CLEARPLASTICBLOCK;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + BiocharBlock.name)
+    @ObjectHolder(BiocharBlock.registryName)
     public static BiocharBlock BIOCHARBLOCK;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + MachineCase.name)
+    @ObjectHolder(MachineCase.registryName)
     public static MachineCase MACHINECASE;
 
     // Registration

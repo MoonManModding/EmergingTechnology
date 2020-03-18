@@ -32,6 +32,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public class EmergingTechnology {
 
     public static final String MODID = "emergingtechnology";
+    public static final String MODID_REG = MODID + ":";
     public static final ItemGroup ITEMGROUP = new ModItemGroup(MODID);
 
     public static final Logger LOGGER = LogManager.getLogger();

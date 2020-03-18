@@ -19,16 +19,16 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class ModTiles {
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + Solar.name)
+    @ObjectHolder(Solar.registryName)
     public static TileEntityType<SolarTile> SOLAR;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + SolarGlass.name)
+    @ObjectHolder(SolarGlass.registryName)
     public static TileEntityType<SolarGlassTile> SOLARGLASS;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + Filler.name)
+    @ObjectHolder(Filler.registryName)
     public static TileEntityType<FillerTile> FILLER;
 
-    @ObjectHolder(EmergingTechnology.MODID + ":" + Hydroponic.name)
+    @ObjectHolder(Hydroponic.registryName)
     public static TileEntityType<HydroponicTile> HYDROPONIC;
 
     public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {

@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.machines.solarglass;
 
 import javax.annotation.Nullable;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.blocks.classes.ISidedTransparentBlock;
 import io.moonman.emergingtechnology.machines.MachineBaseSimple;
 import net.minecraft.block.BlockState;
@@ -19,6 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 public class SolarGlass extends MachineBaseSimple implements ISidedTransparentBlock {
 
     public static final String name = "solarglass";
+    public static final String registryName = EmergingTechnology.MODID_REG + name;
 
     public SolarGlass() {
         super(name, Material.GLASS, SoundType.GLASS);

@@ -8,5 +8,8 @@
     "block.emergingtechnology.solar": "Solar Panel",
     "block.emergingtechnology.solarglass": "Solar Glass",
     "block.emergingtechnology.filler": "Water Filler",
-    "block.emergingtechnology.hydroponic": "Hydroponic Grow Bed"
+    "block.emergingtechnology.hydroponic": "Hydroponic Grow Bed",
+
+    "item.emergingtechnology.plasticitem": "Plastic Rod"
 }
+

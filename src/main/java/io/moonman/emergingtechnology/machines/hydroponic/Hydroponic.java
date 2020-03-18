@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.hydroponics.bed.GrowBedConfiguration;
 import io.moonman.emergingtechnology.machines.MachineBase;
 import net.minecraft.block.BlockState;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,16 +23,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.extensions.IForgeBlockState;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
-import net.minecraftforge.api.distmarker.Dist;
 
 public class Hydroponic extends MachineBase {
 
     public static final String name = "hydroponic";
+    public static final String registryName = EmergingTechnology.MODID_REG + name;
 
     public Hydroponic() {
         super(name, Material.IRON);

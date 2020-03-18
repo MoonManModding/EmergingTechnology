@@ -1,5 +1,6 @@
 package io.moonman.emergingtechnology.blocks;
 
+import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.blocks.classes.ISidedTransparentBlock;
 import io.moonman.emergingtechnology.blocks.classes.SimpleBlock;
 import net.minecraft.block.BlockState;
@@ -16,6 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ClearPlasticBlock extends SimpleBlock implements ISidedTransparentBlock {
 
    public static final String name = "clearplasticblock";
+   public static final String registryName = EmergingTechnology.MODID_REG + name;
 
    public ClearPlasticBlock() {
       super(name, Material.GLASS, SoundType.STONE);
