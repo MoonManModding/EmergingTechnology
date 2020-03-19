@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "emergingtechnology:item/circuit"
+        "layer0": "emergingtechnology:item/circuitbasic"
     },
   "display": {
     "thirdperson_righthand": {
