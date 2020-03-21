@@ -10,47 +10,47 @@ public class IdealGrowthBoostDirt implements IIdealBoostsConfiguration {
 
     @Name("Wheat")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Wheat")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int wheatAddedProbability = 5;
 
     @Name("Carrots")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Carrots")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int carrotsAddedProbability = 5;
 
     @Name("Potatoes")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Potatoes")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int potatoesAddedProbability = 5;
 
     @Name("Beetroot")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Beetroot")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int beetrootAddedProbability = 0;
 
     @Name("Sugarcane")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Sugarcane")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int sugarcaneAddedProbability = 0;
 
     @Name("Cactus")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Cacti")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int cactusAddedProbability = 0;
     
     @Name("Melon")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Melons")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int melonAddedProbability = 0;
 
     @Name("Pumpkin")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Pumpkins")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int pumpkinAddedProbability = 0;
 
     @Name("Nether Wart")
     @Config.Comment("When grown on this medium, this value will be added to the base growth probability for Nether Wart")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int netherWartAddedProbability = 0;
 
     public int getBoost(CropTypeEnum cropType) {

@@ -13,6 +13,6 @@ public class ElectricsModuleSolar {
 
     @Name("Solar Energy Generated")
     @Config.Comment("How much energy the Solar tile generates when in sunshine.")
-    @RangeInt(min = 0, max = 1000)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int solarEnergyGenerated = 50;
 }

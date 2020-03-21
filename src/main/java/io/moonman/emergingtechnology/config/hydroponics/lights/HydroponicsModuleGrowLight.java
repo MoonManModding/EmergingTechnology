@@ -18,56 +18,56 @@ public class HydroponicsModuleGrowLight {
 
     @Name("Grow Light - Range")
     @Config.Comment("How many blocks below the grow light should be checked when growing plants.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int lightBlockRange = 2;
 
     @Name("Grow Light - Range Modifier Dropoff")
     @Config.Comment("If this value is greater than 0, it will be multiplied by the distance from the light, then subtracted from growth probability.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int lightBlockRangeDropoff = 0;
 
     @Name("Red Bulb Growth Modifier %")
     @Config.Comment("Probability of growth from a grow lamp containing a red bulb per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthRedBulbModifier = 1;
 
     @Name("Green Bulb Growth Modifier %")
     @Config.Comment("Probability of growth from a grow lamp containing a green bulb per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthGreenBulbModifier = 2;
 
     @Name("Blue Bulb Growth Modifier %")
     @Config.Comment("Probability of growth from a grow lamp containing a blue bulb per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthBlueBulbModifier = 4;
 
     @Name("UV Bulb Growth Modifier %")
     @Config.Comment("Probability of growth from a grow lamp containing a UV bulb per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthPurpleBulbModifier = 8;
     
     @Name("Light Base Energy Usage")
     @Config.Comment("Base power usage of light per tick.")
-    @RangeInt(min = 0, max = 1000)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int lightEnergyBaseUsage = 10;
 
     @Name("Red Bulb Energy Modifier")
     @Config.Comment("Energy Modifier of Red Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int energyRedBulbModifier = 2;
 
     @Name("Green Bulb Energy Modifier")
     @Config.Comment("Energy Modifier of Green Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int energyGreenBulbModifier = 3;
 
     @Name("Blue Bulb Energy Modifier")
     @Config.Comment("Energy Modifier of Blue Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int energyBlueBulbModifier = 4;
 
     @Name("UV Bulb Energy Modifier")
     @Config.Comment("Energy Modifier of UV Bulb. This value is multiplied by the Light Base Energy Usage to get Light energy usage per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int energyPurpleBulbModifier = 5;
 }

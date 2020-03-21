@@ -93,7 +93,7 @@ item.emergingtechnology.circuit.name=Пустая печатная плата
 item.emergingtechnology.circuitbasic.name=Базовая печатная плата
 item.emergingtechnology.circuitadvanced.name=Продвинутая печатная плата
 item.emergingtechnology.circuitsuperior.name=Превосходная печатная плата
-
+item.emergingtechnology.torch.name=Guide Light
 
 #Blocks
 
@@ -137,6 +137,7 @@ blocks.emergingtechnology.tidalgenerator.name=Приливный генерат�
 blocks.emergingtechnology.wind.name=Ветрогенератор
 blocks.emergingtechnology.biocharblock.name=Блок биоугля
 blocks.emergingtechnology.optimiser.name=Алгоритмический оптимизатор
+blocks.emergingtechnology.torch.name=Guide Light
 
 #Containers
 
@@ -183,6 +184,7 @@ tile.emergingtechnology.tidalgenerator.name=Приливный генерато�
 tile.emergingtechnology.wind.name=Ветрогенератор
 tile.emergingtechnology.biocharblock.name=Блок биоугля
 tile.emergingtechnology.optimiser.name=Алгоритмический оптимизатор
+tile.emergingtechnology.torch.name=Guide Light
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Углекислота

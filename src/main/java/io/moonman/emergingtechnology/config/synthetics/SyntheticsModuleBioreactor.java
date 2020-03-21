@@ -13,17 +13,17 @@ public class SyntheticsModuleBioreactor {
 
     @Name("Tissue Bioreactor Energy Usage")
     @Config.Comment("How much energy the Tissue Bioreactor uses per tick.")
-    @RangeInt(min = 0, max = 1000)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int bioreactorEnergyUsage = 35;
     
     @Name("Tissue Bioreactor Water Usage")
     @Config.Comment("How much water the Tissue Bioreactor uses per tick.")
-    @RangeInt(min = 0, max = 1000)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int bioreactorWaterUsage = 25;
 
     @Name("Tissue Bioreactor Operation Time")
     @Config.Comment("How long the Tissue Bioreactor takes to create samples from syringes.")
-    @RangeInt(min = 0, max = 1000)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int bioreactorBaseTimeTaken = 200;
 
 }

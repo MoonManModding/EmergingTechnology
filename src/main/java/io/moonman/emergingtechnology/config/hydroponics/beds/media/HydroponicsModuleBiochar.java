@@ -8,12 +8,12 @@ public class HydroponicsModuleBiochar {
 
     @Name("Biochar Growth Modifier %")
     @Config.Comment("Probability of growth from Biochar medium per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthBiocharModifier = 5;
 
     @Name("Biochar Fluid Usage")
     @Config.Comment("Fluid used by Biochar on successful growth per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthBiocharFluidUsage = 1;
 
     @Name("Biochar Destroy Probability")

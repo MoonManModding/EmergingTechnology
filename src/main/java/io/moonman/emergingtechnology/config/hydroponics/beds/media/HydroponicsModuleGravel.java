@@ -8,12 +8,12 @@ public class HydroponicsModuleGravel {
 
     @Name("Gravel Growth Modifier %")
     @Config.Comment("Probability of growth from gravel medium per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthGravelModifier = 2;
 
     @Name("Gravel Fluid Usage")
     @Config.Comment("Fluid used by Gravel on successful growth per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthGravelFluidUsage = 5;
 
     @Name("Gravel Destroy Probability")

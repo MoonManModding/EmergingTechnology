@@ -25,6 +25,17 @@ import io.moonman.emergingtechnology.integration.jei.machines.scrubber.ScrubberC
 import io.moonman.emergingtechnology.integration.jei.machines.scrubber.ScrubberRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.shredder.ShredderRecipeWrapper;
+import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorGui;
+import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorGui;
+import io.moonman.emergingtechnology.machines.bioreactor.BioreactorGui;
+import io.moonman.emergingtechnology.machines.collector.CollectorGui;
+import io.moonman.emergingtechnology.machines.cooker.CookerGui;
+import io.moonman.emergingtechnology.machines.fabricator.FabricatorGui;
+import io.moonman.emergingtechnology.machines.injector.InjectorGui;
+import io.moonman.emergingtechnology.machines.processor.ProcessorGui;
+import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderGui;
+import io.moonman.emergingtechnology.machines.scrubber.ScrubberGui;
+import io.moonman.emergingtechnology.machines.shredder.ShredderGui;
 import io.moonman.emergingtechnology.recipes.classes.FabricatorRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
 import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipes;
@@ -47,6 +58,7 @@ import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -90,46 +102,57 @@ public class JEIIntegration implements IModPlugin {
         registry.handleRecipes(SimpleRecipe.class, ProcessorRecipeWrapper::new, MachineReference.PROCESSOR_UID);
         registry.addRecipes(ProcessorRecipes.getRecipes(), MachineReference.PROCESSOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.processor), MachineReference.PROCESSOR_UID);
+        registry.addRecipeClickArea(ProcessorGui.class, 39, 38, 34, 10, MachineReference.PROCESSOR_UID);
 
         registry.handleRecipes(SimpleRecipe.class, ShredderRecipeWrapper::new, MachineReference.SHREDDER_UID);
         registry.addRecipes(ShredderRecipes.getRecipes(), MachineReference.SHREDDER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.shredder), MachineReference.SHREDDER_UID);
+        registry.addRecipeClickArea(ShredderGui.class, 39, 38, 34, 10, MachineReference.SHREDDER_UID);
 
         registry.handleRecipes(SimpleRecipe.class, CookerRecipeWrapper::new, MachineReference.COOKER_UID);
         registry.addRecipes(CookerRecipes.getRecipes(), MachineReference.COOKER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.cooker), MachineReference.COOKER_UID);
+        registry.addRecipeClickArea(CookerGui.class, 39, 38, 34, 10, MachineReference.COOKER_UID);
 
         registry.handleRecipes(FabricatorRecipe.class, FabricatorRecipeWrapper::new, MachineReference.FABRICATOR_UID);
         registry.addRecipes(FabricatorRecipes.getRecipes(), MachineReference.FABRICATOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.fabricator), MachineReference.FABRICATOR_UID);
+        registry.addRecipeClickArea(FabricatorGui.class, 39, 38, 34, 10, MachineReference.FABRICATOR_UID);
 
         registry.handleRecipes(SimpleRecipe.class, BioreactorRecipeWrapper::new, MachineReference.BIOREACTOR_UID);
         registry.addRecipes(BioreactorRecipes.getRecipes(), MachineReference.BIOREACTOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.bioreactor), MachineReference.BIOREACTOR_UID);
+        registry.addRecipeClickArea(BioreactorGui.class, 39, 38, 34, 10, MachineReference.BIOREACTOR_UID);
 
         registry.handleRecipes(SimpleRecipe.class, ScaffolderRecipeWrapper::new, MachineReference.SCAFFOLDER_UID);
         registry.addRecipes(ScaffolderRecipes.getRecipes(), MachineReference.SCAFFOLDER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.scaffolder), MachineReference.SCAFFOLDER_UID);
+        registry.addRecipeClickArea(ScaffolderGui.class, 39, 38, 34, 10, MachineReference.SCAFFOLDER_UID);
 
         registry.handleRecipes(SimpleRecipe.class, CollectorRecipeWrapper::new, MachineReference.COLLECTOR_UID);
         registry.addRecipes(CollectorRecipes.getRecipes(), MachineReference.COLLECTOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.collector), MachineReference.COLLECTOR_UID);
+        registry.addRecipeClickArea(CollectorGui.class, 39, 38, 34, 10, MachineReference.COLLECTOR_UID);
 
         registry.handleRecipes(SimpleRecipe.class, BiomassRecipeWrapper::new, MachineReference.BIOMASS_UID);
         registry.addRecipes(BiomassRecipes.getRecipes(), MachineReference.BIOMASS_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.biomassgenerator), MachineReference.BIOMASS_UID);
+        registry.addRecipeClickArea(BiomassGeneratorGui.class, 39, 38, 34, 10, MachineReference.BIOMASS_UID);
 
         registry.handleRecipes(SimpleRecipe.class, ScrubberRecipeWrapper::new, MachineReference.SCRUBBER_UID);
         registry.addRecipes(ScrubberRecipes.getRecipes(), MachineReference.SCRUBBER_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.scrubber), MachineReference.SCRUBBER_UID);
+        registry.addRecipeClickArea(ScrubberGui.class, 39, 38, 34, 10, MachineReference.SCAFFOLDER_UID);
 
         registry.handleRecipes(SimpleRecipe.class, AlgaeBioreactorRecipeWrapper::new, MachineReference.ALGAEBIOREACTOR_UID);
         registry.addRecipes(AlgaeBioreactorRecipes.getRecipes(), MachineReference.ALGAEBIOREACTOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.algaebioreactor), MachineReference.ALGAEBIOREACTOR_UID);
+        registry.addRecipeClickArea(AlgaeBioreactorGui.class, 39, 38, 34, 10, MachineReference.ALGAEBIOREACTOR_UID);
 
         registry.handleRecipes(SimpleRecipe.class, InjectorRecipeWrapper::new, MachineReference.INJECTOR_UID);
         registry.addRecipes(InjectorRecipes.getRecipes(), MachineReference.INJECTOR_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.injector), MachineReference.INJECTOR_UID);
+        registry.addRecipeClickArea(InjectorGui.class, 39, 38, 34, 10, MachineReference.INJECTOR_UID);
 
         EmergingTechnology.logger.info("Successfully registered with JEI.");
     }

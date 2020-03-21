@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.recipes.machines;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.init.ModItems;
@@ -72,5 +73,8 @@ public class BiomassRecipes {
         for (ItemStack itemStack : recipesToRemove) {
             RecipeBuilder.removeRecipesByOutput(biomassRecipes, itemStack);
         }
+
+        biomassRecipes = biomassRecipes.stream().distinct()
+                .collect(Collectors.toList());
     }
 }

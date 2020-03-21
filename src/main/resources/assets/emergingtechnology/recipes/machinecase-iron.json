@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ppp",
+    "pDp",
+    "ppp"
+  ],
+  "key": {
+    "p": {
+      "item": "minecraft:iron_bars"
+  },
+  "D": {
+    "type": "forge:ore_dict",
+      "ore": "dyeWhite"
+}
+  },
+  "result": {
+    "item": "emergingtechnology:machinecase",
+    "count": 1
+  }
+}
