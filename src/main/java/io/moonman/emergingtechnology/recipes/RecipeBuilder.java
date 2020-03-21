@@ -15,7 +15,9 @@ import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.CookerRecipes;
 import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.HydroponicRecipes;
 import io.moonman.emergingtechnology.recipes.machines.InjectorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.LightRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipes;
@@ -46,6 +48,8 @@ public class RecipeBuilder {
         ScrubberRecipes.build();
         AlgaeBioreactorRecipes.build();
         InjectorRecipes.build();
+        HydroponicRecipes.build();
+        LightRecipes.build();
 
         registerFurnaceRecipes();
     }

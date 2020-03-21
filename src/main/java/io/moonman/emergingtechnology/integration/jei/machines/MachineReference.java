@@ -37,4 +37,10 @@ public class MachineReference {
 
     public static final String INJECTOR_NAME = ModBlocks.injector.getLocalizedName();
     public static final String INJECTOR_UID = EmergingTechnology.MODID + ":injector";
+
+    public static final String HYDROPONIC_NAME = ModBlocks.hydroponic.getLocalizedName();
+    public static final String HYDROPONIC_UID = EmergingTechnology.MODID + ":hydroponic";
+
+    public static final String LIGHT_NAME = ModBlocks.light.getLocalizedName();
+    public static final String LIGHT_UID = EmergingTechnology.MODID + ":light";
 }
