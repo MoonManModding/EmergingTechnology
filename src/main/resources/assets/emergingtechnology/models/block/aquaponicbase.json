@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+	"textures": {
+		"down": "emergingtechnology:blocks/white",
+		"up": "emergingtechnology:blocks/white",
+		"north": "emergingtechnology:blocks/aquaponicbase",
+		"south": "emergingtechnology:blocks/aquaponicbase",
+		"west": "emergingtechnology:blocks/aquaponicbase",
+		"east": "emergingtechnology:blocks/aquaponicbase",
+		"particle": "emergingtechnology:blocks/aquaponicbase"
+	}
+}

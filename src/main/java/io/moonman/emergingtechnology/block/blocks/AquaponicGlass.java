@@ -14,11 +14,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ClearPlasticBlock extends BlockBreakable {
+public class AquaponicGlass extends BlockBreakable {
 
-  private final String _name = "clearplasticblock";
+  private final String _name = "aquaponicglass";
 
-  public ClearPlasticBlock() {
+  public AquaponicGlass() {
     super(Material.GLASS, false);
     this.setHardness(1.0f);
     this.setRegistryName(EmergingTechnology.MODID, _name);
@@ -46,7 +46,7 @@ public class ClearPlasticBlock extends BlockBreakable {
         IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
         Block block = iblockstate.getBlock();
 
-        if (this == ModBlocks.clearplasticblock)
+        if (this == ModBlocks.aquaponicglass)
         {
 
             if (block == this || block == ModBlocks.solarglass || block == ModBlocks.aquaponicglass)

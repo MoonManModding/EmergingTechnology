@@ -1,0 +1,17 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:aquaponicblock",
+        "textures": {
+            "all": "emergingtechnology:blocks/aquaponicblock"
+        }
+    },
+    "variants": {
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {}
+        ]
+    }
+}

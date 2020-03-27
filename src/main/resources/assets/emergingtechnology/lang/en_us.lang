@@ -10,6 +10,10 @@ item.emergingtechnology.injector.name=Nutrient Injector
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
 
+item.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+item.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+item.emergingtechnology.aquaponicbase.name=Aquaponic Base
+
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
 item.emergingtechnology.bluebulb.name=Blue Bulb
@@ -106,6 +110,10 @@ blocks.emergingtechnology.injector.name=Nutrient Injector
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
 blocks.emergingtechnology.frame.name=Hydroponic Frame
 
+blocks.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+blocks.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+blocks.emergingtechnology.aquaponicbase.name=Aquaponic Base
+
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processor
 blocks.emergingtechnology.shredder.name=Shredder
@@ -152,6 +160,10 @@ tile.emergingtechnology.diffuser.name=CO2 Diffuser
 tile.emergingtechnology.injector.name=Nutrient Injector
 tile.emergingtechnology.light.name=Hydroponic Grow Light
 tile.emergingtechnology.frame.name=Hydroponic Frame
+
+tile.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+tile.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+tile.emergingtechnology.aquaponicbase.name=Aquaponic Base
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processor

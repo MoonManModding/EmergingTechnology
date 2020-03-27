@@ -1,0 +1,17 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "emergingtechnology:aquaponicglass",
+        "textures": {
+            "all": "emergingtechnology:blocks/aquaponicglass"
+        }
+    },
+    "variants": {
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {}
+        ]
+    }
+}
