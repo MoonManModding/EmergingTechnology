@@ -13,11 +13,11 @@ public class SyntheticsModuleScaffolder {
 
     @Name("Tissue Scaffolder Energy Usage")
     @Config.Comment("How much energy the Tissue Scaffolder uses per tick.")
-    @RangeInt(min = 0, max = 1000)
-    public int scaffolderEnergyUsage = 30;
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
+    public int scaffolderEnergyUsage = 250;
 
     @Name("Tissue Scaffolder Operation Time")
     @Config.Comment("How long the Tissue Scaffolder takes to create samples from syringes.")
-    @RangeInt(min = 0, max = 1000)
-    public int scaffolderBaseTimeTaken = 125;
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
+    public int scaffolderBaseTimeTaken = 200;
 }

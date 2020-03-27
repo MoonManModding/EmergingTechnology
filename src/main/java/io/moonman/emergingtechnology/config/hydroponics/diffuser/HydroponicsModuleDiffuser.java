@@ -16,12 +16,12 @@ public class HydroponicsModuleDiffuser {
 
     @Name("Diffuser - Energy Usage")
     @Config.Comment("The amount of energy used per tick.")
-    @RangeInt(min = 1, max = 1000)
+    @RangeInt(min = 1, max = Integer.MAX_VALUE)
     public int diffuserEnergyBaseUsage = 100;
 
     @Name("Diffuser - Gas Usage")
     @Config.Comment("The amount of gas used per tick.")
-    @RangeInt(min = 1, max = 1000)
+    @RangeInt(min = 1, max = Integer.MAX_VALUE)
     public int diffuserGasBaseUsage = 10;
 
     @Name("Diffuser - Base Range")
@@ -31,7 +31,7 @@ public class HydroponicsModuleDiffuser {
     
     @Name("Diffuser - Base Growth Probability")
     @Config.Comment("The base probability of plant growth when in range of the Diffuser")
-    @RangeInt(min = 1, max = 100)
+    @RangeInt(min = 1, max = Integer.MAX_VALUE)
     public int diffuserBaseBoostProbability = 5;
 
     @Name("Long Nozzle")

@@ -1,7 +1,9 @@
 package io.moonman.emergingtechnology.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -121,16 +123,23 @@ public class OreRegistrationHandler {
             ModItems.syntheticpigraw
         };
 
+        Block[] blockWool = new Block[] {
+            Blocks.WOOL
+        };
+
         registerBlocks(machinePlastic, "machinePlastic");
         registerBlocks(blockPlastic, "blockPlastic");
         registerBlocks(glass, "glass");
         registerBlocks(blockGlass, "blockGlass");
+        registerBlocks(blockWool, "blockWool");
+
         registerItems(sheetPlastic, "sheetPlastic");
         registerItems(platePlastic, "platePlastic");
         registerItems(itemPlastic, "itemPlastic");
         registerItems(stickPlastic, "stickPlastic");
         registerItems(stickPlastic, "rodPlastic");
         registerItems(bioplastic, "bioplastic");
+
         registerItems(starch, "starch");
         registerItems(pulpWood, "pulpWood");
         registerItems(filamentPlastic, "filamentPlastic");
@@ -148,6 +157,8 @@ public class OreRegistrationHandler {
         registerItems(cookedMeat, "cookedMeat");
         registerItems(rawMeat, "listAllmeatraw");
         registerItems(cookedMeat, "listAllmeatcooked");
+
+        
 
         OreDictionary.registerOre("listAllchickenraw", ModItems.syntheticchickenraw);
         OreDictionary.registerOre("listAllporkraw", ModItems.syntheticpigraw);

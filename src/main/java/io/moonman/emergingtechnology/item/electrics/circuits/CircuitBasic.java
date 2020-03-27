@@ -2,7 +2,9 @@ package io.moonman.emergingtechnology.item.electrics.circuits;
 
 public class CircuitBasic extends CircuitBase {
 
+    public static final int baseCores = 4;
+
     public CircuitBasic() {
-        super("circuitbasic", 4);
+        super("circuitbasic", baseCores);
     }
 }

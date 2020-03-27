@@ -13,11 +13,11 @@ public class ElectricsModuleBiomassGenerator {
 
     @Name("Biomass Generator Energy Generated")
     @Config.Comment("How much energy the Biomass Generator generates per tick.")
-    @RangeInt(min = 0, max = 10000)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int biomassEnergyGenerated = 250;
 
     @Name("Biomass Generator Process Time")
     @Config.Comment("How long the biomass generator takes to process a biomass item into energy")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int baseTimeTaken = 25;
 }

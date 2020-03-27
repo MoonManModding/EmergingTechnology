@@ -8,12 +8,12 @@ public class HydroponicsModuleClay {
 
     @Name("Clay Growth Modifier %")
     @Config.Comment("Probability of growth from clay medium per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthClayModifier = 8;
 
     @Name("Clay Fluid Usage")
     @Config.Comment("Fluid used by Clay on successful growth per tick.")
-    @RangeInt(min = 0, max = 100)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int growthClayFluidUsage = 5;
 
     @Name("Clay Destroy Probability")

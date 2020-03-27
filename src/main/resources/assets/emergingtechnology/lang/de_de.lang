@@ -10,6 +10,10 @@ item.emergingtechnology.injector.name=Nutrient Injector
 item.emergingtechnology.light.name=Hydroponic Grow Light
 item.emergingtechnology.frame.name=Hydroponic Frame
 
+item.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+item.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+item.emergingtechnology.aquaponicbase.name=Aquaponic Base
+
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
 item.emergingtechnology.bluebulb.name=Blue Bulb
@@ -91,6 +95,7 @@ item.emergingtechnology.circuit.name=Blank Circuit Board
 item.emergingtechnology.circuitbasic.name=Basic Circuit Board
 item.emergingtechnology.circuitadvanced.name=Advanced Circuit Board
 item.emergingtechnology.circuitsuperior.name=Superior Circuit Board
+item.emergingtechnology.torch.name=Guide Light
 
 
 #Blocks
@@ -104,6 +109,10 @@ blocks.emergingtechnology.diffuser.name=CO2 Diffuser
 blocks.emergingtechnology.injector.name=Nutrient Injector
 blocks.emergingtechnology.light.name=Hydroponic Grow Light
 blocks.emergingtechnology.frame.name=Hydroponic Frame
+
+blocks.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+blocks.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+blocks.emergingtechnology.aquaponicbase.name=Aquaponic Base
 
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processor
@@ -135,6 +144,7 @@ blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 blocks.emergingtechnology.wind.name=Wind Generator
 blocks.emergingtechnology.biocharblock.name=Biochar Block
 blocks.emergingtechnology.optimiser.name=Algorithmic Optimizer
+blocks.emergingtechnology.torch.name=Guide Light
 
 #Containers
 
@@ -150,6 +160,10 @@ tile.emergingtechnology.diffuser.name=CO2 Diffuser
 tile.emergingtechnology.injector.name=Nutrient Injector
 tile.emergingtechnology.light.name=Hydroponic Grow Light
 tile.emergingtechnology.frame.name=Hydroponic Frame
+
+tile.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+tile.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+tile.emergingtechnology.aquaponicbase.name=Aquaponic Base
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processor
@@ -181,6 +195,7 @@ tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
 tile.emergingtechnology.optimiser.name=Algorithmic Optimizer
+tile.emergingtechnology.torch.name=Guide Light
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide

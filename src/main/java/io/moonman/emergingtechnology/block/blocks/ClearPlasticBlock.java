@@ -49,7 +49,7 @@ public class ClearPlasticBlock extends BlockBreakable {
         if (this == ModBlocks.clearplasticblock)
         {
 
-            if (block == this || block == ModBlocks.solarglass)
+            if (block == this || block == ModBlocks.solarglass || block == ModBlocks.aquaponicglass)
             {
                 return false;
             }

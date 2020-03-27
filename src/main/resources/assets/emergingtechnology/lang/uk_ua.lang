@@ -93,6 +93,7 @@ item.emergingtechnology.circuit.name=Порожня друкована плат�
 item.emergingtechnology.circuitbasic.name=Базова друкована плата
 item.emergingtechnology.circuitadvanced.name=Розширена друкована плата
 item.emergingtechnology.circuitsuperior.name=Неперевершена друкована плата
+item.emergingtechnology.torch.name=Guide Light
 
 
 #Blocks
@@ -137,6 +138,7 @@ blocks.emergingtechnology.tidalgenerator.name=Припливний генера�
 blocks.emergingtechnology.wind.name=Вітрогенератор
 blocks.emergingtechnology.biocharblock.name=Блок біовугілля
 blocks.emergingtechnology.optimiser.name=Алгоритмічний оптимізатор
+blocks.emergingtechnology.torch.name=Guide Light
 
 #Containers
 
@@ -183,6 +185,7 @@ tile.emergingtechnology.tidalgenerator.name=Припливний генерат�
 tile.emergingtechnology.wind.name=Вітрогенератор
 tile.emergingtechnology.biocharblock.name=Блок біовугілля
 tile.emergingtechnology.optimiser.name=Алгоритмічний оптимізатор
+tile.emergingtechnology.torch.name=Guide Light
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Вуглекислота

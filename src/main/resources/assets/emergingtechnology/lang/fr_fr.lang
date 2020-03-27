@@ -88,6 +88,7 @@ item.emergingtechnology.circuit.name=Blank Circuit Board
 item.emergingtechnology.circuitbasic.name=Basic Circuit Board
 item.emergingtechnology.circuitadvanced.name=Advanced Circuit Board
 item.emergingtechnology.circuitsuperior.name=Superior Circuit Board
+item.emergingtechnology.torch.name=Guide Light
 
 #Blocks
 
@@ -127,6 +128,7 @@ blocks.emergingtechnology.tidalgenerator.name=Tidal Generator
 blocks.emergingtechnology.wind.name=Wind Generator
 blocks.emergingtechnology.biocharblock.name=Biochar Block
 blocks.emergingtechnology.optimiser.name=Algorithmic Optimizer
+blocks.emergingtechnology.torch.name=Guide Light
 
 #Containers
 
@@ -171,6 +173,7 @@ tile.emergingtechnology.tidalgenerator.name=Tidal Generator
 tile.emergingtechnology.wind.name=Wind Generator
 tile.emergingtechnology.biocharblock.name=Biochar Block
 tile.emergingtechnology.optimiser.name=Algorithmic Optimizer
+tile.emergingtechnology.torch.name=Guide Light
 
 #FLUIDS
 tile.emergingtechnology.carbondioxideblock.name=Carbon Dioxide

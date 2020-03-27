@@ -4,6 +4,8 @@ import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.item.electrics.circuits.CircuitBase;
 import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
+import io.moonman.emergingtechnology.recipes.classes.OptimiserRecipe;
+import io.moonman.emergingtechnology.recipes.machines.OptimiserRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -37,12 +39,10 @@ public class OptimiserHelper {
 
         if (itemStack == null || itemStack.isEmpty()) return 0;
 
-        Item item = itemStack.getItem();
+        OptimiserRecipe recipe = OptimiserRecipes.getOptimiserRecipeByInputItemStack(itemStack);
 
-        if (item instanceof CircuitBase == false) return 0;
+        if (recipe == null) return 0;
 
-        CircuitBase circuit = (CircuitBase) item;
-
-        return circuit.getCores();
+        return recipe.getCores();
     }
 }
