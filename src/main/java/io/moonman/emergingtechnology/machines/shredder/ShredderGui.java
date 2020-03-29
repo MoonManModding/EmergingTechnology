@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
+import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
 import io.moonman.emergingtechnology.init.ModBlocks;
@@ -78,14 +79,13 @@ public class ShredderGui extends GuiContainer {
 
 	}
 
-	private int getEnergyScaled(int scaled)
-    {
+	private int getEnergyScaled(int scaled) {
 		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.SHREDDER_ENERGY_CAPACITY);
 	}
 
-	private int getProgressScaled(int scaled)
-    {
-		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled / tileEntity.getField(EnumTileField.MAXPROGRESS));
+	private int getProgressScaled(int scaled) {
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
+				/ tileEntity.getField(EnumTileField.MAXPROGRESS));
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
@@ -98,6 +98,13 @@ public class ShredderGui extends GuiContainer {
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);
+		}
+
+		GuiIndicatorData progressIndicator = GuiTooltipHelper.getProgressIndicator(guiLeft, guiTop,
+				getProgressScaled(100), mouseX, mouseY);
+
+		if (progressIndicator.isHovered) {
+			this.drawHoveringText(progressIndicator.list, mouseX, mouseY + 20, fontRenderer);
 		}
 	}
 }

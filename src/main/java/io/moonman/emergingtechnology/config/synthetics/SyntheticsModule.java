@@ -24,34 +24,34 @@ public class SyntheticsModule {
     public final SyntheticsModuleScaffolder SCAFFOLDER = new SyntheticsModuleScaffolder();
 
     @Name("Synthetic Chicken Food Points")
-    @RangeInt(min = 0, max = 15)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int chickenHunger = 6;
 
     @Name("Synthetic Porkchop Food Points")
-    @RangeInt(min = 0, max = 15)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int porkchopHunger = 7;
 
     @Name("Synthetic Beef Food Points")
-    @RangeInt(min = 0, max = 15)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int beefHunger = 7;
 
     @Name("Algae Bar Food Points")
-    @RangeInt(min = 0, max = 15)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int algaeHunger = 5;
 
-    @Name("Synthetic Chicken Food Saturation")
-    @RangeDouble(min = 0, max = 25)
-    public double chickenHungerSaturation = 10;
+    @Name("Synthetic Chicken Food Saturation (double)")
+    @RangeDouble(min = 0, max = Double.MAX_VALUE)
+    public double chickenHungerSaturation = 1.66;
 
-    @Name("Synthetic Porkchop Food Saturation")
-    @RangeDouble(min = 0, max = 25)
-    public double porkchopHungerSaturation = 12.8;
+    @Name("Synthetic Porkchop Food Saturation (double)")
+    @RangeDouble(min = 0, max = Double.MAX_VALUE)
+    public double porkchopHungerSaturation = 1.82;
 
-    @Name("Synthetic Beef Food Saturation")
-    @RangeDouble(min = 0, max = 25)
-    public double beefHungerSaturation = 12.8;
+    @Name("Synthetic Beef Food Saturation (double)")
+    @RangeDouble(min = 0, max = Double.MAX_VALUE)
+    public double beefHungerSaturation = 1.82;
 
-    @Name("Algae Food Saturation")
-    @RangeDouble(min = 0, max = 25)
-    public double algaeHungerSaturation = 6.4;
+    @Name("Algae Food Saturation (double)")
+    @RangeDouble(min = 0, max = Double.MAX_VALUE)
+    public double algaeHungerSaturation = 1.28;
 }

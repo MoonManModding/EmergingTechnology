@@ -2,7 +2,7 @@
     "parent": "block/cube",
 	"textures": {
 		"down": "emergingtechnology:blocks/white",
-		"up": "emergingtechnology:blocks/white",
+		"up": "emergingtechnology:blocks/blueflat",
 		"north": "emergingtechnology:blocks/aquaponicbase",
 		"south": "emergingtechnology:blocks/aquaponicbase",
 		"west": "emergingtechnology:blocks/aquaponicbase",

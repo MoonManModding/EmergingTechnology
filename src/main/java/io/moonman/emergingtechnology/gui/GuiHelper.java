@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.gui;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
+import io.moonman.emergingtechnology.gui.classes.GuiRegion;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 

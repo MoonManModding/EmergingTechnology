@@ -43,4 +43,10 @@ public class MachineReference {
 
     public static final String LIGHT_NAME = ModBlocks.light.getLocalizedName();
     public static final String LIGHT_UID = EmergingTechnology.MODID + ":light";
+    
+    public static final String DIFFUSER_NAME = ModBlocks.diffuser.getLocalizedName();
+    public static final String DIFFUSER_UID = EmergingTechnology.MODID + ":diffuser";
+    
+    public static final String OPTIMISER_NAME = ModBlocks.optimiser.getLocalizedName();
+    public static final String OPTIMISER_UID = EmergingTechnology.MODID + ":optimiser";
 }

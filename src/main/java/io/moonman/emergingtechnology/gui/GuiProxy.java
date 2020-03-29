@@ -3,6 +3,9 @@ package io.moonman.emergingtechnology.gui;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorContainer;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorGui;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
+import io.moonman.emergingtechnology.machines.aquaponic.AquaponicContainer;
+import io.moonman.emergingtechnology.machines.aquaponic.AquaponicGui;
+import io.moonman.emergingtechnology.machines.aquaponic.AquaponicTileEntity;
 import io.moonman.emergingtechnology.machines.battery.BatteryContainer;
 import io.moonman.emergingtechnology.machines.battery.BatteryGui;
 import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
@@ -114,6 +117,9 @@ public class GuiProxy implements IGuiHandler {
         if (te instanceof OptimiserTileEntity) {
             return new OptimiserContainer(player.inventory, (OptimiserTileEntity) te);
         }
+        if (te instanceof AquaponicTileEntity) {
+            return new AquaponicContainer(player.inventory, (AquaponicTileEntity) te);
+        }
         return null;
     }
 
@@ -188,6 +194,10 @@ public class GuiProxy implements IGuiHandler {
 
         if (te instanceof OptimiserTileEntity) {
             return new OptimiserGui(player.inventory, (OptimiserTileEntity) te);
+        }
+
+        if (te instanceof AquaponicTileEntity) {
+            return new AquaponicGui(player.inventory, (AquaponicTileEntity) te);
         }
 
         return null;

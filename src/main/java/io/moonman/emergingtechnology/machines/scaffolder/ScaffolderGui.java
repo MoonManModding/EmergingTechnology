@@ -70,7 +70,6 @@ public class ScaffolderGui extends GuiContainer {
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
 
-		
 	}
 
 	@Override
@@ -81,14 +80,13 @@ public class ScaffolderGui extends GuiContainer {
 
 	}
 
-	private int getEnergyScaled(int scaled)
-    {
+	private int getEnergyScaled(int scaled) {
 		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.SCAFFOLDER_ENERGY_CAPACITY);
 	}
 
-	private int getProgressScaled(int scaled)
-    {
-		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled / EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken);
+	private int getProgressScaled(int scaled) {
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
+				/ EmergingTechnologyConfig.SYNTHETICS_MODULE.SCAFFOLDER.scaffolderBaseTimeTaken);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
@@ -98,6 +96,13 @@ public class ScaffolderGui extends GuiContainer {
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
+
+		GuiIndicatorData progressIndicator = GuiTooltipHelper.getProgressIndicator(guiLeft, guiTop,
+				getProgressScaled(100), mouseX, mouseY);
+
+		if (progressIndicator.isHovered) {
+			this.drawHoveringText(progressIndicator.list, mouseX, mouseY + 20, fontRenderer);
+		}
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);

@@ -16,9 +16,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class BiomassGeneratorGui extends GuiContainer
-{
-	private static final ResourceLocation TEXTURES = new ResourceLocation(EmergingTechnology.MODID + ":textures/gui/biomassgui.png");
+public class BiomassGeneratorGui extends GuiContainer {
+	private static final ResourceLocation TEXTURES = new ResourceLocation(
+			EmergingTechnology.MODID + ":textures/gui/biomassgui.png");
 	private final InventoryPlayer player;
 	private final BiomassGeneratorTileEntity tileEntity;
 
@@ -31,10 +31,9 @@ public class BiomassGeneratorGui extends GuiContainer
 	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();
 	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
-    
-    // Draws textures on gui
-	public BiomassGeneratorGui(InventoryPlayer player, BiomassGeneratorTileEntity tileEntity) 
-	{
+
+	// Draws textures on gui
+	public BiomassGeneratorGui(InventoryPlayer player, BiomassGeneratorTileEntity tileEntity) {
 		super(new BiomassGeneratorContainer(player, tileEntity));
 		this.player = player;
 		this.tileEntity = tileEntity;
@@ -48,16 +47,15 @@ public class BiomassGeneratorGui extends GuiContainer
 	}
 
 	@Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
 		this.renderTooltips(mouseX, mouseY);
-    }
-	
+	}
+
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
-	{
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 
 		int energy = this.getEnergyScaled(37);
@@ -69,20 +67,19 @@ public class BiomassGeneratorGui extends GuiContainer
 		// Machine & Inventory labels
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
-		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y, GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
+				GuiHelper.LABEL_COLOUR);
 	}
-	
+
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
-	{
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(TEXTURES);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		
+
 	}
 
-	private int getEnergyScaled(int scaled)
-    {
+	private int getEnergyScaled(int scaled) {
 		return (int) (tileEntity.getField(EnumTileField.ENERGY) * scaled / Reference.BIOMASS_ENERGY_CAPACITY);
 	}
 
@@ -98,6 +95,13 @@ public class BiomassGeneratorGui extends GuiContainer
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.ENERGY,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, energy, maxEnergy);
+
+		GuiIndicatorData progressIndicator = GuiTooltipHelper.getProgressIndicator(guiLeft, guiTop,
+				getProgressScaled(100), mouseX, mouseY);
+
+		if (progressIndicator.isHovered) {
+			this.drawHoveringText(progressIndicator.list, mouseX, mouseY + 20, fontRenderer);
+		}
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);

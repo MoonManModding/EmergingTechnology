@@ -13,6 +13,7 @@ item.emergingtechnology.frame.name=Hydroponic Frame
 item.emergingtechnology.aquaponicblock.name=Aquaponic Frame
 item.emergingtechnology.aquaponicglass.name=Aquaponic Glass
 item.emergingtechnology.aquaponicbase.name=Aquaponic Base
+item.emergingtechnology.aquaponic.name=Aquaponic Controller
 
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
@@ -113,6 +114,7 @@ blocks.emergingtechnology.frame.name=Hydroponic Frame
 blocks.emergingtechnology.aquaponicblock.name=Aquaponic Frame
 blocks.emergingtechnology.aquaponicglass.name=Aquaponic Glass
 blocks.emergingtechnology.aquaponicbase.name=Aquaponic Base
+blocks.emergingtechnology.aquaponic.name=Aquaponic Controller
 
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processor
@@ -164,6 +166,7 @@ tile.emergingtechnology.frame.name=Hydroponic Frame
 tile.emergingtechnology.aquaponicblock.name=Aquaponic Frame
 tile.emergingtechnology.aquaponicglass.name=Aquaponic Glass
 tile.emergingtechnology.aquaponicbase.name=Aquaponic Base
+tile.emergingtechnology.aquaponic.name=Aquaponic Controller
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processor
@@ -246,7 +249,7 @@ info.emergingtechnology.solar.description=Generates energy when in sunlight.
 info.emergingtechnology.solarglass.description=Transparent Solar Panel which generates energy if one of two blocks in front are in sunlight.
 info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
-info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
+info.emergingtechnology.battery.description=Stores energy for later use. Input on Green side, output on Red.
 info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
 
 info.emergingtechnology.frame.description=A decorative plastic frame

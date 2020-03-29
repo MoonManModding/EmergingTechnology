@@ -63,7 +63,7 @@ public class FabricatorGui extends GuiContainer {
 		super(new FabricatorContainer(player, tileEntity));
 		this.player = player;
 		this.tileEntity = tileEntity;
-		
+
 		this.selection = this.tileEntity.getField(EnumTileField.FABRICATORSELECTION);
 		this.printing = this.tileEntity.getField(EnumTileField.FABRICATORISPRINTING) > 0;
 		this.status = FabricatorStatusEnum.getById(this.tileEntity.getField(EnumTileField.FABRICATORSTATUS));
@@ -135,7 +135,8 @@ public class FabricatorGui extends GuiContainer {
 			ItemStack itemStackToRender = recipe.getOutput().copy();
 			String inputName = recipe.getInput().getDisplayName();
 
-			GuiFabricatorButton button = new GuiFabricatorButton(i, leftOffset, topOffset, buttonWidth, buttonHeight, itemStackToRender, inputName, recipe.cost);
+			GuiFabricatorButton button = new GuiFabricatorButton(i, leftOffset, topOffset, buttonWidth, buttonHeight,
+					itemStackToRender, inputName, recipe.cost);
 
 			button.visible = false;
 
@@ -147,11 +148,15 @@ public class FabricatorGui extends GuiContainer {
 		playButtonId = recipes.size() + 3;
 		stopButtonId = recipes.size() + 4;
 
-		GuiImageButton previousButton = new GuiImageButton(previousButtonId, this.guiLeft + 63, this.guiTop + 57, 16, 16, GuiHelper.LEFT_BUTTON_TEXTURE);
-		GuiImageButton nextButton = new GuiImageButton(nextButtonId, this.guiLeft + 79, this.guiTop + 57, 16, 16, GuiHelper.RIGHT_BUTTON_TEXTURE);
+		GuiImageButton previousButton = new GuiImageButton(previousButtonId, this.guiLeft + 63, this.guiTop + 57, 16,
+				16, GuiHelper.LEFT_BUTTON_TEXTURE);
+		GuiImageButton nextButton = new GuiImageButton(nextButtonId, this.guiLeft + 79, this.guiTop + 57, 16, 16,
+				GuiHelper.RIGHT_BUTTON_TEXTURE);
 
-		GuiImageButton playButton = new GuiImageButton(playButtonId, this.guiLeft + 63, this.guiTop + 73, 16, 16, GuiHelper.PLAY_BUTTON_TEXTURE);
-		GuiImageButton stopButton = new GuiImageButton(stopButtonId, this.guiLeft + 79, this.guiTop + 73, 16, 16, GuiHelper.STOP_BUTTON_TEXTURE);
+		GuiImageButton playButton = new GuiImageButton(playButtonId, this.guiLeft + 63, this.guiTop + 73, 16, 16,
+				GuiHelper.PLAY_BUTTON_TEXTURE);
+		GuiImageButton stopButton = new GuiImageButton(stopButtonId, this.guiLeft + 79, this.guiTop + 73, 16, 16,
+				GuiHelper.STOP_BUTTON_TEXTURE);
 
 		previousButton.visible = false;
 		nextButton.visible = false;

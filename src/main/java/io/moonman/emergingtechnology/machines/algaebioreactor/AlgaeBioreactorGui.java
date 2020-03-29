@@ -70,8 +70,7 @@ public class AlgaeBioreactorGui extends GuiContainer {
 		this.drawTexturedModalRect(MIDDLE_LOWER_POS.x, MIDDLE_LOWER_POS.y, 176, 29, gas, 7);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
-		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y,
-				GuiHelper.LABEL_COLOUR);
+		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
 	}
@@ -96,7 +95,8 @@ public class AlgaeBioreactorGui extends GuiContainer {
 	}
 
 	private int getProgressScaled(int scaled) {
-		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled / AlgaeBioreactorHelper.getTimeTaken(getBoost()));
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
+				/ AlgaeBioreactorHelper.getTimeTaken(getBoost()));
 	}
 
 	private int getBoost() {
@@ -126,6 +126,13 @@ public class AlgaeBioreactorGui extends GuiContainer {
 		GuiIndicatorData boostIndicator = GuiTooltipHelper.getAlgaeBioreactorGrowthData(guiLeft, guiTop, mouseX, mouseY,
 				getBoost());
 
+		GuiIndicatorData progressIndicator = GuiTooltipHelper.getProgressIndicator(guiLeft, guiTop,
+				getProgressScaled(100), mouseX, mouseY);
+
+		if (progressIndicator.isHovered) {
+			this.drawHoveringText(progressIndicator.list, mouseX, mouseY + 20, fontRenderer);
+		}
+
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);
 		}
@@ -139,7 +146,7 @@ public class AlgaeBioreactorGui extends GuiContainer {
 		}
 
 		if (boostIndicator.isHovered) {
-			this.drawHoveringText(boostIndicator.list, mouseX, mouseY, fontRenderer);
+			this.drawHoveringText(boostIndicator.list, mouseX, mouseY + 40, fontRenderer);
 		}
 	}
 }

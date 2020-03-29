@@ -116,6 +116,19 @@ public class GuiTooltipHelper {
         return new GuiIndicatorData(false, new ArrayList<String>());
     }
 
+    public static GuiIndicatorData getProgressIndicator(int guiLeft, int guiTop, int progress, int mouseX, int mouseY) {
+        GuiRegion region =  new GuiRegion(guiLeft + 39, guiTop + 38, guiLeft + 39 + 34, guiTop + 38 + 10);
+        GuiPosition mousePosition = new GuiPosition(mouseX, mouseY);
+
+        if (region.isPositionInRegion(mousePosition)) {
+            List<String> list = new ArrayList<String>();
+            list.add("Progress: " + progress + "%");
+            return new GuiIndicatorData(true, list);
+        }
+
+        return new GuiIndicatorData(false, new ArrayList<String>());
+    }
+
     private static GuiLabel getLabel(ResourceTypeEnum type) {
         switch (type) {
             case ENERGY:
@@ -146,7 +159,7 @@ public class GuiTooltipHelper {
             case LOWER:
                 return new GuiRegion(guiStart.x + 66, guiStart.y + 63, guiStart.x + 110, guiStart.y + 77);
             case PROGRESS:
-                return new GuiRegion(guiStart.x + 39, guiStart.y + 28, guiStart.x + 69, guiStart.y + 58);
+                return new GuiRegion(guiStart.x + 39, guiStart.y + 38, guiStart.x + 73, guiStart.y + 48);
             default:
                 return new GuiRegion(guiStart.x, guiStart.x, guiStart.y, guiStart.y);
         }

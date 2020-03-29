@@ -70,6 +70,10 @@ public class CollectorRecipes {
         }
     }
 
+    public static void addCollectorItemStack(ItemStack itemStack) {
+        add(new SimpleRecipe(itemStack.getItem(), Items.AIR));
+    }
+
     public static List<ItemStack> getCollectorItemStacks() {
 
         List<ItemStack> itemStacks = new ArrayList<ItemStack>();

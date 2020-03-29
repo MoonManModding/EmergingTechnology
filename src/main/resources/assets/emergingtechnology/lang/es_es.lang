@@ -246,7 +246,7 @@ info.emergingtechnology.solar.description=Generates energy when in sunlight.
 info.emergingtechnology.solarglass.description=Transparent Solar Panel which generates energy if one of two blocks in front are in sunlight.
 info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
-info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
+info.emergingtechnology.battery.description=Stores energy for later use. Input on Green side, output on Red.
 info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
 
 info.emergingtechnology.frame.description=A decorative plastic frame

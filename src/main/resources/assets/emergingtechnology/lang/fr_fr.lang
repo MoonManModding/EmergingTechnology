@@ -219,7 +219,7 @@ info.emergingtechnology.scaffolder.description=Forms Tissue Samples into synthet
 info.emergingtechnology.shredder.description=Shreds plants and plastic items into raw materials for the Processor.
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 info.emergingtechnology.solar.description=Generates energy when in sunlight.
-info.emergingtechnology.battery.description=Stores energy for later use. Input on Red side, output on Yellow.
+info.emergingtechnology.battery.description=Stores energy for later use. Input on Green side, output on Red.
 info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
 

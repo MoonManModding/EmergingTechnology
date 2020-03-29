@@ -28,7 +28,7 @@ public class SyntheticsModuleCooker {
 
     @Name("Solar Cooker Required Heat")
     @Config.Comment("How much heat the solar cooker requires to cook items")
-    @RangeInt(min = 0, max = 350)
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int cookerRequiredCookingHeat = 473;
 
 }

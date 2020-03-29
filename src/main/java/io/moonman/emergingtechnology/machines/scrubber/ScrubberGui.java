@@ -119,6 +119,13 @@ public class ScrubberGui extends GuiContainer {
 		GuiIndicatorData gasIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.GAS,
 				IndicatorPositionEnum.LOWER, mouseX, mouseY, gas, maxGas);
 
+		GuiIndicatorData progressIndicator = GuiTooltipHelper.getProgressIndicator(guiLeft, guiTop,
+				getProgressScaled(100), mouseX, mouseY);
+
+		if (progressIndicator.isHovered) {
+			this.drawHoveringText(progressIndicator.list, mouseX, mouseY + 20, fontRenderer);
+		}
+
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);
 		}

@@ -13,6 +13,8 @@ import io.moonman.emergingtechnology.integration.jei.machines.collector.Collecto
 import io.moonman.emergingtechnology.integration.jei.machines.collector.CollectorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.cooker.CookerRecipeWrapper;
+import io.moonman.emergingtechnology.integration.jei.machines.diffuser.DiffuserCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.diffuser.DiffuserRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.fabricator.FabricatorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.hydroponic.HydroponicCategory;
@@ -21,6 +23,8 @@ import io.moonman.emergingtechnology.integration.jei.machines.injector.InjectorC
 import io.moonman.emergingtechnology.integration.jei.machines.injector.InjectorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.light.LightCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.light.LightRecipeWrapper;
+import io.moonman.emergingtechnology.integration.jei.machines.optimiser.OptimiserCategory;
+import io.moonman.emergingtechnology.integration.jei.machines.optimiser.OptimiserRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorCategory;
 import io.moonman.emergingtechnology.integration.jei.machines.processor.ProcessorRecipeWrapper;
 import io.moonman.emergingtechnology.integration.jei.machines.scaffolder.ScaffolderCategory;
@@ -34,10 +38,12 @@ import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorGui;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorGui;
 import io.moonman.emergingtechnology.machines.collector.CollectorGui;
 import io.moonman.emergingtechnology.machines.cooker.CookerGui;
+import io.moonman.emergingtechnology.machines.diffuser.DiffuserGui;
 import io.moonman.emergingtechnology.machines.fabricator.FabricatorGui;
 import io.moonman.emergingtechnology.machines.hydroponic.HydroponicGui;
 import io.moonman.emergingtechnology.machines.injector.InjectorGui;
 import io.moonman.emergingtechnology.machines.light.LightGui;
+import io.moonman.emergingtechnology.machines.optimiser.OptimiserGui;
 import io.moonman.emergingtechnology.machines.processor.ProcessorGui;
 import io.moonman.emergingtechnology.machines.scaffolder.ScaffolderGui;
 import io.moonman.emergingtechnology.machines.scrubber.ScrubberGui;
@@ -49,10 +55,12 @@ import io.moonman.emergingtechnology.recipes.machines.BiomassRecipes;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.CookerRecipes;
+import io.moonman.emergingtechnology.recipes.machines.DiffuserRecipes;
 import io.moonman.emergingtechnology.recipes.machines.FabricatorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.HydroponicRecipes;
 import io.moonman.emergingtechnology.recipes.machines.InjectorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.LightRecipes;
+import io.moonman.emergingtechnology.recipes.machines.OptimiserRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ProcessorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ScaffolderRecipes;
 import io.moonman.emergingtechnology.recipes.machines.ScrubberRecipes;
@@ -99,7 +107,7 @@ public class JEIIntegration implements IModPlugin {
                 new CookerCategory(helper), new FabricatorCategory(helper), new BioreactorCategory(helper),
                 new ScaffolderCategory(helper), new CollectorCategory(helper), new BiomassCategory(helper),
                 new ScrubberCategory(helper), new AlgaeBioreactorCategory(helper), new InjectorCategory(helper),
-                new LightCategory(helper), new HydroponicCategory(helper));
+                new LightCategory(helper), new HydroponicCategory(helper), new DiffuserCategory(helper), new OptimiserCategory(helper));
     }
 
     @Override
@@ -173,6 +181,16 @@ public class JEIIntegration implements IModPlugin {
         registry.addRecipes(LightRecipes.getRecipes(), MachineReference.LIGHT_UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.light), MachineReference.LIGHT_UID);
         registry.addRecipeClickArea(LightGui.class, 39, 38, 34, 10, MachineReference.LIGHT_UID);
+
+        registry.handleRecipes(SimpleRecipe.class, DiffuserRecipeWrapper::new, MachineReference.DIFFUSER_UID);
+        registry.addRecipes(DiffuserRecipes.getRecipes(), MachineReference.DIFFUSER_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.diffuser), MachineReference.DIFFUSER_UID);
+        registry.addRecipeClickArea(DiffuserGui.class, 39, 38, 34, 10, MachineReference.DIFFUSER_UID);
+
+        registry.handleRecipes(SimpleRecipe.class, OptimiserRecipeWrapper::new, MachineReference.OPTIMISER_UID);
+        registry.addRecipes(OptimiserRecipes.getRecipes(), MachineReference.OPTIMISER_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.optimiser), MachineReference.OPTIMISER_UID);
+        registry.addRecipeClickArea(OptimiserGui.class, 39, 38, 34, 10, MachineReference.OPTIMISER_UID);
 
         EmergingTechnology.logger.info("Successfully registered with JEI.");
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import io.moonman.emergingtechnology.item.ItemFoodBase;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;

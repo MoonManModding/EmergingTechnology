@@ -34,6 +34,7 @@ import io.moonman.emergingtechnology.machines.light.Light;
 import io.moonman.emergingtechnology.machines.optimiser.Optimiser;
 import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactor;
+import io.moonman.emergingtechnology.machines.aquaponic.Aquaponic;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.scrubber.Scrubber;
@@ -64,6 +65,7 @@ public class ModBlocks {
 	public static final AquaponicGlass aquaponicglass = null;
 	public static final AquaponicBlock aquaponicblock = null;
 	public static final AquaponicBase aquaponicbase = null;
+	public static final Aquaponic aquaponic = null;
 	// endregion
 
 	// region Polymers Blocks
@@ -119,10 +121,11 @@ public class ModBlocks {
 				ModBlocks.algaebioreactor, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery,
 				ModBlocks.optimiser, ModBlocks.torch, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
-				ModBlocks.clearplasticblock, ModBlocks.aquaponicglass, ModBlocks.aquaponicblock, ModBlocks.aquaponicbase, ModBlocks.machinecase,
-				ModBlocks.shreddedplantblock, ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock,
-				ModBlocks.biocharblock, ModBlocks.polluteddirt, ModBlocks.pollutedsand, ModBlocks.pollutedgravel,
-				ModBlocks.nutrientblock, ModBlocks.carbondioxideblock };
+				ModBlocks.clearplasticblock, ModBlocks.aquaponicglass, ModBlocks.aquaponicblock,
+				ModBlocks.aquaponicbase, ModBlocks.aquaponic, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
+				ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock, ModBlocks.biocharblock,
+				ModBlocks.polluteddirt, ModBlocks.pollutedsand, ModBlocks.pollutedgravel, ModBlocks.nutrientblock,
+				ModBlocks.carbondioxideblock };
 
 		return blocks;
 	}
@@ -130,13 +133,13 @@ public class ModBlocks {
 	public static Block[] generateBlocks() {
 		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Diffuser(),
 				new Injector(), new Light(), new Frame(), new Processor(), new Shredder(), new PlasticBlock(),
-				new ClearPlasticBlock(), new AquaponicGlass(), new AquaponicBlock(), new AquaponicBase(), new MachineCase(),
-				new Fabricator(), new Collector(), new Cooker(), new Scaffolder(), new Bioreactor(),
-				new AlgaeBioreactor(), new Ladder(), new Piezoelectric(), new TidalGenerator(), new BiomassGenerator(),
-				new Solar(), new SolarGlass(), new Wind(), new Battery(), new Optimiser(), new Torch(),
-				new BiocharBlock(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(), new ShreddedStarchBlock(),
-				new PollutedDirt(), new PollutedSand(), new PollutedGravel(), new NutrientBlock(),
-				new CarbonDioxideBlock() };
+				new ClearPlasticBlock(), new AquaponicGlass(), new AquaponicBlock(), new AquaponicBase(),
+				new Aquaponic(), new MachineCase(), new Fabricator(), new Collector(), new Cooker(), new Scaffolder(),
+				new Bioreactor(), new AlgaeBioreactor(), new Ladder(), new Piezoelectric(), new TidalGenerator(),
+				new BiomassGenerator(), new Solar(), new SolarGlass(), new Wind(), new Battery(), new Optimiser(),
+				new Torch(), new BiocharBlock(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
+				new ShreddedStarchBlock(), new PollutedDirt(), new PollutedSand(), new PollutedGravel(),
+				new NutrientBlock(), new CarbonDioxideBlock() };
 
 		return blocks;
 	}

@@ -26,6 +26,7 @@ public class Reference {
     public static final int GUI_ALGAEBIOREACTOR = 14;
     public static final int GUI_INJECTOR = 15;
     public static final int GUI_OPTIMISER = 16;
+    public static final int GUI_AQUAPONIC = 17;
 
     // STORAGE SIZES
     public static final int HYDROPONIC_FLUID_CAPACITY = 5000;
@@ -78,6 +79,9 @@ public class Reference {
 
     public static final int INJECTOR_FLUID_CAPACITY = 10000;
     public static final int INJECTOR_ENERGY_CAPACITY = 10000;
+
+    public static final int AQUAPONIC_FLUID_CAPACITY = 10000;
+    public static final int AQUAPONIC_ENERGY_CAPACITY = 10000;
 
     public static final int OPTIMISER_FLUID_CAPACITY = 10000;
     public static final int OPTIMISER_ENERGY_CAPACITY = 10000;

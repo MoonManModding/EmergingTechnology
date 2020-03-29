@@ -70,7 +70,6 @@ public class CookerGui extends GuiContainer {
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
 				GuiHelper.LABEL_COLOUR);
 
-		
 	}
 
 	@Override
@@ -81,14 +80,13 @@ public class CookerGui extends GuiContainer {
 
 	}
 
-	private int getHeatScaled(int scaled)
-    {
+	private int getHeatScaled(int scaled) {
 		return (int) (tileEntity.getField(EnumTileField.HEAT) * scaled / Reference.COOKER_HEAT_CAPACITY);
 	}
 
-	private int getProgressScaled(int scaled)
-    {
-		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled / EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseTimeTaken);
+	private int getProgressScaled(int scaled) {
+		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
+				/ EmergingTechnologyConfig.SYNTHETICS_MODULE.COOKER.cookerBaseTimeTaken);
 	}
 
 	private void renderTooltips(int mouseX, int mouseY) {
@@ -98,6 +96,13 @@ public class CookerGui extends GuiContainer {
 
 		GuiIndicatorData energyIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.HEAT,
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, heat, maxHeat);
+
+		GuiIndicatorData progressIndicator = GuiTooltipHelper.getProgressIndicator(guiLeft, guiTop,
+				getProgressScaled(100), mouseX, mouseY);
+
+		if (progressIndicator.isHovered) {
+			this.drawHoveringText(progressIndicator.list, mouseX, mouseY + 20, fontRenderer);
+		}
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);

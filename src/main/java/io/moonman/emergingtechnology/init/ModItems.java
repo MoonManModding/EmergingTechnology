@@ -61,6 +61,7 @@ public class ModItems {
 	public static final Item scrubber = null;
 	public static final Item diffuser = null;
 	public static final Item injector = null;
+	public static final Item aquaponic = null;
 
 	// Items
 	public static final Item redbulb = null;

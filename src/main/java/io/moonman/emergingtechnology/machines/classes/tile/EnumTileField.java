@@ -26,7 +26,8 @@ public enum EnumTileField {
     OPTIMISERFLUID,
     OPTIMISERGAS,
     OPTIMISERPROGRESS,
-    OPTIMISERCORES;
+    OPTIMISERCORES,
+    MULTIBLOCK;
 
     private static EnumTileField[] values = null;
 

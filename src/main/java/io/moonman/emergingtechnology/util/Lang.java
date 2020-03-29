@@ -53,6 +53,8 @@ public class Lang {
                         SOURCE + "battery" + DESC);
         public static final TextComponentTranslation OPTIMISER_DESC = new TextComponentTranslation(
                         SOURCE + "optimiser" + DESC);
+        public static final TextComponentTranslation AQUAPONIC_DESC = new TextComponentTranslation(
+                        SOURCE + "aquaponic" + DESC);
 
         // Block descriptions for tooltips
         public static final TextComponentTranslation FRAME_DESC = new TextComponentTranslation(
