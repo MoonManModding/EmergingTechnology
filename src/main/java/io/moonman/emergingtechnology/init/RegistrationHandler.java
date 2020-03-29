@@ -7,6 +7,7 @@ import io.moonman.emergingtechnology.item.synthetics.SampleItemBase;
 import io.moonman.emergingtechnology.item.synthetics.SyringeItemBase;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactorTileEntity;
 import io.moonman.emergingtechnology.machines.aquaponic.AquaponicTileEntity;
+import io.moonman.emergingtechnology.machines.aquaponicport.AquaponicPortTileEntity;
 import io.moonman.emergingtechnology.machines.battery.BatteryTileEntity;
 import io.moonman.emergingtechnology.machines.biomass.BiomassGeneratorTileEntity;
 import io.moonman.emergingtechnology.machines.bioreactor.BioreactorTileEntity;
@@ -81,6 +82,7 @@ public class RegistrationHandler {
         registerTileEntity(BatteryTileEntity.class, "battery");
         registerTileEntity(OptimiserTileEntity.class, "optimiser");
         registerTileEntity(AquaponicTileEntity.class, "aquaponic");
+        registerTileEntity(AquaponicPortTileEntity.class, "aquaponicport");
 
         event.getRegistry().registerAll(blocks);
     }

@@ -55,6 +55,8 @@ public class Lang {
                         SOURCE + "optimiser" + DESC);
         public static final TextComponentTranslation AQUAPONIC_DESC = new TextComponentTranslation(
                         SOURCE + "aquaponic" + DESC);
+        public static final TextComponentTranslation AQUAPONICPORT_DESC = new TextComponentTranslation(
+                        SOURCE + "aquaponicport" + DESC);
 
         // Block descriptions for tooltips
         public static final TextComponentTranslation FRAME_DESC = new TextComponentTranslation(

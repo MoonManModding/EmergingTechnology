@@ -6,6 +6,9 @@ import java.util.List;
 import io.moonman.emergingtechnology.block.blocks.AquaponicBase;
 import io.moonman.emergingtechnology.block.blocks.AquaponicBlock;
 import io.moonman.emergingtechnology.block.blocks.AquaponicGlass;
+import io.moonman.emergingtechnology.machines.aquaponic.AquaponicTileEntity;
+import io.moonman.emergingtechnology.machines.aquaponicport.AquaponicPort;
+import io.moonman.emergingtechnology.machines.aquaponicport.AquaponicPortTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -43,6 +46,31 @@ public class AquaponicHelper {
             if (requiresFill(world, position)) {
                 world.setBlockState(position, Blocks.WATER.getDefaultState(), 3);
             }
+        }
+    }
+
+    public static void setPortControllerBlocks(AquaponicTileEntity controller, World world, BlockPos pos, EnumFacing facing) {
+        EnumFacing left = facing.rotateY();
+        EnumFacing right = facing.rotateYCCW();
+        EnumFacing behind = facing.getOpposite();
+
+        for (int i = 0; i < 5; i++) {
+            List<BlockPos> positions = new ArrayList<BlockPos>();
+
+            BlockPos row = pos.offset(behind, i);
+
+            if (i > 0) {
+                positions.add(row);
+            }
+
+            positions.add(row.offset(left, 1));
+            positions.add(row.offset(left, 2));
+            positions.add(row.offset(right, 1));
+            positions.add(row.offset(right, 2));
+
+            positions.stream().forEach(x -> {
+                trySetAquaponicPortBlockController(controller, world, x);
+            });
         }
     }
 
@@ -135,11 +163,20 @@ public class AquaponicHelper {
         return true;
     }
 
+    private static void trySetAquaponicPortBlockController(AquaponicTileEntity controller, World world, BlockPos pos) {
+        if (world.getBlockState(pos).getBlock() instanceof AquaponicPort) {
+            if (world.getTileEntity(pos) instanceof AquaponicPortTileEntity) {
+                AquaponicPortTileEntity port = (AquaponicPortTileEntity) world.getTileEntity(pos);
+                port.setController(controller);
+            }
+        }
+    }
+
     private static boolean isValidBaseBlock(World world, BlockPos pos) {
 
         Block block = world.getBlockState(pos).getBlock();
 
-        if (block instanceof AquaponicBase)
+        if (block instanceof AquaponicBase || block instanceof AquaponicPort)
             return true;
 
         return false;

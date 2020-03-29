@@ -1,13 +1,8 @@
-package io.moonman.emergingtechnology.machines.aquaponic;
+package io.moonman.emergingtechnology.machines.aquaponicport;
 
 import java.util.List;
 
-import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
-import io.moonman.emergingtechnology.helpers.machines.AquaponicHelper;
-import io.moonman.emergingtechnology.init.Reference;
-import io.moonman.emergingtechnology.machines.classes.block.MachineBase;
+import io.moonman.emergingtechnology.machines.classes.block.SimpleMachineBase;
 import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
 import net.minecraft.block.ITileEntityProvider;
@@ -19,7 +14,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -27,17 +21,16 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Aquaponic extends MachineBase implements ITileEntityProvider {
+public class AquaponicPort extends SimpleMachineBase implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    public Aquaponic() {
-        super(Material.IRON, "aquaponic");
+    public AquaponicPort() {
+        super(Material.IRON, "aquaponicport");
         this.setSoundType(SoundType.METAL);
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -45,49 +38,19 @@ public class Aquaponic extends MachineBase implements ITileEntityProvider {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-        int energy = EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage;
-        int water = EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicWaterBaseUsage;
-        int fluid = EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicFluidGenerated;
 
         if (KeyBindings.showExtendedTooltips()) {
-            tooltip.add(Lang.get(Lang.AQUAPONIC_DESC));
-            tooltip.add(Lang.getGenerated(fluid, ResourceTypeEnum.FLUID));
-            tooltip.add(Lang.getRequired(energy, ResourceTypeEnum.ENERGY));
-            tooltip.add(Lang.getRequired(water, ResourceTypeEnum.WATER));
+            tooltip.add(Lang.get(Lang.AQUAPONICPORT_DESC));
         } else {
             tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
         }
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-
-        if (worldIn.isRemote) {
-            return true;
-        }
-
-        if (worldIn.isBlockLoaded(pos)) {
-            TileEntity tile = worldIn.getTileEntity(pos);
-
-            if (tile != null) {
-                AquaponicTileEntity aquaponic = (AquaponicTileEntity) tile;
-
-                if (aquaponic.getIsMultiblock()) {
-                    playerIn.openGui(EmergingTechnology.instance, Reference.GUI_AQUAPONIC, worldIn, pos.getX(),
-                            pos.getY(), pos.getZ());
-                }
-            }
-
-        }
-
-        return true;
-    }
-
-    @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new AquaponicTileEntity();
+        return new AquaponicPortTileEntity();
     }
+
 
     @Override
     protected BlockStateContainer createBlockState() {
@@ -129,43 +92,6 @@ public class Aquaponic extends MachineBase implements ITileEntityProvider {
             ItemStack stack) {
         worldIn.setBlockState(pos,
                 this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
-    }
-
-    @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-
-        TileEntity tile = worldIn.getTileEntity(pos);
-
-        if (tile != null) {
-            AquaponicTileEntity aquaponic = (AquaponicTileEntity) tile;
-
-            if (aquaponic.getIsMultiblock()) {
-                AquaponicHelper.setPortControllerBlocks(null, worldIn, pos, state.getValue(FACING));
-            }
-        }
-
-        super.onBlockHarvested(worldIn, pos, state, player);
-    }
-
-    @Override
-    public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
-
-        IBlockState state = world.getBlockState(pos);
-
-        if (state.getBlock() == this) {
-
-            TileEntity tile = world.getTileEntity(pos);
-
-            if (tile != null) {
-                AquaponicTileEntity aquaponic = (AquaponicTileEntity) tile;
-
-                if (aquaponic.getIsMultiblock()) {
-                    AquaponicHelper.setPortControllerBlocks(null, world, pos, state.getValue(FACING));
-                }
-            }
-        }
-
-        super.onBlockExploded(world, pos, explosion);
     }
 
     @Override

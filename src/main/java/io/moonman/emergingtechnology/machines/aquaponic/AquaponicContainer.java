@@ -16,26 +16,43 @@ public class AquaponicContainer extends MachineContainer {
 	private int nutrient;
 
 	public AquaponicContainer(InventoryPlayer player, AquaponicTileEntity tileEntity) {
-		super(tileEntity, player, tileEntity.itemHandler, 2, 1);
+		super(tileEntity, player, tileEntity.itemHandler, 12, 12);
 	}
 
 	@Override
 	public void addMachineSlots(IItemHandler handler) {
-		addSlotToContainer(new SlotItemHandler(handler, 0, 17, 35));
-		addSlotToContainer(new SlotItemHandler(handler, 1, 80, 35));
+
+		int START_X = 13;
+		int START_Y = 26;
+		int counter = 0;
+
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 3; x++) {
+				addSlotToContainer(new SlotItemHandler(handler, counter, START_X + (24 * x), START_Y + (24 * y)));
+				counter++;
+			}
+		}
+
+		int OUT_START_X = 98;
+		int OUT_START_Y = 67;
+
+		for (int x = 0; x < 3; x++) {
+			addSlotToContainer(new SlotItemHandler(handler, counter, OUT_START_X + (24 * x), OUT_START_Y));
+			counter++;
+		}
 	}
 
 	@Override
 	public void addPlayerSlots(InventoryPlayer player) {
-		
+
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 9; x++) {
-				this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 104 + y * 18));
+				this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 124 + y * 18));
 			}
 		}
 
 		for (int x = 0; x < 9; x++) {
-			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 162));
+			this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 182));
 		}
 	}
 

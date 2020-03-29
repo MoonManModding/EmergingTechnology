@@ -25,13 +25,13 @@ public class AquaponicGui extends GuiContainer {
 	private String NAME = ModBlocks.aquaponic.getLocalizedName();
 
 	private static final int XSIZE = 175;
-	private static final int YSIZE = 185;
+	private static final int YSIZE = 205;
 
 	// Standard positions for labels
 	private static final GuiPosition TOP_LEFT_POS = GuiHelper.getTopLeft();
 	private static final GuiPosition TOP_RIGHT_POS = GuiHelper.getTopRight(XSIZE, 44);
 	private static final GuiPosition MIDDLE_RIGHT_POS = GuiHelper.getMiddleRight(XSIZE, 44);
-	private static final GuiPosition MIDDLE_LOWER_POS = GuiHelper.getMiddleLower(XSIZE, 44);
+	private static final GuiPosition MIDDLE_BOTTOM_POS = GuiHelper.getMiddleBottom(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
 
 	// Draws textures on gui
@@ -67,7 +67,7 @@ public class AquaponicGui extends GuiContainer {
 
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 0, fluid, 7);
 		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
-		this.drawTexturedModalRect(MIDDLE_LOWER_POS.x, MIDDLE_LOWER_POS.y, 176, 29, nutrient, 7);
+		this.drawTexturedModalRect(MIDDLE_BOTTOM_POS.x, MIDDLE_BOTTOM_POS.y, 176, 29, nutrient, 7);
 		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
@@ -117,7 +117,7 @@ public class AquaponicGui extends GuiContainer {
 				IndicatorPositionEnum.PRIMARY, mouseX, mouseY, fluid, maxFluid);
 
 		GuiIndicatorData nutrientIndicator = GuiTooltipHelper.getIndicatorData(guiLeft, guiTop, ResourceTypeEnum.FLUID,
-				IndicatorPositionEnum.LOWER, mouseX, mouseY, nutrient, maxNutrient);
+				IndicatorPositionEnum.BOTTOM, mouseX, mouseY, nutrient, maxNutrient);
 
 		if (energyIndicator.isHovered) {
 			this.drawHoveringText(energyIndicator.list, mouseX, mouseY, fontRenderer);

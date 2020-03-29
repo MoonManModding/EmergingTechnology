@@ -6,5 +6,6 @@ public enum IndicatorPositionEnum {
     MAIN,
     MAINSMALL,
     LOWER,
-    PROGRESS
+    PROGRESS,
+    BOTTOM
 }

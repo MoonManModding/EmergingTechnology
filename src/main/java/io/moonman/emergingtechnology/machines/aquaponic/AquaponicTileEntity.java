@@ -1,5 +1,7 @@
 package io.moonman.emergingtechnology.machines.aquaponic;
 
+import java.util.Arrays;
+
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.handlers.AutomationItemStackHandler;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
@@ -90,7 +92,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
 
     public ConsumerEnergyStorageHandler consumerEnergyHandler = new ConsumerEnergyStorageHandler(energyHandler);
 
-    public ItemStackHandler itemHandler = new ItemStackHandler(2) {
+    public ItemStackHandler itemHandler = new ItemStackHandler(12) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -99,15 +101,12 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-
-            if (slot == 1)
-                return false;
-
             return AquaponicRecipes.isValidInput(stack);
         }
     };
 
-    public ItemStackHandler automationItemHandler = new AutomationItemStackHandler(itemHandler, 0, 1) {
+    public ItemStackHandler automationItemHandler = new AutomationItemStackHandler(itemHandler,
+            Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8), Arrays.asList(9, 10, 11)) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -174,7 +173,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         compound.setInteger("GuiFluid", this.getNutrientFluid());
         compound.setInteger("GuiEnergy", this.getEnergy());
         compound.setInteger("GuiProgress", this.getProgress());
-        compound.setInteger("GuiMultiblock", this.getMultiblock() ? 1 : 0);
+        compound.setInteger("GuiMultiblock", this.getIsMultiblock() ? 1 : 0);
 
         NBTTagCompound fluidTag = new NBTTagCompound();
         NBTTagCompound nutrientTag = new NBTTagCompound();
@@ -193,15 +192,44 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
     @Override
     public void cycle() {
         checkMuliblock();
+        doFluidGeneration();
         pushToFluidConsumers();
         getPacket().reset();
+    }
+
+    private void doFluidGeneration() {
+
+        // Output fluid full
+        if (this.getNutrientFluid() >= Reference.AQUAPONIC_FLUID_CAPACITY) {
+            return;
+        }
+
+        // Not enough water
+        if (this.getWater() < getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicWaterBaseUsage)) {
+            return;
+        }
+
+        // Not enough energy
+        if (this.getEnergy() < getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage)) {
+            return;
+        }
+
+        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage),
+                false);
+
+        this.waterHandler.drain(getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicWaterBaseUsage), true);
+        this.nutrientFluidHandler.fill(new FluidStack(ModFluids.NUTRIENT,
+                EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorFluidGenerated), true);
     }
 
     private void checkMuliblock() {
         boolean validMultiblock = AquaponicHelper.isValidMultiblockStructure(getWorld(), getPos(), getFacing());
 
-        if (validMultiblock && this.waterHandler.getFluidAmount() > 0) {
-            AquaponicHelper.fillMultiblockStructure(getWorld(), getPos(), getFacing());
+        if (validMultiblock) {
+            AquaponicHelper.setPortControllerBlocks(this, getWorld(), getPos(), getFacing());
+            if (this.waterHandler.getFluidAmount() > 0) {
+                AquaponicHelper.fillMultiblockStructure(getWorld(), getPos(), getFacing());
+            }
         }
 
         setMultiblock(validMultiblock);
@@ -241,6 +269,10 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         return EnumFacing.VALUES[getBlockMetadata()];
     }
 
+    public FluidTank getNutrientFluidHandler() {
+        return this.nutrientFluidHandler;
+    }
+
     // Getters
 
     public int getWater() {
@@ -259,7 +291,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         return this.progress;
     }
 
-    public boolean getMultiblock() {
+    public boolean getIsMultiblock() {
         return this.isMultiblock;
     }
 
@@ -296,7 +328,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
             case NUTRIENT:
                 return this.getNutrientFluid();
             case MULTIBLOCK:
-                return this.getMultiblock() ? 1 : 0;
+                return this.getIsMultiblock() ? 1 : 0;
             default:
                 return 0;
         }
@@ -362,7 +394,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] isValidStructure(Context context, Arguments args) {
-        boolean value = getMultiblock();
+        boolean value = getIsMultiblock();
         return new Object[] { value };
     }
 }

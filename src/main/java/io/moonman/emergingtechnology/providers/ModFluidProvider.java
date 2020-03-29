@@ -41,7 +41,7 @@ public class ModFluidProvider {
 
         ModFluid water = new ModFluid(WATER_ID, "water", 0, waterPlants, 0);
         ModFluid lava = new ModFluid(LAVA_ID, "lava", 0, lavaPlants, 5);
-        ModFluid nutrient = new ModFluid(NUTRIENT_ID, "nutrient", 5, waterPlants, 5);
+        ModFluid nutrient = new ModFluid(NUTRIENT_ID, "nutrient", 5, waterPlants, 15);
 
         ArrayList<ModFluid> baseFluids = new ArrayList<ModFluid>();
 

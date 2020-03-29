@@ -10,6 +10,7 @@ import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.classes.EmptyRecipe;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.machines.AlgaeBioreactorRecipes;
+import io.moonman.emergingtechnology.recipes.machines.AquaponicRecipes;
 import io.moonman.emergingtechnology.recipes.machines.BiomassRecipes;
 import io.moonman.emergingtechnology.recipes.machines.BioreactorRecipes;
 import io.moonman.emergingtechnology.recipes.machines.CollectorRecipes;
@@ -54,6 +55,7 @@ public class RecipeBuilder {
         LightRecipes.build();
         OptimiserRecipes.build();
         DiffuserRecipes.build();
+        AquaponicRecipes.build();
 
         registerFurnaceRecipes();
     }
@@ -241,6 +243,10 @@ public class RecipeBuilder {
             disabledBlocks.add(ModBlocks.diffuser);
         if (EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.disabled)
             disabledBlocks.add(ModBlocks.injector);
+        if (EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.disabled) {
+            disabledBlocks.add(ModBlocks.aquaponic);
+            disabledBlocks.add(ModBlocks.aquaponicport);
+        }
 
         for (Block block : disabledBlocks) {
             removeBlockRecipe(registry, block);

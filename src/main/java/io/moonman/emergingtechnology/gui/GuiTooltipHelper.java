@@ -117,7 +117,7 @@ public class GuiTooltipHelper {
     }
 
     public static GuiIndicatorData getProgressIndicator(int guiLeft, int guiTop, int progress, int mouseX, int mouseY) {
-        GuiRegion region =  new GuiRegion(guiLeft + 39, guiTop + 38, guiLeft + 39 + 34, guiTop + 38 + 10);
+        GuiRegion region = new GuiRegion(guiLeft + 39, guiTop + 38, guiLeft + 39 + 34, guiTop + 38 + 10);
         GuiPosition mousePosition = new GuiPosition(mouseX, mouseY);
 
         if (region.isPositionInRegion(mousePosition)) {
@@ -160,6 +160,8 @@ public class GuiTooltipHelper {
                 return new GuiRegion(guiStart.x + 66, guiStart.y + 63, guiStart.x + 110, guiStart.y + 77);
             case PROGRESS:
                 return new GuiRegion(guiStart.x + 39, guiStart.y + 38, guiStart.x + 73, guiStart.y + 48);
+            case BOTTOM:
+                return new GuiRegion(guiStart.x + 66, guiStart.y + 103, guiStart.x + 110, guiStart.y + 117);
             default:
                 return new GuiRegion(guiStart.x, guiStart.x, guiStart.y, guiStart.y);
         }

@@ -35,6 +35,7 @@ import io.moonman.emergingtechnology.machines.optimiser.Optimiser;
 import io.moonman.emergingtechnology.machines.piezoelectric.Piezoelectric;
 import io.moonman.emergingtechnology.machines.algaebioreactor.AlgaeBioreactor;
 import io.moonman.emergingtechnology.machines.aquaponic.Aquaponic;
+import io.moonman.emergingtechnology.machines.aquaponicport.AquaponicPort;
 import io.moonman.emergingtechnology.machines.processor.Processor;
 import io.moonman.emergingtechnology.machines.scaffolder.Scaffolder;
 import io.moonman.emergingtechnology.machines.scrubber.Scrubber;
@@ -66,6 +67,7 @@ public class ModBlocks {
 	public static final AquaponicBlock aquaponicblock = null;
 	public static final AquaponicBase aquaponicbase = null;
 	public static final Aquaponic aquaponic = null;
+	public static final AquaponicPort aquaponicport = null;
 	// endregion
 
 	// region Polymers Blocks
@@ -122,7 +124,7 @@ public class ModBlocks {
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery,
 				ModBlocks.optimiser, ModBlocks.torch, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
 				ModBlocks.clearplasticblock, ModBlocks.aquaponicglass, ModBlocks.aquaponicblock,
-				ModBlocks.aquaponicbase, ModBlocks.aquaponic, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
+				ModBlocks.aquaponicbase, ModBlocks.aquaponic, ModBlocks.aquaponicport, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
 				ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock, ModBlocks.biocharblock,
 				ModBlocks.polluteddirt, ModBlocks.pollutedsand, ModBlocks.pollutedgravel, ModBlocks.nutrientblock,
 				ModBlocks.carbondioxideblock };
@@ -134,7 +136,7 @@ public class ModBlocks {
 		Block[] blocks = { new Hydroponic(), new Harvester(), new Filler(), new Scrubber(), new Diffuser(),
 				new Injector(), new Light(), new Frame(), new Processor(), new Shredder(), new PlasticBlock(),
 				new ClearPlasticBlock(), new AquaponicGlass(), new AquaponicBlock(), new AquaponicBase(),
-				new Aquaponic(), new MachineCase(), new Fabricator(), new Collector(), new Cooker(), new Scaffolder(),
+				new Aquaponic(), new AquaponicPort(), new MachineCase(), new Fabricator(), new Collector(), new Cooker(), new Scaffolder(),
 				new Bioreactor(), new AlgaeBioreactor(), new Ladder(), new Piezoelectric(), new TidalGenerator(),
 				new BiomassGenerator(), new Solar(), new SolarGlass(), new Wind(), new Battery(), new Optimiser(),
 				new Torch(), new BiocharBlock(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
