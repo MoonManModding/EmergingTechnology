@@ -76,8 +76,11 @@ public class AquaponicPortTileEntity extends MachineTileBase implements SimpleCo
 
             TileEntity neighbour = this.world.getTileEntity(this.pos.offset(facing));
 
-            // Return if no tile entity
             if (neighbour == null) {
+                continue;
+            }
+
+            if (neighbour instanceof AquaponicPortTileEntity){
                 continue;
             }
 

@@ -80,8 +80,8 @@ public class Reference {
     public static final int INJECTOR_FLUID_CAPACITY = 10000;
     public static final int INJECTOR_ENERGY_CAPACITY = 10000;
 
-    public static final int AQUAPONIC_FLUID_CAPACITY = 10000;
-    public static final int AQUAPONIC_ENERGY_CAPACITY = 10000;
+    public static final int AQUAPONIC_FLUID_CAPACITY = 100000;
+    public static final int AQUAPONIC_ENERGY_CAPACITY = 100000;
 
     public static final int OPTIMISER_FLUID_CAPACITY = 10000;
     public static final int OPTIMISER_ENERGY_CAPACITY = 10000;

@@ -12,6 +12,7 @@ import io.moonman.emergingtechnology.helpers.machines.AquaponicHelper;
 import io.moonman.emergingtechnology.helpers.machines.classes.OptimiserPacket;
 import io.moonman.emergingtechnology.init.ModFluids;
 import io.moonman.emergingtechnology.init.Reference;
+import io.moonman.emergingtechnology.machines.aquaponicport.AquaponicPortTileEntity;
 import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import io.moonman.emergingtechnology.machines.classes.tile.IOptimisableTile;
 import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
@@ -194,32 +195,48 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         checkMuliblock();
         doFluidGeneration();
         pushToFluidConsumers();
+        doFishBreeding();
         getPacket().reset();
+    }
+
+    private void doFishBreeding() {
+
+        if (!enoughResources()) return;
+
+        AquaponicHelper.tryBreedFish(itemHandler, true);
     }
 
     private void doFluidGeneration() {
 
+        if (!enoughResources()) return;
+
+        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(
+                EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage), false);
+
+        this.waterHandler.drain(getPacket().calculateFluidUse(
+                EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicWaterBaseUsage), true);
+        this.nutrientFluidHandler.fill(new FluidStack(ModFluids.NUTRIENT, getFluidGenerated()), true);
+    }
+
+    private boolean enoughResources() {
         // Output fluid full
         if (this.getNutrientFluid() >= Reference.AQUAPONIC_FLUID_CAPACITY) {
-            return;
+            return false;
         }
 
         // Not enough water
-        if (this.getWater() < getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicWaterBaseUsage)) {
-            return;
+        if (this.getWater() < getPacket()
+                .calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicWaterBaseUsage)) {
+            return false;
         }
 
         // Not enough energy
-        if (this.getEnergy() < getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage)) {
-            return;
+        if (this.getEnergy() < getPacket()
+                .calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage)) {
+            return false;
         }
 
-        this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage),
-                false);
-
-        this.waterHandler.drain(getPacket().calculateFluidUse(EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicWaterBaseUsage), true);
-        this.nutrientFluidHandler.fill(new FluidStack(ModFluids.NUTRIENT,
-                EmergingTechnologyConfig.HYDROPONICS_MODULE.INJECTOR.injectorFluidGenerated), true);
+        return true;
     }
 
     private void checkMuliblock() {
@@ -244,8 +261,11 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
 
             TileEntity neighbour = this.world.getTileEntity(this.pos.offset(facing));
 
-            // Return if no tile entity
             if (neighbour == null) {
+                continue;
+            }
+
+            if (neighbour instanceof AquaponicPortTileEntity) {
                 continue;
             }
 
@@ -263,6 +283,10 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
 
             this.nutrientFluidHandler.drain(filled, true);
         }
+    }
+
+    private int getFluidGenerated() {
+        return AquaponicHelper.getFluidGeneratedFromFish(itemHandler);
     }
 
     private EnumFacing getFacing() {

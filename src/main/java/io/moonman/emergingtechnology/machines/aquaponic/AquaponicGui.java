@@ -1,7 +1,6 @@
 package io.moonman.emergingtechnology.machines.aquaponic;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
-import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
@@ -63,12 +62,10 @@ public class AquaponicGui extends GuiContainer {
 		int energy = this.getEnergyScaled(37);
 		int fluid = this.getFluidScaled(37);
 		int nutrient = this.getNutrientScaled(37);
-		int progress = this.getProgressScaled(34);
 
 		this.drawTexturedModalRect(TOP_RIGHT_POS.x, TOP_RIGHT_POS.y, 176, 0, fluid, 7);
 		this.drawTexturedModalRect(MIDDLE_RIGHT_POS.x, MIDDLE_RIGHT_POS.y, 176, 9, energy, 7);
-		this.drawTexturedModalRect(MIDDLE_BOTTOM_POS.x, MIDDLE_BOTTOM_POS.y, 176, 29, nutrient, 7);
-		this.drawTexturedModalRect(39, 38, 176, 18, progress, 10);
+		this.drawTexturedModalRect(MIDDLE_BOTTOM_POS.x, MIDDLE_BOTTOM_POS.y, 176, 0, nutrient, 7);
 
 		this.fontRenderer.drawString(NAME, TOP_LEFT_POS.x, TOP_LEFT_POS.y, GuiHelper.LABEL_COLOUR);
 		this.fontRenderer.drawString(GuiHelper.inventoryLabel(this.player), INVENTORY_POS.x, INVENTORY_POS.y,
@@ -88,11 +85,6 @@ public class AquaponicGui extends GuiContainer {
 
 	private int getFluidScaled(int scaled) {
 		return (int) (tileEntity.getField(EnumTileField.FLUID) * scaled / Reference.AQUAPONIC_FLUID_CAPACITY);
-	}
-
-	private int getProgressScaled(int scaled) {
-		return (int) (tileEntity.getField(EnumTileField.PROGRESS) * scaled
-				/ EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicBaseTimeTaken);
 	}
 
 	private int getNutrientScaled(int scaled) {

@@ -2,23 +2,119 @@ package io.moonman.emergingtechnology.helpers.machines;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import io.moonman.emergingtechnology.block.blocks.AquaponicBase;
 import io.moonman.emergingtechnology.block.blocks.AquaponicBlock;
 import io.moonman.emergingtechnology.block.blocks.AquaponicGlass;
+import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.StackHelper;
+import io.moonman.emergingtechnology.helpers.machines.classes.FishPair;
 import io.moonman.emergingtechnology.machines.aquaponic.AquaponicTileEntity;
 import io.moonman.emergingtechnology.machines.aquaponicport.AquaponicPort;
 import io.moonman.emergingtechnology.machines.aquaponicport.AquaponicPortTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemStackHandler;
 
 /**
  * Provides useful methods for the Aquaponic machine
  */
 public class AquaponicHelper {
+
+    public static int getFluidGeneratedFromFish(ItemStackHandler itemHandler) {
+
+        int generated = 0;
+
+        int slots = itemHandler.getSlots();
+
+        for (int i = 0; i < slots; i++) {
+            ItemStack stack = itemHandler.getStackInSlot(i);
+
+            if (isValidFish(stack)) {
+                generated += stack.getCount();
+            }
+
+        }
+
+        return generated;
+    }
+
+    public static boolean isValidFish(ItemStack itemStack) {
+
+        if (StackHelper.isItemStackEmpty(itemStack))
+            return false;
+
+        if (itemStack.getItem().getRegistryName().toString().equalsIgnoreCase("minecraft:fish")) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void tryBreedFish(ItemStackHandler itemHandler, boolean toExcessPool) {
+        List<FishPair> uniqueFish = new ArrayList<FishPair>();
+        List<FishPair> allFish = new ArrayList<FishPair>();
+        int slots = itemHandler.getSlots();
+
+        for (int i = 0; i < slots; i++) {
+
+            if (i > 8) continue;
+
+            ItemStack stack = itemHandler.getStackInSlot(i);
+            if (isValidFish(stack)) {
+                allFish.add(new FishPair(stack));
+            }
+        }
+
+        if (allFish.size() == 0)
+            return;
+
+        allFish.stream().forEach(x -> {
+            if (uniqueFish.stream().allMatch(y -> !StackHelper.compareItemStacks(x.itemStack, y.itemStack))) {
+                uniqueFish.add(new FishPair(x.itemStack));
+            } else {
+                uniqueFish.stream().forEach(z -> {
+                    if (StackHelper.compareItemStacks(z.itemStack, x.itemStack)) {
+                        z.add(x.quantity);
+                    }
+                });
+            }
+        });
+
+        // No fish
+        if (uniqueFish.size() == 0)
+            return;
+
+        uniqueFish.stream().forEach(x -> {
+
+            // If more than one of this species and species exists, continue
+            if (x.quantity > 1) {
+                // If passes random roll, continue
+                if (new Random().nextInt(
+                        1000000) <= EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicFishBreedProbability) {
+                    for (int i = 0; i < slots; i++) {
+
+                        if (toExcessPool && i < 9)
+                            continue;
+
+                        // Try insert
+                        ItemStack itemStack = itemHandler.insertItem(i,
+                                new ItemStack(x.itemStack.getItem(), 1, x.itemStack.getMetadata()), false);
+
+                        // If successfully inserted, break
+                        if (StackHelper.isItemStackEmpty(itemStack)) {
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+    }
 
     public static void fillMultiblockStructure(World world, BlockPos pos, EnumFacing facing) {
 
@@ -49,7 +145,8 @@ public class AquaponicHelper {
         }
     }
 
-    public static void setPortControllerBlocks(AquaponicTileEntity controller, World world, BlockPos pos, EnumFacing facing) {
+    public static void setPortControllerBlocks(AquaponicTileEntity controller, World world, BlockPos pos,
+            EnumFacing facing) {
         EnumFacing left = facing.rotateY();
         EnumFacing right = facing.rotateYCCW();
         EnumFacing behind = facing.getOpposite();
