@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ITI",
+    "WPW",
+    "IMI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "minecraft:iron_block"
+    },
+    "W": {
+      "item": "emergingtechnology:circuit"
+    },
+    "P": {
+      "item": "emergingtechnology:aquaponicport"
+    },
+    "T": {
+      "item": "emergingtechnology:aquaponicblock"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:aquaponic",
+    "count": 1
+  }
+}

@@ -1,7 +1,15 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "emergingtechnology:battery"
+        "model": "emergingtechnology:battery",
+        "textures": {
+            "up": "emergingtechnology:blocks/batteryportinput",
+            "down": "emergingtechnology:blocks/batteryportoutput",
+            "north": "emergingtechnology:blocks/batteryportoutput",
+            "south": "emergingtechnology:blocks/batteryportoutput",
+            "east": "emergingtechnology:blocks/batteryportoutput",
+            "west": "emergingtechnology:blocks/batteryportoutput"
+        }
     },
     "variants": {
         "normal": [
@@ -12,22 +20,76 @@
                 "model": "emergingtechnology:battery"
             }
         ],
-        "facing": {
-            "north": {},
-            "south": {
-                "y": 180
+        "input_up": {
+            "true": {
+                "textures": {
+                    "up": "emergingtechnology:blocks/batteryportinput"
+                }
             },
-            "west": {
-                "y": 270
+            "false": {
+                "textures": {
+                    "up": "emergingtechnology:blocks/batteryportoutput"
+                }
+            }
+        },
+        "input_down": {
+            "true": {
+                "textures": {
+                    "down": "emergingtechnology:blocks/batteryportinput"
+                }
             },
-            "east": {
-                "y": 90
+            "false": {
+                "textures": {
+                    "down": "emergingtechnology:blocks/batteryportoutput"
+                }
+            }
+        },
+        "input_east": {
+            "true": {
+                "textures": {
+                    "east": "emergingtechnology:blocks/batteryportinput"
+                }
             },
-            "up": {
-                "x": -90
+            "false": {
+                "textures": {
+                    "east": "emergingtechnology:blocks/batteryportoutput"
+                }
+            }
+        },
+        "input_west": {
+            "true": {
+                "textures": {
+                    "west": "emergingtechnology:blocks/batteryportinput"
+                }
             },
-            "down": {
-                "x": 90
+            "false": {
+                "textures": {
+                    "west": "emergingtechnology:blocks/batteryportoutput"
+                }
+            }
+        },
+        "input_north": {
+            "true": {
+                "textures": {
+                    "north": "emergingtechnology:blocks/batteryportinput"
+                }
+            },
+            "false": {
+                "textures": {
+                    "north": "emergingtechnology:blocks/batteryportoutput"
+                }
+            }
+        },
+        "input_south": {
+            "true": {
+                "textures": {
+                    "south": "emergingtechnology:blocks/batteryportinput"
+                }
+            },
+            "false": {
+                "textures": {
+                    "south": "emergingtechnology:blocks/batteryportoutput"
+                }
             }
         }
     }

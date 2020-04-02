@@ -4,14 +4,16 @@ import java.util.List;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.helpers.classes.BatteryConfiguration;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.classes.block.SimpleMachineBase;
 import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,23 +23,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraft.block.ITileEntityProvider;
 
 public class Battery extends SimpleMachineBase implements ITileEntityProvider {
 
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
+    public static final PropertyBool INPUT_UP = PropertyBool.create("input_up");
+    public static final PropertyBool INPUT_DOWN = PropertyBool.create("input_down");
+    public static final PropertyBool INPUT_NORTH = PropertyBool.create("input_north");
+    public static final PropertyBool INPUT_SOUTH = PropertyBool.create("input_south");
+    public static final PropertyBool INPUT_EAST = PropertyBool.create("input_east");
+    public static final PropertyBool INPUT_WEST = PropertyBool.create("input_west");
 
     public Battery() {
         super(Material.IRON, "battery");
         this.setSoundType(SoundType.METAL);
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setDefaultState(getDefaultSideProperties(blockState.getBaseState()));
     }
 
     @SideOnly(Side.CLIENT)
@@ -61,6 +66,18 @@ public class Battery extends SimpleMachineBase implements ITileEntityProvider {
             return true;
         }
 
+        // TileEntity tileEntity = worldIn.getTileEntity(pos);
+
+        // if (tileEntity != null) {
+        //     if (tileEntity instanceof BatteryTileEntity == true) {
+        //         BatteryTileEntity battery = (BatteryTileEntity) tileEntity;
+
+        //         BatteryConfiguration config = battery.getConfiguration();
+
+        //         config.setSideInput(facing, !config.getSideInput(facing));
+        //     }
+        // }
+
         playerIn.openGui(EmergingTechnology.instance, Reference.GUI_BATTERY, worldIn, pos.getX(), pos.getY(),
                 pos.getZ());
 
@@ -74,64 +91,65 @@ public class Battery extends SimpleMachineBase implements ITileEntityProvider {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] { FACING });
+        return new BlockStateContainer(this,
+                new IProperty[] { INPUT_UP, INPUT_DOWN, INPUT_NORTH, INPUT_SOUTH, INPUT_EAST, INPUT_WEST });
     }
 
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
         if (!worldIn.isRemote) {
-            IBlockState north = worldIn.getBlockState(pos.north());
-            IBlockState east = worldIn.getBlockState(pos.east());
-            IBlockState south = worldIn.getBlockState(pos.south());
-            IBlockState west = worldIn.getBlockState(pos.west());
-
-            EnumFacing face = (EnumFacing) state.getValue(FACING);
-
-            if (face == EnumFacing.NORTH && north.isFullBlock() && !south.isFullBlock()) {
-                face = EnumFacing.SOUTH;
-            } else if (face == EnumFacing.SOUTH && south.isFullBlock() && !north.isFullBlock()) {
-                face = EnumFacing.NORTH;
-            } else if (face == EnumFacing.EAST && east.isFullBlock() && !west.isFullBlock()) {
-                face = EnumFacing.WEST;
-            } else if (face == EnumFacing.WEST && west.isFullBlock() && !east.isFullBlock()) {
-                face = EnumFacing.EAST;
-            }
-
-            worldIn.setBlockState(pos, state.withProperty(FACING, face));
+            worldIn.setBlockState(pos, getDefaultSideProperties(state));
         }
     }
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY,
             float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+        return getDefaultSideProperties(this.getDefaultState());
     }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
             ItemStack stack) {
-        worldIn.setBlockState(pos,
-                this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
+        worldIn.setBlockState(pos, getDefaultSideProperties(this.getDefaultState()));
     }
 
     @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+
+        if (tileEntity != null) {
+            if (tileEntity instanceof BatteryTileEntity == true) {
+                BatteryTileEntity battery = (BatteryTileEntity) tileEntity;
+
+                BatteryConfiguration config = battery.getConfiguration();
+
+                return state.withProperty(INPUT_UP, config.getSideInput(EnumFacing.UP))
+                        .withProperty(INPUT_DOWN, config.getSideInput(EnumFacing.DOWN))
+                        .withProperty(INPUT_NORTH, config.getSideInput(EnumFacing.NORTH))
+                        .withProperty(INPUT_SOUTH, config.getSideInput(EnumFacing.SOUTH))
+                        .withProperty(INPUT_EAST, config.getSideInput(EnumFacing.EAST))
+                        .withProperty(INPUT_WEST, config.getSideInput(EnumFacing.WEST));
+            }
+        }
+
+        return super.getActualState(state, worldIn, pos);
+
     }
 
-    @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+    private IBlockState getDefaultSideProperties(IBlockState state) {
+        return state.withProperty(INPUT_UP, false).withProperty(INPUT_DOWN, false).withProperty(INPUT_NORTH, false)
+                .withProperty(INPUT_SOUTH, false).withProperty(INPUT_EAST, false).withProperty(INPUT_WEST, false);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing facing = EnumFacing.getHorizontal(meta);
-        return this.getDefaultState().withProperty(FACING, facing);
+        return this.getDefaultState();
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex();
+        return 0;
     }
 }

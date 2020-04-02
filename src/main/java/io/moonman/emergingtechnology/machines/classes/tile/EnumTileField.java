@@ -27,7 +27,13 @@ public enum EnumTileField {
     OPTIMISERGAS,
     OPTIMISERPROGRESS,
     OPTIMISERCORES,
-    MULTIBLOCK;
+    MULTIBLOCK,
+    BATTERYUP,
+    BATTERYDOWN,
+    BATTERYNORTH,
+    BATTERYSOUTH,
+    BATTERYEAST,
+    BATTERYWEST;
 
     private static EnumTileField[] values = null;
 

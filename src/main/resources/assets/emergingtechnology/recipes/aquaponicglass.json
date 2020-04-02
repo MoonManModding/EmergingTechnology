@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ppp",
+    "pLp",
+    "ppp"
+  ],
+  "key": {
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "blockGlass"
+    },
+    "L": {
+      "item": "emergingtechnology:plasticsheet"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:aquaponicglass",
+    "count": 8
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:iron_block"
+    },
+    "a": {
+      "item": "emergingtechnology:aquaponicblock"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:aquaponicbase",
+    "count": 3
+  }
+}

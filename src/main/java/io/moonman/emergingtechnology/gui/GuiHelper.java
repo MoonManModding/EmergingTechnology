@@ -35,6 +35,9 @@ public class GuiHelper {
     public static final ResourceLocation UP_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/up.png");
     public static final ResourceLocation DOWN_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/down.png");
 
+    public static final ResourceLocation ON_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/on.png");
+    public static final ResourceLocation OFF_BUTTON_TEXTURE = new ResourceLocation(EmergingTechnology.MODID, "textures/gui/buttons/off.png");
+
     // Gui locations
     public static GuiPosition getTopLeft() {
         return new GuiPosition(6, 8);

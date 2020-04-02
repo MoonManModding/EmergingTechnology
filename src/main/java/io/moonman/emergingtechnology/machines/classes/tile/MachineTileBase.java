@@ -20,6 +20,10 @@ public class MachineTileBase extends TileEntity implements ITickable {
         return getWorld().isRemote;
     }
 
+    public IBlockState getState() {
+        return getWorld().getBlockState(getPos());
+    }
+
     public void markDirtyClient() {
         markDirty();
 

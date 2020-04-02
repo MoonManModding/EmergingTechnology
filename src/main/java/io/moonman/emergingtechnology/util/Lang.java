@@ -136,6 +136,11 @@ public class Lang {
         public static final TextComponentTranslation GUI_OPTIMISER_BUTTON_REMOVE = new TextComponentTranslation(
                         GUI_SOURCE + "optimiser.buttonremove");
 
+        public static String getBatteryLabel(String facing, boolean isInputButton) {
+                String path = isInputButton ? "battery.inputlabel" : "battery.outputlabel";
+                return new TextComponentTranslation(GUI_SOURCE + path, facing).getFormattedText();
+        }
+
         public static String getOptimiserRemaining(int amount) {
                 return new TextComponentTranslation(GUI_SOURCE + "optimiser.remaining", amount).getFormattedText();
         }
@@ -240,6 +245,11 @@ public class Lang {
         }
 
         public static String getGenerated(int generated, ResourceTypeEnum type) {
+                return new TextComponentTranslation(SOURCE + type.toString().toLowerCase() + ".generated", generated)
+                                .getFormattedText();
+        }
+
+        public static String getGenerated(double generated, ResourceTypeEnum type) {
                 return new TextComponentTranslation(SOURCE + type.toString().toLowerCase() + ".generated", generated)
                                 .getFormattedText();
         }

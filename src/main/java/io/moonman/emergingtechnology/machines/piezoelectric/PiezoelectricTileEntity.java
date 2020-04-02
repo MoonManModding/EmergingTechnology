@@ -10,14 +10,8 @@ import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fml.common.Optional;
@@ -133,7 +127,7 @@ public class PiezoelectricTileEntity extends MachineTileBase implements SimpleCo
     @Callback
     @Optional.Method(modid = "opencomputers")
     public Object[] isSteppedOn(Context context, Arguments args) {
-        boolean stepped = this.cooldown == 10;
+        boolean stepped = this.cooldown == EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricStepCooldown;
         return new Object[] { stepped };
     }
 }

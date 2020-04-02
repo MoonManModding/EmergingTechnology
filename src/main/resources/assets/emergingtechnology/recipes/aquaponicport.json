@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RTR",
+    "WIW",
+    "IMI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "emergingtechnology:machinecase"
+    },
+    "W": {
+      "item": "minecraft:bucket"
+    },
+    "T": {
+      "item": "emergingtechnology:aquaponicblock"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "stickPlastic"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:aquaponicport",
+    "count": 1
+  }
+}

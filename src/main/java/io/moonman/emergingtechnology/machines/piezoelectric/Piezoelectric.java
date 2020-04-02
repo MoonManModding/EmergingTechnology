@@ -44,10 +44,11 @@ public class Piezoelectric extends SimpleMachineBase implements ITileEntityProvi
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 
         int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricEnergyGenerated;
+        int cooldown = EmergingTechnologyConfig.ELECTRICS_MODULE.PIEZOELECTRIC.piezoelectricStepCooldown;
 
         if (KeyBindings.showExtendedTooltips()) {
             tooltip.add(Lang.get(Lang.PIEZOELECTRIC_DESC));
-            tooltip.add(Lang.getGenerated(energy, ResourceTypeEnum.ENERGY));
+            tooltip.add(Lang.getGenerated((double) energy / cooldown, ResourceTypeEnum.ENERGY));
         } else {
             tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
         }

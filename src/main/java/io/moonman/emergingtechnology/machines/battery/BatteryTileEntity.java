@@ -3,13 +3,16 @@ package io.moonman.emergingtechnology.machines.battery;
 import io.moonman.emergingtechnology.handlers.energy.ConsumerEnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.EnergyStorageHandler;
 import io.moonman.emergingtechnology.handlers.energy.GeneratorEnergyStorageHandler;
+import io.moonman.emergingtechnology.helpers.classes.BatteryConfiguration;
+import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -19,6 +22,20 @@ import net.minecraftforge.fml.common.Optional;
 
 @Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "opencomputers")
 public class BatteryTileEntity extends MachineTileBase implements SimpleComponent {
+
+    private BatteryConfiguration configuration = new BatteryConfiguration() {
+        @Override
+        protected void onSideChanged() {
+            updateBlockRender();
+            getWorld().notifyNeighborsOfStateChange(getPos(), ModBlocks.battery, true);
+        }
+    };
+
+    private void updateBlockRender() {
+        getWorld().notifyBlockUpdate(getPos(), getState(), getState(), 3);
+        getWorld().notifyNeighborsOfStateChange(getPos(), ModBlocks.battery, true);
+        markDirty();
+    }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.BATTERY_ENERGY_CAPACITY) {
         @Override
@@ -71,7 +88,7 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityEnergy.ENERGY) {
-            if (facing == getFacing()) {
+            if (this.configuration.getSideInput(facing)) {
                 return CapabilityEnergy.ENERGY.cast(this.consumerStorageHandler);
             } else {
                 return CapabilityEnergy.ENERGY.cast(this.generatorStorageHandler);
@@ -90,6 +107,8 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
         this.setEnergy(compound.getInteger("GuiEnergy"));
         this.setTotalInput(compound.getInteger("GuiTotalInput"));
         this.setTotalOutput(compound.getInteger("GuiTotalOutput"));
+
+        this.configuration.readFromNBT(compound);
     }
 
     @Override
@@ -99,11 +118,10 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
         compound.setInteger("GuiTotalInput", this.getTotalInput());
         compound.setInteger("GuiTotalOutput", this.getTotalOutput());
         this.energyHandler.writeToNBT(compound);
+        this.configuration.writeToNBT(compound);
 
         return compound;
     }
-
-
 
     @Override
     public void cycle() {
@@ -114,7 +132,7 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
     private void spreadEnergy() {
         for (EnumFacing side : EnumFacing.VALUES) {
 
-            if (side == getFacing()) {
+            if (this.configuration.getSideInput(side)) {
                 continue;
             }
 
@@ -159,10 +177,8 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
         return this.totalOutput;
     }
 
-    public EnumFacing getFacing() {
-        int metadata = getBlockMetadata();
-
-        return EnumFacing.VALUES[metadata];
+    public BatteryConfiguration getConfiguration() {
+        return this.configuration;
     }
 
     // Setters
@@ -187,6 +203,18 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
                 return this.getTotalInput();
             case BATTERYOUTPUT:
                 return this.getTotalOutput();
+            case BATTERYUP:
+                return this.configuration.getField(EnumFacing.UP);
+            case BATTERYDOWN:
+                return this.configuration.getField(EnumFacing.DOWN);
+            case BATTERYNORTH:
+                return this.configuration.getField(EnumFacing.NORTH);
+            case BATTERYSOUTH:
+                return this.configuration.getField(EnumFacing.SOUTH);
+            case BATTERYEAST:
+                return this.configuration.getField(EnumFacing.EAST);
+            case BATTERYWEST:
+                return this.configuration.getField(EnumFacing.WEST);
             default:
                 return 0;
         }
@@ -203,6 +231,24 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
             case BATTERYOUTPUT:
                 this.setTotalOutput(value);
                 break;
+            case BATTERYUP:
+                this.configuration.setSideInput(EnumFacing.UP, value);
+                break;
+            case BATTERYDOWN:
+                this.configuration.setSideInput(EnumFacing.DOWN, value);
+                break;
+            case BATTERYNORTH:
+                this.configuration.setSideInput(EnumFacing.NORTH, value);
+                break;
+            case BATTERYSOUTH:
+                this.configuration.setSideInput(EnumFacing.SOUTH, value);
+                break;
+            case BATTERYEAST:
+                this.configuration.setSideInput(EnumFacing.EAST, value);
+                break;
+            case BATTERYWEST:
+                this.configuration.setSideInput(EnumFacing.WEST, value);
+                break;
             default:
                 break;
         }
@@ -214,5 +260,19 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
     @Override
     public String getComponentName() {
         return "etech_battery";
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getEnergyLevel(Context context, Arguments args) {
+        int level = getEnergy();
+        return new Object[] { level };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getMaxEnergyLevel(Context context, Arguments args) {
+        int level = Reference.BATTERY_ENERGY_CAPACITY;
+        return new Object[] { level };
     }
 }
