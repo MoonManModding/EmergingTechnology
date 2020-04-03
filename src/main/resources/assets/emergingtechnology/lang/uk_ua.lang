@@ -357,6 +357,9 @@ gui.emergingtechnology.optimiser.progress=Скорочує час обробки
 gui.emergingtechnology.label.speedmultiplier=Посилення зростання від Світлодіода: x%s
 gui.emergingtechnology.label.nospeedmultiplier=Фітолампа або Світлодіод відсутні.
 
+gui.emergingtechnology.battery.inputlabel=Set %s side to Input (Currently Output)
+gui.emergingtechnology.battery.outputlabel=Set %s side to Output (Currently Input)
+
 # Configuration
 config.emergingtechnology.title=Налаштування Emerging Technology
 

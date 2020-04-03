@@ -13,6 +13,8 @@ item.emergingtechnology.frame.name=Hydroponic Frame
 item.emergingtechnology.aquaponicblock.name=Aquaponic Frame
 item.emergingtechnology.aquaponicglass.name=Aquaponic Glass
 item.emergingtechnology.aquaponicbase.name=Aquaponic Base
+item.emergingtechnology.aquaponic.name=Aquaponic Controller
+item.emergingtechnology.aquaponicport.name=Aquaponic Port
 
 item.emergingtechnology.redbulb.name=Red Bulb
 item.emergingtechnology.greenbulb.name=Green Bulb
@@ -113,6 +115,8 @@ blocks.emergingtechnology.frame.name=Hydroponic Frame
 blocks.emergingtechnology.aquaponicblock.name=Aquaponic Frame
 blocks.emergingtechnology.aquaponicglass.name=Aquaponic Glass
 blocks.emergingtechnology.aquaponicbase.name=Aquaponic Base
+blocks.emergingtechnology.aquaponic.name=Aquaponic Controller
+blocks.emergingtechnology.aquaponicport.name=Aquaponic Port
 
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processor
@@ -164,6 +168,8 @@ tile.emergingtechnology.frame.name=Hydroponic Frame
 tile.emergingtechnology.aquaponicblock.name=Aquaponic Frame
 tile.emergingtechnology.aquaponicglass.name=Aquaponic Glass
 tile.emergingtechnology.aquaponicbase.name=Aquaponic Base
+tile.emergingtechnology.aquaponic.name=Aquaponic Controller
+tile.emergingtechnology.aquaponicport.name=Aquaponic Port
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processor
@@ -248,7 +254,8 @@ info.emergingtechnology.wind.description=Generates energy using the movement of 
 info.emergingtechnology.tidal.description=Generates energy using the movement of tides.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Green side, output on Red.
 info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
-
+info.emergingtechnology.aquaponic.description=The main control block for an Aquaponic Tank
+info.emergingtechnology.aquaponicport.description=An automation port for an Aquaponic Tank
 info.emergingtechnology.frame.description=A decorative plastic frame
 
 info.emergingtechnology.nozzle.description=A nozzle used by the Diffuser.
@@ -346,6 +353,9 @@ gui.emergingtechnology.optimiser.buttonremove=Unassign a Core from this boost.
 gui.emergingtechnology.optimiser.remaining=%s Cores remaining.
 gui.emergingtechnology.optimiser.resource=Reduces resource usage by %s percent.
 gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
+
+gui.emergingtechnology.battery.inputlabel=Set %s side to Input (Currently Output)
+gui.emergingtechnology.battery.outputlabel=Set %s side to Output (Currently Input)
 
 # Configuration
 config.emergingtechnology.title=Emerging Technology - Configuration

@@ -87,12 +87,17 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityEnergy.ENERGY) {
+        
+        if (capability == CapabilityEnergy.ENERGY && facing != null) {
             if (this.configuration.getSideInput(facing)) {
                 return CapabilityEnergy.ENERGY.cast(this.consumerStorageHandler);
             } else {
                 return CapabilityEnergy.ENERGY.cast(this.generatorStorageHandler);
             }
+        }
+
+        if (capability == CapabilityEnergy.ENERGY) {
+        return CapabilityEnergy.ENERGY.cast(this.generatorStorageHandler);
         }
 
         return super.getCapability(capability, facing);

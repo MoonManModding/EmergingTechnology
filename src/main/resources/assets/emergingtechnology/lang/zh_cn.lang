@@ -22,6 +22,12 @@ item.emergingtechnology.nozzlelong.name=长喷嘴
 item.emergingtechnology.nozzlesmart.name=智能喷嘴
 item.emergingtechnology.nozzleprecise.name=精确喷嘴
 
+item.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+item.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+item.emergingtechnology.aquaponicbase.name=Aquaponic Base
+item.emergingtechnology.aquaponic.name=Aquaponic Controller
+item.emergingtechnology.aquaponicport.name=Aquaponic Port
+
 item.emergingtechnology.fertilizer.name=肥料
 
 #POLYMERS MODULE
@@ -107,6 +113,12 @@ blocks.emergingtechnology.injector.name=营养注射器
 blocks.emergingtechnology.light.name=水培生长灯
 blocks.emergingtechnology.frame.name=塑料板
 
+blocks.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+blocks.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+blocks.emergingtechnology.aquaponicbase.name=Aquaponic Base
+blocks.emergingtechnology.aquaponic.name=Aquaponic Controller
+blocks.emergingtechnology.aquaponicport.name=Aquaponic Port
+
 #POLYMERS MODULE
 blocks.emergingtechnology.processor.name=加工机
 blocks.emergingtechnology.shredder.name=切碎机
@@ -153,6 +165,12 @@ tile.emergingtechnology.diffuser.name=二氧化碳扩散器
 tile.emergingtechnology.injector.name=营养注射器
 tile.emergingtechnology.light.name=水培生长灯
 tile.emergingtechnology.frame.name=塑料板
+
+tile.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+tile.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+tile.emergingtechnology.aquaponicbase.name=Aquaponic Base
+tile.emergingtechnology.aquaponic.name=Aquaponic Controller
+tile.emergingtechnology.aquaponicport.name=Aquaponic Port
 
 #POLYMERS MODULE
 tile.emergingtechnology.processor.name=加工机
@@ -238,6 +256,8 @@ info.emergingtechnology.tidal.description=利用潮汐运动产生能量。
 info.emergingtechnology.solar.description=利用光能产生能量。
 info.emergingtechnology.battery.description=储存能量以备日后使用。红色输入，黄色输出。
 info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
+info.emergingtechnology.aquaponic.description=The main control block for an Aquaponic Tank.
+info.emergingtechnology.aquaponicport.description=An automation port for an Aquaponic Tank.
 
 info.emergingtechnology.frame.description=具有装饰性的塑料板
 
@@ -336,6 +356,9 @@ gui.emergingtechnology.optimiser.buttonremove=Unassign a Core from this boost.
 gui.emergingtechnology.optimiser.remaining=%s Cores remaining.
 gui.emergingtechnology.optimiser.resource=Reduces resource usage by %s percent.
 gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
+
+gui.emergingtechnology.battery.inputlabel=Set %s side to Input (Currently Output)
+gui.emergingtechnology.battery.outputlabel=Set %s side to Output (Currently Input)
 
 # Configuration
 config.emergingtechnology.title=新兴技术 - 配置

@@ -14,6 +14,12 @@ item.emergingtechnology.greenbulb.name=Ampoule verte
 item.emergingtechnology.bluebulb.name=Ampoule bleue
 item.emergingtechnology.purplebulb.name=Ampoule à UV
 
+item.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+item.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+item.emergingtechnology.aquaponicbase.name=Aquaponic Base
+item.emergingtechnology.aquaponic.name=Aquaponic Controller
+item.emergingtechnology.aquaponicport.name=Aquaponic Port
+
 item.emergingtechnology.nozzlecomponent.name=Nozzle Component
 item.emergingtechnology.nozzlelong.name=Long Spray Nozzle
 item.emergingtechnology.nozzlesmart.name=Smart Spray Nozzle
@@ -100,6 +106,12 @@ blocks.emergingtechnology.filler.name=Water Filler
 blocks.emergingtechnology.light.name=Ampoule de croissance hydroponique
 blocks.emergingtechnology.frame.name=Chassis de table hydroponique
 
+blocks.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+blocks.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+blocks.emergingtechnology.aquaponicbase.name=Aquaponic Base
+blocks.emergingtechnology.aquaponic.name=Aquaponic Controller
+blocks.emergingtechnology.aquaponicport.name=Aquaponic Port
+
 # POLYMERS MODULE
 blocks.emergingtechnology.processor.name=Processeur
 blocks.emergingtechnology.shredder.name=Déchiqueteuse
@@ -142,6 +154,12 @@ tile.emergingtechnology.scrubber.name=CO2 Scrubber
 tile.emergingtechnology.filler.name=Water Filler
 tile.emergingtechnology.light.name=Ampoule de croissance hydroponique
 tile.emergingtechnology.frame.name=Chassis de table hydroponique
+
+tile.emergingtechnology.aquaponicblock.name=Aquaponic Frame
+tile.emergingtechnology.aquaponicglass.name=Aquaponic Glass
+tile.emergingtechnology.aquaponicbase.name=Aquaponic Base
+tile.emergingtechnology.aquaponic.name=Aquaponic Controller
+tile.emergingtechnology.aquaponicport.name=Aquaponic Port
 
 # POLYMERS MODULE
 tile.emergingtechnology.processor.name=Processeur
@@ -222,6 +240,8 @@ info.emergingtechnology.solar.description=Generates energy when in sunlight.
 info.emergingtechnology.battery.description=Stores energy for later use. Input on Green side, output on Red.
 info.emergingtechnology.wind.description=Generates energy using the movement of wind.
 info.emergingtechnology.optimiser.description=Increases the efficiency of adjacent machines.
+info.emergingtechnology.aquaponic.description=The main control block for an Aquaponic Tank
+info.emergingtechnology.aquaponicport.description=An automation port for an Aquaponic Tank
 
 info.emergingtechnology.frame.description=A decorative plastic frame
 
@@ -314,6 +334,9 @@ gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
 
 gui.emergingtechnology.label.speedmultiplier=Growth boost from bulb: x%s
 gui.emergingtechnology.label.nospeedmultiplier=Grow Light or bulb not found.
+
+gui.emergingtechnology.battery.inputlabel=Set %s side to Input (Currently Output)
+gui.emergingtechnology.battery.outputlabel=Set %s side to Output (Currently Input)
 
 # Configuration
 config.emergingtechnology.title=Emerging Technology - Configuration

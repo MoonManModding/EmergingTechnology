@@ -356,6 +356,9 @@ gui.emergingtechnology.optimiser.remaining=%s оставшихся ядер.
 gui.emergingtechnology.optimiser.resource=Сокращает использование ресурсов на %s процентов.
 gui.emergingtechnology.optimiser.progress=Сокращает время обработки на %s процентов.
 
+gui.emergingtechnology.battery.inputlabel=Set %s side to Input (Currently Output)
+gui.emergingtechnology.battery.outputlabel=Set %s side to Output (Currently Input)
+
 # Configuration
 config.emergingtechnology.title=Конфигурация Emerging Technology
 
