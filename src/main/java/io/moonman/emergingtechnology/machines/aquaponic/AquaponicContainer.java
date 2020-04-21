@@ -14,6 +14,7 @@ public class AquaponicContainer extends MachineContainer {
 	private int water;
 	private int progress;
 	private int nutrient;
+	private int fishOut;
 
 	public AquaponicContainer(InventoryPlayer player, AquaponicTileEntity tileEntity) {
 		super(tileEntity, player, tileEntity.itemHandler, 12, 12);
@@ -68,11 +69,13 @@ public class AquaponicContainer extends MachineContainer {
 			checkField(listener, EnumTileField.FLUID, this.water);
 			checkField(listener, EnumTileField.PROGRESS, this.progress);
 			checkField(listener, EnumTileField.NUTRIENT, this.nutrient);
+			checkField(listener, EnumTileField.FISHOUTPUT, this.fishOut);
 		}
 
 		this.energy = this.tileEntity.getField(EnumTileField.ENERGY);
 		this.water = this.tileEntity.getField(EnumTileField.FLUID);
 		this.progress = this.tileEntity.getField(EnumTileField.PROGRESS);
 		this.nutrient = this.tileEntity.getField(EnumTileField.NUTRIENT);
+		this.fishOut = this.tileEntity.getField(EnumTileField.FISHOUTPUT);
 	}
 }

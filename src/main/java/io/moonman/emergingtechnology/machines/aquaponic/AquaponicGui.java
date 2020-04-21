@@ -1,15 +1,22 @@
 package io.moonman.emergingtechnology.machines.aquaponic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.gui.GuiHelper;
 import io.moonman.emergingtechnology.gui.GuiTooltipHelper;
+import io.moonman.emergingtechnology.gui.classes.GuiImageButton;
 import io.moonman.emergingtechnology.gui.classes.GuiIndicatorData;
 import io.moonman.emergingtechnology.gui.classes.GuiPosition;
 import io.moonman.emergingtechnology.gui.enums.IndicatorPositionEnum;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
-import io.moonman.emergingtechnology.init.ModBlocks;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
+import io.moonman.emergingtechnology.network.PacketHandler;
+import io.moonman.emergingtechnology.network.gui.AquaponicUpdatePacket;
+import io.moonman.emergingtechnology.util.Lang;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -21,7 +28,7 @@ public class AquaponicGui extends GuiContainer {
 	private final InventoryPlayer player;
 	private final AquaponicTileEntity tileEntity;
 
-	private String NAME = ModBlocks.aquaponic.getLocalizedName();
+	private String NAME = Lang.get(Lang.AQUAPONICTANK_DESC);
 
 	private static final int XSIZE = 175;
 	private static final int YSIZE = 205;
@@ -33,6 +40,8 @@ public class AquaponicGui extends GuiContainer {
 	private static final GuiPosition MIDDLE_BOTTOM_POS = GuiHelper.getMiddleBottom(XSIZE, 44);
 	private static final GuiPosition INVENTORY_POS = GuiHelper.getInventory(YSIZE);
 
+	private boolean fishOut = true;
+
 	// Draws textures on gui
 	public AquaponicGui(InventoryPlayer player, AquaponicTileEntity tileEntity) {
 		super(new AquaponicContainer(player, tileEntity));
@@ -40,11 +49,49 @@ public class AquaponicGui extends GuiContainer {
 		this.tileEntity = tileEntity;
 		this.xSize = XSIZE;
 		this.ySize = YSIZE;
+		this.fishOut = this.tileEntity.getField(EnumTileField.FISHOUTPUT) == 1;
 	}
 
 	@Override
 	public void initGui() {
 		super.initGui();
+		createButtons();
+	}
+
+	private void createButtons() {
+		buttonList.clear();
+
+		int startX = this.guiLeft + 122;
+		int startY = this.guiTop + 42;
+
+		int buttonSize = 16;
+
+		GuiImageButton in = new GuiImageButton(0, startX, startY, buttonSize, buttonSize, GuiHelper.IN_BUTTON_TEXTURE);
+		GuiImageButton out = new GuiImageButton(1, startX, startY, buttonSize, buttonSize,
+				GuiHelper.OUT_BUTTON_TEXTURE);
+		buttonList.add(in);
+		buttonList.add(out);
+
+		in.visible = false;
+		out.visible = true;
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton button) {
+		this.setFishOut(button.id == 0);
+	}
+
+	@Override
+	public void updateScreen() {
+		for (GuiButton button : buttonList) {
+			button.visible = (!fishOut && button.id == 0) || (fishOut && button.id == 1);
+		}
+	}
+
+	private void setFishOut(boolean fishOut) {
+		this.fishOut = fishOut;
+		PacketHandler.INSTANCE.sendToServer(new AquaponicUpdatePacket(this.tileEntity.getPos(),
+				EnumTileField.getId(EnumTileField.FISHOUTPUT), fishOut ? 1 : 0));
 	}
 
 	@Override
@@ -122,5 +169,19 @@ public class AquaponicGui extends GuiContainer {
 		if (nutrientIndicator.isHovered) {
 			this.drawHoveringText(nutrientIndicator.list, mouseX, mouseY, fontRenderer);
 		}
+
+		for (GuiButton button : buttonList) {
+			if (mouseX > button.x && mouseX < button.x + button.width && mouseY > button.y && mouseY < button.y + button.width && button.visible) {
+				this.drawHoveringText(this.getButtonTooltip(button.id), mouseX, mouseY, fontRenderer);
+			}
+		}
+	}
+
+	private List<String> getButtonTooltip(int buttonId) {
+		ArrayList<String> tooltips = new ArrayList<String>();
+
+		tooltips.add(Lang.getFishOutputLabel(buttonId == 1));
+
+		return tooltips;
 	}
 }

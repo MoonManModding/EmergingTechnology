@@ -77,6 +77,10 @@ item.emergingtechnology.algae.name=Algae
 item.emergingtechnology.algaebarraw.name=Algae Bar
 item.emergingtechnology.algaebarcooked.name=Cooked Algae Bar
 
+item.emergingtechnology.drinkpowder.name=Meal Replacement Powder
+item.emergingtechnology.drink.name=Meal Replacement Drink
+item.emergingtechnology.plasticbottle.name=Plastic Bottle
+
 item.emergingtechnology.bioreactor.name=Tissue Bioreactor
 item.emergingtechnology.scaffolder.name=Tissue Scaffolder
 item.emergingtechnology.algaebioreactor.name=Algae Bioreactor
@@ -223,6 +227,9 @@ item.emergingtechnology.pollutedgravel.name=Polluted Gravel
 block.emergingtechnology.pollutedgravel.name=Polluted Gravel
 tile.emergingtechnology.pollutedgravel.name=Polluted Gravel
 
+#MULTIBLOCKS
+multiblock.emergingtechnology.aquaponictank=Aquaponic Tank
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
@@ -357,6 +364,9 @@ gui.emergingtechnology.optimiser.progress=Reduces processing time by %s percent.
 gui.emergingtechnology.battery.inputlabel=Set %s side to Input (Currently Output)
 gui.emergingtechnology.battery.outputlabel=Set %s side to Output (Currently Input)
 
+gui.emergingtechnology.aquaponic.inputlabel=New fish are kept in tank
+gui.emergingtechnology.aquaponic.outputlabel=New fish are moved to output
+
 # Configuration
 config.emergingtechnology.title=Emerging Technology - Configuration
 
@@ -373,6 +383,7 @@ config.emergingtechnology.hydroponics.filler.title=Water Filler
 config.emergingtechnology.hydroponics.scrubber.title=CO2 Scrubber
 config.emergingtechnology.hydroponics.diffuser.title=CO2 Diffuser
 config.emergingtechnology.hydroponics.injector.title=Nutrient Injector
+config.emergingtechnology.hydroponics.aquaponic.title
 
 config.emergingtechnology.polymers.title=Polymers
 config.emergingtechnology.polymers.title.tooltip=Configure World Generation, Shredder, Processor, Fabricator and Collector here

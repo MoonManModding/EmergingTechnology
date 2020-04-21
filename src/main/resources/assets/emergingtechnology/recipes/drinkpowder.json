@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "as"
+  ],
+  "key": {
+    "a": {
+      "item": "emergingtechnology:algae"
+    },
+    "s": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:drinkpowder",
+    "count": 1
+  }
+}

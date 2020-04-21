@@ -39,6 +39,10 @@ public class SyntheticsModule {
     @RangeInt(min = 0, max = Integer.MAX_VALUE)
     public int algaeHunger = 5;
 
+    @Name("Drink Food Points")
+    @RangeInt(min = 0, max = Integer.MAX_VALUE)
+    public int drinkHunger = 7;
+
     @Name("Synthetic Chicken Food Saturation (double)")
     @RangeDouble(min = 0, max = Double.MAX_VALUE)
     public double chickenHungerSaturation = 1.66;
@@ -54,4 +58,8 @@ public class SyntheticsModule {
     @Name("Algae Food Saturation (double)")
     @RangeDouble(min = 0, max = Double.MAX_VALUE)
     public double algaeHungerSaturation = 1.28;
+
+    @Name("Drink Food Saturation (double)")
+    @RangeDouble(min = 0, max = Double.MAX_VALUE)
+    public double drinkHungerSaturation = 1.82;
 }

@@ -5,6 +5,7 @@ import io.moonman.emergingtechnology.network.animation.HarvesterStopAnimationPac
 import io.moonman.emergingtechnology.network.animation.ScrubberAnimationPacket;
 import io.moonman.emergingtechnology.network.animation.TidalGeneratorAnimationPacket;
 import io.moonman.emergingtechnology.network.animation.WindGeneratorAnimationPacket;
+import io.moonman.emergingtechnology.network.gui.AquaponicUpdatePacket;
 import io.moonman.emergingtechnology.network.gui.BatteryUpdatePacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorSelectionPacket;
 import io.moonman.emergingtechnology.network.gui.FabricatorStopStartPacket;
@@ -41,6 +42,8 @@ public class PacketHandler {
                 INSTANCE.registerMessage(OptimiserUpdatePacket.Handler.class, OptimiserUpdatePacket.class, nextID(),
                                 Side.SERVER);
                 INSTANCE.registerMessage(BatteryUpdatePacket.Handler.class, BatteryUpdatePacket.class, nextID(),
+                                Side.SERVER);
+                INSTANCE.registerMessage(AquaponicUpdatePacket.Handler.class, AquaponicUpdatePacket.class, nextID(),
                                 Side.SERVER);
         }
 

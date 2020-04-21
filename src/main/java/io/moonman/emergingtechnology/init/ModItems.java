@@ -32,6 +32,9 @@ import io.moonman.emergingtechnology.item.polymers.ShreddedStarch;
 import io.moonman.emergingtechnology.item.polymers.Turbine;
 import io.moonman.emergingtechnology.item.synthetics.consumables.AlgaeBarCooked;
 import io.moonman.emergingtechnology.item.synthetics.consumables.AlgaeBarRaw;
+import io.moonman.emergingtechnology.item.synthetics.consumables.Drink;
+import io.moonman.emergingtechnology.item.synthetics.consumables.DrinkPowder;
+import io.moonman.emergingtechnology.item.synthetics.consumables.PlasticBottle;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenCooked;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticChickenRaw;
 import io.moonman.emergingtechnology.item.synthetics.consumables.SyntheticCowCooked;
@@ -145,6 +148,10 @@ public class ModItems {
 	public static final Item algaebarraw = null;
 	public static final Item algaebarcooked = null;
 
+	public static final Item plasticbottle = null;
+	public static final Item drinkpowder = null;
+	public static final Item drink = null;
+
 	// endregion
 
 	// region Electrics Items
@@ -182,12 +189,12 @@ public class ModItems {
 		Item[] items = { ModItems.redbulb, ModItems.greenbulb, ModItems.bluebulb, ModItems.purplebulb,
 				ModItems.nozzlecomponent, ModItems.nozzlesmart, ModItems.nozzlelong, ModItems.nozzleprecise,
 				ModItems.fertilizer, ModItems.shreddedplastic, ModItems.shreddedplant, ModItems.shreddedstarch,
-				ModItems.shreddedpaper, ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament,
-				ModItems.plastictissuescaffold, ModItems.turbine, ModItems.plasticwaste, ModItems.paperwaste,
+				ModItems.shreddedpaper, ModItems.drinkpowder, ModItems.plasticrod, ModItems.plasticsheet, ModItems.filament,
+				ModItems.plastictissuescaffold, ModItems.turbine, ModItems.plasticbottle, ModItems.plasticwaste, ModItems.paperwaste,
 				ModItems.paperpulp, ModItems.emptysyringe, ModItems.syntheticcowraw, ModItems.syntheticchickenraw,
 				ModItems.syntheticpigraw, ModItems.syntheticcowcooked, ModItems.syntheticchickencooked,
 				ModItems.syntheticpigcooked, ModItems.syntheticleather, ModItems.syntheticslime, ModItems.syntheticsilk,
-				ModItems.algaebarraw, ModItems.algaebarcooked, ModItems.algae, ModItems.biomass, ModItems.biochar,
+				ModItems.algaebarraw, ModItems.algaebarcooked, ModItems.drink, ModItems.algae, ModItems.biomass, ModItems.biochar,
 				ModItems.circuit, ModItems.circuitbasic, ModItems.circuitadvanced, ModItems.circuitsuperior };
 
 		return items;
@@ -198,10 +205,10 @@ public class ModItems {
 				new NozzleSmart(), new NozzleLong(), new NozzlePrecise(), new Fertilizer(), new ShreddedPlastic(),
 				new ShreddedPlant(), new ShreddedStarch(), new ShreddedPaper(), new PaperWaste(), new PaperPulp(),
 				new PlasticWaste(), new PlasticRod(), new PlasticSheet(), new Filament(), new PlasticTissueScaffold(),
-				new Turbine(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),
+				new Turbine(), new PlasticBottle(), new EmptySyringe(), new SyntheticCowRaw(), new SyntheticChickenRaw(),
 				new SyntheticPigRaw(), new SyntheticPigCooked(), new SyntheticCowCooked(), new SyntheticChickenCooked(),
 				new SyntheticLeather(), new SyntheticSlime(), new SyntheticSilk(), new AlgaeBarRaw(),
-				new AlgaeBarCooked(), new Algae(), new Biomass(), new Biochar(), new Circuit(), new CircuitBasic(),
+				new AlgaeBarCooked(), new Algae(), new DrinkPowder(), new Drink(), new Biomass(), new Biochar(), new Circuit(), new CircuitBasic(),
 				new CircuitAdvanced(), new CircuitSuperior() };
 
 		return items;

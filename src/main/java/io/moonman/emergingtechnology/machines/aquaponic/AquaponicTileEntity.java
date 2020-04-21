@@ -119,6 +119,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
     private int fluid = this.nutrientFluidHandler.getFluidAmount();
     private int energy = this.energyHandler.getEnergyStored();
     private boolean isMultiblock = false;
+    private boolean fishOut = true;
 
     private int progress = 0;
 
@@ -157,6 +158,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         this.setEnergy(compound.getInteger("GuiEnergy"));
         this.setProgress(compound.getInteger("GuiProgress"));
         this.setMultiblock(compound.getInteger("GuiMultiblock") > 0);
+        this.setFishOut(compound.getInteger("GuiFishOut") > 0);
 
         this.waterHandler.readFromNBT(compound.getCompoundTag("InputTank"));
         this.nutrientFluidHandler.readFromNBT(compound.getCompoundTag("OutputTank"));
@@ -175,6 +177,7 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         compound.setInteger("GuiEnergy", this.getEnergy());
         compound.setInteger("GuiProgress", this.getProgress());
         compound.setInteger("GuiMultiblock", this.getIsMultiblock() ? 1 : 0);
+        compound.setInteger("GuiFishOut", this.getFishOut() ? 1 : 0);
 
         NBTTagCompound fluidTag = new NBTTagCompound();
         NBTTagCompound nutrientTag = new NBTTagCompound();
@@ -201,14 +204,16 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
 
     private void doFishBreeding() {
 
-        if (!enoughResources()) return;
+        if (!enoughResources())
+            return;
 
-        AquaponicHelper.tryBreedFish(itemHandler, true);
+        AquaponicHelper.tryBreedFish(itemHandler, getFishOut());
     }
 
     private void doFluidGeneration() {
 
-        if (!enoughResources()) return;
+        if (!enoughResources())
+            return;
 
         this.energyHandler.extractEnergy(getPacket().calculateEnergyUse(
                 EmergingTechnologyConfig.HYDROPONICS_MODULE.AQUAPONIC.aquaponicEnergyBaseUsage), false);
@@ -319,6 +324,10 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         return this.isMultiblock;
     }
 
+    public boolean getFishOut() {
+        return this.fishOut;
+    }
+
     // Setters
 
     private void setWater(int quantity) {
@@ -341,6 +350,10 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
         this.isMultiblock = value;
     }
 
+    private void setFishOut(boolean value) {
+        this.fishOut = value;
+    }
+
     public int getField(EnumTileField field) {
         switch (field) {
             case ENERGY:
@@ -353,6 +366,8 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
                 return this.getNutrientFluid();
             case MULTIBLOCK:
                 return this.getIsMultiblock() ? 1 : 0;
+            case FISHOUTPUT:
+                return this.getFishOut() ? 1 : 0;
             default:
                 return 0;
         }
@@ -374,6 +389,8 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
                 break;
             case MULTIBLOCK:
                 this.setMultiblock(value > 0);
+            case FISHOUTPUT:
+                this.setFishOut(value > 0);
             default:
                 break;
         }
@@ -419,6 +436,13 @@ public class AquaponicTileEntity extends MachineTileBase implements SimpleCompon
     @Optional.Method(modid = "opencomputers")
     public Object[] isValidStructure(Context context, Arguments args) {
         boolean value = getIsMultiblock();
+        return new Object[] { value };
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getFishOutput(Context context, Arguments args) {
+        boolean value = getFishOut();
         return new Object[] { value };
     }
 }

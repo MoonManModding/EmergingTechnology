@@ -2,15 +2,19 @@ package io.moonman.emergingtechnology.machines.hydroponic;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
-import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.helpers.CollisionHelper;
+import io.moonman.emergingtechnology.helpers.PlantHelper;
 import io.moonman.emergingtechnology.helpers.machines.HydroponicHelper;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.classes.block.MachineBase;
 import io.moonman.emergingtechnology.util.KeyBindings;
 import io.moonman.emergingtechnology.util.Lang;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -19,6 +23,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -29,6 +34,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -39,7 +45,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraft.block.ITileEntityProvider;
 
 public class Hydroponic extends MachineBase implements ITileEntityProvider {
 
@@ -64,6 +69,18 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
             tooltip.add(Lang.getRequired(fluidUsage, ResourceTypeEnum.FLUID));
         } else {
             tooltip.add(Lang.get(Lang.INTERACT_SHIFT));
+        }
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+            List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+        if (!isActualState) {
+            state = this.getActualState(state, worldIn, pos);
+        }
+
+        for (AxisAlignedBB axisalignedbb : CollisionHelper.getMachineCollisionBoxList(state)) {
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, axisalignedbb);
         }
     }
 

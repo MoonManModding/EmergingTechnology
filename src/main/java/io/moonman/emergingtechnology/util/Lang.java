@@ -57,6 +57,8 @@ public class Lang {
                         SOURCE + "aquaponic" + DESC);
         public static final TextComponentTranslation AQUAPONICPORT_DESC = new TextComponentTranslation(
                         SOURCE + "aquaponicport" + DESC);
+        public static final TextComponentTranslation AQUAPONICTANK_DESC = new TextComponentTranslation(
+                        "multiblock.emergingtechnology.aquaponictank");
 
         // Block descriptions for tooltips
         public static final TextComponentTranslation FRAME_DESC = new TextComponentTranslation(
@@ -139,6 +141,11 @@ public class Lang {
         public static String getBatteryLabel(String facing, boolean isInputButton) {
                 String path = isInputButton ? "battery.inputlabel" : "battery.outputlabel";
                 return new TextComponentTranslation(GUI_SOURCE + path, facing).getFormattedText();
+        }
+
+        public static String getFishOutputLabel(boolean fishOutput) {
+                String path = fishOutput ? "aquaponic.outputlabel" : "aquaponic.inputlabel";
+                return new TextComponentTranslation(GUI_SOURCE + path).getFormattedText();
         }
 
         public static String getOptimiserRemaining(int amount) {

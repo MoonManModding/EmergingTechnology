@@ -105,6 +105,7 @@ public class ShredderRecipes {
         itemInputs.add(new ItemStack(ModItems.bluebulb));
         itemInputs.add(new ItemStack(ModItems.purplebulb));
         itemInputs.add(new ItemStack(ModItems.plasticwaste));
+        itemInputs.add(new ItemStack(ModItems.plasticbottle));
 
         Item p = Item.getByNameOrId("rats:plastic_waste");
 

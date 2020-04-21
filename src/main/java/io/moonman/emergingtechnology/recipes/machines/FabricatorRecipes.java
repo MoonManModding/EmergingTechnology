@@ -79,6 +79,7 @@ public class FabricatorRecipes {
         FabricatorRecipe recipe9 = new FabricatorRecipe(9, new ItemStack(ModItems.emptysyringe, 3), FabricatorHelper.getFilamentWithAmount(2));
         FabricatorRecipe recipe10 = new FabricatorRecipe(10, new ItemStack(ModItems.turbine, 3), FabricatorHelper.getFilamentWithAmount(2));
         FabricatorRecipe recipe11 = new FabricatorRecipe(11, new ItemStack(ModItems.nozzlecomponent, 1), FabricatorHelper.getFilamentWithAmount(1));
+        FabricatorRecipe recipe12 = new FabricatorRecipe(12, new ItemStack(ModItems.plasticbottle, 1), FabricatorHelper.getFilamentWithAmount(1));
         add(recipe);
         add(recipe2);
         add(recipe3);
@@ -90,5 +91,6 @@ public class FabricatorRecipes {
         add(recipe9);
         add(recipe10);
         add(recipe11);
+        add(recipe12);
     }
 }

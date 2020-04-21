@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p",
+    "b"
+  ],
+  "key": {
+    "p": {
+      "item": "emergingtechnology:drinkpowder"
+    },
+    "b": {
+      "item": "emergingtechnology:plasticbottle"
+    }
+  },
+  "result": {
+    "item": "emergingtechnology:drink",
+    "count": 1
+  }
+}

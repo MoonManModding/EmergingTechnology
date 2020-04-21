@@ -2,6 +2,7 @@ package io.moonman.emergingtechnology.proxy;
 
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.config.EmergingTechnologyConfig;
+import io.moonman.emergingtechnology.helpers.ChatHelper;
 import io.moonman.emergingtechnology.providers.ModBulbProvider;
 import io.moonman.emergingtechnology.providers.ModFluidProvider;
 import io.moonman.emergingtechnology.providers.ModMediumProvider;
@@ -68,7 +69,9 @@ public abstract class CommonProxy {
         ModLoader.preInit();
 
         GameRegistry.registerWorldGenerator(OreGenerator.instance, 10);
+
         MinecraftForge.EVENT_BUS.register(OreGenerator.instance);
+        MinecraftForge.EVENT_BUS.register(ChatHelper.instance);
 
         ModBulbProvider.preInit(e);
         ModMediumProvider.preInit(e);

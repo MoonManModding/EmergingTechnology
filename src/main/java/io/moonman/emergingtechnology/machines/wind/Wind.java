@@ -38,8 +38,20 @@ import net.minecraft.block.ITileEntityProvider;
 
 public class Wind extends SimpleMachineBase implements ITileEntityProvider {
 
-    protected static final AxisAlignedBB AABB_COLUMN = new AxisAlignedBB(0.25D, 0.2D, 0.25D, 0.75D, 1.0D, 0.75D);
-    protected static final AxisAlignedBB AABB_SLAB_BOTTOM = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.2D, 1.0D);
+    protected static final AxisAlignedBB AABB_COLUMN_UP = new AxisAlignedBB(0.25D, 0.2D, 0.25D, 0.75D, 1.0D, 0.75D);
+    protected static final AxisAlignedBB AABB_SLAB_BOTTOM_UP = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.2D, 1.0D);
+    protected static final AxisAlignedBB AABB_COLUMN_DOWN = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.8D, 0.75D);
+    protected static final AxisAlignedBB AABB_SLAB_BOTTOM_DOWN = new AxisAlignedBB(0.0D, 0.8D, 0.0D, 1.0D, 1.0D, 1.0D);
+
+    protected static final AxisAlignedBB AABB_COLUMN_WEST = new AxisAlignedBB(0.2D, 0.25D, 0.25D, 1.0D, 0.75D, 0.75D);
+    protected static final AxisAlignedBB AABB_SLAB_BOTTOM_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.2D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_COLUMN_EAST = new AxisAlignedBB(0.0D, 0.25D, 0.25D, 0.8D, 0.75D, 0.75D);
+    protected static final AxisAlignedBB AABB_SLAB_BOTTOM_EAST = new AxisAlignedBB(0.8D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+
+    protected static final AxisAlignedBB AABB_COLUMN_SOUTH = new AxisAlignedBB(0.25D, 0.25D, 0.0D, 0.75D, 0.75D, 0.8D);
+    protected static final AxisAlignedBB AABB_SLAB_BOTTOM_SOUTH = new AxisAlignedBB(0.0D, 0.0D, 0.8D, 1.0D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_COLUMN_NORTH = new AxisAlignedBB(0.25D, 0.25D, 0.2D, 0.75D, 0.75D, 1.0D);
+    protected static final AxisAlignedBB AABB_SLAB_BOTTOM_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.2D);
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
@@ -47,7 +59,7 @@ public class Wind extends SimpleMachineBase implements ITileEntityProvider {
         super(Material.IRON, "wind");
         this.setSoundType(SoundType.METAL);
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
     }
 
     @SideOnly(Side.CLIENT)
@@ -74,54 +86,14 @@ public class Wind extends SimpleMachineBase implements ITileEntityProvider {
 
     @Override
     public ExtendedBlockState createBlockState() {
-        return new ExtendedBlockState(this, new IProperty[] { FACING, Properties.StaticProperty }, new IUnlistedProperty[]{ Properties.AnimationProperty });
-    }
-
-    @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        if (!worldIn.isRemote) {
-            IBlockState north = worldIn.getBlockState(pos.north());
-            IBlockState east = worldIn.getBlockState(pos.east());
-            IBlockState south = worldIn.getBlockState(pos.south());
-            IBlockState west = worldIn.getBlockState(pos.west());
-
-            EnumFacing face = (EnumFacing) state.getValue(FACING);
-
-            if (face == EnumFacing.NORTH && north.isFullBlock() && !south.isFullBlock()) {
-                face = EnumFacing.SOUTH;
-            } else if (face == EnumFacing.SOUTH && south.isFullBlock() && !north.isFullBlock()) {
-                face = EnumFacing.NORTH;
-            } else if (face == EnumFacing.EAST && east.isFullBlock() && !west.isFullBlock()) {
-                face = EnumFacing.WEST;
-            } else if (face == EnumFacing.WEST && west.isFullBlock() && !east.isFullBlock()) {
-                face = EnumFacing.EAST;
-            }
-
-            worldIn.setBlockState(pos, state.withProperty(FACING, face));
-        }
+        return new ExtendedBlockState(this, new IProperty[] { FACING, Properties.StaticProperty },
+                new IUnlistedProperty[] { Properties.AnimationProperty });
     }
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY,
             float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-            ItemStack stack) {
-        worldIn.setBlockState(pos,
-                this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
-    }
-
-    @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
-    }
-
-    @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+        return this.getDefaultState().withProperty(FACING, facing);
     }
 
     @Override
@@ -139,9 +111,39 @@ public class Wind extends SimpleMachineBase implements ITileEntityProvider {
     private static List<AxisAlignedBB> getCollisionBoxList(IBlockState state) {
         List<AxisAlignedBB> list = new ArrayList<AxisAlignedBB>();
 
-        list.add(AABB_SLAB_BOTTOM);
-        list.add(AABB_COLUMN);
+        // Need to switch between state.getValue(FACING) here
+        
+        switch (state.getValue(FACING)) {
+            case DOWN:
+                list.add(AABB_SLAB_BOTTOM_DOWN);
+                list.add(AABB_COLUMN_DOWN);
+               break;
+            case EAST:
+                list.add(AABB_SLAB_BOTTOM_EAST);
+                list.add(AABB_COLUMN_EAST);
+                break;
+            case NORTH:
+                list.add(AABB_SLAB_BOTTOM_NORTH);
+                list.add(AABB_COLUMN_NORTH);
+                break;
+            case SOUTH:
+                list.add(AABB_SLAB_BOTTOM_SOUTH);
+                list.add(AABB_COLUMN_SOUTH);
+                break;
+            case UP:
+                list.add(AABB_SLAB_BOTTOM_UP);
+                list.add(AABB_COLUMN_UP);
+                break;
+            case WEST:
+                list.add(AABB_SLAB_BOTTOM_WEST);
+                list.add(AABB_COLUMN_WEST);
+                break;
+            default:
+                list.add(AABB_SLAB_BOTTOM_UP);
+                list.add(AABB_COLUMN_UP);
+                break;
 
+        }
         return list;
     }
 
@@ -157,18 +159,16 @@ public class Wind extends SimpleMachineBase implements ITileEntityProvider {
         return true;
     }
 
-	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		return state.withProperty(Properties.StaticProperty, true);
-	}
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return state.withProperty(Properties.StaticProperty, true);
+    }
 
     // End required for animation
 
-
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing facing = EnumFacing.getHorizontal(meta);
-        return this.getDefaultState().withProperty(FACING, facing);
+        return this.getDefaultState().withProperty(FACING, EnumFacing.VALUES[meta]);
     }
 
     @Override

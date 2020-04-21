@@ -33,7 +33,8 @@ public enum EnumTileField {
     BATTERYNORTH,
     BATTERYSOUTH,
     BATTERYEAST,
-    BATTERYWEST;
+    BATTERYWEST,
+    FISHOUTPUT;
 
     private static EnumTileField[] values = null;
 

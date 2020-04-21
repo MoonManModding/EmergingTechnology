@@ -2,8 +2,11 @@ package io.moonman.emergingtechnology.machines.battery;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import io.moonman.emergingtechnology.EmergingTechnology;
 import io.moonman.emergingtechnology.gui.enums.ResourceTypeEnum;
+import io.moonman.emergingtechnology.helpers.CollisionHelper;
 import io.moonman.emergingtechnology.helpers.classes.BatteryConfiguration;
 import io.moonman.emergingtechnology.init.Reference;
 import io.moonman.emergingtechnology.machines.classes.block.SimpleMachineBase;
@@ -17,12 +20,14 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -37,7 +42,7 @@ public class Battery extends SimpleMachineBase implements ITileEntityProvider {
     public static final PropertyBool INPUT_SOUTH = PropertyBool.create("input_south");
     public static final PropertyBool INPUT_EAST = PropertyBool.create("input_east");
     public static final PropertyBool INPUT_WEST = PropertyBool.create("input_west");
-
+    
     public Battery() {
         super(Material.IRON, "battery");
         this.setSoundType(SoundType.METAL);
@@ -66,22 +71,22 @@ public class Battery extends SimpleMachineBase implements ITileEntityProvider {
             return true;
         }
 
-        // TileEntity tileEntity = worldIn.getTileEntity(pos);
-
-        // if (tileEntity != null) {
-        //     if (tileEntity instanceof BatteryTileEntity == true) {
-        //         BatteryTileEntity battery = (BatteryTileEntity) tileEntity;
-
-        //         BatteryConfiguration config = battery.getConfiguration();
-
-        //         config.setSideInput(facing, !config.getSideInput(facing));
-        //     }
-        // }
-
         playerIn.openGui(EmergingTechnology.instance, Reference.GUI_BATTERY, worldIn, pos.getX(), pos.getY(),
                 pos.getZ());
 
         return true;
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+            List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+        if (!isActualState) {
+            state = this.getActualState(state, worldIn, pos);
+        }
+
+        for (AxisAlignedBB axisalignedbb : CollisionHelper.getMachineCollisionBoxList(state)) {
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, axisalignedbb);
+        }
     }
 
     @Override
