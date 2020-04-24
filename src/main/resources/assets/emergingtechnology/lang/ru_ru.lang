@@ -83,6 +83,10 @@ item.emergingtechnology.algae.name=Водоросли
 item.emergingtechnology.algaebarraw.name=Кусок водорослей
 item.emergingtechnology.algaebarcooked.name=Приготовленный кусок водорослей
 
+item.emergingtechnology.drinkpowder.name=Порошковый заменитель еды
+item.emergingtechnology.drink.name=Питьевой заменитель еды
+item.emergingtechnology.plasticbottle.name=Пластиковая бутылка
+
 #ELECTRICS MODULE
 item.emergingtechnology.piezoelectric.name=Пьезоэлектрический генератор
 item.emergingtechnology.solar.name=Солнечная панель
@@ -100,6 +104,7 @@ item.emergingtechnology.circuitbasic.name=Базовая печатная пла
 item.emergingtechnology.circuitadvanced.name=Продвинутая печатная плата
 item.emergingtechnology.circuitsuperior.name=Превосходная печатная плата
 item.emergingtechnology.torch.name=Путеводный свет
+
 
 #Blocks
 
@@ -224,6 +229,9 @@ item.emergingtechnology.pollutedgravel.name=Загрязнённый грави�
 block.emergingtechnology.pollutedgravel.name=Загрязнённый гравий
 tile.emergingtechnology.pollutedgravel.name=Загрязнённый гравий
 
+#MULTIBLOCKS
+multiblock.emergingtechnology.aquaponictank=Резервуар аквапоники
+
 #ItemGroup
 
 itemGroup.technologytab=Emerging Technology
@@ -255,7 +263,6 @@ info.emergingtechnology.solarglass.description=Прозрачная солнеч
 info.emergingtechnology.battery.description=Накапливает энергию для последующего использования. Вход с зелёной стороны, выход с красной.
 info.emergingtechnology.wind.description=Генерирует энергию, используя движение ветра.
 info.emergingtechnology.optimiser.description=Увеличивает эффективность прилегающих машин.
-
 info.emergingtechnology.aquaponic.description=Главный блок управления для резервуара аквапоники
 info.emergingtechnology.aquaponicport.description=Порт автоматизации для резервуара аквапоники
 info.emergingtechnology.frame.description=Декоративная пластиковая рамка
@@ -356,8 +363,11 @@ gui.emergingtechnology.optimiser.remaining=%s оставшихся ядер.
 gui.emergingtechnology.optimiser.resource=Сокращает использование ресурсов на %s процентов.
 gui.emergingtechnology.optimiser.progress=Сокращает время обработки на %s процентов.
 
-gui.emergingtechnology.battery.inputlabel=Set %s side to Input (Currently Output)
-gui.emergingtechnology.battery.outputlabel=Set %s side to Output (Currently Input)
+gui.emergingtechnology.battery.inputlabel=Устанавливает %s сторону на Ввод (сейчас Вывод)
+gui.emergingtechnology.battery.outputlabel=Устанавливает %s сторону на Вывод (сейчас Ввод)
+
+gui.emergingtechnology.aquaponic.inputlabel=Новая рыба хранится в резервуаре
+gui.emergingtechnology.aquaponic.outputlabel=Новая рыба перемещается на вывод
 
 # Configuration
 config.emergingtechnology.title=Конфигурация Emerging Technology
