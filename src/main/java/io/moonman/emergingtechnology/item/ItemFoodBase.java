@@ -12,4 +12,5 @@ public class ItemFoodBase extends ItemFood {
         this.setCreativeTab(EmergingTechnology.TECHNOLOGYTAB);
         this.setMaxStackSize(64);
     }
+
 }

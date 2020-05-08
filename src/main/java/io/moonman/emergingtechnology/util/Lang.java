@@ -59,6 +59,8 @@ public class Lang {
                         SOURCE + "aquaponicport" + DESC);
         public static final TextComponentTranslation AQUAPONICTANK_DESC = new TextComponentTranslation(
                         "multiblock.emergingtechnology.aquaponictank");
+        public static final TextComponentTranslation SPEAKER_DESC = new TextComponentTranslation(
+                        SOURCE + "speaker" + DESC);
 
         // Block descriptions for tooltips
         public static final TextComponentTranslation FRAME_DESC = new TextComponentTranslation(

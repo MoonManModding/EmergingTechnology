@@ -36,4 +36,8 @@ public class ElectricsModule {
     @Name("Algorithmic Optimizer")
 	@LangKey("config.emergingtechnology.electrics.optimiser.title")
     public final ElectricsModuleOptimiser OPTIMISER = new ElectricsModuleOptimiser();
+
+    @Name("Smart Speaker")
+	@LangKey("config.emergingtechnology.electrics.speaker.title")
+    public final ElectricsModuleSpeaker SPEAKER = new ElectricsModuleSpeaker();
 }

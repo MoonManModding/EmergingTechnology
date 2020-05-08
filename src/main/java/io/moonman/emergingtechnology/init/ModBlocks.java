@@ -42,6 +42,7 @@ import io.moonman.emergingtechnology.machines.scrubber.Scrubber;
 import io.moonman.emergingtechnology.machines.shredder.Shredder;
 import io.moonman.emergingtechnology.machines.solar.Solar;
 import io.moonman.emergingtechnology.machines.solarglass.SolarGlass;
+import io.moonman.emergingtechnology.machines.speaker.Speaker;
 import io.moonman.emergingtechnology.machines.tidal.TidalGenerator;
 import io.moonman.emergingtechnology.machines.wind.Wind;
 import net.minecraft.block.Block;
@@ -103,6 +104,7 @@ public class ModBlocks {
 	public static final BiocharBlock biocharblock = null;
 	public static final Optimiser optimiser = null;
 	public static final Torch torch = null;
+	public static final Speaker speaker = null;
 	// endregion
 
 	// region Fluid Blocks
@@ -122,7 +124,7 @@ public class ModBlocks {
 				ModBlocks.fabricator, ModBlocks.collector, ModBlocks.cooker, ModBlocks.bioreactor, ModBlocks.scaffolder,
 				ModBlocks.algaebioreactor, ModBlocks.piezoelectric, ModBlocks.tidalgenerator,
 				ModBlocks.biomassgenerator, ModBlocks.solar, ModBlocks.solarglass, ModBlocks.wind, ModBlocks.battery,
-				ModBlocks.optimiser, ModBlocks.torch, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
+				ModBlocks.optimiser, ModBlocks.speaker, ModBlocks.torch, ModBlocks.ladder, ModBlocks.plasticblock, ModBlocks.frame,
 				ModBlocks.clearplasticblock, ModBlocks.aquaponicglass, ModBlocks.aquaponicblock,
 				ModBlocks.aquaponicbase, ModBlocks.aquaponic, ModBlocks.aquaponicport, ModBlocks.machinecase, ModBlocks.shreddedplantblock,
 				ModBlocks.shreddedplasticblock, ModBlocks.shreddedstarchblock, ModBlocks.biocharblock,
@@ -138,7 +140,7 @@ public class ModBlocks {
 				new ClearPlasticBlock(), new AquaponicGlass(), new AquaponicBlock(), new AquaponicBase(),
 				new Aquaponic(), new AquaponicPort(), new MachineCase(), new Fabricator(), new Collector(), new Cooker(), new Scaffolder(),
 				new Bioreactor(), new AlgaeBioreactor(), new Ladder(), new Piezoelectric(), new TidalGenerator(),
-				new BiomassGenerator(), new Solar(), new SolarGlass(), new Wind(), new Battery(), new Optimiser(),
+				new BiomassGenerator(), new Solar(), new SolarGlass(), new Wind(), new Battery(), new Optimiser(), new Speaker(),
 				new Torch(), new BiocharBlock(), new ShreddedPlasticBlock(), new ShreddedPlantBlock(),
 				new ShreddedStarchBlock(), new PollutedDirt(), new PollutedSand(), new PollutedGravel(),
 				new NutrientBlock(), new CarbonDioxideBlock() };
