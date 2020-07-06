@@ -110,6 +110,22 @@ public class PlantHelper {
         return 0;
     }
 
+    public static boolean isPlantAbovePosition(World world, BlockPos position) {
+        IBlockState state = world.getBlockState(position.add(0, 1, 0));
+
+        if (state == null) {
+            return false;
+        }
+
+        Block block = state.getBlock();
+
+        if (block instanceof BlockReed || block instanceof BlockCactus || block instanceof BlockCrops || block instanceof IGrowable || block instanceof IPlantable) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static String getPlantNameAtPosition(World world, BlockPos position) {
         IBlockState state = world.getBlockState(position.add(0, 1, 0));
 

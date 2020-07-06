@@ -158,6 +158,7 @@ public class HarvesterTileEntity extends AnimatedMachineTileBase implements Simp
             if (canHarvest(facing)) {
                 Harvester.rotateFacing(facing, world, pos);
                 animateHarvest();
+                doHarvest();
             }
         }
 

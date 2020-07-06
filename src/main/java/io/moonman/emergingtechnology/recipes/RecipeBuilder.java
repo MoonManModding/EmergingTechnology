@@ -152,6 +152,14 @@ public class RecipeBuilder {
     }
 
     public static ItemStack getCookerOutputForItemStack(ItemStack itemStack) {
+
+        // Check crafttweaker recipes
+        ItemStack recipeStack = CookerRecipes.getOutputByItemStack(itemStack);
+
+        if (recipeStack != null) {
+            return recipeStack;
+        }
+
         ItemStack resultStack = FurnaceRecipes.instance().getSmeltingResult(itemStack);
 
         if (resultStack == null) {

@@ -55,7 +55,7 @@ public class Reference {
     
     public static final int WIND_ENERGY_CAPACITY = 10000;
 
-    public static final int BIOMASS_ENERGY_CAPACITY = 10000;
+    public static final int BIOMASS_ENERGY_CAPACITY = 100000;
 
     public static final int BIOREACTOR_FLUID_CAPACITY = 10000;
     public static final int BIOREACTOR_ENERGY_CAPACITY = 10000;

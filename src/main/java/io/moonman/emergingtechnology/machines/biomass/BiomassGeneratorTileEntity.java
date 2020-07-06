@@ -11,10 +11,9 @@ import io.moonman.emergingtechnology.machines.classes.tile.EnumTileField;
 import io.moonman.emergingtechnology.machines.classes.tile.MachineTileBase;
 import io.moonman.emergingtechnology.recipes.machines.BiomassRecipes;
 import li.cil.oc.api.network.SimpleComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -65,6 +64,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
 
     private int energy = 0;
     private int progress = 0;
+    private String usedInputStackId = "";
 
     @Override
     public boolean isEnergyGeneratorTile() {
@@ -97,6 +97,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
 
         this.setEnergy(compound.getInteger("GuiEnergy"));
         this.setProgress(compound.getInteger("GuiProgress"));
+        this.setUsedInputStackId(compound.getString("GeneratorUsedInputStackId"));
 
         this.energyHandler.readFromNBT(compound);
     }
@@ -108,6 +109,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
 
         compound.setInteger("GuiEnergy", this.getEnergy());
         compound.setInteger("GuiProgress", this.getProgress());
+        compound.setString("GeneratorUsedInputStackId", this.getUsedInputStackId());
 
         this.energyHandler.writeToNBT(compound);
 
@@ -126,14 +128,9 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
 
         int energy = EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.biomassEnergyGenerated;
 
-        // Generator full - stop processing
-        if (getEnergy() + energy > Reference.BIOMASS_ENERGY_CAPACITY) {
-            return;
-        }
-
         ItemStack inputStack = getInputStack();
 
-        if (this.getProgress() == 0) {
+        if (this.getProgress() == 0 && !this.hasUsedInputStackId()) {
             if (inputStack.getCount() == 0) {
                 return;
             }
@@ -142,13 +139,13 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
                 return;
             }
 
+            setUsedInputStackId(getInputStack().getItem().getRegistryName().toString());
             itemHandler.extractItem(0, 1, false);
         }
 
         ItemStack outputStack = getOutputStack();
-        ItemStack plannedStack = BiomassRecipes.getOutputByItemStack(inputStack);
+        ItemStack plannedStack = BiomassRecipes.getPlannedStackById(getUsedInputStackId());
 
-        // This is probably unneccessary
         if (plannedStack == null || plannedStack.isEmpty()) {
             return;
         }
@@ -174,6 +171,7 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
         itemHandler.insertItem(1, plannedStack, false);
         
         this.setProgress(0);
+        this.setUsedInputStackId("");
     }
 
     private void spreadEnergy() {
@@ -198,6 +196,14 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
         return this.progress;
     }
 
+    public boolean hasUsedInputStackId() {
+        return this.getUsedInputStackId() != "";
+    }
+
+    public String getUsedInputStackId() {
+        return this.usedInputStackId;
+    }
+
     public int getMaxProgress() {
         return EmergingTechnologyConfig.ELECTRICS_MODULE.BIOMASSGENERATOR.baseTimeTaken;
     }
@@ -210,6 +216,10 @@ public class BiomassGeneratorTileEntity extends MachineTileBase implements Simpl
 
     private void setProgress(int quantity) {
         this.progress = quantity;
+    }
+
+    private void setUsedInputStackId(String inputStackId) {
+        this.usedInputStackId = inputStackId;
     }
 
     public int getField(EnumTileField field) {

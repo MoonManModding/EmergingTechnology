@@ -54,7 +54,7 @@ public class HarvesterStopAnimationPacket implements IMessage {
             if (tileEntity == null)
                 return;
 
-            tileEntity.doHarvest();
+            // tileEntity.doHarvest();
         }
 
         private HarvesterTileEntity getTileEntity(World world, BlockPos pos) {

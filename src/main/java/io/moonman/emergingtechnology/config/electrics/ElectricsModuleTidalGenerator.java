@@ -18,7 +18,7 @@ public class ElectricsModuleTidalGenerator {
     
     @Name("Minimum Required Surrounding Water")
     @Config.Comment("Minimum required surrounding water blocks for Tidal Generator to function in a 5 x 5 grid (not including self)")
-    @RangeInt(min = 0, max = Integer.MAX_VALUE)
+    @RangeInt(min = 0, max = 24)
     public int minimumWaterBlocks = 15;
 
     @Name("Maximum Optimal Depth")

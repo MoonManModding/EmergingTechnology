@@ -27,14 +27,18 @@ public class BatteryTileEntity extends MachineTileBase implements SimpleComponen
         @Override
         protected void onSideChanged() {
             updateBlockRender();
-            getWorld().notifyNeighborsOfStateChange(getPos(), ModBlocks.battery, true);
         }
     };
 
     private void updateBlockRender() {
+
+        if (getWorld() == null) {
+            return;
+        }
+
         getWorld().notifyBlockUpdate(getPos(), getState(), getState(), 3);
         getWorld().notifyNeighborsOfStateChange(getPos(), ModBlocks.battery, true);
-        markDirty();
+        markDirtyClient();
     }
 
     public EnergyStorageHandler energyHandler = new EnergyStorageHandler(Reference.BATTERY_ENERGY_CAPACITY) {

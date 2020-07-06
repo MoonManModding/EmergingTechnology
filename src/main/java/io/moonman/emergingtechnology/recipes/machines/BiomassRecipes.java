@@ -9,6 +9,7 @@ import io.moonman.emergingtechnology.init.ModItems;
 import io.moonman.emergingtechnology.recipes.RecipeBuilder;
 import io.moonman.emergingtechnology.recipes.classes.IMachineRecipe;
 import io.moonman.emergingtechnology.recipes.classes.SimpleRecipe;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -42,6 +43,23 @@ public class BiomassRecipes {
 
     public static ItemStack getOutputByItemStack(ItemStack itemStack) {
         ItemStack stack = RecipeBuilder.getOutputForItemStackFromRecipes(itemStack, getRecipes());
+
+        if (stack == null) {
+            return ItemStack.EMPTY;
+        }
+
+        return stack.copy();
+    }
+
+    public static ItemStack getPlannedStackById(String id) {
+
+        Item item = Item.getByNameOrId(id);
+
+        if (item == null) {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack stack = RecipeBuilder.getOutputForItemStackFromRecipes(new ItemStack(item), getRecipes());
 
         if (stack == null) {
             return ItemStack.EMPTY;

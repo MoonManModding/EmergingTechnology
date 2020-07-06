@@ -199,7 +199,7 @@ public class HydroponicTileEntity extends MachineTileBase implements SimpleCompo
 
         int waterFluidUse = HydroponicHelper.getFluidUseForMedium(this.getGrowthMediumId());
 
-        int fluidUsage = growSucceeded ? waterFluidUse : 1;
+        int fluidUsage = growSucceeded ? waterFluidUse : 0;
 
         // Drain water
         this.fluidHandler
