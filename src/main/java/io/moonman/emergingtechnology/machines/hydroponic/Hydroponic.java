@@ -212,8 +212,9 @@ public class Hydroponic extends MachineBase implements ITileEntityProvider {
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 
         TileEntity tileEntity = worldIn.getTileEntity(pos);
+        IBlockState block = worldIn.getBlockState(pos);
 
-        if (tileEntity instanceof HydroponicTileEntity) {
+        if (tileEntity instanceof HydroponicTileEntity && block.getBlock() instanceof Hydroponic) {
             HydroponicTileEntity hydroponicTileEntity = (HydroponicTileEntity) tileEntity;
 
             boolean hasWater = hydroponicTileEntity.getWater() > 0;
