@@ -27,7 +27,7 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
         this.renderWaterLevel(tileEntity, x, y, z, partialTicks, destroyStage, partial, buffer);
     }
 
-    public void renderWaterLevel(HydroponicTileEntity tileEntity, double x, double y, double z, float partialTicks,
+    private void renderWaterLevel(HydroponicTileEntity tileEntity, double x, double y, double z, float partialTicks,
             int destroyStage, float partial, BufferBuilder buffer) {
         final float PX = 1f / 16f;
         final float YOFF = 12 * PX;
@@ -62,9 +62,13 @@ public class HydroponicTESR extends FastTESR<HydroponicTileEntity> {
                 .tex(texture.getMaxU(), texture.getMaxV()).lightmap(upLMa, upLMb).endVertex();
         buffer.pos(BORDER, actualHeight, 1 - BORDER).color(1f, 1f, 1f, 0.8f).tex(texture.getMinU(), texture.getMaxV())
                 .lightmap(upLMa, upLMb).endVertex();
+
+        System.out.println("Resetting buffer");
+
+        buffer.reset();
     }
 
-    public void renderGrowthMedium(HydroponicTileEntity tileEntity, double x, double y, double z, float partialTicks,
+    private void renderGrowthMedium(HydroponicTileEntity tileEntity, double x, double y, double z, float partialTicks,
              int destroyStage, float partial, BufferBuilder buffer) {
 
                 // I was hella lazy here, could be improved

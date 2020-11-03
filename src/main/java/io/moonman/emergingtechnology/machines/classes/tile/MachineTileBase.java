@@ -56,25 +56,30 @@ public class MachineTileBase extends TileEntity implements ITickable {
         this.maxTick = max;
     }
 
+    /**
+     * Server-side updates only
+     */
     @Override
     public void update() {
         if (this.isClient()) {
             return;
         }
 
-        if (tick < maxTick) {
-            tick++;
-            return;
-        } else {
+        // if (tick < maxTick) {
+        //     tick++;
+        //     return;
+        // } else {
 
-            cycle();
+        //     cycle();
 
-            tick = 0;
-        }
+        //     tick = 0;
+        // }
+
+        cycle();
     }
 
     /**
-     * Called from update(), timing is based on interval set in Reference.TICK_RATE
+     * Called from update()
      */
     public void cycle() {
 
